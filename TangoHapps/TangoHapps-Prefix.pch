@@ -1,0 +1,32 @@
+//
+// Prefix header for all source files of the 'TangoHapps' target in the 'TangoHapps' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#import "cocos2d.h"
+#import "Tango/Tango.h"
+#import "Tango/TFSimulableObject.h"
+
+#import <QuartzCore/QuartzCore.h>
+
+#import "SimpleAudioEngine.h"
+#import "THClientHelper.h"
+#import "THUtils.h"
+#import "THConstants.h"
+#import "THHelper.h"
+#import "THCustomProject.h"
+
+#import "THCondition.h"
+
+#import "THBluetoothHelper.h"
+#import "THDirector.h"

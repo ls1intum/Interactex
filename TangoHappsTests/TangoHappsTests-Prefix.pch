@@ -1,0 +1,63 @@
+//
+// Prefix header for all source files of the 'TangoHappsTests' target in the 'TangoHappsTests' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#import "cocos2d.h"
+#import "SimpleAudioEngine.h"
+#import "Tango/Tango.h"
+
+#import "THUtils.h"
+
+#import "THConstants.h"
+#import "THClientHelper.h"
+
+#import "THCustomProject.h"
+
+#import "THLedEditableObject.h"
+#import "THButtonEditableObject.h"
+#import "THLed.h"
+#import "THButton.h"
+#import "THLabel.h"
+#import "THiPhoneEditableObject.h"
+#import "THLabelEditableObject.h"
+#import "THConditionEditableObject.h"
+#import "THiPhoneButtonEditableObject.h"
+#import "THiPhoneButton.h"
+#import "THLabel.h"
+#import "THLed.h"
+
+#import "THComparisonConditionEditable.h"
+#import "THGrouperConditionEditable.h"
+#import "THComparisonCondition.h"
+#import "THGrouperCondition.h"
+
+#import "THBuzzerEditableObject.h"
+#import "THBuzzer.h"
+#import "THTouchPadEditableObject.h"
+#import "THTouchpad.h"
+#import "THLilypadEditable.h"
+#import "THBoardPinEditable.h"
+#import "THElementPinEditable.h"
+#import "THLilyPad.h"
+#import "THElementPin.h"
+#import "THBoardPin.h"
+#import "THTouchpad.h"
+#import "THTouchPadEditableObject.h"
+
+#import "THBluetoothHelper.h"
+
+#import <GHUnitIOS/GHUnit.h>
+#import "THTestsHelper.h"
+#import "THDirector.h"
+

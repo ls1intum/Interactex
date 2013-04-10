@@ -1,0 +1,1 @@
+ /Applications/Inkscape.app/Contents/MacOS/Inkscape --export-png=entity.png --export-width=100 --export-heigth=100 entity.svg

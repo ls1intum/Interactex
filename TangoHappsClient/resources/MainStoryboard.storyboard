@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dCN-sI-2fp">
+    <dependencies>
+        <development version="4500" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="1c8-WO-ehm">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="dCN-sI-2fp" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rxc-dB-3CY">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1nI-qf-8XH" kind="relationship" relationship="rootViewController" id="ecw-F4-54M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r4t-cH-xS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1148" y="228"/>
+        </scene>
+        <!--Client Scene Selection View Controller - Apps-->
+        <scene sceneID="wnw-XR-syg">
+            <objects>
+                <viewController id="1nI-qf-8XH" customClass="THClientSceneSelectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YNx-6h-6sc" customClass="THClientGridView">
+                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="1nI-qf-8XH" id="U94-E2-0Ce"/>
+                            <outlet property="delegate" destination="1nI-qf-8XH" id="UdJ-GL-0fa"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Apps" id="dag-TJ-uvv"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <segue destination="2" kind="push" identifier="segueToConnectionController" id="3yg-Tj-GIO"/>
+                        <segue destination="ooT-9x-Q8c" kind="push" identifier="segueToAppView" id="qZC-HR-N4C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Asl-im-aQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-661" y="221"/>
+        </scene>
+        <!--Connection View Controller - First-->
+        <scene sceneID="11">
+            <objects>
+                <viewController title="First" id="2" customClass="THConnectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YsE-4d-tUs">
+                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jMb-RZ-tSW" userLabel="Servers table">
+                                <rect key="frame" x="9" y="253" width="300" height="251"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="WZK-ZP-VY2"/>
+                                    <outlet property="delegate" destination="2" id="eXU-Fo-hIo"/>
+                                </connections>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="eW8-Vd-MeK" userLabel="Wireless Logo">
+                                <rect key="frame" x="110" y="5" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tethering Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GNN-uq-7TA" userLabel="Title">
+                                <rect key="frame" x="0.0" y="93" width="320" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" text="Not connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XZf-4T-8EI" userLabel="Explanation">
+                                <rect key="frame" x="10" y="228" width="300" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="jVU-c3-56b">
+                                <rect key="frame" x="20" y="210" width="269" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Open a scene on another device and enable remote simulation from the toolbar. Then pick the device from the list below." id="tmX-H1-LE8">
+                                <rect key="frame" x="20" y="132" width="289" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Connection" id="Ta9-c4-whj"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="progressBar" destination="jVU-c3-56b" id="bC6-kt-Scb"/>
+                        <outlet property="statusLabel" destination="XZf-4T-8EI" id="ENe-2T-Xgo"/>
+                        <outlet property="tableView" destination="jMb-RZ-tSW" id="aiW-i7-BdT"/>
+                        <outlet property="view" destination="YsE-4d-tUs" id="59L-rf-k4W"/>
+                        <segue destination="ooT-9x-Q8c" kind="push" identifier="segueToAppView" id="o7r-LT-UHJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-227" y="-227"/>
+        </scene>
+        <!--Client App View Controller - First-->
+        <scene sceneID="X7L-oF-nqh">
+            <objects>
+                <viewController title="First" id="ooT-9x-Q8c" customClass="THClientAppViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Client App" id="h6l-f2-78d">
+                        <barButtonItem key="rightBarButtonItem" image="lilypadmode.png" id="cXQ-Ks-m7U">
+                            <connections>
+                                <action selector="modeButtonTapped:" destination="ooT-9x-Q8c" id="9CT-mS-v4N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="modeButton" destination="cXQ-Ks-m7U" id="qy8-PY-GpA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h83-zx-Iae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338" y="126"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="lilypadmode.png" width="30" height="30"/>
+    </resources>
+    <classes>
+        <class className="THClientAppViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientAppViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="modeButtonTapped:"/>
+                <relationship kind="outlet" name="modeButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="THClientGridView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientGridView.h"/>
+        </class>
+        <class className="THClientSceneSelectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneSelectionViewController.h"/>
+        </class>
+        <class className="THConnectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THConnectionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="o7r-LT-UHJ"/>
+    </inferredMetricsTieBreakers>
+</document>
