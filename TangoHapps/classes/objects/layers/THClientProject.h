@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray * iPhoneObjects;
 @property (nonatomic, strong) NSMutableArray * conditions;
 @property (nonatomic, strong) NSMutableArray * values;
+@property (nonatomic, strong) NSMutableArray * actionPairs;
 @property (nonatomic, strong) NSMutableArray * actions;
 @property (nonatomic, strong) NSMutableArray * triggers;
 @property (nonatomic, strong) THiPhone * iPhone;

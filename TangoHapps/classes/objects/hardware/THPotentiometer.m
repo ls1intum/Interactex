@@ -71,6 +71,9 @@
 
 -(id)copyWithZone:(NSZone *)zone{
     THPotentiometer * copy = [super copyWithZone:zone];
+    copy.minValueNotify = self.minValueNotify;
+    copy.maxValueNotify = self.maxValueNotify;
+    copy.notifyBehavior = self.notifyBehavior;
     
     return copy;
 }

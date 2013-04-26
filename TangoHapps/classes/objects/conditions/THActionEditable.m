@@ -43,4 +43,25 @@
     return copy;
 }
 
+#pragma mark - World interaction
+
+-(void) addToWorld{
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    [project addAction:self];
+}
+
+-(void) removeFromWorld{
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    [project removeAction:self];
+    [super removeFromWorld];
+}
+
+-(void) addToLayer:(TFLayer*) layer{
+    [layer addEditableObject:self];
+}
+
+-(void) removeFromLayer:(TFLayer*) layer{
+    [layer removeEditableObject:self];
+}
+
 @end

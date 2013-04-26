@@ -51,6 +51,7 @@
     _clotheObjects = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
+    _actions = [NSMutableArray array];
     _values = [NSMutableArray array];
     _triggers = [NSMutableArray array];
 }
@@ -100,7 +101,7 @@
         NSArray * conditions = [decoder decodeObjectForKey:@"conditions"];
         NSArray * values = [decoder decodeObjectForKey:@"values"];
         NSArray * triggers = [decoder decodeObjectForKey:@"triggers"];
-        //NSArray * actions = [decoder decodeObjectForKey:@"actions"];
+        NSArray * actions = [decoder decodeObjectForKey:@"actions"];
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
         
@@ -131,10 +132,10 @@
         for(TFEditableObject* trigger in triggers){
             [self addTrigger:trigger];
         }
-        /*
+        
         for(TFEditableObject* action in actions){
             [self addAction:action];
-        }*/
+        }
         
         if(lilypad != nil){
             [self addLilypad:lilypad];
@@ -155,6 +156,7 @@
     [coder encodeObject:self.conditions forKey:@"conditions"];
     [coder encodeObject:self.values forKey:@"values"];
     [coder encodeObject:self.triggers forKey:@"triggers"];
+    [coder encodeObject:self.actions forKey:@"actions"];
     
     if(self.lilypad != nil)
         [coder encodeObject:_lilypad forKey:@"lilypad"];
@@ -367,7 +369,7 @@
 }
 
 #pragma mark - Actions
-/*
+
 -(void) addAction:(TFEditableObject*) action{
     [_actions addObject:action];
     [self notifyObjectAdded:action];
@@ -386,7 +388,7 @@
         }
     }
     return nil;
-}*/
+}
 
 #pragma mark - All Objects
 
@@ -423,6 +425,7 @@ enum zPositions{
 
 -(NSMutableArray*) allObjects{
     NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.conditions];
+    [allObjects addObjectsFromArray:self.actions];
     [allObjects addObjectsFromArray:self.triggers];
     [allObjects addObjectsFromArray:self.values];
     [allObjects addObjectsFromArray:self.clotheObjects];
@@ -474,6 +477,9 @@ enum zPositions{
     } else if ([editable isKindOfClass:[THTriggerEditable class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.triggers];
         return [project.triggers objectAtIndex:idx];
+    } else if ([editable isKindOfClass:[THActionEditable class]]){
+        NSInteger idx = [self idxOfEditable:editable inArray:self.actions];
+        return [project.actions objectAtIndex:idx];
     } else {
         NSAssert(NO, @"returning nil in simulableForEditable for %@",editable);
         return nil;
@@ -495,6 +501,9 @@ enum zPositions{
         return [project.values objectAtIndex:idx];
     } else if ([simulable isKindOfClass:[THTrigger class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.triggers];
+        return [project.triggers objectAtIndex:idx];
+    } else if ([simulable isKindOfClass:[TFAction class]]){
+        NSInteger idx = [self idxOfSimulable:simulable inArray:self.actions];
         return [project.triggers objectAtIndex:idx];
     } else {
         NSAssert(NO, @"returning nil in simulableForEditable");

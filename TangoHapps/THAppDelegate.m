@@ -19,7 +19,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        
+    
+    [TFFileUtils dataDirectory:@"sounds"];
+    
     THProjectDelegate * projectDelegate = [[THProjectDelegate alloc] init];
     
     THDirector * director = [THDirector sharedDirector];

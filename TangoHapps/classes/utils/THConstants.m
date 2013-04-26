@@ -59,7 +59,7 @@ NSString* const kPinTexts[kNumPinTypes] = {@"D", @"A", @"PWM", @"-", @"+"};
 NSString * const kElementPinTexts[kNumElementPinTypes] = {@"D", @"A", @"+", @"-", @"SCL", @"SDA"};
 NSString* const kPinModeTexts[kNumPinModes] = {@"D In", @"D Out",@"A In",@"PWM", @"Buzzer", @"Compass", @"Undefined"};
 
-NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4};
+NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2};
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
@@ -69,7 +69,8 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,-10},{0,20},{25,-10}},//potentiometer
     {{-22,-8},{0,23},{25,-8}},//light sensor
     {{-20,20},{20,20},{20,-20},{-20,-20}},//compass
-    {{0,20},{-22,-7},{0,-25},{22,-7}}//three color led
+    {{0,20},{-22,-7},{0,-25},{22,-7}},//three color led
+    {{-22,15},{22,15}}//vibeBoard
 };
 
 NSInteger const kLilypadPwmPins[kLilypadNumPwmPins] = {3,5,6,9,10,11};
@@ -161,5 +162,6 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//potentio
     {70,65},//light
     {70,75},//compass
-    {70,65}//tricolor
+    {70,65},//tricolor
+    {70,65}//vibeBoard
 };

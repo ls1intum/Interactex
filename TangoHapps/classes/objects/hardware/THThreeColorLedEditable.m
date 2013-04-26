@@ -33,14 +33,14 @@
     [self.sprite addChild:_lightSprite];
     
     self.acceptsConnections = YES;
+    
+    self.type = kHardwareTypeThreeColorLed;
 }
 
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THThreeColorLed alloc] init];
-        
-        self.type = kHardwareTypeThreeColorLed;
         
         [self loadThreeColorLed];
         [self loadPins];

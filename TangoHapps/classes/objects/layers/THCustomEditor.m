@@ -21,6 +21,7 @@
 #import "THLilypadEditable.h"
 #import "THValueEditable.h"
 #import "THTimerEditable.h"
+#import "THActionEditable.h"
 
 @implementation THCustomEditor
 
@@ -362,6 +363,21 @@ float const kEditorMaxScale = 2.5f;
     }
 }
 
+-(void) showActions{
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    for (THActionEditable * object in project.actions) {
+        object.visible = YES;
+    }
+}
+
+-(void) hideActions{
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    for (THActionEditable * object in project.actions) {
+        object.visible = NO;
+    }
+}
+
+
 -(void) hideiPhone{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
@@ -375,7 +391,6 @@ float const kEditorMaxScale = 2.5f;
 }
 
 /*
-
 -(void) addValues{
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.values) {
@@ -402,7 +417,6 @@ float const kEditorMaxScale = 2.5f;
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         [object removeFromLayer:self];
-        //[object removeFromParentAndCleanup:YES];
     }
 }
 
@@ -410,7 +424,6 @@ float const kEditorMaxScale = 2.5f;
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         object.visible = YES;
-        //[object removeFromParentAndCleanup:YES];
     }
 }
 
@@ -419,7 +432,6 @@ float const kEditorMaxScale = 2.5f;
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         object.visible = NO;
-        //[object removeFromParentAndCleanup:YES];
     }
 }
 
@@ -465,6 +477,7 @@ float const kEditorMaxScale = 2.5f;
     [self hideConditions];
     [self hideValues];
     [self hideTriggers];
+    [self hideActions];
     [self hideiPhone];
 }
 
@@ -473,6 +486,7 @@ float const kEditorMaxScale = 2.5f;
     [self showConditions];
     [self showValues];
     [self showTriggers];
+    [self showActions];
     [self showiPhone];
 }
 

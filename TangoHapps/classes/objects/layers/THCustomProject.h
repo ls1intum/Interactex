@@ -64,11 +64,11 @@
 -(void) removeTrigger:(TFEditableObject*) trigger;
 -(TFEditableObject*) triggerAtLocation:(CGPoint) location;
 
-/*
+
 //actions
 -(void) addAction:(TFEditableObject*) action;
 -(void) removeAction:(TFEditableObject*) action;
--(TFEditableObject*) actionAtLocation:(CGPoint) location;*/
+-(TFEditableObject*) actionAtLocation:(CGPoint) location;
 
 //lilypad
 -(void) addLilypad:(THLilyPadEditable *)lilypad;
@@ -85,6 +85,6 @@
 @property (nonatomic,readonly) NSMutableArray * conditions;
 @property (nonatomic,readonly) NSMutableArray * values;
 @property (nonatomic,readonly) NSMutableArray * triggers;
-//@property (nonatomic,readonly) NSMutableArray * actions;
+@property (nonatomic,readonly) NSMutableArray * actions;
 
 @end

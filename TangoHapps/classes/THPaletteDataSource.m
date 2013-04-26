@@ -16,6 +16,7 @@
 #import "THPotentiometerPaletteItem.h"
 #import "THSwitchPaletteItem.h"
 #import "THThreeColorLedPaletteItem.h"
+#import "THVibrationBoardPaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -35,6 +36,7 @@
 #import "THMapperPaletteItem.h"
 #import "THProjectViewController.h"
 #import "THTimerPaletteItem.h"
+#import "THSoundPaletteItem.h"
 
 @implementation THPaletteDataSource
 
@@ -83,7 +85,7 @@
     [palette addDragablePaletteItem:[[THImageViewPaletteItem alloc] initWithName:@"imageview"]];
     [palette addDragablePaletteItem:[[THContactBookPaletteItem alloc] initWithName:@"contactBook"]];
     
-    [self addPalette:palette withTitle:@"Software"];
+    [self addPalette:palette withTitle:@"UI Elements"];
 }
 
 -(void)addHardwarePalette {
@@ -97,6 +99,7 @@
     [palette addDragablePaletteItem:[[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"]];
     [palette addDragablePaletteItem:[[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"]];
     [palette addDragablePaletteItem:[[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"]];
+    [palette addDragablePaletteItem:[[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"]];
     
     [self addPalette:palette withTitle:@"Hardware"];
 }
@@ -109,6 +112,7 @@
     [palette addDragablePaletteItem:[[THValuePaletteItem alloc] initWithName:@"value"]];
     [palette addDragablePaletteItem:[[THMapperPaletteItem alloc] initWithName:@"mapper"]];
     [palette addDragablePaletteItem:[[THTimerPaletteItem alloc] initWithName:@"timer"]];
+    [palette addDragablePaletteItem:[[THSoundPaletteItem alloc] initWithName:@"sound"]];
     
     [self addPalette:palette withTitle:@"Programming"];
 }

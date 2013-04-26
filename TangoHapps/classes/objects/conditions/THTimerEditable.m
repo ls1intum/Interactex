@@ -97,7 +97,7 @@
 }
 
 -(NSString*) description{
-    return @"value";
+    return @"Timer";
 }
 
 @end

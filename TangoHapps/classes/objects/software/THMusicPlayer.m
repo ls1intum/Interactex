@@ -152,7 +152,6 @@ NSString * const kPauseImageName = @"pause.png";
     _songs = songsQuery.items;
 #endif
 
-
     TFProperty * property1 = [TFProperty propertyWithName:@"volume" andType:kDataTypeFloat];
     self.viewableProperties = [NSArray arrayWithObject:property1];
     
@@ -236,6 +235,8 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) setVolume:(float)volume{
 #if !(TARGET_IPHONE_SIMULATOR)
     _musicPlayer.volume = volume;
+    #else
+    
 #endif
 }
 

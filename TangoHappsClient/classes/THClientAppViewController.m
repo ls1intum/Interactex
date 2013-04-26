@@ -190,6 +190,18 @@
     }
 }
 
+-(void) bleServiceIsReady:(BleService *)service{
+    
+    [service clearRx];
+    [self sendPinModes];
+    [self startRealStateTransfer];
+    [self stopActivityIndicator];
+}
+
+- (void) bleServiceDidReset {
+    _bleService = nil;
+}
+
 -(void) stopActivityIndicator {
     
     _state = kClientStateNormal;
@@ -216,18 +228,6 @@
     [_activityIndicator startAnimating];
     
     [self.view addSubview:_activityIndicator];
-}
-
--(void) bleServiceIsReady:(BleService *)service{
-    
-    [service clearRx];
-    [self sendPinModes];
-    [self startRealStateTransfer];
-    [self stopActivityIndicator];
-}
-
-- (void) bleServiceDidReset {
-    _bleService = nil;
 }
 
 - (void)viewDidLoad {

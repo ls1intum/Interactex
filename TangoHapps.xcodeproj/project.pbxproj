@@ -56,6 +56,45 @@
 		9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9A0976341715701F0028A6B4 /* THClientGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50012167B83140020241C /* THClientGridItem.m */; };
 		9A097635171570220028A6B4 /* THClientGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50014167B83140020241C /* THClientGridView.m */; };
+		9A09767C171864BB0028A6B4 /* THVibrationBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09767B171864BA0028A6B4 /* THVibrationBoard.m */; };
+		9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09767B171864BA0028A6B4 /* THVibrationBoard.m */; };
+		9A09767E171864BB0028A6B4 /* THVibrationBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09767B171864BA0028A6B4 /* THVibrationBoard.m */; };
+		9A097681171866020028A6B4 /* THVibrationBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097680171866020028A6B4 /* THVibrationBoardEditable.m */; };
+		9A097682171866020028A6B4 /* THVibrationBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097680171866020028A6B4 /* THVibrationBoardEditable.m */; };
+		9A097685171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097684171866AA0028A6B4 /* THVibrationBoardProperties.m */; };
+		9A097686171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097684171866AA0028A6B4 /* THVibrationBoardProperties.m */; };
+		9A097688171868730028A6B4 /* THVibrationBoardProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A097687171868730028A6B4 /* THVibrationBoardProperties.xib */; };
+		9A097689171868730028A6B4 /* THVibrationBoardProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A097687171868730028A6B4 /* THVibrationBoardProperties.xib */; };
+		9A09768C17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */; };
+		9A09768D17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */; };
+		9A09769217186DC50028A6B4 /* palette_vibeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09768E17186DC50028A6B4 /* palette_vibeBoard.png */; };
+		9A09769317186DC50028A6B4 /* palette_vibeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09768E17186DC50028A6B4 /* palette_vibeBoard.png */; };
+		9A09769417186DC50028A6B4 /* palette_vibeBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09768F17186DC50028A6B4 /* palette_vibeBoard@2x.png */; };
+		9A09769517186DC50028A6B4 /* palette_vibeBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09768F17186DC50028A6B4 /* palette_vibeBoard@2x.png */; };
+		9A09769617186DC50028A6B4 /* vibeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09769017186DC50028A6B4 /* vibeBoard.png */; };
+		9A09769717186DC50028A6B4 /* vibeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09769017186DC50028A6B4 /* vibeBoard.png */; };
+		9A09769817186DC50028A6B4 /* vibeBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09769117186DC50028A6B4 /* vibeBoard@2x.png */; };
+		9A09769917186DC50028A6B4 /* vibeBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09769117186DC50028A6B4 /* vibeBoard@2x.png */; };
+		9A09772E17267CFC0028A6B4 /* THSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09772D17267CFC0028A6B4 /* THSound.m */; };
+		9A09772F17267CFC0028A6B4 /* THSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09772D17267CFC0028A6B4 /* THSound.m */; };
+		9A09773017267CFC0028A6B4 /* THSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09772D17267CFC0028A6B4 /* THSound.m */; };
+		9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777417268C2D0028A6B4 /* THSoundEditable.m */; };
+		9A09777617268C2E0028A6B4 /* THSoundEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777417268C2D0028A6B4 /* THSoundEditable.m */; };
+		9A09777717268C2E0028A6B4 /* THSoundEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777417268C2D0028A6B4 /* THSoundEditable.m */; };
+		9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
+		9A09777B17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
+		9A09777D17268EF40028A6B4 /* THSoundProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A09777C17268EF30028A6B4 /* THSoundProperties.xib */; };
+		9A09777E17268EF40028A6B4 /* THSoundProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A09777C17268EF30028A6B4 /* THSoundProperties.xib */; };
+		9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
+		9A097782172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
+		9A097785172699D20028A6B4 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A097783172699D20028A6B4 /* sound.png */; };
+		9A097786172699D20028A6B4 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A097783172699D20028A6B4 /* sound.png */; };
+		9A097787172699D20028A6B4 /* sound@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A097784172699D20028A6B4 /* sound@2x.png */; };
+		9A097788172699D20028A6B4 /* sound@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A097784172699D20028A6B4 /* sound@2x.png */; };
+		9A09778B172699DF0028A6B4 /* palette_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A097789172699DF0028A6B4 /* palette_sound.png */; };
+		9A09778C172699DF0028A6B4 /* palette_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A097789172699DF0028A6B4 /* palette_sound.png */; };
+		9A09778D172699DF0028A6B4 /* palette_sound@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09778A172699DF0028A6B4 /* palette_sound@2x.png */; };
+		9A09778E172699DF0028A6B4 /* palette_sound@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09778A172699DF0028A6B4 /* palette_sound@2x.png */; };
 		9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A1384DC16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A35118E167B7A6800C7484B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118D167B7A6800C7484B /* UIKit.framework */; };
@@ -103,6 +142,8 @@
 		9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
 		9A7DBF6E169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
 		9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
+		9A85721C172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
+		9A85721D172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A87C06116A4140C0059CC2E /* THGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A87C06016A4140C0059CC2E /* THGridItem.xib */; };
 		9A87C06216A4140C0059CC2E /* THGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A87C06016A4140C0059CC2E /* THGridItem.xib */; };
 		9A8BB907167BA60000FBABFB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF506D0167B97760020241C /* MediaPlayer.framework */; };
@@ -1409,6 +1450,32 @@
 		9A06F003169C77A100B88519 /* palette_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_slider.png; sourceTree = "<group>"; };
 		9A06F004169C77A100B88519 /* palette_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_slider@2x.png"; sourceTree = "<group>"; };
 		9A0975E717156E400028A6B4 /* Tango.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tango.framework; path = Frameworks/Tango.framework; sourceTree = "<group>"; };
+		9A09767A171864BA0028A6B4 /* THVibrationBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THVibrationBoard.h; sourceTree = "<group>"; };
+		9A09767B171864BA0028A6B4 /* THVibrationBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVibrationBoard.m; sourceTree = "<group>"; };
+		9A09767F171866020028A6B4 /* THVibrationBoardEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THVibrationBoardEditable.h; sourceTree = "<group>"; };
+		9A097680171866020028A6B4 /* THVibrationBoardEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVibrationBoardEditable.m; sourceTree = "<group>"; };
+		9A097683171866AA0028A6B4 /* THVibrationBoardProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THVibrationBoardProperties.h; sourceTree = "<group>"; };
+		9A097684171866AA0028A6B4 /* THVibrationBoardProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVibrationBoardProperties.m; sourceTree = "<group>"; };
+		9A097687171868730028A6B4 /* THVibrationBoardProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THVibrationBoardProperties.xib; sourceTree = "<group>"; };
+		9A09768A17186B2D0028A6B4 /* THVibrationBoardPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THVibrationBoardPaletteItem.h; sourceTree = "<group>"; };
+		9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVibrationBoardPaletteItem.m; sourceTree = "<group>"; };
+		9A09768E17186DC50028A6B4 /* palette_vibeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_vibeBoard.png; sourceTree = "<group>"; };
+		9A09768F17186DC50028A6B4 /* palette_vibeBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_vibeBoard@2x.png"; sourceTree = "<group>"; };
+		9A09769017186DC50028A6B4 /* vibeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vibeBoard.png; sourceTree = "<group>"; };
+		9A09769117186DC50028A6B4 /* vibeBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vibeBoard@2x.png"; sourceTree = "<group>"; };
+		9A09772C17267CFC0028A6B4 /* THSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSound.h; sourceTree = "<group>"; };
+		9A09772D17267CFC0028A6B4 /* THSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSound.m; sourceTree = "<group>"; };
+		9A09777317268C2D0028A6B4 /* THSoundEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundEditable.h; sourceTree = "<group>"; };
+		9A09777417268C2D0028A6B4 /* THSoundEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundEditable.m; sourceTree = "<group>"; };
+		9A09777817268CDF0028A6B4 /* THSoundProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundProperties.h; sourceTree = "<group>"; };
+		9A09777917268CDF0028A6B4 /* THSoundProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundProperties.m; sourceTree = "<group>"; };
+		9A09777C17268EF30028A6B4 /* THSoundProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THSoundProperties.xib; sourceTree = "<group>"; };
+		9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPaletteItem.h; sourceTree = "<group>"; };
+		9A097780172693E60028A6B4 /* THSoundPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPaletteItem.m; sourceTree = "<group>"; };
+		9A097783172699D20028A6B4 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
+		9A097784172699D20028A6B4 /* sound@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound@2x.png"; sourceTree = "<group>"; };
+		9A097789172699DF0028A6B4 /* palette_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_sound.png; sourceTree = "<group>"; };
+		9A09778A172699DF0028A6B4 /* palette_sound@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_sound@2x.png"; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
 		9A351189167B7A6800C7484B /* TangoHapps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHapps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35118D167B7A6800C7484B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1446,6 +1513,8 @@
 		9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLed.m; sourceTree = "<group>"; };
 		9A7DBF6C169ACD5C00F86D71 /* THThreeColorLedEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedEditable.h; sourceTree = "<group>"; };
 		9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLedEditable.m; sourceTree = "<group>"; };
+		9A85721A172804B600510D23 /* THSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPicker.h; sourceTree = "<group>"; };
+		9A85721B172804B600510D23 /* THSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPicker.m; sourceTree = "<group>"; };
 		9A87C06016A4140C0059CC2E /* THGridItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THGridItem.xib; sourceTree = "<group>"; };
 		9A8BB90A167C7D6400FBABFB /* buzzerPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzerPlay.png; sourceTree = "<group>"; };
 		9A8BB90C167C7D6400FBABFB /* buzzerStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzerStop.png; sourceTree = "<group>"; };
@@ -2089,7 +2158,6 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A0975E717156E400028A6B4 /* Tango.framework */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
 				9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */,
 				9A8BBA3A167F27FC00FBABFB /* CoreLocation.framework */,
@@ -2108,6 +2176,7 @@
 				9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */,
 				9A35118D167B7A6800C7484B /* UIKit.framework */,
 				9A35118F167B7A6800C7484B /* Foundation.framework */,
+				9A0975E717156E400028A6B4 /* Tango.framework */,
 				9A351191167B7A6800C7484B /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -2170,6 +2239,10 @@
 			children = (
 				9A9384AC16D69CCA00A41BD2 /* THActionEditable.h */,
 				9A9384AD16D69CCA00A41BD2 /* THActionEditable.m */,
+				9A09772C17267CFC0028A6B4 /* THSound.h */,
+				9A09772D17267CFC0028A6B4 /* THSound.m */,
+				9A09777317268C2D0028A6B4 /* THSoundEditable.h */,
+				9A09777417268C2D0028A6B4 /* THSoundEditable.m */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -2252,6 +2325,8 @@
 				9A94F41416A0192700AF52AB /* THValueProperties.xib */,
 				9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */,
 				9A93848D16D6900E00A41BD2 /* THTimerProperties.xib */,
+				9A097687171868730028A6B4 /* THVibrationBoardProperties.xib */,
+				9A09777C17268EF30028A6B4 /* THSoundProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -2529,6 +2604,10 @@
 				9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */,
 				9A7DBF6C169ACD5C00F86D71 /* THThreeColorLedEditable.h */,
 				9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */,
+				9A09767A171864BA0028A6B4 /* THVibrationBoard.h */,
+				9A09767B171864BA0028A6B4 /* THVibrationBoard.m */,
+				9A09767F171866020028A6B4 /* THVibrationBoardEditable.h */,
+				9A097680171866020028A6B4 /* THVibrationBoardEditable.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -2686,6 +2765,10 @@
 				9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */,
 				9A93846D16D6723600A41BD2 /* THTimerPaletteItem.h */,
 				9A93846E16D6723600A41BD2 /* THTimerPaletteItem.m */,
+				9A09768A17186B2D0028A6B4 /* THVibrationBoardPaletteItem.h */,
+				9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */,
+				9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */,
+				9A097780172693E60028A6B4 /* THSoundPaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -2743,6 +2826,10 @@
 				9A5F8D8916A2C4E4000DF472 /* THContactBookProperties.m */,
 				9A93846416D6534500A41BD2 /* THTimerProperties.h */,
 				9A93846516D6534500A41BD2 /* THTimerProperties.m */,
+				9A097683171866AA0028A6B4 /* THVibrationBoardProperties.h */,
+				9A097684171866AA0028A6B4 /* THVibrationBoardProperties.m */,
+				9A09777817268CDF0028A6B4 /* THSoundProperties.h */,
+				9A09777917268CDF0028A6B4 /* THSoundProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -2762,6 +2849,8 @@
 				9AF502E2167B84B40020241C /* THUtils.m */,
 				9AB29B57167F78C300F5AF62 /* THHelper.h */,
 				9AB29B58167F78C300F5AF62 /* THHelper.m */,
+				9A85721A172804B600510D23 /* THSoundPicker.h */,
+				9A85721B172804B600510D23 /* THSoundPicker.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -2840,6 +2929,14 @@
 		9AF50301167B84B40020241C /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9A097783172699D20028A6B4 /* sound.png */,
+				9A097784172699D20028A6B4 /* sound@2x.png */,
+				9A097789172699DF0028A6B4 /* palette_sound.png */,
+				9A09778A172699DF0028A6B4 /* palette_sound@2x.png */,
+				9A09768E17186DC50028A6B4 /* palette_vibeBoard.png */,
+				9A09768F17186DC50028A6B4 /* palette_vibeBoard@2x.png */,
+				9A09769017186DC50028A6B4 /* vibeBoard.png */,
+				9A09769117186DC50028A6B4 /* vibeBoard@2x.png */,
 				9A9384FE16D7A0A900A41BD2 /* switchOn.png */,
 				9A9384FF16D7A0A900A41BD2 /* switchOn@2x.png */,
 				9A9384F816D6C1BD00A41BD2 /* sewed.png */,
@@ -3800,6 +3897,16 @@
 				9A9384FC16D6C1BD00A41BD2 /* sewed@2x.png in Resources */,
 				9A93850016D7A0A900A41BD2 /* switchOn.png in Resources */,
 				9A93850216D7A0A900A41BD2 /* switchOn@2x.png in Resources */,
+				9A097688171868730028A6B4 /* THVibrationBoardProperties.xib in Resources */,
+				9A09769217186DC50028A6B4 /* palette_vibeBoard.png in Resources */,
+				9A09769417186DC50028A6B4 /* palette_vibeBoard@2x.png in Resources */,
+				9A09769617186DC50028A6B4 /* vibeBoard.png in Resources */,
+				9A09769817186DC50028A6B4 /* vibeBoard@2x.png in Resources */,
+				9A09777D17268EF40028A6B4 /* THSoundProperties.xib in Resources */,
+				9A097785172699D20028A6B4 /* sound.png in Resources */,
+				9A097787172699D20028A6B4 /* sound@2x.png in Resources */,
+				9A09778B172699DF0028A6B4 /* palette_sound.png in Resources */,
+				9A09778D172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3985,6 +4092,16 @@
 				9A93850316D7A0A900A41BD2 /* switchOn@2x.png in Resources */,
 				9AF3E6D816FA20090013DE13 /* fakeSceneImage.png in Resources */,
 				9AF3E6DA16FA20090013DE13 /* fakeSceneImage@2x.png in Resources */,
+				9A097689171868730028A6B4 /* THVibrationBoardProperties.xib in Resources */,
+				9A09769317186DC50028A6B4 /* palette_vibeBoard.png in Resources */,
+				9A09769517186DC50028A6B4 /* palette_vibeBoard@2x.png in Resources */,
+				9A09769717186DC50028A6B4 /* vibeBoard.png in Resources */,
+				9A09769917186DC50028A6B4 /* vibeBoard@2x.png in Resources */,
+				9A09777E17268EF40028A6B4 /* THSoundProperties.xib in Resources */,
+				9A097786172699D20028A6B4 /* sound.png in Resources */,
+				9A097788172699D20028A6B4 /* sound@2x.png in Resources */,
+				9A09778C172699DF0028A6B4 /* palette_sound.png in Resources */,
+				9A09778E172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4191,6 +4308,15 @@
 				9A93847516D6746200A41BD2 /* THTrigger.m in Sources */,
 				9A93847A16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
 				9A9384AE16D69CCA00A41BD2 /* THActionEditable.m in Sources */,
+				9A09767C171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
+				9A097681171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
+				9A097685171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
+				9A09768C17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */,
+				9A09772E17267CFC0028A6B4 /* THSound.m in Sources */,
+				9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */,
+				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
+				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
+				9A85721C172804B600510D23 /* THSoundPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4359,6 +4485,15 @@
 				9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */,
 				9A0976341715701F0028A6B4 /* THClientGridItem.m in Sources */,
 				9A097635171570220028A6B4 /* THClientGridView.m in Sources */,
+				9A09767E171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
+				9A097682171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
+				9A097686171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
+				9A09768D17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */,
+				9A09773017267CFC0028A6B4 /* THSound.m in Sources */,
+				9A09777717268C2E0028A6B4 /* THSoundEditable.m in Sources */,
+				9A09777B17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
+				9A097782172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
+				9A85721D172804B600510D23 /* THSoundPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4427,6 +4562,9 @@
 				9A93847B16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
 				9A9384AF16D69CCA00A41BD2 /* THActionEditable.m in Sources */,
 				9AF3E6D316FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */,
+				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
+				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
+				9A09777617268C2E0028A6B4 /* THSoundEditable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4554,6 +4692,7 @@
 		9A3511A8167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -4567,6 +4706,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

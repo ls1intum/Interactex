@@ -22,6 +22,7 @@
     _conditions = [NSMutableArray array];
     _values = [NSMutableArray array];
     _actions = [NSMutableArray array];
+    _actionPairs = [NSMutableArray array];
     _triggers = [NSMutableArray array];
 }
 
@@ -48,10 +49,11 @@
         self.conditions = [decoder decodeObjectForKey:@"conditions"];
         self.values = [decoder decodeObjectForKey:@"values"];
         self.triggers = [decoder decodeObjectForKey:@"triggers"];
-        NSMutableArray * actions = [decoder decodeObjectForKey:@"actions"];
+        self.actions = [decoder decodeObjectForKey:@"actions"];
         self.lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
-        for (TFEventActionPair * pair in actions) {
+        NSMutableArray * actionPairs = [decoder decodeObjectForKey:@"actionPairs"];
+        for (TFEventActionPair * pair in actionPairs) {
             [self registerAction:pair.action forEvent:pair.event];
         }
     }
@@ -70,6 +72,8 @@
     [coder encodeObject:self.triggers forKey:@"triggers"];
     [coder encodeObject:self.actions forKey:@"actions"];
     [coder encodeObject:self.lilypad forKey:@"lilypad"];
+    
+    [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
 
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event{
@@ -77,7 +81,7 @@
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
     pair.action = action;
     pair.event = event;
-    [_actions addObject:pair];
+    [_actionPairs addObject:pair];
     
     [[NSNotificationCenter defaultCenter] addObserver:action selector:@selector(startAction) name:event.name object:action.source];
 }
@@ -85,6 +89,7 @@
 -(NSArray*) allObjects{
     NSArray * allObjects = [self.clotheObjects arrayByAddingObjectsFromArray:self.iPhoneObjects];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.conditions];
+    allObjects = [allObjects arrayByAddingObjectsFromArray:self.actions];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.triggers];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.values];
     return allObjects;
@@ -113,7 +118,7 @@
     for (TFSimulableObject * object in allObjects) {
         [object prepareToDie];
     }
-    for (TFEventActionPair * pair in self.actions) {
+    for (TFEventActionPair * pair in self.actionPairs) {
         [pair.action prepareToDie];
     }
 }
