@@ -12,7 +12,9 @@ typedef enum{
     kTransferAgentActionIdle,
     kTransferAgentActionScene,
     kTransferActionPinState,
-    kTransferActionInputPinState
+    kTransferActionInputPinState,
+    kTransferActionAssets,
+    kTransferActionMissingAssets
 } TransferAgentAction;
 
 @class TransferAgent;

@@ -79,7 +79,6 @@
 		9A09772F17267CFC0028A6B4 /* THSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09772D17267CFC0028A6B4 /* THSound.m */; };
 		9A09773017267CFC0028A6B4 /* THSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09772D17267CFC0028A6B4 /* THSound.m */; };
 		9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777417268C2D0028A6B4 /* THSoundEditable.m */; };
-		9A09777617268C2E0028A6B4 /* THSoundEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777417268C2D0028A6B4 /* THSoundEditable.m */; };
 		9A09777717268C2E0028A6B4 /* THSoundEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777417268C2D0028A6B4 /* THSoundEditable.m */; };
 		9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
 		9A09777B17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
@@ -144,6 +143,15 @@
 		9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
 		9A85721C172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A85721D172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
+		9A8572B7172AD64C00510D23 /* THAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572B6172AD64C00510D23 /* THAsset.m */; };
+		9A8572B8172AD64C00510D23 /* THAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572B6172AD64C00510D23 /* THAsset.m */; };
+		9A8572B9172AD64C00510D23 /* THAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572B6172AD64C00510D23 /* THAsset.m */; };
+		9A8572BC172AD6D900510D23 /* THSoundAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572BB172AD6D900510D23 /* THSoundAsset.m */; };
+		9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572BB172AD6D900510D23 /* THSoundAsset.m */; };
+		9A8572BE172AD6D900510D23 /* THSoundAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572BB172AD6D900510D23 /* THSoundAsset.m */; };
+		9A8572C1172AD7F500510D23 /* THAssetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572C0172AD7F500510D23 /* THAssetCollection.m */; };
+		9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572C0172AD7F500510D23 /* THAssetCollection.m */; };
+		9A8572C3172AD7F500510D23 /* THAssetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572C0172AD7F500510D23 /* THAssetCollection.m */; };
 		9A87C06116A4140C0059CC2E /* THGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A87C06016A4140C0059CC2E /* THGridItem.xib */; };
 		9A87C06216A4140C0059CC2E /* THGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A87C06016A4140C0059CC2E /* THGridItem.xib */; };
 		9A8BB907167BA60000FBABFB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF506D0167B97760020241C /* MediaPlayer.framework */; };
@@ -1515,6 +1523,12 @@
 		9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLedEditable.m; sourceTree = "<group>"; };
 		9A85721A172804B600510D23 /* THSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPicker.h; sourceTree = "<group>"; };
 		9A85721B172804B600510D23 /* THSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPicker.m; sourceTree = "<group>"; };
+		9A8572B5172AD64C00510D23 /* THAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAsset.h; sourceTree = "<group>"; };
+		9A8572B6172AD64C00510D23 /* THAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAsset.m; sourceTree = "<group>"; };
+		9A8572BA172AD6D900510D23 /* THSoundAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundAsset.h; sourceTree = "<group>"; };
+		9A8572BB172AD6D900510D23 /* THSoundAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundAsset.m; sourceTree = "<group>"; };
+		9A8572BF172AD7F500510D23 /* THAssetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAssetCollection.h; sourceTree = "<group>"; };
+		9A8572C0172AD7F500510D23 /* THAssetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAssetCollection.m; sourceTree = "<group>"; };
 		9A87C06016A4140C0059CC2E /* THGridItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THGridItem.xib; sourceTree = "<group>"; };
 		9A8BB90A167C7D6400FBABFB /* buzzerPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzerPlay.png; sourceTree = "<group>"; };
 		9A8BB90C167C7D6400FBABFB /* buzzerStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzerStop.png; sourceTree = "<group>"; };
@@ -2208,6 +2222,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9A8572B4172AD64C00510D23 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				9A8572B5172AD64C00510D23 /* THAsset.h */,
+				9A8572B6172AD64C00510D23 /* THAsset.m */,
+				9A8572BA172AD6D900510D23 /* THSoundAsset.h */,
+				9A8572BB172AD6D900510D23 /* THSoundAsset.m */,
+				9A8572BF172AD7F500510D23 /* THAssetCollection.h */,
+				9A8572C0172AD7F500510D23 /* THAssetCollection.m */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		9A8BB909167C7D6400FBABFB /* properties */ = {
 			isa = PBXGroup;
 			children = (
@@ -2456,6 +2483,7 @@
 			children = (
 				9AF502D6167B84B40020241C /* utils */,
 				9AF501F5167B84B40020241C /* communication */,
+				9A8572B4172AD64C00510D23 /* assets */,
 				9A94F39216A0057900AF52AB /* project selection */,
 				9AF50205167B84B40020241C /* objects */,
 				9AF50287167B84B40020241C /* palette items */,
@@ -4317,6 +4345,9 @@
 				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
 				9A85721C172804B600510D23 /* THSoundPicker.m in Sources */,
+				9A8572B7172AD64C00510D23 /* THAsset.m in Sources */,
+				9A8572BC172AD6D900510D23 /* THSoundAsset.m in Sources */,
+				9A8572C1172AD7F500510D23 /* THAssetCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4494,6 +4525,9 @@
 				9A09777B17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097782172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
 				9A85721D172804B600510D23 /* THSoundPicker.m in Sources */,
+				9A8572B9172AD64C00510D23 /* THAsset.m in Sources */,
+				9A8572BE172AD6D900510D23 /* THSoundAsset.m in Sources */,
+				9A8572C3172AD7F500510D23 /* THAssetCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4564,7 +4598,9 @@
 				9AF3E6D316FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
-				9A09777617268C2E0028A6B4 /* THSoundEditable.m in Sources */,
+				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
+				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
+				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4693,10 +4729,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4715,10 +4747,6 @@
 		9A3511A9167B7A6800C7484B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4767,10 +4795,6 @@
 		9A94F279169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4788,10 +4812,6 @@
 		9A94F27A169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -4808,10 +4828,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsTests/TangoHappsTests-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsTests/TangoHappsTests-Info.plist";
@@ -4832,10 +4848,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -4852,10 +4864,6 @@
 		9AF50009167B82F70020241C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -4872,10 +4880,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsTests/TangoHappsTests-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsTests/TangoHappsTests-Info.plist";
@@ -4896,10 +4900,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsTests/TangoHappsTests-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsTests/TangoHappsTests-Info.plist";

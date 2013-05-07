@@ -199,7 +199,6 @@
     [receiveBuffer appendBytes:&(packet[INITIAL_HEADER_SIZE]) length:([data length] - INITIAL_HEADER_SIZE)];
     [_delegate socket:self didBeginReceivingObjectWithIdentifier:receivingIdentifier];
     [_delegate socket:self didReceiveChunk:receivedChunks of:receiveChunksTotal];
-    //NSLog(@"<Socket> Read INITIAL packet. Identifier = %i, Total size = %li, expected chunks = %i", (int)receivingIdentifier, totalSize, receiveChunksTotal);
 }
 
 -(void)readSubsequentPacket:(NSData*)data
@@ -208,7 +207,6 @@
     receivedChunks++;
     [receiveBuffer appendBytes:&(packet[SUBSEQUENT_HEADER_SIZE]) length:([data length] - SUBSEQUENT_HEADER_SIZE)];
     [_delegate socket:self didReceiveChunk:receivedChunks of:receiveChunksTotal];
-    //NSLog(@"<Socket> Read SUBEQUENT packet. Received chunks = %i", receivedChunks);
 }
 
 #pragma mark - Packet Sending

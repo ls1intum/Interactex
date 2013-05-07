@@ -35,4 +35,6 @@
 -(void) attachPin:(THElementPin*) pin;
 -(void) deattachPin:(THElementPin*) pin;
 
+-(void) notifyNewValue;
+
 @end

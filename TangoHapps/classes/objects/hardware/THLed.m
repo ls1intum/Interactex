@@ -123,7 +123,11 @@
     if(lilypadPin.mode == kPinModeDigitalOutput){
         lilypadPin.currentValue = self.on;
     } else {
-        lilypadPin.currentValue = self.intensity;
+        if(self.on){
+            lilypadPin.currentValue = self.intensity;
+        } else {
+            lilypadPin.currentValue = 0;
+        }
     }
     //NSLog(@"lilypin: %@",lilypadPin);
 }

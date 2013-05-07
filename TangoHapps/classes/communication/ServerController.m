@@ -6,6 +6,7 @@
 #import "THBoardPin.h"
 #import "THPinValue.h"
 #import "THClientProject.h"
+#import "THAssetCollection.h"
 
 @implementation ServerController
 @dynamic serverIsRunning;
@@ -170,9 +171,17 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     [self queueTransferAgentActionOnAllClients:kTransferActionInputPinState withObject:pins];
 }
 
+-(void)pushAssetListToAllClients:(NSArray*)assetList
+{
+    NSLog(@"queing assets: %d",assetList.count);
+    [self queueTransferAgentActionOnAllClients:kTransferActionAssets withObject:assetList];
+}
+
 -(void)pushProjectToAllClients:(THCustomProject*)project
 {
     THClientProject * cientProject = [project nonEditableProject];
+    THAssetCollection * assetCollection = project.assetCollection;
+    [self pushAssetListToAllClients:assetCollection.assetDescriptions];
     [self queueTransferAgentActionOnAllClients:kTransferAgentActionScene withObject:cientProject];
 }
 

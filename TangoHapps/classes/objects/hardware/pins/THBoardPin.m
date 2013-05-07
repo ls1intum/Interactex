@@ -77,10 +77,10 @@
     return (self.type == kPintypeMinus || self.type == kPintypePlus);
 }
 
--(void) notifyPinsNewValue:(NSInteger)value {
+-(void) notifyNewValue{
     
     for (THElementPin * pin in self.attachedPins) {
-        [pin.hardware handlePin:self changedValueTo:value];
+        [pin.hardware handlePin:self changedValueTo:_currentValue];
     }
 }
 
@@ -88,7 +88,7 @@
     if(value != self.currentValue){
         self.hasChanged = YES;
         _currentValue = value;
-        [self notifyPinsNewValue:value];
+        //[self notifyPinsNewValue:value];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPinValueChanged object:self];
     }

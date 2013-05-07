@@ -106,6 +106,14 @@
             [socket sendObject:object withIdentifier:kProtocolObjectInputPins];
             break;
         }
+        case kTransferActionAssets:{
+            [socket sendObject:object withIdentifier:kProtocolObjectAssets];
+            break;
+        }
+        case kTransferActionMissingAssets:{
+            [socket sendObject:object withIdentifier:kProtocolObjectMissingAssets];
+            break;
+        }
     }
 }
 
@@ -236,6 +244,12 @@ didFinishReceivingObject:(id)object
         expected = YES;
     } else if(identifier == kProtocolObjectInputPins){
         [self finishAction:kTransferActionInputPinState withObject:object];
+        expected = YES;
+    } else if(identifier == kProtocolObjectAssetList || identifier == kProtocolObjectAssets){
+        [self finishAction:kTransferActionAssets withObject:object];
+        expected = YES;
+    } else if(identifier == kProtocolObjectMissingAssets){
+        [self finishAction:kTransferActionMissingAssets withObject:object];
         expected = YES;
     }
 }

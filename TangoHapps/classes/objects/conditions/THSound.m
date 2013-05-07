@@ -7,6 +7,7 @@
 //
 
 #import "THSound.h"
+#import "SimpleAudioEngine.h"
 
 @implementation THSound
 

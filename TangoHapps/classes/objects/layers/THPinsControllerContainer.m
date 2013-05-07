@@ -109,7 +109,7 @@ float const kPinControllerInnerPadding = 5;
     }
     
     if(pin.mode == kPinModeDigitalOutput){
-            _segmentedControl.selectedSegmentIndex = pin.currentValue;
+        _segmentedControl.selectedSegmentIndex = pin.currentValue;
     } else if(pin.mode == kPinModeDigitalInput){
         
         NSString * valueStr = (pin.currentValue == kDigitalPinValueHigh) ? @"High" : @"Low";
@@ -136,11 +136,13 @@ float const kPinControllerInnerPadding = 5;
 -(void) sliderValueChanged:(UISlider*) slider{
     THBoardPin * pin = (THBoardPin*) self.pin.simulableObject;
     pin.currentValue = slider.value;
+    [pin notifyNewValue];
 }
 
 -(void) segmentedControlValueChanged:(UISegmentedControl*) control{
     THBoardPin * pin = (THBoardPin*) self.pin.simulableObject;
     pin.currentValue = control.selectedSegmentIndex;
+    [pin notifyNewValue];
 }
 
 -(void) prepareToDie{

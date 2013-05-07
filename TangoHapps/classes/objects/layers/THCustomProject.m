@@ -31,6 +31,7 @@
 #import "THLilyPad.h"
 
 #import "THiPhone.h"
+#import "THAssetCollection.h"
 
 @implementation THCustomProject
 
@@ -54,6 +55,8 @@
     _actions = [NSMutableArray array];
     _values = [NSMutableArray array];
     _triggers = [NSMutableArray array];
+    
+    _assetCollection = [[THAssetCollection alloc] initWithLocalFiles];
 }
 
 -(void) initCustomProject{

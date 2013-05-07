@@ -6,6 +6,9 @@ typedef enum {
     kProtocolObjectScene,
     kProtocolObjectPins,
     kProtocolObjectInputPins,
+    kProtocolObjectAssetList,
+    kProtocolObjectMissingAssets,
+    kProtocolObjectAssets,
     kProtocolObjectUndefined
 } ProtocolObjectIdentifier;
 

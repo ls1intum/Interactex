@@ -15,6 +15,7 @@
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
 @class THClientProject;
+@class THAssetCollection;
 
 @interface THCustomProject : TFProject
 {
@@ -86,5 +87,7 @@
 @property (nonatomic,readonly) NSMutableArray * values;
 @property (nonatomic,readonly) NSMutableArray * triggers;
 @property (nonatomic,readonly) NSMutableArray * actions;
+
+@property (nonatomic,readonly) THAssetCollection * assetCollection;
 
 @end

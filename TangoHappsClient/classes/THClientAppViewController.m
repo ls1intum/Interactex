@@ -39,7 +39,7 @@
             pinValue.number = pin.number;
             
             //dont send if value is reserved for protocol (change protocol in future)
-                [pins addObject:pinValue];
+            [pins addObject:pinValue];
             pin.hasChanged = NO;
             
             NSLog(@"iPad sending %d %d",pin.number,pin.currentValue);
@@ -57,16 +57,16 @@
         if((pin.mode == kPinModeDigitalOutput || pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer) && pin.hasChanged){
             NSLog(@"ble sending %d %d",pin.number,pin.currentValue);
             
-            if(pin.currentValue != kMsgPinValueStarted && pin.currentValue != kMsgPinModeStarted){
+            //if(pin.currentValue != kMsgPinValueStarted && pin.currentValue != kMsgPinModeStarted){
                 [_bleService outputPin:pin.number value:pin.currentValue];
-            }
+            //}
             pin.hasChanged = NO;
         }
     }
 }
 
 -(void) startVirtualStateTransfer{
-    _virtualTransferTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(pushLilypadStateToAllVirtualClients) userInfo:nil repeats:YES];
+    //_virtualTransferTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(pushLilypadStateToAllVirtualClients) userInfo:nil repeats:YES];
 }
 
 -(void) startRealStateTransfer{
@@ -144,6 +144,29 @@
 
     [self.bleService sendPinModes:array];
 }
+/*
+-(void) sendOutPinValues{
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    NSMutableArray * array = [NSMutableArray array];
+    
+    NSInteger i = 0;
+    for (THBoardPin * pin in project.lilypad.pins) {
+        if(pin.mode == kPinModeDigitalOutput || pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer){
+            THPinValue * pinValue = [[THPinValue alloc] init];
+            pinValue.type = pin.type;
+            pinValue.value = pin.currentValue;
+            pinValue.number = pin.number;
+            
+            //dont send if value is reserved for protocol (change protocol in future)
+            [pins addObject:pinValue];
+        }
+        i++;
+    }
+    
+    [self.bleService sendPinModes:array];
+}*/
 
 -(void) reloadApp{
     
@@ -353,11 +376,13 @@
             short x2 = data[i++];
             int value = ((x1 << 8) | x2) - kAnalogInMin;
             lilypadPin.currentValue = value;
+            [lilypadPin notifyNewValue];
             
             //NSLog(@"received: %d",value);
             
         } else {
             lilypadPin.currentValue = data[i++];
+            [lilypadPin notifyNewValue];
         }
     }
 }

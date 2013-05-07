@@ -16,6 +16,7 @@
 #import "THPin.h"
 #import "THBoardPin.h"
 #import "THClientProject.h"
+#import "THAssetCollection.h"
 
 @implementation THConnectionViewController
 
@@ -266,6 +267,19 @@ didFinishAction:(TransferAgentAction)action
         
     } else if(action == kTransferActionInputPinState){
         [self updateLilypadPinsWithPins:object];
+    } else if(action == kTransferActionAssets){
+        if([object isKindOfClass:[NSArray class]]){
+            NSLog(@"asset list");
+            
+            NSArray * assetDescriptions = [THAssetCollection assetDescriptionsWithMissingAssetsIn:(NSArray*) object];
+            [_transferAgent queueAction:kTransferActionMissingAssets withObject:assetDescriptions];
+            
+        } else if([object isKindOfClass:[THAssetCollection class]]){
+            // Received exported assets, import to local library and finish
+            NSLog(@"<TA:Client> Finished receiving exported assets object from server");
+            NSArray * assets = (NSArray*)object;
+            [THAssetCollection importAssets:assets];
+        }
     }
 }
 
