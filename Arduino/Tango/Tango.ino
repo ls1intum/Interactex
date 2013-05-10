@@ -10,7 +10,6 @@ long interval = 300;
 int recvCount = 0;
 int currPin;
 int currentState = 0;
-int typeBLE = 1; //0 for original BLE shield, 1 for BLEbee shield
 
 //constants
 #define kStatePinModes 0
@@ -55,21 +54,16 @@ byte pinValues[kNumPins];
 LSM303 compass;
 
 void setup() {
-  
-  if(typeBLE == 0) { 
-    bleShield.begin(14400);//BLE shield BAUD rate
-    Serial.begin(9600); //Serial for debug
-  }
-  else if (typeBLE == 1) {
-    Serial.begin(19200);// BLEbee BAUD rate
-     bleShield.begin(9600);//software serial for debug (because BLE chip is connected to real serial)
-  }
 
+  //bleShield.begin(19200);//Vincents BAUD rate
+  bleShield.begin(14400);//Juans BAUD rate
+  
+  Serial.begin(9600);
   Wire.begin();
   
   currentState = kStatePinModes;
  
-  sendToDebug("--starting--");
+  Serial.println("--starting--");
 }
 
 void fillAccelerometerValues(byte sendValues[], int sendCnt){
@@ -144,7 +138,7 @@ void fillHeading(byte sendValues[], int sendCnt){
   sendValues[sendCnt++] = x1;
   sendValues[sendCnt++] = x2;
   
-  //Serial.println(heading);
+  Serial.println(heading);
 }
 
 void sendPinValues() {
@@ -164,7 +158,7 @@ void sendPinValues() {
           sendValues[sendCnt++] = newval;
         }
         pinValues[i] = newval;
-        //Serial.println(newval);
+        Serial.println(newval);
       }
     }
   }
@@ -199,18 +193,14 @@ void sendPinValues() {
   for(int i = 0; i < sendCnt ; i++){
     int val = sendValues[i];
     
-    sendToBLE(val);
-    String msg = "pin ";
-    msg += i;
-    msg += " = ";
-    msg += val;
-    sendToDebug(msg);
+    bleShield.write(val);
+    //Serial.println(val);
   }
   
   //FILL 
   if(sendCnt > 0){
     for(int i = sendCnt; i < kBleShieldBufferSize ; i++){
-      sendToBLE(-1);
+      bleShield.write(-1);
     }
   }
 }
@@ -222,18 +212,17 @@ int pinToFrequency(int value){
 
 void receivePinValues() {
 
-  while (availableByte()) {
-    int val = readByte();
-    String msg = "";
-    msg += val;
-    sendToDebug(msg);
+  while (bleShield.available()) {
+  
+    int val = bleShield.read();
+    Serial.println(val);
     
     recvCount ++;
     
     if(recvCount == 1){
       if(val == kMsgPinModeStarted){
         
-        sendToDebug("--switching to pin modes--");
+        Serial.println("--switching to pin modes--");
         currentState = kStatePinModes;
         recvCount = 0;
         
@@ -256,7 +245,7 @@ void receivePinValues() {
         }
       } else if(pinModes[currPin] == kPinModeCompass){
           
-          sendToDebug("starting compass");
+          Serial.println("starting compass");
           Wire.begin();
           compass.init();
           compass.enableDefault();
@@ -267,11 +256,11 @@ void receivePinValues() {
 
 void receivePinModes() {
 
-if (Serial.available()) {
-    int val = readByte();
+if (bleShield.available()) {
+    int val = bleShield.read();
 
      if(val == kMsgPinModeStarted){
-       sendToDebug("--starting with pin modes--");
+       Serial.println("--starting with pin modes--");
        for(int i = 0; i < kNumPins ; i++){
           pinValues[i] = kPinValueDefault;
           pinModes[i] = kPinModeUndefined;
@@ -282,25 +271,23 @@ if (Serial.available()) {
       
       if(val == kMsgPinValueStarted){
        
-          sendToDebug("--switching to normal--");
+          Serial.println("--switching to normal--");
           currentState = kStatePinValues;
           recvCount = 0;
        } else {
           if(recvCount == 1){
             currPin = val;
           } else if(recvCount == 2){
-               String msg = "";
-                msg += currPin;
-                msg += " to mode ";
-                msg += val;
-                sendToDebug(msg);
+           Serial.println(currPin);
+           Serial.println(" to mode ");
+           Serial.println(val);
                         
             recvCount = 0;
             if(val == kPinModeDigitalOutput){
               pinMode(currPin,val);
             } else if(val == kPinModeCompass && currPin == 19){//SCL pin
               
-              sendToDebug(" Starting compass ");
+              Serial.println(" Starting compass ");
               Wire.begin();
               compass.init();
               compass.enableDefault();
@@ -313,46 +300,8 @@ if (Serial.available()) {
   }
 }
 
-void sendToBLE(int val) {
-  if(typeBLE == 0) {
-    bleShield.write(val);
-  }
-  
-  else if(typeBLE == 1) {
-    Serial.write(val);
-  }
-}
-
-void sendToDebug(String val) {
-  if(typeBLE == 0) {
-    Serial.println(val);
-  }
-  
-  else if(typeBLE == 1) {
-    bleShield.println(val);
-  }
-}
-
-int availableByte() {
-  int availableByte = 0;
-  
-  if(typeBLE == 0) availableByte = bleShield.available();
-  else if(typeBLE == 1) availableByte = Serial.available();
-  
-  return availableByte;
-}
-
-int readByte() {
-  int returnByte = 0;
-  
-  if(typeBLE == 0) returnByte = bleShield.read();
-  else if(typeBLE == 1) returnByte = Serial.read();
-  
-  return returnByte;
-}
-
 void loop() {
-
+   
   if(currentState == kStatePinModes){
     receivePinModes();
   } else if(currentState == kStatePinValues){
