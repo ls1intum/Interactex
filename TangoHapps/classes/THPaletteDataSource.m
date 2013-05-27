@@ -38,6 +38,8 @@
 #import "THTimerPaletteItem.h"
 #import "THSoundPaletteItem.h"
 
+#import "THPureDataPaletteItem.h"
+
 @implementation THPaletteDataSource
 
 -(id) init{
@@ -113,6 +115,7 @@
     [palette addDragablePaletteItem:[[THMapperPaletteItem alloc] initWithName:@"mapper"]];
     [palette addDragablePaletteItem:[[THTimerPaletteItem alloc] initWithName:@"timer"]];
     [palette addDragablePaletteItem:[[THSoundPaletteItem alloc] initWithName:@"sound"]];
+    [palette addDragablePaletteItem:[[THPureDataPaletteItem alloc] initWithName:@"puredata"]];
     
     [self addPalette:palette withTitle:@"Programming"];
 }

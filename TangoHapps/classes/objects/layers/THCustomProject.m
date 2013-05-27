@@ -603,6 +603,7 @@ enum zPositions{
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
     project.conditions = [self nonEditableElementsForArray:self.conditions forProject:project];
     project.values = [self nonEditableElementsForArray:self.values forProject:project];
+    project.actions = [self nonEditableElementsForArray:self.actions forProject:project];
     project.triggers = [self nonEditableElementsForArray:self.triggers forProject:project];
     project.iPhone = (THiPhone*) self.iPhone.simulableObject;
     project.lilypad = [self.lilypad.simulableObject copy];

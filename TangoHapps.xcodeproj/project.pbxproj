@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9808DC69174F6A6100E2A42F /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9808DC64174F69A800E2A42F /* libpd-ios.a */; };
+		98611C96174282CE001AC7D6 /* THPureDataPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 98611C95174282CE001AC7D6 /* THPureDataPaletteItem.m */; };
+		9877E8031744E7C500102F20 /* puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8011744E7C500102F20 /* puredata.png */; };
+		9877E8041744E7C500102F20 /* puredata@2x in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8021744E7C500102F20 /* puredata@2x */; };
+		9877E8071744EBB000102F20 /* palette_puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8051744EBAF00102F20 /* palette_puredata.png */; };
+		9877E8081744EBB000102F20 /* palette_puredata@2x in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8061744EBAF00102F20 /* palette_puredata@2x */; };
+		987E462017426D73002A5264 /* THPureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E461F17426D73002A5264 /* THPureData.m */; };
+		987E462217426D7F002A5264 /* THPureDataEditable.h in Resources */ = {isa = PBXBuildFile; fileRef = 987E462117426D7D002A5264 /* THPureDataEditable.h */; };
+		987E462417426D9C002A5264 /* THPureDataEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E462317426D9B002A5264 /* THPureDataEditable.m */; };
+		987E462717427027002A5264 /* THPureDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E462617427027002A5264 /* THPureDataProperties.m */; };
+		987E462917427589002A5264 /* THPureDataProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987E462817427589002A5264 /* THPureDataProperties.xib */; };
+		98B5F26717537C85006CE64F /* THPureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E461F17426D73002A5264 /* THPureData.m */; };
+		98B5F26817537C86006CE64F /* THPureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E461F17426D73002A5264 /* THPureData.m */; };
+		98B5F26A17537C8A006CE64F /* THPureDataEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E462317426D9B002A5264 /* THPureDataEditable.m */; };
+		98B5F26C17537CE0006CE64F /* THPureDataPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 98611C95174282CE001AC7D6 /* THPureDataPaletteItem.m */; };
+		98B5F26D17537E0D006CE64F /* THPureDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 987E462617427027002A5264 /* THPureDataProperties.m */; };
+		98B5F26E1753831F006CE64F /* palette_puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8051744EBAF00102F20 /* palette_puredata.png */; };
+		98B5F26F17538323006CE64F /* palette_puredata@2x in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8061744EBAF00102F20 /* palette_puredata@2x */; };
+		98B5F2701753832D006CE64F /* puredata@2x in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8021744E7C500102F20 /* puredata@2x */; };
+		98B5F27117538332006CE64F /* puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9877E8011744E7C500102F20 /* puredata.png */; };
+		98B5F27517538700006CE64F /* synthesis.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98B5F274175386FF006CE64F /* synthesis.pd */; };
+		98B5F27617538700006CE64F /* synthesis.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98B5F274175386FF006CE64F /* synthesis.pd */; };
+		98E365E6174F990F002233AA /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9808DC64174F69A800E2A42F /* libpd-ios.a */; };
+		98E365ED174FA8EE002233AA /* martijn_test_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98E365EB174FA8EE002233AA /* martijn_test_1.pd */; };
+		98E365EE174FA8EE002233AA /* martijn_test_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98E365EB174FA8EE002233AA /* martijn_test_1.pd */; };
+		98E365EF174FA8EE002233AA /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98E365EC174FA8EE002233AA /* test.pd */; };
+		98E365F0174FA8EE002233AA /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98E365EC174FA8EE002233AA /* test.pd */; };
+		98E365F2174FB01A002233AA /* musinum_generator1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98E365F1174FB01A002233AA /* musinum_generator1.pd */; };
+		98E365F3174FB01A002233AA /* musinum_generator1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 98E365F1174FB01A002233AA /* musinum_generator1.pd */; };
 		9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
 		9A06EE87169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
 		9A06EE8A169AD77000B88519 /* yellowLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06EE88169AD77000B88519 /* yellowLight.png */; };
@@ -898,6 +927,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9808DC63174F69A800E2A42F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9808DC5E174F69A700E2A42F /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		9808DC65174F69A800E2A42F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9808DC5E174F69A700E2A42F /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 119013AB1486450C00086F19;
+			remoteInfo = "libpd-osx";
+		};
+		9808DC67174F6A3400E2A42F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9808DC5E174F69A700E2A42F /* libpd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		98E365E4174F98FA002233AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9808DC5E174F69A700E2A42F /* libpd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
 		9AF500CD167B83780020241C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
@@ -1431,6 +1488,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9808DC5E174F69A700E2A42F /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = "../pd-for-ios/libpd/libpd.xcodeproj"; sourceTree = "<group>"; };
+		98611C52174282BF001AC7D6 /* THPureDataPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureDataPaletteItem.h; sourceTree = "<group>"; };
+		98611C95174282CE001AC7D6 /* THPureDataPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureDataPaletteItem.m; sourceTree = "<group>"; };
+		9877E8011744E7C500102F20 /* puredata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puredata.png; sourceTree = "<group>"; };
+		9877E8021744E7C500102F20 /* puredata@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "puredata@2x"; sourceTree = "<group>"; };
+		9877E8051744EBAF00102F20 /* palette_puredata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_puredata.png; sourceTree = "<group>"; };
+		9877E8061744EBAF00102F20 /* palette_puredata@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palette_puredata@2x"; sourceTree = "<group>"; };
+		987E461E17426D67002A5264 /* THPureData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureData.h; sourceTree = "<group>"; };
+		987E461F17426D73002A5264 /* THPureData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureData.m; sourceTree = "<group>"; };
+		987E462117426D7D002A5264 /* THPureDataEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureDataEditable.h; sourceTree = "<group>"; };
+		987E462317426D9B002A5264 /* THPureDataEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureDataEditable.m; sourceTree = "<group>"; };
+		987E46251742701A002A5264 /* THPureDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureDataProperties.h; sourceTree = "<group>"; };
+		987E462617427027002A5264 /* THPureDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureDataProperties.m; sourceTree = "<group>"; };
+		987E462817427589002A5264 /* THPureDataProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THPureDataProperties.xib; sourceTree = "<group>"; };
+		98B5F274175386FF006CE64F /* synthesis.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = synthesis.pd; sourceTree = "<group>"; };
+		98E365EB174FA8EE002233AA /* martijn_test_1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = martijn_test_1.pd; sourceTree = "<group>"; };
+		98E365EC174FA8EE002233AA /* test.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.pd; sourceTree = "<group>"; };
+		98E365F1174FB01A002233AA /* musinum_generator1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = musinum_generator1.pd; sourceTree = "<group>"; };
 		9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedPaletteItem.h; sourceTree = "<group>"; };
 		9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLedPaletteItem.m; sourceTree = "<group>"; };
 		9A06EE88169AD77000B88519 /* yellowLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowLight.png; sourceTree = "<group>"; };
@@ -2031,7 +2106,7 @@
 		9AF505C9167B90C00020241C /* THTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestsHelper.m; sourceTree = "<group>"; };
 		9AF505DE167B91150020241C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		9AF506D0167B97760020241C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		9AF5FFF1167B82F70020241C /* TangoHappsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHappsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF5FFF1167B82F70020241C /* TangoHappsClientMartijn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHappsClientMartijn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF5FFFF167B82F70020241C /* THAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAppDelegate.h; sourceTree = "<group>"; };
 		9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = connectionMade.mp3; sourceTree = "<group>"; };
 		9AF60BC416A04D9F00178439 /* TFTabbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TFTabbar.xib; sourceTree = "<group>"; };
@@ -2044,11 +2119,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF50505167B8C820020241C /* AVFoundation.framework in Frameworks */,
+				9AF5050F167B8DE20020241C /* AudioToolbox.framework in Frameworks */,
+				9808DC69174F6A6100E2A42F /* libpd-ios.a in Frameworks */,
 				9AB29B56167F68F600F5AF62 /* AssetsLibrary.framework in Frameworks */,
 				9A8BBA3B167F27FC00FBABFB /* CoreLocation.framework in Frameworks */,
 				9AF506D1167B97780020241C /* MediaPlayer.framework in Frameworks */,
 				9AF505E6167B914F0020241C /* AddressBook.framework in Frameworks */,
-				9AF5050F167B8DE20020241C /* AudioToolbox.framework in Frameworks */,
 				9AF5050B167B8DC30020241C /* OpenAL.framework in Frameworks */,
 				9AF50509167B8C980020241C /* CoreBluetooth.framework in Frameworks */,
 				9AF50508167B8C920020241C /* GameKit.framework in Frameworks */,
@@ -2094,6 +2170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E365E6174F990F002233AA /* libpd-ios.a in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */,
@@ -2118,6 +2195,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9808DC5F174F69A700E2A42F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9808DC64174F69A800E2A42F /* libpd-ios.a */,
+				9808DC66174F69A800E2A42F /* libpd-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		98E365EA174FA8EE002233AA /* pd */ = {
+			isa = PBXGroup;
+			children = (
+				98B5F274175386FF006CE64F /* synthesis.pd */,
+				98E365F1174FB01A002233AA /* musinum_generator1.pd */,
+				98E365EB174FA8EE002233AA /* martijn_test_1.pd */,
+				98E365EC174FA8EE002233AA /* test.pd */,
+			);
+			path = pd;
+			sourceTree = "<group>";
+		};
 		9A06EFCA169C746F00B88519 /* objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -2163,7 +2260,7 @@
 			isa = PBXGroup;
 			children = (
 				9A351189167B7A6800C7484B /* TangoHapps.app */,
-				9AF5FFF1167B82F70020241C /* TangoHappsClient.app */,
+				9AF5FFF1167B82F70020241C /* TangoHappsClientMartijn.app */,
 				9AF505A4167B90780020241C /* TangoHappsTests.app */,
 			);
 			name = Products;
@@ -2172,6 +2269,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9808DC5E174F69A700E2A42F /* libpd.xcodeproj */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
 				9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */,
 				9A8BBA3A167F27FC00FBABFB /* CoreLocation.framework */,
@@ -2270,6 +2368,10 @@
 				9A09772D17267CFC0028A6B4 /* THSound.m */,
 				9A09777317268C2D0028A6B4 /* THSoundEditable.h */,
 				9A09777417268C2D0028A6B4 /* THSoundEditable.m */,
+				987E461E17426D67002A5264 /* THPureData.h */,
+				987E461F17426D73002A5264 /* THPureData.m */,
+				987E462117426D7D002A5264 /* THPureDataEditable.h */,
+				987E462317426D9B002A5264 /* THPureDataEditable.m */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -2354,6 +2456,7 @@
 				9A93848D16D6900E00A41BD2 /* THTimerProperties.xib */,
 				9A097687171868730028A6B4 /* THVibrationBoardProperties.xib */,
 				9A09777C17268EF30028A6B4 /* THSoundProperties.xib */,
+				987E462817427589002A5264 /* THPureDataProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -2797,6 +2900,8 @@
 				9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */,
 				9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */,
 				9A097780172693E60028A6B4 /* THSoundPaletteItem.m */,
+				98611C52174282BF001AC7D6 /* THPureDataPaletteItem.h */,
+				98611C95174282CE001AC7D6 /* THPureDataPaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -2858,6 +2963,8 @@
 				9A097684171866AA0028A6B4 /* THVibrationBoardProperties.m */,
 				9A09777817268CDF0028A6B4 /* THSoundProperties.h */,
 				9A09777917268CDF0028A6B4 /* THSoundProperties.m */,
+				987E46251742701A002A5264 /* THPureDataProperties.h */,
+				987E462617427027002A5264 /* THPureDataProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -2886,6 +2993,7 @@
 		9AF502E3167B84B40020241C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				98E365EA174FA8EE002233AA /* pd */,
 				9AF502E4167B84B40020241C /* gui */,
 				9AF502F7167B84B40020241C /* images */,
 				9AF50358167B84B40020241C /* sound */,
@@ -2957,6 +3065,10 @@
 		9AF50301167B84B40020241C /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9877E8051744EBAF00102F20 /* palette_puredata.png */,
+				9877E8061744EBAF00102F20 /* palette_puredata@2x */,
+				9877E8011744E7C500102F20 /* puredata.png */,
+				9877E8021744E7C500102F20 /* puredata@2x */,
 				9A097783172699D20028A6B4 /* sound.png */,
 				9A097784172699D20028A6B4 /* sound@2x.png */,
 				9A097789172699DF0028A6B4 /* palette_sound.png */,
@@ -3163,6 +3275,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9808DC68174F6A3400E2A42F /* PBXTargetDependency */,
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
@@ -3190,9 +3303,9 @@
 			productReference = 9AF505A4167B90780020241C /* TangoHappsTests.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9AF5FFF0167B82F70020241C /* TangoHappsClient */ = {
+		9AF5FFF0167B82F70020241C /* TangoHappsClientMartijn */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AF5000A167B82F70020241C /* Build configuration list for PBXNativeTarget "TangoHappsClient" */;
+			buildConfigurationList = 9AF5000A167B82F70020241C /* Build configuration list for PBXNativeTarget "TangoHappsClientMartijn" */;
 			buildPhases = (
 				9AF5FFED167B82F70020241C /* Sources */,
 				9AF5FFEE167B82F70020241C /* Frameworks */,
@@ -3202,12 +3315,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				98E365E5174F98FA002233AA /* PBXTargetDependency */,
 				9AF50158167B83940020241C /* PBXTargetDependency */,
 				9AF5015A167B83940020241C /* PBXTargetDependency */,
 			);
-			name = TangoHappsClient;
+			name = TangoHappsClientMartijn;
 			productName = TangoHappsClient;
-			productReference = 9AF5FFF1167B82F70020241C /* TangoHappsClient.app */;
+			productReference = 9AF5FFF1167B82F70020241C /* TangoHappsClientMartijn.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3236,17 +3350,35 @@
 					ProductGroup = 9AF5004B167B83770020241C /* Products */;
 					ProjectRef = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
 				},
+				{
+					ProductGroup = 9808DC5F174F69A700E2A42F /* Products */;
+					ProjectRef = 9808DC5E174F69A700E2A42F /* libpd.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				9A351188167B7A6800C7484B /* TangoHapps */,
-				9AF5FFF0167B82F70020241C /* TangoHappsClient */,
+				9AF5FFF0167B82F70020241C /* TangoHappsClientMartijn */,
 				9AF505A3167B90780020241C /* TangoHappsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9808DC64174F69A800E2A42F /* libpd-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-ios.a";
+			remoteRef = 9808DC63174F69A800E2A42F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9808DC66174F69A800E2A42F /* libpd-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-osx.a";
+			remoteRef = 9808DC65174F69A800E2A42F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AF500CE167B83780020241C /* libbuild all tests.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -3935,6 +4067,16 @@
 				9A097787172699D20028A6B4 /* sound@2x.png in Resources */,
 				9A09778B172699DF0028A6B4 /* palette_sound.png in Resources */,
 				9A09778D172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
+				987E462217426D7F002A5264 /* THPureDataEditable.h in Resources */,
+				987E462917427589002A5264 /* THPureDataProperties.xib in Resources */,
+				9877E8031744E7C500102F20 /* puredata.png in Resources */,
+				9877E8041744E7C500102F20 /* puredata@2x in Resources */,
+				9877E8071744EBB000102F20 /* palette_puredata.png in Resources */,
+				9877E8081744EBB000102F20 /* palette_puredata@2x in Resources */,
+				98E365ED174FA8EE002233AA /* martijn_test_1.pd in Resources */,
+				98E365EF174FA8EE002233AA /* test.pd in Resources */,
+				98E365F2174FB01A002233AA /* musinum_generator1.pd in Resources */,
+				98B5F27517538700006CE64F /* synthesis.pd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4130,6 +4272,10 @@
 				9A097788172699D20028A6B4 /* sound@2x.png in Resources */,
 				9A09778C172699DF0028A6B4 /* palette_sound.png in Resources */,
 				9A09778E172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
+				98B5F26E1753831F006CE64F /* palette_puredata.png in Resources */,
+				98B5F26F17538323006CE64F /* palette_puredata@2x in Resources */,
+				98B5F2701753832D006CE64F /* puredata@2x in Resources */,
+				98B5F27117538332006CE64F /* puredata.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4174,6 +4320,10 @@
 				9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
 				9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */,
 				9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */,
+				98E365EE174FA8EE002233AA /* martijn_test_1.pd in Resources */,
+				98E365F0174FA8EE002233AA /* test.pd in Resources */,
+				98E365F3174FB01A002233AA /* musinum_generator1.pd in Resources */,
+				98B5F27617538700006CE64F /* synthesis.pd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4348,6 +4498,10 @@
 				9A8572B7172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BC172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C1172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				987E462017426D73002A5264 /* THPureData.m in Sources */,
+				987E462417426D9C002A5264 /* THPureDataEditable.m in Sources */,
+				987E462717427027002A5264 /* THPureDataProperties.m in Sources */,
+				98611C96174282CE001AC7D6 /* THPureDataPaletteItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4528,6 +4682,10 @@
 				9A8572B9172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BE172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C3172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				98B5F26817537C86006CE64F /* THPureData.m in Sources */,
+				98B5F26A17537C8A006CE64F /* THPureDataEditable.m in Sources */,
+				98B5F26C17537CE0006CE64F /* THPureDataPaletteItem.m in Sources */,
+				98B5F26D17537E0D006CE64F /* THPureDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4601,12 +4759,23 @@
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				98B5F26717537C85006CE64F /* THPureData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9808DC68174F6A3400E2A42F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libpd-ios";
+			targetProxy = 9808DC67174F6A3400E2A42F /* PBXContainerItemProxy */;
+		};
+		98E365E5174F98FA002233AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libpd-ios";
+			targetProxy = 98E365E4174F98FA002233AA /* PBXContainerItemProxy */;
+		};
 		9AF50158167B83940020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = cocos2d;
@@ -4624,7 +4793,7 @@
 		};
 		9AF505D4167B91020020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AF5FFF0167B82F70020241C /* TangoHappsClient */;
+			target = 9AF5FFF0167B82F70020241C /* TangoHappsClientMartijn */;
 			targetProxy = 9AF505D3167B91020020241C /* PBXContainerItemProxy */;
 		};
 		9AF505D8167B91020020241C /* PBXTargetDependency */ = {
@@ -4690,7 +4859,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "78129FEE-FF9A-46B1-A665-3AE1E1D04938";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/libpd/**";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -4719,7 +4888,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "78129FEE-FF9A-46B1-A665-3AE1E1D04938";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/libpd/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -4737,9 +4906,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/libpd/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4755,8 +4927,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/libpd/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -4786,7 +4961,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "78129FEE-FF9A-46B1-A665-3AE1E1D04938";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/libpd/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -4803,8 +4978,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/libpd/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -4819,7 +4997,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -4855,8 +5036,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4871,7 +5055,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -4939,7 +5126,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AF5000A167B82F70020241C /* Build configuration list for PBXNativeTarget "TangoHappsClient" */ = {
+		9AF5000A167B82F70020241C /* Build configuration list for PBXNativeTarget "TangoHappsClientMartijn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AF50008167B82F70020241C /* Debug */,
