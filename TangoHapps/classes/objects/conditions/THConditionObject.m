@@ -13,10 +13,16 @@
 
 -(void) loadEvents{
     
+    TFProperty * property = [TFProperty propertyWithName:@"isTrue" andType:kDataTypeBoolean];
+    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    
     TFEvent * event1 = [TFEvent eventNamed:kEventConditionIsTrue];
     TFEvent * event2 = [TFEvent eventNamed:kEventConditionIsFalse];
+    TFEvent * event3 = [TFEvent eventNamed:kEventConditionChanged];
+    event3.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     
-    self.events = [NSMutableArray arrayWithObjects:event1,event2,nil];
+    self.events = [NSMutableArray arrayWithObjects:event1,event2,event3, nil];
+    
     
     /*
     THMethod * method = [THMethod methodWithName:@"setCondition"];
@@ -51,11 +57,14 @@
 #pragma mark - Protocols
 
 -(void) evaluateAndTrigger{
+    
     if([self testCondition]){
         [self triggerEventNamed:kEventConditionIsTrue];
     } else {
         [self triggerEventNamed:kEventConditionIsFalse];
     }
+    
+    [self triggerEventNamed:kEventConditionChanged];
 }
 
 -(BOOL) isTrue{

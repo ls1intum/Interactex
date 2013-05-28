@@ -107,6 +107,7 @@ NSString * const kEventStartedPressing = @"startedPressing";
 NSString * const kEventStoppedPressing = @"stoppedPressing";
 NSString * const kEventConditionIsTrue = @"conditionTrue";
 NSString * const kEventConditionIsFalse = @"conditionFalse";
+NSString * const kEventConditionChanged = @"conditionChanged";
 NSString * const kEventXChanged = @"xChanged";
 NSString * const kEventYChanged = @"yChanged";
 NSString * const kEventZChanged = @"zChanged";

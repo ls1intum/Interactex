@@ -4668,7 +4668,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4688,7 +4688,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "78129FEE-FF9A-46B1-A665-3AE1E1D04938";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
 				VALID_ARCHS = armv7;
@@ -4704,7 +4704,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4717,7 +4717,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "78129FEE-FF9A-46B1-A665-3AE1E1D04938";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
 				VALIDATE_PRODUCT = YES;
@@ -4728,7 +4728,6 @@
 		9A3511A8167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4738,7 +4737,6 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4770,7 +4768,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4784,7 +4782,7 @@
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "78129FEE-FF9A-46B1-A665-3AE1E1D04938";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
 				VALIDATE_PRODUCT = YES;
@@ -4827,7 +4825,6 @@
 		9A94F27B169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsTests/TangoHappsTests-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsTests/TangoHappsTests-Info.plist";
@@ -4847,7 +4844,6 @@
 		9AF50008167B82F70020241C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -4856,7 +4852,6 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4879,7 +4874,6 @@
 		9AF505BC167B90790020241C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsTests/TangoHappsTests-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsTests/TangoHappsTests-Info.plist";
@@ -4899,7 +4893,6 @@
 		9AF505BD167B90790020241C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsTests/TangoHappsTests-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsTests/TangoHappsTests-Info.plist";

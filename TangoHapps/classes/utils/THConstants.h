@@ -264,6 +264,7 @@ extern NSString * const kEventStartedPressing;
 extern NSString * const kEventStoppedPressing;
 extern NSString * const kEventConditionIsTrue;
 extern NSString * const kEventConditionIsFalse;
+extern NSString * const kEventConditionChanged;
 extern NSString * const kEventXChanged;
 extern NSString * const kEventYChanged;
 extern NSString * const kEventZChanged;
