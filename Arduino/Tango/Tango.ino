@@ -10,7 +10,7 @@ long interval = 300;
 int recvCount = 0;
 int currPin;
 int currentState = 0;
-int typeBLE = 1; //0 for original BLE shield, 1 for BLEbee shield
+int typeBLE = 0; //0 for original BLE shield, 1 for BLEbee shield
 
 //constants
 #define kStatePinModes 0
@@ -268,6 +268,8 @@ void receivePinValues() {
 void receivePinModes() {
 
 if (Serial.available()) {
+       sendToDebug("--is available --");
+       
     int val = readByte();
 
      if(val == kMsgPinModeStarted){

@@ -14,8 +14,8 @@
 @implementation THClothe
 
 -(void) loadSprite{
-    NSString * fileName = [NSString stringWithFormat:@"%@.png",self.name];
     if(_imageFromName){
+        NSString * fileName = [NSString stringWithFormat:@"%@.png",self.name];
         _image = [UIImage imageNamed:fileName];
         self.sprite = [CCSprite spriteWithFile:fileName];
     } else {
@@ -30,16 +30,6 @@
     self.z = kClotheZ;
     
     _attachments = [NSMutableArray array];
-}
-
--(id) init{
-    self = [super init];
-    if(self){
-        
-        _imageFromName = YES;
-        [self load];
-    }
-    return self;
 }
 
 -(id) initWithName:(NSString*) name{
@@ -83,6 +73,9 @@
 -(id)copyWithZone:(NSZone *)zone {
     THClothe * copy = [super copyWithZone:zone];
     copy.name = self.name;
+    copy.imageFromName = self.imageFromName;
+    copy.image = self.image;
+    [copy load];
     
     for (TFEditableObject * attachment in _attachments) {
         [copy attachClotheObject:[attachment copy]];
@@ -133,10 +126,12 @@
 
 -(void) setImage:(UIImage *)image{
     if(image != _image){
-        CCSprite * sprite = [CCSprite spriteWithCGImage:image.CGImage key:nil];
         [self.sprite removeFromParentAndCleanup:YES];
+        
+        CCSprite * sprite = [CCSprite spriteWithCGImage:image.CGImage key:nil];
         self.sprite = sprite;
         [self addChild:sprite];
+        
         _image = image;
         
         _imageFromName = NO;

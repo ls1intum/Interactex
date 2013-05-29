@@ -46,9 +46,6 @@
 		9A06F006169C77A200B88519 /* palette_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06F003169C77A100B88519 /* palette_slider.png */; };
 		9A06F007169C77A200B88519 /* palette_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06F004169C77A100B88519 /* palette_slider@2x.png */; };
 		9A06F008169C77A200B88519 /* palette_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06F004169C77A100B88519 /* palette_slider@2x.png */; };
-		9A0975E817156E400028A6B4 /* Tango.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0975E717156E400028A6B4 /* Tango.framework */; };
-		9A0975E917156E400028A6B4 /* Tango.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0975E717156E400028A6B4 /* Tango.framework */; };
-		9A0975EA17156E400028A6B4 /* Tango.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0975E717156E400028A6B4 /* Tango.framework */; };
 		9A09762F171570050028A6B4 /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
 		9A097630171570090028A6B4 /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */; };
 		9A0976311715700C0028A6B4 /* THConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THConnectionViewController.m */; };
@@ -105,6 +102,7 @@
 		9A3511A0167B7A6800C7484B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A35119F167B7A6800C7484B /* Default.png */; };
 		9A3511A2167B7A6800C7484B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3511A1167B7A6800C7484B /* Default@2x.png */; };
 		9A3511A4167B7A6800C7484B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3511A3167B7A6800C7484B /* Default-568h@2x.png */; };
+		9A5625EF1755FFBA00755575 /* libTango.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5625EA1755FF9200755575 /* libTango.a */; };
 		9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8416A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8216A2C46E000DF472 /* THContactBookEditable.m */; };
@@ -141,6 +139,7 @@
 		9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
 		9A7DBF6E169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
 		9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
+		9A83198817563F6E008DE5A9 /* libTango.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5625EA1755FF9200755575 /* libTango.a */; };
 		9A85721C172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A85721D172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A8572B7172AD64C00510D23 /* THAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572B6172AD64C00510D23 /* THAsset.m */; };
@@ -898,6 +897,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A5625E91755FF9200755575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A7AB8C716611FDD00C0DBA4;
+			remoteInfo = Tango;
+		};
+		9A5625EB1755FF9200755575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AF3EFEE170333D80013DE13;
+			remoteInfo = TangoBundle;
+		};
+		9A5625ED1755FFA900755575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A7AB8C616611FDD00C0DBA4;
+			remoteInfo = Tango;
+		};
+		9A83194217563F67008DE5A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A7AB8C616611FDD00C0DBA4;
+			remoteInfo = Tango;
+		};
 		9AF500CD167B83780020241C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
@@ -1457,7 +1484,6 @@
 		9A06EFF2169C75D400B88519 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		9A06F003169C77A100B88519 /* palette_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_slider.png; sourceTree = "<group>"; };
 		9A06F004169C77A100B88519 /* palette_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_slider@2x.png"; sourceTree = "<group>"; };
-		9A0975E717156E400028A6B4 /* Tango.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tango.framework; path = Frameworks/Tango.framework; sourceTree = "<group>"; };
 		9A09767A171864BA0028A6B4 /* THVibrationBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THVibrationBoard.h; sourceTree = "<group>"; };
 		9A09767B171864BA0028A6B4 /* THVibrationBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVibrationBoard.m; sourceTree = "<group>"; };
 		9A09767F171866020028A6B4 /* THVibrationBoardEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THVibrationBoardEditable.h; sourceTree = "<group>"; };
@@ -1498,6 +1524,7 @@
 		9A35119F167B7A6800C7484B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9A3511A1167B7A6800C7484B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9A3511A3167B7A6800C7484B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9A5625E31755FF9200755575 /* Tango.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Tango.xcodeproj; path = Frameworks/Tango/Tango.xcodeproj; sourceTree = "<group>"; };
 		9A5F8D7F16A2C46E000DF472 /* THContactBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBook.h; sourceTree = "<group>"; };
 		9A5F8D8016A2C46E000DF472 /* THContactBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBook.m; sourceTree = "<group>"; };
 		9A5F8D8116A2C46E000DF472 /* THContactBookEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookEditable.h; sourceTree = "<group>"; };
@@ -2043,6 +2070,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A5625EF1755FFBA00755575 /* libTango.a in Frameworks */,
 				9AF50505167B8C820020241C /* AVFoundation.framework in Frameworks */,
 				9AB29B56167F68F600F5AF62 /* AssetsLibrary.framework in Frameworks */,
 				9A8BBA3B167F27FC00FBABFB /* CoreLocation.framework in Frameworks */,
@@ -2060,7 +2088,6 @@
 				9A35118E167B7A6800C7484B /* UIKit.framework in Frameworks */,
 				9A351190167B7A6800C7484B /* Foundation.framework in Frameworks */,
 				9A351192167B7A6800C7484B /* CoreGraphics.framework in Frameworks */,
-				9A0975E817156E400028A6B4 /* Tango.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2086,7 +2113,6 @@
 				9AF505A7167B90780020241C /* Foundation.framework in Frameworks */,
 				9AF505A8167B90780020241C /* CoreGraphics.framework in Frameworks */,
 				9AF505BF167B90AC0020241C /* GHUnitIOS.framework in Frameworks */,
-				9A0975EA17156E400028A6B4 /* Tango.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2094,6 +2120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A83198817563F6E008DE5A9 /* libTango.a in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */,
@@ -2111,7 +2138,6 @@
 				9AF5FFF3167B82F70020241C /* UIKit.framework in Frameworks */,
 				9AF5FFF4167B82F70020241C /* Foundation.framework in Frameworks */,
 				9AF5FFF5167B82F70020241C /* CoreGraphics.framework in Frameworks */,
-				9A0975E917156E400028A6B4 /* Tango.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2172,6 +2198,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A5625E31755FF9200755575 /* Tango.xcodeproj */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
 				9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */,
 				9A8BBA3A167F27FC00FBABFB /* CoreLocation.framework */,
@@ -2190,7 +2217,6 @@
 				9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */,
 				9A35118D167B7A6800C7484B /* UIKit.framework */,
 				9A35118F167B7A6800C7484B /* Foundation.framework */,
-				9A0975E717156E400028A6B4 /* Tango.framework */,
 				9A351191167B7A6800C7484B /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -2220,6 +2246,15 @@
 				9A3511A3167B7A6800C7484B /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A5625E41755FF9200755575 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A5625EA1755FF9200755575 /* libTango.a */,
+				9A5625EC1755FF9200755575 /* TangoBundle.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A8572B4172AD64C00510D23 /* assets */ = {
@@ -3163,6 +3198,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A5625EE1755FFA900755575 /* PBXTargetDependency */,
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
@@ -3202,6 +3238,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A83194317563F67008DE5A9 /* PBXTargetDependency */,
 				9AF50158167B83940020241C /* PBXTargetDependency */,
 				9AF5015A167B83940020241C /* PBXTargetDependency */,
 			);
@@ -3236,6 +3273,10 @@
 					ProductGroup = 9AF5004B167B83770020241C /* Products */;
 					ProjectRef = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A5625E41755FF9200755575 /* Products */;
+					ProjectRef = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -3247,6 +3288,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A5625EA1755FF9200755575 /* libTango.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTango.a;
+			remoteRef = 9A5625E91755FF9200755575 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A5625EC1755FF9200755575 /* TangoBundle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TangoBundle.framework;
+			remoteRef = 9A5625EB1755FF9200755575 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AF500CE167B83780020241C /* libbuild all tests.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4607,6 +4662,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A5625EE1755FFA900755575 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Tango;
+			targetProxy = 9A5625ED1755FFA900755575 /* PBXContainerItemProxy */;
+		};
+		9A83194317563F67008DE5A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Tango;
+			targetProxy = 9A83194217563F67008DE5A9 /* PBXContainerItemProxy */;
+		};
 		9AF50158167B83940020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = cocos2d;
