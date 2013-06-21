@@ -14,8 +14,19 @@
 #endif
 
 #import "cocos2d.h"
-#import "Tango/Tango.h"
-#import "Tango/TFSimulableObject.h"
+
+#import "TFConstants.h"
+#import "TFHelper.h"
+#import "TFFileUtils.h"
+#import "TFAction.h"
+#import "TFSimulableObject.h"
+#import "TFEditableObject.h"
+#import "TFDirector.h"
+#import "TFEvent.h"
+#import "TFProperty.h"
+#import "TFPropertyInvocation.h"
+#import "TFMethodInvokeAction.h"
+#import "TFConnectionLine.h"
 
 #import <QuartzCore/QuartzCore.h>
 

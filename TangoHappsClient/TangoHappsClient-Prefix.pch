@@ -15,6 +15,20 @@
 
 #import "cocos2d.h"
 
+#import "TFConstants.h"
+#import "TFFileUtils.h"
+#import "TFAction.h"
+#import "TFSimulableObject.h"
+#import "TFEditableObject.h"
+#import "TFDirector.h"
+#import "TFEvent.h"
+#import "TFMethod.h"
+#import "TFProperty.h"
+#import "TFPropertyInvocation.h"
+#import "TFMethodInvokeAction.h"
+#import "TFConnectionLine.h"
+#import "TFLayer.h"
+
 #import "THUtils.h"
 
 #import "THCustomProject.h"

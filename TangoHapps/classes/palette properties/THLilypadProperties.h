@@ -6,13 +6,15 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
+#import "TFEditableObjectProperties.h"
+
 
 @interface THLilypadProperties : TFEditableObjectProperties
 {
     NSMutableArray * _pinViews;
     float _currentY;
 }
-@property (weak, nonatomic) IBOutlet UIScrollView *containerView;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *containerView;
 
 @end

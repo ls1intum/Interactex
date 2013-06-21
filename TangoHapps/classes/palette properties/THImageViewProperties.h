@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
+#import "TFEditableObjectProperties.h"
+#import "TFImagePickerController.h"
+
 @interface THImageViewProperties : TFEditableObjectProperties <TFImagePickerDelegate>
 {
 }

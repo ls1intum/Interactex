@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
-#import <Tango/Tango.h>
-
 @class THPinEditable;
 
 @interface THCustomEditor : TFEditor {

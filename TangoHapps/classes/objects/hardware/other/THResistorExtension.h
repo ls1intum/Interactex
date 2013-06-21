@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
+#import "TFExtension.h"
+
 @class THBoardPinEditable;
 @class THElementPinEditable;
 

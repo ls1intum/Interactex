@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "THCondition.h"
 
 @interface THConditionObject : TFSimulableObject <THCondition>

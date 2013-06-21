@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import <Tango/Tango.h>
-
 @interface THSliderPaletteItem : TFPaletteItem
 
 @end

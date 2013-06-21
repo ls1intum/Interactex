@@ -10,11 +10,14 @@
 
 
 #import "THProjectSelectionViewController.h"
+#import "TFPaletteViewController.h"
+#import "TFProjectDelegate.h"
 
 @class THProjectViewController;
 @class THProjectProxy;
 @class THClientGridView;
 @class THEditorToolsDataSource;
+@class TFLayer;
 
 @protocol TFEditorToolsDataSource <NSObject>
 -(NSInteger) numberOfToolbarButtonsForState:(TFAppState) state;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
+#import "TFEditableObjectProperties.h"
 
 @interface THTimerProperties : TFEditableObjectProperties
 

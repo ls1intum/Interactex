@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
+#import "TFEditableObjectProperties.h"
 
 @interface THMusicPlayerProperties : TFEditableObjectProperties
 @property (weak, nonatomic) IBOutlet UISwitch *playSwitch;

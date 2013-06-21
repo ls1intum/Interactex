@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import <Tango/Tango.h>
+#import "TFPaletteItem.h"
 
 @interface THThreeColorLedPaletteItem : TFPaletteItem
 

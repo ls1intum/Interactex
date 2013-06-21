@@ -102,7 +102,6 @@
 		9A3511A0167B7A6800C7484B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A35119F167B7A6800C7484B /* Default.png */; };
 		9A3511A2167B7A6800C7484B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3511A1167B7A6800C7484B /* Default@2x.png */; };
 		9A3511A4167B7A6800C7484B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3511A3167B7A6800C7484B /* Default-568h@2x.png */; };
-		9A5625EF1755FFBA00755575 /* libTango.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5625EA1755FF9200755575 /* libTango.a */; };
 		9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8416A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8216A2C46E000DF472 /* THContactBookEditable.m */; };
@@ -139,7 +138,93 @@
 		9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
 		9A7DBF6E169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
 		9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */; };
-		9A83198817563F6E008DE5A9 /* libTango.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5625EA1755FF9200755575 /* libTango.a */; };
+		9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
+		9A7F673D1756590A00E04BC8 /* TFConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A117564A80009495AB /* TFConstants.m */; };
+		9A8426A617564A80009495AB /* TFConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265317564A80009495AB /* TFConnectionLine.m */; };
+		9A8426A817564A80009495AB /* TFConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265317564A80009495AB /* TFConnectionLine.m */; };
+		9A8426A917564A80009495AB /* TFEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265517564A80009495AB /* TFEditor.m */; };
+		9A8426AB17564A80009495AB /* TFEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265517564A80009495AB /* TFEditor.m */; };
+		9A8426AC17564A80009495AB /* TFMethodSelectionPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265717564A80009495AB /* TFMethodSelectionPopup.m */; };
+		9A8426AE17564A80009495AB /* TFMethodSelectionPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265717564A80009495AB /* TFMethodSelectionPopup.m */; };
+		9A8426AF17564A80009495AB /* TFSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265917564A80009495AB /* TFSimulator.m */; };
+		9A8426B117564A80009495AB /* TFSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265917564A80009495AB /* TFSimulator.m */; };
+		9A8426B217564A80009495AB /* TFAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265C17564A80009495AB /* TFAction.m */; };
+		9A8426B317564A80009495AB /* TFAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265C17564A80009495AB /* TFAction.m */; };
+		9A8426B417564A80009495AB /* TFAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265C17564A80009495AB /* TFAction.m */; };
+		9A8426B517564A80009495AB /* TFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265E17564A80009495AB /* TFEvent.m */; };
+		9A8426B617564A80009495AB /* TFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265E17564A80009495AB /* TFEvent.m */; };
+		9A8426B717564A80009495AB /* TFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265E17564A80009495AB /* TFEvent.m */; };
+		9A8426B817564A80009495AB /* TFEventActionPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266017564A80009495AB /* TFEventActionPair.m */; };
+		9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266017564A80009495AB /* TFEventActionPair.m */; };
+		9A8426BA17564A80009495AB /* TFEventActionPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266017564A80009495AB /* TFEventActionPair.m */; };
+		9A8426BB17564A80009495AB /* TFMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266217564A80009495AB /* TFMethod.m */; };
+		9A8426BC17564A80009495AB /* TFMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266217564A80009495AB /* TFMethod.m */; };
+		9A8426BD17564A80009495AB /* TFMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266217564A80009495AB /* TFMethod.m */; };
+		9A8426BE17564A80009495AB /* TFMethodInvokeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266417564A80009495AB /* TFMethodInvokeAction.m */; };
+		9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266417564A80009495AB /* TFMethodInvokeAction.m */; };
+		9A8426C017564A80009495AB /* TFMethodInvokeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266417564A80009495AB /* TFMethodInvokeAction.m */; };
+		9A8426C117564A80009495AB /* TFProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266617564A80009495AB /* TFProperty.m */; };
+		9A8426C217564A80009495AB /* TFProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266617564A80009495AB /* TFProperty.m */; };
+		9A8426C317564A80009495AB /* TFProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266617564A80009495AB /* TFProperty.m */; };
+		9A8426C417564A80009495AB /* TFPropertyInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266817564A80009495AB /* TFPropertyInvocation.m */; };
+		9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266817564A80009495AB /* TFPropertyInvocation.m */; };
+		9A8426C617564A80009495AB /* TFPropertyInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266817564A80009495AB /* TFPropertyInvocation.m */; };
+		9A8426C717564A80009495AB /* TFEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266B17564A80009495AB /* TFEditableObject.m */; };
+		9A8426C917564A80009495AB /* TFEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266B17564A80009495AB /* TFEditableObject.m */; };
+		9A8426CA17564A80009495AB /* TFExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266D17564A80009495AB /* TFExtension.m */; };
+		9A8426CC17564A80009495AB /* TFExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266D17564A80009495AB /* TFExtension.m */; };
+		9A8426CD17564A80009495AB /* TFLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266F17564A80009495AB /* TFLayer.m */; };
+		9A8426CE17564A80009495AB /* TFLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266F17564A80009495AB /* TFLayer.m */; };
+		9A8426CF17564A80009495AB /* TFLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84266F17564A80009495AB /* TFLayer.m */; };
+		9A8426D017564A80009495AB /* TFProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267117564A80009495AB /* TFProject.m */; };
+		9A8426D117564A80009495AB /* TFProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267117564A80009495AB /* TFProject.m */; };
+		9A8426D217564A80009495AB /* TFProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267117564A80009495AB /* TFProject.m */; };
+		9A8426D317564A80009495AB /* TFSimulableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267317564A80009495AB /* TFSimulableObject.m */; };
+		9A8426D417564A80009495AB /* TFSimulableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267317564A80009495AB /* TFSimulableObject.m */; };
+		9A8426D517564A80009495AB /* TFSimulableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267317564A80009495AB /* TFSimulableObject.m */; };
+		9A8426D617564A80009495AB /* TFEditableObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267A17564A80009495AB /* TFEditableObjectProperties.m */; };
+		9A8426D817564A80009495AB /* TFEditableObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267A17564A80009495AB /* TFEditableObjectProperties.m */; };
+		9A8426D917564A80009495AB /* TFInvokableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267C17564A80009495AB /* TFInvokableProperties.m */; };
+		9A8426DB17564A80009495AB /* TFInvokableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267C17564A80009495AB /* TFInvokableProperties.m */; };
+		9A8426DC17564A80009495AB /* TFPaletteItemProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267E17564A80009495AB /* TFPaletteItemProperties.m */; };
+		9A8426DE17564A80009495AB /* TFPaletteItemProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84267E17564A80009495AB /* TFPaletteItemProperties.m */; };
+		9A8426DF17564A80009495AB /* TFTriggerableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268017564A80009495AB /* TFTriggerableProperties.m */; };
+		9A8426E117564A80009495AB /* TFTriggerableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268017564A80009495AB /* TFTriggerableProperties.m */; };
+		9A8426E217564A80009495AB /* TFViewableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268217564A80009495AB /* TFViewableProperties.m */; };
+		9A8426E417564A80009495AB /* TFViewableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268217564A80009495AB /* TFViewableProperties.m */; };
+		9A8426E517564A80009495AB /* TFImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268517564A80009495AB /* TFImagePickerController.m */; };
+		9A8426E617564A80009495AB /* TFImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268517564A80009495AB /* TFImagePickerController.m */; };
+		9A8426E717564A80009495AB /* TFImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268517564A80009495AB /* TFImagePickerController.m */; };
+		9A8426E817564A80009495AB /* TFCustomPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268717564A80009495AB /* TFCustomPaletteItem.m */; };
+		9A8426EA17564A80009495AB /* TFCustomPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268717564A80009495AB /* TFCustomPaletteItem.m */; };
+		9A8426EB17564A80009495AB /* TFDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268917564A80009495AB /* TFDragView.m */; };
+		9A8426ED17564A80009495AB /* TFDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268917564A80009495AB /* TFDragView.m */; };
+		9A8426EE17564A80009495AB /* TFPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268B17564A80009495AB /* TFPalette.m */; };
+		9A8426F017564A80009495AB /* TFPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268B17564A80009495AB /* TFPalette.m */; };
+		9A8426F117564A80009495AB /* TFPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268D17564A80009495AB /* TFPaletteItem.m */; };
+		9A8426F317564A80009495AB /* TFPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268D17564A80009495AB /* TFPaletteItem.m */; };
+		9A8426F417564A80009495AB /* TFPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268F17564A80009495AB /* TFPaletteViewController.m */; };
+		9A8426F617564A80009495AB /* TFPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84268F17564A80009495AB /* TFPaletteViewController.m */; };
+		9A8426F717564A80009495AB /* TFPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269217564A80009495AB /* TFPropertiesViewController.m */; };
+		9A8426F917564A80009495AB /* TFPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269217564A80009495AB /* TFPropertiesViewController.m */; };
+		9A8426FA17564A80009495AB /* TFTabbarSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269417564A80009495AB /* TFTabbarSection.m */; };
+		9A8426FC17564A80009495AB /* TFTabbarSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269417564A80009495AB /* TFTabbarSection.m */; };
+		9A8426FD17564A80009495AB /* TFTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269617564A80009495AB /* TFTabbarView.m */; };
+		9A8426FF17564A80009495AB /* TFTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269617564A80009495AB /* TFTabbarView.m */; };
+		9A84270017564A80009495AB /* TFTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269817564A80009495AB /* TFTabbarViewController.m */; };
+		9A84270217564A80009495AB /* TFTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269817564A80009495AB /* TFTabbarViewController.m */; };
+		9A84270317564A80009495AB /* TFDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269A17564A80009495AB /* TFDirector.m */; };
+		9A84270517564A80009495AB /* TFDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269A17564A80009495AB /* TFDirector.m */; };
+		9A84270617564A80009495AB /* TFEditorToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269C17564A80009495AB /* TFEditorToolsViewController.m */; };
+		9A84270817564A80009495AB /* TFEditorToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269C17564A80009495AB /* TFEditorToolsViewController.m */; };
+		9A84270917564A80009495AB /* RoundedRectNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269F17564A80009495AB /* RoundedRectNode.m */; };
+		9A84270B17564A80009495AB /* RoundedRectNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84269F17564A80009495AB /* RoundedRectNode.m */; };
+		9A84270C17564A80009495AB /* TFConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A117564A80009495AB /* TFConstants.m */; };
+		9A84270E17564A80009495AB /* TFConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A117564A80009495AB /* TFConstants.m */; };
+		9A84270F17564A80009495AB /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
+		9A84271117564A80009495AB /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
+		9A84271217564A80009495AB /* TFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A517564A80009495AB /* TFHelper.m */; };
+		9A84271417564A80009495AB /* TFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A517564A80009495AB /* TFHelper.m */; };
 		9A85721C172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A85721D172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A8572B7172AD64C00510D23 /* THAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572B6172AD64C00510D23 /* THAsset.m */; };
@@ -181,19 +266,15 @@
 		9A93841B16D651D700A41BD2 /* THTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93841916D651D700A41BD2 /* THTimer.m */; };
 		9A93841C16D651D700A41BD2 /* THTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93841916D651D700A41BD2 /* THTimer.m */; };
 		9A93846116D652EC00A41BD2 /* THTimerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846016D652EC00A41BD2 /* THTimerEditable.m */; };
-		9A93846216D652EC00A41BD2 /* THTimerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846016D652EC00A41BD2 /* THTimerEditable.m */; };
 		9A93846316D652EC00A41BD2 /* THTimerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846016D652EC00A41BD2 /* THTimerEditable.m */; };
 		9A93846716D6534500A41BD2 /* THTimerProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846516D6534500A41BD2 /* THTimerProperties.m */; };
-		9A93846816D6534500A41BD2 /* THTimerProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846516D6534500A41BD2 /* THTimerProperties.m */; };
 		9A93846916D6534500A41BD2 /* THTimerProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846516D6534500A41BD2 /* THTimerProperties.m */; };
 		9A93846F16D6723600A41BD2 /* THTimerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846E16D6723600A41BD2 /* THTimerPaletteItem.m */; };
-		9A93847016D6723600A41BD2 /* THTimerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846E16D6723600A41BD2 /* THTimerPaletteItem.m */; };
 		9A93847116D6723600A41BD2 /* THTimerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93846E16D6723600A41BD2 /* THTimerPaletteItem.m */; };
 		9A93847516D6746200A41BD2 /* THTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93847416D6746200A41BD2 /* THTrigger.m */; };
 		9A93847616D6746200A41BD2 /* THTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93847416D6746200A41BD2 /* THTrigger.m */; };
 		9A93847716D6746200A41BD2 /* THTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93847416D6746200A41BD2 /* THTrigger.m */; };
 		9A93847A16D6748700A41BD2 /* THTriggerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93847916D6748700A41BD2 /* THTriggerEditable.m */; };
-		9A93847B16D6748700A41BD2 /* THTriggerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93847916D6748700A41BD2 /* THTriggerEditable.m */; };
 		9A93847C16D6748700A41BD2 /* THTriggerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A93847916D6748700A41BD2 /* THTriggerEditable.m */; };
 		9A93848116D68F6800A41BD2 /* palette_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A93847D16D68F6800A41BD2 /* palette_timer.png */; };
 		9A93848216D68F6800A41BD2 /* palette_timer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A93847D16D68F6800A41BD2 /* palette_timer.png */; };
@@ -211,7 +292,6 @@
 		9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A93848D16D6900E00A41BD2 /* THTimerProperties.xib */; };
 		9A93849016D6900E00A41BD2 /* THTimerProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A93848D16D6900E00A41BD2 /* THTimerProperties.xib */; };
 		9A9384AE16D69CCA00A41BD2 /* THActionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9384AD16D69CCA00A41BD2 /* THActionEditable.m */; };
-		9A9384AF16D69CCA00A41BD2 /* THActionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9384AD16D69CCA00A41BD2 /* THActionEditable.m */; };
 		9A9384B016D69CCA00A41BD2 /* THActionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9384AD16D69CCA00A41BD2 /* THActionEditable.m */; };
 		9A9384F616D6BE8D00A41BD2 /* sewed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A9384F516D6BE8D00A41BD2 /* sewed.mp3 */; };
 		9A9384F716D6BE8D00A41BD2 /* sewed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A9384F516D6BE8D00A41BD2 /* sewed.mp3 */; };
@@ -897,34 +977,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A5625E91755FF9200755575 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A7AB8C716611FDD00C0DBA4;
-			remoteInfo = Tango;
-		};
-		9A5625EB1755FF9200755575 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AF3EFEE170333D80013DE13;
-			remoteInfo = TangoBundle;
-		};
-		9A5625ED1755FFA900755575 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A7AB8C616611FDD00C0DBA4;
-			remoteInfo = Tango;
-		};
-		9A83194217563F67008DE5A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A7AB8C616611FDD00C0DBA4;
-			remoteInfo = Tango;
-		};
 		9AF500CD167B83780020241C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
@@ -1524,7 +1576,6 @@
 		9A35119F167B7A6800C7484B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9A3511A1167B7A6800C7484B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9A3511A3167B7A6800C7484B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		9A5625E31755FF9200755575 /* Tango.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Tango.xcodeproj; path = Frameworks/Tango/Tango.xcodeproj; sourceTree = "<group>"; };
 		9A5F8D7F16A2C46E000DF472 /* THContactBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBook.h; sourceTree = "<group>"; };
 		9A5F8D8016A2C46E000DF472 /* THContactBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBook.m; sourceTree = "<group>"; };
 		9A5F8D8116A2C46E000DF472 /* THContactBookEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookEditable.h; sourceTree = "<group>"; };
@@ -1548,6 +1599,84 @@
 		9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLed.m; sourceTree = "<group>"; };
 		9A7DBF6C169ACD5C00F86D71 /* THThreeColorLedEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedEditable.h; sourceTree = "<group>"; };
 		9A7DBF6D169ACD5C00F86D71 /* THThreeColorLedEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLedEditable.m; sourceTree = "<group>"; };
+		9A7F66F81756579C00E04BC8 /* TangoHappsClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TangoHappsClient-Prefix.pch"; sourceTree = "<group>"; };
+		9A84265217564A80009495AB /* TFConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConnectionLine.h; sourceTree = "<group>"; };
+		9A84265317564A80009495AB /* TFConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFConnectionLine.m; sourceTree = "<group>"; };
+		9A84265417564A80009495AB /* TFEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEditor.h; sourceTree = "<group>"; };
+		9A84265517564A80009495AB /* TFEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEditor.m; sourceTree = "<group>"; };
+		9A84265617564A80009495AB /* TFMethodSelectionPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMethodSelectionPopup.h; sourceTree = "<group>"; };
+		9A84265717564A80009495AB /* TFMethodSelectionPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMethodSelectionPopup.m; sourceTree = "<group>"; };
+		9A84265817564A80009495AB /* TFSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSimulator.h; sourceTree = "<group>"; };
+		9A84265917564A80009495AB /* TFSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFSimulator.m; sourceTree = "<group>"; };
+		9A84265B17564A80009495AB /* TFAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAction.h; sourceTree = "<group>"; };
+		9A84265C17564A80009495AB /* TFAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFAction.m; sourceTree = "<group>"; };
+		9A84265D17564A80009495AB /* TFEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEvent.h; sourceTree = "<group>"; };
+		9A84265E17564A80009495AB /* TFEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEvent.m; sourceTree = "<group>"; };
+		9A84265F17564A80009495AB /* TFEventActionPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEventActionPair.h; sourceTree = "<group>"; };
+		9A84266017564A80009495AB /* TFEventActionPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEventActionPair.m; sourceTree = "<group>"; };
+		9A84266117564A80009495AB /* TFMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMethod.h; sourceTree = "<group>"; };
+		9A84266217564A80009495AB /* TFMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMethod.m; sourceTree = "<group>"; };
+		9A84266317564A80009495AB /* TFMethodInvokeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMethodInvokeAction.h; sourceTree = "<group>"; };
+		9A84266417564A80009495AB /* TFMethodInvokeAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFMethodInvokeAction.m; sourceTree = "<group>"; };
+		9A84266517564A80009495AB /* TFProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProperty.h; sourceTree = "<group>"; };
+		9A84266617564A80009495AB /* TFProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFProperty.m; sourceTree = "<group>"; };
+		9A84266717564A80009495AB /* TFPropertyInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPropertyInvocation.h; sourceTree = "<group>"; };
+		9A84266817564A80009495AB /* TFPropertyInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPropertyInvocation.m; sourceTree = "<group>"; };
+		9A84266A17564A80009495AB /* TFEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEditableObject.h; sourceTree = "<group>"; };
+		9A84266B17564A80009495AB /* TFEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEditableObject.m; sourceTree = "<group>"; };
+		9A84266C17564A80009495AB /* TFExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFExtension.h; sourceTree = "<group>"; };
+		9A84266D17564A80009495AB /* TFExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFExtension.m; sourceTree = "<group>"; };
+		9A84266E17564A80009495AB /* TFLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFLayer.h; sourceTree = "<group>"; };
+		9A84266F17564A80009495AB /* TFLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFLayer.m; sourceTree = "<group>"; };
+		9A84267017564A80009495AB /* TFProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProject.h; sourceTree = "<group>"; };
+		9A84267117564A80009495AB /* TFProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFProject.m; sourceTree = "<group>"; };
+		9A84267217564A80009495AB /* TFSimulableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSimulableObject.h; sourceTree = "<group>"; };
+		9A84267317564A80009495AB /* TFSimulableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFSimulableObject.m; sourceTree = "<group>"; };
+		9A84267517564A80009495AB /* TFEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEditable.h; sourceTree = "<group>"; };
+		9A84267617564A80009495AB /* TFProjectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProjectDelegate.h; sourceTree = "<group>"; };
+		9A84267917564A80009495AB /* TFEditableObjectProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEditableObjectProperties.h; sourceTree = "<group>"; };
+		9A84267A17564A80009495AB /* TFEditableObjectProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEditableObjectProperties.m; sourceTree = "<group>"; };
+		9A84267B17564A80009495AB /* TFInvokableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInvokableProperties.h; sourceTree = "<group>"; };
+		9A84267C17564A80009495AB /* TFInvokableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInvokableProperties.m; sourceTree = "<group>"; };
+		9A84267D17564A80009495AB /* TFPaletteItemProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPaletteItemProperties.h; sourceTree = "<group>"; };
+		9A84267E17564A80009495AB /* TFPaletteItemProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPaletteItemProperties.m; sourceTree = "<group>"; };
+		9A84267F17564A80009495AB /* TFTriggerableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTriggerableProperties.h; sourceTree = "<group>"; };
+		9A84268017564A80009495AB /* TFTriggerableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTriggerableProperties.m; sourceTree = "<group>"; };
+		9A84268117564A80009495AB /* TFViewableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFViewableProperties.h; sourceTree = "<group>"; };
+		9A84268217564A80009495AB /* TFViewableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFViewableProperties.m; sourceTree = "<group>"; };
+		9A84268417564A80009495AB /* TFImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFImagePickerController.h; sourceTree = "<group>"; };
+		9A84268517564A80009495AB /* TFImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFImagePickerController.m; sourceTree = "<group>"; };
+		9A84268617564A80009495AB /* TFCustomPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCustomPaletteItem.h; sourceTree = "<group>"; };
+		9A84268717564A80009495AB /* TFCustomPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFCustomPaletteItem.m; sourceTree = "<group>"; };
+		9A84268817564A80009495AB /* TFDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDragView.h; sourceTree = "<group>"; };
+		9A84268917564A80009495AB /* TFDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDragView.m; sourceTree = "<group>"; };
+		9A84268A17564A80009495AB /* TFPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPalette.h; sourceTree = "<group>"; };
+		9A84268B17564A80009495AB /* TFPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPalette.m; sourceTree = "<group>"; };
+		9A84268C17564A80009495AB /* TFPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPaletteItem.h; sourceTree = "<group>"; };
+		9A84268D17564A80009495AB /* TFPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPaletteItem.m; sourceTree = "<group>"; };
+		9A84268E17564A80009495AB /* TFPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPaletteViewController.h; sourceTree = "<group>"; };
+		9A84268F17564A80009495AB /* TFPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPaletteViewController.m; sourceTree = "<group>"; };
+		9A84269017564A80009495AB /* TFPaletteViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPaletteViewControllerDelegate.h; sourceTree = "<group>"; };
+		9A84269117564A80009495AB /* TFPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPropertiesViewController.h; sourceTree = "<group>"; };
+		9A84269217564A80009495AB /* TFPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFPropertiesViewController.m; sourceTree = "<group>"; };
+		9A84269317564A80009495AB /* TFTabbarSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTabbarSection.h; sourceTree = "<group>"; };
+		9A84269417564A80009495AB /* TFTabbarSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTabbarSection.m; sourceTree = "<group>"; };
+		9A84269517564A80009495AB /* TFTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTabbarView.h; sourceTree = "<group>"; };
+		9A84269617564A80009495AB /* TFTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTabbarView.m; sourceTree = "<group>"; };
+		9A84269717564A80009495AB /* TFTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTabbarViewController.h; sourceTree = "<group>"; };
+		9A84269817564A80009495AB /* TFTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTabbarViewController.m; sourceTree = "<group>"; };
+		9A84269917564A80009495AB /* TFDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDirector.h; sourceTree = "<group>"; };
+		9A84269A17564A80009495AB /* TFDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDirector.m; sourceTree = "<group>"; };
+		9A84269B17564A80009495AB /* TFEditorToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEditorToolsViewController.h; sourceTree = "<group>"; };
+		9A84269C17564A80009495AB /* TFEditorToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEditorToolsViewController.m; sourceTree = "<group>"; };
+		9A84269E17564A80009495AB /* RoundedRectNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedRectNode.h; sourceTree = "<group>"; };
+		9A84269F17564A80009495AB /* RoundedRectNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedRectNode.m; sourceTree = "<group>"; };
+		9A8426A017564A80009495AB /* TFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConstants.h; sourceTree = "<group>"; };
+		9A8426A117564A80009495AB /* TFConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFConstants.m; sourceTree = "<group>"; };
+		9A8426A217564A80009495AB /* TFFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileUtils.h; sourceTree = "<group>"; };
+		9A8426A317564A80009495AB /* TFFileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUtils.m; sourceTree = "<group>"; };
+		9A8426A417564A80009495AB /* TFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHelper.h; sourceTree = "<group>"; };
+		9A8426A517564A80009495AB /* TFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHelper.m; sourceTree = "<group>"; };
 		9A85721A172804B600510D23 /* THSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPicker.h; sourceTree = "<group>"; };
 		9A85721B172804B600510D23 /* THSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPicker.m; sourceTree = "<group>"; };
 		9A8572B5172AD64C00510D23 /* THAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAsset.h; sourceTree = "<group>"; };
@@ -2070,7 +2199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A5625EF1755FFBA00755575 /* libTango.a in Frameworks */,
 				9AF50505167B8C820020241C /* AVFoundation.framework in Frameworks */,
 				9AB29B56167F68F600F5AF62 /* AssetsLibrary.framework in Frameworks */,
 				9A8BBA3B167F27FC00FBABFB /* CoreLocation.framework in Frameworks */,
@@ -2120,7 +2248,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A83198817563F6E008DE5A9 /* libTango.a in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */,
@@ -2198,7 +2325,6 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A5625E31755FF9200755575 /* Tango.xcodeproj */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
 				9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */,
 				9A8BBA3A167F27FC00FBABFB /* CoreLocation.framework */,
@@ -2248,13 +2374,152 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9A5625E41755FF9200755575 /* Products */ = {
+		9A84265017564A80009495AB /* Tango */ = {
 			isa = PBXGroup;
 			children = (
-				9A5625EA1755FF9200755575 /* libTango.a */,
-				9A5625EC1755FF9200755575 /* TangoBundle.framework */,
+				9A84265117564A80009495AB /* Layers */,
+				9A84265A17564A80009495AB /* Meta Programming */,
+				9A84266917564A80009495AB /* Objects */,
+				9A84267417564A80009495AB /* Protocols */,
+				9A84267717564A80009495AB /* Tabbar */,
+				9A84269917564A80009495AB /* TFDirector.h */,
+				9A84269A17564A80009495AB /* TFDirector.m */,
+				9A84269B17564A80009495AB /* TFEditorToolsViewController.h */,
+				9A84269C17564A80009495AB /* TFEditorToolsViewController.m */,
+				9A84269D17564A80009495AB /* Utils */,
 			);
-			name = Products;
+			path = Tango;
+			sourceTree = "<group>";
+		};
+		9A84265117564A80009495AB /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				9A84265217564A80009495AB /* TFConnectionLine.h */,
+				9A84265317564A80009495AB /* TFConnectionLine.m */,
+				9A84265417564A80009495AB /* TFEditor.h */,
+				9A84265517564A80009495AB /* TFEditor.m */,
+				9A84265617564A80009495AB /* TFMethodSelectionPopup.h */,
+				9A84265717564A80009495AB /* TFMethodSelectionPopup.m */,
+				9A84265817564A80009495AB /* TFSimulator.h */,
+				9A84265917564A80009495AB /* TFSimulator.m */,
+			);
+			path = Layers;
+			sourceTree = "<group>";
+		};
+		9A84265A17564A80009495AB /* Meta Programming */ = {
+			isa = PBXGroup;
+			children = (
+				9A84265B17564A80009495AB /* TFAction.h */,
+				9A84265C17564A80009495AB /* TFAction.m */,
+				9A84265D17564A80009495AB /* TFEvent.h */,
+				9A84265E17564A80009495AB /* TFEvent.m */,
+				9A84265F17564A80009495AB /* TFEventActionPair.h */,
+				9A84266017564A80009495AB /* TFEventActionPair.m */,
+				9A84266117564A80009495AB /* TFMethod.h */,
+				9A84266217564A80009495AB /* TFMethod.m */,
+				9A84266317564A80009495AB /* TFMethodInvokeAction.h */,
+				9A84266417564A80009495AB /* TFMethodInvokeAction.m */,
+				9A84266517564A80009495AB /* TFProperty.h */,
+				9A84266617564A80009495AB /* TFProperty.m */,
+				9A84266717564A80009495AB /* TFPropertyInvocation.h */,
+				9A84266817564A80009495AB /* TFPropertyInvocation.m */,
+			);
+			path = "Meta Programming";
+			sourceTree = "<group>";
+		};
+		9A84266917564A80009495AB /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				9A84266A17564A80009495AB /* TFEditableObject.h */,
+				9A84266B17564A80009495AB /* TFEditableObject.m */,
+				9A84266C17564A80009495AB /* TFExtension.h */,
+				9A84266D17564A80009495AB /* TFExtension.m */,
+				9A84266E17564A80009495AB /* TFLayer.h */,
+				9A84266F17564A80009495AB /* TFLayer.m */,
+				9A84267017564A80009495AB /* TFProject.h */,
+				9A84267117564A80009495AB /* TFProject.m */,
+				9A84267217564A80009495AB /* TFSimulableObject.h */,
+				9A84267317564A80009495AB /* TFSimulableObject.m */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		9A84267417564A80009495AB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9A84267517564A80009495AB /* TFEditable.h */,
+				9A84267617564A80009495AB /* TFProjectDelegate.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9A84267717564A80009495AB /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				9A84267817564A80009495AB /* EditableProperties */,
+				9A84268617564A80009495AB /* TFCustomPaletteItem.h */,
+				9A84268717564A80009495AB /* TFCustomPaletteItem.m */,
+				9A84268817564A80009495AB /* TFDragView.h */,
+				9A84268917564A80009495AB /* TFDragView.m */,
+				9A84268A17564A80009495AB /* TFPalette.h */,
+				9A84268B17564A80009495AB /* TFPalette.m */,
+				9A84268C17564A80009495AB /* TFPaletteItem.h */,
+				9A84268D17564A80009495AB /* TFPaletteItem.m */,
+				9A84268E17564A80009495AB /* TFPaletteViewController.h */,
+				9A84268F17564A80009495AB /* TFPaletteViewController.m */,
+				9A84269017564A80009495AB /* TFPaletteViewControllerDelegate.h */,
+				9A84269117564A80009495AB /* TFPropertiesViewController.h */,
+				9A84269217564A80009495AB /* TFPropertiesViewController.m */,
+				9A84269317564A80009495AB /* TFTabbarSection.h */,
+				9A84269417564A80009495AB /* TFTabbarSection.m */,
+				9A84269517564A80009495AB /* TFTabbarView.h */,
+				9A84269617564A80009495AB /* TFTabbarView.m */,
+				9A84269717564A80009495AB /* TFTabbarViewController.h */,
+				9A84269817564A80009495AB /* TFTabbarViewController.m */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		9A84267817564A80009495AB /* EditableProperties */ = {
+			isa = PBXGroup;
+			children = (
+				9A84267917564A80009495AB /* TFEditableObjectProperties.h */,
+				9A84267A17564A80009495AB /* TFEditableObjectProperties.m */,
+				9A84267B17564A80009495AB /* TFInvokableProperties.h */,
+				9A84267C17564A80009495AB /* TFInvokableProperties.m */,
+				9A84267D17564A80009495AB /* TFPaletteItemProperties.h */,
+				9A84267E17564A80009495AB /* TFPaletteItemProperties.m */,
+				9A84267F17564A80009495AB /* TFTriggerableProperties.h */,
+				9A84268017564A80009495AB /* TFTriggerableProperties.m */,
+				9A84268117564A80009495AB /* TFViewableProperties.h */,
+				9A84268217564A80009495AB /* TFViewableProperties.m */,
+				9A84268317564A80009495AB /* utils */,
+			);
+			path = EditableProperties;
+			sourceTree = "<group>";
+		};
+		9A84268317564A80009495AB /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				9A84268417564A80009495AB /* TFImagePickerController.h */,
+				9A84268517564A80009495AB /* TFImagePickerController.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		9A84269D17564A80009495AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9A84269E17564A80009495AB /* RoundedRectNode.h */,
+				9A84269F17564A80009495AB /* RoundedRectNode.m */,
+				9A8426A017564A80009495AB /* TFConstants.h */,
+				9A8426A117564A80009495AB /* TFConstants.m */,
+				9A8426A217564A80009495AB /* TFFileUtils.h */,
+				9A8426A317564A80009495AB /* TFFileUtils.m */,
+				9A8426A417564A80009495AB /* TFHelper.h */,
+				9A8426A517564A80009495AB /* TFHelper.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		9A8572B4172AD64C00510D23 /* assets */ = {
@@ -2516,6 +2781,7 @@
 		9AF501F4167B84B40020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				9A84265017564A80009495AB /* Tango */,
 				9AF502D6167B84B40020241C /* utils */,
 				9AF501F5167B84B40020241C /* communication */,
 				9A8572B4172AD64C00510D23 /* assets */,
@@ -3179,6 +3445,7 @@
 		9AF5FFF7167B82F70020241C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9A7F66F81756579C00E04BC8 /* TangoHappsClient-Prefix.pch */,
 				9AF50472167B860E0020241C /* main.m */,
 			);
 			name = "Supporting Files";
@@ -3198,7 +3465,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A5625EE1755FFA900755575 /* PBXTargetDependency */,
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
@@ -3238,7 +3504,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A83194317563F67008DE5A9 /* PBXTargetDependency */,
 				9AF50158167B83940020241C /* PBXTargetDependency */,
 				9AF5015A167B83940020241C /* PBXTargetDependency */,
 			);
@@ -3273,10 +3538,6 @@
 					ProductGroup = 9AF5004B167B83770020241C /* Products */;
 					ProjectRef = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
 				},
-				{
-					ProductGroup = 9A5625E41755FF9200755575 /* Products */;
-					ProjectRef = 9A5625E31755FF9200755575 /* Tango.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -3288,20 +3549,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A5625EA1755FF9200755575 /* libTango.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTango.a;
-			remoteRef = 9A5625E91755FF9200755575 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A5625EC1755FF9200755575 /* TangoBundle.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = TangoBundle.framework;
-			remoteRef = 9A5625EB1755FF9200755575 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9AF500CE167B83780020241C /* libbuild all tests.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4403,6 +4650,43 @@
 				9A8572B7172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BC172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C1172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				9A8426A617564A80009495AB /* TFConnectionLine.m in Sources */,
+				9A8426A917564A80009495AB /* TFEditor.m in Sources */,
+				9A8426AC17564A80009495AB /* TFMethodSelectionPopup.m in Sources */,
+				9A8426AF17564A80009495AB /* TFSimulator.m in Sources */,
+				9A8426B217564A80009495AB /* TFAction.m in Sources */,
+				9A8426B517564A80009495AB /* TFEvent.m in Sources */,
+				9A8426B817564A80009495AB /* TFEventActionPair.m in Sources */,
+				9A8426BB17564A80009495AB /* TFMethod.m in Sources */,
+				9A8426BE17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
+				9A8426C117564A80009495AB /* TFProperty.m in Sources */,
+				9A8426C417564A80009495AB /* TFPropertyInvocation.m in Sources */,
+				9A8426C717564A80009495AB /* TFEditableObject.m in Sources */,
+				9A8426CA17564A80009495AB /* TFExtension.m in Sources */,
+				9A8426CD17564A80009495AB /* TFLayer.m in Sources */,
+				9A8426D017564A80009495AB /* TFProject.m in Sources */,
+				9A8426D317564A80009495AB /* TFSimulableObject.m in Sources */,
+				9A8426D617564A80009495AB /* TFEditableObjectProperties.m in Sources */,
+				9A8426D917564A80009495AB /* TFInvokableProperties.m in Sources */,
+				9A8426DC17564A80009495AB /* TFPaletteItemProperties.m in Sources */,
+				9A8426DF17564A80009495AB /* TFTriggerableProperties.m in Sources */,
+				9A8426E217564A80009495AB /* TFViewableProperties.m in Sources */,
+				9A8426E517564A80009495AB /* TFImagePickerController.m in Sources */,
+				9A8426E817564A80009495AB /* TFCustomPaletteItem.m in Sources */,
+				9A8426EB17564A80009495AB /* TFDragView.m in Sources */,
+				9A8426EE17564A80009495AB /* TFPalette.m in Sources */,
+				9A8426F117564A80009495AB /* TFPaletteItem.m in Sources */,
+				9A8426F417564A80009495AB /* TFPaletteViewController.m in Sources */,
+				9A8426F717564A80009495AB /* TFPropertiesViewController.m in Sources */,
+				9A8426FA17564A80009495AB /* TFTabbarSection.m in Sources */,
+				9A8426FD17564A80009495AB /* TFTabbarView.m in Sources */,
+				9A84270017564A80009495AB /* TFTabbarViewController.m in Sources */,
+				9A84270317564A80009495AB /* TFDirector.m in Sources */,
+				9A84270617564A80009495AB /* TFEditorToolsViewController.m in Sources */,
+				9A84270917564A80009495AB /* RoundedRectNode.m in Sources */,
+				9A84270C17564A80009495AB /* TFConstants.m in Sources */,
+				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
+				9A84271217564A80009495AB /* TFHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4583,6 +4867,43 @@
 				9A8572B9172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BE172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C3172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				9A8426A817564A80009495AB /* TFConnectionLine.m in Sources */,
+				9A8426AB17564A80009495AB /* TFEditor.m in Sources */,
+				9A8426AE17564A80009495AB /* TFMethodSelectionPopup.m in Sources */,
+				9A8426B117564A80009495AB /* TFSimulator.m in Sources */,
+				9A8426B417564A80009495AB /* TFAction.m in Sources */,
+				9A8426B717564A80009495AB /* TFEvent.m in Sources */,
+				9A8426BA17564A80009495AB /* TFEventActionPair.m in Sources */,
+				9A8426BD17564A80009495AB /* TFMethod.m in Sources */,
+				9A8426C017564A80009495AB /* TFMethodInvokeAction.m in Sources */,
+				9A8426C317564A80009495AB /* TFProperty.m in Sources */,
+				9A8426C617564A80009495AB /* TFPropertyInvocation.m in Sources */,
+				9A8426C917564A80009495AB /* TFEditableObject.m in Sources */,
+				9A8426CC17564A80009495AB /* TFExtension.m in Sources */,
+				9A8426CF17564A80009495AB /* TFLayer.m in Sources */,
+				9A8426D217564A80009495AB /* TFProject.m in Sources */,
+				9A8426D517564A80009495AB /* TFSimulableObject.m in Sources */,
+				9A8426D817564A80009495AB /* TFEditableObjectProperties.m in Sources */,
+				9A8426DB17564A80009495AB /* TFInvokableProperties.m in Sources */,
+				9A8426DE17564A80009495AB /* TFPaletteItemProperties.m in Sources */,
+				9A8426E117564A80009495AB /* TFTriggerableProperties.m in Sources */,
+				9A8426E417564A80009495AB /* TFViewableProperties.m in Sources */,
+				9A8426E717564A80009495AB /* TFImagePickerController.m in Sources */,
+				9A8426EA17564A80009495AB /* TFCustomPaletteItem.m in Sources */,
+				9A8426ED17564A80009495AB /* TFDragView.m in Sources */,
+				9A8426F017564A80009495AB /* TFPalette.m in Sources */,
+				9A8426F317564A80009495AB /* TFPaletteItem.m in Sources */,
+				9A8426F617564A80009495AB /* TFPaletteViewController.m in Sources */,
+				9A8426F917564A80009495AB /* TFPropertiesViewController.m in Sources */,
+				9A8426FC17564A80009495AB /* TFTabbarSection.m in Sources */,
+				9A8426FF17564A80009495AB /* TFTabbarView.m in Sources */,
+				9A84270217564A80009495AB /* TFTabbarViewController.m in Sources */,
+				9A84270517564A80009495AB /* TFDirector.m in Sources */,
+				9A84270817564A80009495AB /* TFEditorToolsViewController.m in Sources */,
+				9A84270B17564A80009495AB /* RoundedRectNode.m in Sources */,
+				9A84270E17564A80009495AB /* TFConstants.m in Sources */,
+				9A84271117564A80009495AB /* TFFileUtils.m in Sources */,
+				9A84271417564A80009495AB /* TFHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4644,34 +4965,32 @@
 				9A94F1EA169ED60000AF52AB /* THLinearFunction.m in Sources */,
 				9A5F8D8716A2C473000DF472 /* THContactBook.m in Sources */,
 				9A93841B16D651D700A41BD2 /* THTimer.m in Sources */,
-				9A93846216D652EC00A41BD2 /* THTimerEditable.m in Sources */,
-				9A93846816D6534500A41BD2 /* THTimerProperties.m in Sources */,
-				9A93847016D6723600A41BD2 /* THTimerPaletteItem.m in Sources */,
 				9A93847616D6746200A41BD2 /* THTrigger.m in Sources */,
-				9A93847B16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
-				9A9384AF16D69CCA00A41BD2 /* THActionEditable.m in Sources */,
 				9AF3E6D316FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				9A8426B317564A80009495AB /* TFAction.m in Sources */,
+				9A8426B617564A80009495AB /* TFEvent.m in Sources */,
+				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,
+				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
+				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
+				9A8426C217564A80009495AB /* TFProperty.m in Sources */,
+				9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */,
+				9A8426CE17564A80009495AB /* TFLayer.m in Sources */,
+				9A8426D117564A80009495AB /* TFProject.m in Sources */,
+				9A8426D417564A80009495AB /* TFSimulableObject.m in Sources */,
+				9A8426E617564A80009495AB /* TFImagePickerController.m in Sources */,
+				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
+				9A7F673D1756590A00E04BC8 /* TFConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A5625EE1755FFA900755575 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Tango;
-			targetProxy = 9A5625ED1755FFA900755575 /* PBXContainerItemProxy */;
-		};
-		9A83194317563F67008DE5A9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Tango;
-			targetProxy = 9A83194217563F67008DE5A9 /* PBXContainerItemProxy */;
-		};
 		9AF50158167B83940020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = cocos2d;
@@ -4735,10 +5054,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/**\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4771,10 +5086,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/**\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -4797,10 +5108,6 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -4814,10 +5121,6 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -4835,10 +5138,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/**\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -4862,10 +5161,6 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

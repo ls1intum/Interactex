@@ -3,6 +3,8 @@
 #import "THProjectViewController.h"
 #import "THEditorToolsViewController.h"
 #import "THEditorToolsDataSource.h"
+#import "TFTabbarViewController.h"
+#import "TFSimulator.h"
 
 @implementation THProjectViewController
 

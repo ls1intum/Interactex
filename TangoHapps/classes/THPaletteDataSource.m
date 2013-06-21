@@ -37,6 +37,7 @@
 #import "THProjectViewController.h"
 #import "THTimerPaletteItem.h"
 #import "THSoundPaletteItem.h"
+#import "TFTabbarViewController.h"
 
 @implementation THPaletteDataSource
 

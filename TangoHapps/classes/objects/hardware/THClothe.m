@@ -10,6 +10,7 @@
 #import "THClotheObjectEditableObject.h"
 #import "THClothePaletteItem.h"
 #import "THClotheProperties.h"
+#import "TFCustomPaletteItem.h"
 
 @implementation THClothe
 

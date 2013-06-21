@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
+#import "TFEditableObjectProperties.h"
+
 @interface THThreeColorLedProperties : TFEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UILabel *redLabel;

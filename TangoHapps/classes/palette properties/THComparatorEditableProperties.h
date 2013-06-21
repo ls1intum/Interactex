@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TFEditableObjectProperties.h"
 
 @interface THComparatorEditableProperties : TFEditableObjectProperties
 {

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
+#import "TFEditableObjectProperties.h"
 #import "THColorPicker.h"
 
 @interface THiPhoneViewProperties : TFEditableObjectProperties <THColorPickerDelegate>

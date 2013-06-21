@@ -8,6 +8,7 @@
 
 #import "THClientProject.h"
 #import "THSimulableWorldController.h"
+#import "TFEventActionPair.h"
 
 @implementation THClientProject
 

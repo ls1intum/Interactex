@@ -9,6 +9,7 @@
 #import "THGrouperEditableProperties.h"
 #import "THGrouperConditionEditable.h"
 #import "THGrouperCondition.h"
+#import "TFEventActionPair.h"
 
 @implementation THGrouperEditableProperties
 @synthesize descriptionLabel;

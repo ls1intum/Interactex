@@ -32,6 +32,7 @@
 
 #import "THiPhone.h"
 #import "THAssetCollection.h"
+#import "TFEventActionPair.h"
 
 @implementation THCustomProject
 

@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
+#import "TFLayer.h"
+#import "TFTabbarViewController.h"
+#import "TFPropertiesViewController.h"
+
 #import "THDirector.h"
 #import "THProjectProxy.h"
 #import "THProjectViewController.h"
