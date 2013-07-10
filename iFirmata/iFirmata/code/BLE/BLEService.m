@@ -1,7 +1,8 @@
 
-#import "BleService.h"
-#import "LeDiscovery.h"
-#import "THPinModeDescriptor.h"
+#import "BLEService.h"
+#import "BLEDiscovery.h"
+#import "BLEPinModeDescriptor.h"
+#import "BLEHelper.h"
 
 NSString *kBleServiceUUIDString = @"F9266FD7-EF07-45D6-8EB6-BD74F13620F9";//Juan
 //NSString *kBleServiceUUIDString = @"EF080D8C-C3BE-41FF-BD3F-05A5F4795D7F";//Vincent
@@ -18,7 +19,7 @@ NSString *kBleServiceEnteredForegroundNotification = @"kAlarmServiceEnteredForeg
 const short kMsgPinModeStarted = 255;
 const short kMsgPinValueStarted = 254;
 
-@implementation BleService
+@implementation BLEService
 
 #pragma mark Init
 
@@ -26,7 +27,7 @@ const short kMsgPinValueStarted = 254;
     self = [super init];
     if (self) {
         _peripheral = peripheral;
-        [_peripheral setDelegate:self];
+        [self.peripheral setDelegate:self];
         
         rxCountUUID	= [CBUUID UUIDWithString:kRxCountCharacteristicUUIDString];
         rxClearUUID	= [CBUUID UUIDWithString:kRxClearCharacteristicUUIDString];
@@ -39,8 +40,8 @@ const short kMsgPinValueStarted = 254;
 
 
 - (void) dealloc {
-	if (_peripheral) {
-		[_peripheral setDelegate:[LeDiscovery sharedInstance]];
+	if (self.peripheral) {
+		[self.peripheral setDelegate:[BLEDiscovery sharedInstance]];
 		_peripheral = nil;
     }
 }
@@ -48,7 +49,7 @@ const short kMsgPinValueStarted = 254;
 
 - (void) reset
 {
-	if (_peripheral) {
+	if (self.peripheral) {
 		_peripheral = nil;
 	}
 }
@@ -65,7 +66,7 @@ const short kMsgPinValueStarted = 254;
 
 
 - (void) disconnect{
-    [[LeDiscovery sharedInstance] disconnectPeripheral:self.peripheral];
+    [[BLEDiscovery sharedInstance] disconnectPeripheral:self.peripheral];
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
@@ -129,23 +130,23 @@ const short kMsgPinValueStarted = 254;
         if ([[characteristic UUID] isEqual:bdUUID]) {
             
             [self.delegate reportMessage:@"Discovered BD"];
-			bdCharacteristic = characteristic;
-			[peripheral readValueForCharacteristic:bdCharacteristic];
+			_bdCharacteristic = characteristic;
+			[peripheral readValueForCharacteristic:_bdCharacteristic];
         } else if ([[characteristic UUID] isEqual:rxUUID]) {
             [self.delegate reportMessage:@"Discovered RX"];
-			rxCharacteristic = characteristic;
-			[peripheral readValueForCharacteristic:rxCharacteristic];
-			[peripheral setNotifyValue:YES forCharacteristic:rxCharacteristic];
+			_rxCharacteristic = characteristic;
+			[peripheral readValueForCharacteristic:_rxCharacteristic];
+			[peripheral setNotifyValue:YES forCharacteristic:_rxCharacteristic];
 		} else if ([[characteristic UUID] isEqual:rxCountUUID]) {
             [self.delegate reportMessage:@"Discovered RX Count"];
-			rxCountCharacteristic = characteristic ;
+			_rxCountCharacteristic = characteristic ;
 			[peripheral readValueForCharacteristic:characteristic];
         } else if ([[characteristic UUID] isEqual:rxClearUUID]) {
             [self.delegate reportMessage:@"Discovered RX Clear"];
-			rxClearCharacteristic = characteristic;
+			_rxClearCharacteristic = characteristic;
 		} else if ([[characteristic UUID] isEqual:txUUID]) {
             [self.delegate reportMessage:@"Discovered TX"];
-			txCharacteristic = characteristic;
+			_txCharacteristic = characteristic;
             [self.delegate bleServiceIsReady:self];
 		} else {
             NSString * message = [NSString stringWithFormat:@"Discovered: %@",characteristic.UUID];
@@ -160,15 +161,29 @@ const short kMsgPinValueStarted = 254;
     
     short byte = 1;
     NSData * data = [NSData dataWithBytes:&byte length:1];
-    [_peripheral writeValue:data forCharacteristic:rxClearCharacteristic type:CBCharacteristicWriteWithResponse];
+    [_peripheral writeValue:data forCharacteristic:self.rxClearCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
+-(void) writeToTx:(NSData*) data{
+    
+    if(self.txCharacteristic){/*
+        for (int i = 0; i < data.length; i++) {
+
+            NSData * data1 = [NSData dataWithBytes:&data.bytes[i] length:1];
+            [_peripheral writeValue:data1 forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+            
+        }*/
+        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+    }
+}
+
+/*
 -(void) sendPinModes:(NSArray*) pinModes{
             
     NSData * startData = [NSData dataWithBytes:&kMsgPinModeStarted length:1];
         [_peripheral writeValue:startData forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
     
-    for (THPinModeDescriptor * pinDescriptor in pinModes) {
+    for (BLEPinModeDescriptor * pinDescriptor in pinModes) {
         
         short pin = pinDescriptor.pin;
         short mode = pinDescriptor.mode;
@@ -201,11 +216,7 @@ const short kMsgPinValueStarted = 254;
     NSString * message = [NSString stringWithFormat:@"%d %d sent!",pin,value];
     [self.delegate reportMessage:message];
     
-    /*
-    short bytes[2] = {pin,value};
-    NSData * data1 = [NSData dataWithBytes:&bytes length:2];
-    [_peripheral writeValue:data1 forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];*/
-}
+}*/
 
 - (void)enteredBackground
 {
@@ -248,8 +259,8 @@ const short kMsgPinValueStarted = 254;
     NSInteger result  = NAN;
     int16_t value	= 0;
 	
-    if (rxCountCharacteristic) {
-        NSData * data = [rxCountCharacteristic value];
+    if (self.rxCountCharacteristic) {
+        NSData * data = [self.rxCountCharacteristic value];
         [data getBytes:&value length:sizeof (value)];
         result = value;
     }
@@ -257,10 +268,10 @@ const short kMsgPinValueStarted = 254;
 }
 
 - (NSString*) tx {
-	if (txCharacteristic) {
+	if (self.txCharacteristic) {
         
         Byte * data;
-        NSInteger length = [THBluetoothHelper Data:txCharacteristic.value toArray:&data];
+        NSInteger length = [BLEHelper Data:self.txCharacteristic.value toArray:&data];
         
         NSString * string = @"";
         
@@ -279,10 +290,10 @@ const short kMsgPinValueStarted = 254;
 }
 
 - (NSString*) rx {
-	if (rxCharacteristic) {
+	if (self.rxCharacteristic) {
                
         Byte * data;
-        NSInteger length = [THBluetoothHelper Data:rxCharacteristic.value toArray:&data];
+        NSInteger length = [BLEHelper Data:self.rxCharacteristic.value toArray:&data];
         
         NSString * string = @"";
         
@@ -296,14 +307,16 @@ const short kMsgPinValueStarted = 254;
 }
 
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic{
-    if(characteristic == rxCharacteristic) {
+    if(characteristic == self.bdCharacteristic) {
+        return @"BD";
+    } else if(characteristic == self.rxCharacteristic) {
         return @"RX";
-    } else if(characteristic == txCharacteristic){
+    } else if(characteristic == self.txCharacteristic){
         return @"TX";
-    } else if(characteristic == rxClearCharacteristic){
-        return @"RXClear";
-    } else if(characteristic == rxCountCharacteristic){
-        return @"RXCount";
+    } else if(characteristic == self.rxClearCharacteristic){
+        return @"RX Clear";
+    } else if(characteristic == self.rxCountCharacteristic){
+        return @"RX Count";
     }
     return @"Unknown";
 }
@@ -319,27 +332,24 @@ const short kMsgPinValueStarted = 254;
 		return ;
 	}
 
-    if(characteristic == rxCharacteristic){
+    NSLog(@"characteristic %@ updated value",characteristic);
+    
+    if(characteristic == self.rxCharacteristic){
         Byte * data;
-        NSInteger length = [THBluetoothHelper Data:characteristic.value toArray:&data];
+        NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
+        [self.delegate dataReceived:data lenght:length];
         
-        for (int i = 0 ; i < length; i++) {
-            
-            short value = data[i];
-            if(value == 255){
-                [self.delegate dataReceived:data lenght:i];
-                break;
-            }
-        }
-        
-        //NSLog([THBluetoothHelper dataToString:characteristic.value]);
     }
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     /* When a write occurs, need to set off a re-read of the local CBCharacteristic to update its value */
-    [peripheral readValueForCharacteristic:characteristic];
+    //[peripheral readValueForCharacteristic:characteristic];
     
     //NSLog(@"wrote something: %@ %@",characteristic,characteristic.value);
+}
+
+-(NSString*) description{
+    return @"BLEService";
 }
 @end

@@ -88,15 +88,50 @@
     }
 }
 
+-(void) addInfoButton{
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    CGRect frame = CGRectMake(screenRect.size.width-40, screenRect.size.height-100, 30, 30);
+    _infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _infoButton.frame = frame;
+    [_infoButton setTitle:@"i" forState:UIControlStateNormal];
+    _infoButton.titleLabel.textColor = [UIColor blackColor];
+    [_infoButton addTarget:self action:@selector(infoButtonTapped) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:_infoButton];
+
+    [self.view bringSubviewToFront:_infoButton];
+}
+
+-(void) createTextView{
+    
+    CGRect frame = CGRectMake(40, 100, 250, 300);
+    _textView = [[UITextView alloc] initWithFrame:frame];
+    _textView.hidden = YES;
+    _textView.editable = NO;
+    _textView.layer.borderWidth = 1.0f;
+    _textView.layer.cornerRadius = 3;
+    
+    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped)];
+    [_textView addGestureRecognizer:tapRecognizer];
+    
+    [self.view addSubview:_textView];
+}
+
 -(void) loadUIObjects{
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-
     THiPhone * iPhone = project.iPhone;
     
     CGSize size = iPhone.currentView.view.frame.size;
     
     self.view = iPhone.currentView.view;
+    
+    [self addInfoButton];
+    
+    /*
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(-100, -100, 200, 200)];
+    self.view.backgroundColor = [UIColor whiteColor];*/
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -118,7 +153,24 @@
         [object addToView:self.view];
     }
     
+    [self createTextView];
+    
+    
     [project startSimulating];
+}
+
+-(void) textViewTapped {
+    _textView.hidden = YES;
+    _infoButton.titleLabel.textColor = [UIColor blackColor];
+}
+
+-(void) reportMessage:(NSString*) message{
+    _textView.text = [_textView.text stringByAppendingFormat:@"%@\n",message];
+}
+
+-(void) infoButtonTapped{
+    _textView.hidden = NO;
+    _infoButton.titleLabel.textColor = [UIColor blackColor];
 }
 
 -(void) sendPinModes{
@@ -187,7 +239,6 @@
      
      [self.currentlyConnectedLabel setText:[peripheral name]];
      [self.currentlyConnectedLabel setEnabled:YES];*/
-    
 }
 
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral {
@@ -278,6 +329,8 @@
     
     THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
     [scene saveWithImage:image];
+    
+    _textView.text = @"";
 }
 
 - (void)viewDidUnload {

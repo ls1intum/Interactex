@@ -21,9 +21,10 @@ extern const short kMsgPinValueStarted;
 - (void) bleServiceDidDisconnect:(BleService*)service;
 -(void) bleServiceIsReady:(BleService *)service;
 - (void) bleServiceDidReset;
-//- (void) inputPin:(NSInteger) pin changedTo:(short) value;
 - (void) dataReceived:(Byte*) buffer lenght:(NSInteger) length;
 
+@optional
+-(void) reportMessage:(NSString*) message;
 @end
 
 typedef enum{

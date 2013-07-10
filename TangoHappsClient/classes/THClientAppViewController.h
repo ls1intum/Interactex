@@ -27,9 +27,13 @@ typedef enum{
     NSTimer * _virtualTransferTimer;
     NSTimer * _realTransferTimer;
     UIActivityIndicatorView * _activityIndicator;
+    
+    UIButton * _infoButton;
+    
+    UITextView * _textView;
 }
 
--(void) reloadApp;
+- (void) reloadApp;
 - (IBAction)modeButtonTapped:(id)sender;
 
 @property (nonatomic, readonly) THClientMode mode;

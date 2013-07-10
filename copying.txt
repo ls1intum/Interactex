@@ -1,0 +1,16 @@
+Interactex is a configuration tool to easily connect e-Textile hardware with iOS device functionality.
+
+Copyright (C) 2013 TU Munich, Munich, Germany; DRLab, Berlin, Germany; Telekom Innovation Laboratories, Berlin, Germany
+    
+This program was designed and implemented as part of "Wearable M2M", a joint project of UdK Berlin and TU Munich, which was founded by Telekom Innovation Laboratories Berlin.
+	
+For contacting us, please use
+juan.haladjian@cs.tum.edu
+katharina.bredies@udk-berlin.de
+opensource@telekom.de
+ 
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
