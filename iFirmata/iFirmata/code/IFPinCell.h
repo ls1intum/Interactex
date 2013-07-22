@@ -18,12 +18,16 @@
 @property (nonatomic, strong) UISegmentedControl * digitalControl;
 @property (nonatomic, strong) UILabel * valueLabel;
 @property (nonatomic, strong) UISlider * slider;
+@property (weak, nonatomic) IBOutlet UISwitch *analogSwitch;
 
-@property (nonatomic, weak) IFPin * pin;
+
+@property (nonatomic, strong) IFPin * pin;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier pin:(IFPin*) pin;
 -(void) updateDigitalLabel;
 -(void) updateAnalogLabel;
 - (IBAction)segmentedControlChanged:(id)sender;
+- (IBAction)analogSwitchChanged:(id)sender;
+
 
 @end

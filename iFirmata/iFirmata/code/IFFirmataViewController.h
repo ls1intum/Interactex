@@ -7,16 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IFFirmataController.h"
 
 @class IFFirmataController;
 @class CBPeripheral;
 
-@interface IFFirmataViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface IFFirmataViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerDelegate>
 {
     BOOL connected;
 }
 
 @property (nonatomic, weak) IFFirmataController * firmataController;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+- (IBAction)versionTapped:(id)sender;
 
 @end

@@ -62,17 +62,15 @@
 
 
 -(void) readCharacteristicAndUpdateLabel{
-    
-    Byte * data;
-    NSInteger length = [BLEHelper Data:self.currentCharacteristic.value toArray:&data];
-    
-    NSString * string = @"0x";
-    for (int i = 0; i < length; i++) {
-        string = [string stringByAppendingFormat:@"%X",(int)data[i]];
-        NSLog(@"%@",string);
-    }
 
-    self.label.text = string;
+    NSString * rxValue = self.bleService.rx;
+    NSInteger count =  self.bleService.rxCount;
+    
+    NSLog(@"%d - %@",count,rxValue);
+    
+    self.label.text = rxValue;
+    
+    [self.bleService clearRx];
 }
 
 - (IBAction)readPushed:(id)sender {

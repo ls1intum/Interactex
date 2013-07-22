@@ -14,6 +14,7 @@
 @interface IFCharacteristicDetailsViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, weak) CBCharacteristic * currentCharacteristic;
+@property (nonatomic, weak) BLEService * bleService;
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 

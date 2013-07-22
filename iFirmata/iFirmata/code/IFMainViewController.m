@@ -79,20 +79,20 @@ const NSInteger IFDiscoveryTime = 5;
         NSInteger row = self.table.indexPathForSelectedRow.row;
         CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
         
-        IFDeviceMenuViewController * viewController = segue.destinationViewController;
-        viewController.currentPeripheral = peripheral;
+        
+        IFDeviceMenuViewController * deviceViewController = segue.destinationViewController;
+        
+        deviceViewController.currentPeripheral = peripheral;
+        
+        if(!deviceViewController.currentPeripheral.isConnected){
+            [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
+        }
     }
 }
 
 #pragma mark LeDiscoveryDelegate
 
 - (void) discoveryDidRefresh {
-    NSLog(@"refresh");
-    /*
-     self.bleService.delegate = self;
-     
-     [self.currentlyConnectedLabel setText:[peripheral name]];
-     [self.currentlyConnectedLabel setEnabled:YES];*/
 }
 
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral {

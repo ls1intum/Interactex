@@ -24,7 +24,8 @@
 @property (nonatomic) IFPinMode mode;
 @property (nonatomic) BOOL supportsPwm;//only for digitals
 @property (nonatomic) NSInteger value;//only for output
-@property (nonatomic, weak) id<IFPinDelegate> delegate;//only for output
+@property (nonatomic) BOOL updatesValues;//only for analog
+
 @property (nonatomic) uint8_t analogChannel;
 @property (nonatomic) uint64_t supportedModes;
 

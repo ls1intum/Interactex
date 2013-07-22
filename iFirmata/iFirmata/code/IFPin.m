@@ -20,6 +20,12 @@
         self.number = number;
         self.type = type;
         self.mode = mode;
+        if(_mode == IFPinModeInput){
+            _value = 1;
+        }
+        if(self.type == IFPinTypeAnalog){
+            self.analogChannel = 127;
+        }
     }
     return self;
 }
@@ -31,15 +37,14 @@
 -(void) setMode:(IFPinMode)mode{
     if(mode != self.mode){
         _mode = mode;
-        [self.delegate pin:self changedMode:mode];
     }
 }
 
 -(void) setValue:(NSInteger)value{
     if(value != _value){
         _value = value;
-        [self.delegate pin:self changedValue:value];
     }
     
 }
+
 @end

@@ -30,17 +30,28 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    [self.firmataController start];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
-    [self.firmataController stop];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) setFirmataController:(IFFirmataController *)firmataController{
+    if(_firmataController != firmataController){
+        _firmataController = firmataController;
+        _firmataController.delegate = self;
+    }
+}
+
+#pragma mark FirmataDelegate
+
+-(void) didUpdatePins{
+    [self.table reloadData];
 }
 
 #pragma mark TableViewDataSource
@@ -85,5 +96,15 @@
 
 
 - (IBAction)segmentedControlChanged:(id)sender {
+    
 }
+
+- (IBAction)versionTapped:(id)sender {
+    [self.firmataController sendFirmwareRequest];
+    //[self.firmataController.bleService clearRx];
+}
+
+-(void) dealloc{
+}
+
 @end

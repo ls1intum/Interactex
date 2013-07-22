@@ -9,7 +9,7 @@
 #import "IFConstants.h"
 
 
-NSInteger const IFNumDigitalPins = 11;
-NSInteger const IFNumAnalogPins = 5;
+NSInteger const IFNumDigitalPins = 14;
+NSInteger const IFNumAnalogPins = 6;
 
 NSString * const IFNotificationModeChanged = @"IFNotificationModeChanged";

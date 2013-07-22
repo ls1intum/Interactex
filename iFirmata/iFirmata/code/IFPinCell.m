@@ -24,7 +24,11 @@
 }
 
 -(void) setPin:(IFPin *)pin{
-    if(pin != self.pin){
+    if(_pin != pin){
+        if(pin){
+            [_pin removeObserver:self forKeyPath:@"value"];
+            [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+        }
         _pin = pin;
         [self relayout];
     }
@@ -56,7 +60,7 @@
     NSArray * items = [NSArray arrayWithObjects:@"LOW",@"HIGH",nil];
     self.digitalControl = [[UISegmentedControl alloc] initWithItems:items];
     
-    self.digitalControl.selectedSegmentIndex = 0;
+    self.digitalControl.selectedSegmentIndex = self.pin.value;
     self.digitalControl.frame = segmentFrame;
     
     [self.digitalControl addTarget:self action:@selector(digitalControlChanged:) forControlEvents:UIControlEventValueChanged];
@@ -65,14 +69,13 @@
 }
 
 -(void) addValueLabel{
-    
-    CGRect labelFrame = CGRectMake(195, 8, 80, 35);
+    CGRect labelFrame = CGRectMake(240, 10, 82, 35);
     
     self.valueLabel = [[UILabel alloc] initWithFrame:labelFrame];
     self.valueLabel.layer.borderWidth = 1.0f;
+    self.valueLabel.textAlignment = NSTextAlignmentCenter;
     
     [self addSubview:self.valueLabel];
-    
 }
 
 -(void) addSlider{
@@ -86,6 +89,18 @@
     
     [self addSubview:self.slider];
 }
+
+/*
+-(void) addAnalogSwitch{
+    CGRect labelFrame = CGRectMake(186, 26, 79, 27);
+    
+    self.analogSwitch = [[UISwitch alloc] initWithFrame:labelFrame];
+    self.analogSwitch.enabled = NO;
+    
+    [self.analogSwitch addTarget:self action:@selector(analogSwitchChanged) forControlEvents:UIControlEventValueChanged];
+    
+    [self addSubview:self.analogSwitch];
+}*/
 
 -(void) removeControls{
     if(self.digitalControl){
@@ -106,53 +121,31 @@
     
     if(self.pin.type == IFPinTypeDigital){
         if(self.pin.mode == IFPinModeOutput){
+            
             [self addDigitalButton];
+            self.modeControl.selectedSegmentIndex = 1;
         } else if(self.pin.mode == IFPinModeInput){
             
             [self addValueLabel];
+            [self updateDigitalLabel];
         } else if(self.pin.mode == IFPinModePWM){
+            
+            self.modeControl.selectedSegmentIndex = 3;
             [self addSlider];
         } else if(self.pin.mode == IFPinModeServo){
+            
+            self.modeControl.selectedSegmentIndex = 2;
             [self addSlider];
         }
     } else {
         
-        [self addValueLabel];
+        //self.modeControl.selectedSegmentIndex = 2;
+        self.valueLabel.layer.borderWidth = 1.0f;
+        
+        //[self addAnalogSwitch];
+        //[self addValueLabel];
     }
 }
-/*
--(void) parseBuf:(const uint8_t *)buf length:(NSInteger) len {
-        const uint8_t *p, *end;
-        
-        p = buf;
-        end = p + len;
-        for (p = buf; p < end; p++) {
-            uint8_t msn = *p & 0xF0;
-            if (msn == 0xE0 || msn == 0x90 || *p == 0xF9) {
-                parse_command_len = 3;
-                parse_count = 0;
-            } else if (msn == 0xC0 || msn == 0xD0) {
-                parse_command_len = 2;
-                parse_count = 0;
-            } else if (*p == START_SYSEX) {
-                parse_count = 0;
-                parse_command_len = sizeof(parse_buf);
-            } else if (*p == END_SYSEX) {
-                parse_command_len = parse_count + 1;
-            } else if (*p & 0x80) {
-                parse_command_len = 1;
-                parse_count = 0;
-            }
-            if (parse_count < (int)sizeof(parse_buf)) {
-                parse_buf[parse_count++] = *p;
-            }
-            if (parse_count == parse_command_len) {
-                DoMessage();
-                parse_count = parse_command_len = 0;
-            }
-        }
-    }
-}*/
 
 #pragma mark -- Update
 
@@ -167,6 +160,7 @@
 -(IBAction) segmentedControlChanged:(UISegmentedControl*) sender{
     if(self.pin.type == IFPinTypeDigital){
         self.pin.mode = sender.selectedSegmentIndex;
+        
     } else {
         if(sender.selectedSegmentIndex == 2){
             self.pin.mode = IFPinModeAnalog;
@@ -176,7 +170,10 @@
     }
     
     [self reloadPinModeControls];
-    
+}
+
+- (IBAction)analogSwitchChanged:(UISwitch*)sender {
+    self.pin.updatesValues = sender.on;
 }
 
 -(void) digitalControlChanged:(UISegmentedControl*) sender{
@@ -187,6 +184,29 @@
     if(sender.value == 0 || fabs(self.pin.value - sender.value) > 10){
         self.pin.value = sender.value;
     }
+}
+
+#pragma mark -- Keyvalue coding
+
+-(void) handlePinValueChanged:(IFPin*) pin{
+    if(pin.mode == IFPinModeInput){
+        [self updateDigitalLabel];
+    } else if(pin.mode == IFPinModeAnalog){
+        [self updateAnalogLabel];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath  ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+    if([keyPath isEqual:@"value"]){
+    
+        [self handlePinValueChanged:object];
+    }
+}
+
+-(void) dealloc{
+    
+    [self.pin removeObserver:self forKeyPath:@"value"];
 }
 
 @end

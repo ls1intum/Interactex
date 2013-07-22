@@ -31,15 +31,12 @@
     
     self.firmataController = [[IFFirmataController alloc] init];
     
+    [BLEDiscovery sharedInstance].peripheralDelegate = self;
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    if(!self.currentPeripheral.isConnected){
         
-        self.title = self.currentPeripheral.name;
-        [BLEDiscovery sharedInstance].peripheralDelegate = self;
-        [[BLEDiscovery sharedInstance] connectPeripheral:self.currentPeripheral];
-    }
+    self.title = self.currentPeripheral.name;
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -67,44 +64,75 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) startSpinning{
+    self.view.alpha = 0.5f;
+    [self.activityIndicator startAnimating];
+}
 
-#pragma mark Conncetion
+-(void) stopSpinning{
+    self.view.alpha = 1.0f;
+    [self.activityIndicator stopAnimating];
+}
+
+#pragma mark Connection
 
 -(void) connect{
     [self.bleService start];
+    [self startSpinning];
 }
 
 -(void) disconnect{
     [self.bleService disconnect];
+    [self stopSpinning];
 }
 
 #pragma mark BleServiceProtocol
 
+-(void) enableButtons{
+    
+    self.firmataButton.enabled = YES;
+    self.characteristicsButton.enabled = YES;
+}
+
+-(void) disableButtons{
+    
+    self.firmataButton.enabled = NO;
+    self.characteristicsButton.enabled = NO;
+}
+
 -(void) bleServiceDidConnect:(BLEService *)service{
+    [self enableButtons];
     
     self.bleService = service;
     self.firmataController.bleService = self.bleService;
     self.bleService.delegate = self;
+    
 }
 
 -(void) bleServiceDidDisconnect:(BLEService *)service{
     if(service == _bleService){
+        
+        [self disableButtons];
         self.bleService.delegate = nil;
         self.bleService = nil;
+        [self.firmataController stop];
     }
 }
 
 -(void) bleServiceIsReady:(BLEService *)service{
-    
     [service clearRx];
+    [self.firmataController start];
+    [self stopSpinning];
 }
 
 -(void) bleServiceDidReset {
+    [self.firmataController stop];
     _bleService = nil;
+    [self stopSpinning];
 }
 
 -(void) dataReceived:(Byte *)buffer lenght:(NSInteger)length{
-    NSLog(@"receives data in devicemenu");
+
     [self.firmataController dataReceived:buffer lenght:length];
 }
 

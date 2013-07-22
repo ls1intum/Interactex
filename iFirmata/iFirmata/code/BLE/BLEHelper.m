@@ -18,6 +18,7 @@
 }
 
 +(NSInteger) Data:(NSData*) data toArray:(Byte**) bytes{
+    
     (*bytes) = (Byte*)malloc(data.length);
     memcpy(*bytes, data.bytes, data.length);
     

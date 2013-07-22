@@ -86,6 +86,7 @@
             IFCharacteristicDetailsViewController * viewController = segue.destinationViewController;
             viewController.title = [self.bleService characteristicNameFor:characteristic];
             viewController.currentCharacteristic = characteristic;
+            viewController.bleService = self.bleService;
         }
     }
 }

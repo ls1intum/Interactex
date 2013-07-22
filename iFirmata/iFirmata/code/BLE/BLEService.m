@@ -64,7 +64,6 @@ const short kMsgPinValueStarted = 254;
     [_peripheral discoverServices:serviceArray];
 }
 
-
 - (void) disconnect{
     [[BLEDiscovery sharedInstance] disconnectPeripheral:self.peripheral];
 }
@@ -135,7 +134,7 @@ const short kMsgPinValueStarted = 254;
         } else if ([[characteristic UUID] isEqual:rxUUID]) {
             [self.delegate reportMessage:@"Discovered RX"];
 			_rxCharacteristic = characteristic;
-			[peripheral readValueForCharacteristic:_rxCharacteristic];
+			//[peripheral readValueForCharacteristic:_rxCharacteristic];
 			[peripheral setNotifyValue:YES forCharacteristic:_rxCharacteristic];
 		} else if ([[characteristic UUID] isEqual:rxCountUUID]) {
             [self.delegate reportMessage:@"Discovered RX Count"];
@@ -161,62 +160,16 @@ const short kMsgPinValueStarted = 254;
     
     short byte = 1;
     NSData * data = [NSData dataWithBytes:&byte length:1];
-    [_peripheral writeValue:data forCharacteristic:self.rxClearCharacteristic type:CBCharacteristicWriteWithoutResponse];
+    [_peripheral writeValue:data forCharacteristic:self.rxClearCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
 -(void) writeToTx:(NSData*) data{
     
-    if(self.txCharacteristic){/*
-        for (int i = 0; i < data.length; i++) {
-
-            NSData * data1 = [NSData dataWithBytes:&data.bytes[i] length:1];
-            [_peripheral writeValue:data1 forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
-            
-        }*/
+    if(self.txCharacteristic){
         [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        //without response does not work with BLE Shield
     }
 }
-
-/*
--(void) sendPinModes:(NSArray*) pinModes{
-            
-    NSData * startData = [NSData dataWithBytes:&kMsgPinModeStarted length:1];
-        [_peripheral writeValue:startData forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
-    
-    for (BLEPinModeDescriptor * pinDescriptor in pinModes) {
-        
-        short pin = pinDescriptor.pin;
-        short mode = pinDescriptor.mode;
-        
-        NSData * data1 = [NSData dataWithBytes:&pin length:1];
-        NSData * data2 = [NSData dataWithBytes:&mode length:1];
-        
-        [_peripheral writeValue:data1 forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
-        [_peripheral writeValue:data2 forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
-    }
-    
-    //send start
-    NSData * endData = [NSData dataWithBytes:&kMsgPinValueStarted length:1];
-    [_peripheral writeValue:endData forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
-}
-
-- (void) outputPin:(NSInteger) pin value:(short)value {    
-    if (!_peripheral) {
-        [self.delegate reportMessage:@"Trying to output pin but not connected to a pheripheral"];
-		return ;
-    }
-    
-    NSData * data1 = [NSData dataWithBytes:&pin length:1];
-    NSData * data2 = [NSData dataWithBytes:&value length:1];
-    
-    [_peripheral writeValue:data1 forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
-    [_peripheral writeValue:data2 forCharacteristic:txCharacteristic type:CBCharacteristicWriteWithResponse];
-    
-    
-    NSString * message = [NSString stringWithFormat:@"%d %d sent!",pin,value];
-    [self.delegate reportMessage:message];
-    
-}*/
 
 - (void)enteredBackground
 {
@@ -256,6 +209,9 @@ const short kMsgPinValueStarted = 254;
 }
 
 - (NSInteger) rxCount {
+    
+    [self.peripheral readValueForCharacteristic:self.rxCountCharacteristic];
+    
     NSInteger result  = NAN;
     int16_t value	= 0;
 	
@@ -291,7 +247,8 @@ const short kMsgPinValueStarted = 254;
 
 - (NSString*) rx {
 	if (self.rxCharacteristic) {
-               
+        [self.peripheral readValueForCharacteristic:self.rxCharacteristic];
+         
         Byte * data;
         NSInteger length = [BLEHelper Data:self.rxCharacteristic.value toArray:&data];
         
@@ -321,6 +278,20 @@ const short kMsgPinValueStarted = 254;
     return @"Unknown";
 }
 
+-(void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
+    /*
+    NSLog(@"wrote something!");
+    if(characteristic == self.txCharacteristic){
+        Byte * data;
+        NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
+        for (int i = 0 ; i < length; i++) {
+            int value = data[i];
+            printf("%d ",value);
+        }
+        printf("\n");
+    }*/
+}
+
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
 	if (peripheral != _peripheral) {
 		NSLog(@"Wrong peripheral\n");
@@ -332,21 +303,14 @@ const short kMsgPinValueStarted = 254;
 		return ;
 	}
 
-    NSLog(@"characteristic %@ updated value",characteristic);
+    //NSLog(@"characteristic %@ updated value",characteristic);
     
     if(characteristic == self.rxCharacteristic){
+        
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         [self.delegate dataReceived:data lenght:length];
-        
     }
-}
-
-- (void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    /* When a write occurs, need to set off a re-read of the local CBCharacteristic to update its value */
-    //[peripheral readValueForCharacteristic:characteristic];
-    
-    //NSLog(@"wrote something: %@ %@",characteristic,characteristic.value);
 }
 
 -(NSString*) description{
