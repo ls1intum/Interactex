@@ -27,15 +27,7 @@ typedef struct{
     
     uint8_t parse_buf[4096];
     PinInfo pinInfo[128];
-        
-    unsigned int rx_count;
-    //unsigned int tx_count;
     
-    NSTimer * timer;
-    
-    NSString * rx;
-    
-    BOOL ready;
     BOOL startedSysex;
 }
 
@@ -48,9 +40,12 @@ typedef struct{
 @property (nonatomic, weak) BLEService * bleService;
 @property (nonatomic, weak) id<IFFirmataControllerDelegate> delegate;
 
+@property (nonatomic, strong) NSString* firmataName;
+
 -(void) start;
 -(void) stop;
 -(void) sendPinModeForPin:(IFPin*) pin;
 -(void) sendFirmwareRequest;
+-(void) stopReportingAnalogPins;
 
 @end

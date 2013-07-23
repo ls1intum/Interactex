@@ -35,7 +35,12 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    if(!self.currentPeripheral.isConnected){
+        [self startSpinning];
+    } else {
         
+    }
+    
     self.title = self.currentPeripheral.name;
 }
 
@@ -121,7 +126,6 @@
 
 -(void) bleServiceIsReady:(BLEService *)service{
     [service clearRx];
-    [self.firmataController start];
     [self stopSpinning];
 }
 

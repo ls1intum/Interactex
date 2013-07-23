@@ -154,7 +154,7 @@
 }
 
 -(void) updateAnalogLabel{
-    self.valueLabel.text = [NSString stringWithFormat:@"%d",self.pin.value];
+    self.analogValueLabel.text = [NSString stringWithFormat:@"%d",self.pin.value];
 }
 
 -(IBAction) segmentedControlChanged:(UISegmentedControl*) sender{
@@ -192,14 +192,16 @@
     if(pin.mode == IFPinModeInput){
         [self updateDigitalLabel];
     } else if(pin.mode == IFPinModeAnalog){
-        [self updateAnalogLabel];
+        if(pin.updatesValues){
+            [self updateAnalogLabel];
+        }
     }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath  ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if([keyPath isEqual:@"value"]){
-    
+
         [self handlePinValueChanged:object];
     }
 }

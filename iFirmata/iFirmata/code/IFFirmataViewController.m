@@ -30,9 +30,14 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    if(self.firmataController.numAnalogPins == 0 && self.firmataController.numDigitalPins == 0){
+        [self.firmataController stop];
+        [self.firmataController start];
+    }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
+    [self.firmataController stopReportingAnalogPins];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,7 +105,11 @@
 }
 
 - (IBAction)versionTapped:(id)sender {
-    [self.firmataController sendFirmwareRequest];
+    
+    [self.firmataController stop];
+    [self.firmataController start];
+    
+    //[self.firmataController sendFirmwareRequest];
     //[self.firmataController.bleService clearRx];
 }
 

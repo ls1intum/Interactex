@@ -539,6 +539,7 @@
                                                 </view>
                                                 <connections>
                                                     <outlet property="analogSwitch" destination="O5t-jD-bHg" id="b5c-3H-iz3"/>
+                                                    <outlet property="analogValueLabel" destination="msi-dU-IYJ" id="LzD-Wf-AhO"/>
                                                     <outlet property="label" destination="BJZ-pS-g5e" id="fXi-M1-W0u"/>
                                                     <outlet property="modeControl" destination="dHt-CD-571" id="H8o-TF-8ME"/>
                                                 </connections>
@@ -556,7 +557,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pins" id="H0L-qt-b72">
-                        <barButtonItem key="rightBarButtonItem" title="Version" id="a0R-rl-gvE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="a0R-rl-gvE">
                             <connections>
                                 <action selector="versionTapped:" destination="dTY-Yg-s3k" id="3kX-WH-ygm"/>
                             </connections>
@@ -572,6 +573,66 @@
             <point key="canvasLocation" x="1366" y="-291"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="IFCharacteristicDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFCharacteristicDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="notifySwitchChanged:"/>
+                <relationship kind="action" name="readPushed:"/>
+                <relationship kind="action" name="textChanged:"/>
+                <relationship kind="action" name="writePushed:"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="notifyLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="notifySwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="writeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="writeText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="IFCharacteristicsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFCharacteristicsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="IFDeviceMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFDeviceMenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="characteristicsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="firmataButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="IFFirmataViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFFirmataViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedControlChanged:"/>
+                <relationship kind="action" name="versionTapped:"/>
+                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="IFMainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="stopRefreshingPushed:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="refreshView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="refreshingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopRefreshingButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="IFPinCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFPinCell.h"/>
+            <relationships>
+                <relationship kind="action" name="analogSwitchChanged:"/>
+                <relationship kind="action" name="segmentedControlChanged:"/>
+                <relationship kind="outlet" name="analogSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="analogValueLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="modeControl" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

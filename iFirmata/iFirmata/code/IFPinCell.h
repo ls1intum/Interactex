@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UILabel * valueLabel;
 @property (nonatomic, strong) UISlider * slider;
 @property (weak, nonatomic) IBOutlet UISwitch *analogSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *analogValueLabel;
 
 
 @property (nonatomic, strong) IFPin * pin;

@@ -11,7 +11,6 @@
 #import "BLEService.h"
 #import "BLEHelper.h"
 
-
 #define START_SYSEX             0xF0 // start a MIDI Sysex message
 #define END_SYSEX               0xF7 // end a MIDI Sysex message
 #define PIN_MODE_QUERY          0x72 // ask for current and supported pin modes
@@ -29,9 +28,6 @@
 -(id) init{
     self = [super init];
     if(self){
-        //[self loadPins];
-        
-        
     }
     return self;
 }
@@ -41,10 +37,16 @@
     self.digitalPins = [NSMutableArray array];
     self.analogPins = [NSMutableArray array];
     
+    parse_count = 0;
+    
     for (int i=0; i < 128; i++) {
-        //pin_info[i].mode = 255;
-        //pin_info[i].analog_channel = 127;
+        parse_buf[i] = 0;
+    }
+    
+    for (int i=0; i < 128; i++) {
+        pinInfo[i].analogChannel = 127;
         pinInfo[i].supportedModes = 0;
+        //pin_info[i].mode = 255;
         //pin_info[i].value = 0;
     }
     
@@ -54,6 +56,7 @@
 }
 
 -(void) stop{
+    [self stopReportingAnalogPins];
     
     for (IFPin * pin in self.digitalPins) {
         
@@ -70,7 +73,6 @@
     
     [self.digitalPins removeAllObjects];
     [self.analogPins removeAllObjects];
-    
     
     [self.delegate didUpdatePins];
 }
@@ -111,12 +113,16 @@
     int value = 0;
     for (int i=0; i<8; i++) {
         int pinIdx = port * 8 + i;
+        if(pinIdx >= self.digitalPins.count){
+            break;
+        }
         IFPin * pin = [self.digitalPins objectAtIndex:pinIdx];
         if (pin.mode == IFPinModeInput || pin.mode == IFPinModeOutput) {
             if (pin.value) {
                 value |= (1<<i);
             }
         }
+        
     }
     uint8_t buf[3];
     buf[0] = 0x90 | port;
@@ -156,14 +162,22 @@
     }
 }
 
+-(void) stopReportingAnalogPins{
+    for (IFPin * pin in self.analogPins) {
+        pin.updatesValues = NO;
+    }
+}
+
 -(void) sendReportRequestForAnalogPin:(IFPin*) pin{
     
     uint8_t buf[2];
     buf[0] = 0xC0 | pin.number;  // report analog
-    buf[1] = 1;
+    buf[1] = pin.updatesValues;
     
     NSData * data = [NSData dataWithBytes:buf length:2];
-    [self.bleService writeToTx:data];    
+    [self.bleService writeToTx:data];
+    
+    NSLog(@"sending: %d %d",buf[0],buf[1]);
 }
 
 -(void) sendFirmwareRequest{
@@ -175,16 +189,14 @@
     NSData * data = [NSData dataWithBytes:buf length:3];
     [self.bleService writeToTx:data];
     
-    NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
-    
-   // tx_count += 3;
+    NSLog(@"sending firmware: %d %d %d",buf[0],buf[1],buf[2]);
 }
 
 -(void) sendCapabilitiesAndReportRequest{
     NSInteger len = 0;
     
-    uint8_t buf1[6];
-    uint8_t buf2[64];
+    uint8_t buf1[16];
+    //uint8_t buf2[64];
     
     buf1[len++] = START_SYSEX;
     buf1[len++] = ANALOG_MAPPING_QUERY; // read analog to pin # info
@@ -193,18 +205,21 @@
     buf1[len++] = CAPABILITY_QUERY; // read capabilities
     buf1[len++] = END_SYSEX;
     
-    NSData * data = [NSData dataWithBytes:buf1 length:len];
-    [self.bleService writeToTx:data];
+    //[self.bleService writeToTx:data];
+    
     
     //report every digital
-    len = 0;
+    //len = 0;
     for(int i = 0; i < 3;i++){
-        buf2[len++] = 0xD0 | i;
-        buf2[len++] = 1;
+        buf1[len++] = 0xD0 | i;
+        buf1[len++] = 1;
     }
     
-    data = [NSData dataWithBytes:buf2 length:len];
+    NSData * data = [NSData dataWithBytes:buf1 length:len];
+    //data = [NSData dataWithBytes:buf2 length:len];
     [self.bleService writeToTx:data];
+    
+    NSLog(@"sending analog and capability: %d %d %d %d %d %d",buf1[0],buf1[1],buf1[2],buf1[3],buf1[4],buf1[5]);
     
     /*
      len = 0;
@@ -223,6 +238,7 @@
 
 }
 -(void) createAnalogPins{
+    _numAnalogPins = 0;
     //create the analog pins
     for (int pin=0; pin < self.numPins; pin++) {
         //NSLog(@"%d - %lld ",pin, pinInfo[pin].supportedModes);
@@ -254,7 +270,6 @@
         
         [self.delegate didUpdatePins];
     }
-    
 }
 
 -(void) handleMessage{
@@ -264,15 +279,15 @@
 	//printf("message, %d bytes, %02X\n", parse_count, parse_buf[0]);
     
 	if (cmd == 0xE0 && parse_count == 3) {
-        NSLog(@"Handles Analog message");
+        //NSLog(@"Handles Analog message");
         
-		int analog_ch = (parse_buf[0] & 0x0F);
-		int analog_val = parse_buf[1] | (parse_buf[2] << 7);
+		int channel = (parse_buf[0] & 0x0F);
+		int value = parse_buf[1] | (parse_buf[2] << 7);
         
         for (IFPin * pin in self.analogPins) {
-			if (pin.analogChannel == analog_ch) {
-				pin.value = analog_val;
-                NSLog(@"A%d: %d", analog_ch, analog_val);
+			if (pin.analogChannel == channel) {
+				pin.value = value;
+                NSLog(@"A%d: %d", channel, value);
 				return;
 			}
 		}
@@ -319,8 +334,8 @@
 			name[len++] = '.';
 			name[len++] = parse_buf[3] + '0';
 			name[len++] = 0;
-            NSString * nameStr = [NSString stringWithUTF8String:name];
-            NSLog(@"%@",nameStr);
+            _firmataName = [NSString stringWithUTF8String:name];
+            NSLog(@"%@",_firmataName);
             
 			// query the board's capabilities only after hearing the
 			// REPORT_FIRMWARE message.  For boards that reset when
@@ -331,9 +346,8 @@
 			
             [self sendCapabilitiesAndReportRequest];
 
-			//tx_count += len;
 		} else if (parse_buf[1] == CAPABILITY_RESPONSE) {
-            NSLog(@"Handles CapabilityResponse");
+            NSLog(@"Handles Capability Response");
             
 			for (int pin=0; pin < 128; pin++) {
 				pinInfo[pin].supportedModes = 0;
@@ -362,7 +376,6 @@
             
             [self createAnalogPins];
             
-            
 			// send a state query for every pin with any modes
             int len = 0;
             
@@ -381,8 +394,8 @@
                 }
 			}
 		} else if (parse_buf[1] == ANALOG_MAPPING_RESPONSE) {
-            NSLog(@"Handles AnalogMapping");
-                        
+            //NSLog(@"Handles AnalogMapping");
+
 			int pin=0;
 			for (int i=2; i<parse_count-1; i++) {
                 
@@ -394,7 +407,7 @@
 			int pinNumber = parse_buf[2];
 			int mode = parse_buf[3];
             
-            //NSLog(@"Handles PinStateResponse %d %d",pinNumber,mode);
+            NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
             
             IFPin * pin = [IFPin pinWithNumber:pinNumber type:IFPinTypeDigital mode:mode];
             [self.digitalPins addObject:pin];
@@ -408,8 +421,6 @@
             [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
             
             [self.delegate didUpdatePins];
-            
-			//add_pin(pin);
 		}
 	}
 }
@@ -447,7 +458,7 @@
         buffer[length++] = END_SYSEX;
         startedSysex = NO;
     }
-    /*
+    
     printf("\n ");
     NSLog(@"**Data received, length: %d**",length);
     
@@ -455,7 +466,7 @@
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n ");*/
+    printf("\n ");
     
     
     for (int i = 0 ; i < length; i++) {
