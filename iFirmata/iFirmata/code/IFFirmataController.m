@@ -55,9 +55,9 @@
     [self sendFirmwareRequest];
 }
 
+
 -(void) stop{
-    [self stopReportingAnalogPins];
-    
+        
     for (IFPin * pin in self.digitalPins) {
         
         [pin removeObserver:self forKeyPath:@"mode"];
@@ -75,6 +75,8 @@
     [self.analogPins removeAllObjects];
     
     [self.delegate didUpdatePins];
+    
+    //[self.bleService clearRx];
 }
 
 -(void) sendPwmOutputForPin:(IFPin*) pin{
@@ -85,12 +87,11 @@
 		buf[1] = pin.value & 0x7F;
 		buf[2] = (pin.value >> 7) & 0x7F;
         
-        NSData * data = [NSData dataWithBytes:buf length:3];
-        [self.bleService writeToTx:data];
-        NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
+        [self.bleService sendData:buf count:3];
+        //NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
         
 	} else {
-		uint8_t buf[12];
+		uint8_t buf[9];
 		int len=4;
 		buf[0] = 0xF0;
 		buf[1] = 0x6F;
@@ -102,9 +103,9 @@
 		if (pin.value > 0x10000000) buf[len++] = (pin.value >> 28) & 0x7F;
 		buf[len++] = 0xF7;
         
-        NSData * data = [NSData dataWithBytes:buf length:3];
-        [self.bleService writeToTx:data];
-        NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
+        //NSData * data = [NSData dataWithBytes:buf length:3];
+        [self.bleService sendData:buf count:9];
+        //NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
 	}
 }
 
@@ -122,17 +123,15 @@
                 value |= (1<<i);
             }
         }
-        
     }
     uint8_t buf[3];
     buf[0] = 0x90 | port;
     buf[1] = value & 0x7F;
     buf[2] = (value >> 7) & 0x7F;
     
-    NSData * data = [NSData dataWithBytes:buf length:3];
-    [self.bleService writeToTx:data];
+    [self.bleService sendData:buf count:3];
     
-    NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
+    //NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
 }
 
 -(void) sendOutputForPin:(IFPin*) pin{
@@ -155,10 +154,9 @@
 		buf[1] = pin.number;
 		buf[2] = pin.mode;
         
-        NSData * data = [NSData dataWithBytes:buf length:3];
-        [self.bleService writeToTx:data];
+        [self.bleService sendData:buf count:3];
         
-        NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
+        //NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
     }
 }
 
@@ -174,22 +172,43 @@
     buf[0] = 0xC0 | pin.number;  // report analog
     buf[1] = pin.updatesValues;
     
-    NSData * data = [NSData dataWithBytes:buf length:2];
-    [self.bleService writeToTx:data];
+    [self.bleService sendData:buf count:2];
+    //NSData * data = [NSData dataWithBytes:buf length:2];
+    //[self.bleService writeToTx:data];
     
-    NSLog(@"sending: %d %d",buf[0],buf[1]);
+    //NSLog(@"sending: %d %d for pin: %d",buf[0],buf[1],pin.number);
+}
+
+-(void) sendTestData{
+    /*
+     
+     uint8_t buf[16];
+     for (int i = 0; i < 16; i++) {
+     buf[i] = i;
+     }
+     
+     for (int i = 0; i < 50; i++) {
+     
+     //NSData * data = [NSData dataWithBytes:buf length:16];
+     [self.bleService sendData:buf count:16];
+     //[self.bleService flushData];
+     //[self.bleService writeToTx:data];
+     }*/
 }
 
 -(void) sendFirmwareRequest{
+    
     uint8_t buf[3];
     buf[0] = START_SYSEX;
     buf[1] = REPORT_FIRMWARE; // read firmata name & version
     buf[2] = END_SYSEX;
     
+    [self.bleService sendData:buf count:3];
+    /*
     NSData * data = [NSData dataWithBytes:buf length:3];
-    [self.bleService writeToTx:data];
+    [self.bleService writeToTx:data];*/
     
-    NSLog(@"sending firmware: %d %d %d",buf[0],buf[1],buf[2]);
+    //NSLog(@"sending firmware: %d %d %d",buf[0],buf[1],buf[2]);
 }
 
 -(void) sendCapabilitiesAndReportRequest{
@@ -205,6 +224,7 @@
     buf1[len++] = CAPABILITY_QUERY; // read capabilities
     buf1[len++] = END_SYSEX;
     
+    //[self.bleService sendData:buf1 count:6];
     //[self.bleService writeToTx:data];
     
     
@@ -215,11 +235,8 @@
         buf1[len++] = 1;
     }
     
-    NSData * data = [NSData dataWithBytes:buf1 length:len];
-    //data = [NSData dataWithBytes:buf2 length:len];
-    [self.bleService writeToTx:data];
-    
-    NSLog(@"sending analog and capability: %d %d %d %d %d %d",buf1[0],buf1[1],buf1[2],buf1[3],buf1[4],buf1[5]);
+    //NSData * data = [NSData dataWithBytes:buf1 length:len];
+    [self.bleService sendData:buf1 count:16];
     
     /*
      len = 0;
@@ -237,6 +254,7 @@
      }*/
 
 }
+
 -(void) createAnalogPins{
     _numAnalogPins = 0;
     //create the analog pins
@@ -272,6 +290,21 @@
     }
 }
 
+-(void) sendStateQuery{
+    
+    NSLog(@"sending state query for: %d pins",self.numPins);
+    
+    uint8_t buf[4];
+    for (int pin=0; pin < self.numPins; pin++) {
+        buf[0] = START_SYSEX;
+        buf[1] = PIN_STATE_QUERY;
+        buf[2] = pin;
+        buf[3] = END_SYSEX;
+        
+        [self.bleService sendData:buf count:4];
+    }
+}
+
 -(void) handleMessage{
     
 	uint8_t cmd = (parse_buf[0] & 0xF0);
@@ -287,7 +320,7 @@
         for (IFPin * pin in self.analogPins) {
 			if (pin.analogChannel == channel) {
 				pin.value = value;
-                NSLog(@"A%d: %d", channel, value);
+                //NSLog(@"A%d: %d", channel, value);
 				return;
 			}
 		}
@@ -347,6 +380,7 @@
             [self sendCapabilitiesAndReportRequest];
 
 		} else if (parse_buf[1] == CAPABILITY_RESPONSE) {
+            
             NSLog(@"Handles Capability Response");
             
 			for (int pin=0; pin < 128; pin++) {
@@ -375,26 +409,12 @@
             NSLog(@"NumPins: %d",self.numPins);
             
             [self createAnalogPins];
+            [self sendStateQuery];
             
 			// send a state query for every pin with any modes
-            int len = 0;
             
-            for (int pin=0; pin < self.numPins; pin++) {
-
-				uint8_t buf[16];
-                buf[len++] = START_SYSEX;
-                buf[len++] = PIN_STATE_QUERY;
-                buf[len++] = pin;
-                buf[len++] = END_SYSEX;
-                
-                if(len == 16){
-                    NSData * data = [NSData dataWithBytes:buf length:len];
-                    [self.bleService writeToTx:data];
-                    len = 0;
-                }
-			}
 		} else if (parse_buf[1] == ANALOG_MAPPING_RESPONSE) {
-            //NSLog(@"Handles AnalogMapping");
+            NSLog(@"Handles AnalogMapping");
 
 			int pin=0;
 			for (int i=2; i<parse_count-1; i++) {
@@ -407,7 +427,7 @@
 			int pinNumber = parse_buf[2];
 			int mode = parse_buf[3];
             
-            NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
+            //NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
             
             IFPin * pin = [IFPin pinWithNumber:pinNumber type:IFPinTypeDigital mode:mode];
             [self.digitalPins addObject:pin];
@@ -445,20 +465,13 @@
             startedSysex = NO;
         }
     }
-    /*
-    printf("in systex: %d before \n",startedSysex);
-    for (int i = 0 ; i < length; i++) {
-        int value = buffer[i];
-        printf("%d ",value);
-    }
-    printf("\n ");*/
     
-    //if it had started but we removed the endSysex from the buffer, close it
+    //restore the wrongly removed sysex at the end
     if(length < originalLength && startedSysex){
         buffer[length++] = END_SYSEX;
         startedSysex = NO;
     }
-    
+    /*
     printf("\n ");
     NSLog(@"**Data received, length: %d**",length);
     
@@ -466,7 +479,7 @@
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n ");
+    printf("\n ");*/
     
     
     for (int i = 0 ; i < length; i++) {

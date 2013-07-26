@@ -27,7 +27,10 @@
     if(_pin != pin){
         if(pin){
             [_pin removeObserver:self forKeyPath:@"value"];
+            [_pin removeObserver:self forKeyPath:@"updatesValues"];
+            
             [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+            [pin addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
         }
         _pin = pin;
         [self relayout];
@@ -132,6 +135,8 @@
             
             self.modeControl.selectedSegmentIndex = 3;
             [self addSlider];
+            [self updateSlider];
+            
         } else if(self.pin.mode == IFPinModeServo){
             
             self.modeControl.selectedSegmentIndex = 2;
@@ -157,6 +162,10 @@
     self.analogValueLabel.text = [NSString stringWithFormat:@"%d",self.pin.value];
 }
 
+-(void) updateSlider{
+    self.slider.value = self.pin.value;
+}
+
 -(IBAction) segmentedControlChanged:(UISegmentedControl*) sender{
     if(self.pin.type == IFPinTypeDigital){
         self.pin.mode = sender.selectedSegmentIndex;
@@ -173,16 +182,26 @@
 }
 
 - (IBAction)analogSwitchChanged:(UISwitch*)sender {
+    
+    [self.pin removeObserver:self forKeyPath:@"updatesValues"];
     self.pin.updatesValues = sender.on;
+    if(!self.pin.updatesValues){
+        self.analogValueLabel.text = @"";
+    }
+    [self.pin addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void) digitalControlChanged:(UISegmentedControl*) sender{
+    [self.pin removeObserver:self forKeyPath:@"value"];
     self.pin.value = sender.selectedSegmentIndex;
+    [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void) sliderChanged:(UISlider*) sender{
     if(sender.value == 0 || fabs(self.pin.value - sender.value) > 10){
+        [self.pin removeObserver:self forKeyPath:@"value"];
         self.pin.value = sender.value;
+        [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
 
@@ -195,20 +214,35 @@
         if(pin.updatesValues){
             [self updateAnalogLabel];
         }
+    } else if(pin.mode == IFPinModePWM){
+        [self updateSlider];
+    }
+}
+
+-(void) handlePinUpdatesValuesChanged:(IFPin*) pin{
+    if(pin.mode == IFPinModeAnalog){
+        self.analogSwitch.on = pin.updatesValues;
+        if(!pin.updatesValues){
+            self.analogValueLabel.text = @"";
+        }
     }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath  ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if([keyPath isEqual:@"value"]){
-
+        
         [self handlePinValueChanged:object];
+    } else if([keyPath isEqual:@"updatesValues"]){
+        
+        [self handlePinUpdatesValuesChanged:object];
     }
 }
 
 -(void) dealloc{
     
     [self.pin removeObserver:self forKeyPath:@"value"];
+    [self.pin removeObserver:self forKeyPath:@"updatesValues"];
 }
 
 @end

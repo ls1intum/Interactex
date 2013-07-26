@@ -37,8 +37,6 @@
 -(void) viewWillAppear:(BOOL)animated{
     if(!self.currentPeripheral.isConnected){
         [self startSpinning];
-    } else {
-        
     }
     
     self.title = self.currentPeripheral.name;
@@ -111,7 +109,6 @@
     self.bleService = service;
     self.firmataController.bleService = self.bleService;
     self.bleService.delegate = self;
-    
 }
 
 -(void) bleServiceDidDisconnect:(BLEService *)service{

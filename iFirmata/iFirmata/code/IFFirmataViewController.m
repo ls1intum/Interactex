@@ -106,6 +106,7 @@
 
 - (IBAction)versionTapped:(id)sender {
     
+    [self.firmataController stopReportingAnalogPins];
     [self.firmataController stop];
     [self.firmataController start];
     

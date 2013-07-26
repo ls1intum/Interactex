@@ -3,8 +3,9 @@
 SoftwareSerial bleShield(2, 3);
 
 long previousMillis = 0;
-long interval = 50; 
+unsigned long interval = 30; 
 byte counter = 0;
+byte counter2 = 0;
 
 void setup()
 {
@@ -15,8 +16,8 @@ void setup()
   //bleShield.begin(14400);
   Serial.begin(9600);
   
-    Serial.println("Starting");
-    bleShield.flush();
+    //Serial.println("Starting");
+    //bleShield.flush();
     //bleShield.write(121);
 }
 
@@ -26,13 +27,11 @@ void loop() // run over and over
 
   if(currentMillis - previousMillis > interval) {
     previousMillis = currentMillis;  
-   
-   for(int i =0;i<4;i++){
-    bleShield.write(0x12);
-    bleShield.write(0x2A);
-    bleShield.write(0x10);
-    bleShield.write(0x20);
-   }
+   /*
+    bleShield.write(counter++);
+    if(counter > 256){
+      counter = 0;
+    }*/
   }
   
 /*
@@ -43,6 +42,14 @@ if(!val){
         }*/
 
   while (bleShield.available()) {
-    Serial.println(bleShield.read());
+    Serial.print(bleShield.read());
+    Serial.print(" ");
+    counter++;
+    if(counter == 16){
+      counter = 0;
+      Serial.println("");
+    }
   }
+  
+  delay(250);
 }

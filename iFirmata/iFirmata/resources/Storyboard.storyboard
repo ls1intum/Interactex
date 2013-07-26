@@ -432,7 +432,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Vg-a0-iIA">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Vg-a0-iIA">
                                                             <rect key="frame" x="3" y="16" width="24" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
@@ -479,7 +479,7 @@
                                                                 <action selector="segmentedControlChanged:" destination="Aim-X8-EQA" eventType="valueChanged" id="6XP-i6-bom"/>
                                                             </connections>
                                                         </segmentedControl>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mgt-sB-b5g">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mgt-sB-b5g">
                                                             <rect key="frame" x="3" y="16" width="24" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
@@ -501,27 +501,15 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="D1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BJZ-pS-g5e">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BJZ-pS-g5e">
                                                             <rect key="frame" x="3" y="16" width="24" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="dHt-CD-571">
-                                                            <rect key="frame" x="30" y="5" width="108" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <segments>
-                                                                <segment title="I"/>
-                                                                <segment title="O"/>
-                                                                <segment title="A"/>
-                                                            </segments>
-                                                            <connections>
-                                                                <action selector="segmentedControlChanged:" destination="OuL-E5-VIr" eventType="valueChanged" id="J6j-Ro-ui5"/>
-                                                            </connections>
-                                                        </segmentedControl>
                                                         <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="O5t-jD-bHg">
-                                                            <rect key="frame" x="146" y="13" width="79" height="27"/>
+                                                            <rect key="frame" x="35" y="13" width="79" height="27"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <connections>
                                                                 <action selector="analogSwitchChanged:" destination="OuL-E5-VIr" eventType="valueChanged" id="zea-nh-Bow"/>
@@ -541,7 +529,6 @@
                                                     <outlet property="analogSwitch" destination="O5t-jD-bHg" id="b5c-3H-iz3"/>
                                                     <outlet property="analogValueLabel" destination="msi-dU-IYJ" id="LzD-Wf-AhO"/>
                                                     <outlet property="label" destination="BJZ-pS-g5e" id="fXi-M1-W0u"/>
-                                                    <outlet property="modeControl" destination="dHt-CD-571" id="H8o-TF-8ME"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

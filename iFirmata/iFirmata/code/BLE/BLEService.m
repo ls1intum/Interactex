@@ -18,6 +18,7 @@ NSString *kBleServiceEnteredForegroundNotification = @"kAlarmServiceEnteredForeg
 
 const short kMsgPinModeStarted = 255;
 const short kMsgPinValueStarted = 254;
+const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 
 @implementation BLEService
 
@@ -34,6 +35,9 @@ const short kMsgPinValueStarted = 254;
         rxUUID	= [CBUUID UUIDWithString:kRxCharacteristicUUIDString];
         txUUID	= [CBUUID UUIDWithString:kTxCharacteristicUUIDString];
         bdUUID	= [CBUUID UUIDWithString:kBdCharacteristicUUIDString];
+        
+        //NSTimeInterval interval = 1.0f/5.0f;
+        timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
 	}
     return self;
 }
@@ -62,10 +66,14 @@ const short kMsgPinValueStarted = 254;
 	NSArray	*serviceArray	= [NSArray arrayWithObjects:serviceUUID, nil];
 
     [_peripheral discoverServices:serviceArray];
+    
 }
 
 - (void) disconnect{
     [[BLEDiscovery sharedInstance] disconnectPeripheral:self.peripheral];
+    
+    sendBufferCount = 0;
+    sendBufferStart = 0;
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
@@ -157,10 +165,11 @@ const short kMsgPinValueStarted = 254;
 #pragma mark Characteristics interaction
 
 -(void) clearRx{
-    
-    short byte = 1;
-    NSData * data = [NSData dataWithBytes:&byte length:1];
-    [_peripheral writeValue:data forCharacteristic:self.rxClearCharacteristic type:CBCharacteristicWriteWithResponse];
+    if(self.peripheral.isConnected){
+        short byte = 1;
+        NSData * data = [NSData dataWithBytes:&byte length:1];
+        [_peripheral writeValue:data forCharacteristic:self.rxClearCharacteristic type:CBCharacteristicWriteWithResponse];
+    }
 }
 
 -(void) writeToTx:(NSData*) data{
@@ -170,6 +179,60 @@ const short kMsgPinValueStarted = 254;
         //without response does not work with BLE Shield
     }
 }
+
+-(void) sendData:(uint8_t*) bytes count:(NSInteger) count{
+    /*
+    NSData * data = [NSData dataWithBytes:bytes length:count];
+    [self writeToTx:data];*/
+    
+    
+    int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
+    for (int i = 0; i < count; i++) {
+        sendBuffer[idx] = bytes[i];
+        idx = (idx + 1) % SEND_BUFFER_SIZE;
+    }
+    sendBufferCount += count;
+    if(sendBufferCount >= SEND_BUFFER_SIZE){
+        NSLog(@"Warning, reaching limits of ble send buffer");
+        sendBufferCount = SEND_BUFFER_SIZE;
+    }
+    
+    double currentTime = CACurrentMediaTime();
+    if(currentTime - lastTimeFlushed > kFlushInterval){
+        [self flushData];
+    }
+}
+
+-(void) flushData {
+    if(sendBufferCount > 0){
+                
+        char buf[TX_BUFFER_SIZE];
+        
+        int numBytesSend = MIN(TX_BUFFER_SIZE,sendBufferCount);
+        
+        if(sendBufferStart + numBytesSend > SEND_BUFFER_SIZE){
+            
+            char firstPartSize = SEND_BUFFER_SIZE - sendBufferStart ;
+            
+            memcpy(buf,&sendBuffer[0] + sendBufferStart,firstPartSize);
+            memcpy(&buf[0] + firstPartSize,&sendBuffer[0],numBytesSend-firstPartSize);
+            
+        } else {
+            
+            memcpy(buf,&sendBuffer[0] + sendBufferStart,numBytesSend);
+        }
+        
+        NSData * data = [NSData dataWithBytes:buf length:numBytesSend];
+        [self writeToTx:data];
+        
+        sendBufferCount -= numBytesSend;
+        sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
+        
+        NSLog(@"sendbufCount: %d",sendBufferCount);
+        lastTimeFlushed = CACurrentMediaTime();
+    }
+}
+
 
 - (void)enteredBackground
 {
@@ -279,17 +342,19 @@ const short kMsgPinValueStarted = 254;
 }
 
 -(void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    /*
-    NSLog(@"wrote something!");
-    if(characteristic == self.txCharacteristic){
+    
+    if(characteristic == self.rxClearCharacteristic){
+        NSLog(@"cleared RX");
+    } else if(characteristic == self.txCharacteristic){
+        /*NSLog(@"wrote to TX:");
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         for (int i = 0 ; i < length; i++) {
             int value = data[i];
             printf("%d ",value);
         }
-        printf("\n");
-    }*/
+        printf("\n");*/
+    }
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {

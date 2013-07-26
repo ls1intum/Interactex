@@ -2,6 +2,9 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 
+#define SEND_BUFFER_SIZE 512
+#define TX_BUFFER_SIZE 16
+
 extern NSString *kBleServiceUUIDString;
 extern NSString *kRxCharacteristicUUIDString;
 extern NSString *kRxCountCharacteristicUUIDString; 
@@ -13,6 +16,7 @@ extern NSString *kBleServiceEnteredForegroundNotification;
 
 extern const short kMsgPinModeStarted;
 extern const short kMsgPinValueStarted;
+extern const NSTimeInterval kFlushInterval;
 
 @class BLEService;
 
@@ -41,6 +45,11 @@ typedef enum{
     CBUUID              *rxClearUUID;
     CBUUID              *txUUID;
     
+    NSTimer * timer;
+    char sendBuffer[SEND_BUFFER_SIZE];
+    int sendBufferStart;
+    int sendBufferCount;
+    NSTimeInterval lastTimeFlushed;
 }
 
 -(id) initWithPeripheral:(CBPeripheral *)peripheral;
@@ -52,8 +61,9 @@ typedef enum{
 -(void)enteredForeground;
 
 -(void) clearRx;
--(void) writeToTx:(NSData*) data;
 
+-(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
+-(void) flushData;
 
 @property (nonatomic, readonly) CBCharacteristic * bdCharacteristic;
 @property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;
