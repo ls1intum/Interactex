@@ -27,14 +27,14 @@ extern const NSTimeInterval kFlushInterval;
 -(void) bleServiceDidDisconnect:(BLEService*)service;
 -(void) bleServiceIsReady:(BLEService *)service;
 -(void) bleServiceDidReset;
--(void) dataReceived:(Byte*) buffer lenght:(NSInteger) length;
 -(void) reportMessage:(NSString*) message;
 @end
 
-typedef enum{
-    kBleServiceStateMode,
-    kBleServiceStateValues
-}THBleServiceState ;
+@protocol BLEServiceDataDelegate<NSObject>
+
+-(void) dataReceived:(Byte*) buffer lenght:(NSInteger) length;
+@end
+
 
 @interface BLEService : NSObject <CBPeripheralDelegate> {
     CBService			*bleService;
@@ -77,7 +77,7 @@ typedef enum{
 
 @property (nonatomic, readonly) CBPeripheral *peripheral;
 @property (nonatomic) id<BLEServiceDelegate> delegate;
-@property (nonatomic) THBleServiceState state;
+@property (nonatomic) id<BLEServiceDataDelegate> dataDelegate;
 
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic;
 

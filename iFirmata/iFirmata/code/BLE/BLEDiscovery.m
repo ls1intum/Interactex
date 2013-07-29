@@ -23,7 +23,6 @@ static BLEDiscovery * sharedInstance;
 		centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
 
 		self.foundPeripherals = [[NSMutableArray alloc] init];
-		self.connectedServices = [[NSMutableArray alloc] init];
 	}
     return self;
 }
@@ -37,7 +36,7 @@ static BLEDiscovery * sharedInstance;
         NSLog(@"No stored array to load");
         return;
     }
-     
+
     for (id deviceUUIDString in storedDevices) {
         
         if (![deviceUUIDString isKindOfClass:[NSString class]])
@@ -140,28 +139,22 @@ static BLEDiscovery * sharedInstance;
 
 -(void) connectPeripheral:(CBPeripheral*)peripheral {
 	if (![peripheral isConnected]) {
+        _currentPeripheral = peripheral;
 		[centralManager connectPeripheral:peripheral options:nil];
 	}
 }
 
--(void) disconnectPeripheral:(CBPeripheral*)peripheral {
-	[centralManager cancelPeripheralConnection:peripheral];
+-(void) disconnectCurrentPeripheral {
+	[centralManager cancelPeripheralConnection:self.currentPeripheral];
 }
 
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
-	BLEService * service = nil;
-	
-	service = [[BLEService alloc] initWithPeripheral:peripheral];
-	[service start];
+	_connectedService = [[BLEService alloc] initWithPeripheral:peripheral];
+	[_connectedService start];
 
-	if (![self.connectedServices containsObject:service])
-		[self.connectedServices addObject:service];
-/*
-	if ([self.foundPeripherals containsObject:peripheral])
-		[self.foundPeripherals removeObject:peripheral];*/
-
-    [self.peripheralDelegate bleServiceDidConnect:service];
+    [self.peripheralDelegate bleServiceDidConnect:_connectedService];
+    _currentPeripheral = peripheral;
 }
 
 -(void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -169,34 +162,25 @@ static BLEDiscovery * sharedInstance;
 }
 
 -(void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-	BLEService	*service = nil;
-
-	for (service in self.connectedServices) {
-		if (service.peripheral == peripheral) {
-			[self.connectedServices removeObject:service];
-            [self.peripheralDelegate bleServiceDidDisconnect:service];
-			break;
-		}
-	}
-
+    
+    [self.peripheralDelegate bleServiceDidDisconnect:self.connectedService];
+    
+    _connectedService = nil;
+    _currentPeripheral = nil;
 	[_discoveryDelegate discoveryDidRefresh];
 }
 
 -(void) clearDevices {
-    BLEService	*service;
-    [self.foundPeripherals removeAllObjects];
-    
-    for (service in self.connectedServices) {
-        [service reset];
-    }
-    [self.connectedServices removeAllObjects];
-}
 
+    [self.foundPeripherals removeAllObjects];
+    [self.connectedService reset];
+    _connectedService = nil;
+}
 
 -(void) centralManagerDidUpdateState:(CBCentralManager *)central {
     static CBCentralManagerState previousState = -1;
     
-   // NSLog(@"new state: %d",central.state);
+    NSLog(@"new state: %d",central.state);
     
 	switch ([centralManager state]) {
 		case CBCentralManagerStatePoweredOff:

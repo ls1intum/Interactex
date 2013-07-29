@@ -9,6 +9,7 @@
 #import "IFCharacteristicsViewController.h"
 #import "BLEService.h"
 #import "IFCharacteristicDetailsViewController.h"
+#import "BLEDiscovery.h"
 
 @implementation IFCharacteristicsViewController
 
@@ -62,16 +63,18 @@
 }
 
 -(CBCharacteristic*) characteristicWithIdx:(NSInteger) idx{
+    BLEService * bleService = [BLEDiscovery sharedInstance].connectedService;
+    
     if(idx == 0){
-        return self.bleService.bdCharacteristic;
+        return bleService.bdCharacteristic;
     } else if(idx == 1){
-        return self.bleService.rxCharacteristic;
+        return bleService.rxCharacteristic;
     } else if(idx == 2){
-        return self.bleService.rxCountCharacteristic;
+        return bleService.rxCountCharacteristic;
     } else if(idx == 3){
-        return self.bleService.rxClearCharacteristic;
+        return bleService.rxClearCharacteristic;
     } else if(idx == 4){
-        return self.bleService.txCharacteristic;
+        return bleService.txCharacteristic;
     }
     return nil;
 }
@@ -83,10 +86,11 @@
         CBCharacteristic * characteristic = [self characteristicWithIdx:row];
         if(characteristic){
             
+            BLEService * bleService = [BLEDiscovery sharedInstance].connectedService;
             IFCharacteristicDetailsViewController * viewController = segue.destinationViewController;
-            viewController.title = [self.bleService characteristicNameFor:characteristic];
+            viewController.title = [bleService characteristicNameFor:characteristic];
             viewController.currentCharacteristic = characteristic;
-            viewController.bleService = self.bleService;
+            viewController.bleService = bleService;
         }
     }
 }

@@ -27,10 +27,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.firmataController = [[IFFirmataController alloc] init];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    self.firmataController.bleService = [BLEDiscovery sharedInstance].connectedService;
+    [BLEDiscovery sharedInstance].connectedService.dataDelegate = self.firmataController;
+    
     if(self.firmataController.numAnalogPins == 0 && self.firmataController.numDigitalPins == 0){
+        
         [self.firmataController stop];
         [self.firmataController start];
     }

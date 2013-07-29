@@ -17,7 +17,7 @@
     BOOL connected;
 }
 
-@property (nonatomic, weak) IFFirmataController * firmataController;
+@property (nonatomic, strong) IFFirmataController * firmataController;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 - (IBAction)versionTapped:(id)sender;
 

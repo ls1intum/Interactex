@@ -13,6 +13,5 @@
 @interface IFCharacteristicsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (nonatomic, weak) BLEService * bleService;
 
 @end

@@ -27,15 +27,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" id="kq3-ag-nIp">
-                                <rect key="frame" x="0.0" y="-58" width="320" height="617"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="kq3-ag-nIp">
+                                <rect key="frame" x="0.0" y="-56" width="320" height="617"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="rrv-vf-op1">
-                                    <rect key="frame" x="0.0" y="559" width="320" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Refreshing... 5s left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uAU-gK-Y3u">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrowDown.png" id="xwD-0z-SLm">
+                                            <rect key="frame" x="75" y="15" width="15" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pull down to refresh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uAU-gK-Y3u">
                                             <rect key="frame" x="100" y="17" width="120" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -43,52 +47,47 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <activityIndicatorView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="tbL-Xy-Lhw">
-                                            <rect key="frame" x="67" y="18" width="20" height="20"/>
+                                            <rect key="frame" x="72" y="18" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cbi-or-fYf">
-                                            <rect key="frame" x="255" y="6" width="58" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Stop">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="stopRefreshingPushed:" destination="oHD-lF-vv0" eventType="touchUpInside" id="0K6-Ng-vHH"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="mainViewCell" textLabel="PFH-8t-oDB" detailTextLabel="tmU-j0-nvS" rowHeight="84" style="IBUITableViewCellStyleSubtitle" id="ips-0T-guC">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="84"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="10" reuseIdentifier="deviceCell" rowHeight="100" id="ips-0T-guC" customClass="IFDeviceCell">
+                                        <rect key="frame" x="0.0" y="78" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PFH-8t-oDB">
-                                                    <rect key="frame" x="20" y="22" width="38" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Device's Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4b6-uC-SKP">
+                                                    <rect key="frame" x="20" y="20" width="207" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tmU-j0-nvS">
-                                                    <rect key="frame" x="20" y="44" width="36" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="F9266FD7-EF07-45D6-8EB6-BD74F13620F9" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="17U-Wa-45A">
+                                                    <rect key="frame" x="20" y="58" width="346" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="white" id="nH4-jZ-fG0">
+                                                    <rect key="frame" x="280" y="40" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="nH4-jZ-fG0" id="yNO-fN-BgC"/>
+                                            <outlet property="titleLabel" destination="4b6-uC-SKP" id="80Y-js-kjO"/>
+                                            <outlet property="uiidLabel" destination="17U-Wa-45A" id="r6u-kO-zhY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -102,9 +101,9 @@
                     <navigationItem key="navigationItem" title="Devices" id="FxK-6w-qKF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="tbL-Xy-Lhw" id="KmU-DJ-1xE"/>
+                        <outlet property="arrowImageView" destination="xwD-0z-SLm" id="lJ7-Sr-4Fj"/>
                         <outlet property="refreshView" destination="rrv-vf-op1" id="TZY-QP-FJ6"/>
                         <outlet property="refreshingLabel" destination="uAU-gK-Y3u" id="b5p-fR-sgx"/>
-                        <outlet property="stopRefreshingButton" destination="cbi-or-fYf" id="ipd-3N-msK"/>
                         <outlet property="table" destination="kq3-ag-nIp" id="SDv-cq-4tO"/>
                         <segue destination="aXn-84-TAd" kind="push" identifier="toDeviceMenuSegue" id="OA1-Db-g5Y"/>
                     </connections>
@@ -360,8 +359,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fZz-fL-AeB">
-                                <rect key="frame" x="74" y="20" width="173" height="176"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fZz-fL-AeB">
+                                <rect key="frame" x="74" y="58" width="173" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Firmata">
@@ -375,8 +374,8 @@
                                     <segue destination="dTY-Yg-s3k" kind="push" identifier="toFirmataSegue" id="uTS-Tz-oxj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h5n-6x-q6Q">
-                                <rect key="frame" x="72" y="300" width="177" height="185"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h5n-6x-q6Q">
+                                <rect key="frame" x="72" y="267" width="177" height="185"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Characteristics">
@@ -390,16 +389,11 @@
                                     <segue destination="7yE-HD-rOM" kind="push" identifier="toCharacteristicsSegue" id="bxa-zd-BrJ"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="BEo-hM-6mP">
-                                <rect key="frame" x="150" y="242" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="BLE Shield" id="H1r-YD-RJc"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="BEo-hM-6mP" id="XKk-yD-071"/>
                         <outlet property="characteristicsButton" destination="h5n-6x-q6Q" id="cbG-6k-rmp"/>
                         <outlet property="firmataButton" destination="fZz-fL-AeB" id="Vwl-3L-0RQ"/>
                     </connections>
@@ -560,6 +554,9 @@
             <point key="canvasLocation" x="1366" y="-291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowDown.png" width="50" height="73"/>
+    </resources>
     <classes>
         <class className="IFCharacteristicDetailsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IFCharacteristicDetailsViewController.h"/>
@@ -581,10 +578,17 @@
                 <relationship kind="outlet" name="table" candidateClass="UITableView"/>
             </relationships>
         </class>
+        <class className="IFDeviceCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IFDeviceCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="uiidLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="IFDeviceMenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IFDeviceMenuViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="characteristicsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="firmataButton" candidateClass="UIButton"/>
             </relationships>
@@ -600,11 +604,10 @@
         <class className="IFMainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IFMainViewController.h"/>
             <relationships>
-                <relationship kind="action" name="stopRefreshingPushed:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="arrowImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="refreshView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="refreshingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stopRefreshingButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="table" candidateClass="UITableView"/>
             </relationships>
         </class>

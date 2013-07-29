@@ -21,7 +21,7 @@ typedef struct{
 
 @end
 
-@interface IFFirmataController : NSObject <BLEServiceDelegate> {
+@interface IFFirmataController : NSObject <BLEServiceDataDelegate> {
     NSInteger parse_count;
     NSInteger parse_command_len;
     

@@ -22,25 +22,24 @@ void setup()
 }
 
 void loop() // run over and over
-{
+{/*
   unsigned long currentMillis = millis();
 
   if(currentMillis - previousMillis > interval) {
     previousMillis = currentMillis;  
-   /*
+   
     bleShield.write(counter++);
     if(counter > 256){
       counter = 0;
-    }*/
+    }
   }
   
-/*
 int val = digitalRead(4);
 if(!val){
   Serial.println("button pressed");
     
         }*/
-
+/*
   while (bleShield.available()) {
     Serial.print(bleShield.read());
     Serial.print(" ");
@@ -49,7 +48,7 @@ if(!val){
       counter = 0;
       Serial.println("");
     }
-  }
+  }*/
   
-  delay(250);
+  delay(40);
 }

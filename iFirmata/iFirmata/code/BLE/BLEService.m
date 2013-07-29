@@ -16,8 +16,6 @@ NSString *kBdCharacteristicUUIDString = @"38117F3C-28AB-4718-AB95-172B363F2AE0";
 NSString *kBleServiceEnteredBackgroundNotification = @"kAlarmServiceEnteredBackgroundNotification";
 NSString *kBleServiceEnteredForegroundNotification = @"kAlarmServiceEnteredForegroundNotification";
 
-const short kMsgPinModeStarted = 255;
-const short kMsgPinValueStarted = 254;
 const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 
 @implementation BLEService
@@ -36,7 +34,6 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
         txUUID	= [CBUUID UUIDWithString:kTxCharacteristicUUIDString];
         bdUUID	= [CBUUID UUIDWithString:kBdCharacteristicUUIDString];
         
-        //NSTimeInterval interval = 1.0f/5.0f;
         timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
 	}
     return self;
@@ -70,7 +67,7 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 }
 
 - (void) disconnect{
-    [[BLEDiscovery sharedInstance] disconnectPeripheral:self.peripheral];
+    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
     
     sendBufferCount = 0;
     sendBufferStart = 0;
@@ -136,28 +133,28 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
         
         if ([[characteristic UUID] isEqual:bdUUID]) {
             
-            [self.delegate reportMessage:@"Discovered BD"];
+            //[self.delegate reportMessage:@"Discovered BD"];
 			_bdCharacteristic = characteristic;
 			[peripheral readValueForCharacteristic:_bdCharacteristic];
         } else if ([[characteristic UUID] isEqual:rxUUID]) {
-            [self.delegate reportMessage:@"Discovered RX"];
+            //[self.delegate reportMessage:@"Discovered RX"];
 			_rxCharacteristic = characteristic;
 			//[peripheral readValueForCharacteristic:_rxCharacteristic];
 			[peripheral setNotifyValue:YES forCharacteristic:_rxCharacteristic];
 		} else if ([[characteristic UUID] isEqual:rxCountUUID]) {
-            [self.delegate reportMessage:@"Discovered RX Count"];
+            //[self.delegate reportMessage:@"Discovered RX Count"];
 			_rxCountCharacteristic = characteristic ;
 			[peripheral readValueForCharacteristic:characteristic];
         } else if ([[characteristic UUID] isEqual:rxClearUUID]) {
-            [self.delegate reportMessage:@"Discovered RX Clear"];
+            //[self.delegate reportMessage:@"Discovered RX Clear"];
 			_rxClearCharacteristic = characteristic;
 		} else if ([[characteristic UUID] isEqual:txUUID]) {
-            [self.delegate reportMessage:@"Discovered TX"];
+            //[self.delegate reportMessage:@"Discovered TX"];
 			_txCharacteristic = characteristic;
             [self.delegate bleServiceIsReady:self];
 		} else {
-            NSString * message = [NSString stringWithFormat:@"Discovered: %@",characteristic.UUID];
-            [self.delegate reportMessage:message];
+            //NSString * message = [NSString stringWithFormat:@"Discovered: %@",characteristic.UUID];
+            //[self.delegate reportMessage:message];
         }
 	}
 }
@@ -175,8 +172,15 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 -(void) writeToTx:(NSData*) data{
     
     if(self.txCharacteristic){
-        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
         //without response does not work with BLE Shield
+        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        
+        /*
+        for (int i = 0; i < data.length; i++) {
+            printf("%d ",(int)((char*)data.bytes)[i]);
+        }
+        printf("\n");*/
+        
     }
 }
 
@@ -228,7 +232,7 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
         sendBufferCount -= numBytesSend;
         sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
         
-        NSLog(@"sendbufCount: %d",sendBufferCount);
+        //NSLog(@"sendbufCount: %d",sendBufferCount);
         lastTimeFlushed = CACurrentMediaTime();
     }
 }
@@ -346,14 +350,15 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
     if(characteristic == self.rxClearCharacteristic){
         NSLog(@"cleared RX");
     } else if(characteristic == self.txCharacteristic){
-        /*NSLog(@"wrote to TX:");
+        
+        //NSLog(@"wrote to TX:");
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         for (int i = 0 ; i < length; i++) {
             int value = data[i];
             printf("%d ",value);
         }
-        printf("\n");*/
+        printf("\n");
     }
 }
 
@@ -374,7 +379,7 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
         
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
-        [self.delegate dataReceived:data lenght:length];
+        [self.dataDelegate dataReceived:data lenght:length];
     }
 }
 

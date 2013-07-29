@@ -7,8 +7,8 @@
 //
 
 #import "IFMainViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "IFDeviceMenuViewController.h"
+#import "IFDeviceCell.h"
 
 @implementation IFMainViewController
 
@@ -28,16 +28,24 @@ const NSInteger IFDiscoveryTime = 5;
 	// Do any additional setup after loading the view.
     
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
+    [BLEDiscovery sharedInstance].peripheralDelegate = self;
     [[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
     
-    self.stopRefreshingButton.layer.borderWidth = 1.0f;
-    self.stopRefreshingButton.layer.cornerRadius = 5.0f;
-    self.stopRefreshingButton.layer.backgroundColor = [UIColor redColor].CGColor;
+//    NSURL * pullDownSoundUrl = [[NSBundle mainBundle] URLForResource: @"click" withExtension: @"mp3"];
+    NSURL * pullDownSoundUrl = [[NSBundle mainBundle] URLForResource: @"pullDown" withExtension: @"wav"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)pullDownSoundUrl, &pullDownSound);
+    
+    NSURL * pullUpSoundUrl = [[NSBundle mainBundle] URLForResource: @"pullUp" withExtension: @"wav"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)pullUpSoundUrl, &pullUpSound);
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     if(self.table.indexPathForSelectedRow){
         [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
+    }
+    
+    if([BLEDiscovery sharedInstance].currentPeripheral.isConnected){
+        [self disconnect];
     }
 }
 
@@ -58,10 +66,9 @@ const NSInteger IFDiscoveryTime = 5;
     NSInteger row = indexPath.row;
     CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
     
-    UITableViewCell * cell = [self.table dequeueReusableCellWithIdentifier:@"mainViewCell"];
-    
-    cell.textLabel.text = peripheral.name;
-    cell.detailTextLabel.text = [IFHelper UUIDToString:peripheral.UUID];
+    IFDeviceCell * cell = [self.table dequeueReusableCellWithIdentifier:@"deviceCell"];
+    cell.titleLabel.text = peripheral.name;
+    cell.uiidLabel.text = [IFHelper UUIDToString:peripheral.UUID];
     
     return cell;
 }
@@ -70,23 +77,36 @@ const NSInteger IFDiscoveryTime = 5;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self performSegueWithIdentifier:@"toDeviceMenuSegue" sender:self];
+    NSInteger row = self.table.indexPathForSelectedRow.row;
+    CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
+    
+    if(!peripheral.isConnected){
+        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
+        
+        IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:indexPath];
+        [cell.activityIndicator startAnimating];
+        connectingRow = indexPath;
+        
+        NSTimeInterval interval = 7.0f;
+        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(stopConnecting) userInfo:nil repeats:NO];
+    }
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"toDeviceMenuSegue"]){
-        
+        /*
         NSInteger row = self.table.indexPathForSelectedRow.row;
-        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
+        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];*/
         
-        
+        /*
         IFDeviceMenuViewController * deviceViewController = segue.destinationViewController;
         
-        deviceViewController.currentPeripheral = peripheral;
+        deviceViewController.currentPeripheral = peripheral;*/
         
+        /*
         if(!deviceViewController.currentPeripheral.isConnected){
             [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
-        }
+        }*/
     }
 }
 
@@ -101,6 +121,84 @@ const NSInteger IFDiscoveryTime = 5;
 
 - (void) discoveryStatePoweredOff {
     NSLog(@"Powered Off");
+}
+
+#pragma mark Connection
+
+-(void) disconnect{
+    
+    isDisconnecting = YES;    
+    self.table.allowsSelection = NO;
+    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+}
+
+-(void) stopConnecting{
+    NSLog(@"stopping connection");
+    if([BLEDiscovery sharedInstance].currentPeripheral){
+        [self disconnect];
+        /*
+        NSInteger row = connectingRow.row;
+        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
+        [[BLEDiscovery sharedInstance] cancelConnectionToPeripheral:peripheral];*/
+        
+        [connectingTimer invalidate];
+        connectingTimer = nil;
+    }
+}
+
+#pragma mark BleServiceProtocol
+
+-(void) bleServiceDidConnect:(BLEService *)service{
+    service.delegate = self;
+}
+
+-(void) bleServiceDidDisconnect:(BLEService *)service{
+    NSLog(@"disconnected");
+    self.table.allowsSelection = YES;
+    
+    isDisconnecting = NO;
+    
+    if(connectingRow){
+        [self.table deselectRowAtIndexPath:connectingRow animated:YES];
+        IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
+        [cell.activityIndicator stopAnimating];
+    }
+    
+    [connectingTimer invalidate];
+    connectingTimer = nil;
+    
+    /*
+    IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
+    cell.stopButton.hidden = YES;*/
+    
+    /*
+    [self disableButtons];
+    self.bleService.delegate = nil;
+    self.bleService = nil;
+    [self.firmataController stop];*/
+}
+
+-(void) bleServiceIsReady:(BLEService *)service{
+    
+    [connectingTimer invalidate];
+    connectingTimer = nil;
+    
+    IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
+    [cell.activityIndicator stopAnimating];
+    
+    [self performSegueWithIdentifier:@"toDeviceMenuSegue" sender:self];
+    
+    [service clearRx];
+}
+
+-(void) bleServiceDidReset {/*
+    [self.firmataController stop];
+    _bleService = nil;
+    [self stopSpinning];*/
+}
+
+-(void) reportMessage:(NSString*) message{
+    NSLog(@"%@",message);
 }
 
 #pragma mark -- Refreshing Scrolled
@@ -126,26 +224,26 @@ const NSInteger IFDiscoveryTime = 5;
         
         [self. activityIndicator startAnimating];
         self.refreshingLabel.hidden = NO;
-        self.stopRefreshingButton.hidden = NO;
         
         self.refreshingLabel.text = [NSString stringWithFormat:@"Refreshing... %ds left",IFDiscoveryTime];
         
     }];
     
     secondsRemaining = IFDiscoveryTime;
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(secondElapsed:) userInfo:nil repeats:YES];
+    refreshingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(secondElapsed:) userInfo:nil repeats:YES];
 }
 
 -(void) stopRefreshing{
     isRefreshing = NO;
+    self.arrowImageView.hidden = NO;
+    
     [[BLEDiscovery sharedInstance] stopScanning];
     
     [UIView animateWithDuration:0.3f animations:^{
         self.table.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         
         [self.activityIndicator stopAnimating];
-        self.refreshingLabel.hidden = YES;
-        self.stopRefreshingButton.hidden = YES;
+        self.refreshingLabel.text = [NSString stringWithFormat:@"Pull down to refresh"];
         
     } completion:^(BOOL finished){
         
@@ -153,24 +251,36 @@ const NSInteger IFDiscoveryTime = 5;
     
     [self.activityIndicator stopAnimating];
     
-    [timer invalidate];
-    timer = nil;
+    [refreshingTimer invalidate];
+    refreshingTimer = nil;
+    
+    AudioServicesPlaySystemSound(pullUpSound);
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (!isRefreshing && scrollView.contentOffset.y <= -IFRefreshHeaderHeight) {
+    if (!shouldRefreshOnRelease && !isRefreshing && scrollView.contentOffset.y <= -IFRefreshHeaderHeight) {
+        self.refreshingLabel.text = [NSString stringWithFormat:@"Release to refresh"];
+        shouldRefreshOnRelease = YES;
+        self.arrowImageView.image = [UIImage imageNamed:@"arrowUp.png"];
         
+        AudioServicesPlaySystemSound(pullDownSound);
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!isRefreshing && scrollView.contentOffset.y <= -IFRefreshHeaderHeight) {
+    if (!isRefreshing && scrollView.contentOffset.y <= -IFRefreshHeaderHeight && shouldRefreshOnRelease) {
+        
+        shouldRefreshOnRelease = NO;
+        self.arrowImageView.image = [UIImage imageNamed:@"arrowDown.png"];
+        self.arrowImageView.hidden = YES;
+        
         [self startRefreshingPeripherals];
     }
 }
 
-- (IBAction)stopRefreshingPushed:(id)sender {
-    [self stopRefreshing];
+-(void) dealloc{
+    AudioServicesDisposeSystemSoundID(pullDownSound);
+    AudioServicesDisposeSystemSoundID(pullUpSound);
 }
 
 @end

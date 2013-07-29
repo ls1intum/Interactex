@@ -23,11 +23,13 @@
 -(void) stopScanning;
 
 -(void) connectPeripheral:(CBPeripheral*)peripheral;
--(void) disconnectPeripheral:(CBPeripheral*)peripheral;
+-(void) disconnectCurrentPeripheral;
 
 @property (nonatomic, weak) id<BLEDiscoveryDelegate>  discoveryDelegate;
 @property (nonatomic, weak) id<BLEServiceDelegate> peripheralDelegate;
 
 @property (nonatomic, strong) NSMutableArray * foundPeripherals;
-@property (nonatomic, strong) NSMutableArray * connectedServices;
+@property (nonatomic, readonly) BLEService * connectedService;
+@property (nonatomic, readonly) CBPeripheral * currentPeripheral;
+
 @end
