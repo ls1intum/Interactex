@@ -34,6 +34,8 @@
 
 -(void) start{
 
+    [self sendTestData];
+    /*
     self.digitalPins = [NSMutableArray array];
     self.analogPins = [NSMutableArray array];
     
@@ -50,11 +52,11 @@
     
     [self.delegate didUpdatePins];
     
-    [self sendFirmwareRequest];
+    [self sendFirmwareRequest];*/
 }
 
 -(void) stop{
-        
+        /*
     for (IFPin * pin in self.digitalPins) {
         
         [pin removeObserver:self forKeyPath:@"mode"];
@@ -71,7 +73,7 @@
     [self.digitalPins removeAllObjects];
     [self.analogPins removeAllObjects];
     
-    [self.delegate didUpdatePins];
+    [self.delegate didUpdatePins];*/
     
     //[self.bleService clearRx];
 }
@@ -174,20 +176,17 @@
 }
 
 -(void) sendTestData{
-    /*
-     
-     uint8_t buf[16];
-     for (int i = 0; i < 16; i++) {
-     buf[i] = i;
-     }
-     
-     for (int i = 0; i < 50; i++) {
-     
-     //NSData * data = [NSData dataWithBytes:buf length:16];
-     [self.bleService sendData:buf count:16];
-     //[self.bleService flushData];
-     //[self.bleService writeToTx:data];
-     }*/
+    
+    uint8_t buf[16];
+    for (int i = 0; i < 16; i++) {
+        buf[i] = i;
+    }
+    
+    for (int i = 0; i < 50; i++) {
+        
+        //NSData * data = [NSData dataWithBytes:buf length:16];
+        [self.bleService sendData:buf count:16];
+    }
 }
 
 -(void) sendFirmwareRequest{

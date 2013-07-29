@@ -68,7 +68,6 @@
     TFPalette *palette = [self emptyPalette];
     
     [palette addDragablePaletteItem:[[THClothePaletteItem alloc] initWithName:@"tshirt"]];
-    [palette addDragablePaletteItem:[[THClothePaletteItem alloc] initWithName:@"hat"]];
     
     [self addPalette:palette withTitle:@"Clothing"];
 }
