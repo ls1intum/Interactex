@@ -16,7 +16,7 @@ NSString *kBdCharacteristicUUIDString = @"38117F3C-28AB-4718-AB95-172B363F2AE0";
 NSString *kBleServiceEnteredBackgroundNotification = @"kAlarmServiceEnteredBackgroundNotification";
 NSString *kBleServiceEnteredForegroundNotification = @"kAlarmServiceEnteredForegroundNotification";
 
-const NSTimeInterval kFlushInterval = 1.0f/5.0f;
+const NSTimeInterval kFlushInterval = 1.0f/60.0f;
 
 @implementation BLEService
 

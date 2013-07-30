@@ -58,9 +58,12 @@
 
 -(void) addDigitalButton{
     
-    CGRect segmentFrame = CGRectMake(175, 8, 130, 33);
+    //CGRect segmentFrame = CGRectMake(175, 10, 130, 33);
+    self.digitalControl.hidden = NO;
     
+    /*
     NSArray * items = [NSArray arrayWithObjects:@"LOW",@"HIGH",nil];
+    
     self.digitalControl = [[UISegmentedControl alloc] initWithItems:items];
     
     self.digitalControl.selectedSegmentIndex = self.pin.value;
@@ -68,21 +71,24 @@
     
     [self.digitalControl addTarget:self action:@selector(digitalControlChanged:) forControlEvents:UIControlEventValueChanged];
     
-    [self addSubview:self.digitalControl];
+    [self addSubview:self.digitalControl];*/
 }
 
 -(void) addValueLabel{
-    CGRect labelFrame = CGRectMake(240, 10, 82, 35);
+    self.valueLabel.hidden = NO;
+    /*
+    CGRect labelFrame = CGRectMake(220, 10, 82, 35);
     
     self.valueLabel = [[UILabel alloc] initWithFrame:labelFrame];
     self.valueLabel.layer.borderWidth = 1.0f;
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     
-    [self addSubview:self.valueLabel];
+    [self addSubview:self.valueLabel];*/
 }
 
 -(void) addSlider{
-    
+    self.slider.hidden = NO;
+    /*
     CGRect sliderFrame = CGRectMake(175, 8, 135, 35);
     
     self.slider = [[UISlider alloc] initWithFrame:sliderFrame];
@@ -90,32 +96,23 @@
     self.slider.maximumValue = 255;
     [self.slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
     
-    [self addSubview:self.slider];
+    [self addSubview:self.slider];*/
 }
-
-/*
--(void) addAnalogSwitch{
-    CGRect labelFrame = CGRectMake(186, 26, 79, 27);
-    
-    self.analogSwitch = [[UISwitch alloc] initWithFrame:labelFrame];
-    self.analogSwitch.enabled = NO;
-    
-    [self.analogSwitch addTarget:self action:@selector(analogSwitchChanged) forControlEvents:UIControlEventValueChanged];
-    
-    [self addSubview:self.analogSwitch];
-}*/
 
 -(void) removeControls{
     if(self.digitalControl){
-        [self.digitalControl removeFromSuperview];
+        self.digitalControl.hidden = YES;
+        //[self.digitalControl removeFromSuperview];
     }
     
     if(self.valueLabel){
-        [self.valueLabel removeFromSuperview];
+        self.valueLabel.hidden = YES;
+        //[self.valueLabel removeFromSuperview];
     }
     
     if(self.slider){
-        [self.slider removeFromSuperview];
+        self.slider.hidden = YES;
+        //[self.slider removeFromSuperview];
     }
 }
 
@@ -191,13 +188,14 @@
     [self.pin addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
 }
 
--(void) digitalControlChanged:(UISegmentedControl*) sender{
+-(IBAction) digitalControlChanged:(UISegmentedControl*) sender{
     [self.pin removeObserver:self forKeyPath:@"value"];
     self.pin.value = sender.selectedSegmentIndex;
     [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
--(void) sliderChanged:(UISlider*) sender{
+-(IBAction) sliderChanged:(UISlider*) sender{
+    
     if(sender.value == 0 || fabs(self.pin.value - sender.value) > 10){
         [self.pin removeObserver:self forKeyPath:@"value"];
         self.pin.value = sender.value;

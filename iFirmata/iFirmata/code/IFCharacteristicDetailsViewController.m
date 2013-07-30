@@ -100,10 +100,12 @@
 }
 
 - (IBAction)writePushed:(id)sender {
-            
+
     NSData * data = [BLEHelper StringToData:self.writeText.text];
     
     [self.bleService.peripheral writeValue:data forCharacteristic:self.bleService.txCharacteristic type:CBCharacteristicWriteWithResponse];
+    [self.bleService.peripheral readValueForCharacteristic:self.bleService.txCharacteristic];
+    
 }
 
 -(void)keyboardWillShow:(NSNotification*) notification {
