@@ -9,6 +9,7 @@
 #import "IFMainViewController.h"
 #import "IFDeviceMenuViewController.h"
 #import "IFDeviceCell.h"
+#import "BLEHelper.h"
 
 @implementation IFMainViewController
 
@@ -68,7 +69,7 @@ const NSInteger IFDiscoveryTime = 5;
     
     IFDeviceCell * cell = [self.table dequeueReusableCellWithIdentifier:@"deviceCell"];
     cell.titleLabel.text = peripheral.name;
-    cell.uiidLabel.text = [IFHelper UUIDToString:peripheral.UUID];
+    cell.uiidLabel.text = [BLEHelper UUIDToString:peripheral.UUID];
     
     return cell;
 }

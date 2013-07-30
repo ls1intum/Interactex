@@ -116,19 +116,19 @@
         <scene sceneID="TNO-am-QZa">
             <objects>
                 <viewController id="UoS-Xk-eYP" customClass="IFCharacteristicDetailsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tVp-m8-JbL">
+                    <view key="view" contentMode="scaleToFill" id="tVp-m8-JbL" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hwO-yT-TeN">
-                                <rect key="frame" x="20" y="15" width="280" height="44"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hwO-yT-TeN">
+                                <rect key="frame" x="14" y="15" width="291" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8DD-XD-mZx">
-                                <rect key="frame" x="20" y="72" width="61" height="44"/>
+                                <rect key="frame" x="98" y="67" width="125" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Read">
@@ -142,22 +142,8 @@
                                     <action selector="readPushed:" destination="UoS-Xk-eYP" eventType="touchUpInside" id="vKL-Ox-EhP"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="CS4-zh-R1c">
-                                <rect key="frame" x="223" y="80" width="79" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="notifySwitchChanged:" destination="UoS-Xk-eYP" eventType="valueChanged" id="cOq-7T-0St"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notify" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AxQ-9c-rR4">
-                                <rect key="frame" x="168" y="83" width="58" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cl8-nw-O9z">
-                                <rect key="frame" x="20" y="186" width="62" height="44"/>
+                                <rect key="frame" x="98" y="322" width="125" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Write">
@@ -171,31 +157,42 @@
                                     <action selector="writePushed:" destination="UoS-Xk-eYP" eventType="touchUpInside" id="QFh-4a-p0x"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="E4K-ye-gPm">
-                                <rect key="frame" x="11" y="148" width="299" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00112233445566778899" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="E4K-ye-gPm">
+                                <rect key="frame" x="14" y="454" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" keyboardType="alphabet" returnKeyType="done"/>
                                 <connections>
                                     <action selector="textChanged:" destination="UoS-Xk-eYP" eventType="editingDidEnd" id="tgo-OR-zib"/>
                                     <outlet property="delegate" destination="UoS-Xk-eYP" id="8zN-RC-T8F"/>
                                 </connections>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="YOb-IP-KO0">
+                                <rect key="frame" x="44" y="230" width="233" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Don't Notify"/>
+                                    <segment title="Notify"/>
+                                </segments>
+                                <connections>
+                                    <action selector="notifyChanged:" destination="UoS-Xk-eYP" eventType="valueChanged" id="Zo2-hf-QYh"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="lgp-y6-JvF"/>
                     <connections>
                         <outlet property="label" destination="hwO-yT-TeN" id="MbP-PC-qYW"/>
-                        <outlet property="notifyLabel" destination="AxQ-9c-rR4" id="4s5-Ai-MhS"/>
-                        <outlet property="notifySwitch" destination="CS4-zh-R1c" id="MrR-86-cRo"/>
+                        <outlet property="notifyControl" destination="YOb-IP-KO0" id="ADc-Oe-VJ1"/>
                         <outlet property="writeButton" destination="cl8-nw-O9z" id="o6q-a3-8vL"/>
                         <outlet property="writeText" destination="E4K-ye-gPm" id="YE6-bN-YHj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0pW-Bl-Ns6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1902" y="52"/>
+            <point key="canvasLocation" x="1956" y="8"/>
         </scene>
         <!--Characteristics View Controller - Characteristics-->
         <scene sceneID="eFK-ob-jQq">
@@ -349,7 +346,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlJ-J7-CYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1384" y="390"/>
+            <point key="canvasLocation" x="1366" y="389"/>
         </scene>
         <!--Device Menu View Controller - BLE Shield-->
         <scene sceneID="e5M-7R-Zz2">
@@ -402,7 +399,7 @@
             </objects>
             <point key="canvasLocation" x="837" y="46"/>
         </scene>
-        <!--Firmata View Controller - Pins-->
+        <!--Firmata View Controller - Firmata-->
         <scene sceneID="iia-AY-Fep">
             <objects>
                 <viewController id="dTY-Yg-s3k" customClass="IFFirmataViewController" sceneMemberID="viewController">
@@ -537,7 +534,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pins" id="H0L-qt-b72">
+                    <navigationItem key="navigationItem" title="Firmata" id="H0L-qt-b72">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="a0R-rl-gvE">
                             <connections>
                                 <action selector="versionTapped:" destination="dTY-Yg-s3k" id="3kX-WH-ygm"/>
@@ -561,13 +558,12 @@
         <class className="IFCharacteristicDetailsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IFCharacteristicDetailsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="notifySwitchChanged:"/>
+                <relationship kind="action" name="notifyChanged:"/>
                 <relationship kind="action" name="readPushed:"/>
                 <relationship kind="action" name="textChanged:"/>
                 <relationship kind="action" name="writePushed:"/>
                 <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="notifyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="notifySwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="notifyControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="writeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="writeText" candidateClass="UITextField"/>
             </relationships>

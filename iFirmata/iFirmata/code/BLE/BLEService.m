@@ -48,8 +48,7 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 }
 
 
-- (void) reset
-{
+- (void) reset {
 	if (self.peripheral) {
 		_peripheral = nil;
 	}
@@ -57,8 +56,7 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 
 #pragma mark Service interaction
 
-- (void) start
-{
+- (void) start {
 	CBUUID	*serviceUUID	= [CBUUID UUIDWithString:kBleServiceUUIDString];
 	NSArray	*serviceArray	= [NSArray arrayWithObjects:serviceUUID, nil];
 
@@ -66,15 +64,14 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
     
 }
 
-- (void) disconnect{
+- (void) disconnect {
     [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
     
     sendBufferCount = 0;
     sendBufferStart = 0;
 }
 
-- (void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
-{
+- (void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
 	NSArray		*services	= nil;
 	NSArray		*uuids	= [NSArray arrayWithObjects:rxUUID,
 								   rxCountUUID,
@@ -293,20 +290,7 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 - (NSString*) tx {
 	if (self.txCharacteristic) {
         
-        Byte * data;
-        NSInteger length = [BLEHelper Data:self.txCharacteristic.value toArray:&data];
-        
-        NSString * string = @"";
-        
-        NSLog(@"TX: %d",length);
-        
-        for (int i = 0 ; i < length; i++) {
-            string = [string stringByAppendingFormat:@" %d",data[i]];
-        }
-        
-        printf("\n");
-        
-        return string;
+        return [BLEHelper DataToString:self.txCharacteristic.value];
     }
     
     return nil;
@@ -314,17 +298,9 @@ const NSTimeInterval kFlushInterval = 1.0f/5.0f;
 
 - (NSString*) rx {
 	if (self.rxCharacteristic) {
-        [self.peripheral readValueForCharacteristic:self.rxCharacteristic];
-         
-        Byte * data;
-        NSInteger length = [BLEHelper Data:self.rxCharacteristic.value toArray:&data];
+                 
+        return [BLEHelper DataToString:self.rxCharacteristic.value];
         
-        NSString * string = @"";
-        
-        for (int i = 0 ; i < length; i++) {
-            string = [string stringByAppendingFormat:@" %d",data[i]];
-        }
-        return string;
     }
     
     return nil;

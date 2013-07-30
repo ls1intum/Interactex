@@ -9,8 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface BLEHelper : NSObject
-+(float) BytesToFloat:(NSData*) data;
+
 +(NSInteger) Data:(NSData*) data toArray:(Byte**) bytes;
+
++(NSString *)UUIDToString:(CFUUIDRef) uuid;
+
++(NSData*) StringToData:(NSString*) string;
+
 +(NSString*) DataToString:(NSData*) data;
-+(NSData*) hexToBytes :(NSString*) string;
+
 @end

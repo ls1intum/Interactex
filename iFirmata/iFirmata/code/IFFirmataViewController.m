@@ -60,8 +60,12 @@
 
 #pragma mark FirmataDelegate
 
--(void) didUpdatePins{
+-(void) firmataDidUpdatePins:(IFFirmataController *)firmataController{
     [self.table reloadData];
+}
+
+-(void) firmata:(IFFirmataController *)firmataController didUpdateTitle:(NSString *)title{
+    self.title = title;
 }
 
 #pragma mark TableViewDataSource

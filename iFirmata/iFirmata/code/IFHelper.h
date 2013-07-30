@@ -12,7 +12,6 @@
 @interface IFHelper : NSObject
 
 +(BOOL) isPinPWM:(NSInteger) pinNumber;
-+(NSString *)UUIDToString:(CFUUIDRef) uuid;
-+(NSString*) DataToString:(NSData*) data;
+
 
 @end

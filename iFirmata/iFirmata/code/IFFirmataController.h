@@ -15,9 +15,12 @@ typedef struct{
     uint8_t analogChannel;
 } PinInfo;
 
+@class IFFirmataController;
+
 @protocol IFFirmataControllerDelegate <NSObject>
 
--(void) didUpdatePins;
+-(void) firmataDidUpdatePins:(IFFirmataController*) firmataController;
+-(void) firmata:(IFFirmataController*) firmataController didUpdateTitle:(NSString*) title;
 
 @end
 

@@ -10,12 +10,6 @@
 
 @implementation BLEHelper
 
-+(float) BytesToFloat:(NSData*) data{
-    
-    int16_t value	= 0;
-    [data getBytes:&value length:sizeof(value)];
-    return (CGFloat)value / 10.0f;
-}
 
 +(NSInteger) Data:(NSData*) data toArray:(Byte**) bytes{
     
@@ -25,18 +19,12 @@
     return data.length;
 }
 
-+(NSString*) DataToString:(NSData*) data{
-    NSString * string = @"";
-
-    Byte * array;
-    [self Data:data toArray:&array];
-     for (int i = 0 ; i < data.length; i++) {
-         
-         string = [string stringByAppendingFormat:@" %d",array[i]];
-     }
-    return string;
++(NSString *)UUIDToString:(CFUUIDRef) uuid{
+    CFStringRef string = CFUUIDCreateString(NULL, uuid);
+    return (__bridge_transfer NSString *)string;
 }
 
+/*
 +(NSData*) hexToBytes :(NSString*) string{
     NSMutableData* data = [NSMutableData data];
     int idx;
@@ -49,6 +37,48 @@
         [data appendBytes:&intValue length:1];
     }
     return data;
+}
+*/
+
++(NSData*) StringToData:(NSString*) string{
+    
+    Byte array[string.length];
+    int count = 0;
+    int prevIdx = 0;
+    for (int i = 0 ; i < string.length; i++) {
+        if([string characterAtIndex:i] == ' '){
+            
+            NSRange range = NSMakeRange(prevIdx, i - prevIdx);
+            NSString* substr = [string substringWithRange:range];
+            NSInteger value = [substr integerValue];
+            if(value >= 0 && value <= 255){
+                array[count++] = (uint8_t)value;
+                prevIdx = i+1;
+            }
+        }
+    }
+    
+    NSRange range = NSMakeRange(prevIdx, string.length - prevIdx);
+    NSString* substr = [string substringWithRange:range];
+    NSInteger value = [substr integerValue];
+    if(value >= 0 && value <= 255){
+        array[count++] = (uint8_t)value;
+    }
+    
+    return [NSData dataWithBytes:array length:count];
+}
+
++(NSString*) DataToString:(NSData*) data{
+    
+    Byte * array;
+    NSInteger length = [BLEHelper Data:data toArray:&array];
+    
+    NSString * string = @"";
+    
+    for (int i = 0 ; i < length; i++) {
+        string = [string stringByAppendingFormat:@" %d",array[i]];
+    }
+    return string;
 }
 
 @end
