@@ -28,3 +28,7 @@ typedef enum{
 } IFPinMode;
 
 extern NSString * const IFNotificationModeChanged;
+
+extern NSInteger const IFTextFieldHeight;
+
+#define IFMaxI2CRegisterSize 128

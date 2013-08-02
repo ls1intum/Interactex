@@ -16,10 +16,14 @@ typedef struct{
 } PinInfo;
 
 @class IFFirmataController;
+@class IFI2CComponent;
 
 @protocol IFFirmataControllerDelegate <NSObject>
 
--(void) firmataDidUpdatePins:(IFFirmataController*) firmataController;
+-(void) firmataDidUpdateDigitalPins:(IFFirmataController*) firmataController;
+-(void) firmataDidUpdateAnalogPins:(IFFirmataController*) firmataController;
+-(void) firmataDidUpdateI2CComponents:(IFFirmataController*) firmataController;
+
 -(void) firmata:(IFFirmataController*) firmataController didUpdateTitle:(NSString*) title;
 
 @end
@@ -32,6 +36,7 @@ typedef struct{
     PinInfo pinInfo[128];
     
     BOOL startedSysex;
+    BOOL startedI2C;
 }
 
 @property (nonatomic, readonly) NSInteger numDigitalPins;
@@ -40,6 +45,7 @@ typedef struct{
 
 @property (nonatomic, strong) NSMutableArray * digitalPins;
 @property (nonatomic, strong) NSMutableArray * analogPins;
+@property (nonatomic, strong) NSMutableArray * i2cComponents;
 @property (nonatomic, weak) BLEService * bleService;
 @property (nonatomic, weak) id<IFFirmataControllerDelegate> delegate;
 
@@ -47,8 +53,22 @@ typedef struct{
 
 -(void) start;
 -(void) stop;
--(void) sendPinModeForPin:(IFPin*) pin;
+
 -(void) sendFirmwareRequest;
+-(void) sendResetRequest;
+
+-(void) sendReportRequestForAnalogPin:(IFPin*) pin;
 -(void) stopReportingAnalogPins;
+
+-(void) sendPinModeForPin:(IFPin*) pin;
+-(void) sendPwmOutputForPin:(IFPin*) pin;
+-(void) sendOutputForPin:(IFPin*) pin;
+
+-(void) sendI2CStartStopReportingRequestForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
+-(void) sendI2CWriteData:(NSString*) data forRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
+-(void) stopReportingI2C;
+
+-(void) addI2CComponent:(IFI2CComponent*) component;
+-(void) removeI2CComponent:(IFI2CComponent*) component;
 
 @end

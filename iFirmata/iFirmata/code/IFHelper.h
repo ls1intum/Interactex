@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class IFI2CRegister;
 
 @interface IFHelper : NSObject
 
 +(BOOL) isPinPWM:(NSInteger) pinNumber;
 
++(NSString*) valueAsBracketedStringForI2CRegister:(IFI2CRegister*) reg;
 
 @end

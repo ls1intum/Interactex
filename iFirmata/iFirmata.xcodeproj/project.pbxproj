@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A17353817AAC3C2001DD4A4 /* optionsMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A17353617AAC3C2001DD4A4 /* optionsMenu.png */; };
+		9A17353917AAC3C2001DD4A4 /* optionsMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A17353717AAC3C2001DD4A4 /* optionsMenu@2x.png */; };
 		9A6F9A621780741800089B34 /* IFCharacteristicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */; };
 		9A6F9A651780754C00089B34 /* IFDeviceMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A641780754C00089B34 /* IFDeviceMenuViewController.m */; };
 		9A6F9A681780798A00089B34 /* IFCharacteristicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */; };
@@ -16,6 +18,11 @@
 		9A86CF8C17A2A99C00E3F9E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A86CF8B17A2A99B00E3F9E4 /* AudioToolbox.framework */; };
 		9A86CF9117A2B3E200E3F9E4 /* pullDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A86CF8F17A2B3E200E3F9E4 /* pullDown.wav */; };
 		9A86CF9417A2B3FE00E3F9E4 /* pullUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A86CF9317A2B3FE00E3F9E4 /* pullUp.wav */; };
+		9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */; };
+		9A86CFDD17A923E000E3F9E4 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFDC17A923DF00E3F9E4 /* IFI2CComponent.m */; };
+		9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */; };
+		9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */; };
+		9A86CFE917AA475B00E3F9E4 /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFE817AA475800E3F9E4 /* IFI2CRegister.m */; };
 		9AEE5933177CA8AC00C6D5E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */; };
 		9AEE5935177CA8AC00C6D5E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */; };
 		9AEE5937177CA8AC00C6D5E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5936177CA8AC00C6D5E8 /* CoreGraphics.framework */; };
@@ -42,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A17353617AAC3C2001DD4A4 /* optionsMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = optionsMenu.png; sourceTree = "<group>"; };
+		9A17353717AAC3C2001DD4A4 /* optionsMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "optionsMenu@2x.png"; sourceTree = "<group>"; };
 		9A6F9A601780741700089B34 /* IFCharacteristicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFCharacteristicsViewController.h; sourceTree = "<group>"; };
 		9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFCharacteristicsViewController.m; sourceTree = "<group>"; };
 		9A6F9A631780754C00089B34 /* IFDeviceMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFDeviceMenuViewController.h; sourceTree = "<group>"; };
@@ -55,6 +64,16 @@
 		9A86CF8B17A2A99B00E3F9E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9A86CF8F17A2B3E200E3F9E4 /* pullDown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pullDown.wav; sourceTree = "<group>"; };
 		9A86CF9317A2B3FE00E3F9E4 /* pullUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pullUp.wav; sourceTree = "<group>"; };
+		9A86CFD817A922BB00E3F9E4 /* IFI2CComponentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponentViewController.h; sourceTree = "<group>"; };
+		9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponentViewController.m; sourceTree = "<group>"; };
+		9A86CFDB17A923DF00E3F9E4 /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
+		9A86CFDC17A923DF00E3F9E4 /* IFI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponent.m; sourceTree = "<group>"; };
+		9A86CFDE17A92E1800E3F9E4 /* IFI2CComponentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponentCell.h; sourceTree = "<group>"; };
+		9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponentCell.m; sourceTree = "<group>"; };
+		9A86CFE417AA461A00E3F9E4 /* IFI2CRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegisterViewController.h; sourceTree = "<group>"; };
+		9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegisterViewController.m; sourceTree = "<group>"; };
+		9A86CFE717AA475600E3F9E4 /* IFI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegister.h; sourceTree = "<group>"; };
+		9A86CFE817AA475800E3F9E4 /* IFI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegister.m; sourceTree = "<group>"; };
 		9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFirmata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -182,15 +201,25 @@
 				9A6F9A601780741700089B34 /* IFCharacteristicsViewController.h */,
 				9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */,
 				9A6F9A661780798A00089B34 /* IFCharacteristicDetailsViewController.h */,
+				9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */,
 				9AEE59AB177D933800C6D5E8 /* IFFirmataController.h */,
 				9AEE59AC177D933800C6D5E8 /* IFFirmataController.m */,
 				9A86CF8017A2793000E3F9E4 /* IFDeviceCell.h */,
-				9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */,
 				9A86CF8117A2793100E3F9E4 /* IFDeviceCell.m */,
 				9AEE5961177CD3F300C6D5E8 /* IFPinCell.h */,
 				9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */,
 				9AEE5964177CDA5A00C6D5E8 /* IFPin.h */,
 				9AEE5965177CDA5A00C6D5E8 /* IFPin.m */,
+				9A86CFD817A922BB00E3F9E4 /* IFI2CComponentViewController.h */,
+				9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */,
+				9A86CFE417AA461A00E3F9E4 /* IFI2CRegisterViewController.h */,
+				9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */,
+				9A86CFDE17A92E1800E3F9E4 /* IFI2CComponentCell.h */,
+				9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */,
+				9A86CFDB17A923DF00E3F9E4 /* IFI2CComponent.h */,
+				9A86CFDC17A923DF00E3F9E4 /* IFI2CComponent.m */,
+				9A86CFE717AA475600E3F9E4 /* IFI2CRegister.h */,
+				9A86CFE817AA475800E3F9E4 /* IFI2CRegister.m */,
 			);
 			path = code;
 			sourceTree = "<group>";
@@ -198,11 +227,13 @@
 		9AEE5952177CA90F00C6D5E8 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE5953177CA90F00C6D5E8 /* Storyboard.storyboard */,
+				9A17353617AAC3C2001DD4A4 /* optionsMenu.png */,
+				9A17353717AAC3C2001DD4A4 /* optionsMenu@2x.png */,
 				9A86CF8F17A2B3E200E3F9E4 /* pullDown.wav */,
 				9A86CF9317A2B3FE00E3F9E4 /* pullUp.wav */,
 				9A86CF8517A2A13300E3F9E4 /* arrowDown.png */,
 				9A86CF8317A29F7000E3F9E4 /* arrowUp.png */,
-				9AEE5953177CA90F00C6D5E8 /* Storyboard.storyboard */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -294,6 +325,8 @@
 				9A86CF8617A2A13300E3F9E4 /* arrowDown.png in Resources */,
 				9A86CF9117A2B3E200E3F9E4 /* pullDown.wav in Resources */,
 				9A86CF9417A2B3FE00E3F9E4 /* pullUp.wav in Resources */,
+				9A17353817AAC3C2001DD4A4 /* optionsMenu.png in Resources */,
+				9A17353917AAC3C2001DD4A4 /* optionsMenu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +354,11 @@
 				9A6F9A651780754C00089B34 /* IFDeviceMenuViewController.m in Sources */,
 				9A6F9A681780798A00089B34 /* IFCharacteristicDetailsViewController.m in Sources */,
 				9A86CF8217A2793100E3F9E4 /* IFDeviceCell.m in Sources */,
+				9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */,
+				9A86CFDD17A923E000E3F9E4 /* IFI2CComponent.m in Sources */,
+				9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */,
+				9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */,
+				9A86CFE917AA475B00E3F9E4 /* IFI2CRegister.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

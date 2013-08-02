@@ -8,17 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "IFFirmataController.h"
+#import "IFI2CComponentViewController.h"
 
 @class IFFirmataController;
 @class CBPeripheral;
 
-@interface IFFirmataViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerDelegate>
+@interface IFFirmataViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
 {
     BOOL connected;
+    BOOL goingToI2CScene;
 }
 
-@property (nonatomic, strong) IFFirmataController * firmataController;
+@property (weak, nonatomic) IFFirmataController * firmataController;
 @property (weak, nonatomic) IBOutlet UITableView *table;
-- (IBAction)versionTapped:(id)sender;
+
+@property (strong, nonatomic) IFI2CComponent *removingComponent;
+@property (strong, nonatomic) NSIndexPath *removingComponentPath;
+
+- (IBAction)addI2CTapped:(id)sender;
 
 @end
