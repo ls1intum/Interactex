@@ -10,6 +10,7 @@
 #import "BLEService.h"
 #import "IFCharacteristicDetailsViewController.h"
 #import "BLEDiscovery.h"
+#import "BLEHelper.h"
 
 @implementation IFCharacteristicsViewController
 
@@ -34,16 +35,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark TableViewDataSource
 /*
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    self.bleService.
-    return [BLEDiscovery sharedInstance].foundPeripherals.count;
+    if(section == 0){
+        return 2;
+    } else {
+        return 5;
+    }
+    //return [BLEDiscovery sharedInstance].foundPeripherals.count;
 }
 
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSInteger row = indexPath.row;
     CBCharacteristic * peripheral = [self characteristicWithIdx:row];
     
@@ -53,13 +59,35 @@
     cell.detailTextLabel.text = [IFHelper UUIDToString:peripheral.UUID];
     
     return cell;
-}*/
+}
+*/
 
 #pragma mark TableViewDelegate
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        if(indexPath.row == 0) {
+            CBPeripheral * peripheral = [BLEDiscovery sharedInstance].currentPeripheral;
+            if(peripheral){
+                
+                CBUUID * uuid = [CBUUID UUIDWithCFUUID:peripheral.UUID];
+                cell.detailTextLabel.text = [BLEHelper UUIDToString:uuid];
+            }
+            
+        } else if(indexPath.row == 1){
+            BLEService * service = [BLEDiscovery sharedInstance].connectedService;
+            if(service){
+                
+                cell.detailTextLabel.text = [BLEHelper UUIDToString:(service.uuid)];
+            }
+        }
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self performSegueWithIdentifier:@"toCharacteristicDetailsSegue" sender:self];
+    if(indexPath.section == 1){
+        [self performSegueWithIdentifier:@"toCharacteristicDetailsSegue" sender:self];
+    }
 }
 
 -(CBCharacteristic*) characteristicWithIdx:(NSInteger) idx{
@@ -94,6 +122,5 @@
         }
     }
 }
-
 
 @end

@@ -9,9 +9,9 @@
 #import "IFConstants.h"
 
 
-NSInteger const IFNumDigitalPins = 14;
-NSInteger const IFNumAnalogPins = 6;
-
 NSString * const IFNotificationModeChanged = @"IFNotificationModeChanged";
 
 NSInteger const IFTextFieldHeight = 44;
+
+
+NSString * const IFDefaultsI2CComponents = @"i2cComponents";

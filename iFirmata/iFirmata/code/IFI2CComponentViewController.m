@@ -49,7 +49,9 @@
 
 -(void) reloadUI{
     
-    self.nameTextField.text = self.component.name;
+    if(![self.component.name isEqualToString:@"New I2C Component"]){
+        self.nameTextField.text = self.component.name;
+    }
     self.addressTextField.text = [NSString stringWithFormat:@"%d",self.component.address];
 }
 
@@ -63,20 +65,45 @@
 -(void) viewWillAppear:(BOOL)animated{
     [self reloadUI];
     
+    [self addRegisterObservers];
+    
     if(self.table.indexPathForSelectedRow){
         [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
     }
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    if(self.removingRegister){
+        [self removeRegisterCellAnimated];
+    }
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [self removeRegisterObservers];
+}
+
+#pragma mark - Register Observers
+
+-(void) addRegisterObservers{
+    for (IFI2CRegister * reg in self.component.registers) {
+        [reg addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+        [reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+-(void) removeRegisterObservers{
+    for (IFI2CRegister * reg in self.component.registers) {
+        [reg removeObserver:self forKeyPath:@"value"];
+        [reg removeObserver:self forKeyPath:@"notifies"];
+    }
+}
+
+#pragma mark - Register Observers
+
 -(NSString*) title{
     if(self.component){
         return self.component.name;
     } else return @"I2C Component";
-}
-
--(void) tapped:(UITapGestureRecognizer*) recognizer{
-    //CGPoint location = [recognizer locationInView:self.view];
-    [self resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,25 +112,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)removeTapped:(id)sender {
-    [self.delegate i2cComponentRemoved:self.component];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (IBAction)addRegisterTapped:(id)sender {
     
     IFI2CRegister * newRegister = [[IFI2CRegister alloc] init];
     newRegister.number = 32;
     newRegister.size = 6;
     
-    [self.component addRegister:newRegister];
-    /*
-    UITableViewCell * cell = [self.table dequeueReusableCellWithIdentifier:@"i2cRegisterCell"];
-    cell.textLabel.text =  [NSString stringWithFormat:@"Register #%d", newRegister.number];*/
+    [self.delegate i2cComponent:self.component addedRegister:newRegister];
     
-    //[self.table reloadData];
+    //[self.component addRegister:newRegister];
     
+    [newRegister addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    [newRegister addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
+
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.component.registers.count-1 inSection:0];
     [self.table insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
     [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -134,16 +155,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView  {
     return 1;
 }
-/*
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0) {
-        return @"Digital";
-    } else if(section == 1){
-        return @"Analog";
-    } else {
-        return @"I2C";
-    }
-}*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.component.registers.count;
@@ -157,7 +168,7 @@
     
     IFI2CRegister * reg = [self.component.registers objectAtIndex:idx];
     cell.textLabel.text =  [NSString stringWithFormat:@"Register #%d", reg.number];
-    cell.detailTextLabel.text = @"";
+    cell.detailTextLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:reg];
     
     return cell;
 }
@@ -177,26 +188,99 @@
 
 #pragma mark - RegisterController delegate
 
--(void) i2cRegister:(IFI2CRegister *)reg wroteData:(NSString *)data{
-    
-    [self.delegate i2cComponent:self.component wroteData:data toRegister:reg];
-}
-
--(void) i2cRegisterStartedNotifying:(IFI2CRegister *)reg{
-    [self.delegate i2cComponent:self.component startedNotifyingRegister:reg];
-}
-
--(void) i2cRegisterStoppedNotifying:(IFI2CRegister *)reg{
-    [self.delegate i2cComponent:self.component stoppedNotifyingRegister:reg];
-}
-
-
--(void) i2cRegister:(IFI2CRegister*) reg changedNumber:(NSInteger) newNumber{
+-(NSIndexPath*) indexPathForRegister:(IFI2CRegister*) reg{
     NSInteger row = [self.component.registers indexOfObject:reg];
     if(row>= 0 && row < self.component.registers.count){
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        return indexPath;
     }
+    return nil;
+}
+
+-(void) i2cRegister:(IFI2CRegister *)reg wroteData:(NSString *)data{
+    [self.delegate i2cComponent:self.component wroteData:data toRegister:reg];
+}
+
+-(void) i2cRegister:(IFI2CRegister*) reg changedNumber:(NSInteger) newNumber{
+    NSIndexPath * indexPath = [self indexPathForRegister:reg];
+    [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+#pragma mark - Register Observer
+
+-(void) handleStartedNotifyingRegister:(IFI2CRegister*) reg{
+    
+}
+
+-(void) handleStoppedNotifyingRegister:(IFI2CRegister*) reg{
+    
+    NSIndexPath * indexPath = [self indexPathForRegister:reg];
+    [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+
+//called after view did appear when there is a component to remove
+-(void) removeRegisterCellAnimated{
+        
+    [self.table scrollToRowAtIndexPath:self.removingRegisterPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.removingRegisterPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    self.removingRegister = nil;
+    self.removingRegisterPath = nil;
+}
+
+-(void) i2cRegisterRemoved:(IFI2CRegister *)reg{
+    
+    //[reg removeObserver:self forKeyPath:@"value"];
+    
+    NSInteger row = [self.component.registers indexOfObject:reg];
+    self.removingRegisterPath = [NSIndexPath indexPathForRow:row inSection:0];
+    
+    //[self.component removeRegister:reg];
+    [self.delegate i2cComponent:self.component removedRegister:reg];
+    
+    self.removingRegister = reg;
+}
+
+#pragma mark - Remove ActionSheet
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        [self.delegate i2cComponentRemoved:self.component];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (IBAction)removeTapped:(id)sender {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Remove Component"
+                                                    otherButtonTitles:nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    
+    [actionSheet showInView:[self view]];
+}
+
+#pragma mark - Value Observed
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if([keyPath isEqualToString:@"value"]){
+        NSInteger idx = [self.component.registers indexOfObject:object];
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+        [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    } else if([keyPath isEqualToString:@"notifies"]){
+        IFI2CRegister * reg = object;
+        if(reg.notifies){
+            [self handleStartedNotifyingRegister:reg];
+        } else {
+            [self handleStoppedNotifyingRegister:reg];
+        }
+    }
+    
 }
 
 @end

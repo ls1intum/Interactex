@@ -16,15 +16,17 @@
 }
 
 +(NSString*) valueAsBracketedStringForI2CRegister:(IFI2CRegister*) reg{
-    if(reg.numBytes <= 0){
+    if(!reg.notifies || reg.value.length <= 0){
         return @"";
     }
     
+    uint8_t* bytes = (uint8_t*)reg.value.bytes;
+    
     NSString * string = @"[";
-    for (int i = 0; i < reg.numBytes-1; i++) {
-        string = [NSString stringWithFormat:@"%d, ", reg.values[i]];
+    for (int i = 0; i < reg.value.length-1; i++) {
+        string = [string stringByAppendingFormat:@"%d, ", bytes[i]];
     }
-    return [NSString stringWithFormat:@"%d]", reg.values[reg.numBytes-1]];
+    return [string stringByAppendingFormat:@"%d]", bytes[reg.value.length-1]];
 }
 
 @end

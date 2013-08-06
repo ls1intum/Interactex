@@ -11,6 +11,27 @@
 
 @implementation IFI2CComponent
 
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeInt:self.address forKey:@"address"];
+    [aCoder encodeObject:self.registers forKey:@"registers"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.address = [aDecoder decodeIntegerForKey:@"address"];
+        self.registers = [aDecoder decodeObjectForKey:@"registers"];
+    }
+    return self;
+}
+
+#pragma mark - Methods
+
 -(id) init{
     self = [super init];
     if(self){
@@ -20,11 +41,12 @@
 }
 
 -(void) addRegister:(IFI2CRegister*) reg{
+    
     [self.registers addObject:reg];
 }
 
 -(void) removeRegister:(IFI2CRegister *)reg{
-    [self.registers removeObject:reg];
+   [self.registers removeObject:reg];
 }
 
 -(IFI2CRegister*) registerWithNumber:(NSInteger) number{

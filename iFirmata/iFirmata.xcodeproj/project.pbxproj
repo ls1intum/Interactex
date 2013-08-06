@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A17353817AAC3C2001DD4A4 /* optionsMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A17353617AAC3C2001DD4A4 /* optionsMenu.png */; };
 		9A17353917AAC3C2001DD4A4 /* optionsMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A17353717AAC3C2001DD4A4 /* optionsMenu@2x.png */; };
+		9A1735DD17B138C4001DD4A4 /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1735DC17B138BD001DD4A4 /* libBLEFirmata.a */; };
 		9A6F9A621780741800089B34 /* IFCharacteristicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */; };
 		9A6F9A651780754C00089B34 /* IFDeviceMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A641780754C00089B34 /* IFDeviceMenuViewController.m */; };
 		9A6F9A681780798A00089B34 /* IFCharacteristicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */; };
@@ -19,10 +20,8 @@
 		9A86CF9117A2B3E200E3F9E4 /* pullDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A86CF8F17A2B3E200E3F9E4 /* pullDown.wav */; };
 		9A86CF9417A2B3FE00E3F9E4 /* pullUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A86CF9317A2B3FE00E3F9E4 /* pullUp.wav */; };
 		9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */; };
-		9A86CFDD17A923E000E3F9E4 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFDC17A923DF00E3F9E4 /* IFI2CComponent.m */; };
 		9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */; };
 		9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */; };
-		9A86CFE917AA475B00E3F9E4 /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFE817AA475800E3F9E4 /* IFI2CRegister.m */; };
 		9AEE5933177CA8AC00C6D5E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */; };
 		9AEE5935177CA8AC00C6D5E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */; };
 		9AEE5937177CA8AC00C6D5E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5936177CA8AC00C6D5E8 /* CoreGraphics.framework */; };
@@ -37,20 +36,32 @@
 		9AEE595A177CB01C00C6D5E8 /* IFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE5959177CB01C00C6D5E8 /* IFHelper.m */; };
 		9AEE595D177CD29700C6D5E8 /* IFFirmataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE595C177CD29700C6D5E8 /* IFFirmataViewController.m */; };
 		9AEE5963177CD3F300C6D5E8 /* IFPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */; };
-		9AEE5966177CDA5A00C6D5E8 /* IFPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE5965177CDA5A00C6D5E8 /* IFPin.m */; };
 		9AEE59AA177CE78B00C6D5E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE59A9177CE78B00C6D5E8 /* QuartzCore.framework */; };
-		9AEE59AD177D933800C6D5E8 /* IFFirmataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE59AC177D933800C6D5E8 /* IFFirmataController.m */; };
-		9AEE59B5177DD05900C6D5E8 /* BLEService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE59B0177DD05900C6D5E8 /* BLEService.m */; };
-		9AEE59B6177DD05900C6D5E8 /* BLEDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE59B2177DD05900C6D5E8 /* BLEDiscovery.m */; };
-		9AEE59B7177DD05900C6D5E8 /* BLEHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE59B4177DD05900C6D5E8 /* BLEHelper.m */; };
-		9AEE59BA177DD26100C6D5E8 /* BLEPinModeDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE59B9177DD26100C6D5E8 /* BLEPinModeDescriptor.m */; };
 		9AEE59BC177DD31700C6D5E8 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE59BB177DD31700C6D5E8 /* CoreBluetooth.framework */; };
 		9AEE59BF177DEA7500C6D5E8 /* IFConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE59BE177DEA7400C6D5E8 /* IFConstants.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9A1735DB17B138BD001DD4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1735D717B138BD001DD4A4 /* BLEFirmata.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A17359617B11D87001DD4A4;
+			remoteInfo = BLEFirmata;
+		};
+		9A1735DE17B138CA001DD4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1735D717B138BD001DD4A4 /* BLEFirmata.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
+			remoteInfo = BLEFirmata;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9A17353617AAC3C2001DD4A4 /* optionsMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = optionsMenu.png; sourceTree = "<group>"; };
 		9A17353717AAC3C2001DD4A4 /* optionsMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "optionsMenu@2x.png"; sourceTree = "<group>"; };
+		9A1735D717B138BD001DD4A4 /* BLEFirmata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLEFirmata.xcodeproj; path = ../Frameworks/BLEFirmata/BLEFirmata.xcodeproj; sourceTree = "<group>"; };
 		9A6F9A601780741700089B34 /* IFCharacteristicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFCharacteristicsViewController.h; sourceTree = "<group>"; };
 		9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFCharacteristicsViewController.m; sourceTree = "<group>"; };
 		9A6F9A631780754C00089B34 /* IFDeviceMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFDeviceMenuViewController.h; sourceTree = "<group>"; };
@@ -66,14 +77,10 @@
 		9A86CF9317A2B3FE00E3F9E4 /* pullUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pullUp.wav; sourceTree = "<group>"; };
 		9A86CFD817A922BB00E3F9E4 /* IFI2CComponentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponentViewController.h; sourceTree = "<group>"; };
 		9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponentViewController.m; sourceTree = "<group>"; };
-		9A86CFDB17A923DF00E3F9E4 /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
-		9A86CFDC17A923DF00E3F9E4 /* IFI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponent.m; sourceTree = "<group>"; };
 		9A86CFDE17A92E1800E3F9E4 /* IFI2CComponentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponentCell.h; sourceTree = "<group>"; };
 		9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponentCell.m; sourceTree = "<group>"; };
 		9A86CFE417AA461A00E3F9E4 /* IFI2CRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegisterViewController.h; sourceTree = "<group>"; };
 		9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegisterViewController.m; sourceTree = "<group>"; };
-		9A86CFE717AA475600E3F9E4 /* IFI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegister.h; sourceTree = "<group>"; };
-		9A86CFE817AA475800E3F9E4 /* IFI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegister.m; sourceTree = "<group>"; };
 		9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFirmata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,19 +103,7 @@
 		9AEE595C177CD29700C6D5E8 /* IFFirmataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataViewController.m; sourceTree = "<group>"; };
 		9AEE5961177CD3F300C6D5E8 /* IFPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFPinCell.h; sourceTree = "<group>"; };
 		9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPinCell.m; sourceTree = "<group>"; };
-		9AEE5964177CDA5A00C6D5E8 /* IFPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFPin.h; sourceTree = "<group>"; };
-		9AEE5965177CDA5A00C6D5E8 /* IFPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPin.m; sourceTree = "<group>"; };
 		9AEE59A9177CE78B00C6D5E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9AEE59AB177D933800C6D5E8 /* IFFirmataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataController.h; sourceTree = "<group>"; };
-		9AEE59AC177D933800C6D5E8 /* IFFirmataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataController.m; sourceTree = "<group>"; };
-		9AEE59AF177DD05900C6D5E8 /* BLEService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEService.h; sourceTree = "<group>"; };
-		9AEE59B0177DD05900C6D5E8 /* BLEService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEService.m; sourceTree = "<group>"; };
-		9AEE59B1177DD05900C6D5E8 /* BLEDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDiscovery.h; sourceTree = "<group>"; };
-		9AEE59B2177DD05900C6D5E8 /* BLEDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDiscovery.m; sourceTree = "<group>"; };
-		9AEE59B3177DD05900C6D5E8 /* BLEHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEHelper.h; sourceTree = "<group>"; };
-		9AEE59B4177DD05900C6D5E8 /* BLEHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEHelper.m; sourceTree = "<group>"; };
-		9AEE59B8177DD26100C6D5E8 /* BLEPinModeDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEPinModeDescriptor.h; sourceTree = "<group>"; };
-		9AEE59B9177DD26100C6D5E8 /* BLEPinModeDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEPinModeDescriptor.m; sourceTree = "<group>"; };
 		9AEE59BB177DD31700C6D5E8 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9AEE59BD177DEA7400C6D5E8 /* IFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFConstants.h; sourceTree = "<group>"; };
 		9AEE59BE177DEA7400C6D5E8 /* IFConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFConstants.m; sourceTree = "<group>"; };
@@ -119,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1735DD17B138C4001DD4A4 /* libBLEFirmata.a in Frameworks */,
 				9A86CF8C17A2A99C00E3F9E4 /* AudioToolbox.framework in Frameworks */,
 				9AEE59BC177DD31700C6D5E8 /* CoreBluetooth.framework in Frameworks */,
 				9AEE59AA177CE78B00C6D5E8 /* QuartzCore.framework in Frameworks */,
@@ -131,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1735D817B138BD001DD4A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A1735DC17B138BD001DD4A4 /* libBLEFirmata.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9AEE5926177CA8AB00C6D5E8 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +155,7 @@
 		9AEE5931177CA8AC00C6D5E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A1735D717B138BD001DD4A4 /* BLEFirmata.xcodeproj */,
 				9A86CF8B17A2A99B00E3F9E4 /* AudioToolbox.framework */,
 				9AEE59BB177DD31700C6D5E8 /* CoreBluetooth.framework */,
 				9AEE59A9177CE78B00C6D5E8 /* QuartzCore.framework */,
@@ -191,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				9AEE59C0177DEAAB00C6D5E8 /* Utils */,
-				9AEE59AE177DD05900C6D5E8 /* BLE */,
 				9AEE5955177CAA2E00C6D5E8 /* IFMainViewController.h */,
 				9AEE5956177CAA2E00C6D5E8 /* IFMainViewController.m */,
 				9A6F9A631780754C00089B34 /* IFDeviceMenuViewController.h */,
@@ -202,24 +206,16 @@
 				9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */,
 				9A6F9A661780798A00089B34 /* IFCharacteristicDetailsViewController.h */,
 				9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */,
-				9AEE59AB177D933800C6D5E8 /* IFFirmataController.h */,
-				9AEE59AC177D933800C6D5E8 /* IFFirmataController.m */,
-				9A86CF8017A2793000E3F9E4 /* IFDeviceCell.h */,
-				9A86CF8117A2793100E3F9E4 /* IFDeviceCell.m */,
-				9AEE5961177CD3F300C6D5E8 /* IFPinCell.h */,
-				9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */,
-				9AEE5964177CDA5A00C6D5E8 /* IFPin.h */,
-				9AEE5965177CDA5A00C6D5E8 /* IFPin.m */,
 				9A86CFD817A922BB00E3F9E4 /* IFI2CComponentViewController.h */,
 				9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */,
 				9A86CFE417AA461A00E3F9E4 /* IFI2CRegisterViewController.h */,
 				9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */,
+				9A86CF8017A2793000E3F9E4 /* IFDeviceCell.h */,
+				9A86CF8117A2793100E3F9E4 /* IFDeviceCell.m */,
+				9AEE5961177CD3F300C6D5E8 /* IFPinCell.h */,
+				9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */,
 				9A86CFDE17A92E1800E3F9E4 /* IFI2CComponentCell.h */,
 				9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */,
-				9A86CFDB17A923DF00E3F9E4 /* IFI2CComponent.h */,
-				9A86CFDC17A923DF00E3F9E4 /* IFI2CComponent.m */,
-				9A86CFE717AA475600E3F9E4 /* IFI2CRegister.h */,
-				9A86CFE817AA475800E3F9E4 /* IFI2CRegister.m */,
 			);
 			path = code;
 			sourceTree = "<group>";
@@ -236,21 +232,6 @@
 				9A86CF8317A29F7000E3F9E4 /* arrowUp.png */,
 			);
 			path = resources;
-			sourceTree = "<group>";
-		};
-		9AEE59AE177DD05900C6D5E8 /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-				9AEE59B8177DD26100C6D5E8 /* BLEPinModeDescriptor.h */,
-				9AEE59B9177DD26100C6D5E8 /* BLEPinModeDescriptor.m */,
-				9AEE59AF177DD05900C6D5E8 /* BLEService.h */,
-				9AEE59B0177DD05900C6D5E8 /* BLEService.m */,
-				9AEE59B1177DD05900C6D5E8 /* BLEDiscovery.h */,
-				9AEE59B2177DD05900C6D5E8 /* BLEDiscovery.m */,
-				9AEE59B3177DD05900C6D5E8 /* BLEHelper.h */,
-				9AEE59B4177DD05900C6D5E8 /* BLEHelper.m */,
-			);
-			path = BLE;
 			sourceTree = "<group>";
 		};
 		9AEE59C0177DEAAB00C6D5E8 /* Utils */ = {
@@ -278,6 +259,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A1735DF17B138CA001DD4A4 /* PBXTargetDependency */,
 			);
 			name = iFirmata;
 			productName = iFirmata;
@@ -304,12 +286,28 @@
 			mainGroup = 9AEE5926177CA8AB00C6D5E8;
 			productRefGroup = 9AEE5930177CA8AC00C6D5E8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A1735D817B138BD001DD4A4 /* Products */;
+					ProjectRef = 9A1735D717B138BD001DD4A4 /* BLEFirmata.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9AEE592E177CA8AB00C6D5E8 /* iFirmata */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A1735DC17B138BD001DD4A4 /* libBLEFirmata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBLEFirmata.a;
+			remoteRef = 9A1735DB17B138BD001DD4A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AEE592D177CA8AB00C6D5E8 /* Resources */ = {
@@ -343,26 +341,26 @@
 				9AEE595A177CB01C00C6D5E8 /* IFHelper.m in Sources */,
 				9AEE595D177CD29700C6D5E8 /* IFFirmataViewController.m in Sources */,
 				9AEE5963177CD3F300C6D5E8 /* IFPinCell.m in Sources */,
-				9AEE5966177CDA5A00C6D5E8 /* IFPin.m in Sources */,
-				9AEE59AD177D933800C6D5E8 /* IFFirmataController.m in Sources */,
-				9AEE59B5177DD05900C6D5E8 /* BLEService.m in Sources */,
-				9AEE59B6177DD05900C6D5E8 /* BLEDiscovery.m in Sources */,
-				9AEE59B7177DD05900C6D5E8 /* BLEHelper.m in Sources */,
-				9AEE59BA177DD26100C6D5E8 /* BLEPinModeDescriptor.m in Sources */,
 				9AEE59BF177DEA7500C6D5E8 /* IFConstants.m in Sources */,
 				9A6F9A621780741800089B34 /* IFCharacteristicsViewController.m in Sources */,
 				9A6F9A651780754C00089B34 /* IFDeviceMenuViewController.m in Sources */,
 				9A6F9A681780798A00089B34 /* IFCharacteristicDetailsViewController.m in Sources */,
 				9A86CF8217A2793100E3F9E4 /* IFDeviceCell.m in Sources */,
 				9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */,
-				9A86CFDD17A923E000E3F9E4 /* IFI2CComponent.m in Sources */,
 				9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */,
 				9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */,
-				9A86CFE917AA475B00E3F9E4 /* IFI2CRegister.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A1735DF17B138CA001DD4A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BLEFirmata;
+			targetProxy = 9A1735DE17B138CA001DD4A4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9AEE593B177CA8AC00C6D5E8 /* InfoPlist.strings */ = {
@@ -439,6 +437,7 @@
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "../Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -450,6 +449,7 @@
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "../Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

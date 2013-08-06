@@ -60,59 +60,34 @@
     
     //CGRect segmentFrame = CGRectMake(175, 10, 130, 33);
     self.digitalControl.hidden = NO;
-    
-    /*
-    NSArray * items = [NSArray arrayWithObjects:@"LOW",@"HIGH",nil];
-    
-    self.digitalControl = [[UISegmentedControl alloc] initWithItems:items];
-    
-    self.digitalControl.selectedSegmentIndex = self.pin.value;
-    self.digitalControl.frame = segmentFrame;
-    
-    [self.digitalControl addTarget:self action:@selector(digitalControlChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    [self addSubview:self.digitalControl];*/
+
 }
 
 -(void) addValueLabel{
     self.valueLabel.hidden = NO;
-    /*
-    CGRect labelFrame = CGRectMake(220, 10, 82, 35);
-    
-    self.valueLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    self.valueLabel.layer.borderWidth = 1.0f;
-    self.valueLabel.textAlignment = NSTextAlignmentCenter;
-    
-    [self addSubview:self.valueLabel];*/
+
 }
 
 -(void) addSlider{
+    if(self.pin.mode == IFPinModeServo){
+        self.slider.maximumValue = 180;
+    } else {
+        self.slider.maximumValue = 255;
+    }
     self.slider.hidden = NO;
-    /*
-    CGRect sliderFrame = CGRectMake(175, 8, 135, 35);
-    
-    self.slider = [[UISlider alloc] initWithFrame:sliderFrame];
-    self.slider.minimumValue = 0;
-    self.slider.maximumValue = 255;
-    [self.slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    [self addSubview:self.slider];*/
 }
 
 -(void) removeControls{
     if(self.digitalControl){
         self.digitalControl.hidden = YES;
-        //[self.digitalControl removeFromSuperview];
     }
     
     if(self.valueLabel){
         self.valueLabel.hidden = YES;
-        //[self.valueLabel removeFromSuperview];
     }
     
     if(self.slider){
         self.slider.hidden = YES;
-        //[self.slider removeFromSuperview];
     }
 }
 
@@ -138,6 +113,7 @@
             
             self.modeControl.selectedSegmentIndex = 2;
             [self addSlider];
+            [self updateSlider];
         }
     } else {
         
@@ -164,16 +140,14 @@
 }
 
 -(IBAction) segmentedControlChanged:(UISegmentedControl*) sender{
-    if(self.pin.type == IFPinTypeDigital){
+    if(sender.selectedSegmentIndex < 2){
         self.pin.mode = sender.selectedSegmentIndex;
-        
+    } else if(sender.selectedSegmentIndex == 2){
+        self.pin.mode = IFPinModeServo;
     } else {
-        if(sender.selectedSegmentIndex == 2){
-            self.pin.mode = IFPinModeAnalog;
-        } else {
-            self.pin.mode = sender.selectedSegmentIndex;
-        }
-    }
+        self.pin.mode = IFPinModePWM;
+    }/*
+    self.pin.mode = (sender.selectedSegmentIndex >= 2) ? sender.selectedSegmentIndex -1 : sender.selectedSegmentIndex;*/
     
     [self reloadPinModeControls];
 }
@@ -196,7 +170,7 @@
 
 -(IBAction) sliderChanged:(UISlider*) sender{
     
-    if(sender.value == 0 || fabs(self.pin.value - sender.value) > 10){
+    if(self.pin.value != sender.value && (sender.value == 0 || fabs(self.pin.value - sender.value) > 10)){
         [self.pin removeObserver:self forKeyPath:@"value"];
         self.pin.value = sender.value;
         [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];

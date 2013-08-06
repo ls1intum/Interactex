@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IFI2CRegister : NSObject
+
+#define IFMaxI2CRegisterSize 128
+
+@interface IFI2CRegister : NSObject <NSCoding>
 {
     NSInteger _values[IFMaxI2CRegisterSize];
 }
@@ -16,9 +19,7 @@
 @property (nonatomic) NSInteger number;
 @property (nonatomic) NSInteger size;
 @property (nonatomic) NSInteger numBytes;
-@property (nonatomic, readonly) NSInteger * values;
+@property (strong, nonatomic) NSData * value;
 @property (nonatomic) BOOL notifies;
-
--(void) setValues:(NSInteger *)values withSize:(NSInteger) size;
 
 @end

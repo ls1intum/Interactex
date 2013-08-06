@@ -16,3 +16,4 @@
 #import "IFHelper.h"
 #import "IFConstants.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BLEFirmata.h"

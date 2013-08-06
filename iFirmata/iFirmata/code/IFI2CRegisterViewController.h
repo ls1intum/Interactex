@@ -15,11 +15,10 @@
 
 -(void) i2cRegister:(IFI2CRegister*) reg changedNumber:(NSInteger) newNumber;
 -(void) i2cRegister:(IFI2CRegister*) reg wroteData:(NSString*) data;
--(void) i2cRegisterStartedNotifying:(IFI2CRegister*) reg;
--(void) i2cRegisterStoppedNotifying:(IFI2CRegister*) reg;
+-(void) i2cRegisterRemoved:(IFI2CRegister*) reg;
 @end
 
-@interface IFI2CRegisterViewController : UIViewController
+@interface IFI2CRegisterViewController : UIViewController <UIActionSheetDelegate>
 {
     UIColor * defaultButtonColor;
 }
@@ -36,5 +35,6 @@
 
 - (IBAction)startTapped:(id)sender;
 - (IBAction)sendTapped:(id)sender;
+- (IBAction)removeTapped:(id)sender;
 
 @end

@@ -30,7 +30,7 @@
     self.label.layer.borderWidth = 1.0f;
     self.label.layer.cornerRadius = 5.0f;
     
-    [self readCharacteristicAndUpdateLabel];
+    [self updateLabel];
     
     /*
     CGSize scrollContentSize = CGSizeMake(self.view.frame.size.width,self.view.frame.size.height + kKeyboardOffset);
@@ -48,17 +48,20 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) viewWillAppear:(BOOL)animated{
-    
-    //NSLog(@"notified: %d comp: %d",self.currentCharacteristic.properties,self.currentCharacteristic.properties & CBCharacteristicPropertyNotify);
-    
+-(void) updateCharacteristicUUID{
+    self.uuidLabel.text = [BLEHelper UUIDToString:self.currentCharacteristic.UUID];
+}
+
+-(void) updateCharacteristicNotify{
     if(self.currentCharacteristic.properties & CBCharacteristicPropertyNotify){
         self.notifyControl.selectedSegmentIndex = self.currentCharacteristic.isNotifying;
         self.notifyControl.hidden = NO;
     } else {
         self.notifyControl.hidden = YES;
     }
-    
+}
+
+-(void) updateCharacteristicWrite{
     if(self.currentCharacteristic.properties & CBCharacteristicPropertyWrite){
         self.writeText.hidden = NO;
         self.writeButton.hidden = NO;
@@ -66,6 +69,16 @@
         self.writeText.hidden = YES;
         self.writeButton.hidden = YES;
     }
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    
+    self.bleService.dataDelegate = self;
+    
+    [self updateCharacteristicUUID];
+    [self updateCharacteristicNotify];
+    [self updateCharacteristicWrite];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -88,7 +101,7 @@
                                                   object:nil];
 }
 
--(void) readCharacteristicAndUpdateLabel{
+-(void) updateLabel{
 
     NSString * string = [BLEHelper DataToString:self.currentCharacteristic.value];
     
@@ -96,7 +109,9 @@
 }
 
 - (IBAction)readPushed:(id)sender {
-    [self readCharacteristicAndUpdateLabel];
+    [self.bleService updateCharacteristic:self.currentCharacteristic];
+
+    //[self updateLabel];
 }
 
 - (IBAction)writePushed:(id)sender {
@@ -104,8 +119,6 @@
     NSData * data = [BLEHelper StringToData:self.writeText.text];
     
     [self.bleService.peripheral writeValue:data forCharacteristic:self.bleService.txCharacteristic type:CBCharacteristicWriteWithResponse];
-    [self.bleService.peripheral readValueForCharacteristic:self.bleService.txCharacteristic];
-    
 }
 
 -(void)keyboardWillShow:(NSNotification*) notification {
@@ -170,6 +183,20 @@
     
     [self.writeText resignFirstResponder];
     return YES;
+}
+
+#pragma mark - BleDataDelegate
+
+-(void) updatedValueForCharacteristic:(CBCharacteristic *)characteristic{
+    if(self.currentCharacteristic == characteristic){
+        [self updateLabel];
+    }
+}
+
+-(void) dataReceived:(Byte *)buffer lenght:(NSInteger)length{
+    if(self.currentCharacteristic == self.bleService.rxCharacteristic){
+        [self updateLabel];
+    }
 }
 
 @end

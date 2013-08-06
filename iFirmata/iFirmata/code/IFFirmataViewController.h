@@ -25,6 +25,6 @@
 @property (strong, nonatomic) IFI2CComponent *removingComponent;
 @property (strong, nonatomic) NSIndexPath *removingComponentPath;
 
-- (IBAction)addI2CTapped:(id)sender;
+- (IBAction) optionsMenuTapped:(id)sender;
 
 @end

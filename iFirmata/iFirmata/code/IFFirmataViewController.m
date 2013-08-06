@@ -31,6 +31,8 @@
     
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.firmataController = appDelegate.firmataController;
+    
+    [self loadPersistedObjects];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -47,27 +49,34 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated{
+    
     if(self.removingComponent){
-                
-        IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.removingComponentPath];
-        [cell removeComponentObservers];
-        //cell.component = nil;
-        
-        [self.table scrollToRowAtIndexPath:self.removingComponentPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-        
-        [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.removingComponentPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        self.removingComponent = nil;
+    [self removeComponentAnimated];
     }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     if(!goingToI2CScene){
         
-        [self.firmataController stopReportingI2C];
+        [self.firmataController stopReportingI2CComponents];
         [self.firmataController stopReportingAnalogPins];
+        [self persistObjects];
     }
     goingToI2CScene = NO;
+}
+
+-(void) loadPersistedObjects{
+        
+    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:IFDefaultsI2CComponents];
+    if(data){
+        self.firmataController.i2cComponents = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+}
+
+-(void) persistObjects{
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.firmataController.i2cComponents];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:IFDefaultsI2CComponents];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,10 +108,11 @@
 }
 
 -(void) firmataDidUpdateI2CComponents:(IFFirmataController *)firmataController{
-    [self.table reloadData];
-    /*
+
+    //[self.table reloadData];
+    
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:2];
-    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];*/
+    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
 }
 
 -(void) firmata:(IFFirmataController *)firmataController didUpdateTitle:(NSString *)title{
@@ -180,6 +190,19 @@
 
 #pragma mark - i2cComponent Delegate
 
+//called after view did appear when there is a component to remove
+-(void) removeComponentAnimated{
+    
+    IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.removingComponentPath];
+    [cell removeComponentObservers];
+    
+    [self.table scrollToRowAtIndexPath:self.removingComponentPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.removingComponentPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    self.removingComponent = nil;
+}
+
 -(void) i2cComponentRemoved:(IFI2CComponent*) component{
     NSInteger row = [self.firmataController.i2cComponents indexOfObject:component];
     self.removingComponentPath = [NSIndexPath indexPathForRow:row inSection:2];
@@ -202,6 +225,14 @@
 
 -(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg{
     [self.firmataController sendI2CStartStopReportingRequestForRegister:reg fromComponent:component];
+}
+
+-(void) i2cComponent:(IFI2CComponent *)component addedRegister:(IFI2CRegister *)reg{
+    [self.firmataController addI2CRegister:reg toComponent:component];
+}
+
+-(void) i2cComponent:(IFI2CComponent *)component removedRegister:(IFI2CRegister *)reg{
+    [self.firmataController removeI2CRegister:reg fromComponent:component];
 }
 
 #pragma mark - Additional Options
@@ -229,8 +260,8 @@
     [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
-- (IBAction)addI2CTapped:(id)sender {
-    
+- (IBAction)optionsMenuTapped:(id)sender {
+    /*
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -239,7 +270,9 @@
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     
-    [actionSheet showInView:[self view]];
+    [actionSheet showInView:[self view]];*/
+    
+    [self.firmataController start];
     
 }
 

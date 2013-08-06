@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BLEDiscovery.h"
+
 #import "IFDeviceCell.h"
 #import <AudioToolbox/AudioToolbox.h>
 

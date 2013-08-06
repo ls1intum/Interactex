@@ -10,7 +10,7 @@
 
 @class IFI2CRegister;
 
-@interface IFI2CComponent : NSObject
+@interface IFI2CComponent : NSObject <NSCoding>
 
 @property (copy, nonatomic) NSString * name;
 @property (nonatomic) NSInteger address;

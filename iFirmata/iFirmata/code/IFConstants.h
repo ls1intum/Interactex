@@ -9,26 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
-extern NSInteger const IFNumDigitalPins;
-extern NSInteger const IFNumAnalogPins;
-
-typedef enum{
-    IFPinTypeDigital,
-    IFPinTypeAnalog,
-} IFPinType;
-
-typedef enum{
-    IFPinModeInput,
-    IFPinModeOutput,
-    IFPinModeAnalog,
-    IFPinModePWM,
-    IFPinModeServo,
-    IFPinModeShift,
-    IFPinModeI2C
-} IFPinMode;
-
 extern NSString * const IFNotificationModeChanged;
 
 extern NSInteger const IFTextFieldHeight;
 
-#define IFMaxI2CRegisterSize 128
+extern NSString * const IFDefaultsI2CComponents;

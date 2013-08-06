@@ -87,22 +87,24 @@
 }
 
 -(void) updateValueLabel{
-    if(self.reg.numBytes > 0){
-        self.valueLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:self.reg];
-    } else {
-        self.valueLabel.text = @"";
-    }
+
+    self.valueLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:self.reg];
 }
 
 - (IBAction)startTapped:(id)sender {
+    
+    [self.reg removeObserver:self forKeyPath:@"notifies"];
     self.reg.notifies = !self.reg.notifies;
+    [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
+    /*
     if(self.reg.notifies){
         [self.delegate i2cRegisterStartedNotifying:self.reg];
     } else {
         [self.delegate i2cRegisterStoppedNotifying:self.reg];
-    }
+    }*/
     
     [self updateStartButton];
+    [self updateValueLabel];
 }
 
 - (IBAction)sendTapped:(id)sender {
@@ -112,12 +114,14 @@
 -(void) viewWillAppear:(BOOL)animated{
     
     [self.reg addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
     [self reloadUI];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self.reg removeObserver:self forKeyPath:@"value"];
+    [self.reg removeObserver:self forKeyPath:@"notifies"];
 }
 
 -(void) reloadUI{
@@ -148,6 +152,8 @@
         [self.delegate i2cRegister:self.reg changedNumber:regNumber];
         [self updateTitle];
     }
+    [self updateRegisterText];
+
 }
 
 -(void) closeNumberPad{
@@ -158,6 +164,7 @@
     [self checkUpdateNumber];
     
     self.reg.size = [self.sizeTextField.text integerValue];
+    [self updateSizeText];
 }
 
 #pragma mark - Observing Value
@@ -165,7 +172,32 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if([keyPath isEqualToString:@"value"]){
         [self updateValueLabel];
+    } else if([keyPath isEqualToString:@"notifies"]){
+        [self updateStartButton];
+        [self updateValueLabel];
     }
+}
+
+#pragma mark - Remove ActionSheet
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        [self.delegate i2cRegisterRemoved:self.reg];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (IBAction)removeTapped:(id)sender {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Remove Register"
+                                                    otherButtonTitles:nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    
+    [actionSheet showInView:[self view]];
 }
 
 @end

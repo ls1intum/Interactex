@@ -11,6 +11,7 @@
 #import "IFI2CRegisterViewController.h"
 
 @class IFI2CComponent;
+@class IFI2CRegister;
 @class IFI2CComponentViewController;
 
 @protocol IFI2CComponentDelegate <NSObject>
@@ -19,12 +20,13 @@
 -(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg;
 -(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg;
 -(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg;
+
+-(void) i2cComponent:(IFI2CComponent*) component addedRegister:(IFI2CRegister*) reg;
+-(void) i2cComponent:(IFI2CComponent*) component removedRegister:(IFI2CRegister*) reg;
 @end
 
-@interface IFI2CComponentViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, IFI2CRegisterDelegate>
-{
-    UITapGestureRecognizer * gestureRecognizer;
-    
+@interface IFI2CComponentViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, IFI2CRegisterDelegate, UIActionSheetDelegate>
+{    
     UIColor * defaultButtonColor;
 }
 
@@ -35,7 +37,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 
+@property (strong, nonatomic) IFI2CRegister *removingRegister;
+@property (strong, nonatomic) NSIndexPath *removingRegisterPath;
+
 - (IBAction)removeTapped:(id)sender;
-- (IBAction)addRegisterTapped:(id)sender;
+- (IBAction) addRegisterTapped:(id)sender;
 
 @end

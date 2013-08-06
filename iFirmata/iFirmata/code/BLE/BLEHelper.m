@@ -7,6 +7,7 @@
 //
 
 #import "BLEHelper.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @implementation BLEHelper
 
@@ -19,26 +20,36 @@
     return data.length;
 }
 
-+(NSString *)UUIDToString:(CFUUIDRef) uuid{
-    CFStringRef string = CFUUIDCreateString(NULL, uuid);
-    return (__bridge_transfer NSString *)string;
++(NSString *)UUIDToString:(CBUUID*) uuid{
+
+    NSData *data = [uuid data];
+    
+    NSUInteger bytesToConvert = [data length];
+    const unsigned char *uuidBytes = [data bytes];
+    NSMutableString *outputString = [NSMutableString stringWithCapacity:16];
+    
+    for (NSUInteger currentByteIndex = 0; currentByteIndex < bytesToConvert; currentByteIndex++)
+    {
+        switch (currentByteIndex)
+        {
+            case 3:
+            case 5:
+            case 7:
+            case 9:[outputString appendFormat:@"%02x-", uuidBytes[currentByteIndex]]; break;
+            default:[outputString appendFormat:@"%02x", uuidBytes[currentByteIndex]];
+        }
+        
+    }
+    
+    return outputString.uppercaseString;
 }
 
 /*
-+(NSData*) hexToBytes :(NSString*) string{
-    NSMutableData* data = [NSMutableData data];
-    int idx;
-    for (idx = 0; idx+2 <= string.length; idx+=2) {
-        NSRange range = NSMakeRange(idx, 2);
-        NSString* hexStr = [string substringWithRange:range];
-        NSScanner* scanner = [NSScanner scannerWithString:hexStr];
-        unsigned int intValue;
-        [scanner scanHexInt:&intValue];
-        [data appendBytes:&intValue length:1];
-    }
-    return data;
-}
-*/
++(NSString *)UUIDToString:(CBUUID*) uuid{
+    
+    CFStringRef string = CFUUIDCreateString(NULL, (__bridge CFUUIDRef)(uuid));
+    return (__bridge_transfer NSString *)string;
+}*/
 
 +(NSData*) StringToData:(NSString*) string{
     

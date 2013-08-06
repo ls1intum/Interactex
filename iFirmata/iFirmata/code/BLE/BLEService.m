@@ -1,7 +1,6 @@
 
 #import "BLEService.h"
 #import "BLEDiscovery.h"
-#import "BLEPinModeDescriptor.h"
 #import "BLEHelper.h"
 
 NSString *kBleServiceUUIDString = @"F9266FD7-EF07-45D6-8EB6-BD74F13620F9";//Juan
@@ -16,7 +15,7 @@ NSString *kBdCharacteristicUUIDString = @"38117F3C-28AB-4718-AB95-172B363F2AE0";
 NSString *kBleServiceEnteredBackgroundNotification = @"kAlarmServiceEnteredBackgroundNotification";
 NSString *kBleServiceEnteredForegroundNotification = @"kAlarmServiceEnteredForegroundNotification";
 
-const NSTimeInterval kFlushInterval = 1.0f/60.0f;
+const NSTimeInterval kFlushInterval = 1.0f/2.0f;
 
 @implementation BLEService
 
@@ -52,6 +51,10 @@ const NSTimeInterval kFlushInterval = 1.0f/60.0f;
 	if (self.peripheral) {
 		_peripheral = nil;
 	}
+}
+
+-(CBUUID*) uuid{
+    return bleService.UUID;
 }
 
 #pragma mark Service interaction
@@ -234,57 +237,39 @@ const NSTimeInterval kFlushInterval = 1.0f/60.0f;
     }
 }
 
-
 - (void)enteredBackground
 {
-    // Find the fishtank service
-    for (CBService *service in [_peripheral services]) {
-        if ([[service UUID] isEqual:[CBUUID UUIDWithString:kBleServiceUUIDString]]) {
-            
-            // Find the temperature characteristic
-            for (CBCharacteristic *characteristic in [service characteristics]) {
-                if ( [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kRxCharacteristicUUIDString]] ) {
-                    
-                    // And STOP getting notifications from it
-                    [_peripheral setNotifyValue:NO forCharacteristic:characteristic];
-                }
-            }
-        }
-    }
+    [_peripheral setNotifyValue:NO forCharacteristic:self.rxCharacteristic];
 }
 
-/** Coming back from the background, we want to register for notifications again for the temperature changes */
 - (void)enteredForeground
 {
-    // Find the fishtank service
-    for (CBService *service in _peripheral.services) {
-        if ([[service UUID] isEqual:[CBUUID UUIDWithString:kBleServiceUUIDString]]) {
-            
-            // Find the temperature characteristic
-            for (CBCharacteristic *characteristic in [service characteristics]) {
-                if ( [[characteristic UUID] isEqual:[CBUUID UUIDWithString:kRxCharacteristicUUIDString]] ) {
-                    
-                    // And START getting notifications from it
-                    [_peripheral setNotifyValue:YES forCharacteristic:characteristic];
-                }
-            }
-        }
-    }
+    [_peripheral setNotifyValue:YES forCharacteristic:self.rxCharacteristic];
 }
 
-- (NSInteger) rxCount {
+
+-(void) updateRxClear{
+    
+    [self.peripheral readValueForCharacteristic:self.rxClearCharacteristic];
+}
+
+-(void) updateRxCount{
     
     [self.peripheral readValueForCharacteristic:self.rxCountCharacteristic];
+}
+
+-(void) updateRx{
     
-    NSInteger result  = NAN;
-    int16_t value	= 0;
-	
-    if (self.rxCountCharacteristic) {
-        NSData * data = [self.rxCountCharacteristic value];
-        [data getBytes:&value length:sizeof (value)];
-        result = value;
-    }
-    return result;
+    [self.peripheral readValueForCharacteristic:self.rxCharacteristic];
+}
+
+-(void) updateTx{
+    
+    [self.peripheral readValueForCharacteristic:self.txCharacteristic];
+}
+
+-(void) updateCharacteristic:(CBCharacteristic*) characteristic{
+    [self.peripheral readValueForCharacteristic:characteristic];
 }
 
 - (NSString*) tx {
@@ -300,10 +285,36 @@ const NSTimeInterval kFlushInterval = 1.0f/60.0f;
 	if (self.rxCharacteristic) {
                  
         return [BLEHelper DataToString:self.rxCharacteristic.value];
-        
     }
     
     return nil;
+}
+
+
+- (NSInteger) rxCount {
+    
+    NSInteger result  = NAN;
+    int16_t value	= 0;
+	
+    if (self.rxCountCharacteristic) {
+        NSData * data = [self.rxCountCharacteristic value];
+        [data getBytes:&value length:sizeof (value)];
+        result = value;
+    }
+    return result;
+}
+
+- (NSInteger) rxClear {
+    
+    NSInteger result  = NAN;
+    int16_t value	= 0;
+	
+    if (self.rxClearCharacteristic) {
+        NSData * data = [self.rxClearCharacteristic value];
+        [data getBytes:&value length:sizeof (value)];
+        result = value;
+    }
+    return result;
 }
 
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic{
@@ -323,11 +334,8 @@ const NSTimeInterval kFlushInterval = 1.0f/60.0f;
 
 -(void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     
-    if(characteristic == self.rxClearCharacteristic){
-        NSLog(@"cleared RX");
-    } else if(characteristic == self.txCharacteristic){
+    if(characteristic == self.txCharacteristic){
         
-        //NSLog(@"wrote to TX:");
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         for (int i = 0 ; i < length; i++) {
@@ -356,7 +364,12 @@ const NSTimeInterval kFlushInterval = 1.0f/60.0f;
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         [self.dataDelegate dataReceived:data lenght:length];
+    } else {
+        if([self.dataDelegate respondsToSelector:@selector(updatedValueForCharacteristic:)]){
+            [self.dataDelegate updatedValueForCharacteristic:characteristic];
+        }
     }
+    
 }
 
 -(NSString*) description{

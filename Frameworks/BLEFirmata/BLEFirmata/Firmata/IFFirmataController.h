@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IFFirmataConstants.h"
 #import "BLEService.h"
 #import "IFPin.h"
+#import "IFFirmataConstants.h"
 
 typedef struct{
     uint64_t supportedModes;
@@ -17,6 +19,7 @@ typedef struct{
 
 @class IFFirmataController;
 @class IFI2CComponent;
+@class IFI2CRegister;
 
 @protocol IFFirmataControllerDelegate <NSObject>
 
@@ -37,6 +40,7 @@ typedef struct{
     
     BOOL startedSysex;
     BOOL startedI2C;
+    BOOL waitingForFirmware;
 }
 
 @property (nonatomic, readonly) NSInteger numDigitalPins;
@@ -65,10 +69,17 @@ typedef struct{
 -(void) sendOutputForPin:(IFPin*) pin;
 
 -(void) sendI2CStartStopReportingRequestForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
+
+-(void) sendI2CStartReadingForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
+-(void) sendI2CStopReadingAddress:(NSInteger) address;
+-(void) sendI2CStopReadingComponent:(IFI2CComponent*) component;
 -(void) sendI2CWriteData:(NSString*) data forRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
--(void) stopReportingI2C;
+-(void) stopReportingI2CComponents;
+-(void) stopReportingI2CComponent:(IFI2CComponent*) component;
 
 -(void) addI2CComponent:(IFI2CComponent*) component;
 -(void) removeI2CComponent:(IFI2CComponent*) component;
 
+-(void) addI2CRegister:(IFI2CRegister*) reg toComponent:(IFI2CComponent*) component;
+-(void) removeI2CRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
 @end

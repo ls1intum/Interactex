@@ -69,7 +69,10 @@ const NSInteger IFDiscoveryTime = 5;
     
     IFDeviceCell * cell = [self.table dequeueReusableCellWithIdentifier:@"deviceCell"];
     cell.titleLabel.text = peripheral.name;
-    cell.uiidLabel.text = [BLEHelper UUIDToString:peripheral.UUID];
+    //cell.uiidLabel.text = [BLEHelper UUIDToString:peripheral.UUID];
+    
+    CFStringRef string = CFUUIDCreateString(NULL, (peripheral.UUID));
+    cell.uiidLabel.text = (__bridge_transfer NSString *)string;
     
     return cell;
 }
@@ -111,7 +114,30 @@ const NSInteger IFDiscoveryTime = 5;
     }
 }
 
-#pragma mark LeDiscoveryDelegate
+#pragma mark Connection
+
+-(void) disconnect{
+    
+    isDisconnecting = YES;
+    self.table.allowsSelection = NO;
+    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+}
+
+-(void) stopConnecting{
+    NSLog(@"stopping connection");
+    if([BLEDiscovery sharedInstance].currentPeripheral){
+        [self disconnect];
+        /*
+         NSInteger row = connectingRow.row;
+         CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
+         [[BLEDiscovery sharedInstance] cancelConnectionToPeripheral:peripheral];*/
+        
+        [connectingTimer invalidate];
+        connectingTimer = nil;
+    }
+}
+
+#pragma mark BleDiscoveryDelegate
 
 - (void) discoveryDidRefresh {
 }
@@ -122,29 +148,6 @@ const NSInteger IFDiscoveryTime = 5;
 
 - (void) discoveryStatePoweredOff {
     NSLog(@"Powered Off");
-}
-
-#pragma mark Connection
-
--(void) disconnect{
-    
-    isDisconnecting = YES;    
-    self.table.allowsSelection = NO;
-    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
-}
-
--(void) stopConnecting{
-    NSLog(@"stopping connection");
-    if([BLEDiscovery sharedInstance].currentPeripheral){
-        [self disconnect];
-        /*
-        NSInteger row = connectingRow.row;
-        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
-        [[BLEDiscovery sharedInstance] cancelConnectionToPeripheral:peripheral];*/
-        
-        [connectingTimer invalidate];
-        connectingTimer = nil;
-    }
 }
 
 #pragma mark BleServiceProtocol
@@ -167,16 +170,6 @@ const NSInteger IFDiscoveryTime = 5;
     
     [connectingTimer invalidate];
     connectingTimer = nil;
-    
-    /*
-    IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
-    cell.stopButton.hidden = YES;*/
-    
-    /*
-    [self disableButtons];
-    self.bleService.delegate = nil;
-    self.bleService = nil;
-    [self.firmataController stop];*/
 }
 
 -(void) bleServiceIsReady:(BLEService *)service{
@@ -192,10 +185,7 @@ const NSInteger IFDiscoveryTime = 5;
     [service clearRx];
 }
 
--(void) bleServiceDidReset {/*
-    [self.firmataController stop];
-    _bleService = nil;
-    [self stopSpinning];*/
+-(void) bleServiceDidReset {
 }
 
 -(void) reportMessage:(NSString*) message{

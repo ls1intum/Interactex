@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BLEService.h"
 
-@class CBCharacteristic;
-@class BLEService;
-
-@interface IFCharacteristicDetailsViewController : UIViewController <UITextFieldDelegate>
+@interface IFCharacteristicDetailsViewController : UIViewController <UITextFieldDelegate, BLEServiceDataDelegate>
 {
     float keyboardHeight;
 }
+
+@property (weak, nonatomic) IBOutlet UILabel *uuidLabel;
 
 @property (nonatomic, weak) CBCharacteristic * currentCharacteristic;
 @property (nonatomic, weak) BLEService * bleService;
