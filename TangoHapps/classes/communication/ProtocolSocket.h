@@ -4,13 +4,11 @@
 
 typedef enum {
     kProtocolObjectScene,
-    kProtocolObjectPins,
-    kProtocolObjectInputPins,
     kProtocolObjectAssetList,
     kProtocolObjectMissingAssets,
     kProtocolObjectAssets,
     kProtocolObjectUndefined
-} ProtocolObjectIdentifier;
+} THProtocolObjectIdentifier;
 
 typedef enum {
     kProtocolPacketInitial = 0x00,
@@ -18,30 +16,29 @@ typedef enum {
     kProtocolPacketAcknowledge = 0x02,
     kProtocolPacketAbortReceiving = 0xFA,
     kProtocolPacketAbortSending = 0xFB
-} ProtocolPacketHeader;
+} THProtocolPacketHeader;
 
-@class ProtocolSocket;
+@class THProtocolSocket;
 
-@protocol ProtocolSocketDelegate <NSObject>
+@protocol THProtocolSocketDelegate <NSObject>
 // Sending callbacks
-- (void)socket:(ProtocolSocket*)socket didBeginSendingObjectWithIdentifier:(ProtocolObjectIdentifier)identifier;
-- (void)socket:(ProtocolSocket*)socket willSendChunk:(int)chunk of:(int)chunks;
-- (void)socket:(ProtocolSocket*)socket didFinishSendingObjectWithIdentifier:(ProtocolObjectIdentifier)identifier;
+- (void)socket:(THProtocolSocket*)socket didBeginSendingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier;
+- (void)socket:(THProtocolSocket*)socket willSendChunk:(int)chunk of:(int)chunks;
+- (void)socket:(THProtocolSocket*)socket didFinishSendingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier;
 // Receiving callbacks
-- (void)socket:(ProtocolSocket*)socket didBeginReceivingObjectWithIdentifier:(ProtocolObjectIdentifier)identifier;
-- (void)socket:(ProtocolSocket*)socket didReceiveChunk:(int)chunk of:(int)chunks;
-- (void)socket:(ProtocolSocket*)socket didFinishReceivingObject:(id)object withIdentifier:(ProtocolObjectIdentifier)identifier;
+- (void)socket:(THProtocolSocket*)socket didBeginReceivingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier;
+- (void)socket:(THProtocolSocket*)socket didReceiveChunk:(int)chunk of:(int)chunks;
+- (void)socket:(THProtocolSocket*)socket didFinishReceivingObject:(id)object withIdentifier:(THProtocolObjectIdentifier)identifier;
 @optional
 // Abort and error callbacks
-- (void)socket:(ProtocolSocket*)socket didAbortReceivingObjectWithIdentifier:(ProtocolObjectIdentifier)identifier;
-- (void)socket:(ProtocolSocket*)socket didAbortSendingObjectWithIdentifier:(ProtocolObjectIdentifier)identifier;
-- (void)socket:(ProtocolSocket*)socket didFailSendingDataWithError:(NSError*)error;
+- (void)socket:(THProtocolSocket*)socket didAbortReceivingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier;
+- (void)socket:(THProtocolSocket*)socket didAbortSendingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier;
+- (void)socket:(THProtocolSocket*)socket didFailSendingDataWithError:(NSError*)error;
 @end
 
-@interface ProtocolSocket : NSObject
-{
+@interface THProtocolSocket : NSObject {
     BOOL sending;
-    ProtocolObjectIdentifier sendingIdentifier;
+    THProtocolObjectIdentifier sendingIdentifier;
     NSMutableArray *objectQueue;
     NSMutableArray *identifierQueue;
     NSMutableData *sendBuffer;
@@ -50,7 +47,7 @@ typedef enum {
     NSUInteger sendChunksTotal;
 
     BOOL receiving;
-    ProtocolObjectIdentifier receivingIdentifier;
+    THProtocolObjectIdentifier receivingIdentifier;
     NSMutableData *receiveBuffer;
     NSUInteger receivedChunks;
     NSUInteger receiveChunksTotal;
@@ -59,11 +56,11 @@ typedef enum {
     NSString *peerID;
 }
 
-@property (weak) id<ProtocolSocketDelegate> delegate;
+@property (weak) id<THProtocolSocketDelegate> delegate;
 @property (readonly) BOOL isBusy;
 
 - (id)initWithSession:(GKSession*)session peerID:(NSString*)peerID;
-- (void)sendObject:(id<NSCoding>)object withIdentifier:(ProtocolObjectIdentifier)identifier;
+- (void)sendObject:(id<NSCoding>)object withIdentifier:(THProtocolObjectIdentifier)identifier;
 - (void)cancelSendingAndEmptyQueue;
 - (void)receiveData:(NSData*)data;
 @end

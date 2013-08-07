@@ -5,7 +5,7 @@
 #define INITIAL_HEADER_SIZE 6
 #define SUBSEQUENT_HEADER_SIZE 1
 
-@implementation ProtocolSocket
+@implementation THProtocolSocket
 
 - (id)initWithSession:(GKSession*)aSession
                peerID:(NSString*)aPeerID
@@ -32,7 +32,7 @@
 - (void)receiveData:(NSData*)data
 {
     unsigned char *packet = (unsigned char *)[data bytes];
-    ProtocolPacketHeader packetType = (ProtocolPacketHeader)packet[0];
+    THProtocolPacketHeader packetType = (THProtocolPacketHeader)packet[0];
     
     switch (packetType) {
         case kProtocolPacketInitial:{
@@ -138,7 +138,7 @@
 #pragma mark - Interface
 
 - (void)sendObject:(id<NSCoding>)object
-    withIdentifier:(ProtocolObjectIdentifier)identifier
+    withIdentifier:(THProtocolObjectIdentifier)identifier
 {
     [objectQueue addObject:object];
     [identifierQueue addObject:[NSNumber numberWithInt:(int)identifier]];
@@ -165,7 +165,7 @@
     if([objectQueue count] == 0)
         return;
     id<NSCoding> object = [objectQueue objectAtIndex:0];
-    ProtocolObjectIdentifier identifier = (ProtocolObjectIdentifier)[(NSNumber*)[identifierQueue objectAtIndex:0] integerValue];
+    THProtocolObjectIdentifier identifier = (THProtocolObjectIdentifier)[(NSNumber*)[identifierQueue objectAtIndex:0] integerValue];
     [objectQueue removeObjectAtIndex:0];
     [identifierQueue removeObjectAtIndex:0];
     
@@ -191,7 +191,7 @@
 -(void)readInitialPacket:(NSData*)data {
     unsigned char *packet = (unsigned char *)[data bytes];
     receiving = YES;
-    receivingIdentifier = (ProtocolObjectIdentifier)packet[1];
+    receivingIdentifier = (THProtocolObjectIdentifier)packet[1];
     unsigned long totalSize = ((packet[2] << 24) + (packet[3] << 16) + (packet[4] << 8) + packet[5]);
     receiveBuffer = [[NSMutableData alloc] initWithCapacity:totalSize];
     receiveChunksTotal = [self numberOfChunksForSize:totalSize];
@@ -211,7 +211,7 @@
 
 #pragma mark - Packet Sending
 
--(unsigned long)sendInitialPackageWithIdentifier:(ProtocolObjectIdentifier)identifier
+-(unsigned long)sendInitialPackageWithIdentifier:(THProtocolObjectIdentifier)identifier
                                       sendBuffer:(NSData*)buffer
 {
     unsigned long initialPayloadLength = MIN(CHUNK_SIZE - INITIAL_HEADER_SIZE, [buffer length]);
@@ -269,8 +269,8 @@
     //NSLog(@"<Socket> Sent ABORT_SENDING packet");
 }
 
--(void)sendPackageWithHeader:(ProtocolPacketHeader)type
-                  identifier:(ProtocolObjectIdentifier)identifier
+-(void)sendPackageWithHeader:(THProtocolPacketHeader)type
+                  identifier:(THProtocolObjectIdentifier)identifier
                     sizeInfo:(unsigned long)size
                      payload:(unsigned char*)payload
                payloadOffset:(unsigned long)payloadOffset

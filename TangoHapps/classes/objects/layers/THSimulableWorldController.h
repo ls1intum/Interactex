@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @class THClientProject;
-@class THClientScene;
+@class THClientRealScene;
 
 @interface THSimulableWorldController : NSObject
 
 @property (nonatomic, strong) THClientProject * currentProject;
-@property (nonatomic, strong) THClientScene * currentScene;
+@property (nonatomic, strong) THClientRealScene * currentScene;
 
 +(THSimulableWorldController *)sharedInstance;
 

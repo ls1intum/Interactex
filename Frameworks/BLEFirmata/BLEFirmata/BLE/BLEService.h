@@ -97,4 +97,6 @@ extern const NSTimeInterval kFlushInterval;
 -(void) updateTx;
 -(void) updateCharacteristic:(CBCharacteristic*) characteristic;
 
+-(void) writeToTx:(NSData*) data;
+
 @end

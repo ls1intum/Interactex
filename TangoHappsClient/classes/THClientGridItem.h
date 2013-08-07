@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 
 @property (nonatomic) BOOL editing;
 @property (nonatomic) BOOL editable;

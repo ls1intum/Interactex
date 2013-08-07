@@ -599,7 +599,7 @@ enum zPositions{
 }
 
 -(THClientProject*) nonEditableProject{
-    THClientProject * project = [[THClientProject alloc] init];
+    THClientProject * project = [[THClientProject alloc] initWithName:self.name];
     project.clotheObjects = [self nonEditableElementsForArray:self.clotheObjects forProject:project];
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
     project.conditions = [self nonEditableElementsForArray:self.conditions forProject:project];

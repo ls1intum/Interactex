@@ -8,15 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "THClientGridView.h"
+#import "THClientConnectionViewController.h"
 
 @class LoadingBezel;
 @class THClientFakeSceneDataSource;
 
-@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate, UINavigationControllerDelegate>
-{
-    NSMutableArray * _scenes;
-    LoadingBezel * _bezel;
-    THClientFakeSceneDataSource * _fakeScenesSource;
+@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate, UINavigationControllerDelegate, THClientConnectionControllerDelegate> {
+    NSMutableArray * scenes;
+    LoadingBezel * bezel;
+    THClientFakeSceneDataSource * fakeScenesSource;
+    
+    NSTimer * installationProgressTimer;
+    THClientGridItem * sceneBeingInstalled;
+    BOOL finishedInstallingProject;
 }
 
 @end

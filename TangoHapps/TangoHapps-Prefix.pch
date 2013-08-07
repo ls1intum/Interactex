@@ -38,6 +38,4 @@
 #import "THCustomProject.h"
 
 #import "THCondition.h"
-
-#import "THBluetoothHelper.h"
 #import "THDirector.h"

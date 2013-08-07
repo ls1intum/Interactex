@@ -16,6 +16,10 @@
     return [[THClientProject alloc] init];
 }
 
++(id)emptyProjectNamed:(NSString*) name {
+    return [[THClientProject alloc] initWithName:name];
+}
+
 -(void) load{
     
     _clotheObjects = [NSMutableArray array];
@@ -35,15 +39,24 @@
     return self;
 }
 
+-(id) initWithName:(NSString*) name{
+    self = [super init];
+    if(self){
+        self.name = name;
+        [self load];
+    }
+    return self;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self){
         
         [self load];
         
+        self.name = [decoder decodeObjectForKey:@"name"];
         self.clotheObjects = [decoder decodeObjectForKey:@"clotheObjects"];
         self.iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         self.iPhone = [decoder decodeObjectForKey:@"iPhone"];
@@ -61,8 +74,9 @@
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.name forKey:@"name"];
+    
     [coder encodeObject:self.clotheObjects forKey:@"clotheObjects"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -77,7 +91,7 @@
     [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
 
--(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event{
+-(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event {
     
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
     pair.action = action;
@@ -87,7 +101,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:action selector:@selector(startAction) name:event.name object:action.source];
 }
 
--(NSArray*) allObjects{
+-(NSArray*) allObjects {
     NSArray * allObjects = [self.clotheObjects arrayByAddingObjectsFromArray:self.iPhoneObjects];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.conditions];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.actions];
@@ -96,12 +110,12 @@
     return allObjects;
 }
 
--(void) startSimulating{
+-(void) startSimulating {
     [self willStartSimulating];
     [self didStartSimulating];
 }
 
--(void) willStartSimulating{
+-(void) willStartSimulating {
     for (TFSimulableObject * object in self.allObjects) {
         [object willStartSimulating];
     }

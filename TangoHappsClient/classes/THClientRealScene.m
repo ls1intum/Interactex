@@ -6,16 +6,15 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClientScene.h"
+#import "THClientRealScene.h"
 #import "THClientAppDelegate.h"
 #import "THSimulableWorldController.h"
 
-@implementation THClientScene
+@implementation THClientRealScene
 
-@dynamic screenshot;
+@dynamic image;
 
--(id)initWithName:(NSString*)newName world:(THClientProject*) project
-{
+-(id)initWithName:(NSString*)newName world:(THClientProject*) project {
     if(self = [super init]){
         archiveFilename = newName;
         _name = newName;
@@ -24,8 +23,7 @@
     return self;
 }
 
--(id)initWithArchive:(NSString*)anArchiveFile
-{
+-(id)initWithArchive:(NSString*)anArchiveFile {
     if(self = [super init]){
         archiveFilename = anArchiveFile;
         _name = anArchiveFile;
@@ -35,8 +33,7 @@
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     
     //NSString *newName = [THClientScene resolveNameConflictFor:[decoder decodeObjectForKey:@"name"]];
@@ -47,16 +44,14 @@
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:_name forKey:@"name"];
     [coder encodeObject:_project forKey:@"project"];
 }
 
 #pragma mark - Properties
 
--(UIImage *)screenshot
-{
+-(UIImage *)image {
     NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
     NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile
                                                    inDirectory:kProjectImagesDirectory];
@@ -67,8 +62,7 @@
 
 #pragma mark - Save/Load
 
--(void)save
-{
+-(void)save {
     NSString *filePath = [TFFileUtils dataFile:archiveFilename
                                              inDirectory:kProjectsDirectory];
     [TFFileUtils deleteDataFile:archiveFilename
@@ -78,9 +72,8 @@
     [NSKeyedArchiver archiveRootObject:project toFile:filePath];
 }
 
--(void)saveWithImage:(UIImage*)image
-{
-    if(!self.fakeScene){
+-(void)saveWithImage:(UIImage*)image {
+    if(!self.isFakeScene){
         
         NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
         NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile inDirectory:kProjectImagesDirectory];
@@ -90,8 +83,7 @@
     }
 }
 
--(void)loadFromArchive
-{
+-(void)loadFromArchive {
     if([TFFileUtils dataFile:archiveFilename existsInDirectory:kProjectsDirectory]){
         // Load the worlds state from disk
         
@@ -102,38 +94,21 @@
     }
 }
 
--(void)unload
-{
+-(void)unload {
     _project = nil;
     [THSimulableWorldController sharedInstance].currentProject = nil;
 }
 
-#pragma mark - Archive To Memory
-/*
--(void)stash
-{
-    _project = [NSKeyedArchiver archivedDataWithRootObject:[THSimulableWorldController sharedInstance].currentProject];
-}
-
--(void)unstash
-{
-    if(!worldArchive)
-        return;
-    THClientProject * project = [NSKeyedUnarchiver unarchiveObjectWithData:worldArchive];
-    [THSimulableWorldController sharedInstance].currentProject = project;
-}*/
-
 #pragma mark - File Management
 
--(void)deleteArchive
-{
+-(void)deleteArchive {
     NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
     [TFFileUtils deleteDataFile:archiveFilename fromDirectory:kProjectsDirectory];
     [TFFileUtils deleteDataFile:screenshotFile fromDirectory:kProjectImagesDirectory];
 }
 
 -(void)renameTo:(NSString*)newName {
-    newName = [THClientScene resolveNameConflictFor:newName];
+    newName = [THClientRealScene resolveNameConflictFor:newName];
     NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
     NSString *newScreenshotFile = [newName stringByAppendingString:@".png"];
     [TFFileUtils renameDataFile:archiveFilename to:newName inDirectory:kProjectsDirectory];
@@ -149,7 +124,7 @@
     NSArray *sceneFiles = [fm contentsOfDirectoryAtPath:archivesDirectory error:nil];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for(NSString *archivePath in sceneFiles){
-        THClientScene *scene = [[THClientScene alloc] initWithArchive:[archivePath lastPathComponent]];
+        THClientRealScene *scene = [[THClientRealScene alloc] initWithArchive:[archivePath lastPathComponent]];
         [array addObject:scene];
     }
     return array;

@@ -37,7 +37,7 @@
         _simulatingTools = [NSArray arrayWithObject:pinsModeItem];
         
         _serverController = [[ServerController alloc] init];
-        [_serverController startServer];
+        //[_serverController startServer];
         _serverController.delegate = self;
         
     }

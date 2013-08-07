@@ -12,20 +12,19 @@
 
 #import "THView.h"
 #import "THiPhone.h"
-#import "THClientScene.h"
+#import "THClientRealScene.h"
 
 #import "THLilyPad.h"
 #import "THBoardPin.h"
 #import "TransferAgent.h"
 #import "THPinValue.h"
-#import "THPinModeDescriptor.h"
 #import "THElementPin.h"
 #import "THCompass.h"
 
 #import "THLabel.h"
 
 @implementation THClientAppViewController
-
+/*
 -(void) pushLilypadStateToAllVirtualClients{
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     NSArray * lilypins = project.lilypad.pins;
@@ -47,8 +46,9 @@
     }
     
     [_transferAgent queueAction:kTransferActionPinState withObject:pins];
-}
+}*/
 
+/*
 -(void) pushLilypadStateToRealClient{
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     NSArray * lilypins = project.lilypad.pins;
@@ -64,6 +64,7 @@
         }
     }
 }
+*/
 
 -(void) startVirtualStateTransfer{
     //_virtualTransferTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(pushLilypadStateToAllVirtualClients) userInfo:nil repeats:YES];
@@ -141,7 +142,7 @@
     
     for (THView * object in project.iPhoneObjects) {
         
-        if(![THSimulableWorldController sharedInstance].currentScene.fakeScene){
+        if(![THSimulableWorldController sharedInstance].currentScene.isFakeScene){
             float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
             float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
             
@@ -174,7 +175,7 @@
 }
 
 -(void) sendPinModes{
-    
+    /*
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
     NSMutableArray * array = [NSMutableArray array];
@@ -194,31 +195,8 @@
         i++;
     }
 
-    [self.bleService sendPinModes:array];
+    [self.bleService sendPinModes:array];*/
 }
-/*
--(void) sendOutPinValues{
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
-    NSMutableArray * array = [NSMutableArray array];
-    
-    NSInteger i = 0;
-    for (THBoardPin * pin in project.lilypad.pins) {
-        if(pin.mode == kPinModeDigitalOutput || pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer){
-            THPinValue * pinValue = [[THPinValue alloc] init];
-            pinValue.type = pin.type;
-            pinValue.value = pin.currentValue;
-            pinValue.number = pin.number;
-            
-            //dont send if value is reserved for protocol (change protocol in future)
-            [pins addObject:pinValue];
-        }
-        i++;
-    }
-    
-    [self.bleService sendPinModes:array];
-}*/
 
 -(void) reloadApp{
     
@@ -240,16 +218,17 @@
      [self.currentlyConnectedLabel setText:[peripheral name]];
      [self.currentlyConnectedLabel setEnabled:YES];*/
 }
-
+/*
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral {
     [[LeDiscovery sharedInstance] connectPeripheral:peripheral];
-}
+}*/
 
 - (void) discoveryStatePoweredOff {
     NSLog(@"Powered Off");
 }
-
+/*
 #pragma mark BleServiceProtocol
+
 
 -(void) bleServiceDidConnect:(BleService *)service{
     _bleService = service;
@@ -275,6 +254,7 @@
 - (void) bleServiceDidReset {
     _bleService = nil;
 }
+*/
 
 -(void) stopActivityIndicator {
     
@@ -304,6 +284,7 @@
     [self.view addSubview:_activityIndicator];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -315,9 +296,9 @@
         [self startRealStateTransfer];
         [self startActivityIndicator];
     }
-    
+    /*
     [[LeDiscovery sharedInstance] setDiscoveryDelegate:self];
-    [[LeDiscovery sharedInstance] setPeripheralDelegate:self];
+    [[LeDiscovery sharedInstance] setPeripheralDelegate:self];*/
     
 }
 
@@ -327,7 +308,7 @@
     [self stopRealStateTransfer];
     [self stopVirtualStateTransfer];
     
-    THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
+    THClientRealScene * scene = [THSimulableWorldController sharedInstance].currentScene;
     [scene saveWithImage:image];
     
     _textView.text = @"";
@@ -340,11 +321,11 @@
 
 -(void) connectToBle{
     
-    [[LeDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    //[[LeDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
 }
 
 -(void) disconnectBle{
-    [_bleService disconnect];
+   // [_bleService disconnect];
     //[_bleService reset];
 }
 

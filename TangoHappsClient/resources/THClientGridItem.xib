@@ -14,6 +14,7 @@
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
+			<string>IBUIProgressView</string>
 			<string>IBUITextField</string>
 			<string>IBUIView</string>
 		</array>
@@ -37,30 +38,13 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="1018465670">
-						<reference key="NSNextResponder" ref="407821905"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 32}, {75, 131}}</string>
-						<reference key="NSSuperview" ref="407821905"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="492964514"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAgMAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">groupTableViewBackgroundColor</string>
-						</object>
-						<int key="IBUIContentMode">1</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-					</object>
 					<object class="IBUIButton" id="495578739">
 						<reference key="NSNextResponder" ref="407821905"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 7}, {87, 183}}</string>
+						<string key="NSFrame">{{22, 37}, {70, 117}}</string>
 						<reference key="NSSuperview" ref="407821905"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1003422615"/>
+						<reference key="NSNextKeyView" ref="492964514"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -94,6 +78,7 @@
 						<string key="NSFrame">{{16, 188}, {79, 16}}</string>
 						<reference key="NSSuperview" ref="407821905"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="931154020"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -127,7 +112,7 @@
 						<string key="NSFrame">{{14, 7}, {85, 178}}</string>
 						<reference key="NSSuperview" ref="407821905"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1018465670"/>
+						<reference key="NSNextKeyView" ref="495578739"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -142,7 +127,7 @@
 						<string key="NSFrameSize">{30, 29}</string>
 						<reference key="NSSuperview" ref="407821905"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="495578739"/>
+						<reference key="NSNextKeyView" ref="1003422615"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -161,8 +146,19 @@
 						<reference key="IBUIFontDescription" ref="336736484"/>
 						<reference key="IBUIFont" ref="268578745"/>
 					</object>
+					<object class="IBUIProgressView" id="931154020">
+						<reference key="NSNextResponder" ref="407821905"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{14, 208}, {85, 11}}</string>
+						<reference key="NSSuperview" ref="407821905"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIProgressViewStyle">1</int>
+					</object>
 				</array>
-				<string key="NSFrameSize">{100, 210}</string>
+				<string key="NSFrameSize">{100, 224}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="960387904"/>
@@ -220,6 +216,14 @@
 					<int key="connectionID">33</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">progressBar</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="931154020"/>
+					</object>
+					<int key="connectionID">35</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">selectItem:</string>
 						<reference key="source" ref="495578739"/>
@@ -271,10 +275,10 @@
 						<reference key="object" ref="407821905"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="495578739"/>
-							<reference ref="1018465670"/>
 							<reference ref="492964514"/>
 							<reference ref="960387904"/>
 							<reference ref="1003422615"/>
+							<reference ref="931154020"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Scene Item</string>
@@ -291,12 +295,6 @@
 						<reference key="parent" ref="407821905"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="1018465670"/>
-						<reference key="parent" ref="407821905"/>
-						<string key="objectName">Screenshot</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
 						<reference key="object" ref="495578739"/>
 						<reference key="parent" ref="407821905"/>
@@ -304,6 +302,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
 						<reference key="object" ref="1003422615"/>
+						<reference key="parent" ref="407821905"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">34</int>
+						<reference key="object" ref="931154020"/>
 						<reference key="parent" ref="407821905"/>
 					</object>
 				</array>
@@ -317,36 +320,45 @@
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">33</int>
+			<int key="maxID">35</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">THClientGridItem</string>
 					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">selectItem:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">selectItem:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="deleteItem:">id</string>
+						<string key="renameItem:">id</string>
+						<string key="selectItem:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="deleteItem:">
+							<string key="name">deleteItem:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="renameItem:">
+							<string key="name">renameItem:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="selectItem:">
 							<string key="name">selectItem:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="button">UIButton</string>
 						<string key="deleteButton">UIButton</string>
 						<string key="iPadFrame">UIImageView</string>
 						<string key="itemContainer">UIView</string>
+						<string key="progressBar">UIProgressView</string>
 						<string key="textField">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -365,6 +377,10 @@
 						<object class="IBToOneOutletInfo" key="itemContainer">
 							<string key="name">itemContainer</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="progressBar">
+							<string key="name">progressBar</string>
+							<string key="candidateClassName">UIProgressView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="textField">
 							<string key="name">textField</string>

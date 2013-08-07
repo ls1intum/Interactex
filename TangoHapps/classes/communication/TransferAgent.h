@@ -6,55 +6,57 @@
 typedef enum{
     kTransferAgentModeMaster,
     kTransferAgentModeSlave
-} TransferAgentMode;
+} THTransferAgentMode;
+
+#define kNumTransferActions 6
 
 typedef enum{
     kTransferAgentActionIdle,
     kTransferAgentActionScene,
-    kTransferActionPinState,
-    kTransferActionInputPinState,
     kTransferActionAssets,
     kTransferActionMissingAssets
-} TransferAgentAction;
+} THTransferAgentAction;
 
-@class TransferAgent;
+extern NSString* const kTransferActionTexts[kNumTransferActions];
 
-@protocol TransferAgentDelegate <NSObject>
-- (void)agent:(TransferAgent*)agent willBeginAction:(TransferAgentAction)action;
-- (void)agent:(TransferAgent*)agent madeProgressForCurrentAction:(float)progress;
-- (void)agent:(TransferAgent*)agent didFinishAction:(TransferAgentAction)action withObject:(id)object;
-- (void)agent:(TransferAgent*)agent didChangeQueueLengthTo:(NSUInteger)items;
+@class THTransferAgent;
+
+@protocol THTransferAgentDelegate <NSObject>
+- (void)agent:(THTransferAgent*)agent willBeginAction:(THTransferAgentAction)action;
+- (void)agent:(THTransferAgent*)agent madeProgressForCurrentAction:(float)progress;
+- (void)agent:(THTransferAgent*)agent didFinishAction:(THTransferAgentAction)action withObject:(id)object;
+- (void)agent:(THTransferAgent*)agent didChangeQueueLengthTo:(NSUInteger)items;
 @optional
-- (void)agent:(TransferAgent*)agent didCancelAction:(TransferAgentAction)action;
-- (void)agent:(TransferAgent*)agent didFailAtAction:(TransferAgentAction)action;
+- (void)agent:(THTransferAgent*)agent didCancelAction:(THTransferAgentAction)action;
+- (void)agent:(THTransferAgent*)agent didFailAtAction:(THTransferAgentAction)action;
 @end
 
-@interface TransferAgent : NSObject
-<ProtocolSocketDelegate>
+@interface THTransferAgent : NSObject
+<THProtocolSocketDelegate>
 {
     NSMutableArray *actionQueue;
     NSMutableArray *objectQueue;
     NSString *peerID;
     GKSession *session;
-    TransferAgentMode mode;
-    ProtocolSocket *socket;
-    TransferAgentAction currentAction;
+    THTransferAgentMode mode;
+    THProtocolSocket *socket;
+    THTransferAgentAction currentAction;
 }
 
-@property (weak) id<TransferAgentDelegate> delegate;
+@property (weak) id<THTransferAgentDelegate> delegate;
 @property (readonly) BOOL isIdle;
 @property (readonly) NSString *peerID;
 @property (readonly) NSUInteger queuedActions;
 
-+ (TransferAgent*)masterAgentForClientPeerID:(NSString*)peerID session:(GKSession*)session;
-+ (TransferAgent*)slaveAgentForServerPeerID:(NSString*)peerID session:(GKSession*)session;
-- (id)initWithSession:(GKSession*)session peerID:(NSString*)peerID inMode:(TransferAgentMode)mode;
++ (THTransferAgent*)masterAgentForClientPeerID:(NSString*)peerID session:(GKSession*)session;
++ (THTransferAgent*)slaveAgentForServerPeerID:(NSString*)peerID session:(GKSession*)session;
+- (id)initWithSession:(GKSession*)session peerID:(NSString*)peerID inMode:(THTransferAgentMode)mode;
 - (void)receiveData:(NSData*)data;
 
-- (void)queueAction:(TransferAgentAction)action withObject:(id)object;
+- (void)queueAction:(THTransferAgentAction)action withObject:(id)object;
 - (void)cancelQueuedActions;
 - (void)cancelCurrentAndQueuedActions;
 
-- (NSString *)labelForAction:(TransferAgentAction)action;
+- (NSString *)labelForAction:(THTransferAgentAction)action;
 
 @end

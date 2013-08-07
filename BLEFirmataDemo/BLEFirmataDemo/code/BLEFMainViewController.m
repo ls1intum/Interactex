@@ -47,7 +47,8 @@
     if(!service){
         NSLog(@"no service!");
     }
-    [service sendData:buf count:16];
+    //[service sendData:buf count:16];
+    [service writeToTx:[NSData dataWithBytes:buf length:16]];
 }
 
 -(void) sendFirmwareRequest{
@@ -69,6 +70,9 @@
 }
 
 - (IBAction) startSendingTapped:(id)sender {
+    [self sendTestData];
+    
+    /*
     if(timer){
         [timer invalidate];
         timer = nil;
@@ -76,7 +80,7 @@
         timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(sendTestData) userInfo:nil repeats:YES];
     }
     
-    [self updateButtonText];
+    [self updateButtonText];*/
 }
 
 -(void) updateConnectedLabel{

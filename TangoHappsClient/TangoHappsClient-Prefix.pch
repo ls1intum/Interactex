@@ -34,6 +34,5 @@
 #import "THCustomProject.h"
 #import "THClientHelper.h"
 #import "THConstants.h"
-#import "THBluetoothHelper.h"
 #import "THClientProject.h"
 #import "THSimulableWorldController.h"

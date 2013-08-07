@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BleService.h"
-#import "LeDiscovery.h"
+
 
 typedef enum{
     kClientModeVirtual,
@@ -20,9 +19,9 @@ typedef enum{
     kClientStateWaiting
 } THClientState;
 
-@class TransferAgent;
+@class THTransferAgent;
 
-@interface THClientAppViewController : UIViewController <LeDiscoveryDelegate, BleServiceDelegate> {
+@interface THClientAppViewController : UIViewController {//<LeDiscoveryDelegate, BleServiceDelegate> {
     
     NSTimer * _virtualTransferTimer;
     NSTimer * _realTransferTimer;
@@ -39,8 +38,8 @@ typedef enum{
 @property (nonatomic, readonly) THClientMode mode;
 @property (nonatomic, readonly) THClientState state;
 
-@property (nonatomic) TransferAgent  * transferAgent;
+@property (nonatomic) THTransferAgent  * transferAgent;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *modeButton;
-@property (retain, nonatomic) BleService *bleService;
+//@property (strong, nonatomic) BleService *bleService;
 
 @end

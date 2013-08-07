@@ -13,7 +13,7 @@
 #import "THLabel.h"
 #import "THBoardPin.h"
 #import "THElementPin.h"
-#import "THClientScene.h"
+#import "THClientRealScene.h"
 #import "THiPhone.h"
 #import "THButton.h"
 #import "THBuzzer.h"
@@ -50,7 +50,7 @@
     return project;
 }
 
--(THClientScene*) simpleLedScene{
+-(THClientRealScene*) simpleLedScene{
     
     THClientProject * project = [self defaultClientProject];
     
@@ -94,13 +94,13 @@
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"Digital Output" world:project];
-    scene.fakeScene = YES;
+    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"Digital Output" world:project];
+    scene.isFakeScene = YES;
     
     return scene;
 }
 
--(THClientScene*) simpleButtonScene{
+-(THClientRealScene*) simpleButtonScene{
     
     THClientProject * project = [self defaultClientProject];
     
@@ -158,13 +158,13 @@
     [lilypinButton attachPin:buttonpin];
     [buttonpin attachToPin:lilypinButton];
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"Digital Input" world:project];
-    scene.fakeScene = YES;
+    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"Digital Input" world:project];
+    scene.isFakeScene = YES;
     
     return scene;
 }
 
--(THClientScene*) buzzerScene{
+-(THClientRealScene*) buzzerScene{
     
     THClientProject * project = [self defaultClientProject];
     
@@ -219,13 +219,13 @@
     [lilypinBuzzer attachPin:buzzerPin];
     [buzzerPin attachToPin:lilypinBuzzer];
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"Buzzer" world:project];
-    scene.fakeScene = YES;
+    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"Buzzer" world:project];
+    scene.isFakeScene = YES;
     
     return scene;
 }
 
--(THClientScene*) analogOutputScene{
+-(THClientRealScene*) analogOutputScene{
     
     THClientProject * project = [self defaultClientProject];
     
@@ -260,12 +260,12 @@
     methodInvoke.source = touchpad;
     [project registerAction:methodInvoke forEvent:dxEvent];
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"AnalogOutput" world:project];
-    scene.fakeScene = YES;
+    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"AnalogOutput" world:project];
+    scene.isFakeScene = YES;
     return scene;
 }
 
--(THClientScene*) analogInputScene{
+-(THClientRealScene*) analogInputScene{
     THClientProject * project = [self defaultClientProject];
     
     THLightSensor * lightSensor = [[THLightSensor alloc] init];
@@ -301,12 +301,12 @@
     [lightSensorPin attachToPin:lilypinLightSensor];
     
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"AnalogInput" world:project];
-    scene.fakeScene = YES;
+    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"AnalogInput" world:project];
+    scene.isFakeScene = YES;
     return scene;
 }
 
--(THClientScene*) compassScene{
+-(THClientRealScene*) compassScene{
     
     THClientProject * project = [self defaultClientProject];
     
@@ -366,8 +366,8 @@
     [pin5 attachPin:compassPin];
     [compassPin attachToPin:pin5];
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"Compass" world:project];
-    scene.fakeScene = YES;
+    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"Compass" world:project];
+    scene.isFakeScene = YES;
     return scene;
 }
 
