@@ -8,7 +8,7 @@
 
 #import "THSimulableWorldController.h"
 #import "THClientProject.h"
-#import "THClientRealScene.h"
+#import "THClientScene.h"
 
 @implementation THSimulableWorldController
 

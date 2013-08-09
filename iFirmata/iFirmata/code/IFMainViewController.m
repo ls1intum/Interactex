@@ -14,7 +14,7 @@
 @implementation IFMainViewController
 
 const NSInteger IFRefreshHeaderHeight = 56;
-const NSInteger IFDiscoveryTime = 5;
+const NSInteger IFDiscoveryTime = 3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,9 +30,9 @@ const NSInteger IFDiscoveryTime = 5;
     
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
     [BLEDiscovery sharedInstance].peripheralDelegate = self;
-    [[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    [[BLEDiscovery sharedInstance] startScanningForAnyUUID];
+    //[[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
     
-//    NSURL * pullDownSoundUrl = [[NSBundle mainBundle] URLForResource: @"click" withExtension: @"mp3"];
     NSURL * pullDownSoundUrl = [[NSBundle mainBundle] URLForResource: @"pullDown" withExtension: @"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)pullDownSoundUrl, &pullDownSound);
     

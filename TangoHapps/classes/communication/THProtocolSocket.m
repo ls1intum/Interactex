@@ -1,5 +1,5 @@
 
-#import "ProtocolSocket.h"
+#import "THProtocolSocket.h"
 
 #define CHUNK_SIZE 81920
 #define INITIAL_HEADER_SIZE 6
@@ -154,14 +154,12 @@
     [identifierQueue removeAllObjects];
 }
 
-- (void)cancelReceivingAndEmptyQueue
-{
+- (void)cancelReceivingAndEmptyQueue {
     [self sendAbortSendPacket];
     [self abortReceiving];
 }
 
-- (void)sendNextObject
-{
+- (void)sendNextObject {
     if([objectQueue count] == 0)
         return;
     id<NSCoding> object = [objectQueue objectAtIndex:0];
@@ -211,9 +209,7 @@
 
 #pragma mark - Packet Sending
 
--(unsigned long)sendInitialPackageWithIdentifier:(THProtocolObjectIdentifier)identifier
-                                      sendBuffer:(NSData*)buffer
-{
+-(unsigned long)sendInitialPackageWithIdentifier:(THProtocolObjectIdentifier)identifier sendBuffer:(NSData*)buffer {
     unsigned long initialPayloadLength = MIN(CHUNK_SIZE - INITIAL_HEADER_SIZE, [buffer length]);
     [self sendPackageWithHeader:kProtocolPacketInitial
                      identifier:identifier
@@ -225,9 +221,7 @@
     return initialPayloadLength;
 }
 
--(unsigned long)sendSubsequentPackageWithBuffer:(NSData*)buffer
-                                 firstByteIndex:(unsigned long)offset
-{
+-(unsigned long)sendSubsequentPackageWithBuffer:(NSData*)buffer firstByteIndex:(unsigned long)offset {
     unsigned long payloadLength = MIN(CHUNK_SIZE - 1, [buffer length] - offset);
     [self sendPackageWithHeader:kProtocolPacketSubsequent
                      identifier:kProtocolObjectUndefined
@@ -239,8 +233,7 @@
     return offset + payloadLength;
 }
 
-- (void)sendAcknowledgePacket
-{
+- (void)sendAcknowledgePacket {
     [self sendPackageWithHeader:kProtocolPacketAcknowledge
                      identifier:kProtocolObjectUndefined
                        sizeInfo:0 payload:NULL
@@ -249,8 +242,7 @@
     //NSLog(@"<Socket> Sent ACKNOWLEDGE packet");
 }
 
-- (void)sendAbortReceivePacket
-{
+- (void)sendAbortReceivePacket {
     [self sendPackageWithHeader:kProtocolPacketAbortReceiving
                      identifier:kProtocolObjectUndefined
                        sizeInfo:0 payload:NULL
@@ -259,8 +251,7 @@
     //NSLog(@"<Socket> Sent ABORT_RECEIVING packet");
 }
 
-- (void)sendAbortSendPacket
-{
+- (void)sendAbortSendPacket {
     [self sendPackageWithHeader:kProtocolPacketAbortSending
                      identifier:kProtocolObjectUndefined
                        sizeInfo:0 payload:NULL

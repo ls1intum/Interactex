@@ -16,4 +16,5 @@
 +(BOOL) canConvertParam:(TFDataType) type1 toType:(TFDataType) type2;
 +(void) MakeCallTo:(NSString*) number;
 
+
 @end

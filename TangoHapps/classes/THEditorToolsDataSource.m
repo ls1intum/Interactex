@@ -36,7 +36,7 @@
         
         _simulatingTools = [NSArray arrayWithObject:pinsModeItem];
         
-        _serverController = [[ServerController alloc] init];
+        _serverController = [[THServerController alloc] init];
         //[_serverController startServer];
         _serverController.delegate = self;
         
@@ -131,20 +131,20 @@
     }
 }
 
--(void) server:(ServerController*)controller
+-(void) server:(THServerController*)controller
  peerConnected:(NSString*)peerName {
     [self updateServerButtonState];
 }
 
--(void) server:(ServerController*)controller peerDisconnected:(NSString*)peerName {
+-(void) server:(THServerController*)controller peerDisconnected:(NSString*)peerName {
     [self updateServerButtonState];
 }
 
--(void) server:(ServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
+-(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
     //self.serverItem.enabled = enabled;
 }
 
--(void) server:(ServerController*)controller
+-(void) server:(THServerController*)controller
 isTransferring:(BOOL)transferring {
     /*
     UIImage * image;
@@ -156,7 +156,7 @@ isTransferring:(BOOL)transferring {
     wirelessButton.image = image;*/
 }
 
-- (void) server:(ServerController*)controller isRunning:(BOOL)running{
+- (void) server:(THServerController*)controller isRunning:(BOOL)running{
     //[self updateWirelessButtonTo:running];
 }
 

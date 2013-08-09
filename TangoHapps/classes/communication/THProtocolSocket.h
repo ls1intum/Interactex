@@ -3,6 +3,7 @@
 #import <GameKit/GameKit.h>
 
 typedef enum {
+    kProtocolObjectSceneName,
     kProtocolObjectScene,
     kProtocolObjectAssetList,
     kProtocolObjectMissingAssets,

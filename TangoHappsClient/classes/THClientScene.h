@@ -10,25 +10,29 @@
 
 @class THClientProject;
 
-@interface THClientRealScene : NSObject {
-    NSString *archiveFilename;
+@interface THClientScene : NSObject {
 }
 
-@property (readonly) NSString *name;
+@property (nonatomic,copy) NSString *name;
 @property (nonatomic, readonly) UIImage * image;
-@property (nonatomic, readonly) THClientProject * project;
+@property (nonatomic, strong) THClientProject * project;
 @property (nonatomic) BOOL isFakeScene;
+@property (nonatomic) BOOL isSaved;
 
-+(NSString*)resolveNameConflictFor:(NSString*)name;
-+(NSMutableArray*)persistentScenes;
++(NSString*) resolveNameConflictFor:(NSString*)name;
++(NSMutableArray*) persistentScenes;
+
++(void) deleteSceneNamed:(NSString*) sceneName;
++(BOOL) sceneExists:(NSString*) sceneName;
 
 -(id)initWithName:(NSString*)newName world:(THClientProject*) world;
--(id)initWithArchive:(NSString*)archiveFile;
+-(id)initWithName:(NSString*) aName;
 
+//saving
 -(void) save;
 -(void) saveWithImage:(UIImage*)image;
+-(void) saveImage:(UIImage*) image;
 -(void) loadFromArchive;
--(void) unload;
 -(void) deleteArchive;
 -(void) renameTo:(NSString*)newName;
 

@@ -1,5 +1,5 @@
 
-#import "ServerController.h"
+#import "THServerController.h"
 #import "THClientProject.h"
 #import "THLilypadEditable.h"
 #import "THLilyPad.h"
@@ -8,7 +8,8 @@
 #import "THClientProject.h"
 #import "THAssetCollection.h"
 
-@implementation ServerController
+@implementation THServerController
+
 @dynamic serverIsRunning;
 
 -(id) init {
@@ -88,22 +89,26 @@
     [self queueTransferAgentActionOnAllClients:kTransferActionInputPinState withObject:pins];
 }*/
 
--(void)pushProjectToAllClients:(THCustomProject*)project {
+-(void) pushProjectToAllClients:(THCustomProject*)project {
+    
+    NSString * projectName = project.name;
+    [self queueTransferActionOnAllClients:kTransferActionSceneName withObject:projectName];
+    
     THAssetCollection * assetCollection = project.assetCollection;
-    [self queueTransferAgentActionOnAllClients:kTransferActionAssets withObject:assetCollection.assetDescriptions];
+    [self queueTransferActionOnAllClients:kTransferActionAssets withObject:assetCollection.assetDescriptions];
     
     THClientProject * clientProject = [project nonEditableProject];
-    [self queueTransferAgentActionOnAllClients:kTransferAgentActionScene withObject:clientProject];
+    [self queueTransferActionOnAllClients:kTransferActionScene withObject:clientProject];
 }
 
--(void)queueTransferAgentActionOnAllClients:(TransferAgentAction)action withObject:(id)object {
+-(void) queueTransferActionOnAllClients:(THTransferAgentAction)action withObject:(id)object {
     for(NSString *peerID in _agents.allKeys){
         [self queueTransferAgentAction:action onClient:peerID withObject:object];
     }
 }
 
--(void)queueTransferAgentAction:(TransferAgentAction)action onClient:(NSString*)peerID withObject:(id) object {
-    TransferAgent *agent = (TransferAgent*)[_agents objectForKey:peerID];
+-(void) queueTransferAgentAction:(THTransferAgentAction)action onClient:(NSString*)peerID withObject:(id) object {
+    THTransferAgent *agent = (THTransferAgent*)[_agents objectForKey:peerID];
     [agent queueAction:action withObject:object];
 }
 
@@ -139,7 +144,7 @@
         [_peers setValue:peer forKey:peerID];
         
         // Create an agent for the peer
-        TransferAgent *agent = [TransferAgent masterAgentForClientPeerID:peerID session:session];
+        THTransferAgent *agent = [THTransferAgent masterAgentForClientPeerID:peerID session:session];
         [agent setDelegate:self];
         [_agents setObject:agent forKey:peerID];
         [_delegate server:self peerConnected:peerName];
@@ -150,7 +155,7 @@
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void*)context {
-    TransferAgent *agent = (TransferAgent*)[_agents objectForKey:peer];
+    THTransferAgent *agent = (THTransferAgent*)[_agents objectForKey:peer];
     if(agent){
         [agent receiveData:data];
     }
@@ -158,7 +163,7 @@
 
 #pragma mark - Transfer Agent Delegate
 
--  (void)agent:(TransferAgent*)agent willBeginAction:(TransferAgentAction)action {
+-  (void)agent:(THTransferAgent*)agent willBeginAction:(THTransferAgentAction)action {
     NSString *label = [agent labelForAction:action];
     NSMutableDictionary *peer = (NSMutableDictionary*)[_peers objectForKey:[agent peerID]];
     if(label){
@@ -170,18 +175,18 @@
     [self updateBusyState];
 }
 
-- (void)agent:(TransferAgent*)agent madeProgressForCurrentAction:(float)progress {
+- (void)agent:(THTransferAgent*)agent madeProgressForCurrentAction:(float)progress {
     NSMutableDictionary *peer = (NSMutableDictionary*)[_peers objectForKey:[agent peerID]];
     [peer setObject:[NSNumber numberWithFloat:progress] forKey:@"progress"];
 }
 
-- (void)agent:(TransferAgent*)agent didFinishAction:(TransferAgentAction)action withObject:(id)object {
+- (void)agent:(THTransferAgent*)agent didFinishAction:(THTransferAgentAction)action withObject:(id)object {
     NSMutableDictionary *peer = (NSMutableDictionary*)[_peers objectForKey:[agent peerID]];
     [peer removeObjectForKey:@"action"];
     [self updateBusyState];
 }
 
-- (void)agent:(TransferAgent*)agent didChangeQueueLengthTo:(NSUInteger)items {
+- (void)agent:(THTransferAgent*)agent didChangeQueueLengthTo:(NSUInteger)items {
     NSMutableDictionary *peer = (NSMutableDictionary*)[_peers objectForKey:[agent peerID]];
     [peer setObject:[NSNumber numberWithInt:items] forKey:@"queued_actions"];
 }
@@ -189,7 +194,7 @@
 - (void)updateBusyState {
     int busyAgents = 0;
     for(NSString* peerID in _agents){
-        TransferAgent *agent = [_agents objectForKey:peerID];
+        THTransferAgent *agent = [_agents objectForKey:peerID];
         if(![agent isIdle]) busyAgents++;
     }
     [_delegate server:self isTransferring:(busyAgents > 0)];

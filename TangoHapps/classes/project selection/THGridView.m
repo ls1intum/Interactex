@@ -103,7 +103,6 @@
     [self setContentSize:CGSizeMake(self.bounds.size.width, currentY + itemSize.height)];
 }
 
-
 #pragma mark - GridViewDelegate
 
 -(void) didLongPressGridItem:(THGridItem *)item{

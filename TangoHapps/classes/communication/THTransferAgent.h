@@ -1,20 +1,21 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
-#import "ProtocolSocket.h"
+#import "THProtocolSocket.h"
 
 typedef enum{
     kTransferAgentModeMaster,
     kTransferAgentModeSlave
 } THTransferAgentMode;
 
-#define kNumTransferActions 6
+#define kNumTransferActions 5
 
 typedef enum{
-    kTransferAgentActionIdle,
-    kTransferAgentActionScene,
+    kTransferActionIdle,
+    kTransferActionSceneName,
     kTransferActionAssets,
-    kTransferActionMissingAssets
+    kTransferActionMissingAssets,
+    kTransferActionScene
 } THTransferAgentAction;
 
 extern NSString* const kTransferActionTexts[kNumTransferActions];

@@ -13,10 +13,10 @@
 #import "IFI2CComponent.h"
 #import "IFI2CRegister.h"
 
-#define START_SYSEX             0xF0 // start a MIDI Sysex message
-#define END_SYSEX               0xF7 // end a MIDI Sysex message
-#define PIN_MODE_QUERY          0x72 // ask for current and supported pin modes
-#define PIN_MODE_RESPONSE       0x73 // reply with current and supported pin modes
+#define START_SYSEX             0xF0
+#define END_SYSEX               0xF7
+#define PIN_MODE_QUERY          0x72
+#define PIN_MODE_RESPONSE       0x73
 #define PIN_STATE_QUERY         0x6D
 #define PIN_STATE_RESPONSE      0x6E
 #define CAPABILITY_QUERY        0x6B
@@ -556,7 +556,7 @@
     int pinNumber = parse_buf[2];
     int mode = parse_buf[3];
     
-    NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
+    //NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
     
     if((pinInfo[pinNumber].supportedModes & (1<<IFPinModeInput) || pinInfo[pinNumber].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[pinNumber].supportedModes & (1<<IFPinModeAnalog))){
         
@@ -683,7 +683,7 @@
         startedSysex = NO;
     }
     
-    
+    /*
     printf("\n ");
     NSLog(@"**Data received, length: %d**",length);
     
@@ -691,7 +691,7 @@
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n ");
+    printf("\n ");*/
     
     
     for (int i = 0 ; i < length; i++) {

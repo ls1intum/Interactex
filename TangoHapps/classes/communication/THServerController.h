@@ -1,7 +1,7 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
-#import "TransferAgent.h"
+#import "THTransferAgent.h"
 
 @class THServerController;
 @class THClientProject;
@@ -14,7 +14,7 @@
 - (void)server:(THServerController*)controller isTransferring:(BOOL)transferring;
 @end
 
-@interface ServerController : NSObject
+@interface THServerController : NSObject
 <THTransferAgentDelegate, GKSessionDelegate> {
     GKSession *session;
     NSTimer * _transferTimer;

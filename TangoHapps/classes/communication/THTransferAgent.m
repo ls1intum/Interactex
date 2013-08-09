@@ -1,9 +1,9 @@
 
-#import "TransferAgent.h"
+#import "THTransferAgent.h"
 
 @implementation THTransferAgent
 
-NSString* const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene",@"Assets",@"Missing Assets"};
+NSString * const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene Name", @"Scene",@"Assets",@"Missing Assets"};
 
 +(THTransferAgent *)masterAgentForClientPeerID:(NSString *)peerID
                                      session:(GKSession *)session
@@ -28,7 +28,7 @@ NSString* const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene",@"
         peerID = newPeerID;
         socket = [[THProtocolSocket alloc] initWithSession:session peerID:peerID];
         [socket setDelegate:self];
-        currentAction = kTransferAgentActionIdle;
+        currentAction = kTransferActionIdle;
         actionQueue= [NSMutableArray array];
         objectQueue = [NSMutableArray array];
     }
@@ -39,7 +39,7 @@ NSString* const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene",@"
 
 -(BOOL)isIdle
 {
-    return (currentAction == kTransferAgentActionIdle);
+    return (currentAction == kTransferActionIdle);
 }
 
 -(NSString *)peerID
@@ -87,16 +87,17 @@ NSString* const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene",@"
     [actionQueue removeObjectAtIndex:0];
     [objectQueue removeObjectAtIndex:0];
     [self.delegate agent:self willBeginAction:currentAction];
-    
-    NSLog(@"<TA> Beginning queueable action: %@", [self labelForAction:currentAction]);
-    
+        
     switch (currentAction) {
-        case kTransferAgentActionIdle:{
+        case kTransferActionIdle:{
             [self finishCurrentAction];
-            return;
             break;
         }
-        case kTransferAgentActionScene:{
+        case kTransferActionSceneName:{
+            [socket sendObject:object withIdentifier:kProtocolObjectSceneName];
+            break;
+        }
+        case kTransferActionScene:{
             [socket sendObject:object withIdentifier:kProtocolObjectScene];
             break;
         }
@@ -117,13 +118,13 @@ NSString* const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene",@"
 
 - (void)finishCurrentActionWithObject:(id)object {
     [self.delegate agent:self didFinishAction:currentAction withObject:object];
-    currentAction = kTransferAgentActionIdle;
+    currentAction = kTransferActionIdle;
     [self performNextAction];
 }
 
 - (void)finishAction:(THTransferAgentAction)action withObject:(id)object {
     [self.delegate agent:self didFinishAction:action withObject:object];
-    currentAction = kTransferAgentActionIdle;
+    currentAction = kTransferActionIdle;
     [self performNextAction];
 }
 
@@ -149,8 +150,9 @@ NSString* const kTransferActionTexts[kNumTransferActions] = {@"Idle",@"Scene",@"
 
 - (void)socket:(THProtocolSocket*)socket didFinishSendingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier {
     if(mode == kTransferAgentModeMaster){
-        NSLog(@"socket notifies: %d", identifier);
-        if((currentAction == kTransferAgentActionScene && identifier == kProtocolObjectScene) || (currentAction == kTransferActionAssets && identifier == kProtocolObjectAssets)){
+        if((currentAction == kTransferActionSceneName && identifier == kProtocolObjectSceneName) ||
+           (currentAction == kTransferActionScene && identifier == kProtocolObjectScene) ||
+           (currentAction == kTransferActionAssets && identifier == kProtocolObjectAssets)){
             [self finishCurrentAction];
         }
     }
@@ -165,12 +167,16 @@ didAbortSendingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier
 #pragma mark - Protocol Socket Delegate (Receiving)
 
 - (void)socket:(THProtocolSocket*)socket didBeginReceivingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier {
-    NSLog(@"began: %d",identifier);
     
     if(mode == kTransferAgentModeSlave){
         switch (identifier) {
+                
+            case kProtocolObjectSceneName:
+                currentAction = kTransferActionSceneName;
+                break;
+                
             case kProtocolObjectScene:
-                currentAction = kTransferAgentActionScene;
+                currentAction = kTransferActionScene;
                 break;
                 
             case kProtocolObjectMissingAssets:
@@ -195,13 +201,14 @@ didAbortSendingObjectWithIdentifier:(THProtocolObjectIdentifier)identifier
 
 -  (void)socket:(THProtocolSocket*)aSocket didFinishReceivingObject:(id)object withIdentifier: (THProtocolObjectIdentifier)identifier {
     
-    
-    NSLog(@"ends: %d",identifier);
-    
     switch (identifier) {
             
+        case kProtocolObjectSceneName:
+            currentAction = kTransferActionSceneName;
+            break;
+            
         case kProtocolObjectScene:
-            currentAction = kTransferAgentActionScene;
+            currentAction = kTransferActionScene;
             break;
             
         case kProtocolObjectMissingAssets:

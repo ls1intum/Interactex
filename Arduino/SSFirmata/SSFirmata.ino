@@ -56,8 +56,6 @@
  * GLOBAL VARIABLES
  *============================================================================*/
 
-//SoftwareSerial localSoftwareSerial(2,3);
-
 /* analog inputs */
 int analogInputsToReport = 0; // bitwise array to store pin reporting
 
@@ -73,7 +71,10 @@ int pinState[TOTAL_PINS];           // any value that has been written
 /* timer variables */
 unsigned long currentMillis;        // store the current value from millis()
 unsigned long previousMillis;       // for comparison with currentMillis
-int samplingInterval = 19;          // how often to run the main loop (in ms)
+int samplingInterval = 300;          // how often to report analog and servo data
+
+unsigned long previousMillisBle = 0;
+unsigned long bleInterval = 50;
 
 /* i2c data */
 struct i2c_device_info {
@@ -91,19 +92,23 @@ signed char queryIndex = -1;
 unsigned int i2cReadDelayTime = 0;  // default delay time between i2c read request and Wire.requestFrom()
 
 Servo servos[MAX_SERVOS];
+
+unsigned long biggestDifference = 0;//remove
+unsigned long previousMillisTest;//remove
+
 /*==============================================================================
  * FUNCTIONS
  *============================================================================*/
 
-
 void readAndReportData(byte address, int theRegister, byte numBytes) {
-  /*
+  
   // allow I2C requests that don't require a register read
   // for example, some devices using an interrupt pin to signify new data available
   // do not always require the register read so upon interrupt you call Wire.requestFrom()  
   if (theRegister != REGISTER_NOT_SPECIFIED) {
     Wire.beginTransmission(address);
     #if ARDUINO >= 100
+
     Wire.write((byte)theRegister);
     #else
     Wire.send((byte)theRegister);
@@ -115,11 +120,13 @@ void readAndReportData(byte address, int theRegister, byte numBytes) {
   }
 
   Wire.requestFrom(address, numBytes);  // all bytes are returned in requestFrom
+  int bytesAvailable = Wire.available();
 
   // check to be sure correct number of bytes were returned by slave
-  if(numBytes == Wire.available()) {
+  if(numBytes == bytesAvailable) {
     i2cRxData[0] = address;
     i2cRxData[1] = theRegister;
+    
     for (int i = 0; i < numBytes; i++) {
       #if ARDUINO >= 100
       i2cRxData[2 + i] = Wire.read();
@@ -129,32 +136,30 @@ void readAndReportData(byte address, int theRegister, byte numBytes) {
     }
   }
   else {
-    if(numBytes > Wire.available()) {
-      SSFirmata.sendString("I2C Read Error: Too many bytes received");
-    } else {
-      SSFirmata.sendString("I2C Read Error: Too few bytes received"); 
-    }
+    Serial.print("requested: ");
+    Serial.print(numBytes);
+    Serial.print(" but got: ");
+    Serial.println(bytesAvailable);
   }
-
+    
   // send slave address, register and received bytes
   SSFirmata.sendSysex(SYSEX_I2C_REPLY, numBytes + 2, i2cRxData);
-  */
+  
 }
 
 void outputPort(byte portNumber, byte portValue, byte forceSend)
-{/*
+{
   // pins not configured as INPUT are cleared to zeros
   portValue = portValue & portConfigInputs[portNumber];
   // only send if the value is different than previously sent
   if(forceSend || previousPINs[portNumber] != portValue) {
     SSFirmata.sendDigitalPort(portNumber, portValue);
     previousPINs[portNumber] = portValue;
-  }*/
+  }
 }
 
-
 void checkDigitalInputs(void)
-{/*
+{
   if (TOTAL_PORTS > 0 && reportPINs[0]) outputPort(0, readPort(0, portConfigInputs[0]), false);
   if (TOTAL_PORTS > 1 && reportPINs[1]) outputPort(1, readPort(1, portConfigInputs[1]), false);
   if (TOTAL_PORTS > 2 && reportPINs[2]) outputPort(2, readPort(2, portConfigInputs[2]), false);
@@ -171,11 +176,10 @@ void checkDigitalInputs(void)
   if (TOTAL_PORTS > 13 && reportPINs[13]) outputPort(13, readPort(13, portConfigInputs[13]), false);
   if (TOTAL_PORTS > 14 && reportPINs[14]) outputPort(14, readPort(14, portConfigInputs[14]), false);
   if (TOTAL_PORTS > 15 && reportPINs[15]) outputPort(15, readPort(15, portConfigInputs[15]), false);
- */
 }
 
 void setPinModeCallback(byte pin, int mode)
-{
+{  
   if (pinConfig[pin] == I2C && isI2CEnabled && mode != I2C) {
     // disable i2c so pins can be used for other functions
     // the following if statements should reconfigure the pins properly
@@ -194,7 +198,9 @@ void setPinModeCallback(byte pin, int mode)
       portConfigInputs[pin/8] &= ~(1 << (pin & 7));
     }
   }
+  
   pinState[pin] = 0;
+  
   switch(mode) {
   case ANALOG:
     if (IS_PIN_ANALOG(pin)) {
@@ -206,14 +212,16 @@ void setPinModeCallback(byte pin, int mode)
     }
     break;
   case INPUT:
+  
     if (IS_PIN_DIGITAL(pin)) {
+  
       pinMode(PIN_TO_DIGITAL(pin), INPUT); // disable output driver
       digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
       pinConfig[pin] = INPUT;
     }
     break;
   case OUTPUT:
-  S
+  
     if (IS_PIN_DIGITAL(pin)) {
       digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable PWM
       pinMode(PIN_TO_DIGITAL(pin), OUTPUT);
@@ -243,9 +251,8 @@ void setPinModeCallback(byte pin, int mode)
     }
     break;
   default:
-    SSFirmata.sendString("Unknown pin mode"); // TODO: put error msgs in EEPROM
+    Serial.println("Unknown pin mode"); // TODO: put error msgs in EEPROM
   }
-  // TODO: save status to EEPROM here, if changed
 }
 
 void analogWriteCallback(byte pin, int value)
@@ -259,10 +266,6 @@ void analogWriteCallback(byte pin, int value)
       break;
     case PWM:
     
-    Serial.print(pin);
-    Serial.print(" ");
-    Serial.println(value);
-    
       if (IS_PIN_PWM(pin))
         analogWrite(PIN_TO_PWM(pin), value);
         pinState[pin] = value;
@@ -273,9 +276,6 @@ void analogWriteCallback(byte pin, int value)
 
 void digitalWriteCallback(byte port, int value)
 {
-  Serial.println("digital writing");
-  
-  
   byte pin, lastPin, mask=1, pinWriteMask=0;
 
   if (port < TOTAL_PORTS) {
@@ -293,24 +293,17 @@ void digitalWriteCallback(byte port, int value)
         }
       }
       mask = mask << 1;
-    }
-    
-    Serial.print(port);
-    Serial.print(" ");
-    Serial.print(value);
-    Serial.print(" " );
-    Serial.print(pinWriteMask);
- 
+    } 
     writePort(port, (byte)value, pinWriteMask);
   }
   
-  Serial.println("finishes digital writing");
 }
 
-
 void reportAnalogCallback(byte analogPin, int value)
-{/*
+{
   if (analogPin < TOTAL_ANALOG_PINS) {
+    //Serial.println("reporting analog");
+    
     if(value == 0) {
       analogInputsToReport = analogInputsToReport &~ (1 << analogPin);
     } else {
@@ -318,12 +311,13 @@ void reportAnalogCallback(byte analogPin, int value)
     }
   }
   // TODO: save status to EEPROM here, if changed
-  */
+  
 }
 
-void reportDigitalCallback(byte port, int value)
-{
+void reportDigitalCallback(byte port, int value) {
+     
   if (port < TOTAL_PORTS) {
+  
     reportPINs[port] = (byte)value;
   }
   // do not disable analog reporting on these 8 pins, to allow some
@@ -336,7 +330,7 @@ void reportDigitalCallback(byte port, int value)
 }
 
 void sysexCallback(byte command, byte argc, byte *argv)
-{/*
+{
   byte mode;
   byte slaveAddress;
   byte slaveRegister;
@@ -347,7 +341,7 @@ void sysexCallback(byte command, byte argc, byte *argv)
   case I2C_REQUEST:
     mode = argv[1] & I2C_READ_WRITE_MODE_MASK;
     if (argv[1] & I2C_10BIT_ADDRESS_MODE_MASK) {
-      SSFirmata.sendString("10-bit addressing mode is not yet supported");
+      Serial.println("10-bit addressing mode is not yet supported");
       return;
     }
     else {
@@ -356,18 +350,31 @@ void sysexCallback(byte command, byte argc, byte *argv)
 
     switch(mode) {
     case I2C_WRITE:
+    
+        Serial.print("i2c writing to ");
+        Serial.print(slaveAddress);
+        Serial.print(": ");
+        
       Wire.beginTransmission(slaveAddress);
       for (byte i = 2; i < argc; i += 2) {
         data = argv[i] + (argv[i + 1] << 7);
+        
+        Serial.print((byte)data);
+        Serial.print(" ");
+        
         #if ARDUINO >= 100
         Wire.write(data);
         #else
         Wire.send(data);
         #endif
       }
+      
+      Serial.println();
+      
       Wire.endTransmission();
       delayMicroseconds(70);
       break;
+      
     case I2C_READ:
       if (argc == 6) {
         // a slave register is specified
@@ -382,17 +389,30 @@ void sysexCallback(byte command, byte argc, byte *argv)
       }
       break;
     case I2C_READ_CONTINUOUSLY:
+    
       if ((queryIndex + 1) >= MAX_QUERIES) {
         // too many queries, just ignore
-        SSFirmata.sendString("too many queries");
+        Serial.println("too many queries");
         break;
       }
       queryIndex++;
       query[queryIndex].addr = slaveAddress;
       query[queryIndex].reg = argv[2] + (argv[3] << 7);
       query[queryIndex].bytes = argv[4] + (argv[5] << 7);
+      
+    Serial.print("reading cont! add: ");
+    Serial.print(query[queryIndex].addr);
+    Serial.print(" ");
+    Serial.print(query[queryIndex].reg);
+    Serial.print(" ");    
+    Serial.print(query[queryIndex].bytes);
+    Serial.println("");
+    
       break;
     case I2C_STOP_READING:
+    
+    Serial.println("stops reading cont!");
+    
 	  byte queryIndexToSkip;      
       // if read continuous mode is enabled for only 1 i2c device, disable
       // read continuous reporting for that device
@@ -469,63 +489,80 @@ void sysexCallback(byte command, byte argc, byte *argv)
     }
     break;
   case CAPABILITY_QUERY:
-    Serial.write(START_SYSEX);
-    Serial.write(CAPABILITY_RESPONSE);
+  //Serial.println("capability");
+  
+    SSFirmata.bleSend(START_SYSEX);
+    SSFirmata.bleSend(CAPABILITY_RESPONSE);
     for (byte pin=0; pin < TOTAL_PINS; pin++) {
       if (IS_PIN_DIGITAL(pin)) {
-        Serial.write((byte)INPUT);
-        Serial.write(1);
-        Serial.write((byte)OUTPUT);
-        Serial.write(1);
+        SSFirmata.bleSend((byte)INPUT);
+        SSFirmata.bleSend(1);
+        SSFirmata.bleSend((byte)OUTPUT);
+        SSFirmata.bleSend(1);
       }
       if (IS_PIN_ANALOG(pin)) {
-        Serial.write(ANALOG);
-        Serial.write(10);
+        SSFirmata.bleSend(ANALOG);
+        SSFirmata.bleSend(10);
       }
       if (IS_PIN_PWM(pin)) {
-        Serial.write(PWM);
-        Serial.write(8);
+        SSFirmata.bleSend(PWM);
+        SSFirmata.bleSend(8);
       }
       if (IS_PIN_SERVO(pin)) {
-        Serial.write(SERVO);
-        Serial.write(14);
+        SSFirmata.bleSend(SERVO);
+        SSFirmata.bleSend(14);
       }
       if (IS_PIN_I2C(pin)) {
-        Serial.write(I2C);
-        Serial.write(1);  // to do: determine appropriate value 
+        SSFirmata.bleSend(I2C);
+        SSFirmata.bleSend(1);  // to do: determine appropriate value 
       }
-      Serial.write(127);
+      SSFirmata.bleSend(127);
     }
-    Serial.write(END_SYSEX);
+    SSFirmata.bleSend(END_SYSEX);
     break;
   case PIN_STATE_QUERY:
+  
     if (argc > 0) {
       byte pin=argv[0];
-      Serial.write(START_SYSEX);
-      Serial.write(PIN_STATE_RESPONSE);
-      Serial.write(pin);
+      /*
+      Serial.print("sending pin: ");
+      Serial.println(pin);*/
+      
+      SSFirmata.bleSend(START_SYSEX);
+      SSFirmata.bleSend(PIN_STATE_RESPONSE);
+      SSFirmata.bleSend(pin);
+      
       if (pin < TOTAL_PINS) {
-        Serial.write((byte)pinConfig[pin]);
-	Serial.write((byte)pinState[pin] & 0x7F);
-	if (pinState[pin] & 0xFF80) Serial.write((byte)(pinState[pin] >> 7) & 0x7F);
-	if (pinState[pin] & 0xC000) Serial.write((byte)(pinState[pin] >> 14) & 0x7F);
+        
+        SSFirmata.bleSend((byte)pinConfig[pin]);
+	SSFirmata.bleSend((byte)pinState[pin] & 0x7F);
+
+	if (pinState[pin] & 0xFF80) SSFirmata.bleSend((byte)(pinState[pin] >> 7) & 0x7F);
+	if (pinState[pin] & 0xC000) SSFirmata.bleSend((byte)(pinState[pin] >> 14) & 0x7F);
       }
-      Serial.write(END_SYSEX);
+      SSFirmata.bleSend(END_SYSEX);
+   
     }
     break;
   case ANALOG_MAPPING_QUERY:
-    Serial.write(START_SYSEX);
-    Serial.write(ANALOG_MAPPING_RESPONSE);
+
+    SSFirmata.bleSend(START_SYSEX);
+    SSFirmata.bleSend(ANALOG_MAPPING_RESPONSE);
     for (byte pin=0; pin < TOTAL_PINS; pin++) {
-      Serial.write(IS_PIN_ANALOG(pin) ? PIN_TO_ANALOG(pin) : 127);
+      SSFirmata.bleSend(IS_PIN_ANALOG(pin) ? PIN_TO_ANALOG(pin) : 127);
     }
-    Serial.write(END_SYSEX);
+    SSFirmata.bleSend(END_SYSEX);
     break;
-  }*/
+  }
+  /*
+  case default:
+  Serial.println("unknown sysex message");
+  break;*/
+  
 }
 
 void enableI2CPins()
-{/*
+{
   byte i;
   // is there a faster way to do this? would probaby require importing 
   // Arduino.h to get SCL and SDA pins
@@ -539,33 +576,38 @@ void enableI2CPins()
   isI2CEnabled = true; 
   
   // is there enough time before the first I2C request to call this here?
-  Wire.begin();*/
+  Wire.begin();
+  
 }
 
-void disableI2CPins() {/*
+void disableI2CPins() {
+  
     isI2CEnabled = false;
     // disable read continuous mode for all devices
     queryIndex = -1;
     // uncomment the following if or when the end() method is added to Wire library
-    // Wire.end();*/
+    // Wire.end();
 }
 
-
 void systemResetCallback()
-{/*
+{
+  Serial.println("resets");
+  
   // initialize a defalt state
   // TODO: option to load config from EEPROM instead of default
   if (isI2CEnabled) {
   	disableI2CPins();
   }
+  
   for (byte i=0; i < TOTAL_PORTS; i++) {
     reportPINs[i] = false;      // by default, reporting off
     portConfigInputs[i] = 0;	// until activated
     previousPINs[i] = 0;
   }
+  
   // pins with analog capability default to analog input
   // otherwise, pins default to digital output
-  for (byte i=0; i < TOTAL_PINS; i++) {
+  for (byte i=4; i < TOTAL_PINS; i++) {
     if (IS_PIN_ANALOG(i)) {
       // turns off pullup, configures everything
       setPinModeCallback(i, ANALOG);
@@ -574,14 +616,18 @@ void systemResetCallback()
       setPinModeCallback(i, OUTPUT);
     }
   }
+  
   // by default, do not report any analog inputs
   analogInputsToReport = 0;
-*/
-}
 
+  //SSFirmata.bleBufferReset();
+}
 
 void setup() 
 {
+  Serial.begin(9600);
+  Serial.println("starting");
+  
   SSFirmata.setFirmwareVersion(FIRMATA_MAJOR_VERSION, FIRMATA_MINOR_VERSION);
 
   SSFirmata.attach(ANALOG_MESSAGE, analogWriteCallback);
@@ -595,13 +641,12 @@ void setup()
   //SSFirmata.begin(14400);
   SSFirmata.begin(19200);
   
-  systemResetCallback();  // reset to default config
+  systemResetCallback();  // reset to default config  
   
-  
-  pinMode(13,OUTPUT);
-  Serial.begin(9600);
-  Serial.println("starting");
+  Serial.print("Nun Pins: ");
+  Serial.println(TOTAL_PINS);
 }
+
 
 /*==============================================================================
  * LOOP()
@@ -609,26 +654,30 @@ void setup()
 void loop() 
 {
   byte pin, analogPin;
-
+  
   /* DIGITALREAD - as fast as possible, check for changes and output them to the
    * FTDI buffer using Serial.print()  */
-  //checkDigitalInputs();  
+  checkDigitalInputs();
 
+  currentMillis = millis();
+  unsigned long difference = currentMillis - previousMillisTest;
+  if(difference > biggestDifference){
+    biggestDifference = difference;
+    Serial.println(biggestDifference);
+  }
+  previousMillisTest = currentMillis;
+    
   /* SERIALREAD - processing incoming messagse as soon as possible, while still
    * checking digital inputs.  */
   while(SSFirmata.available()){
-    //Serial.println(softwareSerial.read());
-    digitalWrite(13,HIGH);
+    
     SSFirmata.processInput();
   }
-   digitalWrite(13,LOW);
-  
 
   /* SEND FTDI WRITE BUFFER - make sure that the FTDI buffer doesn't go over
    * 60 bytes. use a timer to sending an event character every 4 ms to
    * trigger the buffer to dump. */
-   
-/*
+
   currentMillis = millis();
   if (currentMillis - previousMillis > samplingInterval) {
     previousMillis += samplingInterval;
@@ -640,12 +689,19 @@ void loop()
         }
       }
     }
+    
     // report i2c data for all device with read continuous mode enabled
     if (queryIndex > -1) {
       for (byte i = 0; i < queryIndex + 1; i++) {
         readAndReportData(query[i].addr, query[i].reg, query[i].bytes);
       }
     }
-  }*/
+  }
   
+  //flushing data
+  currentMillis = millis();
+  if(currentMillis - previousMillisBle > bleInterval) {
+    previousMillisBle = currentMillis;
+    SSFirmata.bleFlush();
+  }
 }

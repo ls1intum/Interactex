@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ServerController.h"
+#import "THServerController.h"
 #import "THEditorToolsDataSource.h"
 
-@interface THEditorToolsDataSource : NSObject <TFEditorToolsDataSource, ServerControllerDelegate> {
+@interface THEditorToolsDataSource : NSObject <TFEditorToolsDataSource, THServerControllerDelegate> {
     NSArray * _editingTools;
     NSArray * _simulatingTools;
 }
@@ -18,7 +18,7 @@
 @property (nonatomic, readonly) UIBarButtonItem * lilypadItem;
 @property (nonatomic, readonly) UIBarButtonItem * serverItem;
 
-@property (nonatomic, readonly) ServerController * serverController;
+@property (nonatomic, readonly) THServerController * serverController;
 
 
 

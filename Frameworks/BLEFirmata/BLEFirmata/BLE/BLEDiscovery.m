@@ -115,6 +115,12 @@ static BLEDiscovery * sharedInstance;
 
 #pragma mark Discovery
 
+-(void) startScanningForAnyUUID{
+	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+    
+	[centralManager scanForPeripheralsWithServices:nil options:options];
+}
+
 -(void) startScanningForUUIDString:(NSString *)uuidString {
 	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];

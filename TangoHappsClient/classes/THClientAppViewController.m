@@ -12,11 +12,11 @@
 
 #import "THView.h"
 #import "THiPhone.h"
-#import "THClientRealScene.h"
+#import "THClientScene.h"
 
 #import "THLilyPad.h"
 #import "THBoardPin.h"
-#import "TransferAgent.h"
+#import "THTransferAgent.h"
 #import "THPinValue.h"
 #import "THElementPin.h"
 #import "THCompass.h"
@@ -74,13 +74,13 @@
     
     _realTransferTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(pushLilypadStateToRealClient) userInfo:nil repeats:YES];
 }
-
+/*
 -(void) stopVirtualStateTransfer{
     if(_virtualTransferTimer){
         [_virtualTransferTimer invalidate];
         _virtualTransferTimer = nil;
     }
-}
+}*/
 
 -(void) stopRealStateTransfer{
     if(_realTransferTimer){
@@ -89,89 +89,53 @@
     }
 }
 
--(void) addInfoButton{
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    
-    CGRect frame = CGRectMake(screenRect.size.width-40, screenRect.size.height-100, 30, 30);
-    _infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _infoButton.frame = frame;
-    [_infoButton setTitle:@"i" forState:UIControlStateNormal];
-    _infoButton.titleLabel.textColor = [UIColor blackColor];
-    [_infoButton addTarget:self action:@selector(infoButtonTapped) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:_infoButton];
-
-    [self.view bringSubviewToFront:_infoButton];
-}
-
--(void) createTextView{
-    
-    CGRect frame = CGRectMake(40, 100, 250, 300);
-    _textView = [[UITextView alloc] initWithFrame:frame];
-    _textView.hidden = YES;
-    _textView.editable = NO;
-    _textView.layer.borderWidth = 1.0f;
-    _textView.layer.cornerRadius = 3;
-    
-    UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped)];
-    [_textView addGestureRecognizer:tapRecognizer];
-    
-    [self.view addSubview:_textView];
+-(NSString*) title{
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    return project.name;
 }
 
 -(void) loadUIObjects{
-    
+        
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
+    
     THiPhone * iPhone = project.iPhone;
     
     CGSize size = iPhone.currentView.view.frame.size;
     
     self.view = iPhone.currentView.view;
     
-    [self addInfoButton];
-    
-    /*
-    self.view = [[UIView alloc] initWithFrame:CGRectMake(-100, -100, 200, 200)];
-    self.view.backgroundColor = [UIColor whiteColor];*/
-    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
     THIPhoneType type = screenHeight < 500;
+    CGFloat viewHeight = self.view.bounds.size.height;
+    CGFloat navigationBarOffset = screenHeight - viewHeight;
     
     for (THView * object in project.iPhoneObjects) {
         
-        if(![THSimulableWorldController sharedInstance].currentScene.isFakeScene){
-            float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
-            float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
+        //NSLog(@"pos: %f %f",object.position.x,object.position.y);
+        
+        if(!scene.isFakeScene){
             
-            CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * screenHeight);
+           // NSLog(@"object: %f, iPhone: %f viewSize: %f screenWidth: %f",object.position.x,iPhone.position.x, size.width/2, screenWidth);
+            
+            NSLog(@"object: %f, iPhone: %f viewSize: %f screenHeight: %f viewHeight: %f",object.position.y,iPhone.position.y, size.height/2, screenHeight,viewHeight);
+            
+            float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
+            float rely = (object.position.y - iPhone.position.y - navigationBarOffset + size.height/2) / kiPhoneFrames[type].size.height;
+            
+            CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
             
             object.position = translatedPos;
+            NSLog(@"end pos: %f %f",object.position.x,object.position.y);
         }
         
         [object addToView:self.view];
     }
     
-    [self createTextView];
-    
-    
     [project startSimulating];
-}
-
--(void) textViewTapped {
-    _textView.hidden = YES;
-    _infoButton.titleLabel.textColor = [UIColor blackColor];
-}
-
--(void) reportMessage:(NSString*) message{
-    _textView.text = [_textView.text stringByAppendingFormat:@"%@\n",message];
-}
-
--(void) infoButtonTapped{
-    _textView.hidden = NO;
-    _infoButton.titleLabel.textColor = [UIColor blackColor];
 }
 
 -(void) sendPinModes{
@@ -196,17 +160,6 @@
     }
 
     [self.bleService sendPinModes:array];*/
-}
-
--(void) reloadApp{
-    
-    [self disconnectBle];
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-
-    if(project != nil){
-        [self loadUIObjects];
-    }
 }
 
 #pragma mark LeDiscoveryDelegate
@@ -284,34 +237,28 @@
     [self.view addSubview:_activityIndicator];
 }
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
--(void) viewWillAppear:(BOOL)animated {
-    if(self.mode == kClientModeVirtual){
-        [self startVirtualStateTransfer];
-    } else {
-        [self startRealStateTransfer];
-        [self startActivityIndicator];
+-(void) viewWillAppear:(BOOL)animated{
+    if([THSimulableWorldController sharedInstance].currentProject != nil){
+        [self loadUIObjects];
     }
-    /*
-    [[LeDiscovery sharedInstance] setDiscoveryDelegate:self];
-    [[LeDiscovery sharedInstance] setPeripheralDelegate:self];*/
-    
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     UIImage * image = [THUtils screenshot];
     
     [self stopRealStateTransfer];
-    [self stopVirtualStateTransfer];
     
-    THClientRealScene * scene = [THSimulableWorldController sharedInstance].currentScene;
-    [scene saveWithImage:image];
+    THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
+    if(!scene.image){
+        [scene saveImage:image];
+    }
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
     
-    _textView.text = @"";
+    [THSimulableWorldController sharedInstance].currentScene.project = nil;
+    [THSimulableWorldController sharedInstance].currentScene = nil;
+    [THSimulableWorldController sharedInstance].currentProject = nil;
 }
 
 - (void)viewDidUnload {
@@ -328,7 +275,7 @@
    // [_bleService disconnect];
     //[_bleService reset];
 }
-
+/*
 -(void) startVirtualMode{
     
     [self stopActivityIndicator];
@@ -353,6 +300,10 @@
     } else {
         [self startVirtualMode];
     }
+}*/
+
+-(IBAction)modeButtonTapped:(id)sender {
+    
 }
 
 -(float) angleFromMagnetometer:(Byte*) data{

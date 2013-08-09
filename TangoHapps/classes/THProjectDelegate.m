@@ -10,7 +10,7 @@
 #import "THCustomProject.h"
 #import "THCustomEditor.h"
 #import "THCustomSimulator.h"
-#import "ServerController.h"
+#import "THServerController.h"
 
 @implementation THProjectDelegate
 

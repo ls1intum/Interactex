@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
-#import "TransferAgent.h"
+#import "THTransferAgent.h"
 
 @class THClientAppViewController;
-@class THClientRealScene;
+@class THClientScene;
 @class THClientServer;
 
 @protocol THClientConnectionControllerDelegate <NSObject>
@@ -22,22 +21,17 @@
 
 @end
 
-@interface THClientConnectionViewController : UIViewController
-<THTransferAgentDelegate, UITableViewDataSource, UITableViewDelegate, GKSessionDelegate> {
-    NSMutableArray *servers;
+@interface THClientConnectionController : NSObject <THTransferAgentDelegate, GKSessionDelegate> {
     
     GKSession *session;
     THTransferAgent * transferAgent;
 }
 
 @property (readonly) BOOL isConnectedToServer;
-@property (weak, readonly) THClientServer* connectedServer;
-
-@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (copy, nonatomic) NSString * connectedPeerID;
 @property (weak, nonatomic) id<THClientConnectionControllerDelegate> delegate;
 
 -(void)startClient;
 -(void)stopClient;
-- (IBAction)refreshTapped:(id)sender;
 
 @end

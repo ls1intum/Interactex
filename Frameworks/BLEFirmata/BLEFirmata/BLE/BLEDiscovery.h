@@ -19,6 +19,7 @@
 
 +(instancetype) sharedInstance;
 
+-(void) startScanningForAnyUUID;
 -(void) startScanningForUUIDString:(NSString *)uuidString;
 -(void) stopScanning;
 

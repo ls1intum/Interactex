@@ -261,7 +261,7 @@
 }
 
 - (IBAction)optionsMenuTapped:(id)sender {
-    /*
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -270,9 +270,7 @@
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     
-    [actionSheet showInView:[self view]];*/
-    
-    [self.firmataController start];
+    [actionSheet showInView:[self view]];
     
 }
 

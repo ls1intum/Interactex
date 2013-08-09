@@ -20,6 +20,7 @@
 
 @interface THClientGridView : UIScrollView <TFClientGridItemDelegate, UIGestureRecognizerDelegate>
 {
+    CGPoint currentPosition;
 }
 
 @property (nonatomic, weak) id<THClientGridViewDataSource> dataSource;
@@ -27,5 +28,13 @@
 @property (readonly) NSMutableArray *items;
 @property (nonatomic) BOOL editing;
 
-- (void)reloadData;
+//adding and removing items
+-(void) addItem:(THClientGridItem*) item animated:(BOOL) animated;
+-(void) insertItem:(THClientGridItem*) item atPosition:(NSInteger) idx;
+-(void) removeItem:(THClientGridItem*) item animated:(BOOL) animated;
+-(void) replaceItem:(THClientGridItem*) item withItem:(THClientGridItem*) newItem;
+
+-(void) reloadData;
+-(void) scrollToBottomAnimated:(BOOL) animated;
+
 @end

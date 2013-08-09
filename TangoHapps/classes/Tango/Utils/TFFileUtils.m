@@ -51,11 +51,7 @@
     NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:subfolder];
     NSError *error;
     if (![fm fileExistsAtPath:path]){
-        // Create the directory if it does not exist
-        if (![fm createDirectoryAtPath:path
-           withIntermediateDirectories:NO
-                            attributes:nil
-                                 error:&error]){
+        if (![fm createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error]){
             NSLog(@"Create directory error: %@", error);
         }
     }

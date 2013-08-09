@@ -8,19 +8,28 @@
 
 #import <UIKit/UIKit.h>
 #import "THClientGridView.h"
-#import "THClientConnectionViewController.h"
+#import "THClientConnectionController.h"
 
 @class LoadingBezel;
 @class THClientFakeSceneDataSource;
 
-@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate, UINavigationControllerDelegate, THClientConnectionControllerDelegate> {
+const NSTimeInterval kMinInstallationDuration;
+const float kIconInstallationUpdateFrequency;
+
+@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate, THClientConnectionControllerDelegate> {
     NSMutableArray * scenes;
     LoadingBezel * bezel;
-    THClientFakeSceneDataSource * fakeScenesSource;
     
     NSTimer * installationProgressTimer;
-    THClientGridItem * sceneBeingInstalled;
-    BOOL finishedInstallingProject;
+    THClientGridItem * gridItemBeingInstalled;
+    NSTimeInterval timeWhenInstallationStarted;
+    float installationUpdateRate;
+
+    THClientScene * alreadyExistingSceneBeingInstalled;
 }
+
+@property (nonatomic, strong) THClientConnectionController * connectionController;
+
+@property (nonatomic, strong) THClientFakeSceneDataSource * fakeScenesSource;
 
 @end

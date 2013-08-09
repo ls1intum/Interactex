@@ -187,7 +187,6 @@
 }
 
 -(void) handleItemRenamed {
-    NSLog(@"passing name: %@",self.name);
     [self.delegate didRenameGridItem:self newName:self.name];
 }
 

@@ -10,11 +10,6 @@
 
 
 typedef enum{
-    kClientModeVirtual,
-    kClientModeReal
-} THClientMode;
-
-typedef enum{
     kClientStateNormal,
     kClientStateWaiting
 } THClientState;
@@ -23,19 +18,12 @@ typedef enum{
 
 @interface THClientAppViewController : UIViewController {//<LeDiscoveryDelegate, BleServiceDelegate> {
     
-    NSTimer * _virtualTransferTimer;
     NSTimer * _realTransferTimer;
     UIActivityIndicatorView * _activityIndicator;
-    
-    UIButton * _infoButton;
-    
-    UITextView * _textView;
 }
 
-- (void) reloadApp;
-- (IBAction)modeButtonTapped:(id)sender;
+-(IBAction)modeButtonTapped:(id)sender;
 
-@property (nonatomic, readonly) THClientMode mode;
 @property (nonatomic, readonly) THClientState state;
 
 @property (nonatomic) THTransferAgent  * transferAgent;

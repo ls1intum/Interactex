@@ -6,27 +6,26 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClientRealScene.h"
+#import "THClientScene.h"
 #import "THClientAppDelegate.h"
 #import "THSimulableWorldController.h"
 
-@implementation THClientRealScene
+@implementation THClientScene
 
 @dynamic image;
 
 -(id)initWithName:(NSString*)newName world:(THClientProject*) project {
     if(self = [super init]){
-        archiveFilename = newName;
         _name = newName;
         _project = project;
     }
     return self;
 }
 
--(id)initWithArchive:(NSString*)anArchiveFile {
-    if(self = [super init]){
-        archiveFilename = anArchiveFile;
-        _name = anArchiveFile;
+-(id)initWithName:(NSString*) aName {
+    self = [super init];
+    if(self){
+        self.name = aName;
     }
     return self;
 }
@@ -38,7 +37,6 @@
     
     //NSString *newName = [THClientScene resolveNameConflictFor:[decoder decodeObjectForKey:@"name"]];
     _name = [decoder decodeObjectForKey:@"name"];
-    archiveFilename = _name;
     _project = [decoder decodeObjectForKey:@"project"];
     
     return self;
@@ -52,9 +50,8 @@
 #pragma mark - Properties
 
 -(UIImage *)image {
-    NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
-    NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile
-                                                   inDirectory:kProjectImagesDirectory];
+    NSString *screenshotFile = [self.name stringByAppendingString:@".png"];
+    NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile inDirectory:kProjectImagesDirectory];
     if([TFFileUtils dataFile:screenshotFile existsInDirectory:kProjectImagesDirectory])
         return [UIImage imageWithContentsOfFile:screenshotPath];
     return [UIImage imageNamed:@"screenMissing.png"];
@@ -62,58 +59,72 @@
 
 #pragma mark - Save/Load
 
--(void)save {
-    NSString *filePath = [TFFileUtils dataFile:archiveFilename
-                                             inDirectory:kProjectsDirectory];
-    [TFFileUtils deleteDataFile:archiveFilename
-                            fromDirectory:kProjectsDirectory];
+-(BOOL) isSaved{
+    return [THClientScene sceneExists:self.name];
+}
+
+-(void) save {
+    if([self isSaved]){
+        [self deleteArchive];
+    }
     
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    [NSKeyedArchiver archiveRootObject:project toFile:filePath];
+    NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:self.project toFile:filePath];
+    if(!success){
+        NSLog(@"failed to save object at path: %@",filePath);
+    }
+}
+
+-(void) saveImage:(UIImage*) image{
+    
+    NSString *screenshotFile = [self.name stringByAppendingString:@".png"];
+    NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile inDirectory:kProjectImagesDirectory];
+    
+    [TFFileUtils saveImageToFile:image file:screenshotPath];
 }
 
 -(void)saveWithImage:(UIImage*)image {
     if(!self.isFakeScene){
-        
-        NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
-        NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile inDirectory:kProjectImagesDirectory];
-        
-        [TFFileUtils saveImageToFile:image file:screenshotPath];
+        [self saveImage:image];
         [self save];
     }
 }
 
 -(void)loadFromArchive {
-    if([TFFileUtils dataFile:archiveFilename existsInDirectory:kProjectsDirectory]){
-        // Load the worlds state from disk
+    if([TFFileUtils dataFile:self.name existsInDirectory:kProjectsDirectory]){
         
-        NSString *filePath = [TFFileUtils dataFile:archiveFilename inDirectory:kProjectsDirectory];
+        NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
         _project = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     } else{
         [[THSimulableWorldController sharedInstance] newProject];
     }
 }
 
--(void)unload {
-    _project = nil;
-    [THSimulableWorldController sharedInstance].currentProject = nil;
-}
-
 #pragma mark - File Management
 
--(void)deleteArchive {
-    NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:archiveFilename fromDirectory:kProjectsDirectory];
++(BOOL) sceneExists:(NSString*) sceneName{
+    return [TFFileUtils dataFile:sceneName existsInDirectory:kProjectsDirectory];
+}
+
++(void) deleteSceneNamed:(NSString*) sceneName{
+    
+    NSString *screenshotFile = [sceneName stringByAppendingString:@".png"];
+    [TFFileUtils deleteDataFile:sceneName fromDirectory:kProjectsDirectory];
     [TFFileUtils deleteDataFile:screenshotFile fromDirectory:kProjectImagesDirectory];
 }
 
+-(void) deleteArchive {
+    [THClientScene deleteSceneNamed:self.name];
+}
+
 -(void)renameTo:(NSString*)newName {
-    newName = [THClientRealScene resolveNameConflictFor:newName];
-    NSString *screenshotFile = [archiveFilename stringByAppendingString:@".png"];
+    newName = [THClientScene resolveNameConflictFor:newName];
+    NSString *screenshotFile = [self.name stringByAppendingString:@".png"];
     NSString *newScreenshotFile = [newName stringByAppendingString:@".png"];
-    [TFFileUtils renameDataFile:archiveFilename to:newName inDirectory:kProjectsDirectory];
+    [TFFileUtils renameDataFile:self.name to:newName inDirectory:kProjectsDirectory];
     [TFFileUtils renameDataFile:screenshotFile  to:newScreenshotFile inDirectory:kProjectImagesDirectory];
-    archiveFilename = newName;
+    self.name = newName;
 }
 
 #pragma mark - Class Methods
@@ -124,7 +135,7 @@
     NSArray *sceneFiles = [fm contentsOfDirectoryAtPath:archivesDirectory error:nil];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for(NSString *archivePath in sceneFiles){
-        THClientRealScene *scene = [[THClientRealScene alloc] initWithArchive:[archivePath lastPathComponent]];
+        THClientScene *scene = [[THClientScene alloc] initWithName:[archivePath lastPathComponent]];
         [array addObject:scene];
     }
     return array;

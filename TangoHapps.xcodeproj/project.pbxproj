@@ -46,9 +46,9 @@
 		9A06F006169C77A200B88519 /* palette_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06F003169C77A100B88519 /* palette_slider.png */; };
 		9A06F007169C77A200B88519 /* palette_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06F004169C77A100B88519 /* palette_slider@2x.png */; };
 		9A06F008169C77A200B88519 /* palette_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06F004169C77A100B88519 /* palette_slider@2x.png */; };
-		9A09762F171570050028A6B4 /* THClientRealScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientRealScene.m */; };
+		9A09762F171570050028A6B4 /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
 		9A097630171570090028A6B4 /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */; };
-		9A0976311715700C0028A6B4 /* THClientConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionViewController.m */; };
+		9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionController.m */; };
 		9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9A0976341715701F0028A6B4 /* THClientGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50012167B83140020241C /* THClientGridItem.m */; };
@@ -93,10 +93,6 @@
 		9A09778E172699DF0028A6B4 /* palette_sound@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A09778A172699DF0028A6B4 /* palette_sound@2x.png */; };
 		9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A1384DC16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
-		9A17362817B26268001DD4A4 /* THClientServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A17362717B26268001DD4A4 /* THClientServer.m */; };
-		9A17362917B2626C001DD4A4 /* THClientServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A17362717B26268001DD4A4 /* THClientServer.m */; };
-		9A17362C17B26805001DD4A4 /* THClientServerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A17362B17B26805001DD4A4 /* THClientServerCell.m */; };
-		9A17362D17B26805001DD4A4 /* THClientServerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A17362B17B26805001DD4A4 /* THClientServerCell.m */; };
 		9A35118E167B7A6800C7484B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118D167B7A6800C7484B /* UIKit.framework */; };
 		9A351190167B7A6800C7484B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118F167B7A6800C7484B /* Foundation.framework */; };
 		9A351192167B7A6800C7484B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A351191167B7A6800C7484B /* CoreGraphics.framework */; };
@@ -472,9 +468,9 @@
 		9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9AF5002B167B83140020241C /* THClientGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50012167B83140020241C /* THClientGridItem.m */; };
 		9AF5002C167B83140020241C /* THClientGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50014167B83140020241C /* THClientGridView.m */; };
-		9AF5002D167B83140020241C /* THClientRealScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientRealScene.m */; };
+		9AF5002D167B83140020241C /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
 		9AF5002E167B83140020241C /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */; };
-		9AF5002F167B83140020241C /* THClientConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionViewController.m */; };
+		9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionController.m */; };
 		9AF50032167B83140020241C /* iphoneFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001E167B83140020241C /* iphoneFrame.png */; };
 		9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001F167B83140020241C /* iphoneFrame@2x.png */; };
 		9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50020167B83140020241C /* MainStoryboard.storyboard */; };
@@ -491,9 +487,9 @@
 		9AF50161167B83A90020241C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50160167B83A90020241C /* OpenGLES.framework */; };
 		9AF50163167B83AD0020241C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50162167B83AD0020241C /* libz.dylib */; };
 		9AF50165167B83B50020241C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50164167B83B50020241C /* QuartzCore.framework */; };
-		9AF50363167B84B40020241C /* ProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* ProtocolSocket.m */; };
-		9AF50364167B84B40020241C /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* ServerController.m */; };
-		9AF50365167B84B40020241C /* TransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* TransferAgent.m */; };
+		9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
+		9AF50364167B84B40020241C /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* THServerController.m */; };
+		9AF50365167B84B40020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF50366167B84B40020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF50367167B84B40020241C /* THComparisonConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */; };
 		9AF50368167B84B40020241C /* THConditionEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020D167B84B40020241C /* THConditionEditableObject.m */; };
@@ -681,8 +677,8 @@
 		9AF50440167B84B40020241C /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035C167B84B40020241C /* song1.mp3 */; };
 		9AF50441167B84B40020241C /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035D167B84B40020241C /* song2.mp3 */; };
 		9AF50442167B84B40020241C /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
-		9AF50447167B84C30020241C /* ProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* ProtocolSocket.m */; };
-		9AF50448167B84C30020241C /* TransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* TransferAgent.m */; };
+		9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
+		9AF50448167B84C30020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
 		9AF5044C167B84CE0020241C /* THValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THValue.m */; };
@@ -758,9 +754,9 @@
 		9AF505EA167B91DB0020241C /* THConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DE167B84B40020241C /* THConstants.m */; };
 		9AF505EB167B91DB0020241C /* THToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502E0167B84B40020241C /* THToneGenerator.m */; };
 		9AF505EC167B91DB0020241C /* THUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502E2167B84B40020241C /* THUtils.m */; };
-		9AF505F1167B91E70020241C /* ProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* ProtocolSocket.m */; };
-		9AF505F2167B91E70020241C /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* ServerController.m */; };
-		9AF505F3167B91E70020241C /* TransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* TransferAgent.m */; };
+		9AF505F1167B91E70020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
+		9AF505F2167B91E70020241C /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* THServerController.m */; };
+		9AF505F3167B91E70020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF505F4167B91F10020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF505F5167B91F10020241C /* THComparisonConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */; };
 		9AF505F6167B91F10020241C /* THConditionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020F167B84B40020241C /* THConditionObject.m */; };
@@ -1538,10 +1534,6 @@
 		9A097789172699DF0028A6B4 /* palette_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_sound.png; sourceTree = "<group>"; };
 		9A09778A172699DF0028A6B4 /* palette_sound@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_sound@2x.png"; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
-		9A17362617B26267001DD4A4 /* THClientServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientServer.h; sourceTree = "<group>"; };
-		9A17362717B26268001DD4A4 /* THClientServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientServer.m; sourceTree = "<group>"; };
-		9A17362A17B26805001DD4A4 /* THClientServerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientServerCell.h; sourceTree = "<group>"; };
-		9A17362B17B26805001DD4A4 /* THClientServerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientServerCell.m; sourceTree = "<group>"; };
 		9A351189167B7A6800C7484B /* TangoHapps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHapps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35118D167B7A6800C7484B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A35118F167B7A6800C7484B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1807,12 +1799,12 @@
 		9AF50012167B83140020241C /* THClientGridItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientGridItem.m; sourceTree = "<group>"; };
 		9AF50013167B83140020241C /* THClientGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientGridView.h; sourceTree = "<group>"; };
 		9AF50014167B83140020241C /* THClientGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientGridView.m; sourceTree = "<group>"; };
-		9AF50015167B83140020241C /* THClientRealScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientRealScene.h; sourceTree = "<group>"; };
-		9AF50016167B83140020241C /* THClientRealScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientRealScene.m; sourceTree = "<group>"; };
+		9AF50015167B83140020241C /* THClientScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientScene.h; sourceTree = "<group>"; };
+		9AF50016167B83140020241C /* THClientScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientScene.m; sourceTree = "<group>"; };
 		9AF50017167B83140020241C /* THClientSceneSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneSelectionViewController.h; sourceTree = "<group>"; };
 		9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneSelectionViewController.m; sourceTree = "<group>"; };
-		9AF50019167B83140020241C /* THClientConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionViewController.h; sourceTree = "<group>"; };
-		9AF5001A167B83140020241C /* THClientConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionViewController.m; sourceTree = "<group>"; };
+		9AF50019167B83140020241C /* THClientConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController.h; sourceTree = "<group>"; };
+		9AF5001A167B83140020241C /* THClientConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController.m; sourceTree = "<group>"; };
 		9AF5001E167B83140020241C /* iphoneFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneFrame.png; sourceTree = "<group>"; };
 		9AF5001F167B83140020241C /* iphoneFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneFrame@2x.png"; sourceTree = "<group>"; };
 		9AF50020167B83140020241C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -1828,12 +1820,12 @@
 		9AF50160167B83A90020241C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9AF50162167B83AD0020241C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9AF50164167B83B50020241C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9AF501FF167B84B40020241C /* ProtocolSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolSocket.h; sourceTree = "<group>"; };
-		9AF50200167B84B40020241C /* ProtocolSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolSocket.m; sourceTree = "<group>"; };
-		9AF50201167B84B40020241C /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerController.h; sourceTree = "<group>"; };
-		9AF50202167B84B40020241C /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerController.m; sourceTree = "<group>"; };
-		9AF50203167B84B40020241C /* TransferAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferAgent.h; sourceTree = "<group>"; };
-		9AF50204167B84B40020241C /* TransferAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferAgent.m; sourceTree = "<group>"; };
+		9AF501FF167B84B40020241C /* THProtocolSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProtocolSocket.h; sourceTree = "<group>"; };
+		9AF50200167B84B40020241C /* THProtocolSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProtocolSocket.m; sourceTree = "<group>"; };
+		9AF50201167B84B40020241C /* THServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController.h; sourceTree = "<group>"; };
+		9AF50202167B84B40020241C /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
+		9AF50203167B84B40020241C /* THTransferAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransferAgent.h; sourceTree = "<group>"; };
+		9AF50204167B84B40020241C /* THTransferAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransferAgent.m; sourceTree = "<group>"; };
 		9AF50207167B84B40020241C /* THComparisonCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparisonCondition.h; sourceTree = "<group>"; };
 		9AF50208167B84B40020241C /* THComparisonCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THComparisonCondition.m; sourceTree = "<group>"; };
 		9AF50209167B84B40020241C /* THComparisonConditionEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparisonConditionEditable.h; sourceTree = "<group>"; };
@@ -2625,22 +2617,18 @@
 				9AF5000E167B83140020241C /* THClientAppDelegate.m */,
 				9AF50017167B83140020241C /* THClientSceneSelectionViewController.h */,
 				9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */,
+				9AF50019167B83140020241C /* THClientConnectionController.h */,
+				9AF5001A167B83140020241C /* THClientConnectionController.m */,
 				9AF3E6D116FA07250013DE13 /* THClientFakeSceneDataSource.h */,
 				9AF3E6D216FA07250013DE13 /* THClientFakeSceneDataSource.m */,
-				9AF50019167B83140020241C /* THClientConnectionViewController.h */,
-				9AF5001A167B83140020241C /* THClientConnectionViewController.m */,
 				9AF5000F167B83140020241C /* THClientAppViewController.h */,
 				9AF50010167B83140020241C /* THClientAppViewController.m */,
-				9A17362A17B26805001DD4A4 /* THClientServerCell.h */,
-				9A17362B17B26805001DD4A4 /* THClientServerCell.m */,
 				9AF50011167B83140020241C /* THClientGridItem.h */,
 				9AF50012167B83140020241C /* THClientGridItem.m */,
 				9AF50013167B83140020241C /* THClientGridView.h */,
 				9AF50014167B83140020241C /* THClientGridView.m */,
-				9AF50015167B83140020241C /* THClientRealScene.h */,
-				9AF50016167B83140020241C /* THClientRealScene.m */,
-				9A17362617B26267001DD4A4 /* THClientServer.h */,
-				9A17362717B26268001DD4A4 /* THClientServer.m */,
+				9AF50015167B83140020241C /* THClientScene.h */,
+				9AF50016167B83140020241C /* THClientScene.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -2769,12 +2757,12 @@
 		9AF501F5167B84B40020241C /* communication */ = {
 			isa = PBXGroup;
 			children = (
-				9AF501FF167B84B40020241C /* ProtocolSocket.h */,
-				9AF50200167B84B40020241C /* ProtocolSocket.m */,
-				9AF50201167B84B40020241C /* ServerController.h */,
-				9AF50202167B84B40020241C /* ServerController.m */,
-				9AF50203167B84B40020241C /* TransferAgent.h */,
-				9AF50204167B84B40020241C /* TransferAgent.m */,
+				9AF501FF167B84B40020241C /* THProtocolSocket.h */,
+				9AF50200167B84B40020241C /* THProtocolSocket.m */,
+				9AF50201167B84B40020241C /* THServerController.h */,
+				9AF50202167B84B40020241C /* THServerController.m */,
+				9AF50203167B84B40020241C /* THTransferAgent.h */,
+				9AF50204167B84B40020241C /* THTransferAgent.m */,
 			);
 			path = communication;
 			sourceTree = "<group>";
@@ -4408,9 +4396,9 @@
 			files = (
 				9A35119A167B7A6800C7484B /* main.m in Sources */,
 				9A35119E167B7A6800C7484B /* THAppDelegate.m in Sources */,
-				9AF50363167B84B40020241C /* ProtocolSocket.m in Sources */,
-				9AF50364167B84B40020241C /* ServerController.m in Sources */,
-				9AF50365167B84B40020241C /* TransferAgent.m in Sources */,
+				9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */,
+				9AF50364167B84B40020241C /* THServerController.m in Sources */,
+				9AF50365167B84B40020241C /* THTransferAgent.m in Sources */,
 				9AF50366167B84B40020241C /* THComparisonCondition.m in Sources */,
 				9AF50367167B84B40020241C /* THComparisonConditionEditable.m in Sources */,
 				9AF50368167B84B40020241C /* THConditionEditableObject.m in Sources */,
@@ -4619,9 +4607,9 @@
 				9AF505EA167B91DB0020241C /* THConstants.m in Sources */,
 				9AF505EB167B91DB0020241C /* THToneGenerator.m in Sources */,
 				9AF505EC167B91DB0020241C /* THUtils.m in Sources */,
-				9AF505F1167B91E70020241C /* ProtocolSocket.m in Sources */,
-				9AF505F2167B91E70020241C /* ServerController.m in Sources */,
-				9AF505F3167B91E70020241C /* TransferAgent.m in Sources */,
+				9AF505F1167B91E70020241C /* THProtocolSocket.m in Sources */,
+				9AF505F2167B91E70020241C /* THServerController.m in Sources */,
+				9AF505F3167B91E70020241C /* THTransferAgent.m in Sources */,
 				9AF505F4167B91F10020241C /* THComparisonCondition.m in Sources */,
 				9AF505F5167B91F10020241C /* THComparisonConditionEditable.m in Sources */,
 				9AF505F6167B91F10020241C /* THConditionObject.m in Sources */,
@@ -4760,9 +4748,9 @@
 				9A93847C16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
 				9A9384B016D69CCA00A41BD2 /* THActionEditable.m in Sources */,
 				9AF3E6D416FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */,
-				9A09762F171570050028A6B4 /* THClientRealScene.m in Sources */,
+				9A09762F171570050028A6B4 /* THClientScene.m in Sources */,
 				9A097630171570090028A6B4 /* THClientSceneSelectionViewController.m in Sources */,
-				9A0976311715700C0028A6B4 /* THClientConnectionViewController.m in Sources */,
+				9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */,
 				9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */,
 				9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */,
 				9A0976341715701F0028A6B4 /* THClientGridItem.m in Sources */,
@@ -4816,8 +4804,6 @@
 				9A84270E17564A80009495AB /* TFConstants.m in Sources */,
 				9A84271117564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271417564A80009495AB /* TFHelper.m in Sources */,
-				9A17362917B2626C001DD4A4 /* THClientServer.m in Sources */,
-				9A17362D17B26805001DD4A4 /* THClientServerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4830,11 +4816,11 @@
 				9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */,
 				9AF5002B167B83140020241C /* THClientGridItem.m in Sources */,
 				9AF5002C167B83140020241C /* THClientGridView.m in Sources */,
-				9AF5002D167B83140020241C /* THClientRealScene.m in Sources */,
+				9AF5002D167B83140020241C /* THClientScene.m in Sources */,
 				9AF5002E167B83140020241C /* THClientSceneSelectionViewController.m in Sources */,
-				9AF5002F167B83140020241C /* THClientConnectionViewController.m in Sources */,
-				9AF50447167B84C30020241C /* ProtocolSocket.m in Sources */,
-				9AF50448167B84C30020241C /* TransferAgent.m in Sources */,
+				9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */,
+				9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */,
+				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
 				9AF5044C167B84CE0020241C /* THValue.m in Sources */,
@@ -4895,8 +4881,6 @@
 				9A8426E617564A80009495AB /* TFImagePickerController.m in Sources */,
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9A7F673D1756590A00E04BC8 /* TFConstants.m in Sources */,
-				9A17362817B26268001DD4A4 /* THClientServer.m in Sources */,
-				9A17362C17B26805001DD4A4 /* THClientServerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

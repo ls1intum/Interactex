@@ -13,4 +13,5 @@
 +(THImageViewScaleMode) customScaleModeForScaleMode:(UIViewContentMode) scaleMode;
 +(UIViewContentMode) ScaleModeForCustomScaleMode:(THImageViewScaleMode) scaleMode;
 */
+
 @end
