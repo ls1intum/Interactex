@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface THCompassEditableObject : THClotheObjectEditableObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
+@interface THCompassEditableObject : THHardwareComponentEditableObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
     CCSprite * _accelerometerBall;
     CCSprite * _compassCircle;
     CLLocationManager * _locationManager;

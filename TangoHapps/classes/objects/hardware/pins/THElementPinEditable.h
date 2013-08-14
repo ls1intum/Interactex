@@ -9,7 +9,8 @@
 #import "THPinEditable.h"
 
 @class THBoardPinEditable;
-@class THClotheObjectEditableObject;
+@class THHardwareComponentEditableObject;
+@class THWire;
 
 typedef enum{
     kElementPinStateNormal,
@@ -19,15 +20,21 @@ typedef enum{
 @interface THElementPinEditable : THPinEditable {
 }
 
--(void) attachToPin:(THPinEditable*) pinEditable animated:(BOOL) animated;
--(void) deattach;
-
 @property (nonatomic) THElementPinType type;
 @property (nonatomic,readonly) THBoardPinEditable * attachedToPin;
 @property (nonatomic,readonly) BOOL connected;
-@property (nonatomic, weak) THClotheObjectEditableObject * hardware;
+@property (nonatomic, weak) THHardwareComponentEditableObject * hardware;
 @property (nonatomic) THElementPinState state;
 @property (nonatomic, readonly) NSString * shortDescription;
 @property (nonatomic, readonly) THPinMode defaultBoardPinMode;
+@property (nonatomic, readonly) NSMutableArray * wires;
+
+-(void) attachToPin:(THPinEditable*) pinEditable animated:(BOOL) animated;
+-(void) deattach;
+
+-(void) addWire:(THWire*) wire;
+-(void) removeWire:(THWire*) wire;
+-(void) addWireTo:(THBoardPinEditable*) boardPin;
+-(void) removeAllWiresTo:(id) object;
 
 @end

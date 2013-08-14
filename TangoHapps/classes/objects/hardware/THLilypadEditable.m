@@ -73,20 +73,18 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{5,105},{-25,102},{-53.0, 
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    self.pins = [decoder decodeObjectForKey:@"pins"];
-    
-    [self loadLilypad];
-    [self addPins];
-
+    if(self){
+        self.pins = [decoder decodeObjectForKey:@"pins"];
+        
+        [self loadLilypad];
+        [self addPins];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeObject:self.pins forKey:@"pins"];
@@ -94,8 +92,7 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{5,105},{-25,102},{-53.0, 
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THLilypadProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

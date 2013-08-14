@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
 @class IFI2CComponent;
 
-@interface THCompass : THClotheObject
+@interface THCompass : THHardwareComponent
 
 @property (nonatomic) NSInteger accelerometerX;
 @property (nonatomic) NSInteger accelerometerY;

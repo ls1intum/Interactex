@@ -8,7 +8,7 @@
 
 #import "THiPhoneControlEditableObject.h"
 #import "THiPhoneControl.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THConditionEditableObject.h"
 #import "THCustomEditor.h"
 

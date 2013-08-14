@@ -9,7 +9,7 @@
 #import "THLilyPad.h"
 #import "THBoardPin.h"
 #import "IFI2CComponent.h"
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 #import "THElementPin.h"
 
 @implementation THLilyPad

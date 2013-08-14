@@ -12,7 +12,7 @@
 @class THSimulableObject;
 @class THElementPin;
 @class THPin;
-@class THClotheObject;
+@class THHardwareComponent;
 
 @protocol THPinDelegate <NSObject>
 -(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue;
@@ -39,7 +39,7 @@
 
 -(void) attachPin:(THElementPin*) pin;
 -(void) deattachPin:(THElementPin*) pin;
--(BOOL) isClotheObjectAttached:(THClotheObject*) object;
+-(BOOL) isClotheObjectAttached:(THHardwareComponent*) object;
 
 -(void) setValueWithoutNotifications:(NSInteger) value;
 

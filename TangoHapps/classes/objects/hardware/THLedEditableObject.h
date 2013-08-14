@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
-@interface THLedEditableObject : THClotheObjectEditableObject {
+@interface THLedEditableObject : THHardwareComponentEditableObject {
     CCSprite * _lightSprite;
 }
 @property (nonatomic) BOOL onAtStart;

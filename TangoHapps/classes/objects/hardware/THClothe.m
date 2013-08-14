@@ -7,7 +7,7 @@
 //
 
 #import "THClothe.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THClothePaletteItem.h"
 #import "THClotheProperties.h"
 #import "TFCustomPaletteItem.h"
@@ -55,7 +55,7 @@
         [self load];
         
         NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
-        for (THClotheObjectEditableObject * attachment in attachments) {
+        for (THHardwareComponentEditableObject * attachment in attachments) {
             [self attachClotheObject:attachment];
         }
     }
@@ -150,7 +150,7 @@
 
 -(void) setPosition:(CGPoint)position{
     
-    for (THClotheObjectEditableObject * object in _attachments) {
+    for (THHardwareComponentEditableObject * object in _attachments) {
         CGPoint diff = ccpSub(object.position, self.position);
         object.position  = ccpAdd(diff, position);
     }
@@ -163,14 +163,14 @@
     [_attachments removeObject:object];
 }
 
--(void) attachClotheObject:(THClotheObjectEditableObject*) object{
+-(void) attachClotheObject:(THHardwareComponentEditableObject*) object{
     
     [_attachments addObject:object];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
     object.attachedToClothe = self;
 }
 
--(void) deattachClotheObject:(THClotheObjectEditableObject*) object{
+-(void) deattachClotheObject:(THHardwareComponentEditableObject*) object{
     
     [_attachments removeObject:object];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];

@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
 @class THToneGenerator;
 
-@interface THBuzzer : THClotheObject {
+@interface THBuzzer : THHardwareComponent {
 }
 
 -(void) turnOn;

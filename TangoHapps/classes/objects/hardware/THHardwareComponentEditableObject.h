@@ -7,10 +7,10 @@
 //
 
 
-@class THClotheObject;
+@class THHardwareComponent;
 @class THElementPinEditable;
 
-@interface THClotheObjectEditableObject : TFEditableObject
+@interface THHardwareComponentEditableObject : TFEditableObject
 {
     CCSprite * _sewedSprite;
 }
@@ -25,12 +25,9 @@
 @property (nonatomic) THClothe * attachedToClothe;
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
-
 -(void) addPinChilds;
 -(void) loadPins;
-
--(void) drawPinConnections;
-
+-(void) drawPinWires;
 -(BOOL) isInputObject;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
-@interface THVibrationBoardEditable : THClotheObjectEditableObject{
+@interface THVibrationBoardEditable : THHardwareComponentEditableObject{
     CCSprite * _lightSprite;
 }
 

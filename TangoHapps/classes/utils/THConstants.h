@@ -309,6 +309,12 @@ extern ccColor4B const kMinusPinHighlightColor;
 extern ccColor4B const kPlusPinHighlightColor;
 extern ccColor4B const kDefaultPinHighlightColor;
 
+extern ccColor3B const kWireDefaultColor;
+extern ccColor3B const kWireDefaultHighlightColor;
+
+extern float const kWireNodeRadius;
+extern ccColor3B const kWireNodeColor;
+
 extern CGSize const kDefaultPinSize;
 extern CGSize const kiPhoneButtonDefaultSize;
 
@@ -321,3 +327,4 @@ typedef enum{
 }THTimerType;
 
 extern CGPoint const kSewedPositions[kNumHardwareTypes];
+

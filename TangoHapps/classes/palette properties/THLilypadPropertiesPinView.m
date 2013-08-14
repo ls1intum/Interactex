@@ -10,7 +10,7 @@
 #import "THBoardPin.h"
 #import "THBoardPinEditable.h"
 #import "THElementPinEditable.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
 @implementation THLilypadPropertiesPinView
 

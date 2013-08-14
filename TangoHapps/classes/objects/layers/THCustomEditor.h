@@ -18,6 +18,6 @@
 //lilypad mode
 -(void) startLilypadMode;
 -(void) stopLilypadMode;
--(void) checkPinClotheObject:(THClotheObjectEditableObject*) clotheObject;
+-(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
-@interface THVibrationBoard : THClotheObject
+@interface THVibrationBoard : THHardwareComponent
 
 @property (nonatomic) BOOL on;
 @property (nonatomic) NSInteger frequency;

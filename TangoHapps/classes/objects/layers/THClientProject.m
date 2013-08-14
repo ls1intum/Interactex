@@ -22,7 +22,7 @@
 
 -(void) load{
     
-    _clotheObjects = [NSMutableArray array];
+    _hardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
     _values = [NSMutableArray array];
@@ -57,7 +57,7 @@
         [self load];
         
         self.name = [decoder decodeObjectForKey:@"name"];
-        self.clotheObjects = [decoder decodeObjectForKey:@"clotheObjects"];
+        self.hardwareComponents = [decoder decodeObjectForKey:@"clotheObjects"];
         self.iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         self.iPhone = [decoder decodeObjectForKey:@"iPhone"];
         self.conditions = [decoder decodeObjectForKey:@"conditions"];
@@ -77,7 +77,7 @@
 -(void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.name forKey:@"name"];
     
-    [coder encodeObject:self.clotheObjects forKey:@"clotheObjects"];
+    [coder encodeObject:self.hardwareComponents forKey:@"clotheObjects"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
@@ -102,7 +102,7 @@
 }
 
 -(NSArray*) allObjects {
-    NSArray * allObjects = [self.clotheObjects arrayByAddingObjectsFromArray:self.iPhoneObjects];
+    NSArray * allObjects = [self.hardwareComponents arrayByAddingObjectsFromArray:self.iPhoneObjects];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.conditions];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.actions];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.triggers];

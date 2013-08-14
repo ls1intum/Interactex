@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
-@interface THLightSensorEditableObject : THClotheObjectEditableObject
+@interface THLightSensorEditableObject : THHardwareComponentEditableObject
 {
     CCSprite * _lightSprite;
     float _lightTouchDownIntensity;

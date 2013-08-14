@@ -8,7 +8,7 @@
 
 #import "TFProject.h"
 
-@class THClotheObjectEditableObject;
+@class THHardwareComponentEditableObject;
 @class THiPhoneEditableObject;
 @class THViewEditableObject;
 @class THClothe;
@@ -27,8 +27,8 @@
 +(id) projectNamed:(NSString*) name;
 
 //pin
--(void) pinClotheObject:(THClotheObjectEditableObject*) clotheObject toClothe:(THClothe*) clothe;
--(void) unpinClotheObject:(THClotheObjectEditableObject*) clotheObject;
+-(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe;
+-(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject;
 
 //iPhone
 -(void) addiPhone:(THiPhoneEditableObject *)iPhone;
@@ -40,10 +40,10 @@
 -(THViewEditableObject*) iPhoneObjectAtLocation:(CGPoint) location;
 
 //clotheObjects
--(void) addClotheObject:(THClotheObjectEditableObject*) clotheObject;
--(void) removeClotheObject:(THClotheObjectEditableObject*) clotheObject;
--(THClotheObjectEditableObject*) clotheObjectAtLocation:(CGPoint) location;
--(void) tryAttachClotheObject: (THClotheObjectEditableObject*) clotheObject;
+-(void) addClotheObject:(THHardwareComponentEditableObject*) clotheObject;
+-(void) removeClotheObject:(THHardwareComponentEditableObject*) clotheObject;
+-(THHardwareComponentEditableObject*) clotheObjectAtLocation:(CGPoint) location;
+-(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject;
 
 //clothes
 -(void) addClothe:(THClothe*) object;
@@ -80,7 +80,7 @@
 
 @property (nonatomic,readonly) THLilyPadEditable * lilypad;
 @property (nonatomic,readonly) THiPhoneEditableObject * iPhone;
-@property (nonatomic,readonly) NSMutableArray * clotheObjects;
+@property (nonatomic,readonly) NSMutableArray * hardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;
 @property (nonatomic,readonly) NSMutableArray * conditions;

@@ -8,7 +8,7 @@
 
 #import "THElementPin.h"
 #import "THBoardPin.h"
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
 @implementation THElementPin
 

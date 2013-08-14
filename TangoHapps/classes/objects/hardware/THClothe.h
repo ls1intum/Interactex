@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class THClotheObjectEditableObject;
+@class THHardwareComponentEditableObject;
 
 @interface THClothe : TFEditableObject
 {
@@ -17,8 +17,8 @@
 }
 
 -(id) initWithName:(NSString*) name;
--(void) attachClotheObject:(THClotheObjectEditableObject*) object;
--(void) deattachClotheObject:(THClotheObjectEditableObject*) object;
+-(void) attachClotheObject:(THHardwareComponentEditableObject*) object;
+-(void) deattachClotheObject:(THHardwareComponentEditableObject*) object;
 
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) UIImage * image;

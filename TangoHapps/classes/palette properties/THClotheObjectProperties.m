@@ -7,8 +7,8 @@
 //
 
 #import "THClotheObjectProperties.h"
-#import "THClotheObject.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponent.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THElementPinEditable.h"
 #import "THElementPin.h"
 
@@ -22,13 +22,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    THClotheObjectEditableObject *clotheObject = (THClotheObjectEditableObject*)self.editableObject;
+    THHardwareComponentEditableObject *clotheObject = (THHardwareComponentEditableObject*)self.editableObject;
     return clotheObject.pins.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    THClotheObjectEditableObject *clotheObject = (THClotheObjectEditableObject*)self.editableObject;
+    THHardwareComponentEditableObject *clotheObject = (THHardwareComponentEditableObject*)self.editableObject;
     
     UITableViewCell * cell = [[UITableViewCell alloc] init];
     UILabel * label = cell.textLabel;

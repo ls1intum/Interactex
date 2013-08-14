@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 #import "THSwitch.h"
 
 @interface THSlideSwitch : THSwitch

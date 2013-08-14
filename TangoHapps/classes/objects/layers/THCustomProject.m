@@ -8,7 +8,7 @@
 
 #import "THCustomProject.h"
 #import "THViewEditableObject.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
 #import "THLilypadEditable.h"
@@ -16,7 +16,7 @@
 #import "THClientProject.h"
 #import "THConditionEditableObject.h"
 #import "THElementPinEditable.h"
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 #import "THView.h"
 #import "THConditionObject.h"
 #import "THValue.h"
@@ -50,7 +50,7 @@
 -(void) loadCustomProject{
     
     _clothes = [NSMutableArray array];
-    _clotheObjects = [NSMutableArray array];
+    _hardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
     _actions = [NSMutableArray array];
@@ -116,7 +116,7 @@
             [self addClothe:clothe];
         }
         
-        for(THClotheObjectEditableObject* clotheObject in clotheObjects){
+        for(THHardwareComponentEditableObject* clotheObject in clotheObjects){
             [self addClotheObject:clotheObject];
         }
         
@@ -152,7 +152,7 @@
 {
     [super encodeWithCoder:coder];
     
-    [coder encodeObject:self.clotheObjects forKey:@"clotheObjects"];
+    [coder encodeObject:self.hardwareComponents forKey:@"clotheObjects"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -169,7 +169,7 @@
 #pragma mark - Pins
 
 //pin
--(void) pinClotheObject:(THClotheObjectEditableObject*) clotheObject toClothe:(THClothe*) clothe{
+-(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe{
     
     if(!clotheObject.pinned){
         [clothe attachClotheObject:clotheObject];
@@ -177,7 +177,7 @@
     }
 }
 
--(void) unpinClotheObject:(THClotheObjectEditableObject*) clotheObject{
+-(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     if(clotheObject.pinned){
         [clotheObject.attachedToClothe deattachClotheObject:clotheObject];
         clotheObject.pinned = NO;
@@ -254,21 +254,21 @@
 
 #pragma mark - Clothe Objects
 
--(void) addClotheObject:(THClotheObjectEditableObject*) clotheObject{
-    [_clotheObjects addObject:clotheObject];
+-(void) addClotheObject:(THHardwareComponentEditableObject*) clotheObject{
+    [self.hardwareComponents addObject:clotheObject];
     [self notifyObjectAdded:clotheObject];
     [self tryAttachClotheObject:clotheObject];
 }
 
--(void) removeClotheObject:(THClotheObjectEditableObject*) clotheObject{
-    [_clotheObjects removeObject:clotheObject];
-    
+-(void) removeClotheObject:(THHardwareComponentEditableObject*) clotheObject{
+    [self.hardwareComponents removeObject:clotheObject];
+
     [self deregisterActionsForObject:clotheObject];
     [self notifyObjectRemoved:clotheObject];
 }
 
--(THClotheObjectEditableObject*) clotheObjectAtLocation:(CGPoint) location{
-    for (THClotheObjectEditableObject * object in self.clotheObjects) {
+-(THHardwareComponentEditableObject*) clotheObjectAtLocation:(CGPoint) location{
+    for (THHardwareComponentEditableObject * object in self.hardwareComponents) {
         if([object testPoint:location]){
             return object;
         }
@@ -276,7 +276,7 @@
     return nil;
 }
 
--(void) tryAttachClotheObject: (THClotheObjectEditableObject*) clotheObject{
+-(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject{
     if(!clotheObject.attachedToClothe){
         THClothe * clothe = [self clotheAtLocation:clotheObject.position];
         if(clothe){
@@ -414,6 +414,8 @@
         }
     }
     
+    //find visible connection
+    
     return nil;
 }
 /*
@@ -432,7 +434,7 @@ enum zPositions{
     [allObjects addObjectsFromArray:self.actions];
     [allObjects addObjectsFromArray:self.triggers];
     [allObjects addObjectsFromArray:self.values];
-    [allObjects addObjectsFromArray:self.clotheObjects];
+    [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.clothes];
     return allObjects;
@@ -464,9 +466,9 @@ enum zPositions{
 }
 
 -(TFSimulableObject*) simulableForEditable:(TFEditableObject*) editable inProject:(THClientProject*) project{
-    if([editable isKindOfClass:[THClotheObjectEditableObject class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.clotheObjects];
-        return [project.clotheObjects objectAtIndex:idx];
+    if([editable isKindOfClass:[THHardwareComponentEditableObject class]]){
+        NSInteger idx = [self idxOfEditable:editable inArray:self.hardwareComponents];
+        return [project.hardwareComponents objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THViewEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.iPhoneObjects];
         return [project.iPhoneObjects objectAtIndex:idx];
@@ -491,9 +493,9 @@ enum zPositions{
 }
 
 -(TFSimulableObject*) simulableForSimulable:(TFSimulableObject*) simulable inProject:(THClientProject*) project{
-    if([simulable isKindOfClass:[THClotheObject class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.clotheObjects];
-        return [project.clotheObjects objectAtIndex:idx];
+    if([simulable isKindOfClass:[THHardwareComponent class]]){
+        NSInteger idx = [self idxOfSimulable:simulable inArray:self.hardwareComponents];
+        return [project.hardwareComponents objectAtIndex:idx];
     } else if ([simulable isKindOfClass:[THView class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.iPhoneObjects];
         return [project.iPhoneObjects objectAtIndex:idx];
@@ -546,7 +548,7 @@ enum zPositions{
 }
 
 -(THElementPin*) findElementPin:(THElementPin*) pin inProject:(THClientProject*) project{
-    for (THClotheObject * clothe in project.clotheObjects){
+    for (THHardwareComponent * clothe in project.hardwareComponents){
         if(pin.hardware == clothe){
             for (THElementPin * epin in clothe.pins){
                 if(epin.type == pin.type){
@@ -562,9 +564,9 @@ enum zPositions{
     //THLilyPad * lilypad = (THLilyPad*) self.lilypad.object;
     
     NSInteger i = 0;
-    for (THClotheObjectEditableObject * editableClothe in self.clotheObjects){
-        THClotheObject * clothe = (THClotheObject*) editableClothe.simulableObject;
-        THClotheObject * neclothe = [project.clotheObjects objectAtIndex:i];
+    for (THHardwareComponentEditableObject * editableClothe in self.hardwareComponents){
+        THHardwareComponent * clothe = (THHardwareComponent*) editableClothe.simulableObject;
+        THHardwareComponent * neclothe = [project.hardwareComponents objectAtIndex:i];
         
         NSInteger j = 0;
         for (THElementPin * epin in clothe.pins){
@@ -600,7 +602,7 @@ enum zPositions{
 
 -(THClientProject*) nonEditableProject{
     THClientProject * project = [[THClientProject alloc] initWithName:self.name];
-    project.clotheObjects = [self nonEditableElementsForArray:self.clotheObjects forProject:project];
+    project.hardwareComponents = [self nonEditableElementsForArray:self.hardwareComponents forProject:project];
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
     project.conditions = [self nonEditableElementsForArray:self.conditions forProject:project];
     project.actions = [self nonEditableElementsForArray:self.actions forProject:project];
@@ -631,7 +633,7 @@ enum zPositions{
 
 -(NSMutableArray*) hardwareProblems{
     NSMutableArray * problems = [NSMutableArray array];
-    for (THClotheObjectEditableObject * clotheObjects in self.clotheObjects) {
+    for (THHardwareComponentEditableObject * clotheObjects in self.hardwareComponents) {
         NSArray * array = clotheObjects.hardwareProblems;
         [problems addObjectsFromArray:array];
     }

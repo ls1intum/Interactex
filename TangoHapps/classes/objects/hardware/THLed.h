@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
 @class THElementPin;
 
-@interface THLed : THClotheObject
+@interface THLed : THHardwareComponent
 {
 }
 

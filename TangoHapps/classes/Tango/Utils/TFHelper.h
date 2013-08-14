@@ -39,6 +39,7 @@
 +(void) drawRect:(CGRect) rect;
 +(void) drawEmptyRect:(CGRect) rect;
 +(void) drawLines:(NSArray *) connections;
++(void) drawWires:(NSArray *) wires;
 +(void) restoreDrawingState;
 +(void) drawLinesForObjects:(NSArray*)objects;
 

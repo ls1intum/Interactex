@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
-@interface THThreeColorLed : THClotheObject
+@interface THThreeColorLed : THHardwareComponent
 
 @property (nonatomic) BOOL onAtStart;
 @property (nonatomic) BOOL on;

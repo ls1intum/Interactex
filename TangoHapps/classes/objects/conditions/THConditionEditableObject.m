@@ -8,7 +8,7 @@
 
 #import "THConditionEditableObject.h"
 #import "THConditionObject.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THViewEditableObject.h"
 
 @implementation THConditionEditableObject

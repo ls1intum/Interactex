@@ -8,7 +8,7 @@
 
 #import "THCustomEditor.h"
 #import "THPinEditable.h"
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THLilypadEditable.h"
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
@@ -22,6 +22,7 @@
 #import "THValueEditable.h"
 #import "THTimerEditable.h"
 #import "THActionEditable.h"
+#import "THWire.h"
 
 @implementation THCustomEditor
 
@@ -29,6 +30,7 @@ float const kEditorMinScale = 0.5f;
 float const kEditorMaxScale = 2.5f;
 
 -(id) init{
+    
     self = [super init];
     if(self){
         _zoomableLayer = [CCLayer node];
@@ -37,14 +39,17 @@ float const kEditorMaxScale = 2.5f;
     return self;
 }
 
--(void) drawFixedLilypadLines{
+-(void) drawWires{
+    
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (THClotheObjectEditableObject * lilypadObject in project.clotheObjects) {
-        [lilypadObject drawPinConnections];
+    
+    for (THHardwareComponentEditableObject * lilypadObject in project.hardwareComponents) {
+        [lilypadObject drawPinWires];
     }
 }
 
--(void)drawFixedLines {
+-(void) drawObjectsConnections {
+    
     [TFHelper drawLines:self.currentObject.connections];
     
     TFProject * project = [TFDirector sharedDirector].currentProject;
@@ -55,17 +60,15 @@ float const kEditorMaxScale = 2.5f;
 }
 
 -(void) draw{
+    
     if(self.isLilypadMode){
-        [self drawFixedLilypadLines];
-        /*
-        THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-        [TFHelper drawRect:project.lilypad.minusPin.boundingBox];*/
+        
+        [self drawWires];
+        
     } else {
-        [self drawFixedLines];
+        
+        [self drawObjectsConnections];
     }
-    /*
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    [TFHelper drawRect:project.iPhone.boundingBox];*/
     
     [super draw];
 }
@@ -74,17 +77,59 @@ float const kEditorMaxScale = 2.5f;
 
 //iphone object
 -(void)addIphoneObject:(THViewEditableObject*) object{
+    
     [object willStartEdition];
     [self addChild:object z:object.z];
 }
+
 -(void) removeiPhoneObject:(THViewEditableObject*) object{
     
     [object removeFromParentAndCleanup:YES];
 }
 
+-(THWire*) wireAtPosition:(CGPoint) position fromComponent:(THHardwareComponentEditableObject*) object{
+    
+    for (THElementPinEditable * pin in object.pins) {
+        
+        for (THWire * wire in pin.wires) {
+            THWireNode * node = [wire nodeAtPosition:position];
+            if(node) return wire;
+        }
+    }
+    
+    return nil;
+}
+
+-(THWire*) wireAtPosition:(CGPoint) position{
+    
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    for (THHardwareComponentEditableObject * hardwareComponent in project.hardwareComponents) {
+        THWire * wire = [self wireAtPosition:position fromComponent:hardwareComponent];
+        if(wire) {
+            return wire;
+        }
+    }
+    
+    return nil;
+}
+
+-(TFEditableObject*) objectAtPosition:(CGPoint) position{
+    
+    TFProject * project = [TFDirector sharedDirector].currentProject;
+    
+    TFEditableObject * object = [project objectAtLocation:position];
+    
+    if(!object && self.isLilypadMode){
+        object = [self wireAtPosition:position];
+    }
+    
+    return object;
+}
+
 #pragma mark - Pin highlighting
 
 -(void) highlightPin:(THPinEditable*) pin{
+    
     if(_currentHighlightedPin != nil){
         _currentHighlightedPin.highlighted = NO;
     }
@@ -99,7 +144,7 @@ float const kEditorMaxScale = 2.5f;
 }
 
 #pragma mark - Connection
-
+/*
 -(void) handleNewConnectionMade:(NSNotification*) notification{
     
     TFConnectionLine * connection = notification.object;
@@ -116,7 +161,7 @@ float const kEditorMaxScale = 2.5f;
     }
     
     [super handleNewConnectionMade:notification];
-}
+}*/
 
 -(void) connectElementPinToLilypad:(THElementPinEditable*) objectPin at:(CGPoint) position{
     
@@ -138,14 +183,18 @@ float const kEditorMaxScale = 2.5f;
         THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
         
         if([project.lilypad testPoint:position]){
+            
             THBoardPinEditable * pin = [project.lilypad pinAtPosition:position];
             if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
                 [self highlightPin:pin];
             } else {
                 [self dehighlightCurrentPin];
             }
+            
         } else {
-            THClotheObjectEditableObject * clotheObject = [project clotheObjectAtLocation:position];
+            
+            THHardwareComponentEditableObject * clotheObject = [project clotheObjectAtLocation:position];
+            
             if(clotheObject){
                 THElementPinEditable * pin = [clotheObject pinAtPosition:position];
                 if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
@@ -192,9 +241,9 @@ float const kEditorMaxScale = 2.5f;
     TFProject * project = [TFDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     if(self.isLilypadMode){
-        THClotheObjectEditableObject * obj = (THClotheObjectEditableObject*) object;
+        THHardwareComponentEditableObject * obj = (THHardwareComponentEditableObject*) object;
         
-        if([obj isKindOfClass:[THClotheObjectEditableObject class]]){
+        if([obj isKindOfClass:[THHardwareComponentEditableObject class]]){
             THElementPinEditable * object1 = [obj pinAtPosition:location];
             
             if(object1 != nil){
@@ -264,7 +313,7 @@ float const kEditorMaxScale = 2.5f;
     }
 }*/
 
--(void) checkPinClotheObject:(THClotheObjectEditableObject*) clotheObject{
+-(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     THClothe * clothe = [project clotheAtLocation:clotheObject.position];
@@ -274,7 +323,7 @@ float const kEditorMaxScale = 2.5f;
     }
 }
 
--(void) checkUnPinClotheObject:(THClotheObjectEditableObject*) clotheObject{
+-(void) checkUnPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     THClothe * clothe = [project clotheAtLocation:clotheObject.position];
@@ -290,7 +339,7 @@ float const kEditorMaxScale = 2.5f;
     location = [self toLayerCoords:location];
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    THClotheObjectEditableObject * clotheObject = [project clotheObjectAtLocation:location];
+    THHardwareComponentEditableObject * clotheObject = [project clotheObjectAtLocation:location];
     if(clotheObject){
         if(clotheObject.pinned){
             [self checkUnPinClotheObject:clotheObject];
@@ -438,7 +487,7 @@ float const kEditorMaxScale = 2.5f;
 -(void) addEditableObjects{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (THClotheObjectEditableObject * object in project.allObjects) {
+    for (THHardwareComponentEditableObject * object in project.allObjects) {
         [object addToLayer:self];
     }
 }
@@ -447,7 +496,7 @@ float const kEditorMaxScale = 2.5f;
     //[self removeAllChildrenWithCleanup:YES];
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (THClotheObjectEditableObject * object in project.allObjects) {
+    for (THHardwareComponentEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
     }
     

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
-@interface THSwitch : THClotheObject
+@interface THSwitch : THHardwareComponent
 
 
 @property (nonatomic, readonly) THElementPin * minusPin;

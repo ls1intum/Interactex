@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-@class THClotheObject;
+@class THHardwareComponent;
 @class THiPhone;
 @class THiPhoneObject;
 @class THConditionObject;
@@ -18,7 +18,7 @@
 
 @property (nonatomic, copy) NSString * name;
 
-@property (nonatomic, strong) NSMutableArray * clotheObjects;
+@property (nonatomic, strong) NSMutableArray * hardwareComponents;
 @property (nonatomic, strong) NSMutableArray * iPhoneObjects;
 @property (nonatomic, strong) NSMutableArray * conditions;
 @property (nonatomic, strong) NSMutableArray * values;

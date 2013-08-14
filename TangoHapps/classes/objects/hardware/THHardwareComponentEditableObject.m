@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
-#import "THClotheObject.h"
+#import "THHardwareComponentEditableObject.h"
+#import "THHardwareComponent.h"
 #import "THClotheObjectProperties.h"
 #import "THElementPinEditable.h"
 #import "THElementPin.h"
@@ -16,8 +16,9 @@
 #import "THCustomEditor.h"
 #import "THLilypadEditable.h"
 #import "THBoardPinEditable.h"
+#import "THWire.h"
 
-@implementation THClotheObjectEditableObject
+@implementation THHardwareComponentEditableObject
 
 @synthesize type = _type;
 @synthesize pins = _pins;
@@ -50,7 +51,7 @@
 
 -(void) loadPins{
     int i = 0;
-    THClotheObject * clotheObject = (THClotheObject*) self.simulableObject;
+    THHardwareComponent * clotheObject = (THHardwareComponent*) self.simulableObject;
     for (THElementPin * pin in clotheObject.pins) {
         THElementPinEditable * pinEditable = [[THElementPinEditable alloc] init];
         pinEditable.simulableObject = pin;
@@ -107,7 +108,7 @@
 
 -(id)copyWithZone:(NSZone *)zone
 {
-    THClotheObjectEditableObject * copy = [super copyWithZone:zone];
+    THHardwareComponentEditableObject * copy = [super copyWithZone:zone];
     
     return copy;
 }
@@ -143,27 +144,20 @@
 }
 -(void) setIsInputObject:(BOOL)isInputObject{
     
-    THClotheObject * object = (THClotheObject*) self.simulableObject;
+    THHardwareComponent * object = (THHardwareComponent*) self.simulableObject;
     object.isInputObject = isInputObject;
 }
 
 -(BOOL) isInputObject{
-    THClotheObject * object = (THClotheObject*) self.simulableObject;
+    THHardwareComponent * object = (THHardwareComponent*) self.simulableObject;
     return object.isInputObject;
 }
 
--(void) drawPinConnections{
-    //Avenix check
+-(void) drawPinWires{
     
     for (THElementPinEditable * pin in self.pins) {
-        [TFHelper drawLines:pin.connections];
+        [TFHelper drawWires:pin.wires];
     }
-    /*
-    for (TFExtension * extension in self.extensions) {
-        if([extension isKindOfClass:[THResistorExtension class]]){
-            [TFHelper drawLines:((THResistorExtension*)extension).pin.connections];
-        }
-    }*/
 }
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position{

@@ -13,7 +13,7 @@
 @class THClothe;
 @class IFI2CComponent;
 
-@interface THClotheObject : TFSimulableObject <THPinDelegate>
+@interface THHardwareComponent : TFSimulableObject <THPinDelegate>
 {
     
 }

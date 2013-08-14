@@ -25,6 +25,7 @@
 #import "TFHelper.h"
 #import "TFConnectionLine.h"
 #import "TFEditableObject.h"
+#import "THWire.h"
 
 @implementation TFHelper
 
@@ -88,6 +89,19 @@
     for (TFConnectionLine * line in connections) {
         if(line.obj1.visible && line.obj2.visible){
             [line draw];
+        }
+    }
+    
+    [TFHelper restoreDrawingState];
+}
+
++(void) drawWires:(NSArray *) wires{
+    
+    glEnable(GL_LINE_SMOOTH);
+    
+    for (THWire * wire in wires) {
+        if(wire.obj1.visible && wire.obj2.visible){
+            [wire draw];
         }
     }
     

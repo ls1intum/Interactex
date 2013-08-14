@@ -162,13 +162,16 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
 }
 
+-(TFEditableObject*) objectAtPosition:(CGPoint) position{
+    return nil;
+}
+
 -(void) selectObjectAtPosition:(CGPoint) position{
     
     [self unselectCurrentObject];
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
-        
-    TFEditableObject * object = [project objectAtLocation:position];
+    TFEditableObject * object = [self objectAtPosition:position];
+    
     if(object){
         [self selectObject:object];
     }
@@ -279,10 +282,13 @@
     if(_state == kEditorStateConnect){
         
         if(sender.state == UIGestureRecognizerStateBegan){
+            
             [self handleConnectionStartedAt:location];
-        } else {
-            if(_currentConnection.state == kConnectionStateDrawing)
+            
+        } else if(_currentConnection.state == kConnectionStateDrawing) {
+            
             [self moveCurrentConnection:location];
+            
         }
         
     } else if(_state == kEditorStateDuplicate) {
@@ -293,6 +299,7 @@
             [self selectObject:copy];
             
         } else if(sender.state == UIGestureRecognizerStateChanged){
+            
             CGPoint d = [sender translationInView:sender.view];
             d.y = - d.y;
             [self moveCurrentObject:d];
@@ -302,21 +309,25 @@
         
         if (sender.state == UIGestureRecognizerStateBegan) {
             
-            TFProject * project = [TFDirector sharedDirector].currentProject;
-            TFEditableObject * object = [project objectAtLocation:location];
-            [self selectObject:object];
+            [self selectObjectAtPosition:location];
             _draggedObjectPreviousPosition = location;
             
         } else if(sender.state == UIGestureRecognizerStateChanged){
+            
             CGPoint d = [sender translationInView:sender.view];
             d.y = - d.y;
+            
             if(self.currentObject){
+                
                 [self moveCurrentObject:d];
                 [self checkCurrentObjectInsideOutsidePalette:location];
                 
             } else if(_currentPaletteItem){
+                
                 [self handleItemInPaletteMovedTo:location];
-            }else {
+                
+            } else {
+                
                 [self moveLayer:d];
             }
             

@@ -419,6 +419,8 @@
 		9A94F44516A01A5D00AF52AB /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F44316A01A5600AF52AB /* THProjectViewController.m */; };
 		9A9FEACC17BBBDAE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
+		9A9FEAD417BBCE70004AB8CF /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEAD317BBCE70004AB8CF /* THWire.m */; };
+		9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEAD317BBCE70004AB8CF /* THWire.m */; };
 		9AA5D7F416D52C4B00B72B9E /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1616A2C63D000DF472 /* call.png */; };
 		9AA5D7F516D52C4B00B72B9E /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1716A2C63D000DF472 /* call@2x.png */; };
 		9AA5D7F616D52C4B00B72B9E /* contactBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1816A2C63D000DF472 /* contactBook.png */; };
@@ -515,8 +517,8 @@
 		9AF50379167B84B40020241C /* THBuzzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50232167B84B40020241C /* THBuzzer.m */; };
 		9AF5037A167B84B40020241C /* THBuzzerEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50234167B84B40020241C /* THBuzzerEditableObject.m */; };
 		9AF5037B167B84B40020241C /* THClothe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50236167B84B40020241C /* THClothe.m */; };
-		9AF5037C167B84B40020241C /* THClotheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THClotheObject.m */; };
-		9AF5037D167B84B40020241C /* THClotheObjectEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5023A167B84B40020241C /* THClotheObjectEditableObject.m */; };
+		9AF5037C167B84B40020241C /* THHardwareComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THHardwareComponent.m */; };
+		9AF5037D167B84B40020241C /* THHardwareComponentEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5023A167B84B40020241C /* THHardwareComponentEditableObject.m */; };
 		9AF50380167B84B40020241C /* THCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50240167B84B40020241C /* THCompass.m */; };
 		9AF50381167B84B40020241C /* THCompassEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50242167B84B40020241C /* THCompassEditableObject.m */; };
 		9AF50382167B84B40020241C /* THLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50244167B84B40020241C /* THLed.m */; };
@@ -713,7 +715,7 @@
 		9AF5046B167B85710020241C /* THClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DC167B84B40020241C /* THClientHelper.m */; };
 		9AF5046C167B85710020241C /* THConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DE167B84B40020241C /* THConstants.m */; };
 		9AF5046D167B85710020241C /* THUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502E2167B84B40020241C /* THUtils.m */; };
-		9AF5046E167B85A00020241C /* THClotheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THClotheObject.m */; };
+		9AF5046E167B85A00020241C /* THHardwareComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THHardwareComponent.m */; };
 		9AF5046F167B85C30020241C /* THConditionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020F167B84B40020241C /* THConditionObject.m */; };
 		9AF50473167B860E0020241C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50472167B860E0020241C /* main.m */; };
 		9AF50475167B86490020241C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50474167B86490020241C /* Default-568h@2x.png */; };
@@ -798,8 +800,8 @@
 		9AF50617167B92200020241C /* THBuzzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50232167B84B40020241C /* THBuzzer.m */; };
 		9AF50618167B92200020241C /* THBuzzerEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50234167B84B40020241C /* THBuzzerEditableObject.m */; };
 		9AF50619167B92200020241C /* THClothe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50236167B84B40020241C /* THClothe.m */; };
-		9AF5061A167B92250020241C /* THClotheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THClotheObject.m */; };
-		9AF5061B167B92250020241C /* THClotheObjectEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5023A167B84B40020241C /* THClotheObjectEditableObject.m */; };
+		9AF5061A167B92250020241C /* THHardwareComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THHardwareComponent.m */; };
+		9AF5061B167B92250020241C /* THHardwareComponentEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5023A167B84B40020241C /* THHardwareComponentEditableObject.m */; };
 		9AF5061E167B92250020241C /* THCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50240167B84B40020241C /* THCompass.m */; };
 		9AF5061F167B922A0020241C /* THCompassEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50242167B84B40020241C /* THCompassEditableObject.m */; };
 		9AF50620167B922A0020241C /* THLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50244167B84B40020241C /* THLed.m */; };
@@ -1786,6 +1788,8 @@
 		9A94F41516A0192700AF52AB /* TFEditorToolsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TFEditorToolsViewController.xib; sourceTree = "<group>"; };
 		9A94F44216A01A5400AF52AB /* THProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectViewController.h; sourceTree = "<group>"; };
 		9A94F44316A01A5600AF52AB /* THProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectViewController.m; sourceTree = "<group>"; };
+		9A9FEAD217BBCE70004AB8CF /* THWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWire.h; sourceTree = "<group>"; };
+		9A9FEAD317BBCE70004AB8CF /* THWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWire.m; sourceTree = "<group>"; };
 		9AB29B3A167F4B2A00F5AF62 /* palette_imageview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_imageview.png; sourceTree = "<group>"; };
 		9AB29B3B167F4B2A00F5AF62 /* palette_imageview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_imageview@2x.png"; sourceTree = "<group>"; };
 		9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageViewPaletteItem.h; sourceTree = "<group>"; };
@@ -1903,10 +1907,10 @@
 		9AF50234167B84B40020241C /* THBuzzerEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBuzzerEditableObject.m; sourceTree = "<group>"; };
 		9AF50235167B84B40020241C /* THClothe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClothe.h; sourceTree = "<group>"; };
 		9AF50236167B84B40020241C /* THClothe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClothe.m; sourceTree = "<group>"; };
-		9AF50237167B84B40020241C /* THClotheObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClotheObject.h; sourceTree = "<group>"; };
-		9AF50238167B84B40020241C /* THClotheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClotheObject.m; sourceTree = "<group>"; };
-		9AF50239167B84B40020241C /* THClotheObjectEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClotheObjectEditableObject.h; sourceTree = "<group>"; };
-		9AF5023A167B84B40020241C /* THClotheObjectEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClotheObjectEditableObject.m; sourceTree = "<group>"; };
+		9AF50237167B84B40020241C /* THHardwareComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHardwareComponent.h; sourceTree = "<group>"; };
+		9AF50238167B84B40020241C /* THHardwareComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHardwareComponent.m; sourceTree = "<group>"; };
+		9AF50239167B84B40020241C /* THHardwareComponentEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHardwareComponentEditableObject.h; sourceTree = "<group>"; };
+		9AF5023A167B84B40020241C /* THHardwareComponentEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHardwareComponentEditableObject.m; sourceTree = "<group>"; };
 		9AF5023F167B84B40020241C /* THCompass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCompass.h; sourceTree = "<group>"; };
 		9AF50240167B84B40020241C /* THCompass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCompass.m; sourceTree = "<group>"; };
 		9AF50241167B84B40020241C /* THCompassEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCompassEditableObject.h; sourceTree = "<group>"; };
@@ -2870,10 +2874,10 @@
 				9AF5024E167B84B40020241C /* THLilypadEditable.m */,
 				9AF50235167B84B40020241C /* THClothe.h */,
 				9AF50236167B84B40020241C /* THClothe.m */,
-				9AF50237167B84B40020241C /* THClotheObject.h */,
-				9AF50238167B84B40020241C /* THClotheObject.m */,
-				9AF50239167B84B40020241C /* THClotheObjectEditableObject.h */,
-				9AF5023A167B84B40020241C /* THClotheObjectEditableObject.m */,
+				9AF50237167B84B40020241C /* THHardwareComponent.h */,
+				9AF50238167B84B40020241C /* THHardwareComponent.m */,
+				9AF50239167B84B40020241C /* THHardwareComponentEditableObject.h */,
+				9AF5023A167B84B40020241C /* THHardwareComponentEditableObject.m */,
 				9AF5022D167B84B40020241C /* THButton.h */,
 				9AF5022E167B84B40020241C /* THButton.m */,
 				9AF5022F167B84B40020241C /* THButtonEditableObject.h */,
@@ -2967,6 +2971,8 @@
 				9A8BB99F167C815D00FBABFB /* THPinsController.m */,
 				9A8BB9A0167C815D00FBABFB /* THPinsControllerContainer.h */,
 				9A8BB9A1167C815D00FBABFB /* THPinsControllerContainer.m */,
+				9A9FEAD217BBCE70004AB8CF /* THWire.h */,
+				9A9FEAD317BBCE70004AB8CF /* THWire.m */,
 			);
 			path = layers;
 			sourceTree = "<group>";
@@ -4479,8 +4485,8 @@
 				9AF50379167B84B40020241C /* THBuzzer.m in Sources */,
 				9AF5037A167B84B40020241C /* THBuzzerEditableObject.m in Sources */,
 				9AF5037B167B84B40020241C /* THClothe.m in Sources */,
-				9AF5037C167B84B40020241C /* THClotheObject.m in Sources */,
-				9AF5037D167B84B40020241C /* THClotheObjectEditableObject.m in Sources */,
+				9AF5037C167B84B40020241C /* THHardwareComponent.m in Sources */,
+				9AF5037D167B84B40020241C /* THHardwareComponentEditableObject.m in Sources */,
 				9AF50380167B84B40020241C /* THCompass.m in Sources */,
 				9AF50381167B84B40020241C /* THCompassEditableObject.m in Sources */,
 				9AF50382167B84B40020241C /* THLed.m in Sources */,
@@ -4649,6 +4655,7 @@
 				9A84270C17564A80009495AB /* TFConstants.m in Sources */,
 				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
+				9A9FEAD417BBCE70004AB8CF /* THWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4706,8 +4713,8 @@
 				9AF50617167B92200020241C /* THBuzzer.m in Sources */,
 				9AF50618167B92200020241C /* THBuzzerEditableObject.m in Sources */,
 				9AF50619167B92200020241C /* THClothe.m in Sources */,
-				9AF5061A167B92250020241C /* THClotheObject.m in Sources */,
-				9AF5061B167B92250020241C /* THClotheObjectEditableObject.m in Sources */,
+				9AF5061A167B92250020241C /* THHardwareComponent.m in Sources */,
+				9AF5061B167B92250020241C /* THHardwareComponentEditableObject.m in Sources */,
 				9AF5061E167B92250020241C /* THCompass.m in Sources */,
 				9AF5061F167B922A0020241C /* THCompassEditableObject.m in Sources */,
 				9AF50620167B922A0020241C /* THLed.m in Sources */,
@@ -4862,6 +4869,7 @@
 				9A84270E17564A80009495AB /* TFConstants.m in Sources */,
 				9A84271117564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271417564A80009495AB /* TFHelper.m in Sources */,
+				9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4908,7 +4916,7 @@
 				9AF5046B167B85710020241C /* THClientHelper.m in Sources */,
 				9AF5046C167B85710020241C /* THConstants.m in Sources */,
 				9AF5046D167B85710020241C /* THUtils.m in Sources */,
-				9AF5046E167B85A00020241C /* THClotheObject.m in Sources */,
+				9AF5046E167B85A00020241C /* THHardwareComponent.m in Sources */,
 				9AF5046F167B85C30020241C /* THConditionObject.m in Sources */,
 				9AF50473167B860E0020241C /* main.m in Sources */,
 				9AB29C04167F89C100F5AF62 /* THProgrammingElement.m in Sources */,

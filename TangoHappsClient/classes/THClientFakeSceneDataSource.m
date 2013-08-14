@@ -58,7 +58,7 @@
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.clotheObjects = [NSArray arrayWithObject:led];
+    project.hardwareComponents = [NSArray arrayWithObject:led];
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
     button.text = @"turnOn";
@@ -109,7 +109,7 @@
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.clotheObjects = [NSArray arrayWithObjects:led, lilybutton,nil];
+    project.hardwareComponents = [NSArray arrayWithObjects:led, lilybutton,nil];
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
     button.text = @"turnOn";
@@ -170,7 +170,7 @@
     
     THBuzzer * buzzer = [[THBuzzer alloc] init];
     
-    project.clotheObjects = [NSArray arrayWithObject:buzzer];
+    project.hardwareComponents = [NSArray arrayWithObject:buzzer];
     
     THiPhoneButton * button1 = [[THiPhoneButton alloc] init];
     button1.text = @"turnOn";
@@ -233,7 +233,7 @@
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.clotheObjects = [NSArray arrayWithObjects:led,nil];
+    project.hardwareComponents = [NSArray arrayWithObjects:led,nil];
     
     //pins
     THBoardPin * lilypinled = [lilypad digitalPinWithNumber:9];
@@ -272,7 +272,7 @@
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.clotheObjects = [NSArray arrayWithObjects:lightSensor,nil];
+    project.hardwareComponents = [NSArray arrayWithObjects:lightSensor,nil];
     
     THLabel * sensorLabel = [[THLabel alloc] init];
     sensorLabel.position = CGPointMake(150, 200);
@@ -314,7 +314,7 @@
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.clotheObjects = [NSArray arrayWithObjects:compass,nil];
+    project.hardwareComponents = [NSArray arrayWithObjects:compass,nil];
     
     THLabel * label1 = [[THLabel alloc] init];
     label1.position = CGPointMake(100, 150);

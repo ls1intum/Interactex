@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
 @class THToneGenerator;
 
-@interface THBuzzerEditableObject : THClotheObjectEditableObject
+@interface THBuzzerEditableObject : THHardwareComponentEditableObject
 {
     CCAction * shakeAction;
     

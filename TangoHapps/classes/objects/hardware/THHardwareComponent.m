@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 #import "THElementPin.h"
 
-@implementation THClotheObject
+@implementation THHardwareComponent
 
 -(id) init{
     self = [super init];
@@ -39,7 +39,7 @@
 
 -(id)copyWithZone:(NSZone *)zone
 {
-    THClotheObject * copy = [super copyWithZone:zone];
+    THHardwareComponent * copy = [super copyWithZone:zone];
     
     NSMutableArray * pins = [NSMutableArray array];
     for(THElementPin * pin in _pins){

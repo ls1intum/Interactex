@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
-@interface THPotentiometerEditableObject : THClotheObjectEditableObject {
+@interface THPotentiometerEditableObject : THHardwareComponentEditableObject {
     float _value;
     UIRotationGestureRecognizer * _rotationRecognizer;
     float _touchDownIntensity;

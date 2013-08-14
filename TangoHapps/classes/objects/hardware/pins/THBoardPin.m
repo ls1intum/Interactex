@@ -8,7 +8,7 @@
 
 #import "THBoardPin.h"
 #import "THElementPin.h"
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 #import "IFPin.h"
 
 @implementation THBoardPin
@@ -142,7 +142,7 @@
     }*/
 }
 
--(BOOL) isClotheObjectAttached:(THClotheObject*) object{
+-(BOOL) isClotheObjectAttached:(THHardwareComponent*) object{
     for (THElementPin * pin in self.attachedElementPins) {
         if(pin.hardware == object){
             return YES;

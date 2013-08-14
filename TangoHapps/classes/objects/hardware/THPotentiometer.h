@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THClotheObject.h"
+#import "THHardwareComponent.h"
 
-@interface THPotentiometer : THClotheObject
+@interface THPotentiometer : THHardwareComponent
 {
     BOOL _insideRange;
 }

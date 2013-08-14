@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THClotheObjectEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 
-@interface THThreeColorLedEditable : THClotheObjectEditableObject{
+@interface THThreeColorLedEditable : THHardwareComponentEditableObject{
     CCSprite * _lightSprite;
 }
 

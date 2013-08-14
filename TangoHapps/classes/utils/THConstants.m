@@ -150,6 +150,13 @@ ccColor4B const kMinusPinHighlightColor = {100,100,100,100};
 ccColor4B const kPlusPinHighlightColor = {200,150,150,100};
 ccColor4B const kDefaultPinHighlightColor = {100,150,100,100};
 
+ccColor3B const kWireDefaultColor = {150,50,150};
+ccColor3B const kWireDefaultHighlightColor = {150,150,200};
+
+float const kWireNodeRadius = 30.0f;
+
+ccColor3B const kWireNodeColor = {30,30,150};
+
 CGSize const kDefaultPinSize = {30,30};
 
 CGSize const kiPhoneButtonDefaultSize = {100,50};
@@ -166,3 +173,4 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//tricolor
     {70,65}//vibeBoard
 };
+

@@ -8,7 +8,7 @@
 #import "THPin.h"
 #import "THBoardPin.h"
 
-@class THClotheObject;
+@class THHardwareComponent;
 
 @interface THElementPin : THPin
 
@@ -16,7 +16,7 @@
 @property (nonatomic) THElementPinType type;
 @property (nonatomic,readonly) THBoardPin * attachedToPin;
 @property (nonatomic,readonly) BOOL connected;
-@property (nonatomic, weak) THClotheObject * hardware;
+@property (nonatomic, weak) THHardwareComponent * hardware;
 @property (nonatomic, readonly) NSString * shortDescription;
 @property (nonatomic) THPinMode defaultBoardPinMode;
 
