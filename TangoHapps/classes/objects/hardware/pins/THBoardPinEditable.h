@@ -23,8 +23,10 @@
 @property (nonatomic) NSInteger number;
 @property (nonatomic) THPinType type;
 @property (nonatomic, readonly) THPinMode mode;
+@property (nonatomic) NSInteger value;
 @property (nonatomic, readonly) BOOL acceptsManyPins;
 @property (nonatomic) BOOL isPWM;
-@property (nonatomic) NSInteger currentValue;
+@property (nonatomic) BOOL supportsSCL;
+@property (nonatomic) BOOL supportsSDA;
 
 @end

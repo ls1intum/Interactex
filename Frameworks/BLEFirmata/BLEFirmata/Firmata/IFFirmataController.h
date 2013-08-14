@@ -32,7 +32,7 @@
 
 -(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value;
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pin value:(NSInteger) value;
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) port value:(NSInteger) value;
 
 -(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length;
 

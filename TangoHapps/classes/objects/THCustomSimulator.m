@@ -63,7 +63,7 @@
 }
 
 #pragma mark - Client
-
+/*
 -(void) updateLilypadPinsWithPins:(NSMutableArray*) pins{
     //NSLog(@"%@", [pins objectAtIndex:0]);
     
@@ -78,9 +78,9 @@
         }
         
         THBoardPin * lilypadPin = (THBoardPin*) editablePin.simulableObject;
-        lilypadPin.currentValue = pin.value;
+        lilypadPin.value = pin.value;
     }
-}
+}*/
 
 -(void) willAppear{
     [super willAppear];

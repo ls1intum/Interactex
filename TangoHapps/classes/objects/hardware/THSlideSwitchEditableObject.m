@@ -110,7 +110,7 @@
     THSlideSwitch * clotheswitch = (THSlideSwitch*) self.simulableObject;
     THElementPin * switchPin = [clotheswitch.pins objectAtIndex:0];
     THBoardPin * boardPin = (THBoardPin*) switchPin.attachedToPin;
-    boardPin.currentValue = clotheswitch.on;
+    boardPin.value = clotheswitch.on;
 }
 
 -(void) handleTouchBegan{

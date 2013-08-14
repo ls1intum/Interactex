@@ -417,6 +417,8 @@
 		9A94F44116A0192700AF52AB /* TFEditorToolsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41516A0192700AF52AB /* TFEditorToolsViewController.xib */; };
 		9A94F44416A01A5D00AF52AB /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F44316A01A5600AF52AB /* THProjectViewController.m */; };
 		9A94F44516A01A5D00AF52AB /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F44316A01A5600AF52AB /* THProjectViewController.m */; };
+		9A9FEACC17BBBDAE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
+		9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9AA5D7F416D52C4B00B72B9E /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1616A2C63D000DF472 /* call.png */; };
 		9AA5D7F516D52C4B00B72B9E /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1716A2C63D000DF472 /* call@2x.png */; };
 		9AA5D7F616D52C4B00B72B9E /* contactBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1816A2C63D000DF472 /* contactBook.png */; };
@@ -957,6 +959,20 @@
 			remoteInfo = BLEFirmata;
 		};
 		9A776DB917B51881008CD877 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
+			remoteInfo = BLEFirmata;
+		};
+		9A9FEA8817BBBDA5004AB8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
+			remoteInfo = BLEFirmata;
+		};
+		9A9FEACD17BBBDB6004AB8CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
 			proxyType = 1;
@@ -2167,6 +2183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9FEACC17BBBDAE004AB8CF /* libBLEFirmata.a in Frameworks */,
 				9AF50505167B8C820020241C /* AVFoundation.framework in Frameworks */,
 				9AB29B56167F68F600F5AF62 /* AssetsLibrary.framework in Frameworks */,
 				9A8BBA3B167F27FC00FBABFB /* CoreLocation.framework in Frameworks */,
@@ -2191,6 +2208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */,
 				9A94F1F0169ED6A200AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9AF50658167B92A10020241C /* OpenAL.framework in Frameworks */,
 				9A8BBA3D167F281700FBABFB /* CoreLocation.framework in Frameworks */,
@@ -2846,6 +2864,10 @@
 			children = (
 				9AF50219167B84B40020241C /* other */,
 				9AF5021E167B84B40020241C /* pins */,
+				9AF5024B167B84B40020241C /* THLilyPad.h */,
+				9AF5024C167B84B40020241C /* THLilyPad.m */,
+				9AF5024D167B84B40020241C /* THLilypadEditable.h */,
+				9AF5024E167B84B40020241C /* THLilypadEditable.m */,
 				9AF50235167B84B40020241C /* THClothe.h */,
 				9AF50236167B84B40020241C /* THClothe.m */,
 				9AF50237167B84B40020241C /* THClotheObject.h */,
@@ -2872,10 +2894,6 @@
 				9AF50248167B84B40020241C /* THLightSensor.m */,
 				9AF50249167B84B40020241C /* THLightSensorEditableObject.h */,
 				9AF5024A167B84B40020241C /* THLightSensorEditableObject.m */,
-				9AF5024B167B84B40020241C /* THLilyPad.h */,
-				9AF5024C167B84B40020241C /* THLilyPad.m */,
-				9AF5024D167B84B40020241C /* THLilypadEditable.h */,
-				9AF5024E167B84B40020241C /* THLilypadEditable.m */,
 				9AF5024F167B84B40020241C /* THPotentiometer.h */,
 				9AF50250167B84B40020241C /* THPotentiometer.m */,
 				9AF50251167B84B40020241C /* THPotentiometerEditableObject.h */,
@@ -3416,6 +3434,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A9FEA8917BBBDA5004AB8CF /* PBXTargetDependency */,
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
@@ -3433,6 +3452,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A9FEACE17BBBDB6004AB8CF /* PBXTargetDependency */,
 				9AF505D2167B91020020241C /* PBXTargetDependency */,
 				9AF505D4167B91020020241C /* PBXTargetDependency */,
 				9AF505D8167B91020020241C /* PBXTargetDependency */,
@@ -4929,6 +4949,16 @@
 			isa = PBXTargetDependency;
 			name = BLEFirmata;
 			targetProxy = 9A776DB917B51881008CD877 /* PBXContainerItemProxy */;
+		};
+		9A9FEA8917BBBDA5004AB8CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BLEFirmata;
+			targetProxy = 9A9FEA8817BBBDA5004AB8CF /* PBXContainerItemProxy */;
+		};
+		9A9FEACE17BBBDB6004AB8CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BLEFirmata;
+			targetProxy = 9A9FEACD17BBBDB6004AB8CF /* PBXContainerItemProxy */;
 		};
 		9AF50158167B83940020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

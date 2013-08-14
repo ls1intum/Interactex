@@ -17,7 +17,7 @@
     UIActivityIndicatorView * _activityIndicator;
 }
 
--(IBAction)modeButtonTapped:(id)sender;
+-(IBAction) modeButtonTapped:(id)sender;
 
 @property (nonatomic) THTransferAgent  * transferAgent;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *modeButton;

@@ -8,10 +8,15 @@
 
 #import "THLilyPad.h"
 #import "THBoardPin.h"
+#import "IFI2CComponent.h"
+#import "THClotheObject.h"
+#import "THElementPin.h"
 
 @implementation THLilyPad
 @dynamic minusPin;
 @dynamic plusPin;
+@dynamic sclPin;
+@dynamic sdaPin;
 
 -(void) load{    
     _numberOfDigitalPins = 14;
@@ -56,6 +61,8 @@
     if(self){
         
         _pins = [NSMutableArray array];
+        _i2cComponents = [NSMutableArray array];
+        
         [self load];
         [self loadPins];
     }
@@ -90,7 +97,7 @@
     return copy;
 }
 
-#pragma mark - Methods
+#pragma mark - Pins
 
 -(NSMutableArray*) analogPins{
     NSMutableArray * array = [NSMutableArray arrayWithCapacity:self.numberOfAnalogPins];
@@ -117,6 +124,23 @@
 -(THBoardPin*) plusPin{
     return [_pins objectAtIndex:6];
 }
+
+-(THBoardPin*) sclPin{
+    return [self analogPinWithNumber:5];
+}
+
+-(THBoardPin*) sdaPin{
+    return [self analogPinWithNumber:4];
+}
+
+/*
+-(BOOL) supportsSCL{
+    return (self.type == kPintypeAnalog && self.number == 5);
+}
+
+-(BOOL) supportsSDA{
+    return (self.type == kPintypeAnalog && self.number == 4);
+}*/
 
 -(NSInteger) realIdxForPin:(THBoardPin*) pin{
     
@@ -185,7 +209,39 @@
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
     THBoardPin * pin = [_pins objectAtIndex:pinNumber];
     [pin attachPin:object];
+    
+    if(object.hardware.i2cComponent && (pin.supportsSCL || pin.supportsSDA)){
+        
+        if((pin.supportsSCL && [self.sdaPin isClotheObjectAttached:object.hardware]) ||
+           (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
+            
+            [self addI2CCOmponent:object.hardware.i2cComponent];
+            
+        }
+    }
 }
+
+#pragma mark - I2C Components
+
+-(void) addI2CCOmponent:(IFI2CComponent*) component{
+    [self.i2cComponents addObject:component];
+}
+
+-(void) removeI2CCOmponent:(IFI2CComponent*) component{
+    [self.i2cComponents removeObject:component];
+}
+
+-(IFI2CComponent*) I2CComponentWithAddress:(NSInteger) address{
+
+    for (IFI2CComponent * component in self.i2cComponents) {
+        if(component.address == address){
+            return component;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - Other
 
 -(NSString*) description{
     return @"lilypad";

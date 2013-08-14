@@ -8,15 +8,13 @@
 
 #import "THClotheObject.h"
 
+@class IFI2CComponent;
+
 @interface THCompass : THClotheObject
 
 @property (nonatomic) NSInteger accelerometerX;
 @property (nonatomic) NSInteger accelerometerY;
 @property (nonatomic) NSInteger accelerometerZ;
-
 @property (nonatomic) NSInteger heading;
-
-@property (nonatomic, readonly) THElementPin * pin5;
-@property (nonatomic, readonly) THElementPin * pin4;
 
 @end

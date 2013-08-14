@@ -94,14 +94,14 @@
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     if(lilypadPin.type == kPintypeDigital){
-        if(lilypadPin.currentValue == kDigitalPinValueHigh && !self.on){
+        if(lilypadPin.value == kDigitalPinValueHigh && !self.on){
             [self turnOn];
-        } else if(lilypadPin.currentValue == kDigitalPinValueLow && self.on){
+        } else if(lilypadPin.value == kDigitalPinValueLow && self.on){
             [self turnOff];
         }
     } else if(lilypadPin.type == kPintypeAnalog){
         THVibrationBoard * vibrationBoard = (THVibrationBoard*)self.simulableObject;
-        vibrationBoard.frequency = lilypadPin.currentValue;
+        vibrationBoard.frequency = lilypadPin.value;
     }
 }
 

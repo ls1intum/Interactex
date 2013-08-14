@@ -96,7 +96,7 @@
     THElementPinEditable * analogPin = self.analogPin;
     THBoardPinEditable * boardPin = analogPin.attachedToPin;
     THLightSensor * sensor = (THLightSensor*) self.simulableObject;
-    boardPin.currentValue = sensor.light;
+    boardPin.value = sensor.light;
 }
 
 -(void) update{

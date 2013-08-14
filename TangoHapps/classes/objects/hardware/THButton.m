@@ -39,31 +39,35 @@
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
+    
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
+    
     THButton * copy = [super copyWithZone:zone];
     
     return copy;
 }
-
 
 #pragma mark - Methods
 
 -(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{
     
     if(!self.isDown && pin.pin.value == kDigitalPinValueHigh){
+        
         [self handleStartedPressing];
+        
     } else if(self.isDown && pin.pin.value == kDigitalPinValueLow){
+        
         [self handleStoppedPressing];
+        
     }
 }
 
 -(void) handleStartedPressing{
+    
     self.isDown = YES;
     
     [self triggerEventNamed:kEventStartedPressing];

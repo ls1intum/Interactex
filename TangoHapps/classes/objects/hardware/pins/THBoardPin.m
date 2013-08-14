@@ -14,6 +14,8 @@
 @implementation THBoardPin
 @dynamic acceptsManyPins;
 
+#pragma mark - Initialization
+
 +(id) pinWithPinNumber:(NSInteger) pinNumber andType:(THPinType) type{
     return [[THBoardPin alloc] initWithPinNumber:pinNumber andType:type];
 }
@@ -29,7 +31,14 @@
         _attachedElementPins = [NSMutableArray array];
     }
     return self;
-    
+}
+
+-(id) init{
+    self = [super init];
+    if(self){
+        _attachedElementPins = [NSMutableArray array];
+    }
+    return self;
 }
 
 #pragma mark - Archiving
@@ -43,14 +52,6 @@
     self.pin.mode = [decoder decodeIntForKey:@"mode"];
     _isPWM = [decoder decodeBoolForKey:@"isPWM"];
 
-    return self;
-}
-
--(id) init{
-    self = [super init];
-    if(self){
-        _attachedElementPins = [NSMutableArray array];
-    }
     return self;
 }
 
@@ -77,6 +78,10 @@
     return self.pin.number;
 }
 
+-(void) setNumber:(NSInteger)number{
+    self.pin.number = number;
+}
+
 -(void) setMode:(IFPinMode)mode{
     self.pin.mode = mode;
 }
@@ -93,6 +98,15 @@
     self.pin.value = value;
 }
 
+-(void) setValueWithoutNotifications:(NSInteger) value{
+    
+    [self removePinObserver];
+    
+    self.pin.value = value;
+    
+    [self addPinObserver];
+}
+
 -(void) setPin:(IFPin *)pin{
     if(_pin != pin){
         [self removePinObserver];
@@ -104,18 +118,6 @@
 -(BOOL) acceptsManyPins{
     return (self.type == kPintypeMinus || self.type == kPintypePlus);
 }
-
-
-/*
--(void) setCurrentValue:(NSInteger)value{
-    if(value != self.currentValue){
-        self.hasChanged = YES;
-        _currentValue = value;
-        //[self notifyPinsNewValue:value];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPinValueChanged object:self];
-    }
-}*/
 
 -(void) attachPin:(THElementPin*) pin{
     if(!self.acceptsManyPins && self.attachedElementPins.count == 1){
@@ -138,6 +140,15 @@
     if(_attachedPins.count == 0){
         self.mode = kPinModeUndefined;
     }*/
+}
+
+-(BOOL) isClotheObjectAttached:(THClotheObject*) object{
+    for (THElementPin * pin in self.attachedElementPins) {
+        if(pin.hardware == object){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 -(void) prepareToDie{

@@ -289,24 +289,26 @@
     }
 }
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
-    /*
-    IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
-    int mask = 1;
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) port value:(NSInteger) value{
     
-    for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
-        IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
-        if (pinObj.mode == IFPinModeInput) {
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    NSInteger pinNumber = port * 8;
+    
+    for (int mask = 1; mask & 0xFF; mask <<= 1, pinNumber++) {
+        THBoardPin * pin = [project.lilypad digitalPinWithNumber:pinNumber];
+        
+        if (pin && pin.mode == IFPinModeInput) {
             uint32_t val = (value & mask) ? 1 : 0;
-            if (pinObj.value != val) {
-                pinObj.value = val;
+            if (pin.value != val) {
+                pin.value = val;
             }
         }
-    }*/
+    }
 }
 
 -(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
-    /*
+    
     uint8_t address = buffer[2] + (buffer[3] << 7);
     NSInteger registerNumber = buffer[4];
     
@@ -318,12 +320,8 @@
         
     } else {
         
-        IFI2CComponent * component = nil;
-        for (IFI2CComponent * aComponent in self.i2cComponents) {
-            if(aComponent.address == address){
-                component = aComponent;
-            }
-        }
+        THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+        IFI2CComponent * component = [project.lilypad i2cComponentWithAddress:address];
         
         IFI2CRegister * reg = [component registerWithNumber:registerNumber];
         if(reg){
@@ -335,9 +333,8 @@
             }
             NSData * data = [NSData dataWithBytes:values length:reg.size];
             reg.value = data;
-            
         }
-    }*/
+    }
 }
 
 

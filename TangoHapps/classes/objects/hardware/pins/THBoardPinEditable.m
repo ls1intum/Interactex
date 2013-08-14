@@ -18,7 +18,7 @@
 @dynamic mode;
 @dynamic acceptsManyPins;
 @dynamic isPWM;
-@dynamic currentValue;
+@dynamic value;
 
 -(id) init{
     self = [super init];
@@ -58,13 +58,13 @@
 -(NSInteger) currentValue{
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
-    return pin.currentValue;
+    return pin.value;
 }
 
 -(void) setCurrentValue:(NSInteger)currentValue{
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
-    pin.currentValue = currentValue;
+    pin.value = currentValue;
 }
 
 -(BOOL) isPWM{
@@ -113,6 +113,17 @@
     pin.number = pinNumber;
 }
 
+
+-(BOOL) supportsSCL{
+    THBoardPin * pin = (THBoardPin*) self.simulableObject;
+    return pin.supportsSCL;
+}
+
+-(BOOL) supportsSDA{
+    THBoardPin * pin = (THBoardPin*) self.simulableObject;
+    return pin.supportsSDA;
+}
+
 -(void) draw{
     
     //ccDrawCircle(ccp(0,0), kLilypadPinRadius, 0, 15, 0);
@@ -133,7 +144,7 @@
     }*/
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
-    if(self.type == kPintypeDigital && pin.currentValue == 1){
+    if(self.type == kPintypeDigital && pin.value == 1){
         
         glColor4f(0, 1, 0, 1.0);
         ccDrawCircle(ccp(0,0), 10, 0, 10, 0);

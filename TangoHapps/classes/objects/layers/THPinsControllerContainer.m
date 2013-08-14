@@ -55,7 +55,7 @@ float const kPinControllerInnerPadding = 5;
             
             CGRect segmentedControlFrame = CGRectMake(typeLabelFrame.origin.x + kPinControllerTypeLabelSize.width + kPinControllerInnerPadding, kPinControllerInnerPadding, kPinControllerSegmentedSize.width, kPinControllerSegmentedSize.height);
             _segmentedControl.frame = segmentedControlFrame;
-            _segmentedControl.selectedSegmentIndex = realPin.currentValue;
+            _segmentedControl.selectedSegmentIndex = realPin.value;
             
             valueView = _segmentedControl;
             
@@ -64,7 +64,7 @@ float const kPinControllerInnerPadding = 5;
         } else if(pin.mode == kPinModeDigitalInput){
             
             CGRect valueLabelFrame = CGRectMake(typeLabelFrame.origin.x + kPinControllerTypeLabelSize.width + kPinControllerInnerPadding, kPinControllerInnerPadding, kPinControllerSegmentedSize.width, kPinControllerSegmentedSize.height);
-            NSString * valueStr = (realPin.currentValue == kDigitalPinValueHigh) ? @"High" : @"Low";
+            NSString * valueStr = (realPin.value == kDigitalPinValueHigh) ? @"High" : @"Low";
             
             _valueLabel = [self labelWithFrame:valueLabelFrame text:valueStr];
             
@@ -76,7 +76,7 @@ float const kPinControllerInnerPadding = 5;
             _slider = [[UISlider alloc] initWithFrame:sliderFrame];
             _slider.minimumValue = 0;
             _slider.maximumValue = 255;
-            _slider.value = realPin.currentValue;
+            _slider.value = realPin.value;
             //slider.enabled = YES;
             valueView = _slider;
             
@@ -86,7 +86,7 @@ float const kPinControllerInnerPadding = 5;
             
             CGRect valueLabelFrame = CGRectMake(typeLabelFrame.origin.x + kPinControllerTypeLabelSize.width + kPinControllerInnerPadding, kPinControllerInnerPadding, kPinControllerSegmentedSize.width, kPinControllerSegmentedSize.height);
             
-            NSString * text = [NSString stringWithFormat:@"%d",pin.currentValue];
+            NSString * text = [NSString stringWithFormat:@"%d",pin.value];
             _valueLabel = [self labelWithFrame:valueLabelFrame text:text];
             
             [self addSubview:_valueLabel];
@@ -104,21 +104,21 @@ float const kPinControllerInnerPadding = 5;
 -(void) pinValueChanged:(NSNotification*) notification{
     THBoardPin * pin = (THBoardPin*) self.pin.simulableObject;
         
-    if(pin.currentValue < 0) { // buzzer sends -1 in the end
+    if(pin.value < 0) { // buzzer sends -1 in the end
         return;
     }
     
     if(pin.mode == kPinModeDigitalOutput){
-        _segmentedControl.selectedSegmentIndex = pin.currentValue;
+        _segmentedControl.selectedSegmentIndex = pin.value;
     } else if(pin.mode == kPinModeDigitalInput){
         
-        NSString * valueStr = (pin.currentValue == kDigitalPinValueHigh) ? @"High" : @"Low";
+        NSString * valueStr = (pin.value == kDigitalPinValueHigh) ? @"High" : @"Low";
         _valueLabel.text = valueStr;
     } else if(pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer) {
 
-        _slider.value = pin.currentValue;
+        _slider.value = pin.value;
     } else if(pin.mode == kPinModeAnalogInput){
-        _valueLabel.text = [NSString stringWithFormat:@"%d",pin.currentValue];
+        _valueLabel.text = [NSString stringWithFormat:@"%d",pin.value];
     }
 }
 
@@ -135,14 +135,12 @@ float const kPinControllerInnerPadding = 5;
 
 -(void) sliderValueChanged:(UISlider*) slider{
     THBoardPin * pin = (THBoardPin*) self.pin.simulableObject;
-    pin.currentValue = slider.value;
-    [pin notifyNewValue];
+    pin.value = slider.value;
 }
 
 -(void) segmentedControlValueChanged:(UISegmentedControl*) control{
     THBoardPin * pin = (THBoardPin*) self.pin.simulableObject;
-    pin.currentValue = control.selectedSegmentIndex;
-    [pin notifyNewValue];
+    pin.value = control.selectedSegmentIndex;
 }
 
 -(void) prepareToDie{

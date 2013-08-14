@@ -11,6 +11,7 @@
 #import "THBoardPin.h"
 
 @class THClothe;
+@class IFI2CComponent;
 
 @interface THClotheObject : TFSimulableObject <THPinDelegate>
 {
@@ -19,6 +20,7 @@
 
 @property (nonatomic, strong) NSMutableArray * pins;
 @property (nonatomic) BOOL isInputObject;
+@property (nonatomic, strong) IFI2CComponent * i2cComponent;
 
 -(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue;
 

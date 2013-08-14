@@ -67,7 +67,7 @@
     THElementPinEditable * digitalPin = self.digitalPin;
     THBoardPinEditable * boardPin = digitalPin.attachedToPin;
     THButton * button = (THButton*) self.simulableObject;
-    boardPin.currentValue = button.isDown;
+    boardPin.value = button.isDown;
 }
 
 -(void) handleTouchEnded{

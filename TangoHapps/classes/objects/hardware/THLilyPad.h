@@ -12,6 +12,7 @@
 
 @class THBoardPin;
 @class THElementPin;
+@class IFI2CComponent;
 
 @interface THLilyPad : TFSimulableObject
 {
@@ -22,9 +23,13 @@
 @property (nonatomic) NSMutableArray * pins;
 @property (nonatomic, readonly) NSMutableArray * analogPins;
 @property (nonatomic, readonly) NSMutableArray * digitalPins;
+@property (nonatomic, readonly) NSMutableArray * i2cComponents;
 
 @property (nonatomic, readonly) THBoardPin * minusPin;
 @property (nonatomic, readonly) THBoardPin * plusPin;
+
+@property (nonatomic, readonly) THBoardPin * sclPin;//analog 5
+@property (nonatomic, readonly) THBoardPin * sdaPin;//analog 4
 
 -(NSArray*) objectsAtPin:(NSInteger) pin;
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pin;
@@ -35,5 +40,9 @@
 
 -(NSInteger) realIdxForPin:(THBoardPin*) pin;
 -(THBoardPin*) pinWithRealIdx:(NSInteger) pinNumber;
+
+-(void) addI2CCOmponent:(IFI2CComponent*) component;
+-(void) removeI2CCOmponent:(IFI2CComponent*) component;
+-(IFI2CComponent*) I2CComponentWithAddress:(NSInteger) address;
 
 @end

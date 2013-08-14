@@ -105,7 +105,7 @@
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     THThreeColorLed * led = (THThreeColorLed*)self.simulableObject;
-    led.red = lilypadPin.currentValue;
+    led.red = lilypadPin.value;
 }
 
 -(void) update{

@@ -8,8 +8,23 @@
 
 #import "THCompass.h"
 #import "THElementPin.h"
+#import "IFI2CComponent.h"
+#import "IFI2CRegister.h"
 
 @implementation THCompass
+
+#pragma mark - Initialization
+
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        [self load];
+        [self loadPins];
+        [self loadI2CComponent];
+    }
+    return self;
+}
 
 -(void) load{
     
@@ -54,22 +69,33 @@
     [self.pins addObject:plusPin];
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        [self load];
-        [self loadPins];
-    }
-    return self;
+-(IFI2CComponent*) loadI2CComponent{
+    
+    self.i2cComponent = [[IFI2CComponent alloc] init];
+    self.i2cComponent.address = 24;
+    
+    IFI2CRegister * reg1 = [[IFI2CRegister alloc] init];
+    reg1.number = 32;
+    
+    IFI2CRegister * reg2 = [[IFI2CRegister alloc] init];
+    reg2.number = 40;
+    
+    [self.i2cComponent addRegister:reg1];
+    [self.i2cComponent addRegister:reg2];
+    
+    [reg2 addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    
+    return self.i2cComponent;
 }
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder{
+    
     self = [super initWithCoder:decoder];
-    
-    [self load];
-    
+    if(self){
+        [self load];
+    }
     return self;
 }
 
@@ -92,28 +118,12 @@
     self.accelerometerZ = ((int16_t)(buffer[5] << 8 | buffer[4])) >> 4;
 }
 
--(THElementPin*) pin5{
-    return [self.pins objectAtIndex:1];
-}
-
--(THElementPin*) pin4{
-    return [self.pins objectAtIndex:2];
-}
-
--(void) updatePinValue{
-    
-    THElementPin * pin = self.pin5;
-    THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
-    lilypadPin.value = self.accelerometerX;
-}
-
 -(void) setAccelerometerX:(NSInteger)accelerometerX{
     if(accelerometerX != _accelerometerX){
         _accelerometerX = accelerometerX;
         //NSLog(@"new x: %d",_x);
         
         [self triggerEventNamed:kEventXChanged];
-        [self updatePinValue];
     }
 }
 
@@ -123,7 +133,6 @@
         //NSLog(@"new y: %d",_y);
         
         [self triggerEventNamed:kEventYChanged];
-        [self updatePinValue];
     }
 }
 
@@ -133,7 +142,6 @@
         //NSLog(@"new z: %d",_z);
         
         [self triggerEventNamed:kEventZChanged];
-        [self updatePinValue];
     }
 }
 
@@ -141,7 +149,6 @@
     if(heading != _heading){
         _heading = heading;
         [self triggerEventNamed:kEventHeadingChanged];
-        [self updatePinValue];
     }
 }
 
@@ -155,8 +162,22 @@
     [super didStartSimulating];
 }
 
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+    if([keyPath isEqualToString:@"value"]){
+        IFI2CRegister * reg = object;
+        [self setValuesFromBuffer:(uint8_t*)reg.value.bytes length:reg.value.length];
+    }
+}
+
 -(NSString*) description{
     return @"compass";
 }
 
+-(void) prepareToDie{
+    IFI2CRegister * reg = [self.i2cComponent.registers objectAtIndex:1];
+    [reg removeObserver:self forKeyPath:@"value"];
+    
+    self.i2cComponent = nil;
+}
 @end
