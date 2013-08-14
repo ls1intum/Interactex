@@ -9,7 +9,7 @@
 #import "IFFirmataViewController.h"
 #import "IFPinCell.h"
 #import "IFPin.h"
-#import "IFFirmataController.h"
+#import "IFFirmataPinsController.h"
 #import "BLEDiscovery.h"
 #import "IFI2CComponentCell.h"
 #import "AppDelegate.h"
@@ -17,8 +17,8 @@
 
 @implementation IFFirmataViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
@@ -27,22 +27,23 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
-    self.firmataController = appDelegate.firmataController;
+    self.firmataPinsController = appDelegate.firmataController;
     
     [self loadPersistedObjects];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    self.firmataController.bleService = [BLEDiscovery sharedInstance].connectedService;
-    [BLEDiscovery sharedInstance].connectedService.dataDelegate = self.firmataController;
     
-    if(self.firmataController.numAnalogPins == 0 && self.firmataController.numDigitalPins == 0){
+    self.firmataPinsController.firmataController.bleService = [BLEDiscovery sharedInstance].connectedService;
+    [BLEDiscovery sharedInstance].connectedService.dataDelegate = self.firmataPinsController.firmataController;
+    
+    if(self.firmataPinsController.analogPins.count == 0 && self.firmataPinsController.digitalPins.count == 0){
         
-        //[self.firmataController stop];
-        [self.firmataController start];
+        [self.firmataPinsController.firmataController sendFirmwareRequest];
     }
     
     [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
@@ -51,15 +52,15 @@
 -(void) viewDidAppear:(BOOL)animated{
     
     if(self.removingComponent){
-    [self removeComponentAnimated];
+        [self removeComponentAnimated];
     }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     if(!goingToI2CScene){
         
-        [self.firmataController stopReportingI2CComponents];
-        [self.firmataController stopReportingAnalogPins];
+        [self.firmataPinsController stopReportingI2CComponents];
+        [self.firmataPinsController stopReportingAnalogPins];
         [self persistObjects];
     }
     goingToI2CScene = NO;
@@ -69,12 +70,12 @@
         
     NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:IFDefaultsI2CComponents];
     if(data){
-        self.firmataController.i2cComponents = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        self.firmataPinsController.i2cComponents = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     }
 }
 
 -(void) persistObjects{
-    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.firmataController.i2cComponents];
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.firmataPinsController.i2cComponents];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:IFDefaultsI2CComponents];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -85,29 +86,29 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) setFirmataController:(IFFirmataController *)firmataController{
-    if(_firmataController != firmataController){
-        _firmataController = firmataController;
-        _firmataController.delegate = self;
+-(void) setFirmataPinsController:(IFFirmataPinsController *)firmataController{
+    if(_firmataPinsController != firmataController){
+        _firmataPinsController = firmataController;
+        _firmataPinsController.delegate = self;
     }
 }
 
 #pragma mark FirmataDelegate
 
--(void) firmataDidUpdateDigitalPins:(IFFirmataController *)firmataController{
+-(void) firmataDidUpdateDigitalPins:(IFFirmataPinsController *)firmataController{
     [self.table reloadData];
     /*
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:0];
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
 }
 
--(void) firmataDidUpdateAnalogPins:(IFFirmataController *)firmataController{
+-(void) firmataDidUpdateAnalogPins:(IFFirmataPinsController *)firmataController{
     [self.table reloadData];/*
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:1];
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
 }
 
--(void) firmataDidUpdateI2CComponents:(IFFirmataController *)firmataController{
+-(void) firmataDidUpdateI2CComponents:(IFFirmataPinsController *)firmataController{
 
     //[self.table reloadData];
     
@@ -115,7 +116,7 @@
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
 }
 
--(void) firmata:(IFFirmataController *)firmataController didUpdateTitle:(NSString *)title{
+-(void) firmata:(IFFirmataPinsController *)firmataController didUpdateTitle:(NSString *)title{
     self.title = title;
 }
 
@@ -137,11 +138,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == 0){
-        return self.firmataController.digitalPins.count;
+        return self.firmataPinsController.digitalPins.count;
     } else if(section == 1){
-        return self.firmataController.analogPins.count;
+        return self.firmataPinsController.analogPins.count;
     } else {
-        return self.firmataController.i2cComponents.count;
+        return self.firmataPinsController.i2cComponents.count;
     }
 }
 
@@ -155,7 +156,7 @@
     if(indexPath.section == 0 || indexPath.section == 1){
         NSInteger pinNumber = indexPath.row;
         BOOL digital = (indexPath.section == 0);
-        IFPin * pin = (digital ? [self.firmataController.digitalPins objectAtIndex:pinNumber] : [self.firmataController.analogPins objectAtIndex:pinNumber]);
+        IFPin * pin = (digital ? [self.firmataPinsController.digitalPins objectAtIndex:pinNumber] : [self.firmataPinsController.analogPins objectAtIndex:pinNumber]);
         
         if(digital){
             cell = [self.table dequeueReusableCellWithIdentifier:@"digitalCell"];
@@ -167,7 +168,7 @@
     } else {
         
         NSInteger idx = indexPath.row;
-        IFI2CComponent * component = [self.firmataController.i2cComponents objectAtIndex:idx];
+        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:idx];
         
          cell = [self.table dequeueReusableCellWithIdentifier:@"i2cCell"];
         ((IFI2CComponentCell*) cell).component = component;
@@ -204,59 +205,65 @@
 }
 
 -(void) i2cComponentRemoved:(IFI2CComponent*) component{
-    NSInteger row = [self.firmataController.i2cComponents indexOfObject:component];
+    NSInteger row = [self.firmataPinsController.i2cComponents indexOfObject:component];
     self.removingComponentPath = [NSIndexPath indexPathForRow:row inSection:2];
     
-    self.firmataController.delegate = nil;
-    [self.firmataController removeI2CComponent:component];
-    self.firmataController.delegate = self;
+    self.firmataPinsController.delegate = nil;
+    [self.firmataPinsController removeI2CComponent:component];
+    self.firmataPinsController.delegate = self;
     
     self.removingComponent = component;
 }
 
 -(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg{
+    NSInteger value = data.integerValue;
+    [self.firmataPinsController.firmataController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
     
-    [self.firmataController sendI2CWriteData:data forRegister:reg fromComponent:component];
 }
 
 -(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg{
-    [self.firmataController sendI2CStartStopReportingRequestForRegister:reg fromComponent:component];
+    [self.firmataPinsController.firmataController sendI2CStartReadingAddress:component.address reg:reg.number size:reg.size];
 }
 
 -(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg{
-    [self.firmataController sendI2CStartStopReportingRequestForRegister:reg fromComponent:component];
+    [self.firmataPinsController.firmataController sendI2CStopReadingAddress:component.address];
 }
 
 -(void) i2cComponent:(IFI2CComponent *)component addedRegister:(IFI2CRegister *)reg{
-    [self.firmataController addI2CRegister:reg toComponent:component];
+    [self.firmataPinsController addI2CRegister:reg toComponent:component];
 }
 
 -(void) i2cComponent:(IFI2CComponent *)component removedRegister:(IFI2CRegister *)reg{
-    [self.firmataController removeI2CRegister:reg fromComponent:component];
+    [self.firmataPinsController removeI2CRegister:reg fromComponent:component];
 }
 
 #pragma mark - Additional Options
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
     if(buttonIndex == 0){
+        
         [self addI2CComponent];
-    }else if(buttonIndex == 1){
-        [self.firmataController sendResetRequest];
-        [self.firmataController stop];
-        [self.firmataController start];
+        
+    } else if(buttonIndex == 1){
+        
+        [self.firmataPinsController.firmataController sendResetRequest];
+        [self.firmataPinsController reset];
+        [self.firmataPinsController.firmataController sendFirmwareRequest];
     }
     
     NSLog(@"%d",buttonIndex);
 }
 
--(void) addI2CComponent{
+-(void) addI2CComponent {
+    
     IFI2CComponent * component = [[IFI2CComponent alloc] init];
     component.name = @"New I2C Component";
     component.address = 24;
     
-    [self.firmataController addI2CComponent:component];
+    [self.firmataPinsController addI2CComponent:component];
     
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.firmataController.i2cComponents.count-1 inSection:2];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.firmataPinsController.i2cComponents.count-1 inSection:2];
     [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 

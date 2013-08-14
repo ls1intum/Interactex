@@ -11,11 +11,11 @@
 		9A1735B717B11DA0001DD4A4 /* BLEDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735A917B11DA0001DD4A4 /* BLEDiscovery.m */; };
 		9A1735B817B11DA0001DD4A4 /* BLEHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735AB17B11DA0001DD4A4 /* BLEHelper.m */; };
 		9A1735B917B11DA0001DD4A4 /* BLEService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735AD17B11DA0001DD4A4 /* BLEService.m */; };
-		9A1735BA17B11DA0001DD4A4 /* IFFirmataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735B017B11DA0001DD4A4 /* IFFirmataController.m */; };
 		9A1735BB17B11DA0001DD4A4 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735B217B11DA0001DD4A4 /* IFI2CComponent.m */; };
 		9A1735BC17B11DA0001DD4A4 /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735B417B11DA0001DD4A4 /* IFI2CRegister.m */; };
 		9A1735BD17B11DA0001DD4A4 /* IFPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735B617B11DA0001DD4A4 /* IFPin.m */; };
 		9A1735C017B11E9B001DD4A4 /* IFFirmataConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1735BF17B11E9B001DD4A4 /* IFFirmataConstants.m */; };
+		9A776DC317B52A84008CD877 /* IFFirmataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A776DC217B52A84008CD877 /* IFFirmataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,8 +41,6 @@
 		9A1735AB17B11DA0001DD4A4 /* BLEHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEHelper.m; sourceTree = "<group>"; };
 		9A1735AC17B11DA0001DD4A4 /* BLEService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEService.h; sourceTree = "<group>"; };
 		9A1735AD17B11DA0001DD4A4 /* BLEService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEService.m; sourceTree = "<group>"; };
-		9A1735AF17B11DA0001DD4A4 /* IFFirmataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataController.h; sourceTree = "<group>"; };
-		9A1735B017B11DA0001DD4A4 /* IFFirmataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataController.m; sourceTree = "<group>"; };
 		9A1735B117B11DA0001DD4A4 /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
 		9A1735B217B11DA0001DD4A4 /* IFI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponent.m; sourceTree = "<group>"; };
 		9A1735B317B11DA0001DD4A4 /* IFI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegister.h; sourceTree = "<group>"; };
@@ -51,6 +49,8 @@
 		9A1735B617B11DA0001DD4A4 /* IFPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPin.m; sourceTree = "<group>"; };
 		9A1735BE17B11E9B001DD4A4 /* IFFirmataConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataConstants.h; sourceTree = "<group>"; };
 		9A1735BF17B11E9B001DD4A4 /* IFFirmataConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataConstants.m; sourceTree = "<group>"; };
+		9A776DC117B52A84008CD877 /* IFFirmataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataController.h; sourceTree = "<group>"; };
+		9A776DC217B52A84008CD877 /* IFFirmataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +117,8 @@
 			children = (
 				9A1735BE17B11E9B001DD4A4 /* IFFirmataConstants.h */,
 				9A1735BF17B11E9B001DD4A4 /* IFFirmataConstants.m */,
-				9A1735AF17B11DA0001DD4A4 /* IFFirmataController.h */,
-				9A1735B017B11DA0001DD4A4 /* IFFirmataController.m */,
+				9A776DC117B52A84008CD877 /* IFFirmataController.h */,
+				9A776DC217B52A84008CD877 /* IFFirmataController.m */,
 				9A1735B117B11DA0001DD4A4 /* IFI2CComponent.h */,
 				9A1735B217B11DA0001DD4A4 /* IFI2CComponent.m */,
 				9A1735B317B11DA0001DD4A4 /* IFI2CRegister.h */,
@@ -183,11 +183,11 @@
 				9A1735B717B11DA0001DD4A4 /* BLEDiscovery.m in Sources */,
 				9A1735B817B11DA0001DD4A4 /* BLEHelper.m in Sources */,
 				9A1735B917B11DA0001DD4A4 /* BLEService.m in Sources */,
-				9A1735BA17B11DA0001DD4A4 /* IFFirmataController.m in Sources */,
 				9A1735BB17B11DA0001DD4A4 /* IFI2CComponent.m in Sources */,
 				9A1735BC17B11DA0001DD4A4 /* IFI2CRegister.m in Sources */,
 				9A1735BD17B11DA0001DD4A4 /* IFPin.m in Sources */,
 				9A1735C017B11E9B001DD4A4 /* IFFirmataConstants.m in Sources */,
+				9A776DC317B52A84008CD877 /* IFFirmataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@
 		9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */; };
 		9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */; };
 		9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */; };
+		9A9FEA8017BB91ED004AB8CF /* IFFirmataPinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEA7F17BB91ED004AB8CF /* IFFirmataPinsController.m */; };
 		9AEE5933177CA8AC00C6D5E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */; };
 		9AEE5935177CA8AC00C6D5E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */; };
 		9AEE5937177CA8AC00C6D5E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5936177CA8AC00C6D5E8 /* CoreGraphics.framework */; };
@@ -81,6 +82,8 @@
 		9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponentCell.m; sourceTree = "<group>"; };
 		9A86CFE417AA461A00E3F9E4 /* IFI2CRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegisterViewController.h; sourceTree = "<group>"; };
 		9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegisterViewController.m; sourceTree = "<group>"; };
+		9A9FEA7E17BB91ED004AB8CF /* IFFirmataPinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataPinsController.h; sourceTree = "<group>"; };
+		9A9FEA7F17BB91ED004AB8CF /* IFFirmataPinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataPinsController.m; sourceTree = "<group>"; };
 		9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFirmata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -202,6 +205,8 @@
 				9A6F9A641780754C00089B34 /* IFDeviceMenuViewController.m */,
 				9AEE595B177CD29700C6D5E8 /* IFFirmataViewController.h */,
 				9AEE595C177CD29700C6D5E8 /* IFFirmataViewController.m */,
+				9A9FEA7E17BB91ED004AB8CF /* IFFirmataPinsController.h */,
+				9A9FEA7F17BB91ED004AB8CF /* IFFirmataPinsController.m */,
 				9A6F9A601780741700089B34 /* IFCharacteristicsViewController.h */,
 				9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */,
 				9A6F9A661780798A00089B34 /* IFCharacteristicDetailsViewController.h */,
@@ -349,6 +354,7 @@
 				9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */,
 				9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */,
 				9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */,
+				9A9FEA8017BB91ED004AB8CF /* IFFirmataPinsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

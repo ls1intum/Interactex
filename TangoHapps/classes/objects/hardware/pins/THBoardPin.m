@@ -9,6 +9,7 @@
 #import "THBoardPin.h"
 #import "THElementPin.h"
 #import "THClotheObject.h"
+#import "IFPin.h"
 
 @implementation THBoardPin
 @dynamic acceptsManyPins;
@@ -21,11 +22,11 @@
     
     self = [super init];
     if(self){
-        self.number = pinNumber;
+        self.pin.number = pinNumber;
         self.type = type;
-        self.mode = kPinModeUndefined;
+        //self.pin.mode = kPinModeUndefined;
         
-        _attachedPins = [NSMutableArray array];
+        _attachedElementPins = [NSMutableArray array];
     }
     return self;
     
@@ -36,10 +37,10 @@
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     
-    _attachedPins = [decoder decodeObjectForKey:@"attachedPins"];
-    _number = [decoder decodeIntForKey:@"number"];
+    _attachedElementPins = [decoder decodeObjectForKey:@"attachedPins"];
+    self.pin.number = [decoder decodeIntForKey:@"number"];
     _type = [decoder decodeIntForKey:@"pinType"];
-    _mode = [decoder decodeIntForKey:@"mode"];
+    self.pin.mode = [decoder decodeIntForKey:@"mode"];
     _isPWM = [decoder decodeBoolForKey:@"isPWM"];
 
     return self;
@@ -48,42 +49,64 @@
 -(id) init{
     self = [super init];
     if(self){
-        _attachedPins = [NSMutableArray array];
+        _attachedElementPins = [NSMutableArray array];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
 
-    [coder encodeObject:self.attachedPins forKey:@"attachedPins"];
-    [coder encodeInt:self.number forKey:@"number"];
+    [coder encodeObject:self.attachedElementPins forKey:@"attachedPins"];
+    [coder encodeInt:self.pin.number forKey:@"number"];
     [coder encodeInt:self.type forKey:@"pinType"];
-    [coder encodeInt:self.mode forKey:@"mode"];
+    [coder encodeInt:self.pin.mode forKey:@"mode"];
     [coder encodeBool:self.isPWM forKey:@"isPWM"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     THBoardPin * copy = [super copyWithZone:zone];
-    copy.number = self.number;
+    copy.pin = self.pin;
     copy.type = self.type;
-    copy.mode = self.mode;
     
     return copy;
 }
 
 #pragma mark - Methods
 
+-(NSInteger) number{
+    return self.pin.number;
+}
+
+-(void) setMode:(IFPinMode)mode{
+    self.pin.mode = mode;
+}
+
+-(IFPinMode) mode{
+    return self.pin.mode;
+}
+
+-(NSInteger) value{
+    return self.pin.value;
+}
+
+-(void) setValue:(NSInteger)value{
+    self.pin.value = value;
+}
+
+-(void) setPin:(IFPin *)pin{
+    if(_pin != pin){
+        [self removePinObserver];
+        _pin = pin;
+        [self addPinObserver];
+    }
+}
+
 -(BOOL) acceptsManyPins{
     return (self.type == kPintypeMinus || self.type == kPintypePlus);
 }
 
--(void) notifyNewValue{
-    
-    for (THElementPin * pin in self.attachedPins) {
-        [pin.hardware handlePin:self changedValueTo:_currentValue];
-    }
-}
 
+/*
 -(void) setCurrentValue:(NSInteger)value{
     if(value != self.currentValue){
         self.hasChanged = YES;
@@ -92,33 +115,34 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPinValueChanged object:self];
     }
-}
+}*/
 
 -(void) attachPin:(THElementPin*) pin{
-    if(!self.acceptsManyPins && _attachedPins.count == 1){
-        THElementPin * pin = [_attachedPins objectAtIndex:0];
+    if(!self.acceptsManyPins && self.attachedElementPins.count == 1){
+        THElementPin * pin = [self.attachedElementPins objectAtIndex:0];
         [pin deattach];
         
-        [_attachedPins removeAllObjects];
+        [self.attachedElementPins removeAllObjects];
     }
-    
+    /*
     if(self.type != kPintypeMinus && self.type != kPintypePlus && self.mode == kPinModeUndefined){
         self.mode = pin.defaultBoardPinMode;
-    }
+    }*/
     
-    [_attachedPins addObject:pin];
+    [self.attachedElementPins addObject:pin];
 }
 
 -(void) deattachPin:(THElementPin*) pin{
-    [_attachedPins removeObject:pin];
-    
+    [self.attachedElementPins removeObject:pin];
+    /*
     if(_attachedPins.count == 0){
         self.mode = kPinModeUndefined;
-    }
+    }*/
 }
 
 -(void) prepareToDie{
-    _attachedPins = nil;
+    _attachedElementPins = nil;
+    self.pin = nil;
 }
 
 -(NSString*) description{
@@ -127,10 +151,33 @@
     if(self.type == kPintypeMinus || self.type == kPintypePlus){
         text = [NSString stringWithFormat:@"(%@) pin",kPinTexts[self.type]];
     } else {
-        text = [NSString stringWithFormat:@"pin %d (%@)",self.number, kPinTexts[self.type]];
+        text = [NSString stringWithFormat:@"pin %d (%@)",self.pin.number, kPinTexts[self.type]];
     }
     
     return text;
+}
+
+#pragma mark - Pin Observing & Value Notification
+
+-(void) removePinObserver{
+    [self.pin removeObserver:self forKeyPath:@"value"];
+}
+
+-(void) addPinObserver{
+    [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if([keyPath isEqualToString:@"value"]){
+        [self notifyNewValue];
+    }
+}
+
+-(void) notifyNewValue{
+    
+    for (THElementPin * pin in self.attachedElementPins) {
+        [pin.hardware handlePin:self changedValueTo:self.pin.value];
+    }
 }
 
 @end

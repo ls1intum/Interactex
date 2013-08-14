@@ -18,7 +18,7 @@
 
 @end
 
-@interface IFPin : NSObject
+@interface IFPin : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic) NSInteger number;
 @property (nonatomic) IFPinType type;

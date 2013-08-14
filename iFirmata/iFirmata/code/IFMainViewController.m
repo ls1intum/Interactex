@@ -157,7 +157,7 @@ const NSInteger IFDiscoveryTime = 3;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService *)service{
-    NSLog(@"disconnected");
+
     self.table.allowsSelection = YES;
     
     isDisconnecting = NO;

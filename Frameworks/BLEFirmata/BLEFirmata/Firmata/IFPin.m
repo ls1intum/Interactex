@@ -30,6 +30,44 @@
     return self;
 }
 
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if(self){
+        self.number = [decoder decodeIntForKey:@"number"];
+        self.type = [decoder decodeIntForKey:@"type"];
+        self.mode = [decoder decodeIntForKey:@"mode"];
+        
+        self.analogChannel = [decoder decodeIntForKey:@"analogChannel"];
+        self.supportedModes = [decoder decodeIntForKey:@"supportedModes"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+    
+    [coder encodeInt:self.number forKey:@"number"];
+    [coder encodeInt:self.type forKey:@"type"];
+    [coder encodeInt:self.mode forKey:@"mode"];
+    [coder encodeInt:self.analogChannel forKey:@"analogChannel"];
+    [coder encodeInt:self.supportedModes forKey:@"supportedModes"];
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    IFPin * copy = [super init];
+    if(copy){
+        copy.number = self.number;
+        copy.type = self.type;
+        copy.mode = self.mode;
+        copy.analogChannel = self.analogChannel;
+        copy.supportedModes = self.supportedModes;
+    }
+    return copy;
+}
+
+#pragma mark - Methods
+
 -(BOOL) supportsPwm{
     return (self.type == IFPinTypeDigital && (self.number == 3 || self.number == 5 || self.number == 6 || self.number == 9 || self.number == 10 || self.number == 11));
 }

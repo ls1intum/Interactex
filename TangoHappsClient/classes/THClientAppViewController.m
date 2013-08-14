@@ -66,29 +66,6 @@
 }
 */
 
--(void) startVirtualStateTransfer{
-    //_virtualTransferTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(pushLilypadStateToAllVirtualClients) userInfo:nil repeats:YES];
-}
-
--(void) startRealStateTransfer{
-    
-    _realTransferTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(pushLilypadStateToRealClient) userInfo:nil repeats:YES];
-}
-/*
--(void) stopVirtualStateTransfer{
-    if(_virtualTransferTimer){
-        [_virtualTransferTimer invalidate];
-        _virtualTransferTimer = nil;
-    }
-}*/
-
--(void) stopRealStateTransfer{
-    if(_realTransferTimer){
-        [_realTransferTimer invalidate];
-        _realTransferTimer = nil;
-    }
-}
-
 -(NSString*) title{
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     return project.name;
@@ -114,14 +91,10 @@
     CGFloat navigationBarOffset = screenHeight - viewHeight;
     
     for (THView * object in project.iPhoneObjects) {
-        
-        //NSLog(@"pos: %f %f",object.position.x,object.position.y);
-        
+                
         if(!scene.isFakeScene){
-            
-           // NSLog(@"object: %f, iPhone: %f viewSize: %f screenWidth: %f",object.position.x,iPhone.position.x, size.width/2, screenWidth);
-            
-            NSLog(@"object: %f, iPhone: %f viewSize: %f screenHeight: %f viewHeight: %f",object.position.y,iPhone.position.y, size.height/2, screenHeight,viewHeight);
+                        
+            //NSLog(@"object: %f, iPhone: %f viewSize: %f screenHeight: %f viewHeight: %f",object.position.y,iPhone.position.y, size.height/2, screenHeight,viewHeight);
             
             float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
             float rely = (object.position.y - iPhone.position.y - navigationBarOffset + size.height/2) / kiPhoneFrames[type].size.height;
@@ -129,7 +102,7 @@
             CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
             
             object.position = translatedPos;
-            NSLog(@"end pos: %f %f",object.position.x,object.position.y);
+           //NSLog(@"end pos: %f %f",object.position.x,object.position.y);
         }
         
         [object addToView:self.view];
@@ -138,80 +111,8 @@
     [project startSimulating];
 }
 
--(void) sendPinModes{
-    /*
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
-    NSMutableArray * array = [NSMutableArray array];
-    
-    NSInteger i = 0;
-    for (THBoardPin * pin in project.lilypad.pins) {
-        if((pin.type == kPintypeDigital || pin.type == kPintypeAnalog) && pin.mode != kPinModeUndefined){
-            THPinModeDescriptor * pinDescriptor = [[THPinModeDescriptor alloc] init];
-            
-            NSInteger pinidx = [project.lilypad realIdxForPin:pin];
-            
-            pinDescriptor.pin = pinidx;
-            pinDescriptor.mode = pin.mode;
-            
-            [array addObject:pinDescriptor];
-        }
-        i++;
-    }
-
-    [self.bleService sendPinModes:array];*/
-}
-
-#pragma mark LeDiscoveryDelegate
-
-- (void) discoveryDidRefresh {
-    /*
-     self.bleService.delegate = self;
-     
-     [self.currentlyConnectedLabel setText:[peripheral name]];
-     [self.currentlyConnectedLabel setEnabled:YES];*/
-}
-/*
-- (void) peripheralDiscovered:(CBPeripheral*) peripheral {
-    [[LeDiscovery sharedInstance] connectPeripheral:peripheral];
-}*/
-
-- (void) discoveryStatePoweredOff {
-    NSLog(@"Powered Off");
-}
-/*
-#pragma mark BleServiceProtocol
-
-
--(void) bleServiceDidConnect:(BleService *)service{
-    _bleService = service;
-    _bleService.delegate = self;
-}
-
--(void) bleServiceDidDisconnect:(BleService *)service{
-    if(service == _bleService){
-        _bleService.delegate = nil;
-        _bleService = nil;
-        [self startVirtualMode];
-    }
-}
-
--(void) bleServiceIsReady:(BleService *)service{
-    
-    [service clearRx];
-    [self sendPinModes];
-    [self startRealStateTransfer];
-    [self stopActivityIndicator];
-}
-
-- (void) bleServiceDidReset {
-    _bleService = nil;
-}
-*/
-
 -(void) stopActivityIndicator {
     
-    _state = kClientStateNormal;
     self.view.userInteractionEnabled = YES;
     self.view.alpha = 1.0f;
     if(_activityIndicator != nil){
@@ -224,29 +125,32 @@
     
     self.view.userInteractionEnabled = NO;
     
-    _state = kClientStateWaiting;
-    
     self.view.alpha = 0.5f;
     
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
     _activityIndicator.center = self.view.center;
-    //_activityIndicator.center = CGPointMake(200, 200);
     [_activityIndicator startAnimating];
     
     [self.view addSubview:_activityIndicator];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    
     if([THSimulableWorldController sharedInstance].currentProject != nil){
+        
+        [[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+        
         [self loadUIObjects];
+        [self addPinObservers];
     }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     UIImage * image = [THUtils screenshot];
     
-    [self stopRealStateTransfer];
+    [self removePinObservers];
+    [self disconnectFromBle];
     
     THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
     if(!scene.image){
@@ -266,46 +170,251 @@
     [super viewDidUnload];
 }
 
+-(void) updateModeButton{
+    
+    if([BLEDiscovery sharedInstance].connectedService){
+        
+        self.modeButton.title = @"Stop";
+        self.modeButton.enabled = YES;
+        
+    } else {
+        
+        self.modeButton.title = @"Start";
+        if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
+            self.modeButton.enabled = YES;
+        } else {
+            
+            self.modeButton.enabled = NO;
+        }
+    }
+}
+
+#pragma mark Ble Interaction
+
 -(void) connectToBle{
     
-    //[[LeDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    if(![BLEDiscovery sharedInstance].currentPeripheral && [BLEDiscovery sharedInstance].foundPeripherals.count> 0){
+        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:0];
+        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
+    }
 }
 
--(void) disconnectBle{
-   // [_bleService disconnect];
-    //[_bleService reset];
+-(void) disconnectFromBle{
+    if([BLEDiscovery sharedInstance].currentPeripheral){
+        [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+    }
 }
-/*
--(void) startVirtualMode{
+
+#pragma mark Pins Observing
+
+-(void) addPinObservers{
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.pins) {
+        [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+-(void) removePinObservers{
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.pins) {
+        [pin.pin removeObserver:self forKeyPath:@"value"];
+    }
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if([keyPath isEqualToString:@"value"]){
+        
+        THBoardPin * pin = object;
+        
+        if(pin.mode == kPinModeDigitalOutput){
+            
+            [self sendDigitalOutputForPin:pin];
+            
+        } else if(pin.mode == kPinModePWM){
+            
+            [self sendPWMOutputForPin:pin];
+        }
+    }
+}
+
+#pragma mark Firmata Interaction
+
+-(void) sendDigitalOutputForPin:(THBoardPin*) pin{
+    [self.firmataController sendDigitalOutputForPort:pin.number value:pin.value];
+}
+
+-(void) sendPWMOutputForPin:(THBoardPin*) pin{
+    [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
+}
+
+-(void) sendServoOutputForPin:(THBoardPin*) pin{
+    [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
+}
+
+-(void) sendPinModes{
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.pins) {
+        
+        if((pin.type == kPintypeDigital || pin.type == kPintypeAnalog) && pin.mode != kPinModeUndefined){
+            
+            [self.firmataController sendPinModeForPin:pin.pin.number mode:pin.mode];
+        }
+    }
+}
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
+    
+    int pin=0;
+    for (int i=2; i<length-1; i++) {
+        NSLog(@"%d to channel: %d",pin,buffer[i]);/*
+        pinInfo[pin].analogChannel = buffer[i];*/
+        pin++;
+    }
+}
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.analogPins) {
+        if (pin.pin.analogChannel == channel) {
+            pin.value = value;
+            return;
+        }
+    }
+}
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
+    /*
+    IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
+    int mask = 1;
+    
+    for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
+        IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
+        if (pinObj.mode == IFPinModeInput) {
+            uint32_t val = (value & mask) ? 1 : 0;
+            if (pinObj.value != val) {
+                pinObj.value = val;
+            }
+        }
+    }*/
+}
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
+    /*
+    uint8_t address = buffer[2] + (buffer[3] << 7);
+    NSInteger registerNumber = buffer[4];
+    
+    //NSLog(@"addr: %d reg %d ",address,registerNumber);
+    if(!self.firmataController.startedI2C){
+        
+        NSLog(@"reporting but i2c did not start");
+        [self.firmataController sendI2CStopReadingAddress:address];
+        
+    } else {
+        
+        IFI2CComponent * component = nil;
+        for (IFI2CComponent * aComponent in self.i2cComponents) {
+            if(aComponent.address == address){
+                component = aComponent;
+            }
+        }
+        
+        IFI2CRegister * reg = [component registerWithNumber:registerNumber];
+        if(reg){
+            uint8_t values[reg.size];
+            NSInteger parseBufCount = 6;
+            for (int i = 0; i < reg.size; i++) {
+                uint8_t value = buffer[parseBufCount++] + (buffer[parseBufCount++] << 7);
+                values[i] = value;
+            }
+            NSData * data = [NSData dataWithBytes:values length:reg.size];
+            reg.value = data;
+            
+        }
+    }*/
+}
+
+
+#pragma mark LeDiscoveryDelegate
+
+- (void) discoveryDidRefresh {
+    //[self updateModeButton];
+    
+    /*
+     self.bleService.delegate = self;
+     
+     [self.currentlyConnectedLabel setText:[peripheral name]];
+     [self.currentlyConnectedLabel setEnabled:YES];*/
+}
+
+- (void) peripheralDiscovered:(CBPeripheral*) peripheral {
+    
+    [self updateModeButton];
+    
+    //[[LeDiscovery sharedInstance] connectPeripheral:peripheral];
+}
+
+- (void) discoveryStatePoweredOff {
+    [self updateModeButton];
+    
+    NSLog(@"Powered Off");
+}
+
+
+#pragma mark BleServiceProtocol
+
+
+-(void) bleServiceDidConnect:(BLEService*) service{
+
+    service.delegate = self;
+    [self updateModeButton];
+}
+
+-(void) bleServiceDidDisconnect:(BLEService*) service{
+    service.delegate = nil;
+    service.dataDelegate = nil;
+    if(self.firmataController.bleService == service){
+        self.firmataController.bleService = nil;
+    }
+    [self updateModeButton];
+}
+
+-(void) bleServiceIsReady:(BLEService*) service{
     
     [self stopActivityIndicator];
-    _mode = kClientModeVirtual;
-    self.modeButton.image = [UIImage imageNamed:@"lilypadmode"];
-    [self stopRealStateTransfer];
-    [self disconnectBle];
+        
+    //[service clearRx];
+    
+    self.firmataController.bleService = service;
+    service.dataDelegate = self.firmataController;
+    
+    [self stopActivityIndicator];
+    [self sendPinModes];
 }
 
--(void) startRealMode{
-    
-    _mode = kClientModeReal;
-    self.modeButton.image = [UIImage imageNamed:@"virtualmode"];
-    [self stopVirtualStateTransfer];
-    [self connectToBle];
-    [self startActivityIndicator];
+- (void) bleServiceDidReset {
+    //_bleService = nil;
 }
+
 
 -(IBAction)modeButtonTapped:(id)sender {
-    if(self.mode == kClientModeVirtual){
-        [self startRealMode];
+    if([BLEDiscovery sharedInstance].connectedService){
+        [self stopActivityIndicator];
+        [self disconnectFromBle];
     } else {
-        [self startVirtualMode];
+        [self startActivityIndicator];
+        [self connectToBle];
     }
-}*/
-
--(IBAction)modeButtonTapped:(id)sender {
-    
 }
 
+
+/*
 -(float) angleFromMagnetometer:(Byte*) data{
     
     int i = 0;
@@ -339,6 +448,7 @@
     //NSLog(@"%d %d %d",x,y,z);
 }
 
+
 -(void) dataReceived:(Byte*) data lenght:(NSInteger) length{
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
@@ -349,7 +459,7 @@
         THBoardPin * lilypadPin = [project.lilypad pinWithRealIdx:pin];
         if(lilypadPin.mode == kPinModeCompass){
             
-            THElementPin * epin = [lilypadPin.attachedPins objectAtIndex:0];
+            THElementPin * epin = [lilypadPin.attachedElementPins objectAtIndex:0];
             THCompass * compass = (THCompass*) epin.hardware;
             
             [self fillAccelerometerValues:&(data[1]) to:compass];
@@ -360,16 +470,16 @@
             short x1 = data[i++];
             short x2 = data[i++];
             int value = ((x1 << 8) | x2) - kAnalogInMin;
-            lilypadPin.currentValue = value;
+            lilypadPin.value = value;
             [lilypadPin notifyNewValue];
             
             //NSLog(@"received: %d",value);
             
         } else {
-            lilypadPin.currentValue = data[i++];
+            lilypadPin.value = data[i++];
             [lilypadPin notifyNewValue];
         }
     }
-}
+}*/
 
 @end

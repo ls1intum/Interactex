@@ -89,7 +89,7 @@
     
     THElementPin * pin = self.analogPin;
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
-    lilypadPin.currentValue = self.light;
+    lilypadPin.value = self.light;
 }
 
 -(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{

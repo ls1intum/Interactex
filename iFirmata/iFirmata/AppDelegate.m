@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "IFFirmataController.h"
+#import "IFFirmataPinsController.h"
 
 @implementation AppDelegate
 
@@ -19,7 +19,7 @@
     [self.window makeKeyAndVisible];*/
     
     
-    self.firmataController = [[IFFirmataController alloc] init];
+    self.firmataController = [[IFFirmataPinsController alloc] init];
     
     return YES;
 }

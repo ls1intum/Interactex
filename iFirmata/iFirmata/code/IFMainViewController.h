@@ -11,7 +11,7 @@
 #import "IFDeviceCell.h"
 #import <AudioToolbox/AudioToolbox.h>
 
-@class IFFirmataController;
+@class IFFirmataPinsController;
 
 extern const NSInteger IFRefreshHeaderHeight;
 extern const NSInteger IFDiscoveryTime;

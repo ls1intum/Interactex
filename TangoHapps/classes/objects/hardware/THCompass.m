@@ -85,19 +85,26 @@
 
 #pragma mark - Methods
 
--(THElementPin*) pin5Pin{
+-(void) setValuesFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
+    
+    self.accelerometerX = ((int16_t)(buffer[1] << 8 | buffer[0])) >> 4;
+    self.accelerometerY = ((int16_t)(buffer[3] << 8 | buffer[2])) >> 4;
+    self.accelerometerZ = ((int16_t)(buffer[5] << 8 | buffer[4])) >> 4;
+}
+
+-(THElementPin*) pin5{
     return [self.pins objectAtIndex:1];
 }
 
--(THElementPin*) pin4Pin{
+-(THElementPin*) pin4{
     return [self.pins objectAtIndex:2];
 }
 
 -(void) updatePinValue{
     
-    THElementPin * pin = self.pin5Pin;
+    THElementPin * pin = self.pin5;
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
-    lilypadPin.currentValue = self.accelerometerX;
+    lilypadPin.value = self.accelerometerX;
 }
 
 -(void) setAccelerometerX:(NSInteger)accelerometerX{

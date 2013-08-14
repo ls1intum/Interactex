@@ -7,19 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IFFirmataController.h"
+#import "IFFirmataPinsController.h"
 #import "IFI2CComponentViewController.h"
 
-@class IFFirmataController;
+@class IFFirmataPinsController;
 @class CBPeripheral;
 
-@interface IFFirmataViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
+@interface IFFirmataViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
 {
     BOOL connected;
     BOOL goingToI2CScene;
 }
 
-@property (weak, nonatomic) IFFirmataController * firmataController;
+@property (weak, nonatomic) IFFirmataPinsController * firmataPinsController;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 
 @property (strong, nonatomic) IFI2CComponent *removingComponent;

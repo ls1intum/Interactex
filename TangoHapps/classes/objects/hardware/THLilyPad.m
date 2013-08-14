@@ -92,6 +92,24 @@
 
 #pragma mark - Methods
 
+-(NSMutableArray*) analogPins{
+    NSMutableArray * array = [NSMutableArray arrayWithCapacity:self.numberOfAnalogPins];
+    for (int i = 0; i < self.numberOfAnalogPins; i++) {
+        THBoardPin * pin = [self analogPinWithNumber:i];
+        [array addObject:pin];
+    }
+    return array;
+}
+
+-(NSMutableArray*) digitalPins{
+    NSMutableArray * array = [NSMutableArray arrayWithCapacity:self.numberOfDigitalPins];
+    for (int i = 0; i < self.numberOfDigitalPins; i++) {
+        THBoardPin * pin = [self digitalPinWithNumber:i];
+        [array addObject:pin];
+    }
+    return array;
+}
+
 -(THBoardPin*) minusPin{
     return [_pins objectAtIndex:5];
 }
@@ -145,7 +163,7 @@
 -(THBoardPin*) digitalPinWithNumber:(NSInteger) number{
     NSInteger idx = [self pinIdxForPin:number ofType:kPintypeDigital];
     if(idx >= 0){
-        return _pins[idx];
+        return [_pins objectAtIndex:idx];
     }
     return nil;
 }
@@ -154,18 +172,18 @@
     
     NSInteger idx = [self pinIdxForPin:number ofType:kPintypeAnalog];
     if(idx >= 0){
-        return _pins[idx];
+        return [_pins objectAtIndex:idx];
     }
     return nil;
 }
 
 -(NSArray*) objectsAtPin:(NSInteger) pinNumber{
     THBoardPin * pin = _pins[pinNumber];
-    return pin.attachedPins;
+    return pin.attachedElementPins;
 }
 
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
-    THBoardPin * pin = _pins[pinNumber];
+    THBoardPin * pin = [_pins objectAtIndex:pinNumber];
     [pin attachPin:object];
 }
 

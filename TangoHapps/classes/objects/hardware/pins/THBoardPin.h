@@ -7,6 +7,7 @@
 //
 
 #import "THPin.h"
+#import "IFPin.h"
 
 @class THSimulableObject;
 @class THElementPin;
@@ -20,11 +21,12 @@
     
 }
 
-@property (nonatomic) NSInteger currentValue;
-@property (nonatomic) NSInteger number;
+@property (nonatomic) NSInteger value;
+@property (nonatomic, readonly) NSInteger number;
+@property (strong, nonatomic) IFPin * pin;
 @property (nonatomic) THPinType type;
-@property (nonatomic) THPinMode mode;
-@property (nonatomic, readonly) NSMutableArray * attachedPins;
+@property (nonatomic) IFPinMode mode;
+@property (nonatomic, readonly) NSMutableArray * attachedElementPins;
 @property (nonatomic) BOOL hasChanged;
 @property (nonatomic, readonly) BOOL acceptsManyPins;
 @property (nonatomic) BOOL isPWM;
@@ -34,7 +36,5 @@
 
 -(void) attachPin:(THElementPin*) pin;
 -(void) deattachPin:(THElementPin*) pin;
-
--(void) notifyNewValue;
 
 @end

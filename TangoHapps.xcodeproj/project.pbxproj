@@ -125,6 +125,7 @@
 		9A5F8E2716A2C63D000DF472 /* palette_contactBook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1B16A2C63D000DF472 /* palette_contactBook@2x.png */; };
 		9A5F8E2A16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
 		9A5F8E2B16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
+		9A776DBB17B51889008CD877 /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9A7DBF5F169AC45E00F86D71 /* palette_threeColorLed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7DBF5B169AC45E00F86D71 /* palette_threeColorLed.png */; };
 		9A7DBF60169AC45E00F86D71 /* palette_threeColorLed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7DBF5B169AC45E00F86D71 /* palette_threeColorLed.png */; };
 		9A7DBF61169AC45E00F86D71 /* palette_threeColorLed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7DBF5C169AC45E00F86D71 /* palette_threeColorLed@2x.png */; };
@@ -948,6 +949,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A776D7517B5185E008CD877 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A17359617B11D87001DD4A4;
+			remoteInfo = BLEFirmata;
+		};
+		9A776DB917B51881008CD877 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
+			remoteInfo = BLEFirmata;
+		};
 		9AF500CD167B83780020241C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
@@ -1562,6 +1577,7 @@
 		9A5F8E1B16A2C63D000DF472 /* palette_contactBook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "palette_contactBook@2x.png"; path = "TangoHapps/resources/images/palette/palette_contactBook@2x.png"; sourceTree = SOURCE_ROOT; };
 		9A5F8E2816A2C6EE000DF472 /* THContactBookPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookPaletteItem.h; sourceTree = "<group>"; };
 		9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBookPaletteItem.m; sourceTree = "<group>"; };
+		9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLEFirmata.xcodeproj; path = Frameworks/BLEFirmata/BLEFirmata.xcodeproj; sourceTree = "<group>"; };
 		9A7DBF5B169AC45E00F86D71 /* palette_threeColorLed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_threeColorLed.png; sourceTree = "<group>"; };
 		9A7DBF5C169AC45E00F86D71 /* palette_threeColorLed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_threeColorLed@2x.png"; sourceTree = "<group>"; };
 		9A7DBF5D169AC45E00F86D71 /* threeColorLed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threeColorLed.png; sourceTree = "<group>"; };
@@ -2200,6 +2216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A776DBB17B51889008CD877 /* libBLEFirmata.a in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */,
@@ -2277,6 +2294,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
 				9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */,
 				9A8BBA3A167F27FC00FBABFB /* CoreLocation.framework */,
@@ -2324,6 +2342,14 @@
 				9A3511A3167B7A6800C7484B /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A776D7217B5185E008CD877 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A776D7617B5185E008CD877 /* libBLEFirmata.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A84265017564A80009495AB /* Tango */ = {
@@ -3429,6 +3455,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A776DBA17B51881008CD877 /* PBXTargetDependency */,
 				9AF50158167B83940020241C /* PBXTargetDependency */,
 				9AF5015A167B83940020241C /* PBXTargetDependency */,
 			);
@@ -3460,6 +3487,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A776D7217B5185E008CD877 /* Products */;
+					ProjectRef = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AF5004B167B83770020241C /* Products */;
 					ProjectRef = 9AF5004A167B83770020241C /* cocos2d-ios.xcodeproj */;
 				},
@@ -3474,6 +3505,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A776D7617B5185E008CD877 /* libBLEFirmata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBLEFirmata.a;
+			remoteRef = 9A776D7517B5185E008CD877 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AF500CE167B83780020241C /* libbuild all tests.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4887,6 +4925,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A776DBA17B51881008CD877 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BLEFirmata;
+			targetProxy = 9A776DB917B51881008CD877 /* PBXContainerItemProxy */;
+		};
 		9AF50158167B83940020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = cocos2d;
@@ -4966,7 +5009,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -4991,7 +5034,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -5044,7 +5087,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};

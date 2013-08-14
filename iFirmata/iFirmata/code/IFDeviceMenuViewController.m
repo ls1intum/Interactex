@@ -9,7 +9,7 @@
 #import "IFDeviceMenuViewController.h"
 #import "BLEDiscovery.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "IFFirmataController.h"
+#import "IFFirmataPinsController.h"
 #import "IFFirmataViewController.h"
 #import "IFCharacteristicsViewController.h"
 

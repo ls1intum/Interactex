@@ -1,85 +1,71 @@
 //
-//  IFFirmata.h
-//  iFirmata
+//  IFFirmataController.h
+//  BLEFirmata
 //
-//  Created by Juan Haladjian on 6/28/13.
+//  Created by Juan Haladjian on 8/9/13.
 //  Copyright (c) 2013 TUM. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "IFFirmataConstants.h"
 #import "BLEService.h"
-#import "IFPin.h"
 #import "IFFirmataConstants.h"
 
-typedef struct{
-    uint64_t supportedModes;
-    uint8_t analogChannel;
-} PinInfo;
+#define IFParseBufSize 4096
 
 @class IFFirmataController;
-@class IFI2CComponent;
+@class BLEService;
+@class IFPin;
 @class IFI2CRegister;
+@class IFI2CComponent;
 
 @protocol IFFirmataControllerDelegate <NSObject>
 
--(void) firmataDidUpdateDigitalPins:(IFFirmataController*) firmataController;
--(void) firmataDidUpdateAnalogPins:(IFFirmataController*) firmataController;
--(void) firmataDidUpdateI2CComponents:(IFFirmataController*) firmataController;
+@optional
 
--(void) firmata:(IFFirmataController*) firmataController didUpdateTitle:(NSString*) title;
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveFirmwareReport:(uint8_t*) buffer length:(NSInteger) length;
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveCapabilityResponse:(uint8_t*) buffer length:(NSInteger) length;
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceivePinStateResponse:(uint8_t*) buffer length:(NSInteger) length;
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length;
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value;
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pin value:(NSInteger) value;
+
+-(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length;
 
 @end
 
-@interface IFFirmataController : NSObject <BLEServiceDataDelegate> {
-    NSInteger parse_count;
-    NSInteger parse_command_len;
+@interface IFFirmataController : NSObject <BLEServiceDataDelegate>
+{
+    uint8_t parseBuf[IFParseBufSize];
+    NSInteger parseCount;
+    NSInteger parseCommandLength;
     
-    uint8_t parse_buf[4096];
-    PinInfo pinInfo[128];
-    
-    BOOL startedSysex;
-    BOOL startedI2C;
     BOOL waitingForFirmware;
+    BOOL startedSysex;
 }
 
-@property (nonatomic, readonly) NSInteger numDigitalPins;
-@property (nonatomic, readonly) NSInteger numAnalogPins;
-@property (nonatomic, readonly) NSInteger numPins;
 
-@property (nonatomic, strong) NSMutableArray * digitalPins;
-@property (nonatomic, strong) NSMutableArray * analogPins;
-@property (nonatomic, strong) NSMutableArray * i2cComponents;
 @property (nonatomic, weak) BLEService * bleService;
 @property (nonatomic, weak) id<IFFirmataControllerDelegate> delegate;
+@property (nonatomic, readonly) BOOL startedI2C;
 
-@property (nonatomic, strong) NSString* firmataName;
-
--(void) start;
--(void) stop;
-
+-(void) reset;
 -(void) sendFirmwareRequest;
 -(void) sendResetRequest;
-
--(void) sendReportRequestForAnalogPin:(IFPin*) pin;
--(void) stopReportingAnalogPins;
-
--(void) sendPinModeForPin:(IFPin*) pin;
--(void) sendPwmOutputForPin:(IFPin*) pin;
--(void) sendOutputForPin:(IFPin*) pin;
-
--(void) sendI2CStartStopReportingRequestForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
-
--(void) sendI2CStartReadingForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
+-(void) sendCapabilitiesAndReportRequest;
+-(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length;
+-(void) sendPinQueryForPinNumber:(NSInteger) pinNumber;
+-(void) sendPinModeForPin:(NSInteger) pin mode:(IFPinMode) mode;
+-(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value;
+-(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value;
+-(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports;
+-(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size;
+-(void) sendI2CConfigMessage;
 -(void) sendI2CStopReadingAddress:(NSInteger) address;
--(void) sendI2CStopReadingComponent:(IFI2CComponent*) component;
--(void) sendI2CWriteData:(NSString*) data forRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
--(void) stopReportingI2CComponents;
--(void) stopReportingI2CComponent:(IFI2CComponent*) component;
+-(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg;
 
--(void) addI2CComponent:(IFI2CComponent*) component;
--(void) removeI2CComponent:(IFI2CComponent*) component;
-
--(void) addI2CRegister:(IFI2CRegister*) reg toComponent:(IFI2CComponent*) component;
--(void) removeI2CRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component;
 @end

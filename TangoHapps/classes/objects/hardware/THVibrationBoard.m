@@ -109,9 +109,9 @@
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     if(lilypadPin.mode == kPinModeDigitalOutput){
-        lilypadPin.currentValue = self.on;
+        lilypadPin.value = self.on;
     } else {
-        lilypadPin.currentValue = self.frequency;
+        lilypadPin.value = self.frequency;
     }
 }
 

@@ -147,14 +147,14 @@
 
 -(void) updatePinValue {
     if(self.on){
-        self.redPin.attachedToPin.currentValue = 255 - self.red;
-        self.greenPin.attachedToPin.currentValue = 255 - self.green;
-        self.bluePin.attachedToPin.currentValue = 255 - self.blue;
+        self.redPin.attachedToPin.value = 255 - self.red;
+        self.greenPin.attachedToPin.value = 255 - self.green;
+        self.bluePin.attachedToPin.value = 255 - self.blue;
     } else {
         
-        self.redPin.attachedToPin.currentValue = 255 - self.red;
-        self.greenPin.attachedToPin.currentValue = 255 - self.green;
-        self.bluePin.attachedToPin.currentValue = 255 - self.blue;
+        self.redPin.attachedToPin.value = 255 - self.red;
+        self.greenPin.attachedToPin.value = 255 - self.green;
+        self.bluePin.attachedToPin.value = 255 - self.blue;
     }
 }
 

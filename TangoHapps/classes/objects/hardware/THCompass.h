@@ -16,7 +16,7 @@
 
 @property (nonatomic) NSInteger heading;
 
-@property (nonatomic, readonly) THElementPin * pin5Pin;
-@property (nonatomic, readonly) THElementPin * pin4Pin;
+@property (nonatomic, readonly) THElementPin * pin5;
+@property (nonatomic, readonly) THElementPin * pin4;
 
 @end

@@ -135,10 +135,10 @@
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     if(lilypadPin.mode == kPinModeDigitalOutput){
-        lilypadPin.currentValue = self.on;
+        lilypadPin.value = self.on;
     } else if(lilypadPin.mode == kPinModeBuzzer){
         float newPinValue = [self frequencyToPin:self.frequency];
-        lilypadPin.currentValue = (self.on ? newPinValue : -1);
+        lilypadPin.value = (self.on ? newPinValue : -1);
     }
 }
 

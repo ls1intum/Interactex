@@ -1,17 +1,16 @@
 //
-//  IFFirmata.m
-//  iFirmata
+//  IFFirmataController.m
+//  BLEFirmata
 //
-//  Created by Juan Haladjian on 6/28/13.
+//  Created by Juan Haladjian on 8/9/13.
 //  Copyright (c) 2013 TUM. All rights reserved.
 //
 
 #import "IFFirmataController.h"
-#import "IFPin.h"
-#import "BLEService.h"
-#import "BLEHelper.h"
 #import "IFI2CComponent.h"
 #import "IFI2CRegister.h"
+#import "IFPin.h"
+#import "BLEService.h"
 
 #define START_SYSEX             0xF0
 #define END_SYSEX               0xF7
@@ -35,105 +34,160 @@
 
 @implementation IFFirmataController
 
--(id) init{
-    self = [super init];
-    if(self){
-        
-        self.i2cComponents = [NSMutableArray array];
+-(void) reset{
+    parseCommandLength = 0;
+    parseCount = 0;
+    
+    for (int i = 0; i < IFParseBufSize; i++) {
+        parseBuf[i] = 0;
     }
-    return self;
+    
+    waitingForFirmware = NO;
 }
 
--(void) start{
-    
-    NSAssert(self.bleService, @"to start Firmata the bleService property should be set");
-    
-    self.digitalPins = [NSMutableArray array];
-    self.analogPins = [NSMutableArray array];
-    
-    parse_count = 0;
-    
-    for (int i=0; i < 128; i++) {
-        parse_buf[i] = 0;
-    }
-    
-    for (int i=0; i < 128; i++) {
-        pinInfo[i].analogChannel = 127;
-        pinInfo[i].supportedModes = 0;
-    }
-    
-    //[self.delegate firmataDidUpdateDigitalPins:self];
-    
-    NSAssert(self.digitalPins.count == 0,@"sending firmware request but there are digital pins");
-    NSAssert(self.analogPins.count == 0,@"sending firmware request but there are digital pins");
+#pragma mark - Send Messages
+
+-(void) sendFirmwareRequest{
     
     waitingForFirmware = YES;
-    [self sendFirmwareRequest];
-     
+    
+    uint8_t buf[3];
+    buf[0] = START_SYSEX;
+    buf[1] = REPORT_FIRMWARE;
+    buf[2] = END_SYSEX;
+    
+    [self.bleService sendData:buf count:3];
 }
 
--(void) stop{
-    waitingForFirmware = NO;
+-(void) sendCapabilitiesAndReportRequest{
+    NSInteger len = 0;
     
-    for (IFPin * pin in self.digitalPins) {
-        [pin removeObserver:self forKeyPath:@"mode"];
-        [pin removeObserver:self forKeyPath:@"value"];
+    uint8_t buf[16];
+    
+    buf[len++] = START_SYSEX;
+    buf[len++] = ANALOG_MAPPING_QUERY;
+    buf[len++] = END_SYSEX;
+    buf[len++] = START_SYSEX;
+    buf[len++] = CAPABILITY_QUERY;
+    buf[len++] = END_SYSEX;
+    
+    for (int i=0; i<3; i++) {
+        buf[len++] = 0xD0 | i;
+        buf[len++] = 1;
     }
     
-    for (IFPin * pin in self.analogPins) {
-        [pin removeObserver:self forKeyPath:@"mode"];
-        [pin removeObserver:self forKeyPath:@"value"];
-        [pin removeObserver:self forKeyPath:@"updatesValues"];
-    }
-    /*
-    for (IFI2CComponent * component in self.i2cComponents) {
-        [component removeObserver:self forKeyPath:@"notifies"];
-    }*/
-    
-    [self.digitalPins removeAllObjects];
-    [self.analogPins removeAllObjects];
-    
-    [self.delegate firmataDidUpdateDigitalPins:self];
-    [self.delegate firmataDidUpdateAnalogPins:self];
-    
-    _numDigitalPins = 0;
-    _numAnalogPins = 0;
-    _numPins = 0;
-    
-    self.firmataName = @"iFirmata";
+    [self.bleService sendData:buf count:16];
 }
 
-#pragma mark - Reset
+-(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
+    
+    uint8_t buf[length * 4];
+    NSInteger bufLength = 0;
+    
+    for (int i = 0; i < length; i++) {
+        
+        buf[bufLength++] = START_SYSEX;
+        buf[bufLength++] = PIN_STATE_QUERY;
+        buf[bufLength++] = pinNumbers[i];
+        buf[bufLength++] = END_SYSEX;
+        
+    }
+    [self.bleService sendData:buf count:bufLength];
+}
+
+-(void) sendPinQueryForPinNumber:(NSInteger) pinNumber{
+    
+    uint8_t buf[4];
+    buf[0] = START_SYSEX;
+    buf[1] = PIN_STATE_QUERY;
+    buf[2] = pinNumber;
+    buf[3] = END_SYSEX;
+    
+    [self.bleService sendData:buf count:4];
+}
 
 -(void) sendResetRequest{
+    
     uint8_t msg = SYSTEM_RESET;
     
     [self.bleService sendData:&msg count:1];
 }
 
-#pragma mark I2C requests
-
--(void) sendI2CStartStopReportingRequestForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component{
+-(void) sendPinModeForPin:(NSInteger) pin mode:(IFPinMode) mode {
     
-    if(reg.notifies){
-        [self sendI2CStartReadingForRegister:reg fromComponent:component];
-    } else {
-        [self sendI2CStopReadingComponent:component];
+	if (pin >= 0 && pin < 128){
+        
+		uint8_t buf[3];
+        
+		buf[0] = 0xF4;
+		buf[1] = pin;
+		buf[2] = mode;
+        
+        [self.bleService sendData:buf count:3];
     }
 }
 
--(void) sendI2CStartReadingForRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component{
+-(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value{
+    
+	if (pin <= 15 && value <= 16383) {
+		uint8_t buf[3];
+		buf[0] = 0xE0 | pin;
+		buf[1] = value & 0x7F;
+		buf[2] = (value >> 7) & 0x7F;
+        
+        [self.bleService sendData:buf count:3];
+        
+	}
+    
+    //no extended analog support yet
+    /*else {
+     uint8_t buf[9];
+     int len=4;
+     buf[0] = START_SYSEX;
+     buf[1] = 0x6F;
+     buf[2] = pin.number;
+     buf[3] = pin.value & 0x7F;
+     if (pin.value > 0x00000080) buf[len++] = (pin.value >> 7) & 0x7F;
+     if (pin.value > 0x00004000) buf[len++] = (pin.value >> 14) & 0x7F;
+     if (pin.value > 0x00200000) buf[len++] = (pin.value >> 21) & 0x7F;
+     if (pin.value > 0x10000000) buf[len++] = (pin.value >> 28) & 0x7F;
+     buf[len++] = 0xF7;
+     
+     [self.bleService sendData:buf count:9];
+     }*/
+}
+
+-(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value{
+    
+    uint8_t buf[3];
+    buf[0] = 0x90 | port;
+    buf[1] = value & 0x7F;
+    buf[2] = (value >> 7) & 0x7F;
+    
+    [self.bleService sendData:buf count:3];
+}
+
+-(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
+    
+    uint8_t buf[2];
+    buf[0] = 0xC0 | pin;
+    buf[1] = reports;
+    
+    [self.bleService sendData:buf count:2];
+}
+
+-(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
     
     [self checkStartI2C];
     
     uint8_t buf[9];
     buf[0] = START_SYSEX;
     buf[1] = I2C_REQUEST;
-    buf[2] = component.address;//compass address = 24
+    buf[2] = address;//compass address = 24
     buf[3] = I2C_READ_CONTINUOUSLY;
-    buf[4] = reg.number;//compass register = 40
+    buf[4] = reg;//compass register = 40
     buf[5] = 1;
-    buf[6] = reg.size;//6 bytes to read
+    buf[6] = size;//6 bytes to read
     buf[7] = 0;
     buf[8] = END_SYSEX;
     
@@ -141,6 +195,7 @@
 }
 
 -(void) sendI2CStopReadingAddress:(NSInteger) address{
+    
     uint8_t buf[5];
     buf[0] = START_SYSEX;
     buf[1] = I2C_REQUEST;
@@ -151,22 +206,18 @@
     [self.bleService sendData:buf count:5];
 }
 
--(void) sendI2CStopReadingComponent:(IFI2CComponent*) component{
-    [self sendI2CStopReadingAddress:component.address];
-}
-
--(void) sendI2CWriteData:(NSString*) data forRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component{
+-(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg {
     
     [self checkStartI2C];
     
     uint8_t buf[9];
     buf[0] = START_SYSEX;
     buf[1] = I2C_REQUEST;
-    buf[2] = component.address;//compass address = 24
+    buf[2] = address;//compass address = 24
     buf[3] = I2C_WRITE;
-    buf[4] = reg.number;//compass register = 40
+    buf[4] = reg;//compass register = 40
     buf[5] = 0;
-    buf[6] = data.integerValue;
+    buf[6] = value;
     buf[7] = 0;
     buf[8] = END_SYSEX;
     
@@ -174,13 +225,15 @@
 }
 
 -(void) checkStartI2C{
-    if(!startedI2C){
-        startedI2C = YES;
-        [self sendI2CConfig];
+    
+    if(!self.startedI2C){
+        _startedI2C = YES;
+        [self sendI2CConfigMessage];
     }
 }
 
--(void) sendI2CConfig{
+-(void) sendI2CConfigMessage{
+    
     uint8_t buf[5];
     buf[0] = START_SYSEX;
     buf[1] = I2C_CONFIG;
@@ -191,467 +244,62 @@
     [self.bleService sendData:buf count:5];
 }
 
--(void) stopReportingI2CComponent:(IFI2CComponent*) component{
-    [self sendStopReportingMessageForI2CComponent:component];
-    
-    for (IFI2CRegister * reg in component.registers) {
-        if(reg.notifies){
-            [reg removeObserver:self forKeyPath:@"notifies"];
-            reg.notifies = NO;
-            [reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
-        }
-    }
-}
-
--(void) sendStopReportingMessageForI2CComponent:(IFI2CComponent*) component{
-    for (IFI2CRegister * reg in component.registers) {
-        if(reg.notifies){
-            [self sendI2CStopReadingComponent:component];
-        }
-    }
-}
-
--(void) stopReportingI2CComponents{
-    for (IFI2CComponent * component in self.i2cComponents) {
-        [self stopReportingI2CComponent:component];
-    }
-}
-
-#pragma mark PWM request
-
--(void) sendPwmOutputForPin:(IFPin*) pin{
-
-	if (pin.number <= 15 && pin.value <= 16383) {
-		uint8_t buf[3];
-		buf[0] = 0xE0 | pin.number;
-		buf[1] = pin.value & 0x7F;
-		buf[2] = (pin.value >> 7) & 0x7F;
-        
-        [self.bleService sendData:buf count:3];
-        
-	}
-    
-    //some day we will support extended analog
-    /*else {
-		uint8_t buf[9];
-		int len=4;
-		buf[0] = START_SYSEX;
-		buf[1] = 0x6F;
-		buf[2] = pin.number;
-		buf[3] = pin.value & 0x7F;
-		if (pin.value > 0x00000080) buf[len++] = (pin.value >> 7) & 0x7F;
-		if (pin.value > 0x00004000) buf[len++] = (pin.value >> 14) & 0x7F;
-		if (pin.value > 0x00200000) buf[len++] = (pin.value >> 21) & 0x7F;
-		if (pin.value > 0x10000000) buf[len++] = (pin.value >> 28) & 0x7F;
-		buf[len++] = 0xF7;
-        
-        [self.bleService sendData:buf count:9];
-	}*/
-}
-
--(void) sendServoOutputForPin{
-    
-}
-
-#pragma mark Digital Output
-
--(void) sendDigitalOutputForPin:(IFPin*) pin{
-    if(self.digitalPins.count == 0) return;
-    
-    IFPin * firstPin = [self.digitalPins objectAtIndex:0];
-    NSInteger firstPinIdx = firstPin.number;
-    
-    int port = pin.number / 8;
-    int value = 0;
-    for (int i=0; i<8; i++) {
-        int pinIdx = port * 8 + i - firstPinIdx;
-        if(pinIdx >= self.digitalPins.count){
-            break;
-        }
-        if(pinIdx >= 0){
-            IFPin * pin = [self.digitalPins objectAtIndex:pinIdx];
-            if (pin.mode == IFPinModeInput || pin.mode == IFPinModeOutput) {
-                if (pin.value) {
-                    value |= (1<<i);
-                }
-            }
-        }
-    }
-    uint8_t buf[3];
-    buf[0] = 0x90 | port;
-    buf[1] = value & 0x7F;
-    buf[2] = (value >> 7) & 0x7F;
-    
-    [self.bleService sendData:buf count:3];
-    
-    //NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
-}
-
--(void) sendOutputForPin:(IFPin*) pin{
-    if(pin.mode == IFPinModeOutput){
-        
-        [self sendDigitalOutputForPin:pin];
-        
-    } else if(pin.mode == IFPinModePWM){
-        [self sendPwmOutputForPin:pin];
-    } else if(pin.mode == IFPinModeServo){
-        [self sendPwmOutputForPin:pin];
-    }
-}
-
--(void) sendPinModeForPin:(IFPin*) pin {
-    
-	if (pin.number >= 0 && pin.number < 128){
-        
-		uint8_t buf[3];
-        
-		buf[0] = 0xF4;
-		buf[1] = pin.number;
-		buf[2] = pin.mode;
-        
-        [self.bleService sendData:buf count:3];
-        
-        //NSLog(@"sending: %d %d %d",buf[0],buf[1],buf[2]);
-    }
-}
-
--(void) stopReportingAnalogPins{
-    for (IFPin * pin in self.analogPins) {
-        pin.updatesValues = NO;
-    }
-}
-
--(void) sendReportRequestForAnalogPin:(IFPin*) pin{
-    
-    uint8_t buf[2];
-    buf[0] = 0xC0 | pin.number;  // report analog
-    buf[1] = pin.updatesValues;
-    
-    [self.bleService sendData:buf count:2];
-    
-    //NSLog(@"sending: %d %d for pin: %d",buf[0],buf[1],pin.number);
-}
-/*
--(void) sendTestData{
-    
-    uint8_t buf[16];
-    //int len = 0;
-    for (int i = 0; i < 16; i++) {
-        
-        buf[i] = i+100;
-        
-    }
-    [self.bleService sendData:buf count:16];
-}*/
-
--(void) sendFirmwareRequest{
-    
-    uint8_t buf[3];
-    buf[0] = START_SYSEX;
-    buf[1] = REPORT_FIRMWARE; // read firmata name & version
-    buf[2] = END_SYSEX;
-    
-    [self.bleService sendData:buf count:3];
-    
-    //NSLog(@"sending firmware: %d %d %d",buf[0],buf[1],buf[2]);
-}
-
--(void) sendCapabilitiesAndReportRequest{
-    NSInteger len = 0;
-    
-    uint8_t buf[16];
-    
-    buf[len++] = START_SYSEX;
-    buf[len++] = ANALOG_MAPPING_QUERY; // read analog to pin # info
-    buf[len++] = END_SYSEX;
-    buf[len++] = START_SYSEX;
-    buf[len++] = CAPABILITY_QUERY; // read capabilities
-    buf[len++] = END_SYSEX;
-    
-    //[self.bleService sendData:buf count:6];
-    
-    // report digital
-    for (int i=0; i<3; i++) {
-        buf[len++] = 0xD0 | i;
-        buf[len++] = 1;
-    }
-    
-    [self.bleService sendData:buf count:16];
-}
-
--(void) createAnalogPins{
-    
-    int firstAnalog = self.numDigitalPins;
-    for (; firstAnalog < 128; firstAnalog++) {
-        if(pinInfo[firstAnalog].supportedModes & (1<<IFPinModeAnalog)){
-            break;
-        }
-    }
-    //NSLog(@"first analog at pos: %d",firstAnalog);
-    for (int i = 0; i < self.numAnalogPins; i++) {
-                
-        IFPin * pin = [IFPin pinWithNumber:i type:IFPinTypeAnalog mode:IFPinModeAnalog];
-        pin.analogChannel = pinInfo[i+firstAnalog].analogChannel;
-        [self.analogPins addObject:pin];
-        
-        int value = parse_buf[4];
-        if (parse_count > 6) value |= (parse_buf[5] << 7);
-        if (parse_count > 7) value |= (parse_buf[6] << 14);
-        pin.value = value;
-        
-        [pin addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
-        [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-        [pin addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
-        
-        [self.delegate firmataDidUpdateAnalogPins:self];
-    }
-}
--(void) sendStateQuery{
-    
-    uint8_t buf[16];
-    int len = 0;
-    for (int pin=0; pin < 128; pin++) {
-        if((pinInfo[pin].supportedModes & (1<<IFPinModeInput)) && (pinInfo[pin].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[pin].supportedModes & (1<<IFPinModeAnalog))){
-            
-            buf[len++] = START_SYSEX;
-            buf[len++] = PIN_STATE_QUERY;
-            buf[len++] = pin;
-            buf[len++] = END_SYSEX;
-            if(len == 16){
-                [self.bleService sendData:buf count:16];
-                break;
-            }
-        }
-    }
-}
-
--(void) makePinQueryForPin:(int) pin{
-    
-    for(int i = pin ; i < pin + 4; i++){
-        uint8_t buf[4];
-        if((pinInfo[i].supportedModes & (1<<IFPinModeInput)) && (pinInfo[i].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[i].supportedModes & (1<<IFPinModeAnalog))){
-            
-            buf[0] = START_SYSEX;
-            buf[1] = PIN_STATE_QUERY;
-            buf[2] = i;
-            buf[3] = END_SYSEX;
-            
-            [self.bleService sendData:buf count:4];
-        }
-    }
-}
-
--(void) countPins{
-    _numPins = 0;
-    _numAnalogPins = 0;
-    
-    for (int pin=0; pin < 128; pin++) {
-        if(pinInfo[pin].supportedModes ){
-            _numPins++;            
-            
-            if(pinInfo[pin].supportedModes & (1<<IFPinModeAnalog)){
-                _numAnalogPins++;
-            }
-        }
-    }
-    _numDigitalPins = self.numPins - self.numAnalogPins;
-    
-    //NSLog(@"NumPins: %d, Digital: %d, Analog: %d",self.numPins,self.numDigitalPins,self.numAnalogPins);
-}
-
-#pragma mark - Firmata Message Handles
-
--(void) handleFirmwareReport{
-    //NSLog(@"Handles Firmware");
-    if(!waitingForFirmware){
-        NSLog(@"got firmware but not waiting!");
-    } else{
-        waitingForFirmware = NO;
-        char name[140];
-        int len=0;
-        for (int i=4; i < parse_count-2; i+=2) {
-            name[len++] = (parse_buf[i] & 0x7F)
-            | ((parse_buf[i+1] & 0x7F) << 7);
-        }
-        name[len++] = '-';
-        name[len++] = parse_buf[2] + '0';
-        name[len++] = '.';
-        name[len++] = parse_buf[3] + '0';
-        name[len++] = 0;
-        _firmataName = [NSString stringWithUTF8String:name];
-        [self.delegate firmata:self didUpdateTitle:self.firmataName];
-        
-        [self sendCapabilitiesAndReportRequest];
-    }
-}
-
--(void) handleAnalogMessage{
-    //NSLog(@"Handles Analog message");
-    
-    int channel = (parse_buf[0] & 0x0F);
-    int value = parse_buf[1] | (parse_buf[2] << 7);
-    
-    for (IFPin * pin in self.analogPins) {
-        if (pin.analogChannel == channel) {
-            pin.value = value;
-            return;
-        }
-    }
-}
-
--(void) handleDigitalMessage{
-    int port_num = (parse_buf[0] & 0x0F);
-    int port_val = parse_buf[1] | (parse_buf[2] << 7);
-    int pin = port_num * 8;
-    
-    //NSLog(@"digital message for port: %d %d",port_num,port_val);
-    IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
-    int mask = 1;
-    
-    for (mask <<= firstPin.number; pin < self.digitalPins.count; mask <<= 1, pin++) {
-        IFPin * pinObj = [self.digitalPins objectAtIndex:pin];
-        if (pinObj.mode == IFPinModeInput) {
-            uint32_t val = (port_val & mask) ? 1 : 0;
-            if (pinObj.value != val) {
-                pinObj.value = val;
-            }
-        }
-    }
-}
-
--(void) handleCapabilityResponse{
-    for (int pin=0; pin < 128; pin++) {
-        pinInfo[pin].supportedModes = 0;
-    }
-    
-    for (int i=2, n=0, pin=0; i<parse_count; i++) {
-        if (parse_buf[i] == 127) {
-            pin++;
-            n = 0;
-            continue;
-        }
-        if (n == 0) {
-            pinInfo[pin].supportedModes |= (1<<parse_buf[i]);
-        }
-        n = n ^ 1;
-    }
-    
-    [self countPins];
-    [self createAnalogPins];
-    [self sendStateQuery];
-}
-
--(void) handleAnalogMappingResponse{
-    //NSLog(@"Handles AnalogMapping");
-    
-    int pin=0;
-    for (int i=2; i<parse_count-1; i++) {
-        
-        pinInfo[pin].analogChannel = parse_buf[i];
-        pin++;
-    }
-}
-
--(void) handlePinStateResponse{
-    int pinNumber = parse_buf[2];
-    int mode = parse_buf[3];
-    
-    //NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
-    
-    if((pinInfo[pinNumber].supportedModes & (1<<IFPinModeInput) || pinInfo[pinNumber].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[pinNumber].supportedModes & (1<<IFPinModeAnalog))){
-        
-        
-        IFPin * pin = [IFPin pinWithNumber:pinNumber type:IFPinTypeDigital mode:mode];
-        [self.digitalPins addObject:pin];
-        
-        int value = parse_buf[4];
-        if (parse_count > 6) value |= (parse_buf[5] << 7);
-        if (parse_count > 7) value |= (parse_buf[6] << 14);
-        pin.value = value;
-        
-        [pin addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
-        [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-        
-        [self.delegate firmataDidUpdateDigitalPins:self];
-        
-        if(self.digitalPins.count % 4 == 0){
-            [self makePinQueryForPin:pinNumber+1];
-        }
-    } else {
-        NSLog(@"pin %d is in mode: %d",pinNumber,mode);
-    }
-}
-
--(void) handleI2CReply{
-    uint8_t address = parse_buf[2] + (parse_buf[3] << 7);
-    NSInteger registerNumber = parse_buf[4];
-    
-    //NSLog(@"addr: %d reg %d ",address,registerNumber);
-    if(!startedI2C){
-        NSLog(@"reporting but i2c did not start");
-        [self sendI2CStopReadingAddress:address];
-        
-    } else {
-        
-        IFI2CComponent * component = nil;
-        for (IFI2CComponent * aComponent in self.i2cComponents) {
-            if(aComponent.address == address){
-                component = aComponent;
-            }
-        }
-        
-        IFI2CRegister * reg = [component registerWithNumber:registerNumber];
-        if(reg){
-            uint8_t values[reg.size];
-            NSInteger parseBufCount = 6;
-            for (int i = 0; i < reg.size; i++) {
-                uint8_t value = parse_buf[parseBufCount++] + (parse_buf[parseBufCount++] << 7);
-                values[i] = value;
-            }
-            NSData * data = [NSData dataWithBytes:values length:reg.size];
-            reg.value = data;
-            
-            /*
-             int x = ((int16_t)(values[1] << 8 | values[0])) >> 4;
-             int y = ((int16_t)(values[3] << 8 | values[2])) >> 4;
-             int z = ((int16_t)(values[5] << 8 | values[4])) >> 4;*/
-            
-        }
-    }
-}
+#pragma mark - Receive Messages
 
 -(void) handleMessage{
     
-	uint8_t cmd = (parse_buf[0] & START_SYSEX);
+	uint8_t cmd = (parseBuf[0] & START_SYSEX);
     
-	if (cmd == 0xE0 && parse_count == 3) {
-        [self handleAnalogMessage];
-
-	} else if (cmd == 0x90 && parse_count == 3) {
+	if (cmd == 0xE0 && parseCount == 3) {
         
-		[self handleDigitalMessage];
-
-	} else if (parse_buf[0] == START_SYSEX && parse_buf[parse_count-1] == END_SYSEX) {
+        int channel = (parseBuf[0] & 0x0F);
+        int value = parseBuf[1] | (parseBuf[2] << 7);
         
-		if (parse_buf[1] == REPORT_FIRMWARE) {
+        if([self.delegate respondsToSelector:@selector(firmataController:didReceiveAnalogMessageOnChannel:value:)]){
+            [self.delegate firmataController:self didReceiveAnalogMessageOnChannel:channel value:value];
+        }
+        
+	} else if (cmd == 0x90 && parseCount == 3) {
+        
+        int portNum = (parseBuf[0] & 0x0F);
+        int portVal = parseBuf[1] | (parseBuf[2] << 7);
+        int port = portNum * 8;
+        
+        if([self.delegate respondsToSelector:@selector(firmataController:didReceiveDigitalMessageForPort:value:)]){
+            [self.delegate firmataController:self didReceiveDigitalMessageForPort:port value:portVal];
+        }
+        
+	} else if (parseBuf[0] == START_SYSEX && parseBuf[parseCount-1] == END_SYSEX) {
+        
+		if (parseBuf[1] == REPORT_FIRMWARE) {
             
-            [self handleFirmwareReport];
-
-		} else if (parse_buf[1] == CAPABILITY_RESPONSE) {
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveFirmwareReport:length:)]){
+                [self.delegate firmataController:self didReceiveFirmwareReport:parseBuf length:parseCommandLength];
+            }
             
-			[self handleCapabilityResponse];
+		} else if (parseBuf[1] == CAPABILITY_RESPONSE) {
             
-		} else if (parse_buf[1] == ANALOG_MAPPING_RESPONSE) {
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveCapabilityResponse:length:)]){
+            [self.delegate firmataController:self didReceiveCapabilityResponse:parseBuf length:parseCommandLength];
+            }
             
-            [self handleAnalogMappingResponse];
+		} else if (parseBuf[1] == ANALOG_MAPPING_RESPONSE) {
             
-		} else if (parse_buf[1] == PIN_STATE_RESPONSE && parse_count >= 6) {
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveAnalogMappingResponse:length::length:)]){
+                [self.delegate firmataController:self didReceiveAnalogMappingResponse:parseBuf length:parseCommandLength];
+            }
             
-			[self handlePinStateResponse];
+		} else if (parseBuf[1] == PIN_STATE_RESPONSE && parseCount >= 6) {
             
-		} else if(parse_buf[1] == I2C_REPLY){
-
-            [self handleI2CReply];
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceivePinStateResponse:length:)]){
+                [self.delegate firmataController:self didReceivePinStateResponse:parseBuf length:parseCommandLength];
+            }
+            
+		} else if(parseBuf[1] == I2C_REPLY){
+            
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveI2CReply:length:)]){
+                [self.delegate firmataController:self didReceiveI2CReply:parseBuf length:parseCommandLength];
+            }
         }
 	}
 }
@@ -683,15 +331,15 @@
         startedSysex = NO;
     }
     
-    /*
-    printf("\n ");
-    NSLog(@"**Data received, length: %d**",length);
     
-    for (int i = 0 ; i < length; i++) {
-        int value = buffer[i];
-        printf("%d ",value);
-    }
-    printf("\n ");*/
+     printf("\n ");
+     NSLog(@"**Data received, length: %d**",length);
+     
+     for (int i = 0 ; i < length; i++) {
+     int value = buffer[i];
+     printf("%d ",value);
+     }
+     printf("\n ");
     
     
     for (int i = 0 ; i < length; i++) {
@@ -699,125 +347,29 @@
         
 		uint8_t msn = value & START_SYSEX;
 		if (msn == 0xE0 || msn == 0x90 || value == 0xF9) {//digital / analog pin, or protocol version
-			parse_command_len = 3;
-			parse_count = 0;
+			parseCommandLength = 3;
+			parseCount = 0;
 		} else if (msn == 0xC0 || msn == 0xD0) {
-			parse_command_len = 2;
-			parse_count = 0;
+			parseCommandLength = 2;
+			parseCount = 0;
 		} else if (value == START_SYSEX) {
-			parse_count = 0;
-			parse_command_len = sizeof(parse_buf);
+			parseCount = 0;
+			parseCommandLength = sizeof(parseBuf);
 		} else if (value == END_SYSEX) {
-			parse_command_len = parse_count + 1;
+			parseCommandLength = parseCount + 1;
 		} else if (value & 0x80) {
-			parse_command_len = 1;
-			parse_count = 0;
+			parseCommandLength = 1;
+			parseCount = 0;
 		}
-		if (parse_count < (int)sizeof(parse_buf)) {
-			parse_buf[parse_count++] = value;
+		if (parseCount < (int)sizeof(parseBuf)) {
+			parseBuf[parseCount++] = value;
 		}
-		if (parse_count == parse_command_len) {
+		if (parseCount == parseCommandLength) {
 			[self handleMessage];
-			parse_count = 0;
-            parse_command_len = 0;
+			parseCount = 0;
+            parseCommandLength = 0;
 		}
 	}
-}
-
-#pragma mark -- Pin Delegate
-
--(IFI2CComponent*) componentForRegister:(IFI2CRegister*) reg{
-    for (IFI2CComponent * component in self.i2cComponents) {
-        for (IFI2CRegister * aRegister in component.registers) {
-            if(aRegister == reg){
-                return component;
-            }
-        }
-    }
-    return nil;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath  ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    
-    if ([keyPath isEqual:@"mode"]) {
-        [self sendPinModeForPin:object];
-    } else if([keyPath isEqual:@"value"]){
-        [self sendOutputForPin:object];
-    } else if([keyPath isEqual:@"updatesValues"]){
-        [self sendReportRequestForAnalogPin:object];
-    } else if([keyPath isEqual:@"notifies"]){
-        IFI2CComponent * component = [self componentForRegister:object];
-        [self sendI2CStartStopReportingRequestForRegister:object fromComponent:component];
-    }
-}
-
-#pragma mark -- I2C Components
-
--(void) addObserversForI2CComponent:(IFI2CComponent*) component{
-    for (IFI2CRegister * reg in component.registers) {
-        [reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
-    }
-}
-
--(void) addObserversForI2CComponents{
-    for (IFI2CComponent * component in self.i2cComponents) {
-        [self addObserversForI2CComponent:component];
-    }
-}
-
--(void) removeObserversForI2CComponent:(IFI2CComponent*) component{
-    for (IFI2CRegister * reg in component.registers) {
-        [reg removeObserver:self forKeyPath:@"notifies"];
-    }
-}
-
--(void) removeObserversForI2CComponents{
-    for (IFI2CComponent * component in self.i2cComponents) {
-        [self removeObserversForI2CComponent:component];
-    }
-}
-
--(void) setI2cComponents:(NSMutableArray *)i2cComponents{
-    if(_i2cComponents != i2cComponents){
-        
-        [self removeObserversForI2CComponents];
-        
-        _i2cComponents = i2cComponents;
-        
-        [self addObserversForI2CComponents];
-        
-        [self.delegate firmataDidUpdateI2CComponents:self];
-    }
-}
-
--(void) addI2CComponent:(IFI2CComponent*) component{
-    [self addObserversForI2CComponent:component];
-    
-    [self.i2cComponents addObject:component];
-    [self.delegate firmataDidUpdateI2CComponents:self];
-}
-
--(void) removeI2CComponent:(IFI2CComponent*) component{
-    [self removeObserversForI2CComponent:component];
-    
-    [self sendStopReportingMessageForI2CComponent:component];
-    
-    [self.i2cComponents removeObject:component];
-    [self.delegate firmataDidUpdateI2CComponents:self];
-}
-
--(void) addI2CRegister:(IFI2CRegister*) reg toComponent:(IFI2CComponent*) component{
-    [reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
-    [component addRegister:reg];
-}
-
--(void) removeI2CRegister:(IFI2CRegister*) reg fromComponent:(IFI2CComponent*) component{
-    if(reg.notifies){
-        [self sendI2CStopReadingComponent:component];
-    }
-    
-    [reg removeObserver:self forKeyPath:@"notifies"];
-    [component removeRegister:reg];
 }
 
 @end

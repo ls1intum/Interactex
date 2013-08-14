@@ -20,13 +20,14 @@
 @property (nonatomic, readonly) NSInteger numberOfDigitalPins;
 @property (nonatomic, readonly) NSInteger numberOfAnalogPins;
 @property (nonatomic) NSMutableArray * pins;
+@property (nonatomic, readonly) NSMutableArray * analogPins;
+@property (nonatomic, readonly) NSMutableArray * digitalPins;
 
 @property (nonatomic, readonly) THBoardPin * minusPin;
 @property (nonatomic, readonly) THBoardPin * plusPin;
 
 -(NSArray*) objectsAtPin:(NSInteger) pin;
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pin;
-
 
 -(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type;
 -(THBoardPin*) digitalPinWithNumber:(NSInteger) number;

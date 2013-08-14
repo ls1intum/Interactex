@@ -121,12 +121,12 @@
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     if(lilypadPin.mode == kPinModeDigitalOutput){
-        lilypadPin.currentValue = self.on;
+        lilypadPin.value = self.on;
     } else {
         if(self.on){
-            lilypadPin.currentValue = self.intensity;
+            lilypadPin.value = self.intensity;
         } else {
-            lilypadPin.currentValue = 0;
+            lilypadPin.value = 0;
         }
     }
     //NSLog(@"lilypin: %@",lilypadPin);

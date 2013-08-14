@@ -14,6 +14,9 @@
 
 @dynamic connected;
 
+
+#pragma mark - Construction
+
 +(id) pinWithType:(THElementPinType) type{
     return [[THElementPin alloc] initWithType:type];
 }
@@ -61,6 +64,7 @@
 }
 
 #pragma mark - Methods
+
 /*
 -(THPinMode) defaultBoardPinMode{
     if(self.type == kElementPintypeAnalog){

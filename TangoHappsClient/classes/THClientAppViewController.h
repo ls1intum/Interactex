@@ -7,27 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-typedef enum{
-    kClientStateNormal,
-    kClientStateWaiting
-} THClientState;
+#import "IFFirmataController.h"
+#import "BLEDiscovery.h"
 
 @class THTransferAgent;
 
-@interface THClientAppViewController : UIViewController {//<LeDiscoveryDelegate, BleServiceDelegate> {
+@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, IFFirmataControllerDelegate> {
     
-    NSTimer * _realTransferTimer;
     UIActivityIndicatorView * _activityIndicator;
 }
 
 -(IBAction)modeButtonTapped:(id)sender;
 
-@property (nonatomic, readonly) THClientState state;
-
 @property (nonatomic) THTransferAgent  * transferAgent;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *modeButton;
-//@property (strong, nonatomic) BleService *bleService;
+@property (strong, nonatomic) IFFirmataController  * firmataController;
 
 @end

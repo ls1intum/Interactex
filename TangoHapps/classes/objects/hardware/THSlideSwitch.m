@@ -52,9 +52,9 @@
 
 -(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{
     
-    if(!self.on && pin.currentValue == kDigitalPinValueHigh){
+    if(!self.on && pin.value == kDigitalPinValueHigh){
         [self switchOn];
-    } else if(self.on && pin.currentValue == kDigitalPinValueLow){
+    } else if(self.on && pin.value == kDigitalPinValueLow){
         [self switchOff];
     }
 }

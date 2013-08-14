@@ -9,6 +9,7 @@
 #import "THButton.h"
 #import "THElementPin.h"
 #import "THPin.h"
+#import "IFPin.h"
 
 @implementation THButton
 
@@ -55,9 +56,9 @@
 
 -(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{
     
-    if(!self.isDown && pin.currentValue == kDigitalPinValueHigh){
+    if(!self.isDown && pin.pin.value == kDigitalPinValueHigh){
         [self handleStartedPressing];
-    } else if(self.isDown && pin.currentValue == kDigitalPinValueLow){
+    } else if(self.isDown && pin.pin.value == kDigitalPinValueLow){
         [self handleStoppedPressing];
     }
 }

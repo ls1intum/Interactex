@@ -49,7 +49,7 @@
             <objects>
                 <viewController title="First" id="ooT-9x-Q8c" customClass="THClientAppViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Client App" id="h6l-f2-78d">
-                        <barButtonItem key="rightBarButtonItem" image="lilypadmode.png" id="cXQ-Ks-m7U">
+                        <barButtonItem key="rightBarButtonItem" title="Start" id="cXQ-Ks-m7U">
                             <connections>
                                 <action selector="modeButtonTapped:" destination="ooT-9x-Q8c" id="9CT-mS-v4N"/>
                             </connections>
@@ -65,9 +65,6 @@
             <point key="canvasLocation" x="-167" y="228"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="lilypadmode.png" width="30" height="30"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

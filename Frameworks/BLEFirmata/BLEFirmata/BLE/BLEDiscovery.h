@@ -5,6 +5,7 @@
 #import "BLEService.h"
 
 @protocol BLEDiscoveryDelegate <NSObject>
+@required
 - (void) discoveryDidRefresh;
 - (void) discoveryStatePoweredOff;
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral;

@@ -109,7 +109,7 @@ float const kLilypadPropertyInnerPadding = 5;
     if(control.selectedSegmentIndex == 0){
         pin.mode = kPinModeDigitalOutput;
     } else {
-        THElementPinEditable * elementPin = [pin.attachedPins objectAtIndex:0];
+        THElementPinEditable * elementPin = [pin.attachedElementPins objectAtIndex:0];
         if(elementPin.defaultBoardPinMode == kPinModeBuzzer){
             pin.mode = kPinModeBuzzer;
         } else {

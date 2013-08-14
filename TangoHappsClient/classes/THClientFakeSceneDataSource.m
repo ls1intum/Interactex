@@ -360,7 +360,7 @@
     [project registerAction:methodInvoke3 forEvent:headingEvent];
     
     //pins
-    THElementPin * compassPin = compass.pin5Pin;
+    THElementPin * compassPin = compass.pin5;
     THBoardPin * pin5 = [lilypad analogPinWithNumber:5];
     NSLog(@"");
     [pin5 attachPin:compassPin];

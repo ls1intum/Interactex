@@ -179,7 +179,6 @@ typedef enum{
 typedef enum{
     kPintypeDigital,
     kPintypeAnalog,
-    kPintypePWM,
     kPintypeMinus,
     kPintypePlus,
 } THPinType;

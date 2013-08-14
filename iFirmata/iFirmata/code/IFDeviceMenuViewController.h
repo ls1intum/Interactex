@@ -10,7 +10,7 @@
 #import "BLEService.h"
 
 @class CBPeripheral;
-@class IFFirmataController;
+@class IFFirmataPinsController;
 
 @interface IFDeviceMenuViewController : UIViewController
 {
