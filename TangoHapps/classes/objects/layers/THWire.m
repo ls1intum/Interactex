@@ -7,6 +7,7 @@
 //
 
 #import "THWire.h"
+#import "THWireProperties.h"
 
 @implementation THWireNode
 @end
@@ -23,11 +24,10 @@
         self.obj1 = obj1;
         self.obj2 = obj2;
         
-        nodes = [NSMutableArray array];
+        _nodes = [NSMutableArray array];
         
         THWireNode * node = [[THWireNode alloc] init];
-        CGPoint position = ccp((self.p1.x + self.p2.x) / 2.0f, (self.p1.y + self.p2.y) / 2.0f);
-        node.point = position;
+        node.position = ccp((self.p1.x + self.p2.x) / 2.0f, (self.p1.y + self.p2.y) / 2.0f);
         [self addNode:node];
     }
     return self;
@@ -46,7 +46,7 @@
         NSInteger green = [decoder decodeIntegerForKey:@"colorG"];
         NSInteger blue = [decoder decodeIntegerForKey:@"colorB"];
         self.color = ccc3(red, green, blue);
-        
+        self.nodes = [decoder decodeObjectForKey:@"nodes"];
     }
     return self;
 }
@@ -58,6 +58,16 @@
     [coder encodeInt:self.color.r forKey:@"colorR"];
     [coder encodeInt:self.color.g forKey:@"colorG"];
     [coder encodeInt:self.color.b forKey:@"colorB"];
+    [coder encodeObject:self.nodes forKey:@"nodes"];
+}
+
+#pragma mark - Property Controller
+
+-(NSArray*)propertyControllers {
+    NSMutableArray *controllers = [NSMutableArray array];
+    [controllers addObject:[THWireProperties properties]];
+    [controllers addObjectsFromArray:[super propertyControllers]];
+    return controllers;
 }
 
 #pragma mark - Drawing
@@ -85,21 +95,21 @@
     CGPoint currentPoint = self.p1;
     CGPoint nextPoint = self.p2;
     
-    if(nodes.count > 0){
-        THWireNode * node = [nodes objectAtIndex:0];
-        nextPoint = node.point;
+    if(self.nodes.count > 0){
+        THWireNode * node = [self.nodes objectAtIndex:0];
+        nextPoint = node.position;
     }
     
     [self drawLineSegmentBetween:currentPoint and:nextPoint];
     
-    for (int i = 1; i < nodes.count; i++) {
+    for (int i = 1; i < self.nodes.count; i++) {
         currentPoint = nextPoint;
-        THWireNode * node = [nodes objectAtIndex:i];
-        nextPoint = node.point;
+        THWireNode * node = [self.nodes objectAtIndex:i];
+        nextPoint = node.position;
         [self drawLineSegmentBetween:currentPoint and:nextPoint];
     }
     
-    if(nodes.count > 0){
+    if(self.nodes.count > 0){
         [self drawLineSegmentBetween:nextPoint and:self.p2];
     }
 }
@@ -109,8 +119,8 @@
     glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
     
     
-    for (THWireNode * node in nodes) {
-        ccDrawCircle(node.point, kWireNodeRadius, 0, 30, NO);
+    for (THWireNode * node in self.nodes) {
+        ccDrawCircle(node.position, kWireNodeRadius, 0, 30, NO);
     }
 }
 
@@ -155,20 +165,68 @@
 
 #pragma mark - Nodes
 
--(void) addNode:(THWireNode*) node{
-    [nodes addObject:node];
+-(void) removeNodeObservers{
+    for (THWireNode * node in self.nodes) {
+        [node removeObserver:self forKeyPath:@"selected"];
+    }
 }
+
+-(void) addNodeObservers{
+    for (THWireNode * node in self.nodes) {
+        [node addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+-(void) setNodes:(NSMutableArray *)nodes{
+    if(_nodes != nodes){
+        if(_nodes){
+            [self removeNodeObservers];
+        }
+        
+        _nodes = nodes;
+        
+        [self addNodeObservers];
+        
+    }
+}
+
+-(void) addNode:(THWireNode*) node{
+    [node addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    [self.nodes addObject:node];
+}
+
 -(void) removeNode:(THWireNode*) node{
-    [nodes removeObject:node];
+    [node removeObserver:self forKeyPath:@"selected"];
+    [self.nodes removeObject:node];
+}
+
+-(void) removeAllNodes{
+    [self removeNodeObservers];
+    [self.nodes removeAllObjects];
 }
 
 -(THWireNode*) nodeAtPosition:(CGPoint) position{
-    for (THWireNode * node in nodes) {
-        if(ccpDistance(node.point,position) < kWireNodeRadius){
+    for (THWireNode * node in self.nodes) {
+        if(ccpDistance(node.position, position) < kWireNodeRadius){
             return node;
         }
     }
     return nil;
 }
 
+#pragma mark - Node Observer
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if([keyPath isEqualToString:@"selected"]){
+        THWireNode * node = object;
+        self.selected = node.selected;
+    }
+}
+
+#pragma mark - Other
+
+-(void) prepareToDie{
+    [self removeAllNodes];
+    
+}
 @end

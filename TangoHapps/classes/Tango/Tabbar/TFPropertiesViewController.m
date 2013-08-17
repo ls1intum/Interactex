@@ -94,7 +94,6 @@
     [_controllers removeAllObjects];
 }
 
-
 -(void) handleObjectSelected:(NSNotification *) notification{
     [self handleObjectDeselected];
     

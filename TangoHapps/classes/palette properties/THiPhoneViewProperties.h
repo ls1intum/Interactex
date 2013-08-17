@@ -11,7 +11,6 @@
 
 @interface THiPhoneViewProperties : TFEditableObjectProperties <THColorPickerDelegate>
 {
-    int pickingColor;
     THColorPicker *colorPicker;
     UIPopoverController *colorPickerPopover;
 }

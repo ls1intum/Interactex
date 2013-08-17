@@ -31,6 +31,7 @@
     }
     return self;
 }
+
 #pragma mark - Tap delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {

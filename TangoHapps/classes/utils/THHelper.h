@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface THHelper : NSObject
-/*
-+(THImageViewScaleMode) customScaleModeForScaleMode:(UIViewContentMode) scaleMode;
-+(UIViewContentMode) ScaleModeForCustomScaleMode:(THImageViewScaleMode) scaleMode;
-*/
+
+
++(ccColor3B) color3BFromUIColor:(UIColor*) color;
++(UIColor*) uicolorFromColor3B:(ccColor3B) color;
 
 @end

@@ -9,23 +9,21 @@
 #import "THHelper.h"
 
 @implementation THHelper
-/*
-+(THImageViewScaleMode) customScaleModeForScaleMode:(UIViewContentMode) scaleMode{
-    if(scaleMode == UIViewContentModeScaleAspectFit){
-        return kImageViewScaleModeFit;
-    } else {
-        return kImageViewScaleModeFill;
-    }
+
++(ccColor3B) color3BFromUIColor:(UIColor*) color{
+    float red;
+    float green;
+    float blue;
+    float alpha;
+    
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    return ccc3(red * 255, green * 255, blue * 255);
 }
 
-+(UIViewContentMode) ScaleModeForCustomScaleMode:(THImageViewScaleMode) scaleMode{
-    if(scaleMode == kImageViewScaleModeFit){
-        return UIViewContentModeScaleAspectFit;
-    } else {
-        return UIViewContentModeScaleAspectFill;
-    }
-}*/
-
-
++(UIColor*) uicolorFromColor3B:(ccColor3B) color{
+    ccColor4F color4f = ccc4FFromccc3B(color);
+    
+    return [UIColor colorWithRed:color4f.r green:color4f.g blue:color4f.b alpha:color4f.a];
+}
 
 @end

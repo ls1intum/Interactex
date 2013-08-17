@@ -8,28 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "THClientGridView.h"
-#import "THClientConnectionController.h"
 
-@class LoadingBezel;
-@class THClientFakeSceneDataSource;
+@class THClientPresetsGenerator;
 
-const NSTimeInterval kMinInstallationDuration;
-const float kIconInstallationUpdateFrequency;
-
-@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate, THClientConnectionControllerDelegate> {
-    NSMutableArray * scenes;
-    LoadingBezel * bezel;
+@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate> {
     
-    NSTimer * installationProgressTimer;
-    THClientGridItem * gridItemBeingInstalled;
-    NSTimeInterval timeWhenInstallationStarted;
-    float installationUpdateRate;
-
-    THClientScene * alreadyExistingSceneBeingInstalled;
 }
 
-@property (nonatomic, strong) THClientConnectionController * connectionController;
+@property (nonatomic, strong) NSMutableArray * presets;
+@property (nonatomic, strong) NSMutableArray * scenes;
+@property (weak, nonatomic) IBOutlet THClientGridView * gridView;
+@property (weak, nonatomic) IBOutlet THClientGridView * presetsGridView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl * filterControl;
+@property (nonatomic) BOOL showingCustomApps;
 
-@property (nonatomic, strong) THClientFakeSceneDataSource * fakeScenesSource;
+- (IBAction)filterControlChanged:(id)sender;
+- (IBAction)editTapped:(id)sender;
 
 @end

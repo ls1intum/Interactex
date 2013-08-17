@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THClientFakeSceneDataSource.h"
+#import "THClientPresetsGenerator.h"
 #import "THLilyPad.h"
 #import "THLed.h"
 #import "THiPhoneButton.h"
@@ -22,7 +22,7 @@
 #import "THCompass.h"
 #import "THClientProject.h"
 
-@implementation THClientFakeSceneDataSource
+@implementation THClientPresetsGenerator
 
 -(id) init{
     
@@ -35,6 +35,8 @@
         [_fakeScenes addObject:[self analogOutputScene]];
         [_fakeScenes addObject:[self analogInputScene]];
         [_fakeScenes addObject:[self buzzerScene]];
+        [_fakeScenes addObject:[self compassScene]];
+        [_fakeScenes addObject:[self compassScene]];
         [_fakeScenes addObject:[self compassScene]];
         
     }
@@ -307,7 +309,7 @@
 }
 
 -(THClientScene*) compassScene{
-    
+    /*
     THClientProject * project = [self defaultClientProject];
     
     THCompass * compass = [[THCompass alloc] init];
@@ -365,8 +367,8 @@
     NSLog(@"");
     [pin5 attachPin:compassPin];
     [compassPin attachToPin:pin5];
-    
-    THClientScene * scene = [[THClientScene alloc] initWithName:@"Compass" world:project];
+    */
+    THClientScene * scene = [[THClientScene alloc] initWithName:@"Compass" world:nil];
     scene.isFakeScene = YES;
     return scene;
 }

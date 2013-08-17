@@ -71,8 +71,8 @@ const NSInteger IFDiscoveryTime = 3;
     cell.titleLabel.text = peripheral.name;
     //cell.uiidLabel.text = [BLEHelper UUIDToString:peripheral.UUID];
     
-    CFStringRef string = CFUUIDCreateString(NULL, (peripheral.UUID));
-    cell.uiidLabel.text = (__bridge_transfer NSString *)string;
+    //CFStringRef string = CFUUIDCreateString(NULL, (peripheral.UUID));//bug here
+    //cell.uiidLabel.text = (__bridge_transfer NSString *)string;
     
     return cell;
 }

@@ -37,9 +37,9 @@
     self.heightSlider.minimumValue = iphoneObject.minSize.height;
     
     self.widthSlider.maximumValue = iphoneObject.maxSize.width;
-    self.heightSlider.maximumValue = iphoneObject.maxSize.height;
-    
+    self.heightSlider.maximumValue = iphoneObject.maxSize.height;    
 }
+
 -(void) reloadState{
     
     THViewEditableObject * iphoneObject = (THViewEditableObject*) self.editableObject;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THClientFakeSceneDataSource : NSObject
+@interface THClientPresetsGenerator : NSObject
 {
 }
 

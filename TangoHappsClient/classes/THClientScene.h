@@ -25,8 +25,8 @@
 +(void) deleteSceneNamed:(NSString*) sceneName;
 +(BOOL) sceneExists:(NSString*) sceneName;
 
--(id)initWithName:(NSString*)newName world:(THClientProject*) world;
--(id)initWithName:(NSString*) aName;
+-(id) initWithName:(NSString*)newName world:(THClientProject*) world;
+-(id) initWithName:(NSString*) aName;
 
 //saving
 -(void) save;

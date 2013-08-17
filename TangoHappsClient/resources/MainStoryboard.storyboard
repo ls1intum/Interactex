@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dCN-sI-2fp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
     <dependencies>
         <development version="4500" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -25,24 +25,106 @@
         <scene sceneID="wnw-XR-syg">
             <objects>
                 <viewController id="1nI-qf-8XH" customClass="THClientSceneSelectionViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YNx-6h-6sc" customClass="THClientGridView">
-                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <scrollView key="view" hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ukk-KM-RNv" userLabel="presetsGridView" customClass="THClientGridView">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
-                            <outlet property="dataSource" destination="1nI-qf-8XH" id="U94-E2-0Ce"/>
-                            <outlet property="delegate" destination="1nI-qf-8XH" id="UdJ-GL-0fa"/>
+                            <outlet property="delegate" destination="1nI-qf-8XH" id="paX-Ba-VVE"/>
                         </connections>
-                    </view>
-                    <navigationItem key="navigationItem" title="Apps" id="dag-TJ-uvv"/>
+                    </scrollView>
+                    <navigationItem key="navigationItem" title="Apps" id="dag-TJ-uvv">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Q80-Or-CSO">
+                            <connections>
+                                <action selector="editTapped:" destination="1nI-qf-8XH" id="l2W-eM-UFg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="V1D-WK-iWZ">
+                            <connections>
+                                <segue destination="PGp-Lq-9E8" kind="push" identifier="segueToDownloadApp" id="cLW-3y-TYW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="presetsGridView" destination="ukk-KM-RNv" id="Dru-Oq-PJC"/>
+                        <outlet property="view" destination="ukk-KM-RNv" id="e0M-Ce-Pys"/>
                         <segue destination="ooT-9x-Q8c" kind="push" identifier="segueToAppView" id="qZC-HR-N4C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Asl-im-aQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-661" y="221"/>
+        </scene>
+        <!--Client Download View Controller - Download App-->
+        <scene sceneID="eK9-VL-3ef">
+            <objects>
+                <viewController id="PGp-Lq-9E8" customClass="THClientDownloadViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fM8-1D-3jL">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-7S-GLF"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Open a project in TangoHapps and tap the upload Button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-9u-4u8">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="6Lv-mx-YXX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZEC-ub-RIq"/>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Downloading XYZ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfo-uh-eh0">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcY-1u-pdw">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Hw9-cw-GMn"/>
+                                    <constraint firstAttribute="height" constant="35" id="YC9-zz-0tf"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Downloading assets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWU-ka-8A2">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0qP-Sl-NtU"/>
+                                    <constraint firstAttribute="width" constant="250" id="Snt-Zn-DIl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" type="default" id="2cP-f8-ik4"/>
+                            <constraint firstItem="fcY-1u-pdw" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="142" id="46C-xc-UOJ"/>
+                            <constraint firstAttribute="trailing" secondItem="UkX-9u-4u8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="D78-Ur-EKp"/>
+                            <constraint firstAttribute="trailing" secondItem="N5K-7S-GLF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Fpc-43-uxf"/>
+                            <constraint firstItem="fcY-1u-pdw" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="204" id="INO-LH-YBM"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="20" symbolic="YES" type="default" id="QCX-nW-aK1"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aFc-sl-fo0"/>
+                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="centerX" secondItem="Kfo-uh-eh0" secondAttribute="centerX" type="default" id="bI9-2O-ZuO"/>
+                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="212" id="cad-5z-s52"/>
+                            <constraint firstAttribute="trailing" secondItem="yWU-ka-8A2" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eVn-eW-3M9"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="leading" secondItem="N5K-7S-GLF" secondAttribute="leading" type="default" id="gKl-gz-nO9"/>
+                            <constraint firstAttribute="bottom" secondItem="N5K-7S-GLF" secondAttribute="bottom" constant="144" id="ikg-xx-2tL"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="168" id="mbx-6b-wA9"/>
+                            <constraint firstAttribute="bottom" secondItem="yWU-ka-8A2" secondAttribute="bottom" constant="167" id="qaZ-ca-IH1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Download App" id="tEk-Xf-QMl"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="ZEC-ub-RIq" id="YZd-vS-e9r"/>
+                        <outlet property="checkImageView" destination="fcY-1u-pdw" id="tO3-7B-UMh"/>
+                        <outlet property="currentActivityLabel" destination="yWU-ka-8A2" id="MyK-Zl-TxH"/>
+                        <outlet property="descriptionLabel" destination="Kfo-uh-eh0" id="sqV-am-Vyu"/>
+                        <outlet property="instructionsLabel" destination="UkX-9u-4u8" id="BMc-3z-XNK"/>
+                        <outlet property="progressBar" destination="fM8-1D-3jL" id="sg8-7D-ek2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tdg-QX-o3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-133" y="-96"/>
         </scene>
         <!--Client App View Controller - First-->
         <scene sceneID="X7L-oF-nqh">
@@ -62,12 +144,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h83-zx-Iae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="228"/>
+            <point key="canvasLocation" x="-133" y="632"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="THClientAppViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientAppViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="modeButtonTapped:"/>
+                <relationship kind="outlet" name="modeButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="THClientDownloadViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientDownloadViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="checkImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="currentActivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="instructionsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
+            </relationships>
+        </class>
+        <class className="THClientGridView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientGridView.h"/>
+        </class>
+        <class className="THClientSceneSelectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editTapped:"/>
+                <relationship kind="action" name="filterControlChanged:"/>
+                <relationship kind="outlet" name="filterControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="gridView" candidateClass="THClientGridView"/>
+                <relationship kind="outlet" name="presetsGridView" candidateClass="THClientGridView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

@@ -14,18 +14,15 @@
 #import "THClientScene.h"
 #import "THSimulableWorldController.h"
 #import "THGridView.h"
-#import "THClientFakeSceneDataSource.h"
+#import "THClientPresetsGenerator.h"
+#import "THClientDownloadViewController.h"
 
 @implementation THClientSceneSelectionViewController
 
 
-const NSTimeInterval kMinInstallationDuration = 1.0f;
-const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
-
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if(self){
-        self.fakeScenesSource = [[THClientFakeSceneDataSource alloc] init];
     }
     return self;
 }
@@ -39,65 +36,23 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"halloScene" world:project];
     [scene save];*/
     
-    self.connectionController = [[THClientConnectionController alloc] init];
-    self.connectionController.delegate = self;
+    THClientPresetsGenerator * fakeScenesSource = [[THClientPresetsGenerator alloc] init];
+    self.presets = fakeScenesSource.fakeScenes;
+    self.scenes = [THClientScene persistentScenes];
     
-    scenes = [THClientScene persistentScenes];
+    self.gridView.gridDelegate = self;
+    self.gridView.dataSource = self;
     
-    THClientGridView *grid = (THClientGridView*)self.view;
-    grid.gridDelegate = self;
+    self.presetsGridView.gridDelegate = self;
+    self.presetsGridView.dataSource = self;
     
     [self reloadData];
-}
-
--(void) viewWillAppear:(BOOL)animated{
-    
-    [self.connectionController startClient];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    [self.connectionController stopClient];
-}
-
-/*
--(void) viewDidAppear:(BOOL)animated{
-    if(sceneBeingInstalled && finishedInstallingProject){
-        [self animateProjectInstallation];
-        
-        finishedInstallingProject = NO;
-    }
-}*/
-
--(void) increaseInstallationProgress{
-    if(gridItemBeingInstalled.progressBar.progress >= 1.0f){
-        [installationProgressTimer invalidate];
-        installationProgressTimer = nil;
-        
-        [self handleFinishedInstallingProject];
-    }
-    
-    float progress = gridItemBeingInstalled.progressBar.progress + 0.01;
-    gridItemBeingInstalled.progressBar.progress += progress;
-}
-
--(void) animateProjectInstallationWithDuration:(float) duration{
-    installationUpdateRate = kIconInstallationUpdateFrequency / duration;
-    
-    installationProgressTimer = [NSTimer scheduledTimerWithTimeInterval:kIconInstallationUpdateFrequency target:self selector:@selector(increaseInstallationProgress) userInfo:nil repeats:YES];
-}
-
--(void) handleFinishedInstallingProject{
-    
-    gridItemBeingInstalled.progressBar.progress = 1.0f;
-    gridItemBeingInstalled = nil;
-    
-    THClientGridView * gridView = (THClientGridView*) self.view;
-    if(gridView.editing){
-        gridView.editing = NO;
-    }
-    
-    [self reloadData];
+    self.gridView.editing = NO;
+    self.presetsGridView.editing = NO;
 }
 
 #pragma mark - Grid View delegate
@@ -114,30 +69,26 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     return CGPointMake(0,5);
 }
 
+/*
 #pragma mark Interface Actions
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
-    [(THClientGridView*)self.view setEditing:editing];
-}
+    [self.gridView setEditing:editing];
+}*/
 
 #pragma mark - Private
 
 - (void)reloadData {
 
-    THClientGridView *grid = (THClientGridView*)self.view;
-    [grid reloadData];
+    [self.gridView reloadData];
+    [self.presetsGridView reloadData];
 }
-/*
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"segueToAppView"]){
-        THClientAppViewController * controller = segue.destinationViewController;
-        [controller reloadApp];
-    }
-}*/
 
 - (void)proceedToScene:(THClientScene*) scene {
-    [self setEditing:NO];
+    //[self setEditing:NO];
+    [self.gridView setEditing:NO];
+    [self.presetsGridView setEditing:NO];
     
     [THSimulableWorldController sharedInstance].currentScene = scene;
     [THSimulableWorldController sharedInstance].currentProject = scene.project;
@@ -145,168 +96,120 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     [self performSegueWithIdentifier:@"segueToAppView" sender:self];
 }
 
--(void)proceedToRemote {
-    [self setEditing:NO];
-    [self performSegueWithIdentifier:@"segueToConnectionController" sender:self];
-}
-
 #pragma mark - Grid View Data Source
 
 -(NSUInteger)numberOfItemsInGridView:(THClientGridView *)gridView {
-    return [self.fakeScenesSource numFakeScenes] + scenes.count + (gridItemBeingInstalled ? 1 : 0);
+    
+    if(gridView == self.presetsGridView){
+        
+        NSLog(@"%d",self.presets.count);
+        return self.presets.count;
+        
+    } else if(gridView == self.gridView){
+
+        return self.scenes.count;
+    }
+    
+    return 0;
 }
 
 -(THClientGridItem *)gridView:(THClientGridView *)gridView viewAtIndex:(NSUInteger)index {
     
     THClientGridItem *item = nil;
     
-    if(index < self.fakeScenesSource.numFakeScenes){
-
-        THClientScene * scene = [self.fakeScenesSource.fakeScenes objectAtIndex:index];
-
+    if(gridView == self.presetsGridView){
+        
+        THClientScene * scene = [self.presets objectAtIndex:index];
+        
         UIImage * image = [UIImage imageNamed:@"fakeSceneImage.png"];
         item = [[THClientGridItem alloc] initWithName:scene.name image:image];
         
-    } else if(index < self.fakeScenesSource.numFakeScenes + scenes.count){
+    } else if(gridView == self.gridView){
         
-        THClientScene * scene = [scenes objectAtIndex:index - self.fakeScenesSource.numFakeScenes];
+        THClientScene * scene = [self.scenes objectAtIndex:index];
         item = [[THClientGridItem alloc] initWithName:scene.name image:scene.image];
         item.editable = YES;
         
-    } else if(index == self.fakeScenesSource.numFakeScenes + scenes.count){
-        
-        item = gridItemBeingInstalled;
     }
-
+    
     return item;
 }
 
--(void)gridView:(THClientGridView*)gridView didSelectViewAtIndex:(NSUInteger)index {
+-(void) gridView:(THClientGridView*)gridView didSelectViewAtIndex:(NSUInteger)index {
     
-    if(index < self.fakeScenesSource.numFakeScenes){
+    if(gridView == self.presetsGridView){
         
-        THClientScene * scene = [self.fakeScenesSource.fakeScenes objectAtIndex:index];
+        THClientScene * scene = [self.presets objectAtIndex:index];
         [self proceedToScene:scene];
         
-    } else if(index < self.fakeScenesSource.numFakeScenes + scenes.count){
+    } else if(gridView == self.gridView){
         
-        THClientScene * scene = [scenes objectAtIndex:index - self.fakeScenesSource.numFakeScenes];
+        THClientScene * scene = [self.scenes objectAtIndex:index];
         [scene loadFromArchive];
         [self proceedToScene:scene];
     }
 }
 
--(void)gridView:(THClientGridView *)gridView didDeleteViewAtIndex:(NSUInteger)index {
+-(void) gridView:(THClientGridView *)gridView didDeleteViewAtIndex:(NSUInteger)index {
     
-    NSInteger realIdx = index - self.fakeScenesSource.numFakeScenes;
-    
-    if(realIdx >= 0 && realIdx < self.fakeScenesSource.numFakeScenes){
+    if(index < self.scenes.count){
         
-        THClientScene * scene = [scenes objectAtIndex:realIdx];
-        [scenes removeObjectAtIndex:realIdx];
+        THClientScene * scene = [self.scenes objectAtIndex:index];
+        [self.scenes removeObjectAtIndex:index];
         
         [scene deleteArchive];
     }
 }
 
--(void)gridView:(THClientGridView *)gridView didRenameViewAtIndex:(NSUInteger)index newName:(NSString *)newName
-{/*
+-(void) gridView:(THClientGridView *)gridView didRenameViewAtIndex:(NSUInteger)index newName:(NSString *)newName {/*
     THClientProject *project = [scenes objectAtIndex:index];
     [scene renameTo:newName];*/
 }
 
-#pragma mark - ConnectionController Delegate
+#pragma mark - Segue
 
--(THClientScene*) sceneNamed:(NSString*) name{
-    
-    THClientScene * toReturn = nil;
-    for (THClientScene * scene in scenes) {
-        if([scene.name isEqualToString:name]){
-            toReturn = scene;
-            break;
-        }
-    }
-    return toReturn;
-}
-/*
--(void) replaceSceneNamed:(NSString*) name{
-    
-    THClientScene * toRemove = [self sceneNamed:name];
-    
-    if(toRemove){
-        
-        previousSceneIdx = [scenes indexOfObject:toRemove];
-        [scenes removeObjectAtIndex:previousSceneIdx];
-        [toRemove deleteArchive];
-        
-        sceneBeingInstalled = [[THClientGridItem alloc] initWithName:name image:nil];
-        sceneBeingInstalled.progressBar.hidden = NO;
-        
-        THClientGridView * gridView = (THClientGridView*) self.view;
-        THClientGridItem * item = [gridView.items objectAtIndex:previousSceneIdx + self.fakeScenesSource.numFakeScenes];
-        [gridView replaceItem:item withItem:sceneBeingInstalled];
-        
-    }
-}*/
-
--(void) didStartReceivingProjectNamed:(NSString *)name {
-    
-    timeWhenInstallationStarted = CACurrentMediaTime();
-    
-    THClientGridView * gridView = (THClientGridView*) self.view;
-    if(gridView.editing){
-        gridView.editing = NO;
-    }
-    
-    alreadyExistingSceneBeingInstalled = [self sceneNamed:name];
-    if(alreadyExistingSceneBeingInstalled){
-        
-        NSInteger idx = [scenes indexOfObject:alreadyExistingSceneBeingInstalled];
-        THClientGridView * gridView = (THClientGridView*) self.view;
-        gridItemBeingInstalled = [gridView.items objectAtIndex:idx + self.fakeScenesSource.numFakeScenes];
-        
-    } else {
-        
-        gridItemBeingInstalled = [[THClientGridItem alloc] initWithName:name image:nil];
-        gridItemBeingInstalled.progressBar.hidden = NO;
-        
-        [gridView addItem:gridItemBeingInstalled animated:YES];
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"segueToDownloadApp"]){
+        THClientDownloadViewController * controller = segue.destinationViewController;
+        controller.scenes = (NSArray*) self.scenes;
     }
 }
 
--(void) didFinishReceivingProject:(THClientProject *)project {
+#pragma mark - UI Interaction
+
+-(void) updateGridViewsVisibility{
     
-    THClientScene * scene;
-    
-    if(alreadyExistingSceneBeingInstalled){
-        
-        scene = alreadyExistingSceneBeingInstalled;
-        scene.project = project;
-        
+    if(self.showingCustomApps){
+        self.gridView.hidden = NO;
+        self.presetsGridView.hidden = YES;
     } else {
-        
-        scene = [[THClientScene alloc] initWithName:project.name world:project];
-        [scenes addObject:scene];
-        
-    }
-    
-    [scene save];
-    scene.project = nil;
-    
-    NSTimeInterval currentTime = CACurrentMediaTime();
-    if(currentTime - timeWhenInstallationStarted > kMinInstallationDuration){
-        
-        [self handleFinishedInstallingProject];
-        
-    } else {
-        
-        [self animateProjectInstallationWithDuration:2.0f];
+        self.gridView.hidden = YES;
+        self.presetsGridView.hidden = NO;
     }
 }
 
--(void) didMakeProgressForCurrentProject:(float)progress{
+- (IBAction)filterControlChanged:(id)sender {
+    [self updateGridViewsVisibility];
+}
+
+- (IBAction)editTapped:(id)sender {
     
-    //sceneBeingInstalled.progressBar.progress = progress;
+    if(self.showingCustomApps){
+        
+        self.gridView.editing = YES;
+        
+    } else {
+        
+        self.presetsGridView.editing = YES;
+    }
+}
+
+
+#pragma mark - Other
+
+-(BOOL) showingCustomApps{
+    
+    return (self.filterControl.selectedSegmentIndex == 0);
 }
 
 @end

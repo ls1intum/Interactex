@@ -421,6 +421,12 @@
 		9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9A9FEAD417BBCE70004AB8CF /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEAD317BBCE70004AB8CF /* THWire.m */; };
 		9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEAD317BBCE70004AB8CF /* THWire.m */; };
+		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
+		9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
+		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
+		9A9FEB6517BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
+		9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
+		9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
 		9AA5D7F416D52C4B00B72B9E /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1616A2C63D000DF472 /* call.png */; };
 		9AA5D7F516D52C4B00B72B9E /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1716A2C63D000DF472 /* call@2x.png */; };
 		9AA5D7F616D52C4B00B72B9E /* contactBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8E1816A2C63D000DF472 /* contactBook.png */; };
@@ -462,8 +468,8 @@
 		9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */; };
 		9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
 		9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
-		9AF3E6D316FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D216FA07250013DE13 /* THClientFakeSceneDataSource.m */; };
-		9AF3E6D416FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D216FA07250013DE13 /* THClientFakeSceneDataSource.m */; };
+		9AF3E6D316FA07250013DE13 /* THClientPresetsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */; };
+		9AF3E6D416FA07250013DE13 /* THClientPresetsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */; };
 		9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */; };
 		9AF3E6D816FA20090013DE13 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */; };
 		9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */; };
@@ -1790,6 +1796,11 @@
 		9A94F44316A01A5600AF52AB /* THProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectViewController.m; sourceTree = "<group>"; };
 		9A9FEAD217BBCE70004AB8CF /* THWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWire.h; sourceTree = "<group>"; };
 		9A9FEAD317BBCE70004AB8CF /* THWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWire.m; sourceTree = "<group>"; };
+		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
+		9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWireProperties.m; sourceTree = "<group>"; };
+		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
+		9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientDownloadViewController.h; sourceTree = "<group>"; };
+		9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientDownloadViewController.m; sourceTree = "<group>"; };
 		9AB29B3A167F4B2A00F5AF62 /* palette_imageview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_imageview.png; sourceTree = "<group>"; };
 		9AB29B3B167F4B2A00F5AF62 /* palette_imageview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_imageview@2x.png"; sourceTree = "<group>"; };
 		9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageViewPaletteItem.h; sourceTree = "<group>"; };
@@ -1822,8 +1833,8 @@
 		9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgrammingElement.h; sourceTree = "<group>"; };
 		9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgrammingElement.m; sourceTree = "<group>"; };
 		9AF3E6CE16F868790013DE13 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		9AF3E6D116FA07250013DE13 /* THClientFakeSceneDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientFakeSceneDataSource.h; sourceTree = "<group>"; };
-		9AF3E6D216FA07250013DE13 /* THClientFakeSceneDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientFakeSceneDataSource.m; sourceTree = "<group>"; };
+		9AF3E6D116FA07250013DE13 /* THClientPresetsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientPresetsGenerator.h; sourceTree = "<group>"; };
+		9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientPresetsGenerator.m; sourceTree = "<group>"; };
 		9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeSceneImage.png; sourceTree = "<group>"; };
 		9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fakeSceneImage@2x.png"; sourceTree = "<group>"; };
 		9AF50000167B82F70020241C /* THAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THAppDelegate.m; sourceTree = "<group>"; };
@@ -2654,6 +2665,7 @@
 				9A93848D16D6900E00A41BD2 /* THTimerProperties.xib */,
 				9A097687171868730028A6B4 /* THVibrationBoardProperties.xib */,
 				9A09777C17268EF30028A6B4 /* THSoundProperties.xib */,
+				9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -2665,10 +2677,12 @@
 				9AF5000E167B83140020241C /* THClientAppDelegate.m */,
 				9AF50017167B83140020241C /* THClientSceneSelectionViewController.h */,
 				9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */,
+				9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */,
+				9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */,
 				9AF50019167B83140020241C /* THClientConnectionController.h */,
 				9AF5001A167B83140020241C /* THClientConnectionController.m */,
-				9AF3E6D116FA07250013DE13 /* THClientFakeSceneDataSource.h */,
-				9AF3E6D216FA07250013DE13 /* THClientFakeSceneDataSource.m */,
+				9AF3E6D116FA07250013DE13 /* THClientPresetsGenerator.h */,
+				9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */,
 				9AF5000F167B83140020241C /* THClientAppViewController.h */,
 				9AF50010167B83140020241C /* THClientAppViewController.m */,
 				9AF50011167B83140020241C /* THClientGridItem.h */,
@@ -3142,6 +3156,8 @@
 				9A097684171866AA0028A6B4 /* THVibrationBoardProperties.m */,
 				9A09777817268CDF0028A6B4 /* THSoundProperties.h */,
 				9A09777917268CDF0028A6B4 /* THSoundProperties.m */,
+				9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */,
+				9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -4218,6 +4234,7 @@
 				9A097787172699D20028A6B4 /* sound@2x.png in Resources */,
 				9A09778B172699DF0028A6B4 /* palette_sound.png in Resources */,
 				9A09778D172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
+				9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4407,6 +4424,7 @@
 				9A097788172699D20028A6B4 /* sound@2x.png in Resources */,
 				9A09778C172699DF0028A6B4 /* palette_sound.png in Resources */,
 				9A09778E172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
+				9A9FEB6517BC080C004AB8CF /* THWireProperties.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4656,6 +4674,7 @@
 				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
 				9A9FEAD417BBCE70004AB8CF /* THWire.m in Sources */,
+				9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4812,7 +4831,7 @@
 				9A93847716D6746200A41BD2 /* THTrigger.m in Sources */,
 				9A93847C16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
 				9A9384B016D69CCA00A41BD2 /* THActionEditable.m in Sources */,
-				9AF3E6D416FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */,
+				9AF3E6D416FA07250013DE13 /* THClientPresetsGenerator.m in Sources */,
 				9A09762F171570050028A6B4 /* THClientScene.m in Sources */,
 				9A097630171570090028A6B4 /* THClientSceneSelectionViewController.m in Sources */,
 				9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */,
@@ -4870,6 +4889,8 @@
 				9A84271117564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271417564A80009495AB /* TFHelper.m in Sources */,
 				9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */,
+				9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */,
+				9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4928,7 +4949,7 @@
 				9A5F8D8716A2C473000DF472 /* THContactBook.m in Sources */,
 				9A93841B16D651D700A41BD2 /* THTimer.m in Sources */,
 				9A93847616D6746200A41BD2 /* THTrigger.m in Sources */,
-				9AF3E6D316FA07250013DE13 /* THClientFakeSceneDataSource.m in Sources */,
+				9AF3E6D316FA07250013DE13 /* THClientPresetsGenerator.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
@@ -4947,6 +4968,7 @@
 				9A8426E617564A80009495AB /* TFImagePickerController.m in Sources */,
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9A7F673D1756590A00E04BC8 /* TFConstants.m in Sources */,
+				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

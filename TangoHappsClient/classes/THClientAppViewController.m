@@ -308,7 +308,7 @@
 }
 
 -(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
-    
+    /*
     uint8_t address = buffer[2] + (buffer[3] << 7);
     NSInteger registerNumber = buffer[4];
     
@@ -319,7 +319,6 @@
         [self.firmataController sendI2CStopReadingAddress:address];
         
     } else {
-        
         THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
         IFI2CComponent * component = [project.lilypad i2cComponentWithAddress:address];
         
@@ -334,7 +333,9 @@
             NSData * data = [NSData dataWithBytes:values length:reg.size];
             reg.value = data;
         }
+
     }
+     */
 }
 
 

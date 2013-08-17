@@ -2,6 +2,8 @@
 
 unsigned long currentMillis;        // store the current value from millis()
 unsigned long previousMillis;       // for comparison with currentMillis
+long interval = 100; 
+
 
 boolean shouldSend;
 byte nextVal = 100;
@@ -15,12 +17,16 @@ void setup()
   
   shouldSend = 0;
   
-  pinMode(buttonPin,INPUT);
-  digitalWrite(buttonPin, HIGH);
 }
 
 void loop() 
 {
+  
+  unsigned long currentMillis = millis();
+
+  if(currentMillis - previousMillis > interval) {
+    previousMillis = currentMillis; 
+    
   byte pin, analogPin;
 
   while(ss.available()){
@@ -29,18 +35,28 @@ void loop()
       //Serial.println(val);
       
     if(val != nextVal){
-      Serial.println(val);
+      int valInt = val;
+      Serial.print(valInt);
+      //Serial.print(valInt, BIN);
+      Serial.print( " next is: ");
+      int nextValInt = nextVal;
+            Serial.println(nextValInt);
+//      Serial.println(nextValInt, BIN);
     }
    
-    nextVal = val+1;
+    
+    nextVal = val + 1;
     if(nextVal == 116){//the iOS side sends [100 ... 116]
       nextVal = 100;
     }
   }
   
+   
+    
     for(int j = 100 ; j < 116 ; j++){
       ss.write(j);
     }
+  }
   
-  delay(100);
+//delay(100);
 }

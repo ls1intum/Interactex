@@ -1,4 +1,3 @@
-#include <Boards.h>
 #include <Wire.h>
 
 #define MAG_ADDRESS            (0x3C >> 1)

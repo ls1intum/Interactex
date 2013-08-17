@@ -14,6 +14,33 @@
 
 @dynamic image;
 
+
+#pragma mark - Class Methods
+
++(NSMutableArray*)persistentScenes {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *archivesDirectory = [TFFileUtils dataDirectory:kProjectsDirectory];
+    NSArray *sceneFiles = [fm contentsOfDirectoryAtPath:archivesDirectory error:nil];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for(NSString *archivePath in sceneFiles){
+        THClientScene *scene = [[THClientScene alloc] initWithName:[archivePath lastPathComponent]];
+        [array addObject:scene];
+    }
+    return array;
+}
+
++(NSString*)resolveNameConflictFor:(NSString*)conflictingName {
+    NSUInteger counter = 2;
+    NSString *name = conflictingName;
+    while ([TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory]) {
+        name = [conflictingName stringByAppendingFormat:@" %i", counter];
+        counter++;
+    }
+    return name;
+}
+
+#pragma mark - Initialization
+
 -(id)initWithName:(NSString*)newName world:(THClientProject*) project {
     if(self = [super init]){
         _name = newName;
@@ -127,29 +154,7 @@
     self.name = newName;
 }
 
-#pragma mark - Class Methods
-
-+(NSMutableArray*)persistentScenes {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *archivesDirectory = [TFFileUtils dataDirectory:kProjectsDirectory];
-    NSArray *sceneFiles = [fm contentsOfDirectoryAtPath:archivesDirectory error:nil];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for(NSString *archivePath in sceneFiles){
-        THClientScene *scene = [[THClientScene alloc] initWithName:[archivePath lastPathComponent]];
-        [array addObject:scene];
-    }
-    return array;
-}
-
-+(NSString*)resolveNameConflictFor:(NSString*)conflictingName {
-    NSUInteger counter = 2;
-    NSString *name = conflictingName;
-    while ([TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory]) {
-        name = [conflictingName stringByAppendingFormat:@" %i", counter];
-        counter++;
-    }
-    return name;
-}
+#pragma mark - Other
 
 -(void) prepareToDie{
     _project = nil;

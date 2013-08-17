@@ -27,7 +27,8 @@
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
     
     self.firmataController = [[IFFirmataController alloc] init];
-    [[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    //[[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    [[BLEDiscovery sharedInstance] startScanningForAnyUUID];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,6 +101,8 @@
         int value = buffer[i];
         text = [text stringByAppendingFormat:@"%d ",value];
     }
+    
+    NSLog(@"%@",text);
     
     self.receivedLabel.text = text;
 }

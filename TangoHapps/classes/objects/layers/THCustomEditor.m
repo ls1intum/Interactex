@@ -87,26 +87,26 @@ float const kEditorMaxScale = 2.5f;
     [object removeFromParentAndCleanup:YES];
 }
 
--(THWire*) wireAtPosition:(CGPoint) position fromComponent:(THHardwareComponentEditableObject*) object{
+-(THWireNode*) wireNodeAtPosition:(CGPoint) position fromComponent:(THHardwareComponentEditableObject*) object{
     
     for (THElementPinEditable * pin in object.pins) {
         
         for (THWire * wire in pin.wires) {
             THWireNode * node = [wire nodeAtPosition:position];
-            if(node) return wire;
+            if(node) return node;
         }
     }
     
     return nil;
 }
 
--(THWire*) wireAtPosition:(CGPoint) position{
+-(THWireNode*) wireNodeAtPosition:(CGPoint) position{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     for (THHardwareComponentEditableObject * hardwareComponent in project.hardwareComponents) {
-        THWire * wire = [self wireAtPosition:position fromComponent:hardwareComponent];
-        if(wire) {
-            return wire;
+        THWireNode * node = [self wireNodeAtPosition:position fromComponent:hardwareComponent];
+        if(node) {
+            return node;
         }
     }
     
@@ -120,7 +120,7 @@ float const kEditorMaxScale = 2.5f;
     TFEditableObject * object = [project objectAtLocation:position];
     
     if(!object && self.isLilypadMode){
-        object = [self wireAtPosition:position];
+        object = [self wireNodeAtPosition:position];
     }
     
     return object;

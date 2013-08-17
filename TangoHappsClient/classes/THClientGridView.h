@@ -28,6 +28,7 @@
 @property (readonly) NSMutableArray *items;
 @property (nonatomic) BOOL editing;
 
+
 //adding and removing items
 -(void) addItem:(THClientGridItem*) item animated:(BOOL) animated;
 -(void) insertItem:(THClientGridItem*) item atPosition:(NSInteger) idx;
