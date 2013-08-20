@@ -9,7 +9,6 @@
         <scene sceneID="1c8-WO-ehm">
             <objects>
                 <navigationController definesPresentationContext="YES" id="dCN-sI-2fp" sceneMemberID="viewController">
-                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rxc-dB-3CY">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -25,15 +24,176 @@
         <scene sceneID="wnw-XR-syg">
             <objects>
                 <viewController id="1nI-qf-8XH" customClass="THClientSceneSelectionViewController" sceneMemberID="viewController">
-                    <scrollView key="view" hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ukk-KM-RNv" userLabel="presetsGridView" customClass="THClientGridView">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <connections>
-                            <outlet property="delegate" destination="1nI-qf-8XH" id="paX-Ba-VVE"/>
-                        </connections>
-                    </scrollView>
+                    <view key="view" contentMode="scaleToFill" id="AWk-yn-l1N">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yq5-ya-uDz">
+                                <segments>
+                                    <segment title="Custom"/>
+                                    <segment title="Presets"/>
+                                </segments>
+                                <connections>
+                                    <action selector="filterControlChanged:" destination="1nI-qf-8XH" eventType="valueChanged" id="fhj-GN-ssS"/>
+                                </connections>
+                            </segmentedControl>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tfP-pW-Mfl" userLabel="custom">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hCr-Fo-Zwi">
+                                    <size key="itemSize" width="97" height="124"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sceneCell" id="eVK-zK-Wbj" customClass="THClientSceneCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35P-OU-Poi">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="93" id="oaO-YP-sNk"/>
+                                                        <constraint firstAttribute="width" constant="69" id="shM-hh-AGT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPT-A7-kT6">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="VO5-vO-wKq"/>
+                                                        <constraint firstAttribute="height" constant="30" id="e01-8M-CdO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" image="removeButton.png">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteTapped:" destination="eVK-zK-Wbj" eventType="touchUpInside" id="l0w-Qk-v5G"/>
+                                                    </connections>
+                                                </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yv4-MX-ii9">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="r3h-Fd-c09"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="35P-OU-Poi" secondAttribute="bottom" constant="20" type="default" id="Guj-Bq-GnM"/>
+                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="leading" secondItem="eVK-zK-Wbj" secondAttribute="leading" type="default" id="XW4-f9-Rbf"/>
+                                            <constraint firstItem="35P-OU-Poi" firstAttribute="centerX" secondItem="yv4-MX-ii9" secondAttribute="centerX" type="default" id="izq-sn-1si"/>
+                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="trailing" secondItem="eVK-zK-Wbj" secondAttribute="trailing" type="default" id="jvn-Wr-XQa"/>
+                                            <constraint firstItem="WPT-A7-kT6" firstAttribute="leading" secondItem="eVK-zK-Wbj" secondAttribute="leading" type="default" id="lGy-RO-kWV"/>
+                                            <constraint firstItem="WPT-A7-kT6" firstAttribute="top" secondItem="eVK-zK-Wbj" secondAttribute="top" type="default" id="lSY-YJ-7ZE"/>
+                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="bottom" secondItem="eVK-zK-Wbj" secondAttribute="bottom" type="default" id="rHD-ig-91e"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="deleteButton" destination="WPT-A7-kT6" id="WiN-Yp-b7j"/>
+                                            <outlet property="imageView" destination="35P-OU-Poi" id="cNW-qh-aZH"/>
+                                            <outlet property="titleTextField" destination="yv4-MX-ii9" id="wc9-9P-A87"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="1nI-qf-8XH" id="GvL-Mx-Vcd"/>
+                                    <outlet property="delegate" destination="1nI-qf-8XH" id="zzY-nT-UM1"/>
+                                </connections>
+                            </collectionView>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kG1-u9-qUo" userLabel="presets">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="388" id="d6K-cf-OK4"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v47-QU-aiT">
+                                    <size key="itemSize" width="97" height="124"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sceneCell" id="YZO-nj-laJ" customClass="THClientSceneCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WjU-ZH-zz2">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="EIl-bb-ahH"/>
+                                                        <constraint firstAttribute="height" constant="60" id="iJJ-Mu-NEE"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olN-aM-003">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="BWk-ki-7vF"/>
+                                                        <constraint firstAttribute="height" constant="30" id="wsj-ep-ENH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" image="removeButton.png">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteTapped:" destination="YZO-nj-laJ" eventType="touchUpInside" id="tst-SQ-U6i"/>
+                                                    </connections>
+                                                </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ahH-lI-x2R">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="48z-Tl-utL"/>
+                                                        <constraint firstAttribute="width" constant="97" id="69t-Mb-ZvC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="olN-aM-003" firstAttribute="top" secondItem="YZO-nj-laJ" secondAttribute="top" type="default" id="CL2-C4-zS7"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="YZO-nj-laJ" secondAttribute="centerX" type="default" id="DFK-nO-sym"/>
+                                            <constraint firstAttribute="bottom" secondItem="WjU-ZH-zz2" secondAttribute="bottom" constant="20" type="default" id="UK1-TS-UPu"/>
+                                            <constraint firstItem="ahH-lI-x2R" firstAttribute="top" secondItem="YZO-nj-laJ" secondAttribute="top" constant="103" id="ZxV-cC-neH"/>
+                                            <constraint firstItem="ahH-lI-x2R" firstAttribute="leading" secondItem="YZO-nj-laJ" secondAttribute="leading" type="default" id="cbX-rm-H84"/>
+                                            <constraint firstItem="olN-aM-003" firstAttribute="leading" secondItem="YZO-nj-laJ" secondAttribute="leading" type="default" id="kO2-cq-NfJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="deleteButton" destination="olN-aM-003" id="eJu-5H-FUH"/>
+                                            <outlet property="imageView" destination="WjU-ZH-zz2" id="3Ga-Zm-mdf"/>
+                                            <outlet property="titleTextField" destination="ahH-lI-x2R" id="ZOq-B3-2zR"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="top" secondItem="AWk-yn-l1N" secondAttribute="top" type="default" id="8iO-6d-f1M"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" type="default" id="BQQ-oi-dxj"/>
+                            <constraint firstItem="yq5-ya-uDz" firstAttribute="bottom" secondItem="AWk-yn-l1N" secondAttribute="bottom" type="default" id="HSQ-f7-eMd"/>
+                            <constraint firstItem="yq5-ya-uDz" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" type="default" id="Ijx-7F-OIg"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="Lbf-EG-2oq"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="top" secondItem="AWk-yn-l1N" secondAttribute="top" type="default" id="ZYH-tB-NJs"/>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="bottom" secondItem="kG1-u9-qUo" secondAttribute="bottom" type="default" id="cIr-oG-xqT"/>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" type="default" id="dWl-w6-hx3"/>
+                            <constraint firstItem="yq5-ya-uDz" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="gRy-Da-mIx"/>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="zye-ge-a7Y"/>
+                        </constraints>
+                    </view>
                     <navigationItem key="navigationItem" title="Apps" id="dag-TJ-uvv">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Q80-Or-CSO">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Q80-Or-CSO">
                             <connections>
                                 <action selector="editTapped:" destination="1nI-qf-8XH" id="l2W-eM-UFg"/>
                             </connections>
@@ -44,29 +204,31 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="presetsGridView" destination="ukk-KM-RNv" id="Dru-Oq-PJC"/>
-                        <outlet property="view" destination="ukk-KM-RNv" id="e0M-Ce-Pys"/>
+                        <outlet property="editButton" destination="Q80-Or-CSO" id="2Jo-rE-027"/>
+                        <outlet property="filterControl" destination="yq5-ya-uDz" id="lXw-PK-90g"/>
+                        <outlet property="presetsCollectionView" destination="kG1-u9-qUo" id="ksd-kq-aYf"/>
+                        <outlet property="scenesCollectionView" destination="tfP-pW-Mfl" id="8XR-Kd-cwb"/>
+                        <outlet property="view" destination="AWk-yn-l1N" id="hhE-ap-eV8"/>
                         <segue destination="ooT-9x-Q8c" kind="push" identifier="segueToAppView" id="qZC-HR-N4C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Asl-im-aQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-661" y="221"/>
+            <point key="canvasLocation" x="-673" y="215"/>
         </scene>
         <!--Client Download View Controller - Download App-->
         <scene sceneID="eK9-VL-3ef">
             <objects>
                 <viewController id="PGp-Lq-9E8" customClass="THClientDownloadViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fM8-1D-3jL">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-7S-GLF"/>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Open a project in TangoHapps and tap the upload Button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-9u-4u8">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="92" id="6Lv-mx-YXX"/>
+                                    <constraint firstAttribute="height" constant="92" id="hq4-Q2-ss4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -80,14 +242,14 @@
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcY-1u-pdw">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="Hw9-cw-GMn"/>
-                                    <constraint firstAttribute="height" constant="35" id="YC9-zz-0tf"/>
+                                    <constraint firstAttribute="width" constant="35" id="15Q-xj-n7F"/>
+                                    <constraint firstAttribute="height" constant="35" id="GMo-eB-3OZ"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Downloading assets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWU-ka-8A2">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="0qP-Sl-NtU"/>
-                                    <constraint firstAttribute="width" constant="250" id="Snt-Zn-DIl"/>
+                                    <constraint firstAttribute="width" constant="250" id="DPk-Ev-1OT"/>
+                                    <constraint firstAttribute="height" constant="21" id="DdW-42-plV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -96,20 +258,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" type="default" id="2cP-f8-ik4"/>
-                            <constraint firstItem="fcY-1u-pdw" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="142" id="46C-xc-UOJ"/>
-                            <constraint firstAttribute="trailing" secondItem="UkX-9u-4u8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="D78-Ur-EKp"/>
-                            <constraint firstAttribute="trailing" secondItem="N5K-7S-GLF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Fpc-43-uxf"/>
-                            <constraint firstItem="fcY-1u-pdw" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="204" id="INO-LH-YBM"/>
-                            <constraint firstItem="UkX-9u-4u8" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="20" symbolic="YES" type="default" id="QCX-nW-aK1"/>
-                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aFc-sl-fo0"/>
-                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="centerX" secondItem="Kfo-uh-eh0" secondAttribute="centerX" type="default" id="bI9-2O-ZuO"/>
-                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="212" id="cad-5z-s52"/>
-                            <constraint firstAttribute="trailing" secondItem="yWU-ka-8A2" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eVn-eW-3M9"/>
-                            <constraint firstItem="yWU-ka-8A2" firstAttribute="leading" secondItem="N5K-7S-GLF" secondAttribute="leading" type="default" id="gKl-gz-nO9"/>
-                            <constraint firstAttribute="bottom" secondItem="N5K-7S-GLF" secondAttribute="bottom" constant="144" id="ikg-xx-2tL"/>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="168" id="mbx-6b-wA9"/>
-                            <constraint firstAttribute="bottom" secondItem="yWU-ka-8A2" secondAttribute="bottom" constant="167" id="qaZ-ca-IH1"/>
+                            <constraint firstItem="fcY-1u-pdw" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="142" id="3VB-JZ-sU8"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" type="default" id="EaG-dZ-tB9"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="top" secondItem="fcY-1u-pdw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HU2-s1-h7A"/>
+                            <constraint firstItem="N5K-7S-GLF" firstAttribute="leading" secondItem="yWU-ka-8A2" secondAttribute="leading" type="default" id="TUT-O6-rsw"/>
+                            <constraint firstItem="fcY-1u-pdw" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="193" id="VBx-uI-V7B"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="160" id="W0E-vG-3XF"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" type="default" id="aDi-NL-zWw"/>
+                            <constraint firstAttribute="trailing" secondItem="yWU-ka-8A2" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="bh8-0y-Wmb"/>
+                            <constraint firstAttribute="trailing" secondItem="UkX-9u-4u8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dd7-O4-7hk"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dsS-MI-2AR"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="18" id="iBH-Ko-Q73"/>
+                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="201" id="mcs-Jg-KrF"/>
+                            <constraint firstAttribute="trailing" secondItem="N5K-7S-GLF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tfq-Hp-tpD"/>
+                            <constraint firstAttribute="bottom" secondItem="N5K-7S-GLF" secondAttribute="bottom" constant="138" id="vXe-8e-om4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Download App" id="tEk-Xf-QMl"/>
@@ -147,6 +309,9 @@
             <point key="canvasLocation" x="-133" y="632"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="removeButton.png" width="44" height="44"/>
+    </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -169,18 +334,34 @@
                 <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
             </relationships>
         </class>
-        <class className="THClientGridView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientGridView.h"/>
+        <class className="THClientSceneCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneCell.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteTapped:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="THClientSceneSelectionViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneSelectionViewController.h"/>
             <relationships>
                 <relationship kind="action" name="editTapped:"/>
                 <relationship kind="action" name="filterControlChanged:"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="filterControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="gridView" candidateClass="THClientGridView"/>
-                <relationship kind="outlet" name="presetsGridView" candidateClass="THClientGridView"/>
+                <relationship kind="outlet" name="presetsCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="scenesCollectionView" candidateClass="UICollectionView"/>
             </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

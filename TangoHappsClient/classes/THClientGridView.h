@@ -18,7 +18,7 @@
 -(CGPoint) gridPaddingForGridView:(THClientGridView*) view;
 @end
 
-@interface THClientGridView : UIScrollView <TFClientGridItemDelegate, UIGestureRecognizerDelegate>
+@interface THClientGridView : UIScrollView <TFClientGridItemDelegate>
 {
     CGPoint currentPosition;
 }
@@ -28,12 +28,22 @@
 @property (readonly) NSMutableArray *items;
 @property (nonatomic) BOOL editing;
 
+@property (nonatomic) NSInteger columnsCount;
+@property (nonatomic) NSInteger rowsCount;
 
 //adding and removing items
 -(void) addItem:(THClientGridItem*) item animated:(BOOL) animated;
--(void) insertItem:(THClientGridItem*) item atPosition:(NSInteger) idx;
+-(void) insertItem:(THClientGridItem*) item atIndex:(NSInteger)idx animated:(BOOL) animated;
 -(void) removeItem:(THClientGridItem*) item animated:(BOOL) animated;
 -(void) replaceItem:(THClientGridItem*) item withItem:(THClientGridItem*) newItem;
+
+//finding items
+-(THClientGridItem*) itemAtPosition:(CGPoint) position;
+-(NSInteger) indexForPosition:(CGPoint) position;
+-(CGPoint) positionForIndex:(NSInteger) index;
+
+//editing
+-(void) startEditingItem:(THClientGridItem*) item;
 
 -(void) reloadData;
 -(void) scrollToBottomAnimated:(BOOL) animated;

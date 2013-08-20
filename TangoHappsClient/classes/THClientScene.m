@@ -17,16 +17,17 @@
 
 #pragma mark - Class Methods
 
-+(NSMutableArray*)persistentScenes {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *archivesDirectory = [TFFileUtils dataDirectory:kProjectsDirectory];
-    NSArray *sceneFiles = [fm contentsOfDirectoryAtPath:archivesDirectory error:nil];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for(NSString *archivePath in sceneFiles){
-        THClientScene *scene = [[THClientScene alloc] initWithName:[archivePath lastPathComponent]];
-        [array addObject:scene];
-    }
-    return array;
++(NSMutableArray*) persistentScenes {
+    
+    NSString * fileName = [TFFileUtils dataFile:@"scenes" inDirectory:@""];
+    NSArray * array = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    return [NSMutableArray arrayWithArray:array];
+}
+
++(void) persistScenes:(NSMutableArray*) scenes {
+    
+    NSString * fileName = [TFFileUtils dataFile:@"scenes" inDirectory:@""];
+    [NSKeyedArchiver archiveRootObject:scenes toFile:fileName];
 }
 
 +(NSString*)resolveNameConflictFor:(NSString*)conflictingName {
@@ -72,6 +73,17 @@
 -(void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:_name forKey:@"name"];
     [coder encodeObject:_project forKey:@"project"];
+}
+
+-(id)copyWithZone:(NSZone *)zone{
+    THClientProject * projectCopy = [self.project copy];
+    
+    THClientScene * copy = [[THClientScene alloc] initWithName:self.name world: projectCopy];
+    
+    copy.image = [self.image copy];
+    copy.isFakeScene = self.isFakeScene;
+    
+    return copy;
 }
 
 #pragma mark - Properties

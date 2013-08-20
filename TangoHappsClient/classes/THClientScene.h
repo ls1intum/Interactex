@@ -10,17 +10,18 @@
 
 @class THClientProject;
 
-@interface THClientScene : NSObject {
+@interface THClientScene : NSObject <NSCoding, NSCopying> {
 }
 
 @property (nonatomic,copy) NSString *name;
-@property (nonatomic, readonly) UIImage * image;
+@property (nonatomic) UIImage * image;
 @property (nonatomic, strong) THClientProject * project;
 @property (nonatomic) BOOL isFakeScene;
-@property (nonatomic) BOOL isSaved;
+@property (nonatomic, readonly) BOOL isSaved;
 
 +(NSString*) resolveNameConflictFor:(NSString*)name;
 +(NSMutableArray*) persistentScenes;
++(void) persistScenes:(NSMutableArray*) scenes;
 
 +(void) deleteSceneNamed:(NSString*) sceneName;
 +(BOOL) sceneExists:(NSString*) sceneName;

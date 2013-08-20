@@ -15,7 +15,6 @@
 -(void) didSelectGridItem:(THClientGridItem*) item;
 -(void) didDeleteGridItem:(THClientGridItem*) item;
 -(void) didRenameGridItem:(THClientGridItem*) item newName:(NSString*) name;
--(void) didLongPressGridItem:(THClientGridItem*) item;
 
 @end
 
@@ -44,5 +43,6 @@
 @property (nonatomic) BOOL backgroundHidden;
 
 -(IBAction)selectItem:(id)sender;
+-(void) scaleEffect;
 
 @end

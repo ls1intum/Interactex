@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A06CA2217C0F0FB00E195FB /* THClientSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA2117C0F0FB00E195FB /* THClientSceneCell.m */; };
+		9A06CA2317C0F0FB00E195FB /* THClientSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA2117C0F0FB00E195FB /* THClientSceneCell.m */; };
+		9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
+		9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
 		9A06EE87169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
 		9A06EE8A169AD77000B88519 /* yellowLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A06EE88169AD77000B88519 /* yellowLight.png */; };
@@ -1520,6 +1524,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9A06CA2017C0F0FB00E195FB /* THClientSceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneCell.h; sourceTree = "<group>"; };
+		9A06CA2117C0F0FB00E195FB /* THClientSceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneCell.m; sourceTree = "<group>"; };
+		9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneDraggableCell.h; sourceTree = "<group>"; };
+		9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneDraggableCell.m; sourceTree = "<group>"; };
 		9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedPaletteItem.h; sourceTree = "<group>"; };
 		9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLedPaletteItem.m; sourceTree = "<group>"; };
 		9A06EE88169AD77000B88519 /* yellowLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowLight.png; sourceTree = "<group>"; };
@@ -2685,12 +2693,16 @@
 				9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */,
 				9AF5000F167B83140020241C /* THClientAppViewController.h */,
 				9AF50010167B83140020241C /* THClientAppViewController.m */,
+				9A06CA2017C0F0FB00E195FB /* THClientSceneCell.h */,
+				9A06CA2117C0F0FB00E195FB /* THClientSceneCell.m */,
 				9AF50011167B83140020241C /* THClientGridItem.h */,
 				9AF50012167B83140020241C /* THClientGridItem.m */,
 				9AF50013167B83140020241C /* THClientGridView.h */,
 				9AF50014167B83140020241C /* THClientGridView.m */,
 				9AF50015167B83140020241C /* THClientScene.h */,
 				9AF50016167B83140020241C /* THClientScene.m */,
+				9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */,
+				9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -4891,6 +4903,8 @@
 				9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */,
 				9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 				9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
+				9A06CA2317C0F0FB00E195FB /* THClientSceneCell.m in Sources */,
+				9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4969,6 +4983,8 @@
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9A7F673D1756590A00E04BC8 /* TFConstants.m in Sources */,
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
+				9A06CA2217C0F0FB00E195FB /* THClientSceneCell.m in Sources */,
+				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

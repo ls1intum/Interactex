@@ -48,7 +48,6 @@
     BOOL startedSysex;
 }
 
-
 @property (nonatomic, weak) BLEService * bleService;
 @property (nonatomic, weak) id<IFFirmataControllerDelegate> delegate;
 @property (nonatomic, readonly) BOOL startedI2C;

@@ -16,6 +16,8 @@
 #import "THGridView.h"
 #import "THClientPresetsGenerator.h"
 #import "THClientDownloadViewController.h"
+#import "THClientSceneCell.h"
+#import "THClientSceneDraggableCell.h"
 
 @implementation THClientSceneSelectionViewController
 
@@ -29,32 +31,70 @@
 
 #pragma mark - View Lifecycle
 
+-(void) generateRandomScenes{
+    NSMutableArray * array = [NSMutableArray array];
+    
+    for (int i = 0; i < 7; i ++) {
+        
+        NSString * name = [NSString stringWithFormat:@"halloProject %d",i];
+        THClientProject * project = [[THClientProject alloc] initWithName:name];
+        THClientScene * scene = [[THClientScene alloc] initWithName:name world:project];
+        [array addObject:scene];
+    }
+    
+    [THClientScene persistScenes:array];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /*
-    THClientProject * project = [[THClientProject alloc] initWithName:@"halloProject"];
-    THClientRealScene * scene = [[THClientRealScene alloc] initWithName:@"halloScene" world:project];
-    [scene save];*/
+    
+    [self loadGestureRecognizers];
+    
+    //[self generateRandomScenes];
     
     THClientPresetsGenerator * fakeScenesSource = [[THClientPresetsGenerator alloc] init];
     self.presets = fakeScenesSource.fakeScenes;
     self.scenes = [THClientScene persistentScenes];
     
+    [self.scenesCollectionView reloadData];
+    
+    /*
     self.gridView.gridDelegate = self;
     self.gridView.dataSource = self;
     
     self.presetsGridView.gridDelegate = self;
     self.presetsGridView.dataSource = self;
+    */
     
     [self reloadData];
+    
+   // self.presetsGridView.contentSize = CGSizeMake(700, 800);
+}
+
+-(void) loadGestureRecognizers{
+    ///tap
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    tapRecognizer.delegate = self;
+    [self.view addGestureRecognizer:tapRecognizer];
+    
+    //move
+    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moved:)];
+    panRecognizer.delegate = self;
+    [self.view addGestureRecognizer:panRecognizer];
+    
+    //long Press
+    longpressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pressedLong:)];
+    longpressRecognizer.delegate = self;
+    [self.view addGestureRecognizer:longpressRecognizer];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    self.gridView.editing = NO;
-    self.presetsGridView.editing = NO;
+    [self stopEditingScenes];
+        
+    [THClientScene persistScenes:self.scenes];
 }
-
+/*
 #pragma mark - Grid View delegate
 
 -(CGSize) gridItemSizeForGridView:(THGridView*) view{
@@ -67,7 +107,7 @@
 
 -(CGPoint) gridPaddingForGridView:(THGridView*) view{
     return CGPointMake(0,5);
-}
+}*/
 
 /*
 #pragma mark Interface Actions
@@ -80,15 +120,12 @@
 #pragma mark - Private
 
 - (void)reloadData {
-
+/*
     [self.gridView reloadData];
-    [self.presetsGridView reloadData];
+    [self.presetsGridView reloadData];*/
 }
 
 - (void)proceedToScene:(THClientScene*) scene {
-    //[self setEditing:NO];
-    [self.gridView setEditing:NO];
-    [self.presetsGridView setEditing:NO];
     
     [THSimulableWorldController sharedInstance].currentScene = scene;
     [THSimulableWorldController sharedInstance].currentProject = scene.project;
@@ -96,74 +133,196 @@
     [self performSegueWithIdentifier:@"segueToAppView" sender:self];
 }
 
-#pragma mark - Grid View Data Source
 
--(NSUInteger)numberOfItemsInGridView:(THClientGridView *)gridView {
-    
-    if(gridView == self.presetsGridView){
-        
-        NSLog(@"%d",self.presets.count);
-        return self.presets.count;
-        
-    } else if(gridView == self.gridView){
+#pragma mark - Collection DataSource
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(collectionView == self.scenesCollectionView){
         return self.scenes.count;
-    }
-    
-    return 0;
-}
-
--(THClientGridItem *)gridView:(THClientGridView *)gridView viewAtIndex:(NSUInteger)index {
-    
-    THClientGridItem *item = nil;
-    
-    if(gridView == self.presetsGridView){
-        
-        THClientScene * scene = [self.presets objectAtIndex:index];
-        
-        UIImage * image = [UIImage imageNamed:@"fakeSceneImage.png"];
-        item = [[THClientGridItem alloc] initWithName:scene.name image:image];
-        
-    } else if(gridView == self.gridView){
-        
-        THClientScene * scene = [self.scenes objectAtIndex:index];
-        item = [[THClientGridItem alloc] initWithName:scene.name image:scene.image];
-        item.editable = YES;
-        
-    }
-    
-    return item;
-}
-
--(void) gridView:(THClientGridView*)gridView didSelectViewAtIndex:(NSUInteger)index {
-    
-    if(gridView == self.presetsGridView){
-        
-        THClientScene * scene = [self.presets objectAtIndex:index];
-        [self proceedToScene:scene];
-        
-    } else if(gridView == self.gridView){
-        
-        THClientScene * scene = [self.scenes objectAtIndex:index];
-        [scene loadFromArchive];
-        [self proceedToScene:scene];
+    } else {
+        return self.presets.count;
     }
 }
 
--(void) gridView:(THClientGridView *)gridView didDeleteViewAtIndex:(NSUInteger)index {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    THClientSceneCell * cell;
     
-    if(index < self.scenes.count){
+    if(collectionView == self.scenesCollectionView){
+                
+        THClientScene * scene = [self.scenes objectAtIndex:indexPath.row];
+        cell = (THClientSceneCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"sceneCell" forIndexPath:indexPath];
+        cell.title = scene.name;
+        cell.imageView.image = scene.image;
+        cell.editing = NO;
+        cell.titleTextField.hidden = NO;
         
-        THClientScene * scene = [self.scenes objectAtIndex:index];
-        [self.scenes removeObjectAtIndex:index];
+//        cell.titleTextField.hidden = NO;
         
-        [scene deleteArchive];
+    } else {
+        
+        cell = (THClientSceneCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"presetCell" forIndexPath:indexPath];
+    }
+    
+    return cell;
+}
+
+
+
+#pragma mark - Editing
+
+-(void) startEditingScenes{
+    
+    NSMutableArray * currentScenes = self.currentScenesArray;
+    UICollectionView * currentCollection = self.currentCollectionView;
+    
+    for(int i = 0 ; i < currentScenes.count ; i++){
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THClientSceneCell * cell =  (THClientSceneCell*) [currentCollection cellForItemAtIndexPath:indexPath];
+        cell.editing = YES;
+    }
+    
+    self.editingScenes = YES;
+}
+
+-(void) stopEditingScenes{
+    
+    NSMutableArray * currentScenes = self.currentScenesArray;
+    UICollectionView * currentCollection = self.currentCollectionView;
+    
+    for(int i = 0 ; i < currentScenes.count ; i++){
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THClientSceneCell * cell =  (THClientSceneCell*) [currentCollection cellForItemAtIndexPath:indexPath];
+        cell.editing = NO;
+    }
+    
+    self.editingScenes = NO;
+}
+
+#pragma mark - Gestures
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if([touch.view isKindOfClass:[UIControl class]]){
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if(self.editingScenes && currentScene && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
+        
+        return NO;
+    }
+    
+    if((gestureRecognizer == tapRecognizer && otherGestureRecognizer == longpressRecognizer) || (gestureRecognizer == longpressRecognizer && otherGestureRecognizer == tapRecognizer)){
+        return self.editingScenes;
+    }
+    
+    return YES;
+}
+
+-(void) handleStartedMoving:(CGPoint) position{
+    
+    NSIndexPath * indexPath = [self.currentCollectionView indexPathForItemAtPoint:position];
+    
+    if(indexPath){
+        
+        currentSceneCell = (THClientSceneCell*) [self.currentCollectionView cellForItemAtIndexPath:indexPath];
+        currentScene = [self.currentScenesArray objectAtIndex:indexPath.row];
+        
+        if(currentSceneCell.editing){
+            
+            currentDraggableCell = [[THClientSceneDraggableCell alloc] initWithFrame:currentSceneCell.frame];
+            currentDraggableCell.imageView.image = currentSceneCell.imageView.image;
+            currentDraggableCell.imageView.frame = currentSceneCell.imageView.frame;
+            
+            [self.currentScenesArray removeObject:currentScene];
+            NSArray * indexPaths = [NSArray arrayWithObjects:indexPath, nil];
+            [self.currentCollectionView deleteItemsAtIndexPaths:indexPaths];
+            
+            [self.view addSubview:currentDraggableCell];
+        }
     }
 }
 
--(void) gridView:(THClientGridView *)gridView didRenameViewAtIndex:(NSUInteger)index newName:(NSString *)newName {/*
-    THClientProject *project = [scenes objectAtIndex:index];
-    [scene renameTo:newName];*/
+-(void) handleStoppedMoving{
+    
+    if(currentSceneCell){
+        
+        NSIndexPath * indexPath = [self.currentCollectionView indexPathForItemAtPoint:currentDraggableCell.center];
+        
+        if(!indexPath){
+            indexPath = [NSIndexPath indexPathForRow:self.currentScenesArray.count inSection:0];
+        }
+        
+        [self.currentScenesArray insertObject:currentScene atIndex:indexPath.row];
+        [currentDraggableCell removeFromSuperview];
+        
+        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.currentCollectionView insertItemsAtIndexPaths:indexPaths];
+        
+        currentSceneCell = nil;
+        currentScene = nil;
+        currentDraggableCell = nil;
+        
+        [self stopEditingScenes];
+        
+    }
+}
+
+-(void) moved:(UIPanGestureRecognizer*) recognizer{
+    
+    if(self.editingScenes){
+        
+        CGPoint position = [recognizer locationInView:self.currentCollectionView];
+        
+        if(recognizer.state == UIGestureRecognizerStateBegan){
+            
+            [self handleStartedMoving:position];
+            
+        } else if(recognizer.state == UIGestureRecognizerStateChanged){
+                        
+            currentDraggableCell.center = position;
+            
+        } else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded){
+            
+            [self handleStoppedMoving];
+        }
+    }
+}
+
+-(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
+    
+    if(recognizer.state == UIGestureRecognizerStateBegan &&  !self.editingScenes){
+        
+        CGPoint position = [recognizer locationInView:self.currentCollectionView];
+        NSIndexPath * indexPath = [self.currentCollectionView indexPathForItemAtPoint:position];
+        THClientSceneCell * cell = (THClientSceneCell*) [self.currentCollectionView cellForItemAtIndexPath: indexPath];
+        
+        if(cell){
+            [cell scaleEffect];
+            self.editingScenes = YES;
+            cell.editing = YES;
+        }
+    }
+}
+
+-(void) tapped:(UITapGestureRecognizer*) recognizer{
+    if(self.editingScenes){
+        
+        [self stopEditingScenes];
+        //self.currentGridView.editing = NO;
+    } else {
+        
+        CGPoint position = [recognizer locationInView:self.currentCollectionView];
+        NSIndexPath * indexPath = [self.currentCollectionView indexPathForItemAtPoint:position];
+        
+        if(indexPath){
+            THClientScene * scene = [self.currentScenesArray objectAtIndex:indexPath.row];
+            [self proceedToScene:scene];
+        }
+    }
 }
 
 #pragma mark - Segue
@@ -180,11 +339,11 @@
 -(void) updateGridViewsVisibility{
     
     if(self.showingCustomApps){
-        self.gridView.hidden = NO;
-        self.presetsGridView.hidden = YES;
+        self.scenesCollectionView.hidden = NO;
+        //self.presetsGridView.hidden = YES;
     } else {
-        self.gridView.hidden = YES;
-        self.presetsGridView.hidden = NO;
+        self.scenesCollectionView.hidden = YES;
+        //self.presetsGridView.hidden = NO;
     }
 }
 
@@ -194,22 +353,27 @@
 
 - (IBAction)editTapped:(id)sender {
     
-    if(self.showingCustomApps){
-        
-        self.gridView.editing = YES;
-        
+    if(self.editingScenes){
+        [self stopEditingScenes];
+        self.editButton.title = @"Edit";
     } else {
-        
-        self.presetsGridView.editing = YES;
+        [self startEditingScenes];
+        self.editButton.title = @"Done";
     }
 }
-
 
 #pragma mark - Other
 
 -(BOOL) showingCustomApps{
     
     return (self.filterControl.selectedSegmentIndex == 0);
+}
+
+-(UICollectionView*) currentCollectionView{
+    return self.showingCustomApps ? self.scenesCollectionView : self.presetsCollectionView;
+}
+-(NSMutableArray*) currentScenesArray{
+    return self.showingCustomApps ? self.scenes : self.presets;
 }
 
 @end

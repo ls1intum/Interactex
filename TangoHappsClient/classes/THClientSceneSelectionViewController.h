@@ -7,22 +7,39 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THClientGridView.h"
 
 @class THClientPresetsGenerator;
+@class THClientSceneCell;
+@class THClientSceneDraggableCell;
 
-@interface THClientSceneSelectionViewController : UIViewController <THClientGridViewDataSource, THClientGridViewDelegate> {
+@interface THClientSceneSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate> {
     
+    
+    THClientScene * currentScene;
+    THClientSceneCell * currentSceneCell;
+    THClientSceneDraggableCell * currentDraggableCell;
+    
+    UITapGestureRecognizer * tapRecognizer;
+    UIPanGestureRecognizer * panRecognizer;
+    UILongPressGestureRecognizer *longpressRecognizer;
 }
+
+@property (nonatomic) BOOL editingScenes;
+@property (nonatomic) BOOL showingCustomApps;
 
 @property (nonatomic, strong) NSMutableArray * presets;
 @property (nonatomic, strong) NSMutableArray * scenes;
-@property (weak, nonatomic) IBOutlet THClientGridView * gridView;
-@property (weak, nonatomic) IBOutlet THClientGridView * presetsGridView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl * filterControl;
-@property (nonatomic) BOOL showingCustomApps;
 
-- (IBAction)filterControlChanged:(id)sender;
-- (IBAction)editTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (weak, nonatomic) IBOutlet UICollectionView * scenesCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView * presetsCollectionView;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl * filterControl;
+
+@property (nonatomic, readonly) UICollectionView * currentCollectionView;
+@property (nonatomic, readonly) NSMutableArray * currentScenesArray;
+
+- (IBAction) filterControlChanged:(id)sender;
+- (IBAction) editTapped:(id)sender;
 
 @end

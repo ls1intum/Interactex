@@ -26,11 +26,7 @@
         self.textField.layer.borderColor = [UIColor whiteColor].CGColor;
         self.textField.delegate = self;
         
-        // Long Press
-        UILongPressGestureRecognizer *longpressRecognizer =
-        [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pressedLong:)];
-        [self addGestureRecognizer:longpressRecognizer];
-        
+        self.textField.layer.borderColor = [UIColor blackColor].CGColor;
         
         /*
         NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
@@ -122,7 +118,10 @@
             self.textField.layer.borderWidth = 0;
         }
         
+        
+        self.textField.layer.borderWidth = (_editing ? 1.0f : 0.0f);
         self.textField.enabled = _editing;
+        
     }
 }
 
@@ -169,13 +168,6 @@
                                           }];
                          
                      }];
-}
-
--(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
-    if(recognizer.state == UIGestureRecognizerStateBegan &&  !self.editing){
-        [self scaleEffect];
-        [self.delegate didLongPressGridItem:self];
-    }
 }
 
 -(IBAction)selectItem:(id)sender {
