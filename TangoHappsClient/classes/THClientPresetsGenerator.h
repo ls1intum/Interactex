@@ -8,13 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const kDigitalOutputSceneName;
+extern NSString * const kDigitalInputSceneName;
+extern NSString * const kBuzzerSceneName;
+extern NSString * const kAnalogOutputSceneName;
+extern NSString * const kAnalogInputSceneName;
+extern NSString * const kCompassSceneName;
+
 @interface THClientPresetsGenerator : NSObject
 {
 }
 
--(NSMutableArray*) fakeScenes;
 -(NSInteger) numFakeScenes;
 
-@property(nonatomic, readonly) NSMutableArray * fakeScenes;
+@property(nonatomic, readonly) NSMutableArray * scenes;
+
+-(THClientProject*) projectNamed:(NSString*) name;
 
 @end

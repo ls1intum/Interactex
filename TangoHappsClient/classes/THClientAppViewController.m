@@ -89,20 +89,17 @@
     THIPhoneType type = screenHeight < 500;
     CGFloat viewHeight = self.view.bounds.size.height;
     CGFloat navigationBarOffset = screenHeight - viewHeight;
-    
+
     for (THView * object in project.iPhoneObjects) {
-                
+
         if(!scene.isFakeScene){
-                        
-            //NSLog(@"object: %f, iPhone: %f viewSize: %f screenHeight: %f viewHeight: %f",object.position.y,iPhone.position.y, size.height/2, screenHeight,viewHeight);
-            
+
             float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
             float rely = (object.position.y - iPhone.position.y - navigationBarOffset + size.height/2) / kiPhoneFrames[type].size.height;
             
             CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
             
             object.position = translatedPos;
-           //NSLog(@"end pos: %f %f",object.position.x,object.position.y);
         }
         
         [object addToView:self.view];
@@ -160,7 +157,7 @@
 
 -(void) viewDidDisappear:(BOOL)animated{
     
-    [THSimulableWorldController sharedInstance].currentScene.project = nil;
+    //[THSimulableWorldController sharedInstance].currentScene.project = nil;
     [THSimulableWorldController sharedInstance].currentScene = nil;
     [THSimulableWorldController sharedInstance].currentProject = nil;
 }
@@ -212,7 +209,7 @@
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
     for (THBoardPin * pin in project.lilypad.pins) {
-        [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+        [pin.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
 
@@ -227,7 +224,7 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if([keyPath isEqualToString:@"value"]){
         
-        THBoardPin * pin = object;
+        IFPin * pin = object;
         
         if(pin.mode == kPinModeDigitalOutput){
             
@@ -242,15 +239,15 @@
 
 #pragma mark Firmata Interaction
 
--(void) sendDigitalOutputForPin:(THBoardPin*) pin{
+-(void) sendDigitalOutputForPin:(IFPin*) pin{
     [self.firmataController sendDigitalOutputForPort:pin.number value:pin.value];
 }
 
--(void) sendPWMOutputForPin:(THBoardPin*) pin{
+-(void) sendPWMOutputForPin:(IFPin*) pin{
     [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
 }
 
--(void) sendServoOutputForPin:(THBoardPin*) pin{
+-(void) sendServoOutputForPin:(IFPin*) pin{
     [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
 }
 

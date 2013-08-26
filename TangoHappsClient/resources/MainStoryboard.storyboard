@@ -108,7 +108,8 @@
                                     <outlet property="delegate" destination="1nI-qf-8XH" id="zzY-nT-UM1"/>
                                 </connections>
                             </collectionView>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kG1-u9-qUo" userLabel="presets">
+                            <collectionView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kG1-u9-qUo" userLabel="presets">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="388" id="d6K-cf-OK4"/>
                                 </constraints>
@@ -119,40 +120,17 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sceneCell" id="YZO-nj-laJ" customClass="THClientSceneCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="presetCell" id="YZO-nj-laJ" customClass="THClientSceneCell">
                                         <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WjU-ZH-zz2">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="EIl-bb-ahH"/>
-                                                        <constraint firstAttribute="height" constant="60" id="iJJ-Mu-NEE"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olN-aM-003">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="BWk-ki-7vF"/>
-                                                        <constraint firstAttribute="height" constant="30" id="wsj-ep-ENH"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" image="removeButton.png">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="deleteTapped:" destination="YZO-nj-laJ" eventType="touchUpInside" id="tst-SQ-U6i"/>
-                                                    </connections>
-                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="fakeSceneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="WjU-ZH-zz2"/>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ahH-lI-x2R">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="48z-Tl-utL"/>
-                                                        <constraint firstAttribute="width" constant="97" id="69t-Mb-ZvC"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -162,20 +140,22 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="olN-aM-003" firstAttribute="top" secondItem="YZO-nj-laJ" secondAttribute="top" type="default" id="CL2-C4-zS7"/>
-                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="YZO-nj-laJ" secondAttribute="centerX" type="default" id="DFK-nO-sym"/>
-                                            <constraint firstAttribute="bottom" secondItem="WjU-ZH-zz2" secondAttribute="bottom" constant="20" type="default" id="UK1-TS-UPu"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerY" secondItem="YZO-nj-laJ" secondAttribute="centerY" type="default" id="XSZ-8b-eeZ"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="YZO-nj-laJ" secondAttribute="centerX" type="default" id="ZdU-K0-8GI"/>
                                             <constraint firstItem="ahH-lI-x2R" firstAttribute="top" secondItem="YZO-nj-laJ" secondAttribute="top" constant="103" id="ZxV-cC-neH"/>
                                             <constraint firstItem="ahH-lI-x2R" firstAttribute="leading" secondItem="YZO-nj-laJ" secondAttribute="leading" type="default" id="cbX-rm-H84"/>
-                                            <constraint firstItem="olN-aM-003" firstAttribute="leading" secondItem="YZO-nj-laJ" secondAttribute="leading" type="default" id="kO2-cq-NfJ"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="ahH-lI-x2R" secondAttribute="centerX" type="default" id="eUe-tL-n1u"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="deleteButton" destination="olN-aM-003" id="eJu-5H-FUH"/>
                                             <outlet property="imageView" destination="WjU-ZH-zz2" id="3Ga-Zm-mdf"/>
                                             <outlet property="titleTextField" destination="ahH-lI-x2R" id="ZOq-B3-2zR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="1nI-qf-8XH" id="DyJ-oP-57l"/>
+                                    <outlet property="delegate" destination="1nI-qf-8XH" id="fBK-xM-lVc"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -310,60 +290,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fakeSceneImage.png" width="50" height="46"/>
         <image name="removeButton.png" width="44" height="44"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="THClientAppViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientAppViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="modeButtonTapped:"/>
-                <relationship kind="outlet" name="modeButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="THClientDownloadViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientDownloadViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="checkImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="currentActivityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="instructionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
-            </relationships>
-        </class>
-        <class className="THClientSceneCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneCell.h"/>
-            <relationships>
-                <relationship kind="action" name="deleteTapped:"/>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="THClientSceneSelectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editTapped:"/>
-                <relationship kind="action" name="filterControlChanged:"/>
-                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="filterControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="presetsCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="scenesCollectionView" candidateClass="UICollectionView"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

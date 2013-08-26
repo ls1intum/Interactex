@@ -144,7 +144,7 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 
 -(void) didFinishReceivingProject:(THClientProject *)project {
     
-    THClientScene * scene = [[THClientScene alloc] initWithName:project.name];
+    //THClientScene * scene = [[THClientScene alloc] initWithName:project.name];
     
     /*
     if(alreadyExistingSceneBeingInstalled){
@@ -158,8 +158,10 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
         [scenes addObject:scene];
     }*/
     
-    [scene save];
-    scene.project = nil;
+    //[scene save];
+    //scene.project = nil;
+    
+    [project save];
     
     NSTimeInterval currentTime = CACurrentMediaTime();
     if(currentTime - timeWhenInstallationStarted > kMinInstallationDuration){

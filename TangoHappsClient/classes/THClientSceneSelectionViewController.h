@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "THClientSceneCell.h"
 
 @class THClientPresetsGenerator;
 @class THClientSceneCell;
 @class THClientSceneDraggableCell;
 
-@interface THClientSceneSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate> {
-    
+@interface THClientSceneSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, THClientSceneCellDelegate> {
     
     THClientScene * currentScene;
     THClientSceneCell * currentSceneCell;
@@ -21,14 +21,14 @@
     
     UITapGestureRecognizer * tapRecognizer;
     UIPanGestureRecognizer * panRecognizer;
-    UILongPressGestureRecognizer *longpressRecognizer;
+    UILongPressGestureRecognizer * longpressRecognizer;
 }
 
 @property (nonatomic) BOOL editingScenes;
 @property (nonatomic) BOOL showingCustomApps;
 
 @property (nonatomic, strong) NSMutableArray * presets;
-@property (nonatomic, strong) NSMutableArray * scenes;
+@property (nonatomic, weak) NSMutableArray * scenes;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UICollectionView * scenesCollectionView;
@@ -38,6 +38,8 @@
 
 @property (nonatomic, readonly) UICollectionView * currentCollectionView;
 @property (nonatomic, readonly) NSMutableArray * currentScenesArray;
+
+@property (nonatomic, strong) THClientPresetsGenerator * fakeScenesSource;
 
 - (IBAction) filterControlChanged:(id)sender;
 - (IBAction) editTapped:(id)sender;

@@ -478,7 +478,6 @@
 		9AF3E6D816FA20090013DE13 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */; };
 		9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */; };
 		9AF3E6DA16FA20090013DE13 /* fakeSceneImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */; };
-		9AF50001167B82F70020241C /* THAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50000167B82F70020241C /* THAppDelegate.m */; };
 		9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9AF5002B167B83140020241C /* THClientGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50012167B83140020241C /* THClientGridItem.m */; };
@@ -1845,7 +1844,6 @@
 		9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientPresetsGenerator.m; sourceTree = "<group>"; };
 		9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeSceneImage.png; sourceTree = "<group>"; };
 		9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fakeSceneImage@2x.png"; sourceTree = "<group>"; };
-		9AF50000167B82F70020241C /* THAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THAppDelegate.m; sourceTree = "<group>"; };
 		9AF5000D167B83140020241C /* THClientAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientAppDelegate.h; sourceTree = "<group>"; };
 		9AF5000E167B83140020241C /* THClientAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientAppDelegate.m; sourceTree = "<group>"; };
 		9AF5000F167B83140020241C /* THClientAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientAppViewController.h; sourceTree = "<group>"; };
@@ -1958,8 +1956,8 @@
 		9AF50258167B84B40020241C /* THSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSwitch.m; sourceTree = "<group>"; };
 		9AF50259167B84B40020241C /* THSwitchEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSwitchEditableObject.h; sourceTree = "<group>"; };
 		9AF5025A167B84B40020241C /* THSwitchEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSwitchEditableObject.m; sourceTree = "<group>"; };
-		9AF5025C167B84B40020241C /* THClientProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientProject.h; sourceTree = "<group>"; };
-		9AF5025D167B84B40020241C /* THClientProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientProject.m; sourceTree = "<group>"; };
+		9AF5025C167B84B40020241C /* THClientProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THClientProject.h; path = ../../TangoHapps/classes/objects/layers/THClientProject.h; sourceTree = "<group>"; };
+		9AF5025D167B84B40020241C /* THClientProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THClientProject.m; path = ../../TangoHapps/classes/objects/layers/THClientProject.m; sourceTree = "<group>"; };
 		9AF5025E167B84B40020241C /* THCustomEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCustomEditor.h; sourceTree = "<group>"; };
 		9AF5025F167B84B40020241C /* THCustomEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCustomEditor.m; sourceTree = "<group>"; };
 		9AF50260167B84B40020241C /* THCustomProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCustomProject.h; sourceTree = "<group>"; };
@@ -2195,7 +2193,6 @@
 		9AF505DE167B91150020241C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		9AF506D0167B97760020241C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9AF5FFF1167B82F70020241C /* TangoHappsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHappsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF5FFFF167B82F70020241C /* THAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THAppDelegate.h; sourceTree = "<group>"; };
 		9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = connectionMade.mp3; sourceTree = "<group>"; };
 		9AF60BC416A04D9F00178439 /* TFTabbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TFTabbar.xib; sourceTree = "<group>"; };
 		9AF60BC516A04D9F00178439 /* TFTabbarViewSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TFTabbarViewSection.xib; sourceTree = "<group>"; };
@@ -2701,6 +2698,8 @@
 				9AF50014167B83140020241C /* THClientGridView.m */,
 				9AF50015167B83140020241C /* THClientScene.h */,
 				9AF50016167B83140020241C /* THClientScene.m */,
+				9AF5025C167B84B40020241C /* THClientProject.h */,
+				9AF5025D167B84B40020241C /* THClientProject.m */,
 				9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */,
 				9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */,
 			);
@@ -2710,11 +2709,11 @@
 		9AF5001B167B83140020241C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				9AF50020167B83140020241C /* MainStoryboard.storyboard */,
 				9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */,
 				9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */,
 				9AF5001E167B83140020241C /* iphoneFrame.png */,
 				9AF5001F167B83140020241C /* iphoneFrame@2x.png */,
-				9AF50020167B83140020241C /* MainStoryboard.storyboard */,
 				9AF50022167B83140020241C /* removeButton.png */,
 				9AF50023167B83140020241C /* removeButton@2x.png */,
 				9AF50024167B83140020241C /* screenRemote.png */,
@@ -2983,8 +2982,6 @@
 		9AF5025B167B84B40020241C /* layers */ = {
 			isa = PBXGroup;
 			children = (
-				9AF5025C167B84B40020241C /* THClientProject.h */,
-				9AF5025D167B84B40020241C /* THClientProject.m */,
 				9AF50285167B84B40020241C /* THCustomSimulator.h */,
 				9AF50286167B84B40020241C /* THCustomSimulator.m */,
 				9AF5025E167B84B40020241C /* THCustomEditor.h */,
@@ -3438,8 +3435,6 @@
 			children = (
 				9AF5000C167B83140020241C /* classes */,
 				9AF5001B167B83140020241C /* resources */,
-				9AF5FFFF167B82F70020241C /* THAppDelegate.h */,
-				9AF50000167B82F70020241C /* THAppDelegate.m */,
 				9AF5FFF7167B82F70020241C /* Supporting Files */,
 			);
 			path = TangoHappsClient;
@@ -4912,7 +4907,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AF50001167B82F70020241C /* THAppDelegate.m in Sources */,
 				9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */,
 				9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */,
 				9AF5002B167B83140020241C /* THClientGridItem.m in Sources */,

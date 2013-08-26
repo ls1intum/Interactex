@@ -42,14 +42,6 @@
 
 #pragma mark - Initialization
 
--(id)initWithName:(NSString*)newName world:(THClientProject*) project {
-    if(self = [super init]){
-        _name = newName;
-        _project = project;
-    }
-    return self;
-}
-
 -(id)initWithName:(NSString*) aName {
     self = [super init];
     if(self){
@@ -65,20 +57,21 @@
     
     //NSString *newName = [THClientScene resolveNameConflictFor:[decoder decodeObjectForKey:@"name"]];
     _name = [decoder decodeObjectForKey:@"name"];
-    _project = [decoder decodeObjectForKey:@"project"];
+    //_project = [decoder decodeObjectForKey:@"project"];
     
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:_name forKey:@"name"];
-    [coder encodeObject:_project forKey:@"project"];
+    //[coder encodeObject:_project forKey:@"project"];
 }
 
 -(id)copyWithZone:(NSZone *)zone{
-    THClientProject * projectCopy = [self.project copy];
+    //THClientProject * projectCopy = [self.project copy];
     
-    THClientScene * copy = [[THClientScene alloc] initWithName:self.name world: projectCopy];
+    //THClientScene * copy = [[THClientScene alloc] initWithName:self.name world: projectCopy];
+    THClientScene * copy = [[THClientScene alloc] initWithName:self.name];
     
     copy.image = [self.image copy];
     copy.isFakeScene = self.isFakeScene;
@@ -101,7 +94,7 @@
 -(BOOL) isSaved{
     return [THClientScene sceneExists:self.name];
 }
-
+/*
 -(void) save {
     if([self isSaved]){
         [self deleteArchive];
@@ -113,7 +106,7 @@
     if(!success){
         NSLog(@"failed to save object at path: %@",filePath);
     }
-}
+}*/
 
 -(void) saveImage:(UIImage*) image{
     
@@ -126,15 +119,15 @@
 -(void)saveWithImage:(UIImage*)image {
     if(!self.isFakeScene){
         [self saveImage:image];
-        [self save];
+        //[self save];
     }
 }
 
 -(void)loadFromArchive {
     if([TFFileUtils dataFile:self.name existsInDirectory:kProjectsDirectory]){
         
-        NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
-        _project = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+       // NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
+        //_project = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     } else{
         [[THSimulableWorldController sharedInstance] newProject];
     }
@@ -169,7 +162,7 @@
 #pragma mark - Other
 
 -(void) prepareToDie{
-    _project = nil;
+    //_project = nil;
 }
 
 @end

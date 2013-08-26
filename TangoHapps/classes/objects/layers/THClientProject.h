@@ -12,7 +12,7 @@
 @class THConditionObject;
 @class THLilyPad;
 
-@interface THClientProject : NSObject <NSCoding>
+@interface THClientProject : NSObject <NSCoding, NSCopying>
 {
 }
 
@@ -30,6 +30,7 @@
 @property (nonatomic, readonly) NSArray * allObjects;
 
 +(id)emptyProject;
++(THClientProject*) projectSavedWithName:(NSString*) name;
 
 -(id) initWithName:(NSString*) name;
 
@@ -40,5 +41,7 @@
 -(void) startSimulating;
 -(void) willStartSimulating;
 -(void) didStartSimulating;
+
+-(void) save;
 
 @end

@@ -16,8 +16,10 @@
     return [[THClientProject alloc] init];
 }
 
-+(id)emptyProjectNamed:(NSString*) name {
-    return [[THClientProject alloc] initWithName:name];
++(THClientProject*) projectSavedWithName:(NSString*) name {
+    
+    NSString * fileName = [TFFileUtils dataFile:name inDirectory:@"projects"];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
 }
 
 -(void) load{
@@ -91,6 +93,16 @@
     [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
 
+#pragma mark - Copying
+
+- (id)copyWithZone:(NSZone *)zone{
+    THClientProject * copy = [[THClientProject alloc] initWithName:self.name];
+    //TODO implement
+    return copy;
+}
+
+#pragma mark - Methods
+
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event {
     
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
@@ -135,6 +147,16 @@
     }
     for (TFEventActionPair * pair in self.actionPairs) {
         [pair.action prepareToDie];
+    }
+}
+
+-(void) save {
+    
+    NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:filePath];
+    if(!success){
+        NSLog(@"failed to save object at path: %@",filePath);
     }
 }
 

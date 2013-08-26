@@ -57,8 +57,20 @@ const float kShakingEffectRotationTime = 0.10f;
     return self.titleTextField.text;
 }
 
+
+#pragma mark - UI Interaction
+
 - (IBAction)deleteTapped:(id)sender {
     
+    [self.delegate didDeleteClientSceneCell:self];
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    [self.titleTextField resignFirstResponder];
+    
+    return YES;
 }
 
 #pragma mark - Effects

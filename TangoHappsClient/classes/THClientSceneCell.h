@@ -11,7 +11,15 @@
 extern const float kShakingEffectAngleInRadians;
 extern const float kShakingEffectRotationTime;
 
-@interface THClientSceneCell : UICollectionViewCell
+@class THClientSceneCell;
+
+@protocol THClientSceneCellDelegate <NSObject>
+
+-(void) didDeleteClientSceneCell:(THClientSceneCell*)cell;
+
+@end
+
+@interface THClientSceneCell : UICollectionViewCell <UITextFieldDelegate>
 
 @property (nonatomic) BOOL editing;
 
@@ -21,6 +29,7 @@ extern const float kShakingEffectRotationTime;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) id<THClientSceneCellDelegate> delegate;
 
 - (IBAction)deleteTapped:(id)sender;
 

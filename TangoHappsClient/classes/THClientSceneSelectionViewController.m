@@ -18,6 +18,7 @@
 #import "THClientDownloadViewController.h"
 #import "THClientSceneCell.h"
 #import "THClientSceneDraggableCell.h"
+#import "THClientAppDelegate.h"
 
 @implementation THClientSceneSelectionViewController
 
@@ -37,8 +38,7 @@
     for (int i = 0; i < 7; i ++) {
         
         NSString * name = [NSString stringWithFormat:@"halloProject %d",i];
-        THClientProject * project = [[THClientProject alloc] initWithName:name];
-        THClientScene * scene = [[THClientScene alloc] initWithName:name world:project];
+        THClientScene * scene = [[THClientScene alloc] initWithName:name];
         [array addObject:scene];
     }
     
@@ -52,23 +52,15 @@
     
     //[self generateRandomScenes];
     
-    THClientPresetsGenerator * fakeScenesSource = [[THClientPresetsGenerator alloc] init];
-    self.presets = fakeScenesSource.fakeScenes;
-    self.scenes = [THClientScene persistentScenes];
+    self.fakeScenesSource = [[THClientPresetsGenerator alloc] init];
+    self.presets = self.fakeScenesSource.scenes;
+    
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.scenes =  appDelegate.scenes;
     
     [self.scenesCollectionView reloadData];
     
-    /*
-    self.gridView.gridDelegate = self;
-    self.gridView.dataSource = self;
-    
-    self.presetsGridView.gridDelegate = self;
-    self.presetsGridView.dataSource = self;
-    */
-    
     [self reloadData];
-    
-   // self.presetsGridView.contentSize = CGSizeMake(700, 800);
 }
 
 -(void) loadGestureRecognizers{
@@ -92,8 +84,8 @@
     
     [self stopEditingScenes];
         
-    [THClientScene persistScenes:self.scenes];
 }
+
 /*
 #pragma mark - Grid View delegate
 
@@ -126,9 +118,8 @@
 }
 
 - (void)proceedToScene:(THClientScene*) scene {
-    
     [THSimulableWorldController sharedInstance].currentScene = scene;
-    [THSimulableWorldController sharedInstance].currentProject = scene.project;
+    [THSimulableWorldController sharedInstance].currentProject = [self.fakeScenesSource projectNamed:scene.name];
     
     [self performSegueWithIdentifier:@"segueToAppView" sender:self];
 }
@@ -151,6 +142,7 @@
                 
         THClientScene * scene = [self.scenes objectAtIndex:indexPath.row];
         cell = (THClientSceneCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"sceneCell" forIndexPath:indexPath];
+        cell.delegate = self;
         cell.title = scene.name;
         cell.imageView.image = scene.image;
         cell.editing = NO;
@@ -160,7 +152,11 @@
         
     } else {
         
+        THClientScene * preset = [self.presets objectAtIndex:indexPath.row];
+        
         cell = (THClientSceneCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"presetCell" forIndexPath:indexPath];
+        cell.imageView.image = [UIImage imageNamed:@"fakeSceneImage.png"];
+        cell.title = preset.name;
     }
     
     return cell;
@@ -319,7 +315,7 @@
         NSIndexPath * indexPath = [self.currentCollectionView indexPathForItemAtPoint:position];
         
         if(indexPath){
-            THClientScene * scene = [self.currentScenesArray objectAtIndex:indexPath.row];
+            THClientScene * scene = [self.presets objectAtIndex:indexPath.row];
             [self proceedToScene:scene];
         }
     }
@@ -340,10 +336,12 @@
     
     if(self.showingCustomApps){
         self.scenesCollectionView.hidden = NO;
-        //self.presetsGridView.hidden = YES;
+        self.presetsCollectionView.hidden = YES;
+        self.editButton.enabled = YES;
     } else {
         self.scenesCollectionView.hidden = YES;
-        //self.presetsGridView.hidden = NO;
+        self.presetsCollectionView.hidden = NO;
+        self.editButton.enabled = NO;
     }
 }
 
@@ -359,6 +357,19 @@
     } else {
         [self startEditingScenes];
         self.editButton.title = @"Done";
+    }
+}
+
+#pragma mark - GridItem Delegate
+
+-(void) didDeleteClientSceneCell:(THClientSceneCell*)cell {
+    
+    NSIndexPath * indexPath = [self.scenesCollectionView indexPathForCell:cell];
+    if(indexPath){
+        
+        [self.scenes removeObjectAtIndex:indexPath.row];
+        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.scenesCollectionView deleteItemsAtIndexPaths:indexPaths];
     }
 }
 

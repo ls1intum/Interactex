@@ -15,7 +15,7 @@
 
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic) UIImage * image;
-@property (nonatomic, strong) THClientProject * project;
+//@property (nonatomic, strong) THClientProject * project;
 @property (nonatomic) BOOL isFakeScene;
 @property (nonatomic, readonly) BOOL isSaved;
 
@@ -26,11 +26,10 @@
 +(void) deleteSceneNamed:(NSString*) sceneName;
 +(BOOL) sceneExists:(NSString*) sceneName;
 
--(id) initWithName:(NSString*)newName world:(THClientProject*) world;
 -(id) initWithName:(NSString*) aName;
 
 //saving
--(void) save;
+//-(void) save;
 -(void) saveWithImage:(UIImage*)image;
 -(void) saveImage:(UIImage*) image;
 -(void) loadFromArchive;
