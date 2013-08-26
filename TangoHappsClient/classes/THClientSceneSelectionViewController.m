@@ -112,14 +112,11 @@
 #pragma mark - Private
 
 - (void)reloadData {
-/*
-    [self.gridView reloadData];
-    [self.presetsGridView reloadData];*/
+    [self.currentCollectionView reloadData];
 }
 
-- (void)proceedToScene:(THClientScene*) scene {
-    [THSimulableWorldController sharedInstance].currentScene = scene;
-    [THSimulableWorldController sharedInstance].currentProject = [self.fakeScenesSource projectNamed:scene.name];
+- (void)proceedToProject:(THClientProject*) project{
+    [THSimulableWorldController sharedInstance].currentProject = project;
     
     [self performSegueWithIdentifier:@"segueToAppView" sender:self];
 }
@@ -177,6 +174,7 @@
         cell.editing = YES;
     }
     
+    self.editButton.title = @"Done";
     self.editingScenes = YES;
 }
 
@@ -191,6 +189,8 @@
         cell.editing = NO;
     }
     
+    
+    self.editButton.title = @"Edit";
     self.editingScenes = NO;
 }
 
@@ -315,8 +315,20 @@
         NSIndexPath * indexPath = [self.currentCollectionView indexPathForItemAtPoint:position];
         
         if(indexPath){
-            THClientScene * scene = [self.presets objectAtIndex:indexPath.row];
-            [self proceedToScene:scene];
+            THClientScene * scene = [self.currentScenesArray objectAtIndex:indexPath.row];
+            THClientProject * project;
+            
+            if(self.showingCustomApps){
+                
+                project = [THClientProject projectSavedWithName:scene.name];
+                
+            } else {
+                [THSimulableWorldController sharedInstance].currentScene = scene;
+                project = [self.fakeScenesSource projectNamed:scene.name];
+            }
+            
+            [self proceedToProject:project];
+            
         }
     }
 }
@@ -327,6 +339,7 @@
     if([segue.identifier isEqualToString:@"segueToDownloadApp"]){
         THClientDownloadViewController * controller = segue.destinationViewController;
         controller.scenes = (NSArray*) self.scenes;
+        controller.delegate = self;
     }
 }
 
@@ -353,10 +366,8 @@
     
     if(self.editingScenes){
         [self stopEditingScenes];
-        self.editButton.title = @"Edit";
     } else {
         [self startEditingScenes];
-        self.editButton.title = @"Done";
     }
 }
 
@@ -371,6 +382,15 @@
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
         [self.scenesCollectionView deleteItemsAtIndexPaths:indexPaths];
     }
+}
+
+#pragma mark - DownloadDelegate
+
+-(void) didFinishReceivingProject:(THClientProject*) project{
+    
+    THClientScene * scene = [[THClientScene alloc] initWithName:project.name];
+    [self.scenes addObject:scene];
+    [self reloadData];
 }
 
 #pragma mark - Other

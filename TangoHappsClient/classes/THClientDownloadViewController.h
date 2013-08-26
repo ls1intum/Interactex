@@ -12,6 +12,13 @@
 const NSTimeInterval kMinInstallationDuration;
 const float kIconInstallationUpdateFrequency;
 
+
+@protocol THClientDownloadViewControllerDelegate <NSObject>
+
+-(void) didFinishReceivingProject:(THClientProject*) project;
+
+@end
+
 @interface THClientDownloadViewController : UIViewController<THClientConnectionControllerDelegate>{
     
     NSTimer * installationProgressTimer;
@@ -30,4 +37,5 @@ const float kIconInstallationUpdateFrequency;
 @property (weak, nonatomic) NSArray * scenes;
 @property (nonatomic, strong) THClientConnectionController * connectionController;
 
+@property (weak, nonatomic) id<THClientDownloadViewControllerDelegate> delegate;
 @end

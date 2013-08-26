@@ -13,7 +13,7 @@
 @interface THClientScene : NSObject <NSCoding, NSCopying> {
 }
 
-@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString * name;
 @property (nonatomic) UIImage * image;
 //@property (nonatomic, strong) THClientProject * project;
 @property (nonatomic) BOOL isFakeScene;

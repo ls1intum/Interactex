@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "THClientSceneCell.h"
+#import "THClientDownloadViewController.h"
 
 @class THClientPresetsGenerator;
 @class THClientSceneCell;
 @class THClientSceneDraggableCell;
 
-@interface THClientSceneSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, THClientSceneCellDelegate> {
+@interface THClientSceneSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, THClientSceneCellDelegate, THClientDownloadViewControllerDelegate> {
     
     THClientScene * currentScene;
     THClientSceneCell * currentSceneCell;

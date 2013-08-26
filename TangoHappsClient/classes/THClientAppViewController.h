@@ -20,7 +20,7 @@
 -(IBAction) modeButtonTapped:(id)sender;
 
 @property (nonatomic) THTransferAgent  * transferAgent;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *modeButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem * modeButton;
 @property (strong, nonatomic) IFFirmataController  * firmataController;
 
 @end

@@ -36,7 +36,7 @@
             pinValue.type = pin.type;
             pinValue.value = pin.currentValue;
             pinValue.number = pin.number;
-            
+ 
             //dont send if value is reserved for protocol (change protocol in future)
             [pins addObject:pinValue];
             pin.hasChanged = NO;
@@ -140,10 +140,12 @@
         
         [self loadUIObjects];
         [self addPinObservers];
+        [self updateModeButton];
     }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
+    
     UIImage * image = [THUtils screenshot];
     
     [self removePinObservers];
@@ -157,7 +159,6 @@
 
 -(void) viewDidDisappear:(BOOL)animated{
     
-    //[THSimulableWorldController sharedInstance].currentScene.project = nil;
     [THSimulableWorldController sharedInstance].currentScene = nil;
     [THSimulableWorldController sharedInstance].currentProject = nil;
 }
@@ -364,14 +365,13 @@
 
 #pragma mark BleServiceProtocol
 
-
 -(void) bleServiceDidConnect:(BLEService*) service{
-
     service.delegate = self;
     [self updateModeButton];
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{
+    
     service.delegate = nil;
     service.dataDelegate = nil;
     if(self.firmataController.bleService == service){

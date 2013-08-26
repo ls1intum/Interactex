@@ -153,6 +153,7 @@
 -(void) save {
     
     NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
+    NSLog(@"saving %@",filePath);
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:filePath];
     if(!success){
