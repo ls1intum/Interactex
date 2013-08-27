@@ -28,6 +28,7 @@
 
 -(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2;
 -(void) addNode:(THWireNode*) node;
+-(void) addMiddleNode;
 -(void) removeNode:(THWireNode*) node;
 -(void) removeAllNodes;
 -(THWireNode*) nodeAtPosition:(CGPoint) position;

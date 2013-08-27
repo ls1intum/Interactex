@@ -204,7 +204,6 @@
 -(void) addWireTo:(THBoardPinEditable*) boardPin{
     
     THWire * wire = [[THWire alloc] initWithObj1:self obj2:boardPin];
-    NSLog(@"%d %d",boardPin.type,self.type);
     
     if(boardPin.type == kPintypeMinus){
         

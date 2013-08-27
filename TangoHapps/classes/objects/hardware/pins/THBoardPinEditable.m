@@ -55,6 +55,10 @@
 
 #pragma mark - Methods
 
+-(void) setSelected:(BOOL)selected{
+    
+}
+
 -(NSInteger) currentValue{
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;

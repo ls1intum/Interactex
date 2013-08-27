@@ -117,10 +117,14 @@ float const kEditorMaxScale = 2.5f;
     
     TFProject * project = [TFDirector sharedDirector].currentProject;
     
-    TFEditableObject * object = [project objectAtLocation:position];
+    TFEditableObject * object;
     
-    if(!object && self.isLilypadMode){
+    if(self.isLilypadMode){
         object = [self wireNodeAtPosition:position];
+    }
+    
+    if(!object){
+        object = [project objectAtLocation:position];
     }
     
     return object;
@@ -141,6 +145,25 @@ float const kEditorMaxScale = 2.5f;
     
     _currentHighlightedPin.highlighted = NO;
     _currentHighlightedPin = nil;
+}
+
+#pragma mark - Object Selection
+
+-(void) selectObject:(TFEditableObject*) editableObject{
+    [self unselectCurrentObject];
+    editableObject.selected = YES;
+    self.currentObject = editableObject;
+    
+    if([editableObject isKindOfClass:[THWireNode class]]){
+        
+        THWireNode * node = (THWireNode*) editableObject;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:node.wire];
+        
+    } else {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
+        
+    }
 }
 
 #pragma mark - Connection
@@ -267,7 +290,10 @@ float const kEditorMaxScale = 2.5f;
 
 -(void) moveCurrentObject:(CGPoint) d{
     
-    d = ccpMult(d, 1.0f/_zoomableLayer.scale);
+    if(self.currentObject.parent == _zoomableLayer){
+        d = ccpMult(d, 1.0f/_zoomableLayer.scale);
+    }
+    
     [self.currentObject displaceBy:d];
 }
 
@@ -509,7 +535,6 @@ float const kEditorMaxScale = 2.5f;
 -(void) addLilypadObjects{
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     
-    project.lilypad.position = kLilypadDefaultPosition;
     [self addEditableObject:project.lilypad];
 }
 

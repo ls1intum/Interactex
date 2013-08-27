@@ -65,7 +65,6 @@
 -(void) removeTrigger:(TFEditableObject*) trigger;
 -(TFEditableObject*) triggerAtLocation:(CGPoint) location;
 
-
 //actions
 -(void) addAction:(TFEditableObject*) action;
 -(void) removeAction:(TFEditableObject*) action;

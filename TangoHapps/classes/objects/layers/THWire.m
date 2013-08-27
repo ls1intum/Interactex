@@ -10,6 +10,7 @@
 #import "THWireProperties.h"
 
 @implementation THWireNode
+
 @end
 
 @implementation THWire
@@ -26,9 +27,7 @@
         
         _nodes = [NSMutableArray array];
         
-        THWireNode * node = [[THWireNode alloc] init];
-        node.position = ccp((self.p1.x + self.p2.x) / 2.0f, (self.p1.y + self.p2.y) / 2.0f);
-        [self addNode:node];
+        [self addMiddleNode];
     }
     return self;
 }
@@ -47,6 +46,10 @@
         NSInteger blue = [decoder decodeIntegerForKey:@"colorB"];
         self.color = ccc3(red, green, blue);
         self.nodes = [decoder decodeObjectForKey:@"nodes"];
+        
+        for (THWireNode * node in self.nodes) {
+            node.wire = self;
+        }
     }
     return self;
 }
@@ -74,7 +77,13 @@
 
 -(void) startDrawingSelectedLines{
     
-    glColor4ub(kWireDefaultHighlightColor.r,kWireDefaultHighlightColor.g, kWireDefaultHighlightColor.b, 255);
+    float kColorHighlightIncreaseFactor = 1.20f;
+    
+    float r = MIN(255, self.color.r * kColorHighlightIncreaseFactor);
+    float g = MIN(255, self.color.g * kColorHighlightIncreaseFactor);
+    float b = MIN(255, self.color.b * kColorHighlightIncreaseFactor);
+    
+    glColor4ub(r, g, b, 255);
     
     glLineWidth(kLineWidthSelected);
 }
@@ -125,6 +134,7 @@
 }
 
 -(void) draw{
+    
     if(self.selected){
         [self startDrawingSelectedLines];
     } else {
@@ -190,18 +200,38 @@
     }
 }
 
+-(void) addMiddleNode{
+    
+    THWireNode * node = [[THWireNode alloc] init];
+    
+    CGPoint global1 = [self.obj1 convertToWorldSpace:ccp(0,0)];
+    CGPoint global2 = [self.obj2 convertToWorldSpace:ccp(0,0)];
+    
+    CGPoint position = ccp((global1.x + global2.x) / 2.0f, (global1.y + global2.y) / 2.0f);
+    
+    node.position = [self convertToNodeSpace:position];
+    
+    [self addNode:node];
+}
+
 -(void) addNode:(THWireNode*) node{
     [node addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    node.wire = self;
+    [self addChild:node];
     [self.nodes addObject:node];
 }
 
 -(void) removeNode:(THWireNode*) node{
     [node removeObserver:self forKeyPath:@"selected"];
+    node.wire = nil;
     [self.nodes removeObject:node];
 }
 
 -(void) removeAllNodes{
     [self removeNodeObservers];
+    for (THWireNode * node in self.nodes) {
+        node.wire = nil;
+    }
     [self.nodes removeAllObjects];
 }
 

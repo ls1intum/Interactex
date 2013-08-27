@@ -155,11 +155,6 @@
 #pragma mark - Object Selection
 
 -(void) selectObject:(TFEditableObject*) editableObject{
-    [self unselectCurrentObject];
-    editableObject.selected = YES;
-    _currentObject = editableObject;
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
 }
 
 -(TFEditableObject*) objectAtPosition:(CGPoint) position{

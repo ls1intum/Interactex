@@ -187,6 +187,7 @@
 #pragma mark - Lilypad
 
 -(void) addLilypad:(THLilyPadEditable *)lilypad{
+    lilypad.position = kLilypadDefaultPosition;
     _lilypad = lilypad;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLilypadAdded object:_lilypad];

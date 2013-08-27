@@ -72,7 +72,7 @@ typedef enum {
 }
 
 @property(nonatomic, readonly) TFConnectionLine * currentConnection;
-@property(nonatomic, readonly) TFEditableObject * currentObject;
+@property(nonatomic) TFEditableObject * currentObject;
 @property(nonatomic) TFEditorState state;
 @property(nonatomic, weak) id<TFEditorDragDelegate> dragDelegate;
 @property(nonatomic) BOOL removeConnections;

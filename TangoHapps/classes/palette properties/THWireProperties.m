@@ -22,8 +22,8 @@
 }
 
 -(void) updateColor {
-    THWireNode * node = (THWireNode*) self.editableObject;
-    self.colorView.backgroundColor = [THHelper uicolorFromColor3B: node.wire.color];
+    THWire * wire = (THWire*) self.editableObject;
+    self.colorView.backgroundColor = [THHelper uicolorFromColor3B: wire.color];
 }
 
 - (void)viewDidLoad
@@ -57,8 +57,8 @@
 
 -(void)colorPicker:(THColorPicker *)picker didPickColor:(UIColor *)color {
     
-    THWireNode * node = (THWireNode*) self.editableObject;
-    node.wire.color = [THHelper color3BFromUIColor:color];
+    THWire * wire = (THWire*) self.editableObject;
+    wire.color = [THHelper color3BFromUIColor:color];
     
     [self updateColor];
     [colorPickerPopover dismissPopoverAnimated:YES];
@@ -66,6 +66,8 @@
 
 - (IBAction)addNodeTapped:(id)sender {
     
+    THWire * wire = (THWire*) self.editableObject;
+    [wire addMiddleNode];
 }
 
 @end
