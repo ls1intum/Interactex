@@ -26,4 +26,15 @@
     return [UIColor colorWithRed:color4f.r green:color4f.g blue:color4f.b alpha:color4f.a];
 }
 
++(IFPinType) THPinTypeToIFPinType:(THPinType) type{
+    if(type == kPintypeDigital){
+        return IFPinTypeDigital;
+    } else if(type == kPintypeAnalog){
+        return IFPinTypeAnalog;
+    }
+    
+    NSAssert(FALSE, @"wrong parameter to method THPinTypeToIFPinType");
+    return IFPinTypeDigital;
+}
+
 @end

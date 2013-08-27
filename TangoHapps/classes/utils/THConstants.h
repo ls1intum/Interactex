@@ -174,7 +174,7 @@ typedef enum{
     kHardwareTypeVibeBoard
 }THHardwareType;
 
-#define kNumPinTypes 5
+#define kNumPinTypes 4
 
 typedef enum{
     kPintypeDigital,

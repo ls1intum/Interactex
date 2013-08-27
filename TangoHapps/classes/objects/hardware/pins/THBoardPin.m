@@ -24,7 +24,13 @@
     
     self = [super init];
     if(self){
-        self.pin.number = pinNumber;
+        
+        if(type == kPintypeAnalog || type == kPintypeDigital){
+            IFPinType ifType = [THHelper THPinTypeToIFPinType:type];
+            
+            self.pin = [[IFPin alloc] initWithNumber:pinNumber type:ifType mode:IFPinModeOutput];
+        }
+        
         self.type = type;
         //self.pin.mode = kPinModeUndefined;
         
@@ -45,23 +51,30 @@
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
-    
-    _attachedElementPins = [decoder decodeObjectForKey:@"attachedPins"];
-    self.pin.number = [decoder decodeIntForKey:@"number"];
-    _type = [decoder decodeIntForKey:@"pinType"];
-    self.pin.mode = [decoder decodeIntForKey:@"mode"];
-    _isPWM = [decoder decodeBoolForKey:@"isPWM"];
-
+    if(self){
+        _attachedElementPins = [decoder decodeObjectForKey:@"attachedPins"];
+        self.isPWM = [decoder decodeBoolForKey:@"isPWM"];
+        self.pin = [decoder decodeObjectForKey:@"pin"];
+        
+        /*
+         self.pin.number = [decoder decodeIntForKey:@"number"];
+         _type = [decoder decodeIntForKey:@"pinType"];
+         self.pin.mode = [decoder decodeIntForKey:@"mode"];*/
+    }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
 
     [coder encodeObject:self.attachedElementPins forKey:@"attachedPins"];
+    [coder encodeBool:self.isPWM forKey:@"isPWM"];
+    [coder encodeObject:self.pin forKey:@"pin"];
+    
+    /*
     [coder encodeInt:self.pin.number forKey:@"number"];
     [coder encodeInt:self.type forKey:@"pinType"];
-    [coder encodeInt:self.pin.mode forKey:@"mode"];
-    [coder encodeBool:self.isPWM forKey:@"isPWM"];
+    [coder encodeInt:self.pin.mode forKey:@"mode"];*/
+    
 }
 
 -(id)copyWithZone:(NSZone *)zone {

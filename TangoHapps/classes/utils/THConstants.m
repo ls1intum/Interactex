@@ -55,7 +55,7 @@ NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";
 
-NSString* const kPinTexts[kNumPinTypes] = {@"D", @"A", @"PWM", @"-", @"+"};
+NSString* const kPinTexts[kNumPinTypes] = {@"D", @"A", @"-", @"+"};
 NSString * const kElementPinTexts[kNumElementPinTypes] = {@"D", @"A", @"+", @"-", @"SCL", @"SDA"};
 NSString* const kPinModeTexts[kNumPinModes] = {@"D In", @"D Out",@"A In",@"PWM", @"Buzzer", @"Compass", @"Undefined"};
 

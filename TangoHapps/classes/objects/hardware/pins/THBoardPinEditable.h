@@ -12,6 +12,7 @@
 @class THBoardPin;
 
 @interface THBoardPinEditable : THPinEditable {
+    CCLabelTTF * _label;
 }
 
 -(id) initWithPin:(THBoardPin*) pin;

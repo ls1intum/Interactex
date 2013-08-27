@@ -9,6 +9,7 @@
 #import "THBoardPinEditable.h"
 #import "THBoardPin.h"
 #import "THElementPinEditable.h"
+#import "THCustomEditor.h"
 
 @implementation THBoardPinEditable
 
@@ -55,8 +56,30 @@
 
 #pragma mark - Methods
 
--(void) setSelected:(BOOL)selected{
+-(void) setHighlighted:(BOOL)selected{
+    if(selected){
+        THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+        
+        
+        NSString * text = kPinTexts[self.type];
+        
+        if(self.type == kPintypeAnalog || self.type == kPintypeDigital){
+
+            text = [text stringByAppendingFormat:@" %d",self.number];
+        }
+        
+        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) alignment:NSTextAlignmentCenter fontName:@"Arial Rounded MT Bold" fontSize:20];
+        
+        CGPoint position = [self convertToWorldSpace:ccp(0,0)];
+        _label.position = ccpAdd(position,ccp(0,50));
+        
+        [editor addChild:_label];
+    } else {
+        [_label removeFromParentAndCleanup:YES];
+        _label = nil;
+    }
     
+    [super setHighlighted:selected];
 }
 
 -(NSInteger) currentValue{
@@ -116,7 +139,6 @@
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
     pin.number = pinNumber;
 }
-
 
 -(BOOL) supportsSCL{
     THBoardPin * pin = (THBoardPin*) self.simulableObject;

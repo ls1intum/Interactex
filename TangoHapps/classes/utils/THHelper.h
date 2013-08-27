@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "IFFirmataConstants.h"
+
 @interface THHelper : NSObject
 
 
 +(ccColor3B) color3BFromUIColor:(UIColor*) color;
 +(UIColor*) uicolorFromColor3B:(ccColor3B) color;
++(IFPinType) THPinTypeToIFPinType:(THPinType) type;
 
 @end
