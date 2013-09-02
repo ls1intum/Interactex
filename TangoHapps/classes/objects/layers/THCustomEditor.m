@@ -346,7 +346,7 @@ float const kEditorMaxScale = 2.5f;
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     THHardwareComponentEditableObject * clotheObject = [project clotheObjectAtLocation:location];
     if(clotheObject){
-        if(clotheObject.pinned){
+        if(clotheObject.attachedToClothe){
             [self checkUnPinClotheObject:clotheObject];
         } else {
             [self checkPinClotheObject:clotheObject];

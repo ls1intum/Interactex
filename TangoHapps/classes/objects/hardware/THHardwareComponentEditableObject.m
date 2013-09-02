@@ -92,8 +92,7 @@
     [self loadObject];
     [self addPinChilds];
     [self loadSewedSprite];
-    
-    self.pinned = [decoder decodeBoolForKey:@"pinned"];
+    _attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
 
     return self;
 }
@@ -104,7 +103,7 @@
     
     [coder encodeObject:_pins forKey:@"pins"];
     [coder encodeInteger:_type forKey:@"type"];
-    [coder encodeBool:_pinned forKey:@"pinned"];
+    [coder encodeObject:self.attachedToClothe forKey:@"attachedToClothe"];
 }
 
 -(id)copyWithZone:(NSZone *)zone
@@ -137,12 +136,18 @@
 
 #pragma mark - Methods
 
--(void) setPinned:(BOOL)pinned{
-    if(_pinned != pinned){
-        _sewedSprite.visible = pinned;
-        _pinned = pinned;
+-(void) setAttachedToClothe:(THClothe *)attachedToClothe{
+    if(_attachedToClothe != attachedToClothe){
+        if(attachedToClothe){
+            
+            _sewedSprite.visible = YES;
+        } else {
+            _sewedSprite.visible = NO;
+        }
+        _attachedToClothe = attachedToClothe;
     }
 }
+
 -(void) setIsInputObject:(BOOL)isInputObject{
     
     THHardwareComponent * object = (THHardwareComponent*) self.simulableObject;
@@ -233,8 +238,6 @@
 }
 
 -(void) prepareToDie{
-    
-    self.attachedToClothe = nil;
     
     for (THElementPinEditable * pin in _pins) {
         [pin prepareToDie];

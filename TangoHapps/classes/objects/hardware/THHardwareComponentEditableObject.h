@@ -18,11 +18,10 @@
 -(void) updateToPinValue;
 
 @property (nonatomic) THHardwareType type;
-@property (nonatomic) BOOL pinned;
 @property (nonatomic, readonly) NSMutableArray * pins;
 @property (nonatomic) BOOL isInputObject;
 @property (nonatomic, readonly) NSArray * hardwareProblems;
-@property (nonatomic) THClothe * attachedToClothe;
+@property (nonatomic, weak) THClothe * attachedToClothe;
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
 -(void) addPinChilds;

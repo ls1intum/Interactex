@@ -183,16 +183,15 @@
 //pin
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe{
     
-    if(!clotheObject.pinned){
+    if(!clotheObject.attachedToClothe){
         [clothe attachClotheObject:clotheObject];
-        clotheObject.pinned = YES;
     }
 }
 
 -(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
-    if(clotheObject.pinned){
+    if(clotheObject.attachedToClothe){
         [clotheObject.attachedToClothe deattachClotheObject:clotheObject];
-        clotheObject.pinned = NO;
+
     }
 }
 

@@ -216,7 +216,6 @@
            (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
             
             [self addI2CCOmponent:object.hardware.i2cComponent];
-            
         }
     }
 }
