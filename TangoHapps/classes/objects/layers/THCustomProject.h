@@ -16,6 +16,9 @@
 @class THiPhoneEditableObject;
 @class THClientProject;
 @class THAssetCollection;
+@class THWire;
+@class THElementPinEditable;
+@class THBoardPinEditable;
 
 @interface THCustomProject : TFProject
 {
@@ -74,6 +77,12 @@
 -(void) addLilypad:(THLilyPadEditable *)lilypad;
 -(void) removeLilypad;
 
+//wires
+-(void) addWire:(THWire*) wire;
+-(void) removeWire:(THWire*) wire;
+-(void) addWireFrom:(THElementPinEditable*) elementPin to:(THBoardPinEditable*) boardPin;
+-(void) removeAllWiresTo:(id) object;
+
 //non editable project
 -(THClientProject*) nonEditableProject;
 
@@ -86,6 +95,8 @@
 @property (nonatomic,readonly) NSMutableArray * values;
 @property (nonatomic,readonly) NSMutableArray * triggers;
 @property (nonatomic,readonly) NSMutableArray * actions;
+
+@property (nonatomic, readonly) NSMutableArray * wires;
 
 @property (nonatomic,readonly) THAssetCollection * assetCollection;
 

@@ -27,7 +27,6 @@
     self = [super init];
     if(self){
         [self load];
-        _wires = [NSMutableArray array];
     }
     return self;
 }
@@ -40,7 +39,6 @@
     self = [super initWithCoder:decoder];
     
     _attachedToPin = [decoder decodeObjectForKey:@"attachedToPin"];
-    _wires = [decoder decodeObjectForKey:@"wires"];
     
     [self load];
     
@@ -51,7 +49,6 @@
 {
     [super encodeWithCoder:coder];
     [coder encodeObject:_attachedToPin forKey:@"attachedToPin"];
-    [coder encodeObject:_wires forKey:@"wires"];
 }
 
 #pragma mark - Connectable
@@ -165,7 +162,6 @@
     
     _attachedToPin = pinEditable;
     //[self addConnectionTo:_attachedToPin animated:animated];
-    [self addWireTo:pinEditable];
     
     THElementPin * pin = (THElementPin*) self.simulableObject;
     [pin attachToPin:(THBoardPin*) pinEditable.simulableObject];
@@ -173,10 +169,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPinAttached object:self];
 }
 
--(void) deattach{
+-(void) dettachFromPin{
     
     //[self removeAllConnectionsTo:_attachedToPin];
-    [self removeAllWiresTo:_attachedToPin];
+//    [self removeAllWiresTo:_attachedToPin];
     
     _attachedToPin = nil;
     
@@ -189,49 +185,6 @@
 -(NSString*) shortDescription{
     THElementPin * pin = (THElementPin*) self.simulableObject;
     return pin.shortDescription;
-}
-
-#pragma mark - Wires
-
--(void) addWire:(THWire*) wire{
-    [self.wires addObject:wire];
-}
-
--(void) removeWire:(THWire*) wire{
-    [self.wires removeObject:wire];
-}
-
--(void) addWireTo:(THBoardPinEditable*) boardPin{
-    
-    THWire * wire = [[THWire alloc] initWithObj1:self obj2:boardPin];
-    
-    if(boardPin.type == kPintypeMinus){
-        
-        wire.color = kMinusPinColor;
-        
-    } else if(boardPin.type == kPintypePlus){
-        
-        wire.color = kPlusPinColor;
-        
-    } else {
-        
-        wire.color = kWireDefaultColor;
-    }
-    
-    [self addWire:wire];
-}
-
--(void) removeAllWiresTo:(id) object{
-    NSMutableArray * toRemove = [NSMutableArray array];
-    for (THWire * wire in self.wires) {
-        if(wire.obj2 == object){
-            [toRemove addObject:wire];
-        }
-    }
-    
-    for (id object in toRemove) {
-        [self.wires removeObject:object];
-    }
 }
 
 #pragma mark - Other

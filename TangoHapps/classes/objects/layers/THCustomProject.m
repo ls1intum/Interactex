@@ -34,6 +34,10 @@
 #import "THAssetCollection.h"
 #import "TFEventActionPair.h"
 
+#import "THBoardPinEditable.h"
+#import "THElementPinEditable.h"
+#import "THWire.h"
+
 @implementation THCustomProject
 
 
@@ -56,6 +60,8 @@
     _actions = [NSMutableArray array];
     _values = [NSMutableArray array];
     _triggers = [NSMutableArray array];
+    
+    _wires = [NSMutableArray array];
     
     _assetCollection = [[THAssetCollection alloc] initWithLocalFiles];
 }
@@ -108,6 +114,7 @@
         NSArray * actions = [decoder decodeObjectForKey:@"actions"];
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
+        NSArray * wires = [decoder decodeObjectForKey:@"wires"];
         
         if(iPhone != nil)
             [self addiPhone:iPhone];
@@ -141,6 +148,10 @@
             [self addAction:action];
         }
         
+        for(THWire * wire in wires){
+            [self addWire:wire];
+        }
+        
         if(lilypad != nil){
             [self addLilypad:lilypad];
         }
@@ -161,6 +172,7 @@
     [coder encodeObject:self.values forKey:@"values"];
     [coder encodeObject:self.triggers forKey:@"triggers"];
     [coder encodeObject:self.actions forKey:@"actions"];
+    [coder encodeObject:self.wires forKey:@"wires"];
     
     if(self.lilypad != nil)
         [coder encodeObject:_lilypad forKey:@"lilypad"];
@@ -393,6 +405,52 @@
         }
     }
     return nil;
+}
+
+#pragma mark - Wires
+
+-(void) addWire:(THWire*) wire{
+    [self.wires addObject:wire];
+    [self notifyObjectAdded:wire];
+}
+
+-(void) removeWire:(THWire*) wire{
+    [self.wires removeObject:wire];
+    
+    [self notifyObjectRemoved:wire];
+}
+
+-(void) addWireFrom:(THElementPinEditable*) elementPin to:(THBoardPinEditable*) boardPin{
+    
+    THWire * wire = [[THWire alloc] initWithObj1:elementPin obj2:boardPin];
+    
+    if(boardPin.type == kPintypeMinus){
+        
+        wire.color = kMinusPinColor;
+        
+    } else if(boardPin.type == kPintypePlus){
+        
+        wire.color = kPlusPinColor;
+        
+    } else {
+        
+        wire.color = kWireDefaultColor;
+    }
+    
+    [self addWire:wire];
+}
+
+-(void) removeAllWiresTo:(id) object{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (THWire * wire in self.wires) {
+        if(wire.obj2 == object){
+            [toRemove addObject:wire];
+        }
+    }
+    
+    for (id object in toRemove) {
+        [self.wires removeObject:object];
+    }
 }
 
 #pragma mark - All Objects
@@ -646,7 +704,13 @@ enum zPositions{
     [super prepareToDie];
     
     [self.iPhone prepareToDie];
+    
+    for (THWire * wire in self.wires) {
+        [wire prepareToDie];
+    }
 
+    [self.lilypad prepareToDie];
+    
     _iPhone = nil;
 }
 

@@ -17,6 +17,7 @@
 #import "THLilypadEditable.h"
 #import "THBoardPinEditable.h"
 #import "THWire.h"
+#import "THCustomEditor.h"
 
 @implementation THHardwareComponentEditableObject
 
@@ -153,13 +154,6 @@
     return object.isInputObject;
 }
 
--(void) drawPinWires{
-    
-    for (THElementPinEditable * pin in self.pins) {
-        [TFHelper drawWires:pin.wires];
-    }
-}
-
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position{
     
     for (THElementPinEditable * pin in _pins) {
@@ -223,12 +217,14 @@
     if(plusPin && !plusPin.attachedToPin){
         [lilypad.plusPin attachPin:plusPin];
         [plusPin attachToPin:lilypad.plusPin animated:NO];
+        [project addWireFrom:plusPin to:lilypad.plusPin];
     }
     
     THElementPinEditable * minusPin = [self minusPin];
     if(minusPin && !minusPin.attachedToPin){
         [lilypad.minusPin attachPin:minusPin];
         [minusPin attachToPin:lilypad.minusPin animated:NO];
+        [project addWireFrom:minusPin to:lilypad.minusPin];
     }
 }
 

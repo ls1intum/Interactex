@@ -35,17 +35,9 @@ float const kEditorMaxScale = 2.5f;
     if(self){
         _zoomableLayer = [CCLayer node];
         [self addChild:_zoomableLayer z:-1];
+        
     }
     return self;
-}
-
--(void) drawWires{
-    
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    
-    for (THHardwareComponentEditableObject * lilypadObject in project.hardwareComponents) {
-        [lilypadObject drawPinWires];
-    }
 }
 
 -(void) drawObjectsConnections {
@@ -63,7 +55,7 @@ float const kEditorMaxScale = 2.5f;
     
     if(self.isLilypadMode){
         
-        [self drawWires];
+        //[self drawWires];
         
     } else {
         
@@ -87,25 +79,12 @@ float const kEditorMaxScale = 2.5f;
     [object removeFromParentAndCleanup:YES];
 }
 
--(THWireNode*) wireNodeAtPosition:(CGPoint) position fromComponent:(THHardwareComponentEditableObject*) object{
-    
-    for (THElementPinEditable * pin in object.pins) {
-        
-        for (THWire * wire in pin.wires) {
-            THWireNode * node = [wire nodeAtPosition:position];
-            if(node) return node;
-        }
-    }
-    
-    return nil;
-}
-
 -(THWireNode*) wireNodeAtPosition:(CGPoint) position{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (THHardwareComponentEditableObject * hardwareComponent in project.hardwareComponents) {
-        THWireNode * node = [self wireNodeAtPosition:position fromComponent:hardwareComponent];
-        if(node) {
+    for (THWire * wire in project.wires) {
+        THWireNode * node = [wire nodeAtPosition:position];
+        if(node){
             return node;
         }
     }
@@ -188,17 +167,18 @@ float const kEditorMaxScale = 2.5f;
 
 -(void) connectElementPinToLilypad:(THElementPinEditable*) objectPin at:(CGPoint) position{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     THLilyPadEditable * lilypad = project.lilypad;
     THBoardPinEditable * lilypadPin = [lilypad pinAtPosition:position];
     
     if([objectPin acceptsConnectionsTo:lilypadPin]){
         [lilypadPin attachPin:objectPin];
         [objectPin attachToPin:lilypadPin animated:YES];
+        [project addWireFrom:objectPin to:lilypadPin];
     }
 }
 
--(void)moveCurrentConnection:(CGPoint)position {
+-(void) moveCurrentConnection:(CGPoint)position {
     
     self.currentConnection.p2 = position;
     if(self.isLilypadMode){
@@ -298,9 +278,8 @@ float const kEditorMaxScale = 2.5f;
 }
 
 -(void) moveLayer:(CGPoint) d{
-    //if(_zoomableLayer.scale > 1){
-        _zoomableLayer.position = ccpAdd(_zoomableLayer.position, d);
-    //}
+    _zoomableLayer.position = ccpAdd(_zoomableLayer.position, d);
+    //self.position = ccpAdd(self.position, d);
 }
 
 -(void)scale:(UIPinchGestureRecognizer*)sender{
@@ -374,6 +353,7 @@ float const kEditorMaxScale = 2.5f;
         }
     } else {
         _zoomableLayer.scale = 1.0f;
+        //self.position = ccp(0,0);
         _zoomableLayer.position = ccp(0,0);
     }
     
@@ -564,6 +544,24 @@ float const kEditorMaxScale = 2.5f;
     [self showiPhone];
 }
 
+-(void) hideAllLilypadWires{
+    
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    
+    for (THWire * wire in project.wires) {
+        wire.visible = NO;
+    }
+}
+
+-(void) showAllLilypadWires{
+    
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    
+    for (THWire * wire in project.wires) {
+        wire.visible = YES;
+    }
+}
+
 -(void) startLilypadMode{
     
     self.isLilypadMode = YES;
@@ -572,6 +570,7 @@ float const kEditorMaxScale = 2.5f;
     
     [self hideNonLilypadObjects];
     [self addLilypadObjects];
+    [self showAllLilypadWires];
 }
 
 -(void) stopLilypadMode{
@@ -580,14 +579,18 @@ float const kEditorMaxScale = 2.5f;
     
     [self removeLilypadObjects];
     [self showNonLilypadObjects];
-    
     [self unselectCurrentObject];
+    [self hideAllLilypadWires];
 }
 
 -(void) removeObjects{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     [project.iPhone removeFromLayer:self];
+    
+    for (THWire * object in project.wires) {
+        [object removeFromLayer:self];
+    }
     
     for (TFEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
@@ -598,6 +601,14 @@ float const kEditorMaxScale = 2.5f;
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
+    }
+}
+
+-(void) addWires{
+    
+    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    for (THWire * wire in project.wires) {
+        [wire addToLayer:self];
     }
 }
 
@@ -612,6 +623,7 @@ float const kEditorMaxScale = 2.5f;
 -(void) willAppear{
     [super willAppear];
     [self addiPhone];
+    [self addWires];
     [self addObjects];
 }
 

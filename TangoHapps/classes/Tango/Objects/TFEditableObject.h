@@ -85,7 +85,7 @@
 -(void) handleAccelerated:(UIAcceleration*) acceleration;
 -(void) handleRotation:(float) degree;
 -(void) handleTap;
--(bool) testPoint:(CGPoint)point;
+-(BOOL) testPoint:(CGPoint)point;
 -(void) handleTouchBegan;
 -(void) handleTouchEnded;
 

@@ -38,4 +38,16 @@
     }
 }
 
++(IFPinType) THPinTypeToIFPinType:(THPinType) type{
+    if(type == kPintypeDigital){
+        return IFPinTypeDigital;
+    } else if(type == kPintypeAnalog){
+        return IFPinTypeAnalog;
+    }
+    
+    NSAssert(FALSE, @"wrong parameter to method THPinTypeToIFPinType");
+    return IFPinTypeDigital;
+}
+
+
 @end

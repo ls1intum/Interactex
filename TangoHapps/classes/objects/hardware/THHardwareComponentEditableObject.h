@@ -27,7 +27,6 @@
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
 -(void) addPinChilds;
 -(void) loadPins;
--(void) drawPinWires;
 -(BOOL) isInputObject;
 
 @end

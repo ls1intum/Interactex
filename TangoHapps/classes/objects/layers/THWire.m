@@ -8,8 +8,20 @@
 
 #import "THWire.h"
 #import "THWireProperties.h"
+#import "THCustomEditor.h"
 
 @implementation THWireNode
+
+-(void) draw{
+    
+    glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
+    ccDrawCircle(ccp(0,0), kWireNodeRadius, 0, 30, NO);
+}
+
+-(BOOL) testPoint:(CGPoint)point{
+    CGPoint global = [self convertToWorldSpace:ccp(0,0)];
+    return ccpDistance(global, point) < kWireNodeRadius;
+}
 
 @end
 
@@ -21,6 +33,8 @@
 -(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2 {
     self = [super init];
     if (self) {
+        self.zoomable = YES;
+        self.position = ccp(0,0);
         self.color = kConnectionLineDefaultColor;
         self.obj1 = obj1;
         self.obj2 = obj2;
@@ -38,6 +52,8 @@
     self = [super init];
     
     if(self){
+        self.zoomable = YES;
+        
         self.obj1 = [decoder decodeObjectForKey:@"obj1"];
         self.obj2 = [decoder decodeObjectForKey:@"obj2"];
         self.p2 = [decoder decodeCGPointForKey:@"p2"];
@@ -45,10 +61,12 @@
         NSInteger green = [decoder decodeIntegerForKey:@"colorG"];
         NSInteger blue = [decoder decodeIntegerForKey:@"colorB"];
         self.color = ccc3(red, green, blue);
-        self.nodes = [decoder decodeObjectForKey:@"nodes"];
         
-        for (THWireNode * node in self.nodes) {
-            node.wire = self;
+        _nodes = [NSMutableArray array];
+        NSArray * nodes = [decoder decodeObjectForKey:@"nodes"];
+        
+        for (THWireNode * node in nodes) {
+            [self addNode:node];
         }
     }
     return self;
@@ -134,35 +152,49 @@
 }
 
 -(void) draw{
-    
-    if(self.selected){
-        [self startDrawingSelectedLines];
-    } else {
-        [self startDrawingNormalLines];
-    }
-    
-    CGPoint p1 = self.p1;
-    CGPoint p2 = self.p2;
-    
-    [self drawLineSegments];
-    [self drawNodes];
-    
-    ccDrawCircle(p1, 3, 0, 5, NO);
-    ccDrawCircle(p2, 3, 0, 5, NO);
+//    if(self.visible){
+        if(self.selected){
+            [self startDrawingSelectedLines];
+        } else {
+            [self startDrawingNormalLines];
+        }
+        
+        
+        [self drawLineSegments];
+        //[self drawNodes];
+        
+        ccDrawCircle(self.p1, 3, 0, 5, NO);
+        ccDrawCircle(self.p2, 3, 0, 5, NO);
+ //   }
 }
 
 #pragma mark - Properties
+/*
+-(void) setShowing:(BOOL)showing{
+    for (THWireNode * node in self.nodes) {
+        node.visible = showing;
+    }
+    _showing = showing;
+}*/
 
 -(CGPoint)p1{
     if(self.obj1 == nil)
         return _p1;
-    return self.obj1.center;
+    
+    //THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    CGPoint pos = [self.obj1 convertToWorldSpace:ccp(0,0)];
+    return [self convertToNodeSpace:pos];
 }
 
 -(CGPoint)p2{
     if(self.obj2 == nil)
         return _p2;
-    return self.obj2.center;
+    
+    //return self.obj2.position;
+    
+    //THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    CGPoint pos = [self.obj2 convertToWorldSpace:ccp(0,0)];
+    return [self convertToNodeSpace:pos];
 }
 
 -(void) setP1:(CGPoint) pos{
@@ -196,7 +228,6 @@
         _nodes = nodes;
         
         [self addNodeObservers];
-        
     }
 }
 
@@ -206,10 +237,11 @@
     
     CGPoint global1 = [self.obj1 convertToWorldSpace:ccp(0,0)];
     CGPoint global2 = [self.obj2 convertToWorldSpace:ccp(0,0)];
-    
     CGPoint position = ccp((global1.x + global2.x) / 2.0f, (global1.y + global2.y) / 2.0f);
     
-    node.position = [self convertToNodeSpace:position];
+    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    
+    node.position = [editor convertToNodeSpace:position];
     
     [self addNode:node];
 }
@@ -237,11 +269,24 @@
 
 -(THWireNode*) nodeAtPosition:(CGPoint) position{
     for (THWireNode * node in self.nodes) {
-        if(ccpDistance(node.position, position) < kWireNodeRadius){
+        if([node testPoint:position]){
             return node;
         }
     }
     return nil;
+}
+
+#pragma mark - Layer
+
+-(void) addToLayer:(TFLayer *)layer{
+    [layer addEditableObject:self];
+    
+    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    self.visible = editor.isLilypadMode;
+}
+
+-(void) removeFromLayer:(TFLayer *)layer{
+    [layer removeEditableObject:self];
 }
 
 #pragma mark - Node Observer
@@ -257,6 +302,7 @@
 
 -(void) prepareToDie{
     [self removeAllNodes];
+    [super prepareToDie];
     
 }
 @end

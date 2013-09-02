@@ -13,6 +13,7 @@
 @interface THWireNode : TFEditableObject
     //@property (nonatomic) CGPoint point;
     @property (nonatomic, weak) THWire * wire;
+
 @end
 
 @interface THWire : TFEditableObject {
@@ -32,6 +33,5 @@
 -(void) removeNode:(THWireNode*) node;
 -(void) removeAllNodes;
 -(THWireNode*) nodeAtPosition:(CGPoint) position;
--(void) draw;
 
 @end

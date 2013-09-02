@@ -439,7 +439,7 @@
 -(void) handleAccelerated:(UIAcceleration*) acceleration{
 }
 
--(bool)testPoint:(CGPoint)point {
+-(BOOL)testPoint:(CGPoint)point {
     return (self.visible && CGRectContainsPoint(self.boundingBox, point));
 }
 

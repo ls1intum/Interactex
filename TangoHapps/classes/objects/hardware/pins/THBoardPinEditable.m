@@ -180,7 +180,7 @@
 -(void) attachPin:(THElementPinEditable*) pinEditable{
     if(!self.acceptsManyPins && self.attachedPins.count == 1){
         THElementPinEditable * pin = [self.attachedPins objectAtIndex:0];
-        [pin deattach];
+        [pin dettachFromPin];
         
         [_attachedPins removeAllObjects];
     }
@@ -198,7 +198,7 @@
     
     [_attachedPins removeObject:pinEditable];
     
-    [pinEditable deattach];
+    [pinEditable dettachFromPin];
 }
 
 -(NSString*) description{

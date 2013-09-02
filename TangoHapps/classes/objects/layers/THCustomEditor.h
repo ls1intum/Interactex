@@ -7,6 +7,8 @@
 //
 
 @class THPinEditable;
+@class THBoardPinEditable;
+@class THElementPinEditable;
 
 @interface THCustomEditor : TFEditor {
     THPinEditable * _currentHighlightedPin;

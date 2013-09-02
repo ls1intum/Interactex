@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "BLEFirmata.h"
+#import "THConstants.h"
 
 @interface THClientHelper : NSObject
 
@@ -15,6 +16,6 @@
 +(float) LinearMapping:(float)value min:(float) min max:(float) max retMin:(float) retMin retMax:(float) retMax;
 +(BOOL) canConvertParam:(TFDataType) type1 toType:(TFDataType) type2;
 +(void) MakeCallTo:(NSString*) number;
-
++(IFPinType) THPinTypeToIFPinType:(THPinType) type;
 
 @end

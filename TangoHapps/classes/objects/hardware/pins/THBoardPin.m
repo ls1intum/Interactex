@@ -26,7 +26,7 @@
     if(self){
         
         if(type == kPintypeAnalog || type == kPintypeDigital){
-            IFPinType ifType = [THHelper THPinTypeToIFPinType:type];
+            IFPinType ifType = [THClientHelper THPinTypeToIFPinType:type];
             
             self.pin = [[IFPin alloc] initWithNumber:pinNumber type:ifType mode:IFPinModeOutput];
         }
