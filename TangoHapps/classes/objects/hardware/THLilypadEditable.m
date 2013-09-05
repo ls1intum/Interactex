@@ -28,6 +28,8 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{5,105},{-25,102},{-53.0, 
     
     self.sprite = [CCSprite spriteWithFile:@"lilypad.png"];
     [self addChild:self.sprite];
+    
+    self.canBeDuplicated = NO;
 }
 
 -(void) addPins{

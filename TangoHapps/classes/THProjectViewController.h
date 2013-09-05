@@ -15,6 +15,8 @@
     
     NSMutableArray * _barButtonItems;
     BOOL _cocos2dInit;
+    
+    BOOL wasEditorInLilypadMode;
 }
 
 @property (nonatomic, readonly) TFLayer * currentLayer;

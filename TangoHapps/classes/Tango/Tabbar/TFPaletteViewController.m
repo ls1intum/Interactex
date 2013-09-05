@@ -57,6 +57,7 @@
 }
 
 -(void)reloadPalettes {
+    
     [(TFTabbarView*)self.view removeAllSections];
     
     for (TFTabbarSection * section in [self.dataSource paletteSections]) {

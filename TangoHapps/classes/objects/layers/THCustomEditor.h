@@ -15,7 +15,7 @@
     THPinEditable * _currentHighlightedPin;
 }
 
-@property (nonatomic) BOOL isLilypadMode;
+@property (nonatomic, readonly) BOOL isLilypadMode;
 
 @property (nonatomic) float zoomLevel;
 @property (nonatomic) CGPoint displacement;

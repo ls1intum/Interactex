@@ -35,6 +35,7 @@
     
     self.z = kiPhoneZ;
     self.zoomable = NO;
+    self.canBeDuplicated = NO;
 }
 
 +(id) iPhoneWithDefaultView{
@@ -52,7 +53,6 @@
     if(self){
         
         self.simulableObject = [[THiPhone alloc] init];
-
         [self loadSprite];
     }
     return self;
@@ -63,11 +63,15 @@
 -(id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
-    
-    _currentView = [decoder decodeObjectForKey:@"currentView"];
-    [self addChild:_currentView];
-    
-    [self loadSprite];
+    if(self){
+        
+        
+        _currentView = [decoder decodeObjectForKey:@"currentView"];
+        _currentView.canBeDuplicated = NO;
+        [self addChild:_currentView];
+        
+        [self loadSprite];
+    }
     
     return self;
 }
@@ -150,11 +154,13 @@
         CGRect frame = kiPhoneFrames[self.type];
         currentView.width = frame.size.width;
         currentView.height = frame.size.height;
+        
         [self centerView:currentView];
         [self addChild:currentView];
     }
     
     _currentView = currentView;
+    _currentView.canBeDuplicated = NO;
     
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.currentView = (THView*) currentView.simulableObject;

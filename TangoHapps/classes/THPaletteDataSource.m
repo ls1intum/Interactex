@@ -47,7 +47,13 @@
     self = [super init];
     if(self){
         _sections = [NSMutableArray array];
-        [self populatePalettes];
+        
+        self.showClotheSection = YES;
+        self.showHardwareSection = YES;
+        self.showSoftwareSection = YES;
+        self.showProgrammingSection = YES;
+        
+        [self reloadPalettes];
     }
     return self;
 }
@@ -66,7 +72,7 @@
     [_sections addObject:section];
 }
 
--(void)addClothesPalette {
+-(void) addClothesPalette {
     TFPalette *palette = [self emptyPalette];
     
     [palette addDragablePaletteItem:[[THClothePaletteItem alloc] initWithName:@"tshirt"]];
@@ -74,7 +80,7 @@
     [self addPalette:palette withTitle:@"Clothing"];
 }
 
--(void)addSoftwarePalette {
+-(void) addSoftwarePalette {
     TFPalette *palette = [self emptyPalette];
     
     [palette addDragablePaletteItem:[[THiPhonePaletteItem alloc] initWithName:@"iphone"]];
@@ -90,7 +96,7 @@
     [self addPalette:palette withTitle:@"UI Elements"];
 }
 
--(void)addHardwarePalette {
+-(void) addHardwarePalette {
     TFPalette *palette = [self emptyPalette];
     
     [palette addDragablePaletteItem:[[THLedPaletteItem alloc] initWithName:@"led"]];
@@ -106,7 +112,7 @@
     [self addPalette:palette withTitle:@"Hardware"];
 }
 
--(void)addProgrammingPalette {
+-(void) addProgrammingPalette {
     TFPalette *palette = [self emptyPalette];
     
     [palette addDragablePaletteItem:[[THComparatorPaletteItem alloc] initWithName:@"comparator"]];
@@ -121,11 +127,21 @@
     [self addPalette:palette withTitle:@"Programming"];
 }
 
--(void) populatePalettes{
-    [self addClothesPalette];
-    [self addHardwarePalette];
-    [self addSoftwarePalette];
-    [self addProgrammingPalette];
+-(void) reloadPalettes{
+    [self.sections removeAllObjects];
+    
+    if(self.showClotheSection){
+        [self addClothesPalette];
+    }
+    if(self.showHardwareSection){
+        [self addHardwarePalette];
+    }
+    if(self.showSoftwareSection){
+        [self addSoftwarePalette];
+    }
+    if(self.showProgrammingSection){
+        [self addProgrammingPalette];
+    }
 }
 
 -(NSArray*) paletteSections{

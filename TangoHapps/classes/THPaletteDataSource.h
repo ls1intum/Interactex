@@ -10,9 +10,14 @@
 
 @interface THPaletteDataSource : NSObject <TFPaleteViewControllerDataSource>
 {
-    NSMutableArray * _sections;
 }
 
--(void) populatePalettes;
+@property (nonatomic) BOOL showClotheSection;
+@property (nonatomic) BOOL showHardwareSection;
+@property (nonatomic) BOOL showSoftwareSection;
+@property (nonatomic) BOOL showProgrammingSection;
+@property (nonatomic, strong) NSMutableArray * sections;
+
+-(void) reloadPalettes;
 
 @end

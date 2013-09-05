@@ -47,6 +47,7 @@
     self.anchorPoint = ccp(0.5,0.5);
     self.visible = YES;
     self.highlightColor = kDefaultObjectHighlightColor;
+    self.canBeDuplicated = YES;
 }
 
 -(id) init{
@@ -54,6 +55,7 @@
         self.scale = 1.0f;
         self.rotation = 0.0f;
         self.active = YES;
+        
         self.z = kTFDefaultZ;
         _connections = [NSMutableArray array];
         [self loadEditableObject];

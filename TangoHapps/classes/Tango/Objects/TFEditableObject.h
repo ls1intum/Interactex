@@ -43,6 +43,7 @@
 }
 
 @property (nonatomic) BOOL active;
+@property (nonatomic) BOOL canBeDuplicated;
 
 @property (nonatomic) float rotation;
 @property (nonatomic) float scale;

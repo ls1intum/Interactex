@@ -264,8 +264,12 @@
     
     TFProject * project = [TFDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
-    TFEditableObject * copy = [object copy];
-    [copy addToWorld];
+    
+    TFEditableObject * copy;
+    if(object.canBeDuplicated){
+        copy = [object copy];
+        [copy addToWorld];
+    }
     return copy;
 }
 
@@ -289,7 +293,7 @@
     } else if(_state == kEditorStateDuplicate) {
         
         if(sender.state == UIGestureRecognizerStateBegan){
-            
+
             TFEditableObject * copy = [self duplicateObjectAtLocation:location];
             [self selectObject:copy];
             

@@ -7,6 +7,7 @@
 #import "TFSimulator.h"
 #import "THCustomEditor.h"
 #import "THCustomSimulator.h"
+#import "THPaletteDataSource.h"
 
 @implementation THProjectViewController
 
@@ -236,8 +237,10 @@
         [[THDirector sharedDirector] saveCurrentProject];
         
         THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
-        
         THCustomSimulator * simulator = (THCustomSimulator*) [[THDirector sharedDirector].projectDelegate customSimulator];
+        
+        wasEditorInLilypadMode = editor.isLilypadMode;
+        
         [self switchToLayer:simulator];
         simulator.zoomLevel = editor.zoomLevel;
         
@@ -256,9 +259,18 @@
         
         THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
         THCustomEditor * editor = (THCustomEditor*) [[THDirector sharedDirector].projectDelegate customEditor];
+        
         editor.dragDelegate = self.tabController.paletteController;
         [self switchToLayer:editor];
         editor.zoomLevel = simulator.zoomLevel;
+
+        /*
+        if(wasEditorInLilypadMode){
+            THPaletteDataSource * dataSource = (THPaletteDataSource*) self.tabController.paletteController.dataSource;
+            dataSource
+            [dataSource reloadPalettes];
+            [self.tabController.paletteController reloadPalettes];
+        }*/
         
         _tabController.paletteController.delegate = editor;
         
@@ -347,6 +359,8 @@
     
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(keyboardHidden) name:UIKeyboardWillHideNotification object:nil];
+    
+    _state = kAppStateEditor;
     
     [self showTabBar];
     [self showTools];

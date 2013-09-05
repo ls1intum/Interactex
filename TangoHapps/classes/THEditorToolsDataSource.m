@@ -84,13 +84,6 @@
     THCustomEditor * editor = (THCustomEditor*) director.currentLayer;
     [editor startLilypadMode];
     [self.lilypadItem setImage:[UIImage imageNamed:@"editormode"]];
-    
-    TFTabbarViewController * tabController = director.projectController.tabController;
-    
-    [tabController hidePaletteWithIdx:0];
-    [tabController hidePaletteWithIdx:2];
-    [tabController hidePaletteWithIdx:3];
-    [tabController hidePaletteWithIdx:4];
 }
 
 - (void) lilypadPressed:(id)sender {

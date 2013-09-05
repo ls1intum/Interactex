@@ -23,6 +23,9 @@
 #import "THTimerEditable.h"
 #import "THActionEditable.h"
 #import "THWire.h"
+#import "THPaletteDataSource.h"
+#import "TFTabbarViewController.h"
+#import "THProjectViewController.h"
 
 @implementation THCustomEditor
 
@@ -33,6 +36,7 @@
         _zoomableLayer = [CCLayer node];
         [self addChild:_zoomableLayer z:-1];
         
+        [self showAllPaletteSections];
     }
     return self;
 }
@@ -65,7 +69,7 @@
 #pragma mark - Methods
 
 //iphone object
--(void)addIphoneObject:(THViewEditableObject*) object{
+-(void) addIphoneObject:(THViewEditableObject*) object{
     
     [object willStartEdition];
     [self addChild:object z:object.z];
@@ -575,25 +579,62 @@
     }
 }
 
+-(void) showAllPaletteSections{
+    
+    THDirector * director = [THDirector sharedDirector];
+    
+    THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
+    
+    paletteDataSource.showClotheSection = YES;
+    paletteDataSource.showHardwareSection = YES;
+    paletteDataSource.showSoftwareSection = YES;
+    paletteDataSource.showProgrammingSection = YES;
+    
+    [paletteDataSource reloadPalettes];
+    
+    TFTabbarViewController * tabController = director.projectController.tabController;
+    [tabController.paletteController reloadPalettes];
+}
+
+-(void) hideNonLilypadPaletteSections{
+    
+    THDirector * director = [THDirector sharedDirector];
+    
+    THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
+    
+    paletteDataSource.showClotheSection = NO;
+    paletteDataSource.showHardwareSection = YES;
+    paletteDataSource.showSoftwareSection = NO;
+    paletteDataSource.showProgrammingSection = NO;
+    
+    [paletteDataSource reloadPalettes];
+    
+    TFTabbarViewController * tabController = director.projectController.tabController;
+    [tabController.paletteController reloadPalettes];
+}
+
 -(void) startLilypadMode{
     
-    self.isLilypadMode = YES;
+    _isLilypadMode = YES;
     
     [self unselectCurrentObject];
     
     [self hideNonLilypadObjects];
     [self addLilypadObjects];
     [self showAllLilypadWires];
+    [self hideNonLilypadPaletteSections];
 }
 
 -(void) stopLilypadMode{
     
-    self.isLilypadMode = NO;
+    _isLilypadMode = NO;
     
     [self removeLilypadObjects];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
     [self hideAllLilypadWires];
+    
+    [self showAllPaletteSections];
 }
 
 -(void) removeObjects{
