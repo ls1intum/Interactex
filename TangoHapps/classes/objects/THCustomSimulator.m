@@ -20,6 +20,16 @@
 
 @implementation THCustomSimulator
 
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        _zoomableLayer = [CCLayer node];
+        [self addChild:_zoomableLayer z:-1];
+    }
+    return self;
+}
+
 -(void) addObjects{
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
@@ -60,6 +70,66 @@
         _pinsController = nil;
     }
     _state = kSimulatorStateNormal;
+}
+
+-(void) addEditableObject:(TFEditableObject*) editableObject{
+    if(editableObject.zoomable){
+        [self.zoomableLayer addChild:editableObject z:editableObject.z];
+    } else{
+        [super addEditableObject:editableObject];
+    }
+}
+
+#pragma mark - Moving and Zooming layer
+
+-(void) setZoomLevel:(float)zoomLevel{
+    self.zoomableLayer.scale = zoomLevel;
+}
+
+-(float) zoomLevel{
+    return self.zoomableLayer.scale;
+}
+
+-(void) setDisplacement:(CGPoint)displacement{
+    self.zoomableLayer.position = displacement;
+}
+
+-(CGPoint) displacement{
+    return self.zoomableLayer.position;
+}
+
+-(void) moveLayer:(CGPoint) d{
+    self.zoomableLayer.position = ccpAdd(_zoomableLayer.position, d);
+    //self.position = ccpAdd(self.position, d);
+}
+
+-(void)scale:(UIPinchGestureRecognizer*)sender{
+    
+    CGPoint location = [sender locationInView:sender.view];
+    location = [self toLayerCoords:location];
+    
+    float newScale = self.zoomableLayer.scale * sender.scale;
+    if(newScale > kLayerMinScale && newScale < kLayerMaxScale)
+        self.zoomableLayer.scale = newScale;
+    sender.scale = 1.0f;
+}
+
+-(void) move:(UIPanGestureRecognizer*)sender{
+    if(sender.numberOfTouches == 1){
+        
+        CGPoint location = [sender locationInView:sender.view];
+        location = [self toLayerCoords:location];
+        
+        if(sender.state == UIGestureRecognizerStateChanged){
+            
+            CGPoint d = [sender translationInView:sender.view];
+            d.y = - d.y;
+            
+            [self moveLayer:d];
+            
+            [sender setTranslation:ccp(0,0) inView:sender.view];
+        }
+    }
 }
 
 #pragma mark - Client

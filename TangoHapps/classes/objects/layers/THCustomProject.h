@@ -95,7 +95,6 @@
 @property (nonatomic,readonly) NSMutableArray * values;
 @property (nonatomic,readonly) NSMutableArray * triggers;
 @property (nonatomic,readonly) NSMutableArray * actions;
-
 @property (nonatomic, readonly) NSMutableArray * wires;
 
 @property (nonatomic,readonly) THAssetCollection * assetCollection;

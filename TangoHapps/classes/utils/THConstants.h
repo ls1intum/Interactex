@@ -328,3 +328,6 @@ typedef enum{
 
 extern CGPoint const kSewedPositions[kNumHardwareTypes];
 
+
+extern float const kLayerMinScale;
+extern float const kLayerMaxScale;

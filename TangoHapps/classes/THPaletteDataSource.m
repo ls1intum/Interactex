@@ -38,6 +38,7 @@
 #import "THTimerPaletteItem.h"
 #import "THSoundPaletteItem.h"
 #import "TFTabbarViewController.h"
+#import "THBoolValuePaletteItem.h"
 
 @implementation THPaletteDataSource
 
@@ -109,10 +110,11 @@
     
     [palette addDragablePaletteItem:[[THComparatorPaletteItem alloc] initWithName:@"comparator"]];
     [palette addDragablePaletteItem:[[THGrouperPaletteItem alloc] initWithName:@"grouper"]];
-    [palette addDragablePaletteItem:[[THValuePaletteItem alloc] initWithName:@"value"]];
     [palette addDragablePaletteItem:[[THMapperPaletteItem alloc] initWithName:@"mapper"]];
     [palette addDragablePaletteItem:[[THTimerPaletteItem alloc] initWithName:@"timer"]];
     [palette addDragablePaletteItem:[[THSoundPaletteItem alloc] initWithName:@"sound"]];
+    [palette addDragablePaletteItem:[[THValuePaletteItem alloc] initWithName:@"value"]];
+    [palette addDragablePaletteItem:[[THBoolValuePaletteItem alloc] initWithName:@"boolValue"]];
     
     [self addPalette:palette withTitle:@"Programming"];
 }

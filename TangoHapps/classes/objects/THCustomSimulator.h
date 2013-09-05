@@ -21,6 +21,10 @@ typedef enum{
     THPinsController * _pinsController;
 }
 
+@property (nonatomic) float zoomLevel;
+@property (nonatomic) CGPoint displacement;
+@property (nonatomic) CCLayer * zoomableLayer;
+
 @property (nonatomic, readonly) THSimulatorState state;
 
 -(void) addPinsController;

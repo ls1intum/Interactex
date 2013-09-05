@@ -174,3 +174,7 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65}//vibeBoard
 };
 
+
+float const kLayerMinScale = 0.5f;
+float const kLayerMaxScale = 2.5f;
+

@@ -10,12 +10,16 @@
 @class THBoardPinEditable;
 @class THElementPinEditable;
 
+
 @interface THCustomEditor : TFEditor {
     THPinEditable * _currentHighlightedPin;
-    CCLayer * _zoomableLayer;
 }
 
 @property (nonatomic) BOOL isLilypadMode;
+
+@property (nonatomic) float zoomLevel;
+@property (nonatomic) CGPoint displacement;
+@property (nonatomic) CCLayer * zoomableLayer;
 
 //lilypad mode
 -(void) startLilypadMode;

@@ -5,6 +5,8 @@
 #import "THEditorToolsDataSource.h"
 #import "TFTabbarViewController.h"
 #import "TFSimulator.h"
+#import "THCustomEditor.h"
+#import "THCustomSimulator.h"
 
 @implementation THProjectViewController
 
@@ -232,9 +234,12 @@
         _state = kAppStateSimulator;
         
         [[THDirector sharedDirector] saveCurrentProject];
-                
-        TFSimulator * simulator = [[THDirector sharedDirector].projectDelegate customSimulator];
+        
+        THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+        
+        THCustomSimulator * simulator = (THCustomSimulator*) [[THDirector sharedDirector].projectDelegate customSimulator];
         [self switchToLayer:simulator];
+        simulator.zoomLevel = editor.zoomLevel;
         
         [self hideTabBar];
         [self hideTools];
@@ -249,9 +254,11 @@
         
         [[THDirector sharedDirector] restoreCurrentProject];
         
-        TFEditor * editor = [[THDirector sharedDirector].projectDelegate customEditor];
+        THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
+        THCustomEditor * editor = (THCustomEditor*) [[THDirector sharedDirector].projectDelegate customEditor];
         editor.dragDelegate = self.tabController.paletteController;
         [self switchToLayer:editor];
+        editor.zoomLevel = simulator.zoomLevel;
         
         _tabController.paletteController.delegate = editor;
         

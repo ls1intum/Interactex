@@ -13,7 +13,7 @@
 @implementation THWireProperties
 
 -(NSString*) title{
-    return @"View";
+    return @"Wire";
 }
 
 -(void) reloadState{

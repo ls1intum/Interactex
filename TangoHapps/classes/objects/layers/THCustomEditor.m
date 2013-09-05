@@ -26,9 +26,6 @@
 
 @implementation THCustomEditor
 
-float const kEditorMinScale = 0.5f;
-float const kEditorMaxScale = 2.5f;
-
 -(id) init{
     
     self = [super init];
@@ -262,7 +259,7 @@ float const kEditorMaxScale = 2.5f;
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
     if(editableObject.zoomable){
-        [_zoomableLayer addChild:editableObject z:editableObject.z];
+        [self.zoomableLayer addChild:editableObject z:editableObject.z];
     } else{
         [super addEditableObject:editableObject];
     }
@@ -270,7 +267,7 @@ float const kEditorMaxScale = 2.5f;
 
 -(void) moveCurrentObject:(CGPoint) d{
     
-    if(self.currentObject.parent == _zoomableLayer){
+    if(self.currentObject.parent == self.zoomableLayer){
         d = ccpMult(d, 1.0f/_zoomableLayer.scale);
     }
     
@@ -278,8 +275,24 @@ float const kEditorMaxScale = 2.5f;
 }
 
 -(void) moveLayer:(CGPoint) d{
-    _zoomableLayer.position = ccpAdd(_zoomableLayer.position, d);
+    self.zoomableLayer.position = ccpAdd(self.zoomableLayer.position, d);
     //self.position = ccpAdd(self.position, d);
+}
+
+-(void) setZoomLevel:(float)zoomLevel{
+    self.zoomableLayer.scale = zoomLevel;
+}
+
+-(float) zoomLevel{
+    return self.zoomableLayer.scale;
+}
+
+-(void) setDisplacement:(CGPoint)displacement{
+    self.zoomableLayer.position = displacement;
+}
+
+-(CGPoint) displacement{
+    return self.zoomableLayer.position;
 }
 
 -(void)scale:(UIPinchGestureRecognizer*)sender{
@@ -293,9 +306,9 @@ float const kEditorMaxScale = 2.5f;
     if(object && [object isKindOfClass:[THClothe class]]){
         [object scaleBy:sender.scale];
     } else {
-        float newScale = _zoomableLayer.scale * sender.scale;
-        if(newScale > kEditorMinScale && newScale < kEditorMaxScale)
-            _zoomableLayer.scale = newScale;
+        float newScale = self.zoomableLayer.scale * sender.scale;
+        if(newScale > kLayerMinScale && newScale < kLayerMaxScale)
+            self.zoomableLayer.scale = newScale;
     }
     sender.scale = 1.0f;
 }
