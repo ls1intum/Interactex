@@ -8,7 +8,7 @@
 
 #import "THProgrammingElementEditable.h"
 
-@interface THValueEditable : THProgrammingElementEditable
+@interface THNumberValueEditable : THProgrammingElementEditable
 {
     float _displayedValue;
     CCLabelTTF * _label;

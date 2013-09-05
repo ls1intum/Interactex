@@ -39,6 +39,7 @@
 #import "THSoundPaletteItem.h"
 #import "TFTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
+#import "THStringValuePaletteItem.h"
 
 @implementation THPaletteDataSource
 
@@ -115,6 +116,7 @@
     [palette addDragablePaletteItem:[[THSoundPaletteItem alloc] initWithName:@"sound"]];
     [palette addDragablePaletteItem:[[THValuePaletteItem alloc] initWithName:@"value"]];
     [palette addDragablePaletteItem:[[THBoolValuePaletteItem alloc] initWithName:@"boolValue"]];
+    [palette addDragablePaletteItem:[[THStringValuePaletteItem alloc] initWithName:@"stringValue"]];
     
     [self addPalette:palette withTitle:@"Programming"];
 }

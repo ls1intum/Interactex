@@ -19,7 +19,7 @@
 #import "THConditionEditableObject.h"
 #import "THResistorExtension.h"
 #import "THLilypadEditable.h"
-#import "THValueEditable.h"
+#import "THNumberValueEditable.h"
 #import "THTimerEditable.h"
 #import "THActionEditable.h"
 #import "THWire.h"
@@ -405,14 +405,14 @@
 
 -(void) showValues{
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (THValueEditable * object in project.values) {
+    for (THNumberValueEditable * object in project.values) {
         object.visible = YES;
     }
 }
 
 -(void) hideValues{
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (THValueEditable * object in project.values) {
+    for (THNumberValueEditable * object in project.values) {
         object.visible = NO;
     }
 }

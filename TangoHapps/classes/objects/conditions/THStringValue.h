@@ -1,5 +1,5 @@
 //
-//  THBoolValue.h
+//  THStringValue.h
 //  TangoHapps
 //
 //  Created by Juan Haladjian on 9/5/13.
@@ -8,8 +8,8 @@
 
 #import "TFSimulableObject.h"
 
-@interface THBoolValue : TFSimulableObject
+@interface THStringValue : TFSimulableObject
 
-@property (nonatomic) BOOL value;
+@property (nonatomic) NSString * value;
 
 @end

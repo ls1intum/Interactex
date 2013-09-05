@@ -19,8 +19,8 @@
 #import "THHardwareComponent.h"
 #import "THView.h"
 #import "THConditionObject.h"
-#import "THValue.h"
-#import "THValueEditable.h"
+#import "THNumberValue.h"
+#import "THNumberValueEditable.h"
 #import "THMapperEditable.h"
 #import "THMapper.h"
 #import "THTriggerEditable.h"
@@ -533,7 +533,7 @@ enum zPositions{
     } else if ([editable isKindOfClass:[THConditionEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.conditions];
         return [project.conditions objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THValueEditable class]] || [editable isKindOfClass:[THMapperEditable class]]){
+    } else if ([editable isKindOfClass:[THNumberValueEditable class]] || [editable isKindOfClass:[THMapperEditable class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.values];
         return [project.values objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
@@ -560,7 +560,7 @@ enum zPositions{
     } else if ([simulable isKindOfClass:[THConditionObject class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.conditions];
         return [project.conditions objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THValue class]] || [simulable isKindOfClass:[THMapper class]]){
+    } else if ([simulable isKindOfClass:[THNumberValue class]] || [simulable isKindOfClass:[THMapper class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.values];
         return [project.values objectAtIndex:idx];
     } else if ([simulable isKindOfClass:[THTrigger class]]){

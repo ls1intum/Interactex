@@ -7,12 +7,12 @@
 //
 
 #import "THValuePaletteItem.h"
-#import "THValueEditable.h"
+#import "THNumberValueEditable.h"
 
 @implementation THValuePaletteItem
 
 - (void)dropAt:(CGPoint)location {
-    THValueEditable * value = [[THValueEditable alloc] init];
+    THNumberValueEditable * value = [[THNumberValueEditable alloc] init];
     value.position = location;
     
     THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;

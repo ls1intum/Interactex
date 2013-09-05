@@ -118,14 +118,26 @@
 		9A56CD5317D88888001021B2 /* THBoolValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5117D88888001021B2 /* THBoolValueProperties.xib */; };
 		9A56CD5617D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */; };
 		9A56CD5717D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */; };
-		9A56CD5C17D89456001021B2 /* boolValue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5817D89456001021B2 /* boolValue.png */; };
-		9A56CD5D17D89456001021B2 /* boolValue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5817D89456001021B2 /* boolValue.png */; };
-		9A56CD5E17D89456001021B2 /* boolValue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5917D89456001021B2 /* boolValue@2x.png */; };
-		9A56CD5F17D89456001021B2 /* boolValue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5917D89456001021B2 /* boolValue@2x.png */; };
 		9A56CD6017D89456001021B2 /* palette_boolValue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5A17D89456001021B2 /* palette_boolValue.png */; };
 		9A56CD6117D89456001021B2 /* palette_boolValue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5A17D89456001021B2 /* palette_boolValue.png */; };
 		9A56CD6217D89456001021B2 /* palette_boolValue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5B17D89456001021B2 /* palette_boolValue@2x.png */; };
 		9A56CD6317D89456001021B2 /* palette_boolValue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5B17D89456001021B2 /* palette_boolValue@2x.png */; };
+		9A56CDAC17D8EDA2001021B2 /* THStringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDAB17D8EDA2001021B2 /* THStringValue.m */; };
+		9A56CDAD17D8EDA2001021B2 /* THStringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDAB17D8EDA2001021B2 /* THStringValue.m */; };
+		9A56CDAE17D8EDA2001021B2 /* THStringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDAB17D8EDA2001021B2 /* THStringValue.m */; };
+		9A56CDB117D8EE11001021B2 /* THStringValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDB017D8EE0F001021B2 /* THStringValueEditable.m */; };
+		9A56CDB217D8EE11001021B2 /* THStringValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDB017D8EE0F001021B2 /* THStringValueEditable.m */; };
+		9A56CDB317D8EE11001021B2 /* THStringValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDB017D8EE0F001021B2 /* THStringValueEditable.m */; };
+		9A56CDB717D8EF31001021B2 /* THStringValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDB517D8EF31001021B2 /* THStringValueProperties.m */; };
+		9A56CDB817D8EF31001021B2 /* THStringValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDB517D8EF31001021B2 /* THStringValueProperties.m */; };
+		9A56CDBC17D8EF61001021B2 /* THStringValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */; };
+		9A56CDBD17D8EF61001021B2 /* THStringValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */; };
+		9A56CDC017D8F1FA001021B2 /* palette_stringValue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBE17D8F1FA001021B2 /* palette_stringValue.png */; };
+		9A56CDC117D8F1FA001021B2 /* palette_stringValue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBE17D8F1FA001021B2 /* palette_stringValue.png */; };
+		9A56CDC217D8F1FA001021B2 /* palette_stringValue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBF17D8F1FA001021B2 /* palette_stringValue@2x.png */; };
+		9A56CDC317D8F1FA001021B2 /* palette_stringValue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBF17D8F1FA001021B2 /* palette_stringValue@2x.png */; };
+		9A56CDC617D8F357001021B2 /* THStringValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */; };
+		9A56CDC717D8F357001021B2 /* THStringValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */; };
 		9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8416A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8216A2C46E000DF472 /* THContactBookEditable.m */; };
@@ -530,8 +542,8 @@
 		9AF50369167B84B40020241C /* THConditionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020F167B84B40020241C /* THConditionObject.m */; };
 		9AF5036A167B84B40020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
 		9AF5036B167B84B40020241C /* THGrouperConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50213167B84B40020241C /* THGrouperConditionEditable.m */; };
-		9AF5036C167B84B40020241C /* THValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THValue.m */; };
-		9AF5036D167B84B40020241C /* THValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50217167B84B40020241C /* THValueEditable.m */; };
+		9AF5036C167B84B40020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
+		9AF5036D167B84B40020241C /* THNumberValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50217167B84B40020241C /* THNumberValueEditable.m */; };
 		9AF5036E167B84B40020241C /* THHardwareProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5021B167B84B40020241C /* THHardwareProblem.m */; };
 		9AF5036F167B84B40020241C /* THResistorExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5021D167B84B40020241C /* THResistorExtension.m */; };
 		9AF50370167B84B40020241C /* THBoardPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50220167B84B40020241C /* THBoardPin.m */; };
@@ -715,7 +727,7 @@
 		9AF50448167B84C30020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
-		9AF5044C167B84CE0020241C /* THValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THValue.m */; };
+		9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
 		9AF5044E167B84D90020241C /* THBoardPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50220167B84B40020241C /* THBoardPin.m */; };
 		9AF5044F167B84D90020241C /* THElementPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50224167B84B40020241C /* THElementPin.m */; };
 		9AF50450167B84D90020241C /* THPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50228167B84B40020241C /* THPin.m */; };
@@ -797,8 +809,8 @@
 		9AF505F7167B91F10020241C /* THConditionEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020D167B84B40020241C /* THConditionEditableObject.m */; };
 		9AF505F8167B91F10020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
 		9AF505F9167B91F10020241C /* THGrouperConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50213167B84B40020241C /* THGrouperConditionEditable.m */; };
-		9AF505FA167B91F10020241C /* THValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THValue.m */; };
-		9AF505FB167B91F30020241C /* THValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50217167B84B40020241C /* THValueEditable.m */; };
+		9AF505FA167B91F10020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
+		9AF505FB167B91F30020241C /* THNumberValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50217167B84B40020241C /* THNumberValueEditable.m */; };
 		9AF505FC167B91FA0020241C /* THiPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50266167B84B40020241C /* THiPhone.m */; };
 		9AF505FD167B91FA0020241C /* THiPhoneEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50270167B84B40020241C /* THiPhoneEditableObject.m */; };
 		9AF505FE167B91FA0020241C /* THiPhoneButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50268167B84B40020241C /* THiPhoneButton.m */; };
@@ -1622,10 +1634,19 @@
 		9A56CD5117D88888001021B2 /* THBoolValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THBoolValueProperties.xib; sourceTree = "<group>"; };
 		9A56CD5417D88A2C001021B2 /* THBoolValuePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValuePaletteItem.h; sourceTree = "<group>"; };
 		9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValuePaletteItem.m; sourceTree = "<group>"; };
-		9A56CD5817D89456001021B2 /* boolValue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boolValue.png; sourceTree = "<group>"; };
-		9A56CD5917D89456001021B2 /* boolValue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boolValue@2x.png"; sourceTree = "<group>"; };
 		9A56CD5A17D89456001021B2 /* palette_boolValue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_boolValue.png; sourceTree = "<group>"; };
 		9A56CD5B17D89456001021B2 /* palette_boolValue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_boolValue@2x.png"; sourceTree = "<group>"; };
+		9A56CDAA17D8EDA1001021B2 /* THStringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THStringValue.h; sourceTree = "<group>"; };
+		9A56CDAB17D8EDA2001021B2 /* THStringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THStringValue.m; sourceTree = "<group>"; };
+		9A56CDAF17D8EE0E001021B2 /* THStringValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THStringValueEditable.h; sourceTree = "<group>"; };
+		9A56CDB017D8EE0F001021B2 /* THStringValueEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THStringValueEditable.m; sourceTree = "<group>"; };
+		9A56CDB417D8EF31001021B2 /* THStringValueProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THStringValueProperties.h; sourceTree = "<group>"; };
+		9A56CDB517D8EF31001021B2 /* THStringValueProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THStringValueProperties.m; sourceTree = "<group>"; };
+		9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THStringValueProperties.xib; sourceTree = "<group>"; };
+		9A56CDBE17D8F1FA001021B2 /* palette_stringValue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_stringValue.png; sourceTree = "<group>"; };
+		9A56CDBF17D8F1FA001021B2 /* palette_stringValue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_stringValue@2x.png"; sourceTree = "<group>"; };
+		9A56CDC417D8F357001021B2 /* THStringValuePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THStringValuePaletteItem.h; sourceTree = "<group>"; };
+		9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THStringValuePaletteItem.m; sourceTree = "<group>"; };
 		9A5F8D7F16A2C46E000DF472 /* THContactBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBook.h; sourceTree = "<group>"; };
 		9A5F8D8016A2C46E000DF472 /* THContactBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBook.m; sourceTree = "<group>"; };
 		9A5F8D8116A2C46E000DF472 /* THContactBookEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookEditable.h; sourceTree = "<group>"; };
@@ -1925,10 +1946,10 @@
 		9AF50211167B84B40020241C /* THGrouperCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGrouperCondition.m; sourceTree = "<group>"; };
 		9AF50212167B84B40020241C /* THGrouperConditionEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGrouperConditionEditable.h; sourceTree = "<group>"; };
 		9AF50213167B84B40020241C /* THGrouperConditionEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGrouperConditionEditable.m; sourceTree = "<group>"; };
-		9AF50214167B84B40020241C /* THValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THValue.h; sourceTree = "<group>"; };
-		9AF50215167B84B40020241C /* THValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THValue.m; sourceTree = "<group>"; };
-		9AF50216167B84B40020241C /* THValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THValueEditable.h; sourceTree = "<group>"; };
-		9AF50217167B84B40020241C /* THValueEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THValueEditable.m; sourceTree = "<group>"; };
+		9AF50214167B84B40020241C /* THNumberValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNumberValue.h; sourceTree = "<group>"; };
+		9AF50215167B84B40020241C /* THNumberValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNumberValue.m; sourceTree = "<group>"; };
+		9AF50216167B84B40020241C /* THNumberValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNumberValueEditable.h; sourceTree = "<group>"; };
+		9AF50217167B84B40020241C /* THNumberValueEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNumberValueEditable.m; sourceTree = "<group>"; };
 		9AF5021A167B84B40020241C /* THHardwareProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHardwareProblem.h; sourceTree = "<group>"; };
 		9AF5021B167B84B40020241C /* THHardwareProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHardwareProblem.m; sourceTree = "<group>"; };
 		9AF5021C167B84B40020241C /* THResistorExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THResistorExtension.h; sourceTree = "<group>"; };
@@ -2677,6 +2698,7 @@
 		9A94F3FF16A0192700AF52AB /* properties */ = {
 			isa = PBXGroup;
 			children = (
+				9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */,
 				9A56CD5117D88888001021B2 /* THBoolValueProperties.xib */,
 				9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */,
 				9A94F40016A0192700AF52AB /* THButtonProperties.xib */,
@@ -2903,10 +2925,6 @@
 				9AF50211167B84B40020241C /* THGrouperCondition.m */,
 				9AF50212167B84B40020241C /* THGrouperConditionEditable.h */,
 				9AF50213167B84B40020241C /* THGrouperConditionEditable.m */,
-				9AF50214167B84B40020241C /* THValue.h */,
-				9AF50215167B84B40020241C /* THValue.m */,
-				9AF50216167B84B40020241C /* THValueEditable.h */,
-				9AF50217167B84B40020241C /* THValueEditable.m */,
 				9AB29B5A167F824300F5AF62 /* THMapper.h */,
 				9AB29B5B167F824300F5AF62 /* THMapper.m */,
 				9AB29B5C167F824300F5AF62 /* THMapperEditable.h */,
@@ -2917,10 +2935,18 @@
 				9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */,
 				9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */,
 				9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */,
+				9AF50214167B84B40020241C /* THNumberValue.h */,
+				9AF50215167B84B40020241C /* THNumberValue.m */,
+				9AF50216167B84B40020241C /* THNumberValueEditable.h */,
+				9AF50217167B84B40020241C /* THNumberValueEditable.m */,
 				9A56CCFE17D885F9001021B2 /* THBoolValue.h */,
 				9A56CCFF17D885F9001021B2 /* THBoolValue.m */,
 				9A56CD4517D886A5001021B2 /* THBoolValueEditable.h */,
 				9A56CD4617D886A6001021B2 /* THBoolValueEditable.m */,
+				9A56CDAA17D8EDA1001021B2 /* THStringValue.h */,
+				9A56CDAB17D8EDA2001021B2 /* THStringValue.m */,
+				9A56CDAF17D8EE0E001021B2 /* THStringValueEditable.h */,
+				9A56CDB017D8EE0F001021B2 /* THStringValueEditable.m */,
 			);
 			name = programming;
 			path = conditions;
@@ -3144,6 +3170,8 @@
 				9A097780172693E60028A6B4 /* THSoundPaletteItem.m */,
 				9A56CD5417D88A2C001021B2 /* THBoolValuePaletteItem.h */,
 				9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */,
+				9A56CDC417D8F357001021B2 /* THStringValuePaletteItem.h */,
+				9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -3209,6 +3237,8 @@
 				9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */,
 				9A56CD4A17D88790001021B2 /* THBoolValueProperties.h */,
 				9A56CD4B17D88790001021B2 /* THBoolValueProperties.m */,
+				9A56CDB417D8EF31001021B2 /* THStringValueProperties.h */,
+				9A56CDB517D8EF31001021B2 /* THStringValueProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -3304,8 +3334,8 @@
 		9AF50301167B84B40020241C /* palette */ = {
 			isa = PBXGroup;
 			children = (
-				9A56CD5817D89456001021B2 /* boolValue.png */,
-				9A56CD5917D89456001021B2 /* boolValue@2x.png */,
+				9A56CDBE17D8F1FA001021B2 /* palette_stringValue.png */,
+				9A56CDBF17D8F1FA001021B2 /* palette_stringValue@2x.png */,
 				9A56CD5A17D89456001021B2 /* palette_boolValue.png */,
 				9A56CD5B17D89456001021B2 /* palette_boolValue@2x.png */,
 				9A097783172699D20028A6B4 /* sound.png */,
@@ -4289,10 +4319,11 @@
 				9A09778D172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
 				9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */,
 				9A56CD5217D88888001021B2 /* THBoolValueProperties.xib in Resources */,
-				9A56CD5C17D89456001021B2 /* boolValue.png in Resources */,
-				9A56CD5E17D89456001021B2 /* boolValue@2x.png in Resources */,
 				9A56CD6017D89456001021B2 /* palette_boolValue.png in Resources */,
 				9A56CD6217D89456001021B2 /* palette_boolValue@2x.png in Resources */,
+				9A56CDBC17D8EF61001021B2 /* THStringValueProperties.xib in Resources */,
+				9A56CDC017D8F1FA001021B2 /* palette_stringValue.png in Resources */,
+				9A56CDC217D8F1FA001021B2 /* palette_stringValue@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4484,10 +4515,11 @@
 				9A09778E172699DF0028A6B4 /* palette_sound@2x.png in Resources */,
 				9A9FEB6517BC080C004AB8CF /* THWireProperties.xib in Resources */,
 				9A56CD5317D88888001021B2 /* THBoolValueProperties.xib in Resources */,
-				9A56CD5D17D89456001021B2 /* boolValue.png in Resources */,
-				9A56CD5F17D89456001021B2 /* boolValue@2x.png in Resources */,
 				9A56CD6117D89456001021B2 /* palette_boolValue.png in Resources */,
 				9A56CD6317D89456001021B2 /* palette_boolValue@2x.png in Resources */,
+				9A56CDBD17D8EF61001021B2 /* THStringValueProperties.xib in Resources */,
+				9A56CDC117D8F1FA001021B2 /* palette_stringValue.png in Resources */,
+				9A56CDC317D8F1FA001021B2 /* palette_stringValue@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4550,8 +4582,8 @@
 				9AF50369167B84B40020241C /* THConditionObject.m in Sources */,
 				9AF5036A167B84B40020241C /* THGrouperCondition.m in Sources */,
 				9AF5036B167B84B40020241C /* THGrouperConditionEditable.m in Sources */,
-				9AF5036C167B84B40020241C /* THValue.m in Sources */,
-				9AF5036D167B84B40020241C /* THValueEditable.m in Sources */,
+				9AF5036C167B84B40020241C /* THNumberValue.m in Sources */,
+				9AF5036D167B84B40020241C /* THNumberValueEditable.m in Sources */,
 				9AF5036E167B84B40020241C /* THHardwareProblem.m in Sources */,
 				9AF5036F167B84B40020241C /* THResistorExtension.m in Sources */,
 				9AF50370167B84B40020241C /* THBoardPin.m in Sources */,
@@ -4742,6 +4774,10 @@
 				9A56CD4717D886A6001021B2 /* THBoolValueEditable.m in Sources */,
 				9A56CD4D17D88790001021B2 /* THBoolValueProperties.m in Sources */,
 				9A56CD5617D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */,
+				9A56CDAC17D8EDA2001021B2 /* THStringValue.m in Sources */,
+				9A56CDB117D8EE11001021B2 /* THStringValueEditable.m in Sources */,
+				9A56CDB717D8EF31001021B2 /* THStringValueProperties.m in Sources */,
+				9A56CDC617D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4767,8 +4803,8 @@
 				9AF505F7167B91F10020241C /* THConditionEditableObject.m in Sources */,
 				9AF505F8167B91F10020241C /* THGrouperCondition.m in Sources */,
 				9AF505F9167B91F10020241C /* THGrouperConditionEditable.m in Sources */,
-				9AF505FA167B91F10020241C /* THValue.m in Sources */,
-				9AF505FB167B91F30020241C /* THValueEditable.m in Sources */,
+				9AF505FA167B91F10020241C /* THNumberValue.m in Sources */,
+				9AF505FB167B91F30020241C /* THNumberValueEditable.m in Sources */,
 				9AF505FC167B91FA0020241C /* THiPhone.m in Sources */,
 				9AF505FD167B91FA0020241C /* THiPhoneEditableObject.m in Sources */,
 				9AF505FE167B91FA0020241C /* THiPhoneButton.m in Sources */,
@@ -4964,6 +5000,10 @@
 				9A56CD4917D886A6001021B2 /* THBoolValueEditable.m in Sources */,
 				9A56CD4E17D88790001021B2 /* THBoolValueProperties.m in Sources */,
 				9A56CD5717D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */,
+				9A56CDAE17D8EDA2001021B2 /* THStringValue.m in Sources */,
+				9A56CDB317D8EE11001021B2 /* THStringValueEditable.m in Sources */,
+				9A56CDB817D8EF31001021B2 /* THStringValueProperties.m in Sources */,
+				9A56CDC717D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4982,7 +5022,7 @@
 				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
-				9AF5044C167B84CE0020241C /* THValue.m in Sources */,
+				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
 				9AF5044E167B84D90020241C /* THBoardPin.m in Sources */,
 				9AF5044F167B84D90020241C /* THElementPin.m in Sources */,
 				9AF50450167B84D90020241C /* THPin.m in Sources */,
@@ -5045,6 +5085,8 @@
 				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
 				9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */,
 				9A56CD4817D886A6001021B2 /* THBoolValueEditable.m in Sources */,
+				9A56CDAD17D8EDA2001021B2 /* THStringValue.m in Sources */,
+				9A56CDB217D8EE11001021B2 /* THStringValueEditable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

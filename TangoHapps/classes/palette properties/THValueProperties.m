@@ -7,7 +7,7 @@
 //
 
 #import "THValueProperties.h"
-#import "THValueEditable.h"
+#import "THNumberValueEditable.h"
 
 @implementation THValueProperties
 
@@ -16,14 +16,14 @@
 }
 
 -(void) updateTextField{
-    THValueEditable * value = (THValueEditable*) self.editableObject;
+    THNumberValueEditable * value = (THNumberValueEditable*) self.editableObject;
     self.valueTextField.text = [NSString stringWithFormat:@"%f",value.value];
 }
 
 - (IBAction)editingFinished:(id)sender {
     NSString * text = self.valueTextField.text;
     float val = text.floatValue;
-    THValueEditable * value = (THValueEditable*) self.editableObject;
+    THNumberValueEditable * value = (THNumberValueEditable*) self.editableObject;
     value.value = val;
     [self updateTextField];
 }

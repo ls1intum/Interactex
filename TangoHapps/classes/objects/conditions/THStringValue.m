@@ -1,23 +1,23 @@
 //
-//  THValue.m
+//  THStringValue.m
 //  TangoHapps
 //
-//  Created by Juan Haladjian on 11/16/12.
-//  Copyright (c) 2012 Juan Haladjian. All rights reserved.
+//  Created by Juan Haladjian on 9/5/13.
+//  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THValue.h"
+#import "THStringValue.h"
 
-@implementation THValue
+@implementation THStringValue
 
 -(void) load{
     
-    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
+    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeString];
     self.viewableProperties = [NSMutableArray arrayWithObject:property];
     
     TFMethod * method = [TFMethod methodWithName:@"setValue"];
     method.numParams = 1;
-    method.firstParamType = kDataTypeFloat;
+    method.firstParamType = kDataTypeString;
     self.methods = [NSArray arrayWithObject:method];
     
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
@@ -35,27 +35,24 @@
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    _value = [decoder decodeFloatForKey:@"value"];
+    _value = [decoder decodeObjectForKey:@"value"];
     
     [self load];
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeFloat:_value forKey:@"value"];
+    [coder encodeObject:_value forKey:@"value"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
-    THValue * copy = [super copyWithZone:zone];
+-(id)copyWithZone:(NSZone *)zone {
+    THStringValue * copy = [super copyWithZone:zone];
     
     copy.value = self.value;
     
@@ -64,7 +61,7 @@
 
 #pragma mark - Methods
 
--(void) setValue:(float)value{
+-(void) setValue:(NSString *)value{
     _value = value;
     [self triggerEventNamed:kEventValueChanged];
 }
@@ -75,7 +72,7 @@
 }
 
 -(NSString*) description{
-    return @"value";
+    return @"bool value";
 }
 
 @end

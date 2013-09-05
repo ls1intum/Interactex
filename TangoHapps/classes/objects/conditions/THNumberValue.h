@@ -7,7 +7,7 @@
 //
 
 
-@interface THValue : TFSimulableObject
+@interface THNumberValue : TFSimulableObject
 
 @property (nonatomic) float value;
 

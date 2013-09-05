@@ -1,24 +1,23 @@
 //
-//  THBoolValue.m
+//  THValue.m
 //  TangoHapps
 //
-//  Created by Juan Haladjian on 9/5/13.
-//  Copyright (c) 2013 Technische Universität München. All rights reserved.
+//  Created by Juan Haladjian on 11/16/12.
+//  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "THBoolValue.h"
+#import "THNumberValue.h"
 
-@implementation THBoolValue
-
+@implementation THNumberValue
 
 -(void) load{
     
-    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeBoolean];
+    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
     self.viewableProperties = [NSMutableArray arrayWithObject:property];
     
     TFMethod * method = [TFMethod methodWithName:@"setValue"];
     method.numParams = 1;
-    method.firstParamType = kDataTypeBoolean;
+    method.firstParamType = kDataTypeFloat;
     self.methods = [NSArray arrayWithObject:method];
     
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
@@ -56,7 +55,7 @@
 
 -(id)copyWithZone:(NSZone *)zone
 {
-    THBoolValue * copy = [super copyWithZone:zone];
+    THNumberValue * copy = [super copyWithZone:zone];
     
     copy.value = self.value;
     
@@ -65,7 +64,7 @@
 
 #pragma mark - Methods
 
--(void) setValue:(BOOL)value{
+-(void) setValue:(float)value{
     _value = value;
     [self triggerEventNamed:kEventValueChanged];
 }
@@ -76,8 +75,7 @@
 }
 
 -(NSString*) description{
-    return @"bool value";
+    return @"number value";
 }
-
 
 @end
