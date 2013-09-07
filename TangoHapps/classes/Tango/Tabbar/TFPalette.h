@@ -28,7 +28,7 @@
 @class TFPaletteItem;
 @class TFPalette;
 
-@protocol PaletteDragDelegate <NSObject>
+@protocol THPaletteDragDelegate <NSObject>
 -(void)palette:(TFPalette*)palette didStartDraggingItem:(TFPaletteItem*)item withRecognizer:(UIPanGestureRecognizer*)recognizer;
 -(void)palette:(TFPalette*)palette didDragItem:(TFPaletteItem*)item withRecognizer:(UIPanGestureRecognizer*)recognizer;
 -(void)palette:(TFPalette*)palette didDropItem:(TFPaletteItem*)item withRecognizer:(UIPanGestureRecognizer*)recognizer;
@@ -36,7 +36,7 @@
 -(void) didTapPalette:(TFPalette*) palette;
 @end
 
-@protocol PaletteEditionDelegate <NSObject>
+@protocol THPaletteEditionDelegate <NSObject>
 -(void)palette:(TFPalette*)palette didRemoveItem:(TFCustomPaletteItem*)item;
 -(void)palette:(TFPalette*)palette didSelectItem:(TFCustomPaletteItem*)item;
 @end
@@ -53,8 +53,8 @@
     TFPaletteItem * _tempPaletteItem;
 }
 
-@property (nonatomic,weak) id<PaletteDragDelegate> dragDelegate;
-@property (nonatomic,weak) id<PaletteEditionDelegate> editionDelegate;
+@property (nonatomic,weak) id<THPaletteDragDelegate> dragDelegate;
+@property (nonatomic,weak) id<THPaletteEditionDelegate> editionDelegate;
 @property (nonatomic,weak) id<TFPaletteSizeDelegate> sizeDelegate;
 @property (nonatomic) BOOL editing;
 

@@ -15,7 +15,7 @@
     THMapperEditable * mapper = [[THMapperEditable alloc] init];
     mapper.position = location;
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addValue:mapper];
 }
 

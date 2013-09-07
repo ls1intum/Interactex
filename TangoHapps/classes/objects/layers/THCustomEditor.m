@@ -23,7 +23,6 @@
 #import "THTimerEditable.h"
 #import "THActionEditable.h"
 #import "THWire.h"
-#import "THPaletteDataSource.h"
 #import "TFTabbarViewController.h"
 #import "THProjectViewController.h"
 
@@ -45,7 +44,7 @@
     
     [TFHelper drawLines:self.currentObject.connections];
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     
     if(self.state == kEditorStateConnect){
         [TFHelper drawLinesForObjects:project.allObjects];
@@ -53,7 +52,7 @@
 }
 
 -(void) draw{
-    
+    /*
     if(self.isLilypadMode){
         
         //[self drawWires];
@@ -61,7 +60,9 @@
     } else {
         
         [self drawObjectsConnections];
-    }
+    }*/
+    
+    //ccDrawCircle(ccp(200,200), 100, 0, 100, NO);
     
     [super draw];
 }
@@ -82,7 +83,7 @@
 
 -(THWireNode*) wireNodeAtPosition:(CGPoint) position{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THWire * wire in project.wires) {
         THWireNode * node = [wire nodeAtPosition:position];
         if(node){
@@ -95,7 +96,7 @@
 
 -(TFEditableObject*) objectAtPosition:(CGPoint) position{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     
     TFEditableObject * object;
     
@@ -184,7 +185,7 @@
     self.currentConnection.p2 = position;
     if(self.isLilypadMode){
         
-        THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
         
         if([project.lilypad testPoint:position]){
             
@@ -215,7 +216,7 @@
 
 -(void) handleConnectionEndedAt:(CGPoint) location{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object2 = [project objectAtLocation:location];
     TFEditableObject * object1 = self.currentConnection.obj1;
 
@@ -242,7 +243,7 @@
 }
 
 -(void) handleConnectionStartedAt:(CGPoint) location{
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     if(self.isLilypadMode){
         THHardwareComponentEditableObject * obj = (THHardwareComponentEditableObject*) object;
@@ -304,7 +305,7 @@
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     
     if(object && [object isKindOfClass:[THClothe class]]){
@@ -337,7 +338,7 @@
 
 -(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     THClothe * clothe = [project clotheAtLocation:clotheObject.position];
     if(clothe != nil){
         [project pinClotheObject:clotheObject toClothe:clothe];
@@ -347,7 +348,7 @@
 
 -(void) checkUnPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     THClothe * clothe = [project clotheAtLocation:clotheObject.position];
     if(clothe != nil){
         [project unpinClotheObject:clotheObject];
@@ -360,7 +361,7 @@
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     THHardwareComponentEditableObject * clotheObject = [project clotheObjectAtLocation:location];
     if(clotheObject){
         if(clotheObject.attachedToClothe){
@@ -380,70 +381,70 @@
 #pragma mark - Lifecycle
 
 -(void) addConditions{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THConditionEditableObject * object in project.conditions) {
         [object addToLayer:self];
     }
 }
 
 -(void) removeConditions{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THConditionEditableObject * object in project.conditions) {
         [object removeFromLayer:self];
     }
 }
 
 -(void) showConditions{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THConditionEditableObject * object in project.conditions) {
         object.visible = YES;
     }
 }
 
 -(void) hideConditions{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THConditionEditableObject * object in project.conditions) {
         object.visible = NO;
     }
 }
 
 -(void) showValues{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THNumberValueEditable * object in project.values) {
         object.visible = YES;
     }
 }
 
 -(void) hideValues{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THNumberValueEditable * object in project.values) {
         object.visible = NO;
     }
 }
 
 -(void) showTriggers{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THTriggerEditable * object in project.triggers) {
         object.visible = YES;
     }
 }
 
 -(void) hideTriggers{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THTriggerEditable * object in project.triggers) {
         object.visible = NO;
     }
 }
 
 -(void) showActions{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THActionEditable * object in project.actions) {
         object.visible = YES;
     }
 }
 
 -(void) hideActions{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THActionEditable * object in project.actions) {
         object.visible = NO;
     }
@@ -452,13 +453,13 @@
 
 -(void) hideiPhone{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     project.iPhone.visible = NO;
 }
 
 -(void) showiPhone{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     project.iPhone.visible = YES;
 }
 
@@ -479,21 +480,21 @@
 */
 
 -(void) addClothes{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         [object addToLayer:self];
     }
 }
 
 -(void) removeClothes{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         [object removeFromLayer:self];
     }
 }
 
 -(void) showClothes{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         object.visible = YES;
     }
@@ -501,7 +502,7 @@
 
 
 -(void) hideClothes{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.clothes) {
         object.visible = NO;
     }
@@ -509,7 +510,7 @@
 
 -(void) addEditableObjects{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THHardwareComponentEditableObject * object in project.allObjects) {
         [object addToLayer:self];
     }
@@ -518,7 +519,7 @@
 -(void) removeEditableObjects{
     //[self removeAllChildrenWithCleanup:YES];
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THHardwareComponentEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
     }
@@ -530,13 +531,13 @@
 #pragma mark - Lilypad Mode
 
 -(void) addLilypadObjects{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     
     [self addEditableObject:project.lilypad];
 }
 
 -(void) removeLilypadObjects{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     
     if(project.lilypad != nil){
         [project.lilypad removeFromParentAndCleanup:YES];
@@ -563,7 +564,7 @@
 
 -(void) hideAllLilypadWires{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     
     for (THWire * wire in project.wires) {
         wire.visible = NO;
@@ -572,7 +573,7 @@
 
 -(void) showAllLilypadWires{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     
     for (THWire * wire in project.wires) {
         wire.visible = YES;
@@ -583,14 +584,14 @@
     
     THDirector * director = [THDirector sharedDirector];
     
-    THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
-    
+    //THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
+    /*
     paletteDataSource.showClotheSection = YES;
     paletteDataSource.showHardwareSection = YES;
     paletteDataSource.showSoftwareSection = YES;
     paletteDataSource.showProgrammingSection = YES;
     
-    [paletteDataSource reloadPalettes];
+    [paletteDataSource reloadPalettes];*/
     
     TFTabbarViewController * tabController = director.projectController.tabController;
     [tabController.paletteController reloadPalettes];
@@ -600,14 +601,14 @@
     
     THDirector * director = [THDirector sharedDirector];
     
-    THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
-    
+    //THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
+    /*
     paletteDataSource.showClotheSection = NO;
     paletteDataSource.showHardwareSection = YES;
     paletteDataSource.showSoftwareSection = NO;
     paletteDataSource.showProgrammingSection = NO;
     
-    [paletteDataSource reloadPalettes];
+    [paletteDataSource reloadPalettes];*/
     
     TFTabbarViewController * tabController = director.projectController.tabController;
     [tabController.paletteController reloadPalettes];
@@ -639,7 +640,7 @@
 
 -(void) removeObjects{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project.iPhone removeFromLayer:self];
     
     for (THWire * object in project.wires) {
@@ -652,7 +653,7 @@
 }
 
 -(void) addiPhone{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }
@@ -660,14 +661,14 @@
 
 -(void) addWires{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     for (THWire * wire in project.wires) {
         [wire addToLayer:self];
     }
 }
 
 -(void) addObjects{
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     
     for (TFEditableObject * object in project.allObjects) {
         [object addToLayer:self];

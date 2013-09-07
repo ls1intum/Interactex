@@ -52,7 +52,7 @@
 
 -(void)addGestureRecognizers
 {
-    EAGLView * glView = [CCDirector sharedDirector].openGLView;
+    UIView * glView = [CCDirector sharedDirector].view;
     
     // Pinch
     UIPinchGestureRecognizer *pinchRecognizer =
@@ -102,7 +102,7 @@
 }
 
 -(void) removeGestureRecognizers{
-    EAGLView * glView = [CCDirector sharedDirector].openGLView;
+    UIView * glView = [CCDirector sharedDirector].view;
     glView.gestureRecognizers = nil;
 }
 
@@ -112,12 +112,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     return YES;
 }
 
--(void)scale:(UIPinchGestureRecognizer*)sender{}
--(void)rotate:(UIRotationGestureRecognizer*) sender{}
--(void)move:(UIPanGestureRecognizer*)sender{}
--(void)tapped:(UITapGestureRecognizer*)sender{}
--(void)doubleTapped:(UITapGestureRecognizer*)sender{}
--(void)pressedLong:(UILongPressGestureRecognizer*)sender{}
+-(void) scale:(UIPinchGestureRecognizer*)sender{}
+-(void) rotate:(UIRotationGestureRecognizer*) sender{}
+-(void) move:(UIPanGestureRecognizer*)sender{}
+-(void) tapped:(UITapGestureRecognizer*)sender{}
+-(void) doubleTapped:(UITapGestureRecognizer*)sender{}
+-(void) pressedLong:(UILongPressGestureRecognizer*)sender{}
 -(void) accelerated:(UIAcceleration*) acceleration{}
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {

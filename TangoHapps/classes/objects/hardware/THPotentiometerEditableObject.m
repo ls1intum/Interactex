@@ -22,7 +22,8 @@
     [self addChild:self.sprite];
     
     CGSize size = CGSizeMake(75, 20);
-    _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size alignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:11];
+        _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:11];
+    
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-50);
     _valueLabel.visible = NO;
     [self addChild:_valueLabel z:1];

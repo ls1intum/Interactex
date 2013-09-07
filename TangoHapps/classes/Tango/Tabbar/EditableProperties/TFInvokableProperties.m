@@ -138,7 +138,7 @@
     label.font = [UIFont fontWithName:kEditableObjectTableFont size:kEditableObjectTableFontSize];
     label.text = method.description;
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * actions = [project actionsForTarget:editable];
     for (TFEventActionPair * pair in actions) {
         TFMethodInvokeAction * action = (TFMethodInvokeAction*) pair.action;

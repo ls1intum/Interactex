@@ -27,8 +27,7 @@
 
 @implementation TFTabbarView
 
--(id)initWithFrame:(CGRect)frame
-{
+-(id)initWithFrame:(CGRect)frame {
     if([super initWithFrame:frame]){
         [self setBackgroundColor:[UIColor clearColor]];
         [self setClipsToBounds:YES];
@@ -37,6 +36,12 @@
         _sections = [NSMutableArray array];
     }
     return self;
+}
+
+- (TFPalette*)emptyPalette {
+    CGRect containerFrame = CGRectMake(0, 0, 230, 100);
+    TFPalette *palette = [[TFPalette alloc] initWithFrame:containerFrame];
+    return palette;
 }
 
 -(void)addPaletteSection:(TFTabbarSection*) section {
@@ -50,6 +55,42 @@
     
     [self addSubview:section];
     [_sections addObject:section];
+    
+    section.sizeDelegate = self;
+    
+    [self.tabBarDelegate tabBar:self didAddSection:section];
+}
+
+-(void) tabbarSection:(TFTabbarSection *)section changedSize:(CGSize)size{
+    [self relayoutSections];
+}
+
+-(void) reloadData{
+    [self removeAllSections];
+    
+    NSInteger numSections = [self.dataSource numPaletteSectionsForPalette:self];
+    
+    for (int i = 0; i < numSections; i++) {
+        
+        TFPalette * palette = [self emptyPalette];
+        NSInteger numItems = [self.dataSource numPaletteItemsForSection:i palette:self];
+        for (int j = 0; j < numItems; j++) {
+            NSIndexPath * indexPath = [NSIndexPath indexPathForItem:j inSection:i];
+            
+            TFPaletteItem * item = [self.dataSource paletteItemForIndexPath:indexPath palette:self];
+            [palette addDragablePaletteItem:item];
+            
+        }
+        
+        NSString * title = [self.dataSource titleForSection:i palette:self];
+        TFTabbarSection * section = [TFTabbarSection sectionWithTitle:title];
+        [section addPalette:palette];
+        
+        //section.sizeDelegate = self;
+        [self addPaletteSection:section];
+    }
+    
+    [self relayoutSections];
 }
 
 -(void) relayoutSections{
@@ -63,7 +104,20 @@
         _currentY += section.frame.size.height;
     }
     
+    //[self recalculateFrame];
+    
     [self setContentSize:CGSizeMake(self.frame.size.width, _currentY)];
+}
+
+-(void) recalculateFrame{
+    
+    //float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    float navBarHeight = 0;
+    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    float maxHeight = 768 - navBarHeight - statusBarHeight;
+    float height = MIN(_currentY - self.frame.origin.y, maxHeight - self.frame.origin.y);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, height);
+    //NSLog(@"origin : %f height: %f",self.frame.origin.y, height);
 }
 
 -(TFTabbarSection*) sectionForPalette:(TFPalette*) palette{
@@ -74,7 +128,6 @@
     }
     return nil;
 }
-
 
 -(TFTabbarSection*) sectionNamed:(NSString*) name {
     for (TFTabbarSection * section in _sections) {

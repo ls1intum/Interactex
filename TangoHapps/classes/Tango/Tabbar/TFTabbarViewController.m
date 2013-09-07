@@ -32,20 +32,14 @@
 
 @implementation TFTabbarViewController
 
+float const kTabbarToolbarHeight = 50;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
         _paletteController = [[TFPaletteViewController alloc] init];
         _propertiesController = [[TFPropertiesViewController alloc] init];
-        
-        _paletteController.view = [self tabbarViewForController:_paletteController title:@"Palette"];
-        _propertiesController.view = [self tabbarViewForController:_propertiesController title:@"Properties"];
-        
-        CGRect toolbarFrame = CGRectMake(0, 0, 200, 50);
-        self.toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
-        
-        [self showTab:0];
     }
     return self;
 }
@@ -53,7 +47,9 @@
 #pragma mark - View Lifecycle
 
 -(TFTabbarView*) tabbarViewForController:(UIViewController*) controller title:(NSString*) title {
-    TFTabbarView * view = [[TFTabbarView alloc] initWithFrame:CGRectMake(0, 0, kTabWidth, 680)];
+    
+    TFTabbarView * view = [[TFTabbarView alloc] initWithFrame:CGRectMake(0, 0, kTabWidth, self.view.frame.size.height - self.toolBar.frame.size.height)];
+
     controller.view = view;
     controller.title = title;
     [self.view addSubview:view];
@@ -66,28 +62,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.frame = CGRectMake(0, 0, kTabWidth, 768);
-    self.view.backgroundColor = [UIColor grayColor];
+    _paletteController.view = [self tabbarViewForController:_paletteController title:@"Palette"];
+    _propertiesController.view = [self tabbarViewForController:_propertiesController title:@"Properties"];
+    [self showTab:0];
     
+    self.view.backgroundColor = [UIColor grayColor];
+    //self.view.frame = CGRectMake(0, 100, kTabWidth, 500);
 }
 
 - (void)viewDidUnload {
     
-    [self setToolbar:nil];
+    //[self setToolbar:nil];
     [super viewDidUnload];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self showTab:0];
-}
-
-
 #pragma mark - Getters/Setters
 
--(BOOL) hidden
-{
+-(BOOL) hidden {
     return self.view.hidden;
 }
 
@@ -98,11 +89,9 @@
 
 #pragma mark - Actions
 
--(void)showTab:(NSInteger)index {
-    [_paletteController.view setHidden:(index != 0)];
-    [_propertiesController.view setHidden:(index != 1)];
-    //TFPalette *view = (TFPalette*)(index == 0 ? _paletteController.view : _propertiesController.view);
-    //[self sidebarView:view didResizeTo:view.contentSize];
+-(void) showTab:(NSInteger)index {
+    [_paletteController.view setHidden:(index == 1)];
+    [_propertiesController.view setHidden:(index == 0)];
 }
 
 - (IBAction)paletteTapped:(id)sender {
@@ -112,44 +101,6 @@
 - (IBAction)propertiesTapped:(id)sender {
     [self showTab:1];
 }
-
-#pragma mark - Showing/Hidding palettes
-
--(void) hidePaletteWithIdx:(NSInteger) idx{/*
-    _showPalette[idx] = NO;
-    [self reloadPalettes];*/
-}
-
--(void) showPaletteWithIdx:(NSInteger) idx{/*
-    _showPalette[idx] = YES;
-    [self reloadPalettes];*/
-}
-
--(void) showAllPalettes{
-    /*
-    for (int i = 0; i < kNumPalettes; i++) {
-        _showPalette[i] = YES;
-    }
-    [self reloadPalettes];*/
-}
-
-/*
--(void) unselectAllButtons{
-}
-
--(IBAction)connectToolPressed:(id)sender
-{
-    TFEditor * editor = [TFEditor sharedInstance];
-    UIButton* button = (UIButton*) sender;
-    if(editor.state == kEditorStateConnect){
-        editor.state = kEditorStateNormal;
-        button.selected = NO;
-    } else {
-        [self unselectAllButtons];
-        editor.state = kEditorStateConnect;
-        button.selected = YES;
-    }
-}*/
 
 #pragma mark - Dealloc
 

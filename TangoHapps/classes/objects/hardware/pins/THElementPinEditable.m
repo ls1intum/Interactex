@@ -131,26 +131,27 @@
     if(self.highlighted){
         glLineWidth(2);
         if(self.attachedToPin){
-            glColor4f(0.82, 0.58, 0.58, 1.0);
+
+//            glColor4f(0.82, 0.58, 0.58, 1.0);
         } else {
-            glColor4f(0.12, 0.58, 0.84, 1.0);
+  //          glColor4f(0.12, 0.58, 0.84, 1.0);
         }
         
         ccDrawCircle(ccp(0,0), kLilypadPinRadius, 0, 15, 0);
         
         glLineWidth(1);
-        glColor4ub(255,255,255,255);
+    //    glColor4ub(255,255,255,255);
     }
     
     
     if(self.state == kElementPinStateProblem){
         glLineWidth(2);
-        glColor4f(0.82, 0.58, 0.58, 1.0);
+    //    glColor4f(0.82, 0.58, 0.58, 1.0);
         
         ccDrawCircle(ccp(0,0), kLilypadPinRadius, 0, 15, 0);
         
         glLineWidth(1);
-        glColor4ub(255,255,255,255);
+      //  glColor4ub(255,255,255,255);
     }
 }
 

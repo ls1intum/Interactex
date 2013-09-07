@@ -7,13 +7,36 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THGridView.h"
+#import "THProjectCell.h"
 
-@interface THProjectSelectionViewController : UIViewController <THGridViewDataSource>
+@class THProjectProxy;
+@class THProjectDraggableCell;
+
+@interface THProjectSelectionViewController : UIViewController < UIGestureRecognizerDelegate, THProjectCellDelegate>
 {
-    UILabel * _titleLabel;
+    UILabel * titleLabel;
+    
+    UITapGestureRecognizer * tapRecognizer;
+    UIPanGestureRecognizer * panRecognizer;
+    UILongPressGestureRecognizer * longpressRecognizer;
+    
+    THProjectProxy * currentProject;
+    THProjectCell * currentProjectCell;
+    THProjectDraggableCell * currentDraggableCell;
 }
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *filterControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *orderControl;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) BOOL editingScenes;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (weak, nonatomic) NSMutableArray * projects;
+
 -(void) reloadData;
+-(IBAction) addButtonTapped:(id)sender;
+-(IBAction) filterControlChanged:(id)sender;
+-(IBAction) orderControlChanged:(id)sender;
+-(IBAction) editButtonTapped:(id)sender;
+
 
 @end

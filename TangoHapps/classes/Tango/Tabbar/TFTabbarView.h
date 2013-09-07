@@ -30,17 +30,32 @@
 @class TFTabbarSection;
 @class TFPalette;
 
-@interface TFTabbarView : UIScrollView
+@protocol TFTabbarViewDataSource <NSObject>
+-(NSInteger) numPaletteSectionsForPalette:(TFTabbarView*) tabBar;
+-(NSInteger) numPaletteItemsForSection:(NSInteger) section palette:(TFTabbarView*) tabBar;
+-(TFPaletteItem*) paletteItemForIndexPath:(NSIndexPath*) indexPath palette:(TFTabbarView*) tabBar;
+-(NSString*) titleForSection:(NSInteger) section palette:(TFTabbarView*) tabBar;
+@end
+
+
+@protocol TFTabBarViewDelegate <NSObject>
+-(void) tabBar:(TFTabbarView*) tabBar didAddSection:(TFTabbarSection*) section;
+@end
+
+@interface TFTabbarView : UIScrollView <TFPaletteSectionDelegate>
 {
     CGFloat _currentY;
 }
+
+@property (nonatomic, strong) NSMutableArray * sections;
+@property (nonatomic, weak) id<TFTabbarViewDataSource> dataSource;
+@property (nonatomic, weak) id<TFTabBarViewDelegate> tabBarDelegate;
 
 -(void) addPaletteSection:(TFTabbarSection*) section;
 -(void) removeSection:(TFTabbarSection*) section;
 -(void) removeAllSections;
 -(void) relayoutSections;
-
-@property (nonatomic, strong) NSMutableArray * sections;
+-(void) reloadData;
 
 -(TFTabbarSection*) sectionForPalette:(TFPalette*) palette;
 -(TFTabbarSection*) sectionNamed:(NSString*) name;

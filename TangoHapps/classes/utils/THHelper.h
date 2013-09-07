@@ -16,4 +16,7 @@
 +(ccColor3B) color3BFromUIColor:(UIColor*) color;
 +(UIColor*) uicolorFromColor3B:(ccColor3B) color;
 
++(CGSize) currentSize;
++(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientatio;
+
 @end

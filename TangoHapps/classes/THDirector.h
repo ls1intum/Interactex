@@ -12,6 +12,7 @@
 #import "THProjectSelectionViewController.h"
 #import "TFPaletteViewController.h"
 #import "TFProjectDelegate.h"
+#import "TFTabbarView.h"
 
 @class THProjectViewController;
 @class THProjectProxy;
@@ -42,12 +43,10 @@ typedef enum {
 @property (nonatomic, strong) TFProject * currentProject;
 @property (nonatomic, readonly) THProjectProxy * currentProxy;
 @property (nonatomic, strong) NSMutableArray * projectProxies;
-@property (nonatomic, strong) id<TFPaleteViewControllerDataSource> paletteDataSource;
+@property (nonatomic, strong) id<TFTabbarViewDataSource> paletteDataSource;
 @property (nonatomic, strong) id<TFProjectControllerDelegate> projectDelegate;
 @property (nonatomic, strong) THEditorToolsDataSource * editorToolsDataSource;
 @property (nonatomic) TFDirectorState state;
-
-@property (nonatomic, strong) id<THGridViewDelegate> gridDelegate;
 
 +(THDirector*)sharedDirector;
 

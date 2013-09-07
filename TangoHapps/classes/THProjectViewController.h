@@ -5,7 +5,7 @@
 @class TFTabbarViewController;
 @class THEditorToolsViewController;
 
-@interface THProjectViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate> {
+@interface THProjectViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate, CCDirectorDelegate> {
     
     UILabel * _titleLabel;
     UITextField * _titleTextField;
@@ -14,22 +14,19 @@
     UIBarButtonItem * _stopButton;
     
     NSMutableArray * _barButtonItems;
-    BOOL _cocos2dInit;
     
     BOOL wasEditorInLilypadMode;
 }
 
 @property (nonatomic, readonly) TFLayer * currentLayer;
 @property (nonatomic, readonly) CCScene * currentScene;
-@property (nonatomic, readonly) EAGLView * glview;
+@property (nonatomic, readonly) CCGLView * glview;
 @property (nonatomic, readonly) TFAppState state;
 @property (nonatomic, readonly) TFTabbarViewController * tabController;
 @property (nonatomic, readonly) THEditorToolsViewController * toolsController;
 
 @property (nonatomic, readonly) BOOL editingSceneName;
 
--(id) init;
--(void) load;
 -(void) startWithEditor;
 -(void) startSimulation;
 -(void) endSimulation;

@@ -14,7 +14,7 @@
 
 -(void) draw{
     
-    glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
+    //glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
     ccDrawCircle(ccp(0,0), kWireNodeRadius, 0, 30, NO);
 }
 
@@ -94,21 +94,21 @@
 #pragma mark - Drawing
 
 -(void) startDrawingSelectedLines{
-    
+    /*
     float kColorHighlightIncreaseFactor = 1.20f;
     
     float r = MIN(255, self.color.r * kColorHighlightIncreaseFactor);
     float g = MIN(255, self.color.g * kColorHighlightIncreaseFactor);
     float b = MIN(255, self.color.b * kColorHighlightIncreaseFactor);
     
-    glColor4ub(r, g, b, 255);
-    
+   // glColor4ub(r, g, b, 255);
+    */
     glLineWidth(kLineWidthSelected);
 }
 
 -(void) startDrawingNormalLines{
     
-    glColor4ub(self.color.r, self.color.g, self.color.b, 255);
+    //glColor4ub(self.color.r, self.color.g, self.color.b, 255);
     glLineWidth(kLineWidthNormal);
 }
 
@@ -143,7 +143,7 @@
 
 -(void) drawNodes{
     
-    glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
+    //glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
     
     
     for (THWireNode * node in self.nodes) {

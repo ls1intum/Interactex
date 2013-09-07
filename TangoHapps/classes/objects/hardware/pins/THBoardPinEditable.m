@@ -60,7 +60,6 @@
     if(selected){
         THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
         
-        
         NSString * text = kPinTexts[self.type];
         
         if(self.type == kPintypeAnalog || self.type == kPintypeDigital){
@@ -68,7 +67,9 @@
             text = [text stringByAppendingFormat:@" %d",self.number];
         }
         
-        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) alignment:NSTextAlignmentCenter fontName:@"Arial Rounded MT Bold" fontSize:20];
+        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
+        
+        //_label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) alignment:NSTextAlignmentCenter fontName:@"Arial Rounded MT Bold" fontSize:20];
         
         CGPoint position = [self convertToWorldSpace:ccp(0,0)];
         _label.position = ccpAdd(position,ccp(0,50));
@@ -172,7 +173,7 @@
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
     if(self.type == kPintypeDigital && pin.value == 1){
         
-        glColor4f(0, 1, 0, 1.0);
+        //glColor4f(0, 1, 0, 1.0);
         ccDrawCircle(ccp(0,0), 10, 0, 10, 0);
     }
 }

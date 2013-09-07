@@ -74,8 +74,6 @@
     THCustomEditor * editor = (THCustomEditor*) director.currentLayer;
     [editor stopLilypadMode];
     [self.lilypadItem setImage:[UIImage imageNamed:@"lilypadmode"]];
-    
-    [director.projectController.tabController showAllPalettes];
 }
 
 -(void) startLilypadMode{

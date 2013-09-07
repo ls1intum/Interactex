@@ -119,7 +119,6 @@
     iPhone.type = type;
     [self reloadiPhoneSprite];
     [self adaptViewSizeToIphoneType];
-    [self updateBoxes];
 }
 
 -(THIPhoneType) type{
@@ -141,7 +140,7 @@
 -(void) addToLayer:(TFLayer*) layer{
     [layer addEditableObject:self];
     
-    [(THiPhone*)self.simulableObject addToView:[[CCDirector sharedDirector] openGLView]];
+    [(THiPhone*)self.simulableObject addToView:[CCDirector sharedDirector].view];
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{
@@ -175,7 +174,6 @@
     CGPoint viewtopleft = ccpAdd(topleft, ccp(frame.origin.x,-frame.origin.y));
     CGPoint viewcenter = ccpAdd(viewtopleft, ccp(frame.size.width/2,-frame.size.height/2));
     viewcenter = [TFHelper ConvertToCocos2dView:viewcenter];
-    view.position = viewcenter;
 }
 
 -(void) setPosition:(CGPoint)position{
@@ -186,22 +184,8 @@
     iPhone.position = [TFHelper ConvertToCocos2dView:self.position];
     
     CGPoint pos = [TFHelper ConvertToCocos2dView:self.position];
-    
     _currentView.position = pos;
 }
-
-/*
--(void) setPosition:(CGPoint)position{
-    
-    CGPoint displacement = ccpSub(position,self.position);
-    
-    [super setPosition:position];
-    
-    THiPhone * iPhone = (THiPhone*) self.simulableObject;
-    iPhone.position = [TFHelper ConvertToCocos2dView:self.position];
-    
-    [_currentView displaceBy:displacement];
-}*/
 
 -(void) displaceBy:(CGPoint)displacement{
     
@@ -216,14 +200,14 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addiPhone:self];
 }
 
 -(void) removeFromWorld{
     //[_currentView removeFromWorld];
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project removeiPhone];
     
     [super removeFromWorld];
@@ -240,7 +224,7 @@
 }
 
 -(void) draw{
-    glPointSize(10);
+    //glPointSize(10);
     [self convertToWorldSpace:ccp(0,0)];
 }
 

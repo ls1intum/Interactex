@@ -64,27 +64,30 @@
 
 +(void) drawRect:(CGRect) rect{
     
-    CGPoint points[4];
+    /*CGPoint points[4];
     points[0] = rect.origin;
     points[1] = ccpAdd(rect.origin,ccp(rect.size.width,0));
     points[2] = ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height));
     points[3] = ccpAdd(rect.origin,ccp(0,rect.size.height));
     ccDrawSolidPoly(points, 4, YES);
-    
+    */
+    ccDrawSolidRect(rect.origin, ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height)), ccc4f(1, 0, 0, 1));
 }
 
-+(void) drawEmptyRect:(CGRect) rect{
++(void) drawEmptyRect:(CGRect) rect{/*
     CGPoint points[4];
     points[0] = rect.origin;
     points[1] = ccpAdd(rect.origin,ccp(rect.size.width,0));
     points[2] = ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height));
     points[3] = ccpAdd(rect.origin,ccp(0,rect.size.height));
-    ccDrawPoly(points, 4, YES);
+    ccDrawPoly(points, 4, YES);*/
+    
+    ccDrawSolidRect(rect.origin, ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height)), ccc4f(1, 0, 0, 1));
 }
 
 +(void) drawLines:(NSArray *) connections{
     
-    glEnable(GL_LINE_SMOOTH);
+    //glEnable(GL_LINE_SMOOTH);
     
     for (TFConnectionLine * line in connections) {
         if(line.obj1.visible && line.obj2.visible){
@@ -97,7 +100,7 @@
 
 +(void) drawWires:(NSArray *) wires{
     
-    glEnable(GL_LINE_SMOOTH);
+    //glEnable(GL_LINE_SMOOTH);
     
     for (THWire * wire in wires) {
         if(wire.obj1.visible && wire.obj2.visible){
@@ -118,10 +121,10 @@
 }
 
 +(void) restoreDrawingState{
-    
+
     glLineWidth(1.0f);
-    glColor4ub(255,255,255,255);
-    glDisable(GL_LINE_SMOOTH);
+    //glColor4ub(255,255,255,255);
+//    glDisable(GL_LINE_SMOOTH);
 }
 
 /*
@@ -156,8 +159,7 @@
 
 +(CGPoint) ConvertToCocos2dView:(CGPoint) point{
     
-    EAGLView * view = [[CCDirector sharedDirector] openGLView];
-    float diff = 768 - view.frame.size.height;
+    float diff = 768 - [CCDirector sharedDirector].view.frame.size.height;
     return ccp(point.x, 768 - point.y - diff);
 }
 

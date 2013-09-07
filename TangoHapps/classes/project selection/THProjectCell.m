@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THClientSceneCell.h"
+#import "THProjectCell.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
-@implementation THClientSceneCell
+@implementation THProjectCell
 
 const float kShakingEffectAngleInRadians = 2.0f;
 const float kShakingEffectRotationTime = 0.10f;
@@ -60,7 +60,7 @@ const float kShakingEffectRotationTime = 0.10f;
 
 - (IBAction)deleteTapped:(id)sender {
     
-    [self.delegate didDeleteClientSceneCell:self];
+    [self.delegate didDeleteProjectCell:self];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{

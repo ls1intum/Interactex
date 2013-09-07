@@ -145,8 +145,6 @@
         cell.editing = NO;
         cell.titleTextField.hidden = NO;
         
-//        cell.titleTextField.hidden = NO;
-        
     } else {
         
         THClientScene * preset = [self.presets objectAtIndex:indexPath.row];

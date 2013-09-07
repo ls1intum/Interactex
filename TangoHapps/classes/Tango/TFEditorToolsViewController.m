@@ -38,7 +38,7 @@
 }
 
 -(void) updateButtons{
-    TFEditor * editor = (TFEditor*) [TFDirector sharedDirector].currentLayer;
+    TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
     
     [self unselectAllButtons];
     

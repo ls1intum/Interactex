@@ -15,7 +15,7 @@
     THCompassEditableObject * compass = [[THCompassEditableObject alloc] init];
     compass.position = location;
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:compass];
 }
 

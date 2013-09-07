@@ -100,20 +100,19 @@
 #pragma mark - Drawing
 
 -(void) drawBoundingBoxes{
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     
     for(TFEditableObject * object in project.allObjects){
         [TFHelper drawRect:object.boundingBox];
     }
-    
 }
 
 -(void)drawTemporaryLine{
     
     if(_currentConnection != nil && _currentConnection.state == kConnectionStateDrawing){
-        glEnable(GL_LINE_SMOOTH);
+        //glEnable(GL_LINE_SMOOTH);
         
-        glColor4ub(kConnectionLineDefaultColor.r,kConnectionLineDefaultColor.g,kConnectionLineDefaultColor.b,255);
+        //glColor4ub(kConnectionLineDefaultColor.r,kConnectionLineDefaultColor.g,kConnectionLineDefaultColor.b,255);
         
         glLineWidth(2.0f);
         
@@ -123,9 +122,9 @@
         ccDrawCircle(_currentConnection.p2, 3, 0, 5, NO);
         
         glLineWidth(1.0f);
-        glDisable(GL_LINE_SMOOTH);
-        glPointSize(1);
-        glColor4ub(255,255,255,255);
+        //glDisable(GL_LINE_SMOOTH);
+        //glPointSize(1);
+        //glColor4ub(255,255,255,255);
     }
 }
 
@@ -135,9 +134,12 @@
 
 -(void) draw{
     
-    [self drawTemporaryLine];
+    //ccDrawColor4F(0, 1, 0, 1);
+    //ccDrawCircle(ccp(0,0), 20, 0, 10, NO);
+    //ccDrawCircle(ccp(self.contentSize.width,self.contentSize.height), 20, 0, 10, NO);
     
-    [self drawConnectionLines];
+    //[self drawTemporaryLine];
+    //[self drawConnectionLines];
     
     //[self drawBoundingBoxes];
 }
@@ -191,7 +193,7 @@
 
 -(void) methodSelectionPopup:(TFMethodSelectionPopup*) popup didSelectAction:(TFMethodInvokeAction*) action forEvent:(TFEvent*) event{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     [project registerAction:(TFAction*)action forEvent:event];
     
     TFEditableObject * source = (TFEditableObject*) popup.object1;
@@ -208,7 +210,6 @@
 -(void) showMethodSelectionPopupFor:(TFEditableObject*) object1 and:(TFEditableObject*) object2{
     if(object2 != nil && [object1 acceptsConnectionsTo:object2]){
         
-        //NSBundle * bundle = [TFHelper frameworkBundle];
         _methodSelectionPopup = [[TFMethodSelectionPopup alloc] init];
         _methodSelectionPopup.delegate = self;
         _methodSelectionPopup.object1 = (TFEditableObject*) object1;
@@ -262,7 +263,7 @@
 
 -(TFEditableObject*) duplicateObjectAtLocation:(CGPoint) location{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     
     TFEditableObject * copy;
@@ -364,7 +365,7 @@
     
     if(self.removeConnections){
         
-        TFProject * project = [TFDirector sharedDirector].currentProject;
+        TFProject * project = [THDirector sharedDirector].currentProject;
         
         TFEditableObject * object = [project objectAtLocation:location];
         NSArray * actions = [project actionsForTarget:object];
@@ -387,7 +388,7 @@
         
     } else if(_state == kEditorStateDelete){
         
-        TFProject * project = [TFDirector sharedDirector].currentProject;
+        TFProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         if(object){
             if(self.currentObject == object){
@@ -418,7 +419,7 @@
 
 -(void) prepareObjectsForEdition{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     [project prepareForEdition];
 }
 
@@ -444,7 +445,7 @@
 
 -(void)paletteItem:(TFDragView*)item beganDragAt:(CGPoint) location {
     item.center = location;
-    [item addToView:[[CCDirector sharedDirector] openGLView]];
+    [item addToView:[CCDirector sharedDirector].view];
 }
 
 -(void)paletteItem:(TFDragView*)item movedTo:(CGPoint)location {

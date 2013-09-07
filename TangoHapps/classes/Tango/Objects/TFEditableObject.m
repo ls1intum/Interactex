@@ -24,7 +24,6 @@
 
 #import "TFEditableObject.h"
 #import "TFConnectionLine.h"
-#import "RoundedRectNode.h"
 #import "TFEditableObjectProperties.h"
 #import "TFSimulableObject.h"
 #import "TFMethod.h"
@@ -48,6 +47,8 @@
     self.visible = YES;
     self.highlightColor = kDefaultObjectHighlightColor;
     self.canBeDuplicated = YES;
+    
+    //self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
 }
 
 -(id) init{
@@ -131,6 +132,10 @@
 }
 
 #pragma mark - Methods
+
+-(void) update{
+    
+}
 
 -(TFMethod*) methodNamed:(NSString*) methodName{
     return [self.simulableObject methodNamed:methodName];
@@ -314,7 +319,6 @@
         _sprite = sprite;
         _sprite.anchorPoint = ccp(0,0);
         [self updateContentSize];
-        [self updateBoxes];
     }
 }
 
@@ -333,7 +337,6 @@
 
 -(void) setWidth:(float) width{
     _size.width = width;
-    [self updateBoxes];
 }
 
 -(float) width{
@@ -342,7 +345,6 @@
 
 -(void) setHeight:(float) height{
     _size.height = height;
-    [self updateBoxes];
 }
 
 -(float) height{
@@ -351,7 +353,6 @@
 
 -(void) setSize:(CGSize)size{
     _size = size;
-    [self updateBoxes];
 }
 
 -(void)scaleBy:(float)scaleDx {
@@ -367,7 +368,7 @@
 }
 -(void) setPosition:(CGPoint)position{
     [super setPosition:position];
-    [self updateBoxes];
+    //NSLog(@"%f %f",position.x,position.y);
 }
 
 -(void) reloadProperties{
@@ -375,7 +376,7 @@
     [self.viewableEditableProperties reloadState];
     [self.invokableEditableProperties reloadState];
 }
-
+/*
 -(CGRect) boundingBox{
         
     if(_sprite){
@@ -388,7 +389,7 @@
         return CGRectMake(spriteLoc.x - size.width / 2, spriteLoc.y - size.height / 2, size.width, size.height);
     }
     
-    /*
+    
     CGPoint pos = self.position;
     pos = ccpAdd(pos, self.parent.position);
     
@@ -424,9 +425,9 @@
             maxY = rect.origin.y + rect.size.height;
         }
     }
-    return CGRectMake(box.origin.x, box.origin.y, maxX - box.origin.x, maxY - box.origin.y);*/
+    return CGRectMake(box.origin.x, box.origin.y, maxX - box.origin.x, maxY - box.origin.y);
 }
-
+*/
 -(CGPoint) absolutePosition{
     return [self convertToWorldSpace:ccp(0,0)];
 }
@@ -452,6 +453,19 @@
 }
 
 -(void) draw {
+   // CC_NODE_DRAW_SETUP();
+    
+    //float width = self.contentSize.width;
+    //float height = self.contentSize.height;
+    
+    //int cornerRadius = 8;
+    //int smoothness = 2;
+    //BOOL cornersToRound[4] = { YES, YES, YES, YES };
+    
+    //ccDrawColor4F(1, 0.2, 0.2, 1);
+    //ccDrawRect(ccp(0,-200), ccp(width, height));
+    ccDrawCircle(ccp(0,0), 30, 0, 10, NO);
+    //ccDrawSolidRoundedRect(CGRectMake(0, 0, width, height), cornerRadius, smoothness, cornersToRound);
     
     /*
     if(self.selected){
@@ -478,7 +492,7 @@
         glDisable(GL_BLEND);
     }*/
 }
-
+/*
 -(void) addHighlightRect{
     _highlightNode = [[RoundedRectNode alloc] init];
     _highlightNode.borderWidth = 2;
@@ -506,15 +520,15 @@
     [self updateBoxes];
     
     [self addChild:_selectionNode z: -1];
-}
+}*/
 
 -(void) addSelectionLabel{
+    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) hAlignment:NSTextAlignmentCenter vAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
     
-    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) alignment:NSTextAlignmentCenter fontName:@"Arial" fontSize:9];
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];
 }
-
+/*
 -(void) updateBoxes{
     
     float kSelectionPadding = 10;
@@ -525,7 +539,7 @@
     CGPoint point = ccpAdd(box.origin,ccp(0,box.size.height));
     point = [self convertToNodeSpace:point];
     point = ccpAdd(point, ccp(-kSelectionPadding,kSelectionPadding));
-    
+
     _selectionNode.position = point;
     _selectionNode.size = rectSize;
     
@@ -559,7 +573,7 @@
         }
     }
 }
-
+*/
 -(void) willStartSimulation {
     self.selected = NO;
         
@@ -577,10 +591,6 @@
 -(void) handleTap{}
 
 -(void) handleRotation:(float) degree{}
-
--(void) update{
-    
-}
 
 -(void) prepareToDie{
         

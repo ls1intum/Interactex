@@ -85,13 +85,13 @@
 
 -(void) startDrawingSelectedLines{
     
-    glColor4f(1.0, 0.5, 0.5, 1.0);
+    //glColor4f(1.0, 0.5, 0.5, 1.0);
     glLineWidth(kLineWidthSelected);
 }
 
 -(void) startDrawingNormalLines{
     
-    glColor4ub(self.color.r, self.color.g, self.color.b, 255);
+    //glColor4ub(self.color.r, self.color.g, self.color.b, 255);
     glLineWidth(kLineWidthNormal);
 }
 

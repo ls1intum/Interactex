@@ -158,7 +158,7 @@
         
         CGRect rect = CGRectMake(position.x - invokableWidth/2, position.y - invokableHeight/2, invokableWidth, invokableHeight);
         
-        UIView * view = [[CCDirector sharedDirector] openGLView];
+        UIView * view = [CCDirector sharedDirector].view;
         popOverController = [[UIPopoverController alloc] initWithContentViewController:self];
         
         [popOverController presentPopoverFromRect:rect inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];

@@ -8,42 +8,53 @@
 
 #import "THProjectSelectionViewController.h"
 #import "THProjectProxy.h"
+#import "THProjectCell.h"
+#import "THProjectDraggableCell.h"
 
 @implementation THProjectSelectionViewController
 
--(void) load{
-    
-    THGridView * grid = [[THGridView alloc] init];
-    grid.dataSource = self;
-    self.view = grid;
-    [self viewDidLoad];
-    
-}
-
--(id)init {
-    self = [super init];
-    if(self){
-        [self load];
-        [self addTitleLabel];
-    }
-    return self;
-}
-
 -(void) addTitleLabel{
-    _titleLabel = [TFHelper navBarTitleLabelNamed:@"Projects"];
-    self.navigationItem.titleView = _titleLabel;
-}
-
--(id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if(self){
-        [self load];
-    }
-    return self;
+    titleLabel = [TFHelper navBarTitleLabelNamed:@"Projects"];
+    self.navigationItem.titleView = titleLabel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.collectionView reloadData];
+    [self addTitleLabel];
+    self.projects = [THDirector sharedDirector].projectProxies;
+    
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director isViewLoaded] == NO) {
+        director.view = [self createDirectorGLView];
+        [self didInitializeDirector];
+    }
+}
+
+#pragma  mark - init cocos2d
+
+- (CCGLView *)createDirectorGLView {
+
+    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    
+    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight - statusBarHeight)
+                                   pixelFormat:kEAGLColorFormatRGB565
+                                   depthFormat:0
+                            preserveBackbuffer:NO
+                                    sharegroup:nil
+                                 multiSampling:NO
+                               numberOfSamples:0];
+    return glView;
+}
+
+- (void)didInitializeDirector
+{
+    CCDirector *director = [CCDirector sharedDirector];
+    
+    [director setAnimationInterval:1.0f/60.0f];
+    [director enableRetinaDisplay:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -59,6 +70,272 @@
     return @"Projects";
 }
 
+-(void) loadGestureRecognizers{
+    ///tap
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    tapRecognizer.delegate = self;
+    [self.view addGestureRecognizer:tapRecognizer];
+    
+    //move
+    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moved:)];
+    panRecognizer.delegate = self;
+    [self.view addGestureRecognizer:panRecognizer];
+    
+    //long Press
+    longpressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pressedLong:)];
+    longpressRecognizer.delegate = self;
+    [self.view addGestureRecognizer:longpressRecognizer];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    
+    [self stopEditingScenes];
+    
+}
+
+/*
+ #pragma mark - Grid View delegate
+ 
+ -(CGSize) gridItemSizeForGridView:(THGridView*) view{
+ return CGSizeMake(100, 224);
+ }
+ 
+ -(CGPoint) gridItemPaddingForGridView:(THGridView*) view{
+ return CGPointMake(5, 1);
+ }
+ 
+ -(CGPoint) gridPaddingForGridView:(THGridView*) view{
+ return CGPointMake(0,5);
+ }*/
+
+/*
+ #pragma mark Interface Actions
+ 
+ -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+ [super setEditing:editing animated:animated];
+ [self.gridView setEditing:editing];
+ }*/
+
+#pragma mark - Private
+
+- (void)reloadData {
+    [self.collectionView reloadData];
+}
+
+- (void)proceedToProject:(THCustomProject*) project{
+
+    [THDirector sharedDirector].currentProject = project;
+    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+}
+
+
+#pragma mark - Collection DataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [THDirector sharedDirector].projectProxies.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:indexPath.row];
+
+    THProjectCell * cell = (THProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
+    cell.delegate = self;
+    cell.title = proxy.name;
+    cell.imageView.image = proxy.image;
+    cell.editing = NO;
+    cell.titleTextField.hidden = NO;
+    
+    return cell;
+}
+
+#pragma mark - Editing
+
+-(void) startEditingScenes{
+    
+    for(int i = 0 ; i < self.projects.count ; i++){
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THProjectCell * cell =  (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.editing = YES;
+    }
+    
+    self.editButton.title = @"Done";
+    self.editingScenes = YES;
+}
+
+-(void) stopEditingScenes{
+    
+    for(int i = 0 ; i < self.projects.count ; i++){
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THProjectCell * cell =  (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.editing = NO;
+    }
+    
+    
+    self.editButton.title = @"Edit";
+    self.editingScenes = NO;
+}
+
+#pragma mark - Gestures
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if([touch.view isKindOfClass:[UIControl class]]){
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if(self.editingScenes && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
+        
+        return NO;
+    }
+    
+    if((gestureRecognizer == tapRecognizer && otherGestureRecognizer == longpressRecognizer) || (gestureRecognizer == longpressRecognizer && otherGestureRecognizer == tapRecognizer)){
+        return self.editingScenes;
+    }
+    
+    return YES;
+}
+
+-(void) handleStartedMoving:(CGPoint) position{
+    
+    NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+    
+    if(indexPath){
+        
+        currentProjectCell = (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        currentProject = [self.projects objectAtIndex:indexPath.row];
+        
+        if(currentProjectCell.editing){
+            
+            currentDraggableCell = [[THProjectDraggableCell alloc] initWithFrame:currentProjectCell.frame];
+            currentDraggableCell.imageView.image = currentProjectCell.imageView.image;
+            currentDraggableCell.imageView.frame = currentProjectCell.imageView.frame;
+            
+            [self.projects removeObject:currentProject];
+            NSArray * indexPaths = [NSArray arrayWithObjects:indexPath, nil];
+            [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+            
+            [self.view addSubview:currentDraggableCell];
+        }
+    }
+}
+
+-(void) handleStoppedMoving{
+    
+    if(currentProjectCell){
+        
+        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:currentDraggableCell.center];
+        
+        if(!indexPath){
+            indexPath = [NSIndexPath indexPathForRow:self.projects.count inSection:0];
+        }
+        
+        [self.projects insertObject:currentProject atIndex:indexPath.row];
+        [currentDraggableCell removeFromSuperview];
+        
+        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.collectionView insertItemsAtIndexPaths:indexPaths];
+        
+        currentProject = nil;
+        currentProjectCell = nil;
+        currentDraggableCell = nil;
+        
+        [self stopEditingScenes];
+        
+    }
+}
+
+-(void) moved:(UIPanGestureRecognizer*) recognizer{
+    
+    if(self.editingScenes){
+        
+        CGPoint position = [recognizer locationInView:self.collectionView];
+        
+        if(recognizer.state == UIGestureRecognizerStateBegan){
+            
+            [self handleStartedMoving:position];
+            
+        } else if(recognizer.state == UIGestureRecognizerStateChanged){
+            
+            currentDraggableCell.center = position;
+            
+        } else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded){
+            
+            [self handleStoppedMoving];
+        }
+    }
+}
+
+-(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
+    /*
+    if(recognizer.state == UIGestureRecognizerStateBegan &&  !self.editingScenes){
+        
+        CGPoint position = [recognizer locationInView:self.collectionView];
+        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+        THClientSceneCell * cell = (THClientSceneCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
+        
+        if(cell){
+            [cell scaleEffect];
+            self.editingScenes = YES;
+            cell.editing = YES;
+        }
+    }*/
+}
+
+-(void) tapped:(UITapGestureRecognizer*) recognizer{
+    /*
+    if(self.editingScenes){
+        
+        [self stopEditingScenes];
+        //self.currentGridView.editing = NO;
+    } else {
+        
+        CGPoint position = [recognizer locationInView:self.collectionView];
+        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+        
+        if(indexPath){
+            THProjectProxy * projectProxy = [self.projects objectAtIndex:indexPath.row];
+            THClientProject * project;
+            
+            if(self.showingCustomApps){
+                
+                project = [THProject projectSavedWithName:projectProxy.name];
+                
+            } else {
+                [THSimulableWorldController sharedInstance].currentScene = scene;
+                project = [self.fakeScenesSource projectNamed:scene.name];
+            }
+            
+            [self proceedToProject:project];
+            
+        }
+    }*/
+}
+
+#pragma mark - Segue
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+}
+
+#pragma mark - GridItem Delegate
+
+-(void) didDeleteProjectCell:(THProjectCell*) cell {
+    
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+    if(indexPath){
+        
+        [self.projects removeObjectAtIndex:indexPath.row];
+        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+    }
+}
+
+/*
 #pragma mark - Methods
 
 -(void) reloadData{
@@ -83,9 +360,6 @@
         item.editable = YES;
         
     } else if(index == [THDirector sharedDirector].projectProxies.count){
-        /*
-        NSBundle * tangoBundle = [NSBundle frameworkBundle];
-        NSString * imagePath = [tangoBundle pathForResource:@"newProjectIcon" ofType:@"png"];*/
         
         UIImage * image = [UIImage imageNamed:@"newProjectIcon"];
 
@@ -127,6 +401,23 @@
         proxy.name = newName;
     }
 }
+*/
 
+- (IBAction)addButtonTapped:(id)sender {
+    THCustomProject * newProject = [THCustomProject newProject];
+    [self proceedToProject:newProject];
+}
 
+- (IBAction)filterControlChanged:(id)sender {
+}
+- (IBAction)orderControlChanged:(id)sender {
+}
+
+- (IBAction)editButtonTapped:(id)sender {
+    if(self.editingScenes){
+        [self stopEditingScenes];
+    } else {
+        [self startEditingScenes];
+    }
+}
 @end

@@ -7,50 +7,163 @@
 #import "TFSimulator.h"
 #import "THCustomEditor.h"
 #import "THCustomSimulator.h"
-#import "THPaletteDataSource.h"
 
 @implementation THProjectViewController
 
-#pragma mark - Initialization
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 
-- (id)init{
-    self = [super init];
-    if(self){
-        CGRect rect = CGRectMake(0, 0, 1024, 768);
-        self.view = [[UIView alloc] initWithFrame:rect];
-        
-        [self initCocos2d];
-
-        _tabController = [[TFTabbarViewController alloc] initWithNibName:@"TFTabbar" bundle:nil];
-        _toolsController = [[THEditorToolsViewController alloc] initWithNibName:@"TFEditorToolsViewController" bundle:nil];
-        _barButtonItems = [NSMutableArray array];
-        
-        _playButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                       target:self
-                       action:@selector(startSimulation)];
-        
-        _stopButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-                       target:self
-                       action:@selector(endSimulation)];
-        
-        
-        [self.view addSubview:_tabController.view];
-        
-        [self addTools];
-        [self addPlayButton];
-        [self addTapRecognizer];
-        
-        [self viewDidLoad];
-        
-    }
-    return self;
+    
+    CCDirector *director = [CCDirector sharedDirector];
+    
+    director.delegate = self;
+    
+    [self addChildViewController:director];
+    [self.view addSubview:director.view];
+    [self.view sendSubviewToBack:director.view];
+    [director didMoveToParentViewController:self];
 }
 
--(void) load{
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [self initCocos2d];
+    
+    _tabController = [[TFTabbarViewController alloc] initWithNibName:@"TFTabbar" bundle:nil];
+    
+    _toolsController = [[THEditorToolsViewController alloc] initWithNibName:@"TFEditorToolsViewController" bundle:nil];
+    _barButtonItems = [NSMutableArray array];
+    
+    _playButton = [[UIBarButtonItem alloc]
+                   initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                   target:self
+                   action:@selector(startSimulation)];
+    
+    _stopButton = [[UIBarButtonItem alloc]
+                   initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+                   target:self
+                   action:@selector(endSimulation)];
+    
+    
+    [self.view addSubview:_tabController.view];
+    
+    [self addTools];
+    [self addPlayButton];
+    [self addTapRecognizer];
+    
+    // Observe some notifications so we can properly instruct the director.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillTerminate:)
+                                                 name:UIApplicationWillTerminateNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationSignificantTimeChange:)
+                                                 name:UIApplicationSignificantTimeChangeNotification
+                                               object:nil];
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(keyboardHidden) name:UIKeyboardWillHideNotification object:nil];
+    
+    _state = kAppStateEditor;
+    
+    [self showTabBar];
+    [self showTools];
+    
+    [self addEditionButtons];
+    [self addTitleLabel];
+    [self reloadContent];
+    [self startWithEditor];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationSignificantTimeChangeNotification object:nil];
+    
+    [self cleanUp];
+    [self.toolsController unselectAllButtons];
+}
+
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    [[CCDirector sharedDirector] setDelegate:nil];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    [[CCDirector sharedDirector] purgeCachedData];
+}
+
+#pragma mark - Notification handlers
+
+- (void)applicationWillResignActive:(NSNotification *)notification
+{
+    [[CCDirector sharedDirector] pause];
+}
+
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    [[CCDirector sharedDirector] resume];
+}
+
+
+- (void)applicationDidEnterBackground:(NSNotification *)notification
+{
+    [[CCDirector sharedDirector] stopAnimation];
+}
+
+
+- (void)applicationWillEnterForeground:(NSNotification *)notification
+{
+    [[CCDirector sharedDirector] startAnimation];
+}
+
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [[CCDirector sharedDirector] end];
+}
+
+
+- (void)applicationSignificantTimeChange:(NSNotification *)notification
+{
+    [[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
 #pragma mark - Title
@@ -71,7 +184,7 @@
 }
 
 -(NSString*) title{
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     return project.name;
 }
 
@@ -80,7 +193,7 @@
 }
 
 -(void) addTitleLabel{
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     if(!_titleLabel){
         _titleLabel = [TFHelper navBarTitleLabelNamed:project.name];
         _titleLabel.userInteractionEnabled = YES;
@@ -107,7 +220,7 @@
         _titleTextField.delegate = self;
     }
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    TFProject * project = [THDirector sharedDirector].currentProject;
     _titleTextField.text = project.name;
     self.navigationItem.titleView = _titleTextField;
     [_titleTextField becomeFirstResponder];
@@ -159,48 +272,10 @@
     _toolsController.hidden = NO;
 }
 
-#pragma mark - Cocos2D
-
--(void) initCocos2d {
-    if(!_cocos2dInit){
-        if(![CCDirector setDirectorType:kCCDirectorTypeDisplayLink])
-            [CCDirector setDirectorType:kCCDirectorTypeNSTimer];
-        CCDirector * director = [CCDirector sharedDirector];
-        [director setDeviceOrientation:kCCDeviceOrientationPortrait];
-        [director setDisplayFPS:NO];
-        [director setAnimationInterval:1.0/30];
-        
-        _glview = [EAGLView viewWithFrame:CGRectMake(0, 0, 1024, 768)
-                              pixelFormat:kEAGLColorFormatRGB565
-                              depthFormat:0 // GL_DEPTH_COMPONENT24_OES
-                       preserveBackbuffer:NO
-                               sharegroup:nil
-                            multiSampling:NO
-                          numberOfSamples:0];
-        [director setOpenGLView:_glview];
-        [_glview setMultipleTouchEnabled:YES];
-        
-        if(![director enableRetinaDisplay:YES] )
-            CCLOG(@"Retina Display Not supported");
-        _cocos2dInit = YES;
-        
-        [self.view addSubview:_glview];
-        [self.view sendSubviewToBack:_glview];
-    }
-}
-
--(void) endCocos2d{
-    
-	CCDirector * director = [CCDirector sharedDirector];
-    [director stopAnimation];
-    [director end];
-    [_glview removeFromSuperview];
-    _glview = nil;
-}
-
 #pragma mark - Simulation
 
 -(void) startWithEditor{
+    
     TFEditor * editor = [[THDirector sharedDirector].projectDelegate customEditor];
     editor.dragDelegate = self.tabController.paletteController;
     _currentLayer = editor;
@@ -354,6 +429,7 @@
     [self reloadBarButtonItems];
 }
 
+/*
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -369,34 +445,18 @@
     [self addTitleLabel];
     [self reloadContent];
     [self startWithEditor];
-}
+}*/
 
 -(void) cleanUp{
     [_currentLayer prepareToDie];
     
+    [_currentLayer removeFromParentAndCleanup:YES];
+    
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center removeObserver:self];
     
-    [[CCDirector sharedDirector] popScene];
-    [[CCDirector sharedDirector] end];
-    //[[CCDirector sharedDirector] stopAnimation];
-    //[_currentLayer removeAllChildrenWithCleanup:YES];
-    
-    [_glview removeFromSuperview];
-    _glview = nil;
     _currentLayer = nil;
     _currentScene = nil;
-    _cocos2dInit = NO;
-}
-
--(void) viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self cleanUp];
-    [self.toolsController unselectAllButtons];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

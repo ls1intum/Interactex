@@ -27,7 +27,7 @@ float const kLilypadPropertiesMinHeight = 300;
 
 -(void) addPinViews{
     _currentY = kLilypadPropertiesPadding;
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     
     for (THBoardPinEditable * pin in project.lilypad.pins) {
         if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){

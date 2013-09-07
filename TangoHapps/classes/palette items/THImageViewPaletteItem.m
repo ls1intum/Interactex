@@ -14,7 +14,7 @@
 
 - (BOOL)canBeDroppedAt:(CGPoint)location
 {
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     if([project.iPhone testPoint:location]){
         return YES;
     }
@@ -28,7 +28,7 @@
     CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
     imageView.position = locationTransformed;
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:imageView];
 }
 

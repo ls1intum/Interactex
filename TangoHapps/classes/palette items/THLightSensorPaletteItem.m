@@ -15,7 +15,7 @@
     THLightSensorEditableObject * lightSensor = [[THLightSensorEditableObject alloc] init];
     lightSensor.position = location;
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:lightSensor];
 }
 

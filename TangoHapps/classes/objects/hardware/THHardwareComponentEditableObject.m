@@ -202,12 +202,12 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:self];
 }
 
 -(void) removeFromWorld{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project removeClotheObject:self];
     [super removeFromWorld];
 }
@@ -215,7 +215,7 @@
 -(void) addToLayer:(TFLayer*) layer{
     [layer addEditableObject:self];
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     THLilyPadEditable * lilypad = project.lilypad;
     
     THElementPinEditable * plusPin = [self plusPin];

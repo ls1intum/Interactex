@@ -16,7 +16,7 @@
     THSoundEditable * sound = [[THSoundEditable alloc] init];
     sound.position = location;
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addAction:sound];
 }
 

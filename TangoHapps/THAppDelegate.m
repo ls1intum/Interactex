@@ -7,7 +7,6 @@
 //
 
 #import "THAppDelegate.h"
-#import "THPaletteDataSource.h"
 #import "THProjectDelegate.h"
 #import "THEditorToolsDataSource.h"
 #import "THDirector.h"
@@ -19,24 +18,16 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     [TFFileUtils dataDirectory:@"sounds"];
     
-    THProjectDelegate * projectDelegate = [[THProjectDelegate alloc] init];
+    [[CCFileUtils sharedFileUtils] setiPadRetinaDisplaySuffix:@""];
+    [[CCFileUtils sharedFileUtils] setiPadSuffix:@""];
     
+    //init director
     THDirector * director = [THDirector sharedDirector];
-    director.paletteDataSource = [[THPaletteDataSource alloc] init];
-    director.projectDelegate = projectDelegate;
+    
+    director.projectDelegate = [[THProjectDelegate alloc] init];
     director.editorToolsDataSource = [[THEditorToolsDataSource alloc] init];
-    director.gridDelegate = projectDelegate;
-    
-    [director start];
-    
-    self.window.rootViewController = director.navigationController;
-    
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     
     return YES;
 }

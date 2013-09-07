@@ -32,7 +32,7 @@
 
 -(void) addObjects{
     
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }
@@ -42,7 +42,7 @@
 }
 
 -(void) removeObjects{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone removeFromLayer:self];
     }
@@ -58,7 +58,7 @@
     CGRect frame = CGRectMake(690,310,kPinsControllerSize.width,kPinsControllerSize.height);
     _pinsController = [[THPinsController alloc] initWithFrame:frame];
     
-    [[[CCDirector sharedDirector] openGLView] addSubview:_pinsController];
+    [[CCDirector sharedDirector].view addSubview:_pinsController];
     
     _state = kSimulatorStatePins;
 }

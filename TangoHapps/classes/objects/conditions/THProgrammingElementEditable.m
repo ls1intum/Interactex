@@ -45,12 +45,12 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addValue:self];
 }
 
 -(void) removeFromWorld{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project removeValue:self];
     [super removeFromWorld];
 }

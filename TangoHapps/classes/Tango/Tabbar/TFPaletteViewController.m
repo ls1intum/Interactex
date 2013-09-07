@@ -29,6 +29,40 @@
 #import "TFDragView.h"
 #import "TFCustomPaletteItem.h"
 
+
+#import "THLedPaletteItem.h"
+#import "THButtonPaletteItem.h"
+#import "THBuzzerPaletteItem.h"
+#import "THCompassPaletteItem.h"
+#import "THLightSensorPaletteItem.h"
+#import "THPotentiometerPaletteItem.h"
+#import "THSwitchPaletteItem.h"
+#import "THThreeColorLedPaletteItem.h"
+#import "THVibrationBoardPaletteItem.h"
+
+#import "THiPhonePaletteItem.h"
+#import "THiPhoneButtonPaletteItem.h"
+#import "THLabelPaletteItem.h"
+#import "THiSwitchPaletteItem.h"
+#import "THMusicPlayerPaletteItem.h"
+#import "THTouchpadPaletteItem.h"
+#import "THImageViewPaletteItem.h"
+#import "THSliderPaletteItem.h"
+#import "THContactBookPaletteItem.h"
+
+#import "THClothePaletteItem.h"
+
+#import "THComparatorPaletteItem.h"
+#import "THGrouperPaletteItem.h"
+#import "THValuePaletteItem.h"
+#import "THMapperPaletteItem.h"
+#import "THProjectViewController.h"
+#import "THTimerPaletteItem.h"
+#import "THSoundPaletteItem.h"
+#import "TFTabbarViewController.h"
+#import "THBoolValuePaletteItem.h"
+#import "THStringValuePaletteItem.h"
+
 @implementation TFPaletteViewController
 
 -(id)init {
@@ -40,14 +74,6 @@
 
 #pragma mark - Populate
 
-- (TFPalette*)emptyPalette {
-    CGRect containerFrame = CGRectMake(0, 0, 230, 100);
-    TFPalette *palette = [[TFPalette alloc] initWithFrame:containerFrame];
-    palette.dragDelegate = self;
-    palette.editionDelegate = self;
-    return palette;
-}
-
 -(void) addCustomPaletteItems{
     
     for (TFCustomPaletteItem * paletteItem in _customPaletteItems) {
@@ -57,27 +83,22 @@
 }
 
 -(void)reloadPalettes {
-    
-    [(TFTabbarView*)self.view removeAllSections];
-    
-    for (TFTabbarSection * section in [self.dataSource paletteSections]) {
-        section.sizeDelegate = self;
-        [(TFTabbarView*)self.view addPaletteSection:section];
-    }
+    [self.tabView reloadData];
 }
 
 #pragma mark - Palette Drag Delegate
 
--(void)palette:(TFPalette*)palette
+-(void) palette:(TFPalette*)palette
 didStartDraggingItem:(TFPaletteItem*)item
-withRecognizer:(UIPanGestureRecognizer*)recognizer {
+ withRecognizer:(UIPanGestureRecognizer*)recognizer {
+    
     if(_dragView == nil){
         _dragView = [[TFDragView alloc] initWithPaletteItem:item];
         CGPoint location = [recognizer locationInView:self.view];
         _dragView.center = location;
         [self.view addSubview:_dragView];
         
-        CGPoint locationEditor = [recognizer locationInView: [[CCDirector sharedDirector] openGLView]];
+        CGPoint locationEditor = [recognizer locationInView: [CCDirector sharedDirector].view];
         
         _editorDragView = [[TFDragView alloc] initWithPaletteItem:item];
         
@@ -91,7 +112,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
 {
     if(_dragView != nil){
         _dragView.center = [recognizer locationInView:self.view];
-        CGPoint locationEditor = [recognizer locationInView: [[CCDirector sharedDirector] openGLView]];
+        CGPoint locationEditor = [recognizer locationInView: [CCDirector sharedDirector].view];
         [self.delegate paletteItem:_editorDragView movedTo:locationEditor];
     }
 }
@@ -128,15 +149,11 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
         section.editing = YES;
         self.isEditing = YES;
     }
-    /*
-    for (TFTabbarSection * section in [self.dataSource paletteSections]) {
-        section.editing = YES;
-    }*/
 }
 
 -(void) didTapPalette:(TFPalette*) palette{
     if(self.isEditing){
-        for (TFTabbarSection * section in [self.dataSource paletteSections]) {
+        for (TFTabbarSection * section in self.tabView.sections) {
             section.editing = NO;
         }
         self.isEditing = NO;
@@ -259,16 +276,20 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
     }
 }
 
--(void) tabbarSection:(TFTabbarSection *)section changedSize:(CGSize)size{
-    [(TFTabbarView*) self.view relayoutSections];
-}
-
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [(UIScrollView*)self.view setDelaysContentTouches:NO];
+    _tabView = (TFTabbarView*) self.view;
+    
+    [self.tabView setDelaysContentTouches:NO];
+    
+    self.tabView.dataSource = self;
+    self.tabView.tabBarDelegate = self;
+    
+    [self loadPaletteData];
+    [self.tabView reloadData];
     
     [self loadCustomPaletteItems];
     
@@ -297,7 +318,6 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
         TFCustomPaletteItem * paletteItem = [TFCustomPaletteItem customPaletteItemWithArchiveName:filePath];
         [_customPaletteItems addObject:paletteItem];
     }
-    
 }
 
 -(void) save{
@@ -311,4 +331,72 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma  mark - Palette Data Source
+
+-(NSInteger) numPaletteSectionsForPalette:(TFTabbarView*) tabBar{
+    return 4;
+}
+
+-(NSString*) titleForSection:(NSInteger) section palette:(TFTabbarView*) tabBar{
+    return [self.sectionNames objectAtIndex:section];
+}
+
+-(NSInteger) numPaletteItemsForSection:(NSInteger) section palette:(TFTabbarView*) tabBar{
+    NSArray * items = [self.sections objectAtIndex:section];
+    return items.count;
+}
+
+-(TFPaletteItem*) paletteItemForIndexPath:(NSIndexPath*) indexPath palette:(TFTabbarView*) tabBar{
+    NSArray * items = [self.sections objectAtIndex:indexPath.section];
+    return [items objectAtIndex:indexPath.row];
+}
+
+-(void) loadPaletteData {
+    
+    NSArray * clothesArray = [NSArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
+    
+    NSArray * uiArray = [NSArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
+                         [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
+                         [[THLabelPaletteItem alloc] initWithName:@"label"],
+                         [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
+                         [[THSliderPaletteItem alloc] initWithName:@"slider"],
+                         [[THTouchpadPaletteItem alloc] initWithName:@"touchpad"],
+                         [[THMusicPlayerPaletteItem alloc] initWithName:@"musicplayer"],
+                         [[THImageViewPaletteItem alloc] initWithName:@"imageview"],
+                         [[THContactBookPaletteItem alloc] initWithName:@"contactBook"],
+                         nil];
+    
+    
+    NSArray * hardwareArray = [NSArray arrayWithObjects:
+                               [[THLedPaletteItem alloc] initWithName:@"led"],
+                               [[THButtonPaletteItem alloc] initWithName:@"button"],
+                               [[THSwitchPaletteItem alloc] initWithName:@"switch"],
+                               [[THBuzzerPaletteItem alloc] initWithName:@"buzzer"],
+                               [[THCompassPaletteItem alloc] initWithName:@"compass"],
+                               [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
+                               [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
+                               [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
+                               [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
+                               nil];
+    
+    
+    NSArray * programmingArray = [NSArray arrayWithObjects:
+                                  [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
+                                  [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
+                                  [[THMapperPaletteItem alloc] initWithName:@"mapper"],
+                                  [[THTimerPaletteItem alloc] initWithName:@"timer"],
+                                  [[THSoundPaletteItem alloc] initWithName:@"sound"],
+                                  [[THValuePaletteItem alloc] initWithName:@"value"],
+                                  [[THBoolValuePaletteItem alloc] initWithName:@"boolValue"],
+                                  [[THStringValuePaletteItem alloc] initWithName:@"stringValue"],
+                                  nil];
+    
+    self.sections = [NSMutableArray arrayWithObjects:clothesArray, uiArray, hardwareArray, programmingArray, nil];
+    self.sectionNames = [NSMutableArray arrayWithObjects:@"Clothes", @"UI Elements", @"Hardware", @"Programming", nil];
+}
+
+-(void) tabBar:(TFTabbarView*) tabBar didAddSection:(TFTabbarSection*) section{
+    section.palette.dragDelegate = self;
+    section.palette.editionDelegate = self;
+}
 @end

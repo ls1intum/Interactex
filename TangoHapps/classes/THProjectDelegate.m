@@ -47,6 +47,7 @@
     
 }
 
+/*
 #pragma Mark - Grid View Delegate
 
 -(CGSize) gridItemSizeForGridView:(THClientGridView*) view{
@@ -60,5 +61,5 @@
 -(CGPoint) gridPaddingForGridView:(THClientGridView*) view{
     return CGPointMake(5,-5);
 }
-
+*/
 @end

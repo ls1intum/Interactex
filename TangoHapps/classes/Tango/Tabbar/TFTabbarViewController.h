@@ -30,21 +30,16 @@
 @class TFPaletteViewController;
 @class TFPropertiesViewController;
 
-@interface TFTabbarViewController : UIViewController 
+@interface TFTabbarViewController : UIViewController
 {    
 }
 
-@property (nonatomic, strong) UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, readonly) TFPaletteViewController *paletteController;
 @property (nonatomic, readonly) TFPropertiesViewController *propertiesController;
 @property (nonatomic) BOOL hidden;
 
 - (IBAction)paletteTapped:(id)sender;
 - (IBAction)propertiesTapped:(id)sender;
-
-//hidding palettes
--(void) hidePaletteWithIdx:(NSInteger) idx;
--(void) showPaletteWithIdx:(NSInteger) idx;
--(void) showAllPalettes;
 
 @end

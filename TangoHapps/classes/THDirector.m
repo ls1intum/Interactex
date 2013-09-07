@@ -16,9 +16,6 @@
 #import "THEditorToolsDataSource.h"
 
 @implementation THDirector
-@dynamic gridDelegate;
-@dynamic currentProject;
-@dynamic currentLayer;
 
 #pragma mark - Singleton
 
@@ -53,10 +50,12 @@ static THDirector * _sharedInstance = nil;
     self = [super init];
     if(self){
         
-        _projectController = [[THProjectViewController alloc] init];
-        _navigationController = [[UINavigationController alloc] init];
-        _navigationController.delegate = self;
-        _selectionController = [[THProjectSelectionViewController alloc] init];
+        //_projectController = [[THProjectViewController alloc] init];
+        //_navigationController = [[UINavigationController alloc] init];
+        //_navigationController.delegate = self;
+        //_selectionController = [[THProjectSelectionViewController alloc] init];
+        
+        [self loadProjects];
     }
     return self;
 }
@@ -100,14 +99,14 @@ static THDirector * _sharedInstance = nil;
 }
 
 -(void) start{
-        
+        /*
     TFTabbarViewController * tabController = self.projectController.tabController;
     [tabController.paletteController reloadPalettes];
     [tabController.paletteController addCustomPaletteItems];
     
     [self loadProjects];
     
-    [_navigationController pushViewController:_selectionController animated:NO];
+    [_navigationController pushViewController:_selectionController animated:NO];*/
 }
 
 -(void) startProject:(TFProject*) project{
@@ -197,8 +196,6 @@ static THDirector * _sharedInstance = nil;
 
 -(void) startNewProject{
     
-    [self.projectController load];
-    
     TFProject * newProject = [self.projectDelegate newCustomProject];
     newProject.name = [TFFileUtils resolveProjectNameConflictFor:newProject.name];
     
@@ -210,50 +207,10 @@ static THDirector * _sharedInstance = nil;
 
 -(void) startProjectForProxy:(THProjectProxy*) proxy{
     
-    [self.projectController load];
-    
     _currentProxy = proxy;
     TFProject * project = [TFProject restoreProjectNamed:proxy.name];
     project.name = proxy.name;
     [self startProject:project];
-}
-
-#pragma mark - Palette Data Source
-
--(void) setPaletteDataSource:(id<TFPaleteViewControllerDataSource>)paletteDataSource{
-    
-    TFTabbarViewController * tabController = self.projectController.tabController;
-    tabController.paletteController.dataSource = paletteDataSource;
-}
-
--(id<TFPaleteViewControllerDataSource>) paletteDataSource {
-    
-    TFTabbarViewController * tabController = self.projectController.tabController;
-    return tabController.paletteController.dataSource;
-}
-
-#pragma mark - GridView Delegate
-
--(void) setGridDelegate:(id<THGridViewDelegate>)gridDelegate{
-    
-    THGridView * gridView = (THGridView*) self.selectionController.view;
-    gridView.gridDelegate = gridDelegate;
-}
-
--(id<THGridViewDelegate>) gridDelegate {
-    
-    THGridView * gridView = (THGridView*) self.selectionController.view;
-    return gridView.gridDelegate;
-}
-
-#pragma mark - Project
-
--(TFProject*) currentProject{
-    return [TFDirector sharedDirector].currentProject;
-}
-
--(void) setCurrentProject:(TFProject*) project{
-    [TFDirector sharedDirector].currentProject = project;
 }
 
 #pragma mark - Layer
@@ -261,11 +218,5 @@ static THDirector * _sharedInstance = nil;
 -(TFLayer*) currentLayer{
     return self.projectController.currentLayer;
 }
-/*
--(void) setCurrentLayer:(TFLayer*) layer{
-    [TFDirector sharedDirector].currentLayer = layer;
-    
-}*/
-
 
 @end

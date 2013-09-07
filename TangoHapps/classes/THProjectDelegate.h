@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "THGridView.h"
 
-@interface THProjectDelegate : NSObject <TFProjectControllerDelegate, THGridViewDelegate>
+@interface THProjectDelegate : NSObject <TFProjectControllerDelegate>
 {
     
 }

@@ -20,7 +20,7 @@
     THTimerEditable * timer = [[THTimerEditable alloc] init];
     timer.position = location;
         
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addTrigger:timer];
 }
 

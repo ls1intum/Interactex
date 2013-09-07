@@ -27,22 +27,20 @@
 #import "TFPalette.h"
 #import "TFEditor.h"
 #import "TFTabbarSection.h"
+#import "TFTabbarView.h"
 
 @class PaletteItemContainer;
 @class TFDragView;
 @class TFTabbarSection;
+@class TFTabbarView;
 
 typedef enum {
     kDraggingInTab,
     kDraggingInEditor
 } TFDraggingState;
 
-@protocol TFPaleteViewControllerDataSource <NSObject>
--(NSArray*) paletteSections;
-@end
-
 @interface TFPaletteViewController : UIViewController
-<PaletteDragDelegate, PaletteEditionDelegate, TFEditorDragDelegate,TFPaletteSectionDelegate>
+<THPaletteDragDelegate, THPaletteEditionDelegate, TFEditorDragDelegate, TFTabbarViewDataSource, TFTabBarViewDelegate>
 {
     TFDragView * _dragView;
     TFDragView * _editorDragView;
@@ -52,11 +50,13 @@ typedef enum {
 }
 
 @property (nonatomic, weak) id<TFPaletteViewControllerDelegate> delegate;
-@property (nonatomic, strong) id<TFPaleteViewControllerDataSource> dataSource;
 @property (nonatomic, readonly) TFPaletteItem * currentPaletteItem;
+@property (nonatomic, readonly) TFTabbarView * tabView;
 @property (nonatomic) BOOL isEditing;
 
--(TFPalette*) emptyPalette;
+@property (nonatomic, strong) NSMutableArray * sections;
+@property (nonatomic, strong) NSMutableArray * sectionNames;
+
 -(void) reloadPalettes;
 -(void) addCustomPaletteItems;
 -(void) save;

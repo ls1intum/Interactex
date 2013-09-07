@@ -120,7 +120,7 @@
     [editor addEditableObject:self];
     
     THView * view = (THView*) self.simulableObject;
-    [view addToView:[[CCDirector sharedDirector] openGLView]];
+    [view addToView:[CCDirector sharedDirector].view];
 }
 
 -(void) removeFromLayer:(THCustomEditor*) editor{
@@ -249,14 +249,14 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:self];
 }
 
 -(void) removeFromWorld{
     if(!self.canBeRootView){
         
-        THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
+        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
         [project removeiPhoneObject:self];
         
         NSArray * copy = [NSArray arrayWithArray:_subviews];

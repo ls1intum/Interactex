@@ -25,7 +25,6 @@
 #import <Foundation/Foundation.h>
 #import "TFEditable.h"
 
-@class RoundedRectNode;
 @class TFSimulableObject;
 @class TFTriggerableProperties;
 @class TFViewableProperties;
@@ -37,9 +36,7 @@
 @class TFLayer;
 
 @interface TFEditableObject : CCNode <NSCoding, NSCopying, TFEditable> {
-    RoundedRectNode * _selectionNode;
     CCLabelTTF * _selectionLabel;
-    RoundedRectNode * _highlightNode;
 }
 
 @property (nonatomic) BOOL active;
@@ -123,8 +120,6 @@
 -(void) reloadProperties;
 
 //boxes
--(void) updateBoxes;
-
 -(void) update;
 
 @property (nonatomic) NSMutableArray* viewableProperties;
