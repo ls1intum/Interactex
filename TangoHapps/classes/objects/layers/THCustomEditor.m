@@ -33,7 +33,7 @@
     self = [super init];
     if(self){
         _zoomableLayer = [CCLayer node];
-        [self addChild:_zoomableLayer z:-1];
+        [self addChild:_zoomableLayer z:-10];
         
         [self showAllPaletteSections];
     }

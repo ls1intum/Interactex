@@ -12,6 +12,7 @@
 #import "THCustomEditor.h"
 #import "THCustomSimulator.h"
 #import "THDirector.h"
+#import "THiPhoneEditableObject.h"
 
 @implementation TFEditorToolsViewController
 
@@ -27,11 +28,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _editingTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.lilypadItem, nil];
+    _editingTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.lilypadItem, self.hideiPhoneItem, nil];
     
     _lilypadTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.tshirtItem, nil];
     
     _simulatingTools = [NSArray arrayWithObjects:self.pinsModeItem,self.pushItem,nil];
+    
+    self.iPhoneItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
+    self.hideiPhoneItem.tintColor = self.iPhoneItemTintColor;
     
     [self addEditionButtons];
 }
@@ -48,7 +52,7 @@
     self.removeButton.tintColor = nil;
 }
 
--(void) updateButtons{
+-(void) updateEditingButtonsTint{
     TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
     
     [self unselectAllButtons];
@@ -62,6 +66,12 @@
     }
 }
 
+-(void) updateHideIphoneButtonTint{
+    
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    self.hideiPhoneItem.tintColor = (project.iPhone.visible ? self.iPhoneItemTintColor : nil);
+}
+
 -(void) checkSwitchToState:(TFEditorState) state{
     THProjectViewController * projectController = [THDirector sharedDirector].projectController;
     if(projectController.state == kAppStateEditor){
@@ -71,7 +81,7 @@
         } else {
             editor.state = state;
         }
-        [self updateButtons];
+        [self updateEditingButtonsTint];
     }
 }
 
@@ -103,19 +113,6 @@
     
     UITabBar * tabBar = (UITabBar*) self.view;
     tabBar.items = _barButtonItems;
-}
-
-
--(void) addCustomBarButtons {
-    /*
-     if(_barButtonItems.count <= 1){
-     
-     NSInteger count = [self.toolbarItems. numberOfToolbarButtonsForState:self.state];
-     for (int i = 0; i < count; i++) {
-     UIBarButtonItem * item = [dataSource toolbarButtonAtIdx:i forState:self.state];
-     [_barButtonItems addObject:item];
-     }
-     }*/
 }
 
 -(void) addEditionButtons{
@@ -167,6 +164,13 @@
         THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
         [serverController pushProjectToAllClients:project];
     }
+}
+
+- (IBAction)hideiPhonePressed:(id)sender {
+    
+    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    project.iPhone.visible = !project.iPhone.visible;
+    [self updateHideIphoneButtonTint];
 }
 
 @end

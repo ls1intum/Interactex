@@ -71,11 +71,11 @@
 enum zPositions{
     kLilypadZ = -25,
     kClotheZ = -20,
-    kiPhoneZ = -15,
     kClotheObjectZ = -10,
     kValueZ = -9,
     kConditionZ = -8,
     kNormalObjectZ = -7,
+    kiPhoneZ = -6,
     kSelectedObjectZ = -4,
     kSelectionSpriteZ = 2
 };

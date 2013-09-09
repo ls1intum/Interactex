@@ -7,6 +7,7 @@
 #import "TFSimulator.h"
 #import "THCustomEditor.h"
 #import "THCustomSimulator.h"
+#import "THiPhoneEditableObject.h"
 
 @implementation THProjectViewController
 
@@ -320,6 +321,11 @@
         
         [self.toolsController addSimulationButtons];
         [self addStopButton];
+        [self.toolsController unselectAllButtons];
+        
+        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+        project.iPhone.visible = YES;
+        [self.toolsController updateHideIphoneButtonTint];
     }
 }
 

@@ -23,7 +23,6 @@
     [[CCFileUtils sharedFileUtils] setiPadRetinaDisplaySuffix:@""];
     [[CCFileUtils sharedFileUtils] setiPadSuffix:@""];
     
-    //init director
     THDirector * director = [THDirector sharedDirector];
     
     director.projectDelegate = [[THProjectDelegate alloc] init];
