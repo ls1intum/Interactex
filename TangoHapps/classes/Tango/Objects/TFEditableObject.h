@@ -34,6 +34,7 @@
 @class TFMethod;
 @class TFPaletteItem;
 @class TFLayer;
+@class TFAction;
 
 @interface TFEditableObject : CCNode <NSCoding, NSCopying, TFEditable> {
     CCLabelTTF * _selectionLabel;

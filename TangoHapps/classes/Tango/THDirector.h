@@ -13,6 +13,7 @@
 #import "TFPaletteViewController.h"
 #import "TFProjectDelegate.h"
 #import "TFTabbarView.h"
+#import "THServerController.h"
 
 @class THProjectViewController;
 @class THProjectProxy;
@@ -30,7 +31,7 @@ typedef enum {
     kDirectorStateProjectEdition
 } TFDirectorState;
 
-@interface THDirector : NSObject <UINavigationControllerDelegate>
+@interface THDirector : NSObject <UINavigationControllerDelegate, THServerControllerDelegate>
 {
     NSString * _projectName;
     BOOL _alreadyStartedEditor;
@@ -38,20 +39,19 @@ typedef enum {
 
 @property (nonatomic, readonly) UINavigationController * navigationController;
 @property (nonatomic, readonly) THProjectSelectionViewController * selectionController;
-@property (nonatomic, readonly) THProjectViewController * projectController;
+@property (nonatomic, weak) THProjectViewController * projectController;
 @property (nonatomic, readonly) TFLayer * currentLayer;
 @property (nonatomic, strong) TFProject * currentProject;
-@property (nonatomic, readonly) THProjectProxy * currentProxy;
+@property (nonatomic, weak) THProjectProxy * currentProxy;
 @property (nonatomic, strong) NSMutableArray * projectProxies;
-@property (nonatomic, strong) id<TFTabbarViewDataSource> paletteDataSource;
 @property (nonatomic, strong) id<TFProjectControllerDelegate> projectDelegate;
-@property (nonatomic, strong) THEditorToolsDataSource * editorToolsDataSource;
 @property (nonatomic) TFDirectorState state;
+@property (nonatomic, strong) THServerController * serverController;
 
 +(THDirector*)sharedDirector;
 
--(void) start;
--(void) stop;
+//-(void) start;
+//-(void) stop;
 
 -(void) save;
 -(void) saveCurrentProject;

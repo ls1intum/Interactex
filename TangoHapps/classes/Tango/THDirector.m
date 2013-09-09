@@ -14,6 +14,8 @@
 #import "THProjectProxy.h"
 #import "THProjectViewController.h"
 #import "THEditorToolsDataSource.h"
+#import "THServerController.h"
+#import "TFEditorToolsViewController.h"
 
 @implementation THDirector
 
@@ -56,6 +58,10 @@ static THDirector * _sharedInstance = nil;
         //_selectionController = [[THProjectSelectionViewController alloc] init];
         
         [self loadProjects];
+        
+        self.serverController = [[THServerController alloc] init];
+        self.serverController.delegate = self;
+        //[_serverController startServer];
     }
     return self;
 }
@@ -87,28 +93,26 @@ static THDirector * _sharedInstance = nil;
         [_projectProxies addObject:proxy];
     }
 }
-
+/*
 -(void) stop{
     self.currentProject = nil;
     _currentProxy = nil;
     _projectController = nil;
     _projectDelegate = nil;
-    self.paletteDataSource = nil;
-    self.editorToolsDataSource = nil;
     [self.navigationController removeFromParentViewController];
 }
 
 -(void) start{
-        /*
+        
     TFTabbarViewController * tabController = self.projectController.tabController;
     [tabController.paletteController reloadPalettes];
     [tabController.paletteController addCustomPaletteItems];
     
     [self loadProjects];
     
-    [_navigationController pushViewController:_selectionController animated:NO];*/
+    [_navigationController pushViewController:_selectionController animated:NO];
 }
-
+*/
 -(void) startProject:(TFProject*) project{
     
     self.currentProject = project;
@@ -137,17 +141,22 @@ static THDirector * _sharedInstance = nil;
     UIImage * image = [TFHelper screenshot];
     [self storeImageForCurrentProject:image];
     
-    _currentProxy.name = self.currentProject.name;
-    _currentProxy.image = image;
-    if(![_projectProxies containsObject:_currentProxy]){
-        [_projectProxies addObject:_currentProxy];
+    if(!self.currentProxy){
+        
+        THProjectProxy * proxy = [THProjectProxy proxyWithName:self.currentProject.name];
+        proxy.image = image;
+        if(![_projectProxies containsObject:proxy]){
+            [_projectProxies addObject:proxy];
+        }
+    } else {
+        self.currentProxy.name = self.currentProject.name;
     }
 }
 
 -(void) restoreCurrentProject{
     if(_projectName != nil){
         [self.currentProject prepareToDie];
-        self.currentProject = [TFProject restoreProjectNamed:_projectName];
+        self.currentProject = [TFProject projectSavedWithName:_projectName];
     }
 }
 
@@ -163,12 +172,12 @@ static THDirector * _sharedInstance = nil;
         [self.projectDelegate willStopEditingProject:self.currentProject];
         [self.selectionController reloadData];
         
-        [self.editorToolsDataSource.serverController stopServer];
+        [self.serverController stopServer];
         
     } else {
         _alreadyStartedEditor = YES;
         [self.projectDelegate willStartEditingProject:self.currentProject];
-        [self.editorToolsDataSource.serverController startServer];
+        [self.serverController startServer];
     }
 }
 
@@ -199,16 +208,13 @@ static THDirector * _sharedInstance = nil;
     TFProject * newProject = [self.projectDelegate newCustomProject];
     newProject.name = [TFFileUtils resolveProjectNameConflictFor:newProject.name];
     
-    THProjectProxy * proxy = [THProjectProxy proxyWithName:newProject.name];
-    _currentProxy = proxy;
-    
     [self startProject:newProject];
 }
 
 -(void) startProjectForProxy:(THProjectProxy*) proxy{
     
     _currentProxy = proxy;
-    TFProject * project = [TFProject restoreProjectNamed:proxy.name];
+    TFProject * project = [TFProject projectSavedWithName:proxy.name];
     project.name = proxy.name;
     [self startProject:project];
 }
@@ -217,6 +223,53 @@ static THDirector * _sharedInstance = nil;
 
 -(TFLayer*) currentLayer{
     return self.projectController.currentLayer;
+}
+
+
+#pragma Mark - Server Delegate
+
+-(void) updateServerButtonState{
+    
+    THServerController * serverController = [THDirector sharedDirector].serverController;
+    BOOL enabled = serverController.peers.count > 0;
+    if(enabled){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"peer_connected.mp3"];
+    } else {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"peer_disconnected.mp3"];
+    }
+    
+    if(self.projectController.toolsController.pushItem.enabled != enabled){
+        self.projectController.toolsController.pushItem.enabled = enabled;
+    }
+}
+
+-(void) server:(THServerController*)controller
+ peerConnected:(NSString*)peerName {
+    [self updateServerButtonState];
+}
+
+-(void) server:(THServerController*)controller peerDisconnected:(NSString*)peerName {
+    [self updateServerButtonState];
+}
+
+-(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
+    //self.serverItem.enabled = enabled;
+}
+
+-(void) server:(THServerController*)controller
+isTransferring:(BOOL)transferring {
+    /*
+     UIImage * image;
+     if(transferring){
+     image = [UIImage imageNamed:@"server_busy"];
+     }else{
+     image = [UIImage imageNamed:@"server_online"];
+     }
+     wirelessButton.image = image;*/
+}
+
+- (void) server:(THServerController*)controller isRunning:(BOOL)running{
+    //[self updateWirelessButtonTo:running];
 }
 
 @end

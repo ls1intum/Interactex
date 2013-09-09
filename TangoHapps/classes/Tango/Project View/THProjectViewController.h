@@ -3,7 +3,7 @@
 @class TFLayer;
 @class TFPalette;
 @class TFTabbarViewController;
-@class THEditorToolsViewController;
+@class TFEditorToolsViewController;
 
 @interface THProjectViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate, CCDirectorDelegate> {
     
@@ -13,8 +13,6 @@
     UIBarButtonItem * _playButton;
     UIBarButtonItem * _stopButton;
     
-    NSMutableArray * _barButtonItems;
-    
     BOOL wasEditorInLilypadMode;
 }
 
@@ -23,7 +21,7 @@
 @property (nonatomic, readonly) CCGLView * glview;
 @property (nonatomic, readonly) TFAppState state;
 @property (nonatomic, readonly) TFTabbarViewController * tabController;
-@property (nonatomic, readonly) THEditorToolsViewController * toolsController;
+@property (nonatomic, readonly) TFEditorToolsViewController * toolsController;
 
 @property (nonatomic, readonly) BOOL editingSceneName;
 

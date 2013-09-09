@@ -12,6 +12,8 @@
 @implementation THPotentiometer
 @dynamic plusPin;
 
+float const kMaxPotentiometerValue = 1023;
+
 -(void) load{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeInteger];

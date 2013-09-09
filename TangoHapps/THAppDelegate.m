@@ -27,7 +27,6 @@
     THDirector * director = [THDirector sharedDirector];
     
     director.projectDelegate = [[THProjectDelegate alloc] init];
-    director.editorToolsDataSource = [[THEditorToolsDataSource alloc] init];
     
     return YES;
 }
@@ -39,7 +38,7 @@
     //[[THDirector sharedDirector] save];
     
     THDirector * director = [THDirector sharedDirector];
-    [director.editorToolsDataSource.serverController stopServer];
+    [director.serverController stopServer];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -53,7 +52,7 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     THDirector * director = [THDirector sharedDirector];
-    [director.editorToolsDataSource.serverController startServer];
+    [director.serverController startServer];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -192,6 +192,10 @@
         </class>
         <class className="THProjectViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/THProjectViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startStopSimulationTapped:"/>
+                <relationship kind="outlet" name="startStopSimulationButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>

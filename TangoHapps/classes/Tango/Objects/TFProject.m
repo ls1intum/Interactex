@@ -34,9 +34,20 @@
 
 @dynamic allObjects;
 
+#pragma mark - Static constructor
+
 +(TFProject*)emptyProject {
     return [[TFProject alloc] init];
 }
+
++(TFProject*) projectSavedWithName:(NSString*) name{
+    
+    NSString *filePath = [TFFileUtils dataFile:name
+                                   inDirectory:kProjectsDirectory];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+}
+
+#pragma mark - Initialization
 
 -(void) load {
     _eventActionPairs = [NSMutableArray array];
@@ -59,13 +70,6 @@
     NSString * filePath = [TFFileUtils dataFile:self.name
                                          inDirectory:kProjectsDirectory];
     [NSKeyedArchiver archiveRootObject:self toFile:filePath];
-}
-
-+(TFProject*) restoreProjectNamed:(NSString*) name{
-    
-    NSString *filePath = [TFFileUtils dataFile:name
-                                   inDirectory:kProjectsDirectory];
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder

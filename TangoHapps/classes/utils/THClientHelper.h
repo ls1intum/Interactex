@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BLEFirmata.h"
-#import "THConstants.h"
+#import "THClientConstants.h"
 
 @interface THClientHelper : NSObject
 

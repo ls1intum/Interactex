@@ -1,7 +1,7 @@
 
 #import "THProjectViewController.h"
 #import "THProjectViewController.h"
-#import "THEditorToolsViewController.h"
+#import "TFEditorToolsViewController.h"
 #import "THEditorToolsDataSource.h"
 #import "TFTabbarViewController.h"
 #import "TFSimulator.h"
@@ -15,14 +15,16 @@
     [super viewDidLoad];
 
     
-    CCDirector *director = [CCDirector sharedDirector];
+    CCDirector * ccDirector = [CCDirector sharedDirector];
     
-    director.delegate = self;
+    ccDirector.delegate = self;
     
-    [self addChildViewController:director];
-    [self.view addSubview:director.view];
-    [self.view sendSubviewToBack:director.view];
-    [director didMoveToParentViewController:self];
+    [self addChildViewController:ccDirector];
+    [self.view addSubview:ccDirector.view];
+    [self.view sendSubviewToBack:ccDirector.view];
+    [ccDirector didMoveToParentViewController:self];
+    
+    [THDirector sharedDirector].projectController = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -32,8 +34,8 @@
     
     _tabController = [[TFTabbarViewController alloc] initWithNibName:@"TFTabbar" bundle:nil];
     
-    _toolsController = [[THEditorToolsViewController alloc] initWithNibName:@"TFEditorToolsViewController" bundle:nil];
-    _barButtonItems = [NSMutableArray array];
+    _toolsController = [[TFEditorToolsViewController alloc] initWithNibName:@"TFEditorTools" bundle:nil];
+    
     
     _playButton = [[UIBarButtonItem alloc]
                    initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
@@ -91,7 +93,6 @@
     [self showTabBar];
     [self showTools];
     
-    [self addEditionButtons];
     [self addTitleLabel];
     [self reloadContent];
     [self startWithEditor];
@@ -291,17 +292,13 @@
 
 -(void) switchToLayer:(TFLayer*) layer{
     [_currentLayer willDisappear];
-
     _currentLayer = layer;
     [_currentLayer willAppear];
+    
     CCScene * scene = [CCScene node];
     [scene addChild:_currentLayer];
     
-    if(![CCDirector sharedDirector].runningScene){
-        [[CCDirector sharedDirector] runWithScene:scene];
-    } else {
-        [[CCDirector sharedDirector] replaceScene:scene];
-    }
+    [[CCDirector sharedDirector] replaceScene:scene];
 }
 
 -(void) startSimulation {
@@ -320,8 +317,9 @@
         simulator.zoomLevel = editor.zoomLevel;
         
         [self hideTabBar];
-        [self hideTools];
-        [self addSimulationButtons];
+        
+        [self.toolsController addSimulationButtons];
+        [self addStopButton];
     }
 }
 
@@ -350,8 +348,8 @@
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
-        [self showTools];
-        [self addEditionButtons];
+        [self.toolsController addEditionButtons];
+        [self addPlayButton];
     }
 }
 
@@ -367,7 +365,7 @@
 
 -(void) reloadContent{
     [self.tabController.paletteController reloadPalettes];
-    [self reloadBarButtonItems];
+    //[self.toolsController reloadBarButtonItems];
 }
 
 -(void) addBarButtonWithImageName:(NSString*) imageName{
@@ -375,58 +373,26 @@
     //UIImage * image = [UIImage imageNamed:@"play.png"];
 }
 
--(void) reloadBarButtonItems{
-    
-    self.navigationItem.rightBarButtonItems = _barButtonItems;
-}
-
--(void) addCustomBarButtons {
-    
-    if(_barButtonItems.count <= 1){
-        
-        THEditorToolsDataSource * dataSource = [THDirector sharedDirector].editorToolsDataSource;
-        NSInteger count = [dataSource numberOfToolbarButtonsForState:self.state];
-        for (int i = 0; i < count; i++) {
-            UIBarButtonItem * item = [dataSource toolbarButtonAtIdx:i forState:self.state];
-            [_barButtonItems addObject:item];
-        }
-    }
-}
-
 -(void) addTools{
     
     CGRect frame = _toolsController.view.frame;
-    _toolsController.view.center = ccp(1024 - frame.size.width / 2.0f, 768 - frame.size.height / 2.0f);
+    //_toolsController.view.center = ccp(1024 - frame.size.width / 2.0f, 768 - frame.size.height / 2.0f);
+    //float height = self.navigationController.navigationBar.frame.size.height;
+    
+    _toolsController.view.center = ccp(1024/2.0f, frame.size.height / 2.0f);
     [self.view addSubview:_toolsController.view];
 }
 
 -(void) addPlayButton {
-
-    [_barButtonItems insertObject:_playButton atIndex:0];
-
-    self.navigationItem.rightBarButtonItems = _barButtonItems;
+    
+    NSArray * array = [NSArray arrayWithObject:_playButton];
+    self.navigationItem.rightBarButtonItems = array;
 }
 
 -(void) addStopButton {
     
-    [_barButtonItems insertObject:_stopButton atIndex:0];
-    
-    self.navigationItem.rightBarButtonItems = _barButtonItems;
-}
-
--(void) addEditionButtons{
-    [_barButtonItems removeAllObjects];
-    [_barButtonItems addObject:_playButton];
-    [self addCustomBarButtons];
-    [self reloadBarButtonItems];
-}
-
--(void) addSimulationButtons{
-    
-    [_barButtonItems removeAllObjects];
-    [_barButtonItems addObject:_stopButton];
-    [self addCustomBarButtons];
-    [self reloadBarButtonItems];
+    NSArray * array = [NSArray arrayWithObject:_stopButton];
+    self.navigationItem.rightBarButtonItems = array;
 }
 
 /*

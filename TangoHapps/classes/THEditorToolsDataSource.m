@@ -14,8 +14,6 @@
 
 @implementation THEditorToolsDataSource
 
-@dynamic lilypadItem;
-
 -(id) init{
     self = [super init];
     if(self){
@@ -35,10 +33,6 @@
         pushItem.enabled = NO;
         
         _simulatingTools = [NSArray arrayWithObject:pinsModeItem];
-        
-        _serverController = [[THServerController alloc] init];
-        //[_serverController startServer];
-        _serverController.delegate = self;
         
     }
     return self;
@@ -102,53 +96,11 @@
 
 
 - (void) pushPressed:(id)sender {
-    if([_serverController serverIsRunning]){
+    THServerController * serverController = [THDirector sharedDirector].serverController;
+    if([serverController serverIsRunning]){
         THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
-        [_serverController pushProjectToAllClients:project];
+        [serverController pushProjectToAllClients:project];
     }
-}
-
-#pragma Mark - Server Delegate
-
--(void) updateServerButtonState{
-    BOOL enabled = _serverController.peers.count > 0;
-    if(enabled != self.serverItem.enabled){
-        self.serverItem.enabled = enabled;
-        if(enabled){
-            [[SimpleAudioEngine sharedEngine] playEffect:@"peer_connected.mp3"];
-        } else {
-            [[SimpleAudioEngine sharedEngine] playEffect:@"peer_disconnected.mp3"];
-        }
-    }
-}
-
--(void) server:(THServerController*)controller
- peerConnected:(NSString*)peerName {
-    [self updateServerButtonState];
-}
-
--(void) server:(THServerController*)controller peerDisconnected:(NSString*)peerName {
-    [self updateServerButtonState];
-}
-
--(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
-    //self.serverItem.enabled = enabled;
-}
-
--(void) server:(THServerController*)controller
-isTransferring:(BOOL)transferring {
-    /*
-    UIImage * image;
-    if(transferring){
-        image = [UIImage imageNamed:@"server_busy"];
-    }else{
-        image = [UIImage imageNamed:@"server_online"];
-    }
-    wirelessButton.image = image;*/
-}
-
-- (void) server:(THServerController*)controller isRunning:(BOOL)running{
-    //[self updateWirelessButtonTo:running];
 }
 
 #pragma Mark - Pins

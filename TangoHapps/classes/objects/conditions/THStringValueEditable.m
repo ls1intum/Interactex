@@ -67,12 +67,18 @@ CGSize const kStringValueLabelSize = {100,30};
 
 -(void) reloadLabel{
     [_label removeFromParentAndCleanup:YES];
-    NSString * text = [NSString stringWithFormat:@"%@",self.value];
+
+    NSString * text;
+    if(self.value == nil){
+        text = @"<empty>";
+    } else {
+        text = [NSString stringWithFormat:@"%@",self.value];
+    }
     
     _label = [CCLabelTTF labelWithString:text dimensions:kStringValueLabelSize hAlignment:NSTextAlignmentCenter vAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:14];
     
     //_label = [CCLabelTTF labelWithString:text dimensions:kStringValueLabelSize alignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:13];
-    _label.position = ccp(25,20);
+    _label.position = ccp(25,25);
     [self addChild:_label];
     
     _displayedValue = self.value;

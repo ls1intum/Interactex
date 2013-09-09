@@ -23,7 +23,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "TFConstants.h"
+#import "THClientConstants.h"
 
 @interface TFMethod : NSObject
 {

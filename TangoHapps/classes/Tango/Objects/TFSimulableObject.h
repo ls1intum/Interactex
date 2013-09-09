@@ -23,7 +23,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "TFConstants.h"
 
 @class TFMethod;
 @class TFEvent;

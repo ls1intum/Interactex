@@ -34,7 +34,7 @@
 			<object class="IBUIToolbar" id="67843244">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
-				<string key="NSFrameSize">{134, 44}</string>
+				<string key="NSFrameSize">{337, 44}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -62,6 +62,44 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">delete.png</string>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<reference key="IBUIToolbar" ref="67843244"/>
+					</object>
+					<object class="IBUIBarButtonItem" id="81138099">
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<float key="IBUIWidth">42</float>
+						<reference key="IBUIToolbar" ref="67843244"/>
+						<int key="IBUISystemItemIdentifier">6</int>
+					</object>
+					<object class="IBUIBarButtonItem" id="878740563">
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">lilypadmode.png</string>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<reference key="IBUIToolbar" ref="67843244"/>
+					</object>
+					<object class="IBUIBarButtonItem" id="197455769">
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">editormode.png</string>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<reference key="IBUIToolbar" ref="67843244"/>
+					</object>
+					<object class="IBUIBarButtonItem" id="526391763">
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">pinsmode.png</string>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<reference key="IBUIToolbar" ref="67843244"/>
+					</object>
+					<object class="IBUIBarButtonItem" id="540019984">
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">push.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<reference key="IBUIToolbar" ref="67843244"/>
@@ -104,6 +142,46 @@
 					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">pushItem</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="540019984"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">pinsModeItem</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="526391763"/>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">toolBar</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="67843244"/>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">tshirtItem</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="197455769"/>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lilypadItem</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="878740563"/>
+					</object>
+					<int key="connectionID">42</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">connectTapped:</string>
 						<reference key="source" ref="445261724"/>
@@ -126,6 +204,38 @@
 						<reference key="destination" ref="841351856"/>
 					</object>
 					<int key="connectionID">11</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pushPressed:</string>
+						<reference key="source" ref="540019984"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">37</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">tshirtPressed:</string>
+						<reference key="source" ref="197455769"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">41</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pinsModePressed:</string>
+						<reference key="source" ref="526391763"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">36</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">lilypadPressed:</string>
+						<reference key="source" ref="878740563"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">40</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -154,6 +264,11 @@
 							<reference ref="445261724"/>
 							<reference ref="525699747"/>
 							<reference ref="176512998"/>
+							<reference ref="197455769"/>
+							<reference ref="81138099"/>
+							<reference ref="540019984"/>
+							<reference ref="526391763"/>
+							<reference ref="878740563"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -172,6 +287,31 @@
 						<reference key="object" ref="176512998"/>
 						<reference key="parent" ref="67843244"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">19</int>
+						<reference key="object" ref="540019984"/>
+						<reference key="parent" ref="67843244"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">20</int>
+						<reference key="object" ref="197455769"/>
+						<reference key="parent" ref="67843244"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">25</int>
+						<reference key="object" ref="81138099"/>
+						<reference key="parent" ref="67843244"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">26</int>
+						<reference key="object" ref="526391763"/>
+						<reference key="parent" ref="67843244"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">29</int>
+						<reference key="object" ref="878740563"/>
+						<reference key="parent" ref="67843244"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -179,6 +319,11 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -188,7 +333,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">42</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -198,7 +343,11 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="connectTapped:">id</string>
 						<string key="duplicateTapped:">id</string>
+						<string key="lilypadPressed:">id</string>
+						<string key="pinsModePressed:">id</string>
+						<string key="pushPressed:">id</string>
 						<string key="removeTapped:">id</string>
+						<string key="tshirtPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="connectTapped:">
@@ -209,15 +358,36 @@
 							<string key="name">duplicateTapped:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="lilypadPressed:">
+							<string key="name">lilypadPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="pinsModePressed:">
+							<string key="name">pinsModePressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="pushPressed:">
+							<string key="name">pushPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="removeTapped:">
 							<string key="name">removeTapped:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tshirtPressed:">
+							<string key="name">tshirtPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="connectButton">UIBarButtonItem</string>
 						<string key="duplicateButton">UIBarButtonItem</string>
+						<string key="lilypadItem">UIBarButtonItem</string>
+						<string key="pinsModeItem">UIBarButtonItem</string>
+						<string key="pushItem">UIBarButtonItem</string>
 						<string key="removeButton">UIBarButtonItem</string>
+						<string key="toolBar">UIToolbar</string>
+						<string key="tshirtItem">UIBarButtonItem</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="connectButton">
@@ -228,8 +398,28 @@
 							<string key="name">duplicateButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="lilypadItem">
+							<string key="name">lilypadItem</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pinsModeItem">
+							<string key="name">pinsModeItem</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pushItem">
+							<string key="name">pushItem</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="removeButton">
 							<string key="name">removeButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toolBar">
+							<string key="name">toolBar</string>
+							<string key="candidateClassName">UIToolbar</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tshirtItem">
+							<string key="name">tshirtItem</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 					</dictionary>
@@ -252,6 +442,10 @@
 			<string key="connect.png">{30, 30}</string>
 			<string key="delete.png">{30, 30}</string>
 			<string key="duplicate.png">{30, 30}</string>
+			<string key="editormode.png">{30, 26}</string>
+			<string key="lilypadmode.png">{30, 30}</string>
+			<string key="pinsmode.png">{30, 30}</string>
+			<string key="push.png">{24, 30}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

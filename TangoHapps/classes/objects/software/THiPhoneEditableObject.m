@@ -223,11 +223,6 @@
     return @"iPhone";
 }
 
--(void) draw{
-    //glPointSize(10);
-    [self convertToWorldSpace:ccp(0,0)];
-}
-
 -(void) willStartEdition{
     
     self.currentView.opacity = kUiViewOpacityEditor;

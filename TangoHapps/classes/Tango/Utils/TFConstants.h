@@ -61,12 +61,9 @@ extern float const kPaletteItemImagePadding;
 
 extern float const kPaletteContainerTitleHeight;
 
-extern NSString * const kProjectsDirectory;
-extern NSString * const kProjectImagesDirectory;
-extern NSString * const kPaletteItemsDirectory;
-
 extern ccColor3B const kConnectionLineDefaultColor;
 extern ccColor4B const kDefaultObjectHighlightColor;
+extern ccColor4B const kDefaultObjectSelectionColor;
 
 enum TFZOrders{
     kTFDefaultZ = -20
@@ -80,17 +77,6 @@ extern float const kDragViewDefaultOpacity;
 
 extern float const kNavigationBarHeight;
 
-#define kNumDataTypes 5
-
-typedef enum{
-    kDataTypeBoolean,
-    kDataTypeInteger,
-    kDataTypeFloat,
-    kDataTypeString,
-    kDataTypeAny
-} TFDataType;
-
-extern NSString * const dataTypeStrings[kNumDataTypes];
 
 extern float const kMethodSelectionPopupRowHeight;
 extern float const kMethodSelectionPopupCharacterWidth;
@@ -104,9 +90,6 @@ extern float const kPopupHeaderHeight;
 extern NSInteger const kEditableObjectTableRowHeight;
 extern NSString * const kEditableObjectTableFont;
 extern float const kEditableObjectTableFontSize;
-
-
-static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 
 typedef enum {

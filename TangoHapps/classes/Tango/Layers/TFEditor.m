@@ -138,7 +138,7 @@
     //ccDrawCircle(ccp(0,0), 20, 0, 10, NO);
     //ccDrawCircle(ccp(self.contentSize.width,self.contentSize.height), 20, 0, 10, NO);
     
-    //[self drawTemporaryLine];
+    [self drawTemporaryLine];
     //[self drawConnectionLines];
     
     //[self drawBoundingBoxes];

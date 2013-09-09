@@ -24,8 +24,6 @@
 
 
 #import "TFConnectionLine.h"
-#import "TFConstants.h"
-#import "TFEditableObject.h"
 
 @implementation TFConnectionLine
 

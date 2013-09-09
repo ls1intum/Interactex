@@ -7,7 +7,6 @@
 //
 
 #import "THMusicPlayer.h"
-#import "SimpleAudioEngine.h"
 
 @implementation THMusicPlayer
 
@@ -301,8 +300,8 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) play{
 #if (TARGET_IPHONE_SIMULATOR)
-    NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
-    [[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
+    //NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
+    //[[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
     _playing = YES;
 
 #else
@@ -319,7 +318,7 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) pause{
 #if (TARGET_IPHONE_SIMULATOR)
-    [[CDAudioManager sharedManager] stopBackgroundMusic];
+    //[[CDAudioManager sharedManager] stopBackgroundMusic];
     _playing = NO;
 #else
     [_musicPlayer pause];
@@ -334,7 +333,7 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) stop{
     
 #if (TARGET_IPHONE_SIMULATOR)
-    [self pause];
+    //[self pause];
 #else
     [_musicPlayer stop];
 #endif
@@ -348,7 +347,7 @@ NSString * const kPauseImageName = @"pause.png";
     if(_currentSongIdx >= _songs.count){
         _currentSongIdx = 0;
     }
-    [self play];
+    //[self play];
 #else
     [_musicPlayer skipToNextItem];
 #endif

@@ -13,6 +13,10 @@
 
 @implementation THBuzzer
 
+
+float const kBuzzerMaxFrequency = 20000;
+float const kBuzzerMinFrequency = 20;
+
 -(void) load{
         
     TFProperty * property1 = [TFProperty propertyWithName:@"frequency" andType:kDataTypeFloat];

@@ -8,6 +8,8 @@
 
 #import "THHardwareComponent.h"
 
+extern float const kMaxPotentiometerValue;
+
 @interface THPotentiometer : THHardwareComponent
 {
     BOOL _insideRange;

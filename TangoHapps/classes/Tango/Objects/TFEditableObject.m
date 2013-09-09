@@ -453,44 +453,21 @@
 }
 
 -(void) draw {
-   // CC_NODE_DRAW_SETUP();
     
-    //float width = self.contentSize.width;
-    //float height = self.contentSize.height;
-    
-    //int cornerRadius = 8;
-    //int smoothness = 2;
-    //BOOL cornersToRound[4] = { YES, YES, YES, YES };
-    
-    //ccDrawColor4F(1, 0.2, 0.2, 1);
-    //ccDrawRect(ccp(0,-200), ccp(width, height));
-    ccDrawCircle(ccp(0,0), 30, 0, 10, NO);
-    //ccDrawSolidRoundedRect(CGRectMake(0, 0, width, height), cornerRadius, smoothness, cornersToRound);
-    
-    /*
     if(self.selected){
+        float kSelectionPadding = 5;
         
-        glEnable( GL_BLEND );
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        CGRect box = self.boundingBox;
+        CGSize rectSize = CGSizeMake(self.contentSize.width + kSelectionPadding * 2, self.contentSize.height + kSelectionPadding * 2);
         
-        glColor4f(0.5, 0.5, 0.7, 0.3);
+        CGPoint point = box.origin;
+        point = [self convertToNodeSpace:point];
+        point = ccpSub(point, ccp(kSelectionPadding, kSelectionPadding));
         
-        float kSelectionPadding = 10;
-        CGSize spriteSize = CGSizeMake(_sprite.contentSize.width * _sprite.scaleX,_sprite.contentSize.height * _sprite.scaleY);
-        CGPoint origin = ccpSub(ccp(-kSelectionPadding,-kSelectionPadding), ccp(spriteSize.width/2,spriteSize.height/2));
-        CGRect rect = CGRectMake(origin.x, origin.y, spriteSize.width + kSelectionPadding * 2, spriteSize.height + kSelectionPadding * 2);
-        [TFHelper drawRect:rect];
+        //ccDrawSolidRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height), ccc4FFromccc4B( kDefaultObjectSelectionColor));
         
-        glColor4f(0.6, 0.6, 0.6, 0.7);
-        
-        glLineWidth(3.0f);
-        float kBorderPadding = 2;
-        rect.origin = ccpSub(rect.origin,ccp(kBorderPadding,kBorderPadding));
-        rect.size = CGSizeMake(rect.size.width + 2 * kBorderPadding, rect.size.height + 2 * kBorderPadding);
-        [TFHelper drawEmptyRect:rect];
-        
-        glDisable(GL_BLEND);
-    }*/
+        ccDrawRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height));
+    }
 }
 /*
 -(void) addHighlightRect{

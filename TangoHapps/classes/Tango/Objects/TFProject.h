@@ -37,12 +37,13 @@
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic) BOOL isEmpty;
 
+//statis methods
++(TFProject*)emptyProject;
++(TFProject*) projectSavedWithName:(NSString*) name;
+
 //init
 -(id) initWithName:(NSString*) name;
-
-//persistency
 -(void) save;
-+(TFProject*) restoreProjectNamed:(NSString*) name;
 
 //objects
 -(TFEditableObject*) objectAtLocation:(CGPoint) location;

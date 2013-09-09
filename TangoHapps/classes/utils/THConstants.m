@@ -15,38 +15,14 @@ NSString * const kNotificationSimulationEnded = @"notificationSimulationEnded";
 
 NSString * const kNotificationPropertiesChanged = @"notificationPropertiesChanged";
 
-NSString * const kGameKitSessionId = @"TANGO_SESSION";
+
 float const kWifiCellHeightCollapsed = 44;
 float const kWifiCellHeightExtended = 64;
 
 CGPoint const kiPhoneImageDistanceViewTopLeftToCenter = {20,30};
 
-NSString * const kNotificationLedOn = @"notificationLedOn";
-NSString * const kNotificationLedOff = @"notificationLedOff";
 
-NSString * const kNotificationBuzzerOn = @"notificationBuzzerOn";
-NSString * const kNotificationBuzzerOff = @"notificationBuzzerOff";
-
-NSString * const kNotificationBuzzerFrequencyChanged = @"notificationBuzzerFrequencyChanged";
-NSString * const kNotificationLedIntensityChanged = @"notificationLedIntensityChanged";
-
-NSString * const kNotificationSwitchOn = @"switchedOn";
-NSString * const kNotificationSwitchOff = @"switchedOff";
-
-float const kMaxAnalogValue = 255;
 float const kLilypadPinRadius = 21;
-float const kMaxPotentiometerValue = 1023;
-
-NSString * const kNotificationLilypadObjectAdded = @"notificationLilypadObjectAdded";
-NSString * const kNotificationLilypadObjectRemoved = @"notificationLilypadObjectRemoved";
-
-NSString * const kNotificationLilypadAdded = @"notificationLilypadAdded";
-NSString * const kNotificationLilypadRemoved = @"notificationLilypadRemoved";
-
-NSString * const kNotificationPinAttached = @"notificationPinAttached";
-NSString * const kNotificationPinDeattached = @"notificationPinDeattached";
-
-NSString * const kNotificationPinValueChanged = @"notificationPinValueChanged";
 
 CGPoint const kLilypadDefaultPosition = {400,500};
 
@@ -54,10 +30,6 @@ NSString * const kPaletteNameClothes = @"clothes";
 NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";
-
-NSString* const kPinTexts[kNumPinTypes] = {@"D", @"A", @"-", @"+"};
-NSString * const kElementPinTexts[kNumElementPinTypes] = {@"D", @"A", @"+", @"-", @"SCL", @"SDA"};
-NSString* const kPinModeTexts[kNumPinModes] = {@"D In", @"D Out",@"A In",@"PWM", @"Buzzer", @"Compass", @"Undefined"};
 
 NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2};
 
@@ -73,65 +45,9 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-22,15},{22,15}}//vibeBoard
 };
 
-NSInteger const kLilypadPwmPins[kLilypadNumPwmPins] = {3,5,6,9,10,11};
-
-/*
-THElementPinType const kPinTypes[kNumHardwareTypes][kMaxNumPinsPerElement] = {
-    {kElementPintypeMinus,kElementPintypePin},//led
-    {kElementPintypePin,kElementPintypeMinus},//buzzer
-    {kElementPintypeS,kElementPintypeMinus},//button
-    {kElementPintypePin,kElementPintypeMinus},//switch
-    {kElementPintypePlus, kElementPintypePin, kElementPintypeMinus}//potentiometer
-};
-*/
-
-CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}};
 
 float const kUiViewOpacityEditor = 0.5f;
 
-float const kBuzzerMaxFrequency = 20000;
-float const kBuzzerMinFrequency = 20;
-
-//events
-NSString * const kEventTurnedOn = @"turnedOn";
-NSString * const kEventTurnedOff = @"turnedOff";
-NSString * const kEventOnChanged = @"onChanged";
-NSString * const kEventIntensityChanged = @"intensityChanged";
-NSString * const kEventFrequencyChanged = @"frequencyChanged";
-NSString * const kEventValueChanged = @"valueChanged";
-NSString * const kEventMapperValueChanged = @"mapperValueChanged";
-NSString * const kEventDxChanged = @"dxChanged";
-NSString * const kEventDyChanged = @"dyChanged";
-NSString * const kEventLightChanged = @"lightChanged";
-NSString * const kEventStartedPressing = @"startedPressing";
-NSString * const kEventStoppedPressing = @"stoppedPressing";
-NSString * const kEventConditionIsTrue = @"conditionTrue";
-NSString * const kEventConditionIsFalse = @"conditionFalse";
-NSString * const kEventConditionChanged = @"conditionChanged";
-NSString * const kEventXChanged = @"xChanged";
-NSString * const kEventYChanged = @"yChanged";
-NSString * const kEventZChanged = @"zChanged";
-
-NSString * const kEventTapped = @"tapped";
-NSString * const kEventDoubleTapped = @"doubleTapped";
-NSString * const kEventScaleChanged = @"scaled";
-NSString * const kEventLongPressed = @"longPressed";
-
-NSString * const kEventHeadingChanged = @"eventHeadingChanged";
-
-NSString * const kEventColorChanged = @"eventColorChanged";
-
-NSString * const kEventTriggered = @"triggered";
-
-//methods
-NSString * const kMethodTurnOn = @"turnOn";
-NSString * const kMethodTurnOff = @"turnOff";
-NSString * const kMethodSetValue1 = @"setValue1";
-NSString * const kMethodSetValue2 = @"setValue2";
-
-NSString * const kMethodSetRed = @"setRed";
-NSString * const kMethodSetGreen = @"setGreen";
-NSString * const kMethodSetBlue = @"setBlue";
 
 NSInteger const kCompassMin = 1000;
 NSInteger const kAnalogInMin = 1000;

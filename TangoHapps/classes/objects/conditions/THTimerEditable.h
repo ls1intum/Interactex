@@ -7,6 +7,7 @@
 //
 
 #import "THTriggerEditable.h"
+#import "THTimer.h"
 
 @interface THTimerEditable : THTriggerEditable
 

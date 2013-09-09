@@ -28,6 +28,9 @@
 #import "TFPaletteItemProperties.h"
 
 @implementation TFPaletteItem
+
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+
 @dynamic center;
 @synthesize image = _image;
 //@dynamic image;

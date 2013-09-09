@@ -16,9 +16,11 @@
 #import "cocos2d.h"
 
 #import "TFConstants.h"
+#import "THClientConstants.h"
+
 #import "TFHelper.h"
 #import "TFFileUtils.h"
-#import "TFAction.h"
+
 #import "TFSimulableObject.h"
 #import "TFEditableObject.h"
 #import "TFEvent.h"
@@ -38,3 +40,4 @@
 
 #import "THCondition.h"
 #import "THDirector.h"
+#import "TFAction.h"

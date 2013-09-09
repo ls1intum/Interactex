@@ -63,12 +63,9 @@ float const kPaletteItemImagePadding = 3;
 
 float const kPaletteContainerTitleHeight = 40;
 
-NSString * const kProjectsDirectory = @"projects";
-NSString * const kProjectImagesDirectory = @"projectImages";
-NSString * const kPaletteItemsDirectory = @"paletteItems";
-
 ccColor3B const kConnectionLineDefaultColor = {30, 148, 214};
 ccColor4B const kDefaultObjectHighlightColor = {200, 150, 150, 100};
+ccColor4B const kDefaultObjectSelectionColor = {180, 180, 200, 15};
 
 float const kLineAcceptedShinningTime = 0.9f;
 
@@ -78,9 +75,6 @@ float const kLineWidthSelected = 2.0f;
 float const kDragViewDefaultOpacity = 0.8f;
 
 float const kNavigationBarHeight = 44;
-
-
-NSString* const dataTypeStrings[kNumDataTypes] = {@"boolean",@"integer", @"float",@"string", @"*"};
 
 
 float const kMethodSelectionPopupRowHeight = 30;

@@ -7,7 +7,6 @@
 //
 
 #import "THSound.h"
-#import "SimpleAudioEngine.h"
 
 @implementation THSound
 
@@ -56,7 +55,7 @@
 
 -(void) play{
     if(_fileName){
-        [[SimpleAudioEngine sharedEngine] playEffect:_fileName];
+        //[[SimpleAudioEngine sharedEngine] playEffect:_fileName];
     }
 }
 

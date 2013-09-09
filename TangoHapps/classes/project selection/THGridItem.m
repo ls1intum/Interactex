@@ -10,6 +10,9 @@
 
 @implementation THGridItem
 
+
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+
 - (id)initWithName:(NSString*)name image:(UIImage*)image {
     
     self = [super init];

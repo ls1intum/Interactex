@@ -8,6 +8,11 @@
 
 #import "THTrigger.h"
 
+typedef enum{
+    kTimerTypeOnce,
+    kTimerTypeAlways
+}THTimerType;
+
 @interface THTimer : THTrigger
 {
     NSTimer * _timer;

@@ -52,7 +52,7 @@
 }
 
 -(void) draw{
-    /*
+    
     if(self.isLilypadMode){
         
         //[self drawWires];
@@ -60,9 +60,7 @@
     } else {
         
         [self drawObjectsConnections];
-    }*/
-    
-    //ccDrawCircle(ccp(200,200), 100, 0, 100, NO);
+    }
     
     [super draw];
 }

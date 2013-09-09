@@ -10,6 +10,7 @@
 #import "THProjectProxy.h"
 #import "THProjectCell.h"
 #import "THProjectDraggableCell.h"
+#import "THCustomProject.h"
 
 @implementation THProjectSelectionViewController
 
@@ -287,7 +288,7 @@
 }
 
 -(void) tapped:(UITapGestureRecognizer*) recognizer{
-    /*
+    
     if(self.editingScenes){
         
         [self stopEditingScenes];
@@ -299,21 +300,11 @@
         
         if(indexPath){
             THProjectProxy * projectProxy = [self.projects objectAtIndex:indexPath.row];
-            THClientProject * project;
-            
-            if(self.showingCustomApps){
-                
-                project = [THProject projectSavedWithName:projectProxy.name];
-                
-            } else {
-                [THSimulableWorldController sharedInstance].currentScene = scene;
-                project = [self.fakeScenesSource projectNamed:scene.name];
-            }
+            THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:projectProxy.name];
             
             [self proceedToProject:project];
-            
         }
-    }*/
+    }
 }
 
 #pragma mark - Segue

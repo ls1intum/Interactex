@@ -11,7 +11,7 @@
 extern const float kShakingEffectAngleInRadians;
 extern const float kShakingEffectRotationTime;
 
-@class THProjectCell;
+@class THClientSceneCell;
 
 @protocol THClientSceneCellDelegate <NSObject>
 
