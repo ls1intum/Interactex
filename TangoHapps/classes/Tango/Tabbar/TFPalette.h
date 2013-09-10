@@ -46,7 +46,7 @@
 @end
 
 @interface TFPalette : UIScrollView
-<UIGestureRecognizerDelegate, TFPaletteItemDelegate>
+< TFPaletteItemDelegate>
 {
     NSMutableArray * _paletteItems;
     UIImageView * _dragView;

@@ -188,6 +188,7 @@
 }
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+/* Juan check
     
     if(self.editingScenes && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
         
@@ -197,7 +198,7 @@
     if((gestureRecognizer == tapRecognizer && otherGestureRecognizer == longpressRecognizer) || (gestureRecognizer == longpressRecognizer && otherGestureRecognizer == tapRecognizer)){
         return self.editingScenes;
     }
-    
+    */
     return YES;
 }
 

@@ -115,9 +115,17 @@
     tabBar.items = _barButtonItems;
 }
 
+-(void) updateFrame{
+    CGRect frame = self.view.frame;
+    UIBarButtonItem * lastItem = [self.toolBar.items objectAtIndex:self.toolBar.items.count-1];
+    UIView * view = [lastItem valueForKey:@"view"];
+    frame.size.width =  view.frame.origin.x + view.frame.size.width + frame.origin.x;
+}
+
 -(void) addEditionButtons{
 
     self.toolBar.items = _editingTools;
+    [self updateFrame];
 }
 
 -(void) addLilypadButtons{

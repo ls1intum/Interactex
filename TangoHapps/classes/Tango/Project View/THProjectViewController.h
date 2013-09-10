@@ -13,7 +13,11 @@
     UIBarButtonItem * _playButton;
     UIBarButtonItem * _stopButton;
     
-    BOOL wasEditorInLilypadMode;
+//    BOOL wasEditorInLilypadMode;
+    
+    UIPanGestureRecognizer * panRecognizer;
+    
+    BOOL movingTabBar;
 }
 
 @property (nonatomic, readonly) TFLayer * currentLayer;
@@ -24,6 +28,7 @@
 @property (nonatomic, readonly) TFEditorToolsViewController * toolsController;
 
 @property (nonatomic, readonly) BOOL editingSceneName;
+@property (nonatomic, strong) UIImageView * palettePullImageView;
 
 -(void) startWithEditor;
 -(void) startSimulation;

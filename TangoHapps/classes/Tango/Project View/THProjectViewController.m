@@ -11,6 +11,9 @@
 
 @implementation THProjectViewController
 
+float const kPalettePullY = 364;
+float const kToolsTabMargin = 5;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -97,6 +100,9 @@
     [self addTitleLabel];
     [self reloadContent];
     [self startWithEditor];
+    
+    [self addPalettePull];
+    [self updatePalettePullVisibility];
     
 }
 
@@ -252,6 +258,74 @@
     _editingSceneName = YES;
 }
 
+#pragma mark - PalettePull
+
+-(void) addPalettePullGestureRecognizer{
+    
+    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moved:)];
+    panRecognizer.delegate = self;
+    [self.view addGestureRecognizer:panRecognizer];
+}
+
+-(void) removePalettePullRecognizer{
+    [self.view removeGestureRecognizer:panRecognizer];
+    panRecognizer = nil;
+}
+
+-(void) updatePalettePullVisibility{
+    self.palettePullImageView.hidden = self.state;
+}
+
+-(void) addPalettePull{
+    UIImage * image = [UIImage imageNamed:@"palettePull"];
+    self.palettePullImageView = [[UIImageView alloc] initWithImage:image];
+    
+    CGRect paletteFrame = self.tabController.view.frame;
+    self.palettePullImageView.frame = CGRectMake(paletteFrame.origin.x + paletteFrame.size.width, kPalettePullY, image.size.width, image.size.height);
+    
+    [self.view addSubview:self.palettePullImageView];
+    
+    [self addPalettePullGestureRecognizer];
+}
+
+-(void) moved:(UIPanGestureRecognizer*) sender{
+    if(sender.state == UIGestureRecognizerStateBegan){
+        
+        CGPoint location = [sender locationInView:self.view];
+        if(CGRectContainsPoint(self.palettePullImageView.frame,location)){
+            movingTabBar = YES;
+        } else {
+            movingTabBar = NO;
+        }
+        
+    } else if(sender.state == UIGestureRecognizerStateChanged){
+        if(movingTabBar){
+            
+            CGPoint translation = [sender translationInView:self.view];
+            
+            //set palette frame
+            CGRect paletteFrame = self.tabController.view.frame;
+            paletteFrame.origin.x = paletteFrame.origin.x + translation.x;
+            if(paletteFrame.origin.x > 0){
+                paletteFrame.origin.x = 0;
+            }
+            self.tabController.view.frame = paletteFrame;
+            
+            //set 
+            CGRect imageViewFrame = self.palettePullImageView.frame;
+            imageViewFrame.origin.x = paletteFrame.origin.x + paletteFrame.size.width;
+            if(imageViewFrame.origin.x < 0){
+                imageViewFrame.origin.x = 0;
+            }
+            self.palettePullImageView.frame = imageViewFrame;
+            
+            [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+        }
+    } else {
+        movingTabBar = NO;
+    }
+}
+
 #pragma mark - Methods
 
 -(void)hideTabBar
@@ -312,7 +386,7 @@
         THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
         THCustomSimulator * simulator = (THCustomSimulator*) [[THDirector sharedDirector].projectDelegate customSimulator];
         
-        wasEditorInLilypadMode = editor.isLilypadMode;
+        //wasEditorInLilypadMode = editor.isLilypadMode;
         
         [self switchToLayer:simulator];
         simulator.zoomLevel = editor.zoomLevel;
@@ -326,6 +400,8 @@
         THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
         project.iPhone.visible = YES;
         [self.toolsController updateHideIphoneButtonTint];
+        [self updatePalettePullVisibility];
+        [self addPalettePullGestureRecognizer];
     }
 }
 
@@ -356,6 +432,8 @@
         [self showTabBar];
         [self.toolsController addEditionButtons];
         [self addPlayButton];
+        [self updatePalettePullVisibility];
+        [self removePalettePullRecognizer];
     }
 }
 
@@ -382,10 +460,10 @@
 -(void) addTools{
     
     CGRect frame = _toolsController.view.frame;
-    //_toolsController.view.center = ccp(1024 - frame.size.width / 2.0f, 768 - frame.size.height / 2.0f);
-    //float height = self.navigationController.navigationBar.frame.size.height;
-    
-    _toolsController.view.center = ccp(1024/2.0f, frame.size.height / 2.0f);
+    CGRect tabBarFrame = self.tabController.view.frame;
+    frame.origin = CGPointMake(tabBarFrame.origin.x + tabBarFrame.size.width + kToolsTabMargin, kToolsTabMargin);
+    _toolsController.view.frame = frame;
+    //_toolsController.view.center = ccp(1024/2.0f, frame.size.height / 2.0f);
     [self.view addSubview:_toolsController.view];
 }
 
@@ -401,24 +479,6 @@
     self.navigationItem.rightBarButtonItems = array;
 }
 
-/*
--(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(keyboardHidden) name:UIKeyboardWillHideNotification object:nil];
-    
-    _state = kAppStateEditor;
-    
-    [self showTabBar];
-    [self showTools];
-    
-    [self addEditionButtons];
-    [self addTitleLabel];
-    [self reloadContent];
-    [self startWithEditor];
-}*/
-
 -(void) cleanUp{
     [_currentLayer prepareToDie];
     
@@ -433,6 +493,10 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    return YES;
 }
 
 -(NSString*) description{
