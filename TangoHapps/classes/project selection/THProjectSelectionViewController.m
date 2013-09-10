@@ -59,6 +59,7 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    [self loadGestureRecognizers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,34 +89,21 @@
     [self.view addGestureRecognizer:longpressRecognizer];
 }
 
+-(void) removeGestureRecognizers{
+    [self.view removeGestureRecognizer: tapRecognizer];
+    [self.view removeGestureRecognizer: panRecognizer];
+    [self.view removeGestureRecognizer: longpressRecognizer];
+    
+    tapRecognizer = nil;
+    panRecognizer = nil;
+    longpressRecognizer = nil;
+}
+
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self stopEditingScenes];
-    
+    [self removeGestureRecognizers];
 }
-
-/*
- #pragma mark - Grid View delegate
- 
- -(CGSize) gridItemSizeForGridView:(THGridView*) view{
- return CGSizeMake(100, 224);
- }
- 
- -(CGPoint) gridItemPaddingForGridView:(THGridView*) view{
- return CGPointMake(5, 1);
- }
- 
- -(CGPoint) gridPaddingForGridView:(THGridView*) view{
- return CGPointMake(0,5);
- }*/
-
-/*
- #pragma mark Interface Actions
- 
- -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
- [super setEditing:editing animated:animated];
- [self.gridView setEditing:editing];
- }*/
 
 #pragma mark - Private
 
@@ -172,7 +160,6 @@
         cell.editing = NO;
     }
     
-    
     self.editButton.title = @"Edit";
     self.editingScenes = NO;
 }
@@ -188,7 +175,6 @@
 }
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-/* Juan check
     
     if(self.editingScenes && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
         
@@ -198,7 +184,7 @@
     if((gestureRecognizer == tapRecognizer && otherGestureRecognizer == longpressRecognizer) || (gestureRecognizer == longpressRecognizer && otherGestureRecognizer == tapRecognizer)){
         return self.editingScenes;
     }
-    */
+
     return YES;
 }
 
@@ -272,20 +258,27 @@
     }
 }
 
+-(void) startEditingScene{
+    
+    self.editingScenes = YES;
+    currentProjectCell.editing = YES;
+}
+
 -(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
-    /*
+    
     if(recognizer.state == UIGestureRecognizerStateBegan &&  !self.editingScenes){
         
         CGPoint position = [recognizer locationInView:self.collectionView];
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
-        THClientSceneCell * cell = (THClientSceneCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
+        THProjectCell * cell = (THProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
         
         if(cell){
             [cell scaleEffect];
-            self.editingScenes = YES;
-            cell.editing = YES;
+            currentProjectCell = cell;
+            [NSTimer scheduledTimerWithTimeInterval:kProjectCellScaleEffectDuration target:self selector:@selector(startEditingScene) userInfo:nil repeats:NO];
+            
         }
-    }*/
+    }
 }
 
 -(void) tapped:(UITapGestureRecognizer*) recognizer{
@@ -293,7 +286,7 @@
     if(self.editingScenes){
         
         [self stopEditingScenes];
-        //self.currentGridView.editing = NO;
+
     } else {
         
         CGPoint position = [recognizer locationInView:self.collectionView];

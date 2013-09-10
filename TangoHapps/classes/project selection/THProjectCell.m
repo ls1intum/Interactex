@@ -14,6 +14,7 @@
 
 const float kShakingEffectAngleInRadians = 2.0f;
 const float kShakingEffectRotationTime = 0.10f;
+const float kProjectCellScaleEffectDuration = 0.5;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -82,19 +83,13 @@ const float kShakingEffectRotationTime = 0.10f;
                      animations:^ {
                         self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(kShakingEffectAngleInRadians));
                      }
-                     completion:NULL
+                     completion:nil
      ];
 }
 
 - (void)stopShaking {
-    [UIView animateWithDuration:kShakingEffectRotationTime
-                          delay:0.0
-                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
-                     animations:^ {
-                         self.transform = CGAffineTransformIdentity;
-                     }
-                     completion:NULL
-     ];
+    [self.layer removeAllAnimations];
+    self.transform = CGAffineTransformIdentity;
 }
 
 -(void)fadeView:(UIView*)view toHidden:(BOOL)hidden {
@@ -113,21 +108,24 @@ const float kShakingEffectRotationTime = 0.10f;
                      }];
 }
 
--(void) scaleEffect {
-    [UIView animateWithDuration:0.25
+-(void) scaleEffect{
+    
+    [UIView animateWithDuration:kProjectCellScaleEffectDuration/2.0f
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:(void (^)(void)) ^{
-                         self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(5));
-                         
+                         self.transform = CGAffineTransformMakeScale(1.1, 1.1);
                      }
                      completion:^(BOOL finished){
-                         [UIView animateWithDuration:0.25
+                         [UIView animateWithDuration:kProjectCellScaleEffectDuration/2.0f
                                                delay:0
                                              options:UIViewAnimationOptionBeginFromCurrentState
                                           animations:(void (^)(void)) ^{
+                                              self.transform = CGAffineTransformMakeScale(1.0, 1.0);
                                           }
                                           completion:^(BOOL finished){
+                                              
+                                              self.transform = CGAffineTransformIdentity;
                                               
                                           }];
                          

@@ -10,6 +10,7 @@
 
 extern const float kShakingEffectAngleInRadians;
 extern const float kShakingEffectRotationTime;
+extern const float kProjectCellScaleEffectDuration;
 
 @class THProjectCell;
 
