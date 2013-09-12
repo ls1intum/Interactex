@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
-#import "TFImagePickerController.h"
+#import "THEditableObjectProperties.h"
+#import "THImagePickerController.h"
 
-@interface THImageViewProperties : TFEditableObjectProperties <TFImagePickerDelegate>
+@interface THImageViewProperties : THEditableObjectProperties <TFImagePickerDelegate>
 {
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *changeButton;
 
-@property (nonatomic, strong) TFImagePickerController * imagePicker;
+@property (nonatomic, strong) THImagePickerController * imagePicker;
 @property (nonatomic, strong) UIPopoverController * imagePickerPopover;
 @property (weak, nonatomic) IBOutlet UIImageView * imageView;
 

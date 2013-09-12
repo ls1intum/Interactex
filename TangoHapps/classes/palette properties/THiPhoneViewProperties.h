@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 #import "THColorPicker.h"
 
-@interface THiPhoneViewProperties : TFEditableObjectProperties <THColorPickerDelegate>
+@interface THiPhoneViewProperties : THEditableObjectProperties <THColorPickerDelegate>
 {
     THColorPicker *colorPicker;
     UIPopoverController *colorPickerPopover;

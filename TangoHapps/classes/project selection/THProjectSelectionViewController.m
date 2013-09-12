@@ -14,23 +14,24 @@
 
 @implementation THProjectSelectionViewController
 
--(void) addTitleLabel{
-    titleLabel = [TFHelper navBarTitleLabelNamed:@"Projects"];
-    self.navigationItem.titleView = titleLabel;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.collectionView reloadData];
-    [self addTitleLabel];
-    self.projects = [THDirector sharedDirector].projectProxies;
+    self.projectProxies = [THDirector sharedDirector].projectProxies;
     
     CCDirector *director = [CCDirector sharedDirector];
     if([director isViewLoaded] == NO) {
         director.view = [self createDirectorGLView];
         [self didInitializeDirector];
     }
+    
+    
+    self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
+    
+    self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
+    
+    self.navigationItem.leftBarButtonItem = self.editButton;
 }
 
 #pragma  mark - init cocos2d
@@ -59,7 +60,11 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    
+    [self.collectionView reloadData];
     [self loadGestureRecognizers];
+    
+    [self updateEditButtonEnabledState];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,7 +147,7 @@
 
 -(void) startEditingScenes{
     
-    for(int i = 0 ; i < self.projects.count ; i++){
+    for(int i = 0 ; i < self.projectProxies.count ; i++){
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         THProjectCell * cell =  (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         cell.editing = YES;
@@ -151,11 +156,13 @@
     self.editButton.title = @"Done";
     self.editingScenes = YES;
     self.editingOneScene = NO;
+    
+    self.navigationItem.leftBarButtonItem = self.doneButton;
 }
 
 -(void) stopEditingScenes{
     
-    for(int i = 0 ; i < self.projects.count ; i++){
+    for(int i = 0 ; i < self.projectProxies.count ; i++){
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         THProjectCell * cell =  (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         cell.editing = NO;
@@ -164,6 +171,8 @@
     self.editButton.title = @"Edit";
     self.editingScenes = NO;
     self.editingOneScene = NO;
+    
+    self.navigationItem.leftBarButtonItem = self.editButton;
 }
 
 #pragma mark - Gestures
@@ -197,7 +206,7 @@
     if(indexPath){
         
         currentProjectCell = (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
-        currentProject = [self.projects objectAtIndex:indexPath.row];
+        currentProject = [self.projectProxies objectAtIndex:indexPath.row];
         
         if(currentProjectCell.editing){
             
@@ -205,11 +214,12 @@
             currentDraggableCell.imageView.image = currentProjectCell.imageView.image;
             currentDraggableCell.imageView.frame = currentProjectCell.imageView.frame;
             
-            [self.projects removeObject:currentProject];
+            [self.projectProxies removeObject:currentProject];
             NSArray * indexPaths = [NSArray arrayWithObjects:indexPath, nil];
             [self.collectionView deleteItemsAtIndexPaths:indexPaths];
             
             [self.view addSubview:currentDraggableCell];
+            
         }
     }
 }
@@ -221,10 +231,10 @@
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:currentDraggableCell.center];
         
         if(!indexPath){
-            indexPath = [NSIndexPath indexPathForRow:self.projects.count inSection:0];
+            indexPath = [NSIndexPath indexPathForRow:self.projectProxies.count inSection:0];
         }
         
-        [self.projects insertObject:currentProject atIndex:indexPath.row];
+        [self.projectProxies insertObject:currentProject atIndex:indexPath.row];
         [currentDraggableCell removeFromSuperview];
         
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
@@ -285,7 +295,7 @@
 
 -(void) tapped:(UITapGestureRecognizer*) recognizer{
     
-    if(self.editingScenes){
+    if(self.editingScenes || self.editingOneScene){
         
         [self stopEditingScenes];
 
@@ -295,7 +305,7 @@
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
         
         if(indexPath){
-            THProjectProxy * projectProxy = [self.projects objectAtIndex:indexPath.row];
+            THProjectProxy * projectProxy = [self.projectProxies objectAtIndex:indexPath.row];
             THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:projectProxy.name];
             
             [self proceedToProject:project];
@@ -316,102 +326,54 @@
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
         
-        THProjectProxy * projectProxy = [self.projects objectAtIndex:indexPath.row];
-        [self.projects removeObjectAtIndex:indexPath.row];
+        THProjectProxy * projectProxy = [self.projectProxies objectAtIndex:indexPath.row];
+        [self.projectProxies removeObjectAtIndex:indexPath.row];
+        
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
         [self.collectionView deleteItemsAtIndexPaths:indexPaths];
-        
         
         [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
         
         NSString * imageName = [projectProxy.name stringByAppendingString:@".png"];
         [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];
-    }
-}
-
-/*
-#pragma mark - Methods
-
--(void) reloadData{
-    
-    [(THGridView*) self.view reloadData];
-}
-
-#pragma mark - GridViewDataSource
-
--(NSUInteger)numberOfItemsInGridView:(THClientGridView *)gridView
-{
-    return [THDirector sharedDirector].projectProxies.count + 1;
-}
-
--(THGridItem *)gridView:(THClientGridView *)gridView
-            viewAtIndex:(NSUInteger)index {
-    THGridItem * item = nil;
-    if(index < [THDirector sharedDirector].projectProxies.count){
         
-        THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:index];
-        item = [[THGridItem alloc] initWithName:proxy.name image:proxy.image];
-        item.editable = YES;
-        
-    } else if(index == [THDirector sharedDirector].projectProxies.count){
-        
-        UIImage * image = [UIImage imageNamed:@"newProjectIcon"];
-
-        item = [[THGridItem alloc]  initWithName:@"New Project" image:image];
-        item.userInteractionEnabled = YES;
-    }
-    return item;
-}
-
-- (void)gridView:(THClientGridView*)gridView didSelectViewAtIndex:(NSUInteger)index {
-    
-    if(index == [THDirector sharedDirector].projectProxies.count){
-        [[THDirector sharedDirector] startNewProject];
-    } else {
-        THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:index];
-        [[THDirector sharedDirector] startProjectForProxy:proxy];
+        if(self.projectProxies.count == 0){
+            [self stopEditingScenes];
+            [self updateEditButtonEnabledState];
+        }
     }
 }
 
-- (void)gridView:(THClientGridView *)gridView didDeleteViewAtIndex:(NSUInteger)index {
-    THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:index];
-    [[THDirector sharedDirector].projectProxies removeObjectAtIndex:index];
-    
-    [TFFileUtils deleteDataFile:proxy.name fromDirectory:kProjectsDirectory];
-    
-    NSString * imageName = [proxy.name stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];
-}
+#pragma mark - UI Interaction
 
-- (void)gridView:(THClientGridView *)gridView didRenameViewAtIndex:(NSUInteger)index
-         newName:(NSString *)newName {
-    
-    THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:index];
-    
-    [[THDirector sharedDirector] renameProjectFile:proxy.name toName:newName];
-    
-    if(![proxy.name isEqualToString:newName]){        
-        //NSLog(@"gets name: %@",newName);
-        proxy.name = newName;
+-(void) updateEditButtonEnabledState{
+    if(self.projectProxies.count == 0){
+        self.editButton.enabled = NO;
+    } else{
+        self.editButton.enabled = YES;
     }
 }
-*/
 
 - (IBAction)addButtonTapped:(id)sender {
     THCustomProject * newProject = [THCustomProject newProject];
+    
     [self proceedToProject:newProject];
 }
 
 - (IBAction)filterControlChanged:(id)sender {
 }
+
 - (IBAction)orderControlChanged:(id)sender {
 }
 
-- (IBAction)editButtonTapped:(id)sender {
-    if(self.editingScenes){
-        [self stopEditingScenes];
-    } else {
-        [self startEditingScenes];
-    }
+- (void) editButtonTapped:(id)sender {
+    [self startEditingScenes];
 }
+
+- (void) doneButtonTapped:(id)sender {
+    
+    [self stopEditingScenes];
+}
+
+
 @end

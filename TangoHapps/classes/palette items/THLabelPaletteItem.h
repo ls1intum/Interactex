@@ -7,6 +7,6 @@
 //
 
 
-@interface THLabelPaletteItem : TFPaletteItem
+@interface THLabelPaletteItem : THPaletteItem
 
 @end

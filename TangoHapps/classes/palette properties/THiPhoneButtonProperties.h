@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THiPhoneButtonProperties : TFEditableObjectProperties <UITextFieldDelegate>
+@interface THiPhoneButtonProperties : THEditableObjectProperties <UITextFieldDelegate>
 {
 }
 

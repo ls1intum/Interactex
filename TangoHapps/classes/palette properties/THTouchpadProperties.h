@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THTouchpadProperties : TFEditableObjectProperties
+@interface THTouchpadProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UISlider *xMultiplierSlider;
 @property (weak, nonatomic) IBOutlet UISlider *yMultiplierSlider;

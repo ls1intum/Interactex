@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THTimerProperties : TFEditableObjectProperties
+@interface THTimerProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UILabel *secondsLabel;
 @property (weak, nonatomic) IBOutlet UISlider *secondsSlider;

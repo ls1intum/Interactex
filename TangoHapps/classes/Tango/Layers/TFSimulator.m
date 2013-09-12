@@ -55,7 +55,7 @@
 
 -(void) populateAccelerometerObjects{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.allObjects) {
         if(object.isAccelerometerEnabled){
             [_accelerometerObjects addObject:object];
@@ -79,7 +79,7 @@
         CGPoint location = [sender locationInView:sender.view];
         location = [self toLayerCoords:location];
         
-        TFProject * project = [THDirector sharedDirector].currentProject;
+        THCustomProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         if(object){
             [object handleTap];
@@ -92,7 +92,7 @@
         CGPoint location = [sender locationInView:sender.view];
         location = [self toLayerCoords:location];
         
-        TFProject * project = [THDirector sharedDirector].currentProject;
+        THCustomProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         
         if(object){
@@ -109,7 +109,7 @@
         
         CGPoint location = [touch locationInView:touch.view];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        TFProject * project = [THDirector sharedDirector].currentProject;
+        THCustomProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         if(object){
             [object handleTouchBegan];
@@ -123,7 +123,7 @@
         CGPoint location = [touch locationInView:touch.view];
         location = [[CCDirector sharedDirector] convertToGL:location];
         
-        TFProject * project = [THDirector sharedDirector].currentProject;
+        THCustomProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         
         if(object){
@@ -143,7 +143,7 @@
 #pragma mark - Lifecycle
 
 -(void) update:(float) dt{
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.allObjects) {
         [object update];
     }
@@ -151,13 +151,13 @@
 
 -(void) prepareObjectsForSimulation{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     [project willStartSimulation];
 }
 
 -(void) notifyObjectsSimulationStarted{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     [project didStartSimulation];
 }
 

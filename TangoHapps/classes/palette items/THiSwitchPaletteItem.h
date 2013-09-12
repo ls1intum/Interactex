@@ -7,6 +7,6 @@
 //
 
 
-@interface THiSwitchPaletteItem : TFPaletteItem
+@interface THiSwitchPaletteItem : THPaletteItem
 
 @end

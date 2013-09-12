@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THBoolValueProperties : TFEditableObjectProperties
+@interface THBoolValueProperties : THEditableObjectProperties
 @property (weak, nonatomic) IBOutlet UISwitch *valueSwitch;
 - (IBAction)valueChanged:(id)sender;
 

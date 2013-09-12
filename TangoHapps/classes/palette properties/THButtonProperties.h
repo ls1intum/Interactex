@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THButtonProperties : TFEditableObjectProperties
+@interface THButtonProperties : THEditableObjectProperties
 
 @end

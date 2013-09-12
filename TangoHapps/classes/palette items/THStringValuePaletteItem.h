@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "TFPaletteItem.h"
+#import "THPaletteItem.h"
 
-@interface THStringValuePaletteItem : TFPaletteItem
+@interface THStringValuePaletteItem : THPaletteItem
 
 @end

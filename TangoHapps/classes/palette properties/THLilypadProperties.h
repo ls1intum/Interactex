@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
 
-@interface THLilypadProperties : TFEditableObjectProperties
+@interface THLilypadProperties : THEditableObjectProperties
 {
     NSMutableArray * _pinViews;
     float _currentY;

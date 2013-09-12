@@ -30,8 +30,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) BOOL editingScenes;
 @property (nonatomic) BOOL editingOneScene;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (weak, nonatomic) NSMutableArray * projects;
+@property (strong, nonatomic) UIBarButtonItem * editButton;
+@property (strong, nonatomic) UIBarButtonItem * doneButton;
+@property (weak, nonatomic) NSMutableArray * projectProxies;
 
 -(void) reloadData;
 -(IBAction) addButtonTapped:(id)sender;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THiPhoneProperties : TFEditableObjectProperties
+@interface THiPhoneProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegment;
 - (IBAction)typeSegmentChanged:(UISegmentedControl*)sender;

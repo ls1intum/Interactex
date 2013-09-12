@@ -32,7 +32,6 @@
         }
         
         self.type = type;
-        //self.pin.mode = kPinModeUndefined;
         
         _attachedElementPins = [NSMutableArray array];
     }
@@ -122,6 +121,7 @@
 
 -(void) setPin:(IFPin *)pin{
     if(_pin != pin){
+        
         [self removePinObserver];
         _pin = pin;
         [self addPinObserver];
@@ -164,7 +164,39 @@
     return NO;
 }
 
+#pragma mark - Pin Observing & Value Notification
+
+-(void) removePinObserver{
+    if(self.pin){
+        
+        [self.pin removeObserver:self forKeyPath:@"value"];
+    }
+}
+
+-(void) addPinObserver{
+    if(self.pin){
+
+        [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if([keyPath isEqualToString:@"value"]){
+        [self notifyNewValue];
+    }
+}
+
+-(void) notifyNewValue{
+    
+    for (THElementPin * pin in self.attachedElementPins) {
+        [pin.hardware handlePin:self changedValueTo:self.pin.value];
+    }
+}
+
+
 -(void) prepareToDie{
+    [super prepareToDie];
+    
     _attachedElementPins = nil;
     self.pin = nil;
 }
@@ -179,29 +211,6 @@
     }
     
     return text;
-}
-
-#pragma mark - Pin Observing & Value Notification
-
--(void) removePinObserver{
-    [self.pin removeObserver:self forKeyPath:@"value"];
-}
-
--(void) addPinObserver{
-    [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-}
-
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if([keyPath isEqualToString:@"value"]){
-        [self notifyNewValue];
-    }
-}
-
--(void) notifyNewValue{
-    
-    for (THElementPin * pin in self.attachedElementPins) {
-        [pin.hardware handlePin:self changedValueTo:self.pin.value];
-    }
 }
 
 @end

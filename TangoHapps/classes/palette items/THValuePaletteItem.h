@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-@interface THValuePaletteItem : TFPaletteItem
+@interface THValuePaletteItem : THPaletteItem
 
 @end

@@ -32,7 +32,7 @@
         _subviews = [NSMutableArray array];
         self.width = 100;
         self.height = 50;
-        _opacity = 1;
+        self.opacity = 1;
         
         [self loadView];
     }
@@ -50,7 +50,6 @@
         self.opacity = [decoder decodeFloatForKey:@"opacity"];
         self.position = [decoder decodeCGPointForKey:@"position"];
         self.backgroundColor = [decoder decodeObjectForKey:@"backgroundColor"];
-        //_subviews = [decoder decodeObjectForKey:@"subviews"];
         
         _subviews = [NSMutableArray array];
         
@@ -68,7 +67,6 @@
     [coder encodeFloat:self.opacity forKey:@"opacity"];
     [coder encodeCGPoint:self.position forKey:@"position"];
     [coder encodeObject:self.backgroundColor forKey:@"backgroundColor"];
-    //[coder encodeObject:self.subviews forKey:@"subviews"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -124,7 +122,6 @@
 }
 
 -(void) addToView:(UIView*) aView{
-    //[self removeFromSuperview];
     
     [self.view removeFromSuperview];
     
@@ -132,7 +129,6 @@
     for (THView * view in _subviews) {
         [view addToView:aView];
     }
-    //_superview = aView;
 }
 
 -(void) setBackgroundColor:(UIColor *)backgroundColor{
@@ -175,7 +171,6 @@
     view.frame = CGRectMake(self.position.x - self.width/2, self.position.y - self.height/2, self.width, self.height);
     _view = view;
     view.backgroundColor = self.backgroundColor;
-    view.alpha = self.opacity;
 }
 
 -(NSString*) description{

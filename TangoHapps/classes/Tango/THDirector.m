@@ -7,15 +7,15 @@
 //
 
 #import "TFLayer.h"
-#import "TFTabbarViewController.h"
-#import "TFPropertiesViewController.h"
+#import "THTabbarViewController.h"
+#import "THPropertiesViewController.h"
 
 #import "THDirector.h"
 #import "THProjectProxy.h"
 #import "THProjectViewController.h"
 #import "THEditorToolsDataSource.h"
 #import "THServerController.h"
-#import "TFEditorToolsViewController.h"
+#import "THEditorToolsViewController.h"
 
 @implementation THDirector
 
@@ -52,119 +52,36 @@ static THDirector * _sharedInstance = nil;
     self = [super init];
     if(self){
         
-        //_projectController = [[THProjectViewController alloc] init];
-        //_navigationController = [[UINavigationController alloc] init];
-        //_navigationController.delegate = self;
-        //_selectionController = [[THProjectSelectionViewController alloc] init];
-        
         [self loadProjects];
         
         self.serverController = [[THServerController alloc] init];
         self.serverController.delegate = self;
-        //[_serverController startServer];
+        
+        [self preload];
+        
     }
     return self;
 }
 
 #pragma mark - Methods
 
--(TFDirectorState) state{
-    return self.navigationController.visibleViewController == self.projectController;
-}
-
--(void) savePalette{
-    [self.projectController.tabController.paletteController save];
-}
-
--(void) save{
-    if(self.state == kDirectorStateProjectEdition){
-        [self saveCurrentProject];
-    }
-    [self savePalette];
-}
-
 -(void) loadProjects {
     
     NSString * directory = [TFFileUtils dataDirectory:kProjectsDirectory];
     NSArray * files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:nil];
-    _projectProxies = [[NSMutableArray alloc] init];
+    self.projectProxies = [[NSMutableArray alloc] init];
     for(NSString *archivePath in files){
         THProjectProxy * proxy = [THProjectProxy proxyWithName:[archivePath lastPathComponent]];
-        [_projectProxies addObject:proxy];
+        [self.projectProxies addObject:proxy];
     }
 }
+
 /*
--(void) stop{
-    self.currentProject = nil;
-    _currentProxy = nil;
-    _projectController = nil;
-    _projectDelegate = nil;
-    [self.navigationController removeFromParentViewController];
-}
-
--(void) start{
-        
-    TFTabbarViewController * tabController = self.projectController.tabController;
-    [tabController.paletteController reloadPalettes];
-    [tabController.paletteController addCustomPaletteItems];
-    
-    [self loadProjects];
-    
-    [_navigationController pushViewController:_selectionController animated:NO];
-}
-*/
--(void) startProject:(TFProject*) project{
-    
-    self.currentProject = project;
-    
-    [_navigationController pushViewController:self.projectController animated:YES];
-}
-
--(void) checkSaveCurrentProject{
-    if(!self.currentProject.isEmpty){
-        [self saveCurrentProject];
-    }
-}
-
--(void) storeImageForCurrentProject:(UIImage*) image{
-    NSString * imageFileName = [self.currentProject.name stringByAppendingString:@".png"];
-    NSString * imageFilePath = [TFFileUtils dataFile:imageFileName
-                                         inDirectory:kProjectImagesDirectory];
-    [TFFileUtils saveImageToFile:image file:imageFilePath];
-}
-
--(void) saveCurrentProject{
-    
-    _projectName = self.currentProject.name;
-    [self.currentProject save];
-    
-    UIImage * image = [TFHelper screenshot];
-    [self storeImageForCurrentProject:image];
-    
-    if(!self.currentProxy){
-        
-        THProjectProxy * proxy = [THProjectProxy proxyWithName:self.currentProject.name];
-        proxy.image = image;
-        if(![_projectProxies containsObject:proxy]){
-            [_projectProxies addObject:proxy];
-        }
-    } else {
-        self.currentProxy.name = self.currentProject.name;
-    }
-}
-
--(void) restoreCurrentProject{
-    if(_projectName != nil){
-        [self.currentProject prepareToDie];
-        self.currentProject = [TFProject projectSavedWithName:_projectName];
-    }
-}
-
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     if(viewController == self.selectionController){
         if(_alreadyStartedEditor){
-            [self checkSaveCurrentProject];
+            [self saveCurrentProject];
             [self.currentProject prepareToDie];
             self.currentProject = nil;
             [self.projectController.tabController.propertiesController removeAllControllers];
@@ -179,7 +96,7 @@ static THDirector * _sharedInstance = nil;
         [self.projectDelegate willStartEditingProject:self.currentProject];
         [self.serverController startServer];
     }
-}
+}*/
 
 -(BOOL) renameProjectFile:(NSString*) name toName:(NSString*) newName{
     
@@ -201,24 +118,6 @@ static THDirector * _sharedInstance = nil;
     }
 }
 
-#pragma mark - Loading Projects
-
--(void) startNewProject{
-    
-    TFProject * newProject = [self.projectDelegate newCustomProject];
-    newProject.name = [TFFileUtils resolveProjectNameConflictFor:newProject.name];
-    
-    [self startProject:newProject];
-}
-
--(void) startProjectForProxy:(THProjectProxy*) proxy{
-    
-    _currentProxy = proxy;
-    TFProject * project = [TFProject projectSavedWithName:proxy.name];
-    project.name = proxy.name;
-    [self startProject:project];
-}
-
 #pragma mark - Layer
 
 -(TFLayer*) currentLayer{
@@ -230,7 +129,7 @@ static THDirector * _sharedInstance = nil;
 
 -(void) updateServerButtonState{
     
-    THServerController * serverController = [THDirector sharedDirector].serverController;
+    THServerController * serverController = self.serverController;
     BOOL enabled = serverController.peers.count > 0;
     if(enabled){
         [[SimpleAudioEngine sharedEngine] playEffect:@"peer_connected.mp3"];

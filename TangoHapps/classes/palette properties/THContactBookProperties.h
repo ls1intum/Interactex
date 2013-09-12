@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THContactBookProperties : TFEditableObjectProperties
+@interface THContactBookProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UISwitch *callSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *previousSwitch;

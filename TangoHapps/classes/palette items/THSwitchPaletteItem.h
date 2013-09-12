@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THSwitchPaletteItem : TFPaletteItem
+@interface THSwitchPaletteItem : THPaletteItem
 
 @end

@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "THSoundPicker.h"
 
-@interface THSoundProperties : TFEditableObjectProperties <THSoundPickerDelegate>
+@interface THSoundProperties : THEditableObjectProperties <THSoundPickerDelegate>
 {
 
 }

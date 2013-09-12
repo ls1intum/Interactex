@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THComparatorPaletteItem : TFPaletteItem
+@interface THComparatorPaletteItem : THPaletteItem
 
 @end

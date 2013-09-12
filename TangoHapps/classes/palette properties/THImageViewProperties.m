@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)imagePicker:(TFImagePickerController*) picker didSelectImage:(UIImage*)image imageName:(NSString *)imageName{
+- (void)imagePicker:(THImagePickerController*) picker didSelectImage:(UIImage*)image imageName:(NSString *)imageName{
     if(image){
         
         THImageViewEditable * imageView = (THImageViewEditable*) self.editableObject;
@@ -55,7 +55,7 @@
 - (IBAction)changeTapped:(id)sender {
     if (self.imagePicker == nil) {
 
-        self.imagePicker = [[TFImagePickerController alloc] init];
+        self.imagePicker = [[THImagePickerController alloc] init];
         self.imagePicker.delegate = self;
         self.imagePickerPopover = [[UIPopoverController alloc]
                                     initWithContentViewController:self.imagePicker];

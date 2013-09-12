@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THVibrationBoardPaletteItem : TFPaletteItem
+@interface THVibrationBoardPaletteItem : THPaletteItem
 
 @end

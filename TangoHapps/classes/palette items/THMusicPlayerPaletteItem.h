@@ -7,6 +7,6 @@
 //
 
 
-@interface THMusicPlayerPaletteItem : TFPaletteItem
+@interface THMusicPlayerPaletteItem : THPaletteItem
 
 @end

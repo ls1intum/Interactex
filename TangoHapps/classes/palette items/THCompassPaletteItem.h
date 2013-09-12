@@ -7,6 +7,6 @@
 //
 
 
-@interface THCompassPaletteItem : TFPaletteItem
+@interface THCompassPaletteItem : THPaletteItem
 
 @end

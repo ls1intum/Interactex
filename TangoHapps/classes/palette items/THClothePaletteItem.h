@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THClothePaletteItem : TFPaletteItem {
+@interface THClothePaletteItem : THPaletteItem {
 
 }
 

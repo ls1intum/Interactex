@@ -7,7 +7,7 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-@interface THiPhonePaletteItem : TFPaletteItem
+@interface THiPhonePaletteItem : THPaletteItem
 {
     
 }

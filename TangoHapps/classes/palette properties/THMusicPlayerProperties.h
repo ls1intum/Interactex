@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THMusicPlayerProperties : TFEditableObjectProperties
+@interface THMusicPlayerProperties : THEditableObjectProperties
 @property (weak, nonatomic) IBOutlet UISwitch *playSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *nextSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *previousSwitch;

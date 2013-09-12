@@ -6,17 +6,17 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
-#import "TFImagePickerController.h"
+#import "THEditableObjectProperties.h"
+#import "THImagePickerController.h"
 
-@interface THClotheProperties : TFEditableObjectProperties <TFImagePickerDelegate>
+@interface THClotheProperties : THEditableObjectProperties <TFImagePickerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UILabel * scaleLabel;
 @property (weak, nonatomic) IBOutlet UISlider *scaleSlider;
 - (IBAction)scaleChanged:(id)sender;
 
-@property (nonatomic, strong) TFImagePickerController * imagePicker;
+@property (nonatomic, strong) THImagePickerController * imagePicker;
 @property (nonatomic, strong) UIPopoverController * imagePickerPopover;
 @property (weak, nonatomic) IBOutlet UIImageView * imageView;
 @property (weak, nonatomic) IBOutlet UIButton *changeButton;

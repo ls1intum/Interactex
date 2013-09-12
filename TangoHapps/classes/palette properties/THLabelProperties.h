@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THLabelProperties : TFEditableObjectProperties
+@interface THLabelProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 - (IBAction)textEntered:(id)sender;

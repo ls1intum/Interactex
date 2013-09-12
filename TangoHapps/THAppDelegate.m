@@ -7,10 +7,8 @@
 //
 
 #import "THAppDelegate.h"
-#import "THProjectDelegate.h"
-#import "THEditorToolsDataSource.h"
 #import "THDirector.h"
-#import "THServerController.h"
+#import "THProjectViewController.h"
 
 @implementation THAppDelegate
 
@@ -22,10 +20,6 @@
     
     [[CCFileUtils sharedFileUtils] setiPadRetinaDisplaySuffix:@""];
     [[CCFileUtils sharedFileUtils] setiPadSuffix:@""];
-    
-    THDirector * director = [THDirector sharedDirector];
-    
-    director.projectDelegate = [[THProjectDelegate alloc] init];
     
     return YES;
 }
@@ -64,7 +58,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [[THDirector sharedDirector] save];
+    [[THDirector sharedDirector].projectController saveCurrentProjectAndPalette];
 }
 
 @end

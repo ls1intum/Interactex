@@ -7,6 +7,6 @@
 //
 
 
-@interface THBuzzerPaletteItem : TFPaletteItem
+@interface THBuzzerPaletteItem : THPaletteItem
 
 @end

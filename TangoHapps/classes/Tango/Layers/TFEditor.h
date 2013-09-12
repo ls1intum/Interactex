@@ -27,12 +27,12 @@
 #import "TFPaletteViewControllerDelegate.h"
 #import "TFMethodSelectionPopup.h"
 
-@class TFEditorToolsViewController;
+@class THEditorToolsViewController;
 @class TFConnectionLine;
 @class TFEditableObject;
-@class TFPaletteItem;
-@class TFDragView;
-@class TFPaletteItem;
+@class THPaletteItem;
+@class THDraggedPaletteItem;
+@class THPaletteItem;
 
 typedef enum {
     kEditorStateNormal,
@@ -49,10 +49,10 @@ typedef enum {
 
 @protocol TFEditorDragDelegate <NSObject>
 
--(void) paletteItem:(TFPaletteItem*) paletteItem didEnterPaletteAtLocation:(CGPoint) location;
--(void) paletteItemDidExitPalette:(TFPaletteItem*) paletteItem;
--(void) paletteItem:(TFPaletteItem*) paletteItem didMoveToLocation:(CGPoint) location;
--(void) paletteItem:(TFPaletteItem*) paletteItem didDropAtLocation:(CGPoint) location;
+-(void) paletteItem:(THPaletteItem*) paletteItem didEnterPaletteAtLocation:(CGPoint) location;
+-(void) paletteItemDidExitPalette:(THPaletteItem*) paletteItem;
+-(void) paletteItem:(THPaletteItem*) paletteItem didMoveToLocation:(CGPoint) location;
+-(void) paletteItem:(THPaletteItem*) paletteItem didDropAtLocation:(CGPoint) location;
 @end
 
 @interface TFEditor : TFLayer <TFPaletteViewControllerDelegate,TFMethodSelectionPopupDelegate>{
@@ -63,11 +63,11 @@ typedef enum {
     
     NSMutableArray * _connectionLines;
     
-    TFEditorToolsViewController * _editorToolsController;
+    THEditorToolsViewController * _editorToolsController;
     
     TFMethodSelectionPopup * _methodSelectionPopup;
     
-    TFPaletteItem * _currentPaletteItem;
+    THPaletteItem * _currentPaletteItem;
     CGPoint _draggedObjectPreviousPosition;
 }
 

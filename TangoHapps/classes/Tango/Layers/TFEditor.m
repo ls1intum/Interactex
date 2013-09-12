@@ -24,10 +24,10 @@
 
 
 #import "TFEditor.h"
-#import "TFPaletteItem.h"
+#import "THPaletteItem.h"
 #import "TFEditableObject.h"
 #import "TFConnectionLine.h"
-#import "TFDragView.h"
+#import "THDraggedPaletteItem.h"
 #import "TFEventActionPair.h"
 #import "TFMethodInvokeAction.h"
 
@@ -101,7 +101,7 @@
 #pragma mark - Drawing
 
 -(void) drawBoundingBoxes{
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     
     for(TFEditableObject * object in project.allObjects){
         [TFHelper drawRect:object.boundingBox];
@@ -194,7 +194,7 @@
 
 -(void) methodSelectionPopup:(TFMethodSelectionPopup*) popup didSelectAction:(TFMethodInvokeAction*) action forEvent:(TFEvent*) event{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     [project registerAction:(TFAction*)action forEvent:event];
     
     TFEditableObject * source = (TFEditableObject*) popup.object1;
@@ -264,7 +264,7 @@
 
 -(TFEditableObject*) duplicateObjectAtLocation:(CGPoint) location{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     
     TFEditableObject * copy;
@@ -368,7 +368,7 @@
     
     if(self.removeConnections){
         
-        TFProject * project = [THDirector sharedDirector].currentProject;
+        THCustomProject * project = [THDirector sharedDirector].currentProject;
         
         TFEditableObject * object = [project objectAtLocation:location];
         NSArray * actions = [project actionsForTarget:object];
@@ -391,7 +391,7 @@
         
     } else if(_state == kEditorStateDelete){
         
-        TFProject * project = [THDirector sharedDirector].currentProject;
+        THCustomProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         if(object){
             if(self.currentObject == object){
@@ -417,7 +417,7 @@
 
 -(void) prepareObjectsForEdition{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     [project prepareForEdition];
 }
 
@@ -441,12 +441,12 @@
 
 #pragma mark - Drags from palette
 
--(void)paletteItem:(TFDragView*)item beganDragAt:(CGPoint) location {
+-(void)paletteItem:(THDraggedPaletteItem*)item beganDragAt:(CGPoint) location {
     item.center = location;
     [item addToView:[CCDirector sharedDirector].view];
 }
 
--(void)paletteItem:(TFDragView*)item movedTo:(CGPoint)location {
+-(void)paletteItem:(THDraggedPaletteItem*)item movedTo:(CGPoint)location {
     item.center = location;
     
     if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
@@ -456,7 +456,7 @@
     }
 }
 
--(void)paletteItem:(TFDragView*)item endedAt:(CGPoint) location{
+-(void)paletteItem:(THDraggedPaletteItem*)item endedAt:(CGPoint) location{
     [dragSprite removeFromParentAndCleanup:YES];
     dragSprite = nil;
 }

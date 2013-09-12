@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-@interface THLightSensorPaletteItem : TFPaletteItem
+@interface THLightSensorPaletteItem : THPaletteItem
 
 @end

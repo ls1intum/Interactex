@@ -40,16 +40,42 @@
 
 @implementation THCustomProject
 
+#pragma mark - Static Methods
 
-#pragma mark - Init
++(THCustomProject*)emptyProject {
+    return [[THCustomProject alloc] init];
+}
+
++(THCustomProject*) projectSavedWithName:(NSString*) name{
+    
+    NSString *filePath = [TFFileUtils dataFile:name inDirectory:kProjectsDirectory];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+}
+
++(BOOL) doesProjectExistWithName:(NSString*) name{
+    return [TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory];
+}
+
++(NSString*) newProjectName{
+    NSString * name = @"New Project";
+    int i = 2;
+    while([self doesProjectExistWithName:name]){
+        name = [NSString stringWithFormat:@"New Project %d",i];
+        i++;
+    }
+    return name;
+}
 
 +(id) newProject{
-    return [THCustomProject projectNamed:@"New Project"];
+    NSString * newProjectName = [self newProjectName];
+    return [THCustomProject projectNamed:newProjectName];
 }
 
 +(id) projectNamed:(NSString*) name{
     return [[THCustomProject alloc] initWithName:name];
 }
+
+#pragma mark - Initialization
 
 -(void) loadCustomProject{
     
@@ -64,6 +90,8 @@
     _wires = [NSMutableArray array];
     
     _assetCollection = [[THAssetCollection alloc] initWithLocalFiles];
+    
+    _eventActionPairs = [NSMutableArray array];
 }
 
 -(void) initCustomProject{
@@ -88,21 +116,26 @@
 }
 
 -(id) initWithName:(NSString*) name{
-    self = [super initWithName:name];
+    self = [super init];
     if(self){
+        
+        _name = name;
         [self initCustomProject];
     }
     return self;
 }
 
 #pragma mark - Archiving
-
--(id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
+    
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
     if(self){
         
         [self loadCustomProject];
+        
+        _name = [decoder decodeObjectForKey:@"name"];
+        
+        NSArray * eventActionPairs = [decoder decodeObjectForKey:@"eventActionPairs"];
         
         THiPhoneEditableObject * iPhone = [decoder decodeObjectForKey:@"iPhone"];
         
@@ -116,6 +149,11 @@
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
         NSArray * wires = [decoder decodeObjectForKey:@"wires"];
+        
+        
+        for(TFEventActionPair * pair in eventActionPairs){
+            [self registerAction:pair.action forEvent:pair.event];
+        }
         
         if(iPhone != nil)
             [self addiPhone:iPhone];
@@ -131,7 +169,6 @@
         for(THViewEditableObject* iphoneObject in iPhoneObjects){
             [self addiPhoneObject:iphoneObject];
         }
-        
         
         for(TFEditableObject* condition in conditions){
             [self addCondition:condition];
@@ -162,8 +199,9 @@
 
 -(void)encodeWithCoder:(NSCoder *)coder
 {
-    [super encodeWithCoder:coder];
     
+    [coder encodeObject:_name forKey:@"name"];
+    [coder encodeObject:_eventActionPairs forKey:@"eventActionPairs"];
     [coder encodeObject:self.hardwareComponents forKey:@"clotheObjects"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
@@ -177,6 +215,26 @@
     
     if(self.lilypad != nil)
         [coder encodeObject:_lilypad forKey:@"lilypad"];
+}
+
+#pragma mark - Notifications
+
+-(void) notifyObjectAdded:(TFEditableObject*) object{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectAdded object:object];
+}
+
+-(void) notifyObjectRemoved:(TFEditableObject*) object{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectRemoved object:object];
+}
+
+#pragma mark - Saving
+
+-(void) save{
+    
+    NSString * filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
+    [NSKeyedArchiver archiveRootObject:self toFile:filePath];
 }
 
 #pragma mark - Pins
@@ -385,6 +443,91 @@
 }
 
 #pragma mark - Actions
+
+
+#pragma mark - Actions
+
+-(NSMutableArray*) actionsForTarget:(TFEditableObject*) target{
+    NSMutableArray * array = [NSMutableArray array];
+    for (TFEventActionPair * pair in _eventActionPairs) {
+        if(pair.action.target == target){
+            [array addObject:pair];
+        }
+    }
+    return array;
+}
+
+-(NSMutableArray*) actionsForSource:(TFEditableObject*) source{
+    NSMutableArray * array = [NSMutableArray array];
+    for (TFEventActionPair * pair in _eventActionPairs) {
+        if(pair.action.source == source){
+            [array addObject:pair];
+        }
+    }
+    return array;
+}
+
+-(void) deregisterActionsForObject:(TFEditableObject*) object{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (TFEventActionPair * pair in _eventActionPairs) {
+        if(pair.action.target == object || pair.action.source == object){
+            [toRemove addObject:pair];
+        }
+    }
+    
+    for (TFEventActionPair * pair in toRemove) {
+        [self deregisterAction:pair.action];
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:object];
+}
+
+-(void) removeConnectionsBetween:(TFEditableObject*) obj1 and:(TFEditableObject*) obj2{
+    
+    TFConnectionLine * connectionToRemove = nil;
+    for (TFConnectionLine * connection in obj1.connections) {
+        TFEditableObject * obj = connection.obj2;
+        if(obj2 == obj){
+            connectionToRemove = connection;
+        }
+    }
+    if(connectionToRemove != nil){
+        [obj1.connections removeObject:connectionToRemove];
+    }
+}
+
+-(void) deregisterAction:(TFAction*) action{
+    TFEventActionPair * toRemove;
+    NSInteger idx = 0;
+    for (TFEventActionPair * pair in _eventActionPairs) {
+        if(pair.action == action){
+            toRemove = pair;
+            break;
+        }
+        idx++;
+    }
+    [_eventActionPairs removeObject:toRemove];
+    [toRemove.action.source removeConnectionTo:toRemove.action.target];
+    
+    TFEditableObject * editable = toRemove.action.source;
+    [[NSNotificationCenter defaultCenter] removeObserver:action name:toRemove.event.name object:editable.simulableObject];
+}
+
+-(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event{
+    
+    TFEventActionPair * pair = [[TFEventActionPair alloc] init];
+    pair.action = action;
+    pair.event = event;
+    [_eventActionPairs addObject:pair];
+    
+    TFEditableObject * source = action.source;
+    TFEditableObject * target = action.target;
+    
+    [source handleRegisteredAsSourceForAction:action];
+    [target handleRegisteredAsTargetForAction:action];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:action selector:@selector(startAction) name:event.name object:((TFEditableObject*)action.source).simulableObject];
+}
 
 -(void) addAction:(TFEditableObject*) action{
     [_actions addObject:action];
@@ -698,39 +841,49 @@ enum zPositions{
     return problems;
 }
 
+#pragma mark - Project Lifecycle
+
 -(void) prepareToDie{
     
-    [super prepareToDie];
+    for (TFEditableObject * object in self.allObjects) {
+        [object prepareToDie];
+    }
+    
+    for (TFEventActionPair * pair in _eventActionPairs) {
+        [pair.action prepareToDie];
+    }
     
     [self.iPhone prepareToDie];
     
     for (THWire * wire in self.wires) {
         [wire prepareToDie];
     }
-
+    
     [self.lilypad prepareToDie];
     
     _iPhone = nil;
 }
 
 -(void) willStartSimulation{
-    
-    [super willStartSimulation];
+    for (TFEditableObject * object in self.allObjects) {
+        [object willStartSimulation];
+    }
     
     [self.iPhone willStartSimulation];
 }
 
 -(void) didStartSimulation{
-    
-    [super didStartSimulation];
+    for (TFEditableObject * editable in self.allObjects) {
+        [editable didStartSimulation];
+    }
     
     [self.iPhone didStartSimulation];
 }
 
 -(void) prepareForEdition{
-    
-    [super prepareForEdition];
-    
+    for (TFEditableObject * object in self.allObjects) {
+        [object willStartEdition];
+    }
     [self.iPhone willStartEdition];
 }
 

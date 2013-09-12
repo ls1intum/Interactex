@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
 @class THBoardPinEditable;
 extern float const kLilypadPropertyInnerPadding;

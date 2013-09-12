@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THVibrationBoardProperties : TFEditableObjectProperties
+@interface THVibrationBoardProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UILabel *frequencyLabel;
 @property (weak, nonatomic) IBOutlet UISlider *frequencySlider;

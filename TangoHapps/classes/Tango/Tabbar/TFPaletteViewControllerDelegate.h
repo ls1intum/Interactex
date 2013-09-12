@@ -24,10 +24,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class TFDragView;
+@class THDraggedPaletteItem;
 
 @protocol TFPaletteViewControllerDelegate <NSObject>
--(void) paletteItem:(TFDragView*) item beganDragAt:(CGPoint) position;
--(void) paletteItem:(TFDragView*) item movedTo:(CGPoint) position;
--(void) paletteItem:(TFDragView*) item endedAt:(CGPoint) position;
+-(void) paletteItem:(THDraggedPaletteItem*) item beganDragAt:(CGPoint) position;
+-(void) paletteItem:(THDraggedPaletteItem*) item movedTo:(CGPoint) position;
+-(void) paletteItem:(THDraggedPaletteItem*) item endedAt:(CGPoint) position;
 @end

@@ -207,8 +207,10 @@
 }
 
 -(void) prepareToDie{
-    _attachedPins = nil;
+    
     [super prepareToDie];
+    
+    _attachedPins = nil;
 }
 
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THMapperProperties : TFEditableObjectProperties
+@interface THMapperProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UITextField *minText;
 @property (weak, nonatomic) IBOutlet UITextField *maxText;

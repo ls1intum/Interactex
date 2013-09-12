@@ -24,17 +24,17 @@
 
 #import "TFEditableObject.h"
 #import "TFConnectionLine.h"
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 #import "TFSimulableObject.h"
 #import "TFMethod.h"
 #import "TFEvent.h"
 #import "TFProperty.h"
 #import "TFEditor.h"
 
-#import "TFViewableProperties.h"
-#import "TFInvokableProperties.h"
-#import "TFTriggerableProperties.h"
-#import "TFPaletteItem.h"
+#import "THViewableProperties.h"
+#import "THInvokableProperties.h"
+#import "THTriggerableProperties.h"
+#import "THPaletteItem.h"
 
 @implementation TFEditableObject
 
@@ -116,15 +116,15 @@
     
     NSMutableArray * array = [NSMutableArray array];
     if(self.viewableProperties.count > 0){
-        _viewableEditableProperties = [TFViewableProperties properties];
+        _viewableEditableProperties = [THViewableProperties properties];
         [array addObject:_viewableEditableProperties];
     }
     if(self.methods.count > 0){
-        _invokableEditableProperties = [TFInvokableProperties properties];
+        _invokableEditableProperties = [THInvokableProperties properties];
         [array addObject:_invokableEditableProperties];
     }
     if(self.events.count > 0){
-        _triggerableProperties = [TFTriggerableProperties properties];
+        _triggerableProperties = [THTriggerableProperties properties];
         [array addObject:_triggerableProperties];
     }
     
@@ -304,8 +304,8 @@
     return simulable.visible;
 }*/
 
--(TFPaletteItem*) paletteItem{
-    TFPaletteItem * paletteItem = [[TFPaletteItem alloc] initWithName:@"customPaletteItem"];
+-(THPaletteItem*) paletteItem{
+    THPaletteItem * paletteItem = [[THPaletteItem alloc] initWithName:@"customPaletteItem"];
     return paletteItem;
 }
 

@@ -7,6 +7,6 @@
 //
 
 
-@interface THPotentiometerPaletteItem : TFPaletteItem
+@interface THPotentiometerPaletteItem : THPaletteItem
 
 @end

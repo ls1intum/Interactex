@@ -23,7 +23,7 @@
 #import "THTimerEditable.h"
 #import "THActionEditable.h"
 #import "THWire.h"
-#import "TFTabbarViewController.h"
+#import "THTabbarViewController.h"
 #import "THProjectViewController.h"
 
 @implementation THCustomEditor
@@ -44,7 +44,7 @@
     
     [TFHelper drawLines:self.currentObject.connections];
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     
     if(self.state == kEditorStateConnect){
         [TFHelper drawLinesForObjects:project.allObjects];
@@ -94,7 +94,7 @@
 
 -(TFEditableObject*) objectAtPosition:(CGPoint) position{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     
     TFEditableObject * object;
     
@@ -214,7 +214,7 @@
 
 -(void) handleConnectionEndedAt:(CGPoint) location{
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object2 = [project objectAtLocation:location];
     TFEditableObject * object1 = self.currentConnection.obj1;
 
@@ -241,7 +241,7 @@
 }
 
 -(void) handleConnectionStartedAt:(CGPoint) location{
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     if(self.isLilypadMode){
         THHardwareComponentEditableObject * obj = (THHardwareComponentEditableObject*) object;
@@ -303,7 +303,7 @@
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     
     if(object && [object isKindOfClass:[THClothe class]]){
@@ -591,7 +591,7 @@
     
     [paletteDataSource reloadPalettes];*/
     
-    TFTabbarViewController * tabController = director.projectController.tabController;
+    THTabbarViewController * tabController = director.projectController.tabController;
     [tabController.paletteController reloadPalettes];
 }
 
@@ -608,7 +608,7 @@
     
     [paletteDataSource reloadPalettes];*/
     
-    TFTabbarViewController * tabController = director.projectController.tabController;
+    THTabbarViewController * tabController = director.projectController.tabController;
     [tabController.paletteController reloadPalettes];
 }
 
@@ -640,33 +640,26 @@
     
     THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project.iPhone removeFromLayer:self];
-    
+    /*
     for (THWire * object in project.wires) {
         [object removeFromLayer:self];
-    }
+    }*/
     
     for (TFEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
     }
 }
 
--(void) addiPhone{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+
+-(void) addObjects{
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }
-}
-
--(void) addWires{
-    
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    /*
     for (THWire * wire in project.wires) {
         [wire addToLayer:self];
-    }
-}
-
--(void) addObjects{
-    TFProject * project = [THDirector sharedDirector].currentProject;
+    }*/
     
     for (TFEditableObject * object in project.allObjects) {
         [object addToLayer:self];
@@ -675,8 +668,6 @@
 
 -(void) willAppear{
     [super willAppear];
-    [self addiPhone];
-    [self addWires];
     [self addObjects];
 }
 

@@ -19,7 +19,7 @@
 
 @property (nonatomic, readonly) NSInteger numberOfDigitalPins;
 @property (nonatomic, readonly) NSInteger numberOfAnalogPins;
-@property (nonatomic) NSMutableArray * pins;
+@property (nonatomic, strong) NSMutableArray * pins;
 
 /*
 -(void) attachElementPin:(THElementPinEditable*) elementPin atPin:(NSInteger) pinNumber ofType:(THPinType) type;

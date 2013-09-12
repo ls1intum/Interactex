@@ -6,6 +6,6 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-@interface THSliderPaletteItem : TFPaletteItem
+@interface THSliderPaletteItem : THPaletteItem
 
 @end

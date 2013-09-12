@@ -10,7 +10,7 @@
 #import "THHardwareComponentEditableObject.h"
 #import "THClothePaletteItem.h"
 #import "THClotheProperties.h"
-#import "TFCustomPaletteItem.h"
+#import "THCustomPaletteItem.h"
 
 @implementation THClothe
 
@@ -143,8 +143,8 @@
     _name = name;
 }
 
--(TFPaletteItem*) paletteItem{
-    THClothePaletteItem * paletteItem = [TFCustomPaletteItem customPaletteItemWithName:self.name object:self];
+-(THPaletteItem*) paletteItem{
+    THClothePaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithName:self.name object:self];
     return paletteItem;
 }
 

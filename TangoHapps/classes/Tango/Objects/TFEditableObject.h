@@ -26,13 +26,13 @@
 #import "TFEditable.h"
 
 @class TFSimulableObject;
-@class TFTriggerableProperties;
-@class TFViewableProperties;
-@class TFInvokableProperties;
+@class THTriggerableProperties;
+@class THViewableProperties;
+@class THInvokableProperties;
 @class TFEditor;
 @class TFEvent;
 @class TFMethod;
-@class TFPaletteItem;
+@class THPaletteItem;
 @class TFLayer;
 @class TFAction;
 
@@ -67,13 +67,13 @@
 
 @property (nonatomic) BOOL isAccelerometerEnabled;
 
-@property (nonatomic, readonly) TFPaletteItem * paletteItem;
+@property (nonatomic, readonly) THPaletteItem * paletteItem;
 
 @property (nonatomic) BOOL zoomable;
 
-@property (nonatomic) TFTriggerableProperties * triggerableProperties;
-@property (nonatomic) TFViewableProperties * viewableEditableProperties;
-@property (nonatomic) TFInvokableProperties * invokableEditableProperties;
+@property (nonatomic) THTriggerableProperties * triggerableProperties;
+@property (nonatomic) THViewableProperties * viewableEditableProperties;
+@property (nonatomic) THInvokableProperties * invokableEditableProperties;
 
 //transformation
 -(void) displaceBy: (CGPoint) displacement;

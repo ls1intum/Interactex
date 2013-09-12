@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THClotheObjectProperties : TFEditableObjectProperties < UITableViewDataSource, UITableViewDelegate>
+@interface THClotheObjectProperties : THEditableObjectProperties < UITableViewDataSource, UITableViewDelegate>
 {
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

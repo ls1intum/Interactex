@@ -198,18 +198,73 @@ CGImageRef UIGetScreenImage(void);
     return image;
 }
 
+/*
++(UIImage*) screenshot{
+    
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(window.bounds.size);
+    
+    UIGraphicsBeginImageContext(window.bounds.size);
+    [window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    //NSData * data = UIImagePNGRepresentation(image);
+    //[data writeToFile:@"foo.png" atomically:YES];
+    return image;
+}*/
+
+/*
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+
++(UIImage *) screenshot
+{
+    CGImageRef UIGetScreenImage(void);
+    CGImageRef imagecg = UIGetScreenImage();
+    //UIImage * image = [UIImage imageWithCGImage:imagecg];
+    
+    //UIGraphicsBeginImageContext(image.size);
+    //CGContextRef context = UIGraphicsGetCurrentContext();
+    //CGContextRotateCTM (context, radians(90));
+    //[image drawAtPoint:CGPointMake(0, 0)];
+    
+    UIImage * image = [[UIImage alloc] initWithCGImage: imagecg scale: 1.0 orientation: UIImageOrientationUp];
+    image = [UIImage imageWithCGImage:image.CGImage scale:0.5f orientation:UIImageOrientationLeft];
+    cgaffinetransformro
+    //image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGImageRelease(imagecg);
+    
+    return image;
+}*/
+
+
 +(UIImage*) screenshot{
     UIImage *image = [self takeScreenshot];
+    CGFloat navigationBarHeight = 44;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenWidth = screenRect.size.width - navigationBarHeight;
     CGFloat screenHeight = screenRect.size.height;
+
     
     UIGraphicsBeginImageContext(CGSizeMake(screenHeight, screenWidth));
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextRotateCTM (context, M_PI/2);
-    [image drawInRect:CGRectMake(0, -screenHeight, screenWidth, screenHeight)];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if(orientation == UIInterfaceOrientationLandscapeLeft){
+        
+        CGContextRotateCTM (context, M_PI/2);
+        [image drawInRect:CGRectMake(-navigationBarHeight, -screenHeight, screenWidth + navigationBarHeight, screenHeight)];
+        
+    } else if(orientation == UIInterfaceOrientationLandscapeRight) {
+        CGContextRotateCTM (context, -M_PI/2);
+        [image drawInRect:CGRectMake(-screenWidth, 0, screenWidth + navigationBarHeight,screenHeight)];
+    }
     
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

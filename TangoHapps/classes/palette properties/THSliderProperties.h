@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THSliderProperties : TFEditableObjectProperties
+@interface THSliderProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UISlider *valueSlider;
 @property (weak, nonatomic) IBOutlet UISlider *minSlider;

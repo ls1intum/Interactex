@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THPotentiometerProperties : TFEditableObjectProperties
+@interface THPotentiometerProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *behaviorControl;
 @property (weak, nonatomic) IBOutlet UILabel *minLabel;

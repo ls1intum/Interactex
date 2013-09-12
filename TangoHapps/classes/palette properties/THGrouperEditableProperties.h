@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 TUM. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THGrouperEditableProperties : TFEditableObjectProperties
+@interface THGrouperEditableProperties : THEditableObjectProperties
 {
     BOOL button1Down;
     BOOL button2Down;

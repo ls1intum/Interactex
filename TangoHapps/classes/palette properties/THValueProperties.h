@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THValueProperties : TFEditableObjectProperties
+@interface THValueProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UITextField *valueTextField;
 - (IBAction)editingFinished:(id)sender;

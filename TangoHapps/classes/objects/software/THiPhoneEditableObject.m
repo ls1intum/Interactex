@@ -25,7 +25,8 @@
         [self.sprite removeFromParentAndCleanup:YES];
     }
     NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
-    self.sprite = [CCSprite spriteWithFile:fileName];
+    CCSprite * sprite = [CCSprite spriteWithFile:fileName];
+    self.sprite = sprite;
     [self addChild:self.sprite z:kiPhoneZ];
 }
 
@@ -45,6 +46,7 @@
     view.opacity = kUiViewOpacityEditor;
     view.canBeResized = NO;
     iPhone.currentView = view;
+    iPhone.currentView.opacity = 1.0f;
     return iPhone;
 }
 

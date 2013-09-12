@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THSoundPaletteItem : TFPaletteItem
+@interface THSoundPaletteItem : THPaletteItem
 
 @end

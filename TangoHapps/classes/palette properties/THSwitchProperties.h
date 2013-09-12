@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THSwitchProperties : TFEditableObjectProperties
+@interface THSwitchProperties : THEditableObjectProperties
 
 @end

@@ -169,7 +169,7 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{5,105},{-25,102},{-53.0, 
     for (THBoardPinEditable * pin in self.pins) {
         [pin prepareToDie];
     }
-    _pins = nil;
+    self.pins = nil;
     [super prepareToDie];
 }
 

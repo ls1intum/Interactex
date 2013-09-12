@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
-#import "TFEditableObjectProperties.h"
+#import "THEditableObjectProperties.h"
 
-@interface THiSwitchEditableProperties : TFEditableObjectProperties
+@interface THiSwitchEditableProperties : THEditableObjectProperties
 @property (weak, nonatomic) IBOutlet UISwitch *onSwitch;
 - (IBAction)onSwitchChanged:(id)sender;
 

@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
-#import "TFProject.h"
-
 @class THHardwareComponentEditableObject;
 @class THiPhoneEditableObject;
 @class THViewEditableObject;
@@ -20,14 +18,44 @@
 @class THElementPinEditable;
 @class THBoardPinEditable;
 
-@interface THCustomProject : TFProject
+@class TFEditableObject;
+@class TFAction;
+@class TFEvent;
+
+@interface THCustomProject : NSObject
 {
     
 }
 
+//static methods
++(THCustomProject*)emptyProject;
++(THCustomProject*) projectSavedWithName:(NSString*) name;
+
 //init
++(BOOL) doesProjectExistWithName:(NSString*) name;
++(NSString*) newProjectName;
 +(id) newProject;
 +(id) projectNamed:(NSString*) name;
+
+//init
+-(id) initWithName:(NSString*) name;
+-(void) save;
+
+//objects
+-(TFEditableObject*) objectAtLocation:(CGPoint) location;
+
+//lifecycle
+-(void) willStartSimulation;
+-(void) didStartSimulation;
+-(void) prepareForEdition;
+-(void) prepareToDie;
+
+//actions
+-(NSMutableArray*) actionsForTarget:(TFEditableObject*) target;
+-(NSMutableArray*) actionsForSource:(TFEditableObject*) source;
+-(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event;
+-(void) deregisterAction:(TFAction*) action;
+-(void) deregisterActionsForObject:(TFEditableObject*) object;
 
 //pin
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe;
@@ -96,6 +124,10 @@
 @property (nonatomic,readonly) NSMutableArray * triggers;
 @property (nonatomic,readonly) NSMutableArray * actions;
 @property (nonatomic, readonly) NSMutableArray * wires;
+@property (nonatomic, readonly) NSArray * allObjects;
+@property (nonatomic, readonly) NSMutableArray * eventActionPairs;
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, readonly) BOOL isEmpty;
 
 @property (nonatomic,readonly) THAssetCollection * assetCollection;
 

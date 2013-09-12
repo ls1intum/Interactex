@@ -10,7 +10,7 @@
 #import "THCustomEditor.h"
 #import "THCustomSimulator.h"
 #import "THProjectViewController.h"
-#import "TFTabbarViewController.h"
+#import "THTabbarViewController.h"
 
 @implementation THEditorToolsDataSource
 

@@ -73,7 +73,7 @@
     [self updateLabel];
 }
 
-- (void)imagePicker:(TFImagePickerController*) picker didSelectImage:(UIImage*)image imageName:(NSString *)imageName{
+- (void)imagePicker:(THImagePickerController*) picker didSelectImage:(UIImage*)image imageName:(NSString *)imageName{
     if(image){
         
         THClothe * clothe = (THClothe*) self.editableObject;
@@ -87,7 +87,7 @@
 - (IBAction)changeTapped:(id)sender {
     if (self.imagePicker == nil) {
         //NSBundle * tangoBundle = [TFHelper frameworkBundle];
-        self.imagePicker = [[TFImagePickerController alloc] init];
+        self.imagePicker = [[THImagePickerController alloc] init];
         self.imagePicker.delegate = self;
         self.imagePickerPopover = [[UIPopoverController alloc]
                                    initWithContentViewController:self.imagePicker];

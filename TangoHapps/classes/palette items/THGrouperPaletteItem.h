@@ -7,6 +7,6 @@
 //
 
 
-@interface THGrouperPaletteItem : TFPaletteItem
+@interface THGrouperPaletteItem : THPaletteItem
 
 @end
