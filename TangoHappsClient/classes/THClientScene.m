@@ -40,6 +40,17 @@
     return name;
 }
 
++(BOOL) sceneExists:(NSString*) sceneName{
+    return [TFFileUtils dataFile:sceneName existsInDirectory:kProjectsDirectory];
+}
+
++(void) deleteSceneNamed:(NSString*) sceneName{
+    
+    NSString *screenshotFile = [sceneName stringByAppendingString:@".png"];
+    [TFFileUtils deleteDataFile:sceneName fromDirectory:kProjectsDirectory];
+    [TFFileUtils deleteDataFile:screenshotFile fromDirectory:kProjectImagesDirectory];
+}
+
 #pragma mark - Initialization
 
 -(id)initWithName:(NSString*) aName {
@@ -134,17 +145,6 @@
 }
 
 #pragma mark - File Management
-
-+(BOOL) sceneExists:(NSString*) sceneName{
-    return [TFFileUtils dataFile:sceneName existsInDirectory:kProjectsDirectory];
-}
-
-+(void) deleteSceneNamed:(NSString*) sceneName{
-    
-    NSString *screenshotFile = [sceneName stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:sceneName fromDirectory:kProjectsDirectory];
-    [TFFileUtils deleteDataFile:screenshotFile fromDirectory:kProjectImagesDirectory];
-}
 
 -(void) deleteArchive {
     [THClientScene deleteSceneNamed:self.name];

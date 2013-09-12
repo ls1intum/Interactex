@@ -150,6 +150,7 @@
     
     self.editButton.title = @"Done";
     self.editingScenes = YES;
+    self.editingOneScene = NO;
 }
 
 -(void) stopEditingScenes{
@@ -162,6 +163,7 @@
     
     self.editButton.title = @"Edit";
     self.editingScenes = NO;
+    self.editingOneScene = NO;
 }
 
 #pragma mark - Gestures
@@ -176,13 +178,13 @@
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
-    if(self.editingScenes && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
+    if((self.editingScenes || self.editingOneScene) && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
         
         return NO;
     }
     
     if((gestureRecognizer == tapRecognizer && otherGestureRecognizer == longpressRecognizer) || (gestureRecognizer == longpressRecognizer && otherGestureRecognizer == tapRecognizer)){
-        return self.editingScenes;
+        return (self.editingScenes || self.editingOneScene);
     }
 
     return YES;
@@ -239,7 +241,7 @@
 
 -(void) moved:(UIPanGestureRecognizer*) recognizer{
     
-    if(self.editingScenes){
+    if(self.editingScenes || self.editingOneScene){
         
         CGPoint position = [recognizer locationInView:self.collectionView];
         
@@ -260,7 +262,7 @@
 
 -(void) startEditingScene{
     
-    self.editingScenes = YES;
+    self.editingOneScene = YES;
     currentProjectCell.editing = YES;
 }
 
@@ -314,9 +316,16 @@
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
         
+        THProjectProxy * projectProxy = [self.projects objectAtIndex:indexPath.row];
         [self.projects removeObjectAtIndex:indexPath.row];
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
         [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+        
+        
+        [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
+        
+        NSString * imageName = [projectProxy.name stringByAppendingString:@".png"];
+        [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];
     }
 }
 

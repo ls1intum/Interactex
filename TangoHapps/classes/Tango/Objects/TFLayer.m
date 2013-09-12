@@ -24,6 +24,7 @@
 
 #import "TFLayer.h"
 #import "TFEditableObject.h"
+#import "THProjectViewController.h"
 
 @implementation TFLayer
 
@@ -69,13 +70,13 @@
 	[glView addGestureRecognizer:rotationRecognizer];
     
     // Pan
-    UIPanGestureRecognizer *panRecognizer =
+    self.panRecognizer =
     [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(move:)];
-    [panRecognizer setDelegate:self];
-	[panRecognizer setMinimumNumberOfTouches:1];
-	[panRecognizer setMaximumNumberOfTouches:3];
-    panRecognizer.cancelsTouchesInView = NO;
-	[glView addGestureRecognizer:panRecognizer];
+    [self.panRecognizer setDelegate:self];
+	[self.panRecognizer setMinimumNumberOfTouches:1];
+	[self.panRecognizer setMaximumNumberOfTouches:3];
+    self.panRecognizer.cancelsTouchesInView = NO;
+	[glView addGestureRecognizer:self.panRecognizer];
     
     // Tap
     UITapGestureRecognizer *tapRecognizer =
@@ -106,9 +107,14 @@
     glView.gestureRecognizers = nil;
 }
 
+//-(BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    //return ![THDirector sharedDirector].projectController.movingTabBar;
+//}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+    
     return YES;
 }
 

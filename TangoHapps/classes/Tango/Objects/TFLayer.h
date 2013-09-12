@@ -29,6 +29,8 @@
 
 @property(nonatomic, retain) UIAcceleration* lastAcceleration;
 
+@property(nonatomic, retain) UIPanGestureRecognizer * panRecognizer;
+
 //scene
 +(CCScene*) scene;
 

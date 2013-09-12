@@ -37,6 +37,7 @@
     self = [super init];
     if(self){
         _connectionLines = [NSMutableArray array];
+        self.shouldRecognizePanGestures = YES;
     }
     return self;
 }
@@ -275,7 +276,7 @@
 }
 
 -(void) handleSingleTouchMove:(UIPanGestureRecognizer*) sender{
-    
+
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
@@ -337,6 +338,8 @@
 }
 
 -(void) move:(UIPanGestureRecognizer*)sender{
+    if(!self.shouldRecognizePanGestures) return;
+    
     if(sender.numberOfTouches == 1){
         if(gestureState == kEditorGestureNone){
             [self handleSingleTouchMove:sender];
@@ -399,11 +402,6 @@
     } else {
         [self selectObjectAtPosition:location];
     }
-}
-
-///todo remove with icon
--(void)pressedLong:(UILongPressGestureRecognizer*)sender {
-
 }
 
 #pragma mark - Layer lifecycle

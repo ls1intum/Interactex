@@ -262,14 +262,15 @@ float const kToolsTabMargin = 5;
 
 -(void) addPalettePullGestureRecognizer{
     
-    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moved:)];
-    panRecognizer.delegate = self;
-    [self.view addGestureRecognizer:panRecognizer];
+    self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moved:)];
+    self.panRecognizer.delegate = self;
+    self.panRecognizer.cancelsTouchesInView = YES;
+    [self.view addGestureRecognizer:self.panRecognizer];
 }
 
 -(void) removePalettePullRecognizer{
-    [self.view removeGestureRecognizer:panRecognizer];
-    panRecognizer = nil;
+    [self.view removeGestureRecognizer:self.panRecognizer];
+    self.panRecognizer = nil;
 }
 
 -(void) updatePalettePullVisibility{
@@ -293,13 +294,17 @@ float const kToolsTabMargin = 5;
         
         CGPoint location = [sender locationInView:self.view];
         if(CGRectContainsPoint(self.palettePullImageView.frame,location)){
-            movingTabBar = YES;
+            self.movingTabBar = YES;
+            
+            TFEditor * editor = (TFEditor*) self.currentLayer;
+            editor.shouldRecognizePanGestures = NO;
+            
         } else {
-            movingTabBar = NO;
+            self.movingTabBar = NO;
         }
         
     } else if(sender.state == UIGestureRecognizerStateChanged){
-        if(movingTabBar){
+        if(self.movingTabBar){
             
             CGPoint translation = [sender translationInView:self.view];
             
@@ -322,7 +327,10 @@ float const kToolsTabMargin = 5;
             [sender setTranslation:CGPointMake(0, 0) inView:self.view];
         }
     } else {
-        movingTabBar = NO;
+        self.movingTabBar = NO;
+        
+        TFEditor * editor = (TFEditor*) self.currentLayer;
+        editor.shouldRecognizePanGestures = YES;
     }
 }
 
@@ -493,6 +501,11 @@ float const kToolsTabMargin = 5;
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+}
+
+-(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    
+    return YES;
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{

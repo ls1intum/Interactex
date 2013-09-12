@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *orderControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) BOOL editingScenes;
+@property (nonatomic) BOOL editingOneScene;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) NSMutableArray * projects;
 

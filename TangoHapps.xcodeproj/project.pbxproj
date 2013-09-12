@@ -1696,8 +1696,8 @@
 		9A84266B17564A80009495AB /* TFEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEditableObject.m; sourceTree = "<group>"; };
 		9A84266C17564A80009495AB /* TFExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFExtension.h; sourceTree = "<group>"; };
 		9A84266D17564A80009495AB /* TFExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFExtension.m; sourceTree = "<group>"; };
-		9A84266E17564A80009495AB /* TFLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFLayer.h; sourceTree = "<group>"; };
-		9A84266F17564A80009495AB /* TFLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFLayer.m; sourceTree = "<group>"; };
+		9A84266E17564A80009495AB /* TFLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFLayer.h; path = ../Objects/TFLayer.h; sourceTree = "<group>"; };
+		9A84266F17564A80009495AB /* TFLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFLayer.m; path = ../Objects/TFLayer.m; sourceTree = "<group>"; };
 		9A84267017564A80009495AB /* TFProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFProject.h; sourceTree = "<group>"; };
 		9A84267117564A80009495AB /* TFProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFProject.m; sourceTree = "<group>"; };
 		9A84267217564A80009495AB /* TFSimulableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSimulableObject.h; sourceTree = "<group>"; };
@@ -2556,6 +2556,8 @@
 			children = (
 				9A84265217564A80009495AB /* TFConnectionLine.h */,
 				9A84265317564A80009495AB /* TFConnectionLine.m */,
+				9A84266E17564A80009495AB /* TFLayer.h */,
+				9A84266F17564A80009495AB /* TFLayer.m */,
 				9A84265417564A80009495AB /* TFEditor.h */,
 				9A84265517564A80009495AB /* TFEditor.m */,
 				9A84265617564A80009495AB /* TFMethodSelectionPopup.h */,
@@ -2594,8 +2596,6 @@
 				9A84266B17564A80009495AB /* TFEditableObject.m */,
 				9A84266C17564A80009495AB /* TFExtension.h */,
 				9A84266D17564A80009495AB /* TFExtension.m */,
-				9A84266E17564A80009495AB /* TFLayer.h */,
-				9A84266F17564A80009495AB /* TFLayer.m */,
 				9A84267017564A80009495AB /* TFProject.h */,
 				9A84267117564A80009495AB /* TFProject.m */,
 				9A84267217564A80009495AB /* TFSimulableObject.h */,

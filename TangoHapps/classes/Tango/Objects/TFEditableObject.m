@@ -376,7 +376,7 @@
     [self.viewableEditableProperties reloadState];
     [self.invokableEditableProperties reloadState];
 }
-/*
+
 -(CGRect) boundingBox{
         
     if(_sprite){
@@ -395,16 +395,17 @@
     
     CGSize spriteSize;
     if(_sprite){
-        NSLog(@"%f - %f ",_sprite.contentSize.width,_sprite.contentSizeInPixels.width);
+        //NSLog(@"%f - %f ",_sprite.contentSize.width,_sprite.contentSizeInPixels.width);
         
-        spriteSize = CGSizeMake(_sprite.contentSizeInPixels.width * _sprite.scaleX,_sprite.contentSizeInPixels.height * _sprite.scaleY);
+        spriteSize = CGSizeMake(_sprite.contentSize.width * _sprite.scaleX,_sprite.contentSize.height * _sprite.scaleY);
     } else {
         spriteSize = CGSizeMake(_size.width,_size.height);
     }
     
     CGPoint halfSize = ccp(spriteSize.width/2,spriteSize.height/2);
     pos = ccpSub(pos, halfSize);
-    CGRect spriteRect = CGRectMake(pos.x, pos.y, spriteSize.width, spriteSize.height);*/
+    CGRect spriteRect = CGRectMake(pos.x, pos.y, spriteSize.width, spriteSize.height);
+    return spriteRect;
     
     /*
     float maxX = box.origin.x + box.size.width;
@@ -425,9 +426,9 @@
             maxY = rect.origin.y + rect.size.height;
         }
     }
-    return CGRectMake(box.origin.x, box.origin.y, maxX - box.origin.x, maxY - box.origin.y);
+    return CGRectMake(box.origin.x, box.origin.y, maxX - box.origin.x, maxY - box.origin.y);*/
 }
-*/
+
 -(CGPoint) absolutePosition{
     return [self convertToWorldSpace:ccp(0,0)];
 }
