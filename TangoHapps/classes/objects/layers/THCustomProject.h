@@ -28,18 +28,23 @@
 }
 
 //static methods
-+(THCustomProject*)emptyProject;
-+(THCustomProject*) projectSavedWithName:(NSString*) name;
-
-//init
 +(BOOL) doesProjectExistWithName:(NSString*) name;
 +(NSString*) newProjectName;
++(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
+
+//static constructors
+
++(THCustomProject*) emptyProject;
++(THCustomProject*) projectSavedWithName:(NSString*) name;
 +(id) newProject;
 +(id) projectNamed:(NSString*) name;
 
 //init
 -(id) initWithName:(NSString*) name;
+
+//saving and renaming
 -(void) save;
+-(BOOL) renameTo:(NSString*) newName;
 
 //objects
 -(TFEditableObject*) objectAtLocation:(CGPoint) location;

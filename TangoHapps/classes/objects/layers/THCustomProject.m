@@ -42,16 +42,6 @@
 
 #pragma mark - Static Methods
 
-+(THCustomProject*)emptyProject {
-    return [[THCustomProject alloc] init];
-}
-
-+(THCustomProject*) projectSavedWithName:(NSString*) name{
-    
-    NSString *filePath = [TFFileUtils dataFile:name inDirectory:kProjectsDirectory];
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-}
-
 +(BOOL) doesProjectExistWithName:(NSString*) name{
     return [TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory];
 }
@@ -64,6 +54,25 @@
         i++;
     }
     return name;
+}
+
++(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName{
+    if([TFFileUtils dataFile:newName existsInDirectory:kProjectsDirectory])
+        return NO;
+    
+    return [TFFileUtils renameDataFile:name to:newName inDirectory:kProjectsDirectory];
+}
+
+#pragma mark - Static Constructors
+
++(THCustomProject*) emptyProject {
+    return [[THCustomProject alloc] init];
+}
+
++(THCustomProject*) projectSavedWithName:(NSString*) name{
+    
+    NSString *filePath = [TFFileUtils dataFile:name inDirectory:kProjectsDirectory];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
 }
 
 +(id) newProject{
@@ -229,12 +238,22 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectRemoved object:object];
 }
 
-#pragma mark - Saving
+#pragma mark - Saving and renaming
 
 -(void) save{
     
     NSString * filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
     [NSKeyedArchiver archiveRootObject:self toFile:filePath];
+}
+
+-(BOOL) renameTo:(NSString*) newName{
+    
+    BOOL success = [THCustomProject renameProjectNamed:self.name toName:newName];
+    if(success){
+    self.name = newName;
+    }
+    
+    return success;
 }
 
 #pragma mark - Pins

@@ -357,6 +357,8 @@
 		9A41471717E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471117E1D3A10061EDF8 /* THEditorToolsViewController.m */; };
 		9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
+		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
+		9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
 		9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
 		9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
 		9A56CD0217D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
@@ -546,10 +548,6 @@
 		9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050A167B8DC30020241C /* OpenAL.framework */; };
 		9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */; };
 		9A94F1F0169ED6A200AF52AB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */; };
-		9A94F3DF16A00D5600AF52AB /* THGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F3DC16A00D5600AF52AB /* THGridItem.m */; };
-		9A94F3E016A00D5600AF52AB /* THGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F3DC16A00D5600AF52AB /* THGridItem.m */; };
-		9A94F3E116A00D5600AF52AB /* THGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F3DE16A00D5600AF52AB /* THGridView.m */; };
-		9A94F3E216A00D5600AF52AB /* THGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A94F3DE16A00D5600AF52AB /* THGridView.m */; };
 		9A94F3E816A00EA400AF52AB /* ipadFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F3E416A00EA400AF52AB /* ipadFrame.png */; };
 		9A94F3E916A00EA400AF52AB /* ipadFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F3E416A00EA400AF52AB /* ipadFrame.png */; };
 		9A94F3EA16A00EA400AF52AB /* ipadFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F3E516A00EA400AF52AB /* ipadFrame@2x.png */; };
@@ -1621,6 +1619,8 @@
 		9A41471117E1D3A10061EDF8 /* THEditorToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditorToolsViewController.m; sourceTree = "<group>"; };
 		9A41471417E1D3A10061EDF8 /* THProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectViewController.h; sourceTree = "<group>"; };
 		9A41471517E1D3A10061EDF8 /* THProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectViewController.m; sourceTree = "<group>"; };
+		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
+		9A41472117E255700061EDF8 /* THTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTableProjectCell.m; sourceTree = "<group>"; };
 		9A56CCFE17D885F9001021B2 /* THBoolValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValue.h; sourceTree = "<group>"; };
 		9A56CCFF17D885F9001021B2 /* THBoolValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValue.m; sourceTree = "<group>"; };
 		9A56CD4517D886A5001021B2 /* THBoolValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValueEditable.h; sourceTree = "<group>"; };
@@ -1768,10 +1768,6 @@
 		9A9384AD16D69CCA00A41BD2 /* THActionEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THActionEditable.m; sourceTree = "<group>"; };
 		9A9384F516D6BE8D00A41BD2 /* sewed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sewed.mp3; sourceTree = "<group>"; };
 		9A94F39316A0057900AF52AB /* THProjectSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectSelectionViewController.h; sourceTree = "<group>"; };
-		9A94F3DB16A00D5600AF52AB /* THGridItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGridItem.h; sourceTree = "<group>"; };
-		9A94F3DC16A00D5600AF52AB /* THGridItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGridItem.m; sourceTree = "<group>"; };
-		9A94F3DD16A00D5600AF52AB /* THGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGridView.h; sourceTree = "<group>"; };
-		9A94F3DE16A00D5600AF52AB /* THGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGridView.m; sourceTree = "<group>"; };
 		9A94F3E416A00EA400AF52AB /* ipadFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadFrame.png; sourceTree = "<group>"; };
 		9A94F3E516A00EA400AF52AB /* ipadFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipadFrame@2x.png"; sourceTree = "<group>"; };
 		9A94F3E616A00EA400AF52AB /* removeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeButton.png; sourceTree = "<group>"; };
@@ -2728,12 +2724,10 @@
 				9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */,
 				9A56D05117D9C4DA001021B2 /* THProjectCell.h */,
 				9A56D05217D9C4DA001021B2 /* THProjectCell.m */,
-				9A94F3DB16A00D5600AF52AB /* THGridItem.h */,
-				9A94F3DC16A00D5600AF52AB /* THGridItem.m */,
-				9A94F3DD16A00D5600AF52AB /* THGridView.h */,
-				9A94F3DE16A00D5600AF52AB /* THGridView.m */,
 				9A94F3F716A014BA00AF52AB /* THProjectProxy.h */,
 				9A94F3F816A014BA00AF52AB /* THProjectProxy.m */,
+				9A41472017E255700061EDF8 /* THTableProjectCell.h */,
+				9A41472117E255700061EDF8 /* THTableProjectCell.m */,
 			);
 			path = "project selection";
 			sourceTree = "<group>";
@@ -4439,8 +4433,6 @@
 				9A06EEA0169ADA9C00B88519 /* THSliderPaletteItem.m in Sources */,
 				9A06EF2F169AE51F00B88519 /* THPotentiometerProperties.m in Sources */,
 				9A06EFC3169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */,
-				9A94F3DF16A00D5600AF52AB /* THGridItem.m in Sources */,
-				9A94F3E116A00D5600AF52AB /* THGridView.m in Sources */,
 				9A94F3F116A010BB00AF52AB /* THProjectSelectionViewController.m in Sources */,
 				9A94F3F916A014BB00AF52AB /* THProjectProxy.m in Sources */,
 				9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */,
@@ -4515,6 +4507,7 @@
 				9A41443317DE63A70061EDF8 /* THClientConstants.m in Sources */,
 				9A41471617E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */,
 				9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
+				9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4651,8 +4644,6 @@
 				9A94F1E5169ED5E100AF52AB /* THImageViewProperties.m in Sources */,
 				9A94F1E6169ED5E300AF52AB /* THImageViewEditable.m in Sources */,
 				9A94F1E7169ED5E600AF52AB /* THImageView.m in Sources */,
-				9A94F3E016A00D5600AF52AB /* THGridItem.m in Sources */,
-				9A94F3E216A00D5600AF52AB /* THGridView.m in Sources */,
 				9A94F3F216A010BB00AF52AB /* THProjectSelectionViewController.m in Sources */,
 				9A94F3FA16A014BB00AF52AB /* THProjectProxy.m in Sources */,
 				9A5F8D8416A2C46E000DF472 /* THContactBook.m in Sources */,
@@ -4736,6 +4727,7 @@
 				9A41446D17DE64420061EDF8 /* THClientConstants.m in Sources */,
 				9A41471717E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */,
 				9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
+				9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
