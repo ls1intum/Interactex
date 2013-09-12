@@ -110,13 +110,13 @@
 //-(BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     //return ![THDirector sharedDirector].projectController.movingTabBar;
 //}
-
+/*
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     
     return YES;
-}
+}*/
 
 -(void) scale:(UIPinchGestureRecognizer*)sender{}
 -(void) rotate:(UIRotationGestureRecognizer*) sender{}

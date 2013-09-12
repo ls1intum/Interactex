@@ -76,7 +76,6 @@ typedef enum {
 @property(nonatomic) TFEditorState state;
 @property(nonatomic, weak) id<TFEditorDragDelegate> dragDelegate;
 @property(nonatomic) BOOL removeConnections;
-@property(nonatomic) BOOL shouldRecognizePanGestures;
 
 //object selection
 -(void) unselectCurrentObject;

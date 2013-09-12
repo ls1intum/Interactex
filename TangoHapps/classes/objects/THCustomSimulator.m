@@ -114,7 +114,25 @@
     sender.scale = 1.0f;
 }
 
+-(void) doubleTapped:(UITapGestureRecognizer*)sender{
+    
+    CGPoint location = [sender locationInView:sender.view];
+    location = [self toLayerCoords:location];
+    
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    TFEditableObject * object = [project objectAtLocation:location];
+    
+    if(!object) {
+        _zoomableLayer.scale = 1.0f;
+        _zoomableLayer.position = ccp(0,0);
+    }
+    
+    [super doubleTapped:sender];
+}
+
 -(void) move:(UIPanGestureRecognizer*)sender{
+    
+    
     if(sender.numberOfTouches == 1){
         
         CGPoint location = [sender locationInView:sender.view];
@@ -122,12 +140,17 @@
         
         if(sender.state == UIGestureRecognizerStateChanged){
             
-            CGPoint d = [sender translationInView:sender.view];
-            d.y = - d.y;
-            
-            [self moveLayer:d];
-            
-            [sender setTranslation:ccp(0,0) inView:sender.view];
+            THCustomProject * project = [THDirector sharedDirector].currentProject;
+            TFEditableObject * object = [project objectAtLocation:location];
+            if(!object){
+                
+                CGPoint d = [sender translationInView:sender.view];
+                d.y = - d.y;
+                
+                [self moveLayer:d];
+                
+                [sender setTranslation:ccp(0,0) inView:sender.view];
+            }
         }
     }
 }

@@ -31,6 +31,8 @@
 
 @property(nonatomic, retain) UIPanGestureRecognizer * panRecognizer;
 
+@property(nonatomic) BOOL shouldRecognizePanGestures;
+
 //scene
 +(CCScene*) scene;
 
