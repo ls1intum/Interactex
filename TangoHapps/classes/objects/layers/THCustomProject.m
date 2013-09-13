@@ -46,14 +46,18 @@
     return [TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory];
 }
 
-+(NSString*) newProjectName{
-    NSString * name = @"New Project";
++(NSString*) nextProjectNameForName:(NSString*) name{
+
     int i = 2;
     while([self doesProjectExistWithName:name]){
-        name = [NSString stringWithFormat:@"New Project %d",i];
+        name = [NSString stringWithFormat:@"%@ %d",name,i];
         i++;
     }
     return name;
+}
+
++(NSString*) newProjectName{
+    return [self nextProjectNameForName:@"New Project"];
 }
 
 +(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName{

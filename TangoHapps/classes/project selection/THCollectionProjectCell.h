@@ -12,27 +12,28 @@ extern const float kShakingEffectAngleInRadians;
 extern const float kShakingEffectRotationTime;
 extern const float kProjectCellScaleEffectDuration;
 
-@class THProjectCell;
+@class THCollectionProjectCell;
 
 @protocol THProjectCellDelegate <NSObject>
 
--(void) didDeleteProjectCell:(THProjectCell*)cell;
+-(void) didDeleteProjectCell:(THCollectionProjectCell*)cell;
+-(void) didRenameProjectCell:(THCollectionProjectCell*)cell toName:(NSString*) name;
+-(void) didDuplicateProjectCell:(THCollectionProjectCell*)cell;
 
 @end
 
-@interface THProjectCell : UICollectionViewCell <UITextFieldDelegate>
+@interface THCollectionProjectCell : UICollectionViewCell <UITextFieldDelegate>
 
 @property (nonatomic) BOOL editing;
 
-@property (nonatomic) NSString * title;
-
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextField * nameTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) id<THProjectCellDelegate> delegate;
 
 - (IBAction)deleteTapped:(id)sender;
+- (IBAction)textChanged:(id)sender;
 
 -(void) startShaking;
 -(void) stopShaking;

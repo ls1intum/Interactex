@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THProjectCell.h"
+#import "THCollectionProjectCell.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
-@implementation THProjectCell
+@implementation THCollectionProjectCell
 
 const float kShakingEffectAngleInRadians = 2.0f;
 const float kShakingEffectRotationTime = 0.10f;
@@ -21,6 +21,7 @@ const float kProjectCellScaleEffectDuration = 0.5;
     if (self) {
         // Initialization code
 
+        
     }
     return self;
 }
@@ -34,26 +35,18 @@ const float kProjectCellScaleEffectDuration = 0.5;
             [self startShaking];
             
             self.deleteButton.hidden = NO;
-            self.titleTextField.enabled = YES;
-            self.titleTextField.borderStyle = UITextBorderStyleLine;
+            self.nameTextField.enabled = YES;
+            self.nameTextField.borderStyle = UITextBorderStyleLine;
             
         } else {
             
             [self stopShaking];
             
             self.deleteButton.hidden = YES;
-            self.titleTextField.enabled = NO;
-            self.titleTextField.borderStyle = UITextBorderStyleNone;
+            self.nameTextField.enabled = NO;
+            self.nameTextField.borderStyle = UITextBorderStyleNone;
         }
     }
-}
-
--(void) setTitle:(NSString *)title{
-    self.titleTextField.text = title;
-}
-
--(NSString*) title{
-    return self.titleTextField.text;
 }
 
 
@@ -64,10 +57,13 @@ const float kProjectCellScaleEffectDuration = 0.5;
     [self.delegate didDeleteProjectCell:self];
 }
 
+- (IBAction)textChanged:(id)sender {
+    [self.delegate didRenameProjectCell:self toName:self.nameTextField.text];
+}
+
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
-    
-    [self.titleTextField resignFirstResponder];
+    [self.nameTextField resignFirstResponder];
     
     return YES;
 }
@@ -130,6 +126,14 @@ const float kProjectCellScaleEffectDuration = 0.5;
                                           }];
                          
                      }];
+}
+
+-(BOOL) canPerformAction:(SEL)action withSender:(id)sender {
+    return (action == @selector(duplicate:));
+}
+
+-(void) duplicate: (id) sender {
+    [self.delegate didDuplicateProjectCell:self];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "THProjectSelectionViewController.h"
 #import "THProjectProxy.h"
-#import "THProjectCell.h"
+#import "THCollectionProjectCell.h"
 #import "THProjectDraggableCell.h"
 #import "THCustomProject.h"
 #import "THTableProjectCell.h"
@@ -74,7 +74,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Dispose of any resources  that can be recreated.
 }
 
 -(NSString*) title{
@@ -143,14 +143,52 @@
     
     THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:indexPath.row];
 
-    THProjectCell * cell = (THProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
+    THCollectionProjectCell * cell = (THCollectionProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
     cell.delegate = self;
-    cell.title = proxy.name;
+    cell.nameTextField.text = proxy.name;
     cell.imageView.image = proxy.image;
     cell.editing = NO;
-    cell.titleTextField.hidden = NO;
+    cell.nameTextField.hidden = NO;
     
     return cell;
+}
+
+
+
+#pragma mark - Collection View Delegate
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    //NSLog(@"selected: %@",indexPath);
+    return YES;
+}
+
+-(void) collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.editingScenes){
+        
+        for(int i = 0 ; i < self.projectProxies.count ; i++){
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+            [cell startShaking];
+        }
+    }
+}
+
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.editingScenes || self.editingOneScene) return NO;
+    
+    THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+    [self showDuplicateMenuForCell:cell];
+    
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+    
+    return YES;
+}
+
+-(void) collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
 }
 
 #pragma mark - TableView DataSource
@@ -206,15 +244,6 @@
     return YES;
 }
 
-/*
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleNone;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}*/
-
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     
     id object = [self.projectProxies objectAtIndex:sourceIndexPath.row];
@@ -222,6 +251,23 @@
     [self.projectProxies insertObject:object atIndex:destinationIndexPath.row];
     
     [self.collectionView reloadData];
+}
+
+//
+-(BOOL) tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIMenuItem * menuItem = [[UIMenuItem alloc] initWithTitle:@"Duplicate" action:@selector(duplicate:)];
+    [[UIMenuController sharedMenuController] setMenuItems: @[menuItem]];
+    [[UIMenuController sharedMenuController] update];
+    
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+    
 }
 
 #pragma mark - Table Project Cell Delegate
@@ -244,6 +290,18 @@
     }
 }
 
+-(void) didDuplicateTableProjectCell:(THTableProjectCell*) cell{
+    
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    if(indexPath){
+        
+        [self duplicateProjectAtIndex:indexPath.row];
+
+        NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 #pragma mark - Editing
 
 -(void) startEditingScenes{
@@ -251,7 +309,7 @@
     if(self.showingIcons){
         for(int i = 0 ; i < self.projectProxies.count ; i++){
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            THProjectCell * cell =  (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
             cell.editing = YES;
         }
     } else {
@@ -270,7 +328,7 @@
     //if(self.showingIcons){
         for(int i = 0 ; i < self.projectProxies.count ; i++){
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            THProjectCell * cell =  (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
             cell.editing = NO;
         }
     //} else {
@@ -314,7 +372,7 @@
     
     if(indexPath){
         
-        currentProjectCell = (THProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        currentProjectCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         currentProject = [self.projectProxies objectAtIndex:indexPath.row];
         
         if(currentProjectCell.editing){
@@ -373,7 +431,7 @@
             
         } else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded){
             
-            [self handleStoppedMoving];
+            //[self handleStoppedMoving];
         }
     }
 }
@@ -384,20 +442,55 @@
     currentProjectCell.editing = YES;
 }
 
+-(void) duplicateProjectAtIndex:(NSInteger) index{
+    
+    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+    
+    //project
+    THCustomProject * project = [THCustomProject projectNamed:proxy.name];
+    project.name = [THCustomProject nextProjectNameForName:project.name];
+    [project save];
+    
+    //image
+    NSString * imageFileName = [project.name stringByAppendingString:@".png"];
+    NSString * imageFilePath = [TFFileUtils dataFile:imageFileName
+                                         inDirectory:kProjectImagesDirectory];
+    [TFFileUtils saveImageToFile:proxy.image file:imageFilePath];
+    
+    //proxy array
+    THProjectProxy * proxyCopy = [proxy copy];
+    proxyCopy.name = project.name;
+    [self.projectProxies insertObject:proxyCopy atIndex:index+1];
+}
+
+-(void) showDuplicateMenuForCell:(THCollectionProjectCell*) cell{
+    
+    //[cell becomeFirstResponder];
+    
+    UIMenuItem *menuItem = [[UIMenuItem alloc] initWithTitle:@"Duplicate" action:@selector(duplicate:)];
+    UIMenuController *menuCont = [UIMenuController sharedMenuController];
+    [menuCont setTargetRect:cell.frame inView:self.collectionView];
+    menuCont.arrowDirection = UIMenuControllerArrowUp;
+    menuCont.menuItems = @[menuItem];
+}
+
 -(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
     
-    if(recognizer.state == UIGestureRecognizerStateBegan &&  !self.editingScenes){
-        
-        CGPoint position = [recognizer locationInView:self.collectionView];
-        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
-        THProjectCell * cell = (THProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
-        
-        if(cell){
-            [cell scaleEffect];
-            currentProjectCell = cell;
-            [NSTimer scheduledTimerWithTimeInterval:kProjectCellScaleEffectDuration target:self selector:@selector(startEditingScene) userInfo:nil repeats:NO];
+    if(recognizer.state == UIGestureRecognizerStateBegan){
+        if(self.showingIcons &&  !(self.editingScenes || self.editingOneScene)){
             
-        }
+            CGPoint position = [recognizer locationInView:self.collectionView];
+            NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+            THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
+            
+            if(cell){
+                [cell scaleEffect];
+                currentProjectCell = cell;
+                [NSTimer scheduledTimerWithTimeInterval:kProjectCellScaleEffectDuration target:self selector:@selector(startEditingScene) userInfo:nil repeats:NO];
+                
+                //[self showDuplicateMenuForCell:cell];
+            }
+        }        
     }
 }
 
@@ -429,19 +522,62 @@
 
 #pragma mark - GridItem Delegate
 
--(void) didDeleteProjectCell:(THProjectCell*) cell {
+-(void) resignAllCellFirstResponders{
+    
+    for (int i = 0 ; i < self.projectProxies.count; i++) {
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THCollectionProjectCell * aCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        [aCell.nameTextField resignFirstResponder];
+    }
+}
+
+-(void) didDeleteProjectCell:(THCollectionProjectCell*) cell {
     
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
+        //[self resignFirstResponder];
         
         [self deleteProjectAtIndex:indexPath.row];
+        [self resignAllCellFirstResponders];
         
-        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         
         if(self.projectProxies.count == 0){
             [self stopEditingScenes];
             [self updateEditButtonEnabledState];
+        }
+    }
+}
+
+-(void) didDuplicateProjectCell:(THCollectionProjectCell*) cell {
+    
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+    if(indexPath){
+        
+        [self duplicateProjectAtIndex:indexPath.row];
+        
+        //collection view
+        NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
+        [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+    }
+}
+
+-(void) didRenameProjectCell:(THCollectionProjectCell *)cell toName:(NSString *)name{
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+    if(indexPath){
+        THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+        NSString * oldName = [proxy.name stringByAppendingString:@".png"];
+        BOOL success = [THCustomProject renameProjectNamed:proxy.name toName:name];
+        if(success){
+
+            NSString * imageName = [name stringByAppendingString:@".png"];
+            [TFFileUtils renameDataFile:oldName to:imageName inDirectory:kProjectImagesDirectory];
+            
+            cell.nameTextField.text = name;
+            proxy.name = name;
+            
+            //[self.collectionView reloadData];
+            //[self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         }
     }
 }
@@ -496,6 +632,9 @@
 }
 
 - (IBAction)orderControlChanged:(id)sender {
+}
+
+- (IBAction)textEditingFinished:(id)sender {
 }
 
 - (void) editButtonTapped:(id)sender {

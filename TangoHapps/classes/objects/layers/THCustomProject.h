@@ -33,9 +33,9 @@
 +(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
 
 //static constructors
-
 +(THCustomProject*) emptyProject;
 +(THCustomProject*) projectSavedWithName:(NSString*) name;
++(NSString*) nextProjectNameForName:(NSString*) name;
 +(id) newProject;
 +(id) projectNamed:(NSString*) name;
 

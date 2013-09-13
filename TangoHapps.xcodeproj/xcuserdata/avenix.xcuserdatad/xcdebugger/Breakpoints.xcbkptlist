@@ -46,13 +46,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "TangoHapps/classes/project selection/THProjectSelectionViewController.m"
-         timestampString = "400721836.543493"
+         filePath = "TangoHapps/classes/project selection/THCollectionProjectCell.m"
+         timestampString = "400795884.617187"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "406"
-         endingLineNumber = "406"
-         landmarkName = "-tapped:"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "-textFieldShouldReturn:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

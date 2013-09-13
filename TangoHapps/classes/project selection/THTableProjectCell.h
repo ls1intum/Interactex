@@ -13,7 +13,7 @@
 @protocol THTableProjectCellDelegate <NSObject>
 
 -(void) tableProjectCell:(THTableProjectCell*) cell didChangeNameTo:(NSString*) name;
-
+-(void) didDuplicateTableProjectCell:(THTableProjectCell*)cell;
 @end
 
 @interface THTableProjectCell : UITableViewCell

@@ -385,8 +385,8 @@
 		9A56D03917D94323001021B2 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A56CFCF17D9418B001021B2 /* libCocosDenshion.a */; };
 		9A56D03B17D946FF001021B2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D03A17D946FF001021B2 /* Storyboard.storyboard */; };
 		9A56D03C17D946FF001021B2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D03A17D946FF001021B2 /* Storyboard.storyboard */; };
-		9A56D05317D9C4DB001021B2 /* THProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05217D9C4DA001021B2 /* THProjectCell.m */; };
-		9A56D05417D9C4DB001021B2 /* THProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05217D9C4DA001021B2 /* THProjectCell.m */; };
+		9A56D05317D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */; };
+		9A56D05417D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */; };
 		9A56D05717D9C4FF001021B2 /* THClientSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */; };
 		9A56D05817D9C4FF001021B2 /* THClientSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */; };
 		9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */; };
@@ -1641,8 +1641,8 @@
 		9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THStringValuePaletteItem.m; sourceTree = "<group>"; };
 		9A56CF8817D94189001021B2 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "../cocos2d-iphone-2.0/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
 		9A56D03A17D946FF001021B2 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = gui/Storyboard.storyboard; sourceTree = "<group>"; };
-		9A56D05117D9C4DA001021B2 /* THProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectCell.h; sourceTree = "<group>"; };
-		9A56D05217D9C4DA001021B2 /* THProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectCell.m; sourceTree = "<group>"; };
+		9A56D05117D9C4DA001021B2 /* THCollectionProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCollectionProjectCell.h; sourceTree = "<group>"; };
+		9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCollectionProjectCell.m; sourceTree = "<group>"; };
 		9A56D05517D9C4FE001021B2 /* THClientSceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneCell.h; sourceTree = "<group>"; };
 		9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneCell.m; sourceTree = "<group>"; };
 		9A56D05917D9CD38001021B2 /* THProjectDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectDraggableCell.h; sourceTree = "<group>"; };
@@ -2722,8 +2722,8 @@
 				9A94F3F016A010BB00AF52AB /* THProjectSelectionViewController.m */,
 				9A56D05917D9CD38001021B2 /* THProjectDraggableCell.h */,
 				9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */,
-				9A56D05117D9C4DA001021B2 /* THProjectCell.h */,
-				9A56D05217D9C4DA001021B2 /* THProjectCell.m */,
+				9A56D05117D9C4DA001021B2 /* THCollectionProjectCell.h */,
+				9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */,
 				9A94F3F716A014BA00AF52AB /* THProjectProxy.h */,
 				9A94F3F816A014BA00AF52AB /* THProjectProxy.m */,
 				9A41472017E255700061EDF8 /* THTableProjectCell.h */,
@@ -4501,7 +4501,7 @@
 				9A56CDB117D8EE11001021B2 /* THStringValueEditable.m in Sources */,
 				9A56CDB717D8EF31001021B2 /* THStringValueProperties.m in Sources */,
 				9A56CDC617D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
-				9A56D05317D9C4DB001021B2 /* THProjectCell.m in Sources */,
+				9A56D05317D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
 				9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */,
 				9A41443317DE63A70061EDF8 /* THClientConstants.m in Sources */,
@@ -4720,7 +4720,7 @@
 				9A56CDB317D8EE11001021B2 /* THStringValueEditable.m in Sources */,
 				9A56CDB817D8EF31001021B2 /* THStringValueProperties.m in Sources */,
 				9A56CDC717D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
-				9A56D05417D9C4DB001021B2 /* THProjectCell.m in Sources */,
+				9A56D05417D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
 				9A56D05817D9C4FF001021B2 /* THClientSceneCell.m in Sources */,
 				9A56D05C17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19717DBDAA9001021B2 /* THDirector.m in Sources */,

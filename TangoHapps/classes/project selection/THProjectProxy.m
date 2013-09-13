@@ -10,6 +10,8 @@
 
 @implementation THProjectProxy
 
+#pragma mark - Construction
+
 +(id) proxyWithName:(NSString*) name{
     return [[THProjectProxy alloc] initWithName:name];
 }
@@ -27,6 +29,14 @@
         
     }
     return self;
+}
+
+#pragma mark - Copying
+
+- (id)copyWithZone:(NSZone *)zone{
+    THProjectProxy * proxy = [[THProjectProxy alloc] initWithName:self.name];
+    proxy.image = self.image;
+    return proxy;
 }
 
 @end

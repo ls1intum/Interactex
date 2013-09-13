@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THProjectCell.h"
+#import "THCollectionProjectCell.h"
 #import "THTableProjectCell.h"
 
 @class THProjectProxy;
 @class THProjectDraggableCell;
 
-@interface THProjectSelectionViewController : UIViewController < UIGestureRecognizerDelegate, THProjectCellDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, THTableProjectCellDelegate>
+@interface THProjectSelectionViewController : UIViewController < UIGestureRecognizerDelegate, THProjectCellDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, THTableProjectCellDelegate>
 {
     UILabel * titleLabel;
     
@@ -22,7 +22,7 @@
     UILongPressGestureRecognizer * longpressRecognizer;
     
     THProjectProxy * currentProject;
-    THProjectCell * currentProjectCell;
+    THCollectionProjectCell * currentProjectCell;
     THProjectDraggableCell * currentDraggableCell;
 }
 
@@ -37,11 +37,9 @@
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
 @property (weak, nonatomic) NSMutableArray * projectProxies;
 
--(IBAction) addButtonTapped:(id)sender;
+-(IBAction)addButtonTapped:(id)sender;
 -(IBAction)viewControlChanged:(id)sender;
-
--(IBAction) orderControlChanged:(id)sender;
-
+-(IBAction)orderControlChanged:(id)sender;
 
 
 @end

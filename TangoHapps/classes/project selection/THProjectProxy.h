@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THProjectProxy : NSObject
+@interface THProjectProxy : NSObject <NSCopying>
 
 @property (nonatomic) NSString * name;
 @property (nonatomic) UIImage * image;

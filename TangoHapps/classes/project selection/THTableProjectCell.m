@@ -34,7 +34,9 @@
         [self.textField resignFirstResponder];
         self.textField.hidden = YES;
         self.nameLabel.hidden = NO;
+        
     } else {
+        
         self.textField.text = self.nameLabel.text;
         self.nameLabel.hidden = YES;
         self.textField.hidden = NO;
@@ -46,7 +48,6 @@
     [self.textField resignFirstResponder];
 }
 
-
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
         
     [self.textField resignFirstResponder];
@@ -54,5 +55,12 @@
     return YES;
 }
 
+-(BOOL) canPerformAction:(SEL)action withSender:(id)sender {
+    return (action == @selector(duplicate:));
+}
+
+-(void) duplicate: (id) sender {
+    [self.delegate didDuplicateTableProjectCell:self];
+}
 
 @end

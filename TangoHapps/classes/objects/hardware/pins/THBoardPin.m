@@ -193,14 +193,6 @@
     }
 }
 
-
--(void) prepareToDie{
-    [super prepareToDie];
-    
-    _attachedElementPins = nil;
-    self.pin = nil;
-}
-
 -(NSString*) description{
     
     NSString * text;
@@ -211,6 +203,11 @@
     }
     
     return text;
+}
+
+-(void) dealloc{
+    _attachedElementPins = nil;
+    self.pin = nil;
 }
 
 @end
