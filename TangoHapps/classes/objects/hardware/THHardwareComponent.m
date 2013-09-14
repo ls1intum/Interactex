@@ -21,24 +21,22 @@
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    _pins = [decoder decodeObjectForKey:@"pins"];
+    if(self) {
+        _pins = [decoder decodeObjectForKey:@"pins"];
+    }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeObject:_pins forKey:@"pins"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THHardwareComponent * copy = [super copyWithZone:zone];
     
     NSMutableArray * pins = [NSMutableArray array];

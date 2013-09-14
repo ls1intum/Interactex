@@ -100,7 +100,6 @@
     _actions = [NSMutableArray array];
     _values = [NSMutableArray array];
     _triggers = [NSMutableArray array];
-    
     _wires = [NSMutableArray array];
     
     _assetCollection = [[THAssetCollection alloc] initWithLocalFiles];
@@ -163,7 +162,6 @@
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
         NSArray * wires = [decoder decodeObjectForKey:@"wires"];
-        
         
         for(TFEventActionPair * pair in eventActionPairs){
             [self registerAction:pair.action forEvent:pair.event];

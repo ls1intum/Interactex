@@ -123,7 +123,7 @@
 +(void) restoreDrawingState{
 
     glLineWidth(1.0f);
-    //glColor4ub(255,255,255,255);
+    ccDrawColor4B(255,255,255,255);
 //    glDisable(GL_LINE_SMOOTH);
 }
 

@@ -114,7 +114,7 @@
     if(_currentConnection != nil && _currentConnection.state == kConnectionStateDrawing){
         //glEnable(GL_LINE_SMOOTH);
         
-        //glColor4ub(kConnectionLineDefaultColor.r,kConnectionLineDefaultColor.g,kConnectionLineDefaultColor.b,255);
+        ccDrawColor4B(kConnectionLineDefaultColor.r,kConnectionLineDefaultColor.g,kConnectionLineDefaultColor.b,255);
         
         glLineWidth(2.0f);
         
@@ -126,7 +126,7 @@
         glLineWidth(1.0f);
         //glDisable(GL_LINE_SMOOTH);
         //glPointSize(1);
-        //glColor4ub(255,255,255,255);
+        ccDrawColor4B(255,255,255,255);
     }
 }
 
@@ -135,11 +135,7 @@
 }
 
 -(void) draw{
-    
-    //ccDrawColor4F(0, 1, 0, 1);
-    //ccDrawCircle(ccp(0,0), 20, 0, 10, NO);
-    //ccDrawCircle(ccp(self.contentSize.width,self.contentSize.height), 20, 0, 10, NO);
-    
+        
     [self drawTemporaryLine];
     //[self drawConnectionLines];
     

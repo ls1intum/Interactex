@@ -14,7 +14,7 @@
 
 -(void) draw{
     
-    //glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
+    ccDrawColor4B(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
     ccDrawCircle(ccp(0,0), kWireNodeRadius, 0, 30, NO);
 }
 
@@ -94,26 +94,26 @@
 #pragma mark - Drawing
 
 -(void) startDrawingSelectedLines{
-    /*
+    
     float kColorHighlightIncreaseFactor = 1.20f;
     
     float r = MIN(255, self.color.r * kColorHighlightIncreaseFactor);
     float g = MIN(255, self.color.g * kColorHighlightIncreaseFactor);
     float b = MIN(255, self.color.b * kColorHighlightIncreaseFactor);
     
-   // glColor4ub(r, g, b, 255);
-    */
+    ccDrawColor4B(r, g, b, 255);
+    
     glLineWidth(kLineWidthSelected);
 }
 
 -(void) startDrawingNormalLines{
     
-    //glColor4ub(self.color.r, self.color.g, self.color.b, 255);
+    ccDrawColor4B(self.color.r, self.color.g, self.color.b, 255);
     glLineWidth(kLineWidthNormal);
 }
 
 -(void) drawLineSegmentBetween:(CGPoint) p1 and:(CGPoint) p2{
-    
+
      ccDrawLine(p1, p2);
 }
 
@@ -141,41 +141,22 @@
     }
 }
 
--(void) drawNodes{
-    
-    //glColor4ub(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
-    
-    
-    for (THWireNode * node in self.nodes) {
-        ccDrawCircle(node.position, kWireNodeRadius, 0, 30, NO);
-    }
-}
-
 -(void) draw{
-//    if(self.visible){
-        if(self.selected){
-            [self startDrawingSelectedLines];
-        } else {
-            [self startDrawingNormalLines];
-        }
-        
-        
-        [self drawLineSegments];
-        //[self drawNodes];
-        
-        ccDrawCircle(self.p1, 3, 0, 5, NO);
-        ccDrawCircle(self.p2, 3, 0, 5, NO);
- //   }
+    if(self.selected){
+        [self startDrawingSelectedLines];
+    } else {
+        [self startDrawingNormalLines];
+    }
+    
+    [self drawLineSegments];
+    
+    ccDrawCircle(self.p1, 3, 0, 5, NO);
+    ccDrawCircle(self.p2, 3, 0, 5, NO);
+    
+    //ccDrawColor4F(1, 1, 1, 1);
 }
 
 #pragma mark - Properties
-/*
--(void) setShowing:(BOOL)showing{
-    for (THWireNode * node in self.nodes) {
-        node.visible = showing;
-    }
-    _showing = showing;
-}*/
 
 -(CGPoint)p1{
     if(self.obj1 == nil)

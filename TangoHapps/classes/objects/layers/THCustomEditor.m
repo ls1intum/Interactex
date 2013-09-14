@@ -605,10 +605,10 @@
     
     THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     [project.iPhone removeFromLayer:self];
-    /*
+    
     for (THWire * object in project.wires) {
         [object removeFromLayer:self];
-    }*/
+    }
     
     for (TFEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
@@ -621,10 +621,10 @@
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }
-    /*
+    
     for (THWire * wire in project.wires) {
         [wire addToLayer:self];
-    }*/
+    }
     
     for (TFEditableObject * object in project.allObjects) {
         [object addToLayer:self];
