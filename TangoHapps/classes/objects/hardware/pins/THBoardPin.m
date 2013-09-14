@@ -54,6 +54,7 @@
         _attachedElementPins = [decoder decodeObjectForKey:@"attachedPins"];
         self.isPWM = [decoder decodeBoolForKey:@"isPWM"];
         self.pin = [decoder decodeObjectForKey:@"pin"];
+        self.type = [decoder decodeIntegerForKey:@"type"];
         
         /*
          self.pin.number = [decoder decodeIntForKey:@"number"];
@@ -68,6 +69,7 @@
     [coder encodeObject:self.attachedElementPins forKey:@"attachedPins"];
     [coder encodeBool:self.isPWM forKey:@"isPWM"];
     [coder encodeObject:self.pin forKey:@"pin"];
+    [coder encodeInteger:self.type forKey:@"type"];
     
     /*
     [coder encodeInt:self.pin.number forKey:@"number"];
