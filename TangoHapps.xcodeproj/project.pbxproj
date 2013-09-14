@@ -393,6 +393,8 @@
 		9A56D05C17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */; };
 		9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D19517DBDAA7001021B2 /* THDirector.m */; };
 		9A56D19717DBDAA9001021B2 /* THDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D19517DBDAA7001021B2 /* THDirector.m */; };
+		9A59314317E50DA200B20D99 /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59314217E50DA200B20D99 /* THWire.m */; };
+		9A59314417E50DA200B20D99 /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59314217E50DA200B20D99 /* THWire.m */; };
 		9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8416A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8216A2C46E000DF472 /* THContactBookEditable.m */; };
@@ -606,8 +608,6 @@
 		9A94F44116A0192700AF52AB /* THEditorTools.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41516A0192700AF52AB /* THEditorTools.xib */; };
 		9A9FEACC17BBBDAE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
-		9A9FEAD417BBCE70004AB8CF /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEAD317BBCE70004AB8CF /* THWire.m */; };
-		9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEAD317BBCE70004AB8CF /* THWire.m */; };
 		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
@@ -1649,6 +1649,8 @@
 		9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectDraggableCell.m; sourceTree = "<group>"; };
 		9A56D19417DBDAA6001021B2 /* THDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDirector.h; sourceTree = "<group>"; };
 		9A56D19517DBDAA7001021B2 /* THDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDirector.m; sourceTree = "<group>"; };
+		9A59314117E50DA200B20D99 /* THWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWire.h; sourceTree = "<group>"; };
+		9A59314217E50DA200B20D99 /* THWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWire.m; sourceTree = "<group>"; };
 		9A5F8D7F16A2C46E000DF472 /* THContactBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBook.h; sourceTree = "<group>"; };
 		9A5F8D8016A2C46E000DF472 /* THContactBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBook.m; sourceTree = "<group>"; };
 		9A5F8D8116A2C46E000DF472 /* THContactBookEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookEditable.h; sourceTree = "<group>"; };
@@ -1797,8 +1799,6 @@
 		9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTouchpadProperties.xib; sourceTree = "<group>"; };
 		9A94F41416A0192700AF52AB /* THValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THValueProperties.xib; sourceTree = "<group>"; };
 		9A94F41516A0192700AF52AB /* THEditorTools.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THEditorTools.xib; sourceTree = "<group>"; };
-		9A9FEAD217BBCE70004AB8CF /* THWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWire.h; sourceTree = "<group>"; };
-		9A9FEAD317BBCE70004AB8CF /* THWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWire.m; sourceTree = "<group>"; };
 		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
 		9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWireProperties.m; sourceTree = "<group>"; };
 		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
@@ -2985,6 +2985,8 @@
 		9AF5021E167B84B40020241C /* pins */ = {
 			isa = PBXGroup;
 			children = (
+				9A59314117E50DA200B20D99 /* THWire.h */,
+				9A59314217E50DA200B20D99 /* THWire.m */,
 				9AF5021F167B84B40020241C /* THBoardPin.h */,
 				9AF50220167B84B40020241C /* THBoardPin.m */,
 				9AF50221167B84B40020241C /* THBoardPinEditable.h */,
@@ -3018,8 +3020,6 @@
 				9A8BB99F167C815D00FBABFB /* THPinsController.m */,
 				9A8BB9A0167C815D00FBABFB /* THPinsControllerContainer.h */,
 				9A8BB9A1167C815D00FBABFB /* THPinsControllerContainer.m */,
-				9A9FEAD217BBCE70004AB8CF /* THWire.h */,
-				9A9FEAD317BBCE70004AB8CF /* THWire.m */,
 			);
 			path = layers;
 			sourceTree = "<group>";
@@ -4491,7 +4491,6 @@
 				9A84270C17564A80009495AB /* TFConstants.m in Sources */,
 				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
-				9A9FEAD417BBCE70004AB8CF /* THWire.m in Sources */,
 				9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 				9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */,
 				9A56CD4717D886A6001021B2 /* THBoolValueEditable.m in Sources */,
@@ -4508,6 +4507,7 @@
 				9A41471617E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */,
 				9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */,
+				9A59314317E50DA200B20D99 /* THWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4708,7 +4708,6 @@
 				9A84270E17564A80009495AB /* TFConstants.m in Sources */,
 				9A84271117564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271417564A80009495AB /* TFHelper.m in Sources */,
-				9A9FEAD517BBCE70004AB8CF /* THWire.m in Sources */,
 				9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 				9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 				9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
@@ -4728,6 +4727,7 @@
 				9A41471717E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */,
 				9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */,
+				9A59314417E50DA200B20D99 /* THWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

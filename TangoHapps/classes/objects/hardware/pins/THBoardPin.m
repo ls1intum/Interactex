@@ -55,11 +55,6 @@
         self.isPWM = [decoder decodeBoolForKey:@"isPWM"];
         self.pin = [decoder decodeObjectForKey:@"pin"];
         self.type = [decoder decodeIntegerForKey:@"type"];
-        
-        /*
-         self.pin.number = [decoder decodeIntForKey:@"number"];
-         _type = [decoder decodeIntForKey:@"pinType"];
-         self.pin.mode = [decoder decodeIntForKey:@"mode"];*/
     }
     return self;
 }
@@ -70,11 +65,6 @@
     [coder encodeBool:self.isPWM forKey:@"isPWM"];
     [coder encodeObject:self.pin forKey:@"pin"];
     [coder encodeInteger:self.type forKey:@"type"];
-    
-    /*
-    [coder encodeInt:self.pin.number forKey:@"number"];
-    [coder encodeInt:self.type forKey:@"pinType"];
-    [coder encodeInt:self.pin.mode forKey:@"mode"];*/
     
 }
 

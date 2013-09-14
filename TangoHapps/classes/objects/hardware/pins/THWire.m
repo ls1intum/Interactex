@@ -30,10 +30,18 @@
 @synthesize p1 = _p1;
 @synthesize p2 = _p2;
 
+-(void) loadWire{
+    
+    self.z = kWireObjectZ;
+    self.zoomable = YES;
+}
+
 -(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2 {
     self = [super init];
     if (self) {
-        self.zoomable = YES;
+        
+        [self loadWire];
+        
         self.position = ccp(0,0);
         self.color = kConnectionLineDefaultColor;
         self.obj1 = obj1;
@@ -52,7 +60,7 @@
     self = [super init];
     
     if(self){
-        self.zoomable = YES;
+        [self loadWire];
         
         self.obj1 = [decoder decodeObjectForKey:@"obj1"];
         self.obj2 = [decoder decodeObjectForKey:@"obj2"];

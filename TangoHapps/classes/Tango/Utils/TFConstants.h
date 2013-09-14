@@ -65,10 +65,6 @@ extern ccColor3B const kConnectionLineDefaultColor;
 extern ccColor4B const kDefaultObjectHighlightColor;
 extern ccColor4B const kDefaultObjectSelectionColor;
 
-enum TFZOrders{
-    kTFDefaultZ = -20
-};
-
 extern float const kLineAcceptedShinningTime;
 extern float const kLineWidthNormal;
 extern float const kLineWidthSelected;

@@ -56,7 +56,7 @@
         self.rotation = 0.0f;
         self.active = YES;
         
-        self.z = kTFDefaultZ;
+        self.z = kDefaultZ;
         _connections = [NSMutableArray array];
         [self loadEditableObject];
     }
