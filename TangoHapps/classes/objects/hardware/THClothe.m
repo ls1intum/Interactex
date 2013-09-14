@@ -30,6 +30,8 @@
     [self loadSprite];
     self.z = kClotheZ;
     
+    self.canBeAddedToPalette = YES;
+    
     _attachments = [NSMutableArray array];
 }
 

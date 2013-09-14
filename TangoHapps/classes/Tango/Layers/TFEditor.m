@@ -30,6 +30,7 @@
 #import "THDraggedPaletteItem.h"
 #import "TFEventActionPair.h"
 #import "TFMethodInvokeAction.h"
+#import "THProjectViewController.h"
 
 @implementation TFEditor
 
@@ -231,20 +232,29 @@
 }
 
 -(void) checkCurrentObjectInsideOutsidePalette:(CGPoint) location{
-
-    if(location.x < kPaletteSectionWidth){
-        if(!_currentPaletteItem){
-            [self handleItemEnteredPaletteAt:location];
-        }
-    } else {
-        if(_currentPaletteItem){
-            [self handleItemExitPalette];
+    
+    
+    CGRect paletteFrame = [THHelper paletteFrame];
+    float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
+    
+    if(self.currentObject.canBeAddedToPalette){
+        if(location.x < paletteRightX){
+            if(!_currentPaletteItem){
+                [self handleItemEnteredPaletteAt:location];
+            }
+        } else {
+            if(_currentPaletteItem){
+                [self handleItemExitPalette];
+            }
         }
     }
 }
 
 -(void) handleMoveFinishedAt:(CGPoint) location{
-    if(location.x < kPaletteSectionWidth){
+    CGRect paletteFrame = [THHelper paletteFrame];
+    float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
+    
+    if(location.x < paletteRightX){
         [self handleItemDroppedInPaletteAt:location];
     }
 }

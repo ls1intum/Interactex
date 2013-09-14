@@ -27,6 +27,8 @@
         if([TFFileUtils dataFile:imageFile existsInDirectory:kProjectImagesDirectory])
             self.image = [UIImage imageWithContentsOfFile:imagePath];
         
+        
+        self.date = [NSDate date];
     }
     return self;
 }

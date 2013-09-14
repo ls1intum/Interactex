@@ -104,6 +104,9 @@ float const kToolsTabMargin = 5;
     
     [self addPalettePull];
     [self updatePalettePullVisibility];
+    
+    
+    _currentProjectName = [THDirector sharedDirector].currentProject.name;
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
@@ -162,10 +165,10 @@ float const kToolsTabMargin = 5;
 
 -(void) saveCurrentProjectAndPalette{
     
-    THDirector * director = [THDirector sharedDirector];
-    if(!director.currentProject.isEmpty){   
+    //THDirector * director = [THDirector sharedDirector];
+    //if(!director.currentProject.isEmpty){
         [self saveCurrentProject];
-    }
+    //}
     [self.tabController.paletteController save];
 }
 
@@ -320,8 +323,29 @@ float const kToolsTabMargin = 5;
     return NO;
 }
 
+-(BOOL) renameProjectFile:(NSString*) name toName:(NSString*) newName{
+    
+    BOOL renamed = [TFFileUtils renameDataFile:name to:newName inDirectory:kProjectsDirectory];
+    if(!renamed){
+        return NO;
+    }
+    
+    NSString * imageName = [name stringByAppendingString:@".png"];
+    NSString * newImageName = [newName stringByAppendingString:@".png"];
+    [TFFileUtils renameDataFile:imageName to:newImageName inDirectory:kProjectImagesDirectory];
+    return YES;
+}
+
+-(void) renameCurrentProjectToName:(NSString*) newName{
+    if([self renameProjectFile:_currentProjectName toName:newName]){
+        [THDirector sharedDirector].currentProject.name = newName;
+        [THDirector sharedDirector].currentProxy.name = newName;
+        _currentProjectName = newName;
+    }
+}
+
 -(void) stopEditingSceneName{
-    [[THDirector sharedDirector] renameCurrentProjectToName:_titleTextField.text];
+    [self renameCurrentProjectToName:_titleTextField.text];
     
     [self addTitleLabel];
     _editingSceneName = NO;
@@ -462,8 +486,6 @@ float const kToolsTabMargin = 5;
     if(_state == kAppStateEditor){
 
         _state = kAppStateSimulator;
-        
-        _currentProjectName = [THDirector sharedDirector].currentProject.name;
         
         [self saveCurrentProject];
         

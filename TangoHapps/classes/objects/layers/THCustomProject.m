@@ -49,11 +49,12 @@
 +(NSString*) nextProjectNameForName:(NSString*) name{
 
     int i = 2;
-    while([self doesProjectExistWithName:name]){
-        name = [NSString stringWithFormat:@"%@ %d",name,i];
+    NSString * finalName = name;
+    while([self doesProjectExistWithName:finalName]){
+        finalName = [NSString stringWithFormat:@"%@ %d",name,i];
         i++;
     }
-    return name;
+    return finalName;
 }
 
 +(NSString*) newProjectName{

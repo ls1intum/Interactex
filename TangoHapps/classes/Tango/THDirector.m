@@ -98,32 +98,13 @@ static THDirector * _sharedInstance = nil;
     }
 }*/
 
--(BOOL) renameProjectFile:(NSString*) name toName:(NSString*) newName{
-    
-    BOOL renamed = [TFFileUtils renameDataFile:name to:newName inDirectory:kProjectsDirectory];
-    if(!renamed){
-        return NO;
-    }
-    
-    NSString * imageName = [name stringByAppendingString:@".png"];
-    NSString * newImageName = [newName stringByAppendingString:@".png"];
-    [TFFileUtils renameDataFile:imageName to:newImageName inDirectory:kProjectImagesDirectory];
-    return YES;
-}
 
--(void) renameCurrentProjectToName:(NSString*) newName{
-    if([self renameProjectFile:self.currentProject.name toName:newName]){
-        _currentProxy.name = newName;
-        self.currentProject.name = newName;
-    }
-}
 
 #pragma mark - Layer
 
 -(TFLayer*) currentLayer{
     return self.projectController.currentLayer;
 }
-
 
 #pragma Mark - Server Delegate
 

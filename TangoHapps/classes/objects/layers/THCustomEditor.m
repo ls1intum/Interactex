@@ -316,24 +316,6 @@
     sender.scale = 1.0f;
 }
 
-/*
--(void) tapped:(UITapGestureRecognizer*)sender{
-    
-    CGPoint location = [sender locationInView:sender.view];
-    location = [self toLayerCoords:location];
-    
-    TFEditableObject * object = [self objectAtLocation:location];
-    
-    if(self.state == kEditorStateDelete){
-        [object removeFromWorld];
-        [self unselectAllObjects];
-    } else if(state == kEditorStateRemoveConnections){
-        //[self removeActionFromToObject:object];
-    } else {
-        [self selectObject:object];
-    }
-}*/
-
 -(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     
     THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
@@ -448,7 +430,6 @@
     }
 }
 
-
 -(void) hideiPhone{
     
     THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
@@ -460,22 +441,6 @@
     THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
     project.iPhone.visible = YES;
 }
-
-/*
--(void) addValues{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (TFEditableObject * object in project.values) {
-        [self addEditableObject:object];
-    }
-}
-
--(void) removeValues{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    for (TFEditableObject * object in project.values) {
-        [object removeFromParentAndCleanup:YES];
-    }
-}
-*/
 
 -(void) addClothes{
     THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;

@@ -7,6 +7,8 @@
 //
 
 #import "THHelper.h"
+#import "THProjectViewController.h"
+#import "THTabbarViewController.h"
 
 @implementation THHelper
 
@@ -45,6 +47,10 @@
         size.height -= MIN(application.statusBarFrame.size.width, application.statusBarFrame.size.height);
     }
     return size;
+}
+
++(CGRect) paletteFrame{
+    return [THDirector sharedDirector].projectController.tabController.view.frame;
 }
 
 @end

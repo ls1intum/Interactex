@@ -116,9 +116,23 @@
 
 #pragma mark - Private
 
-- (void)proceedToProject:(THCustomProject*) project{
-
+- (void)proceedToProjectAtIndex:(NSInteger) index{
+    
+    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+    THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:proxy.name];
+    
+    [THDirector sharedDirector].currentProxy = proxy;
     [THDirector sharedDirector].currentProject = project;
+    
+    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+}
+
+- (void)proceedToNewProject{
+    
+    THCustomProject * project = [THCustomProject newProject];
+    
+    [THDirector sharedDirector].currentProject = project;
+    
     [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
 }
 
@@ -203,9 +217,15 @@
     
     THTableProjectCell * cell = (THTableProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectTableCell"];
     cell.nameLabel.text = proxy.name;
-//    cell.dateLabel.text = proxy.date;
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
+    NSString *dateString = [dateFormat stringFromDate:proxy.date];
+    
+    cell.dateLabel.text = dateString;
     cell.imageView.image = proxy.image;
     cell.delegate = self;
+    
     /*
     cell.delegate = self;
     cell.title = proxy.name;
@@ -219,12 +239,8 @@
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    THProjectProxy * projectProxy = [self.projectProxies objectAtIndex:indexPath.row];
-    THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:projectProxy.name];
-    
-    [self proceedToProject:project];
+       
+    [self proceedToProjectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -505,11 +521,8 @@
         CGPoint position = [recognizer locationInView:self.collectionView];
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
         
-        if(indexPath){
-            THProjectProxy * projectProxy = [self.projectProxies objectAtIndex:indexPath.row];
-            THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:projectProxy.name];
-            
-            [self proceedToProject:project];
+        if(indexPath){            
+            [self proceedToProjectAtIndex:indexPath.row];
         }
     }
 }
@@ -597,9 +610,8 @@
 }
 
 - (IBAction)addButtonTapped:(id)sender {
-    THCustomProject * newProject = [THCustomProject newProject];
     
-    [self proceedToProject:newProject];
+    [self proceedToNewProject];
 }
 
 - (IBAction)viewControlChanged:(id)sender {

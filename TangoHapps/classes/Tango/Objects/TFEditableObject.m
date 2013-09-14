@@ -47,8 +47,7 @@
     self.visible = YES;
     self.highlightColor = kDefaultObjectHighlightColor;
     self.canBeDuplicated = YES;
-    
-    //self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
+    self.canBeAddedToPalette = NO;
 }
 
 -(id) init{

@@ -46,7 +46,4 @@ typedef enum {
 
 +(THDirector*)sharedDirector;
 
--(void) renameCurrentProjectToName:(NSString*) newName;
--(BOOL) renameProjectFile:(NSString*) name toName:(NSString*) newName;
-
 @end

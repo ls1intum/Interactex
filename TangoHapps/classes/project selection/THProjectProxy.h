@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSString * name;
 @property (nonatomic) UIImage * image;
+@property (nonatomic) NSDate * date;
 
 +(id) proxyWithName:(NSString*) name;
 -(id) initWithName:(NSString*) name;

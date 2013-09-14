@@ -18,5 +18,6 @@
 
 +(CGSize) currentSize;
 +(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientatio;
++(CGRect) paletteFrame;
 
 @end
