@@ -54,10 +54,21 @@ typedef enum {
 @property (nonatomic, readonly) THTabbarView * tabView;
 @property (nonatomic) BOOL isEditing;
 
+@property (nonatomic, strong) NSArray * clothesSectionArray;
+@property (nonatomic, strong) NSArray * uiSectionArray;
+@property (nonatomic, strong) NSArray * hardwareSectionArray;
+@property (nonatomic, strong) NSArray * programmingSectionArray;
+
+@property (nonatomic, copy) NSString * clothesSectionName;
+@property (nonatomic, copy) NSString * uiSectionArrayName;
+@property (nonatomic, copy) NSString * hardwareSectionName;
+@property (nonatomic, copy) NSString * programmingSectionName;
+
 @property (nonatomic, strong) NSMutableArray * sections;
 @property (nonatomic, strong) NSMutableArray * sectionNames;
 
 -(void) reloadPalettes;
+-(void) useDefaultPaletteSections;
 -(void) addCustomPaletteItems;
 -(void) save;
 -(void) prepareToDie;

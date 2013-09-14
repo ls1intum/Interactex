@@ -88,9 +88,7 @@
 
 #pragma mark - Palette Drag Delegate
 
--(void) palette:(THPalette*)palette
-didStartDraggingItem:(THPaletteItem*)item
- withRecognizer:(UIPanGestureRecognizer*)recognizer {
+-(void) palette:(THPalette*)palette didStartDraggingItem:(THPaletteItem*)item withRecognizer:(UIPanGestureRecognizer*)recognizer {
     
     if(_dragView == nil){
         _dragView = [[THDraggedPaletteItem alloc] initWithPaletteItem:item];
@@ -106,9 +104,7 @@ didStartDraggingItem:(THPaletteItem*)item
     }
 }
 
--(void)palette:(THPalette*)palette
-   didDragItem:(THPaletteItem*)item
-withRecognizer:(UIPanGestureRecognizer*)recognizer
+-(void)palette:(THPalette*)palette didDragItem:(THPaletteItem*)item withRecognizer:(UIPanGestureRecognizer*)recognizer
 {
     if(_dragView != nil){
         _dragView.center = [recognizer locationInView:self.view];
@@ -117,9 +113,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
     }
 }
 
--(void)palette:(THPalette*)container
-   didDropItem:(THPaletteItem*)item
-withRecognizer:(UIPanGestureRecognizer*)recognizer
+-(void)palette:(THPalette*)container didDropItem:(THPaletteItem*)item withRecognizer:(UIPanGestureRecognizer*)recognizer
 {
     if(_dragView != nil){
         CGPoint location = [recognizer locationInView:self.view];
@@ -141,7 +135,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
     }
 }
 
--(void)palette:(THPalette*)palette didLongPressItem:(THPaletteItem*)item withRecognizer:(UILongPressGestureRecognizer*)recognizer{
+-(void) palette:(THPalette*)palette didLongPressItem:(THPaletteItem*)item withRecognizer:(UILongPressGestureRecognizer*)recognizer{
     if(item.isEditable){
         [self deselectCurrentObject];
         
@@ -163,12 +157,12 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
 
 #pragma mark Palette Edition Delegate
 
--(void)palette:(THCustomPaletteItem*)palette didRemoveItem:(THCustomPaletteItem*)item{
+-(void) palette:(THCustomPaletteItem*)palette didRemoveItem:(THCustomPaletteItem*)item{
     [item deleteArchive];
     [_customPaletteItems removeObject:item];
 }
 
--(void)palette:(THPalette*)palette didSelectItem:(THPaletteItem*)item{
+-(void) palette:(THPalette*)palette didSelectItem:(THPaletteItem*)item{
     if(!self.isEditing){
         [self deselectCurrentObject];
         [self selectObject:item];
@@ -289,6 +283,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
     self.tabView.tabBarDelegate = self;
     
     [self loadPaletteData];
+    [self useDefaultPaletteSections];
     [self.tabView reloadData];
     
     [self loadCustomPaletteItems];
@@ -334,7 +329,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
 #pragma  mark - Palette Data Source
 
 -(NSInteger) numPaletteSectionsForPalette:(THTabbarView*) tabBar{
-    return 4;
+    return self.sections.count;
 }
 
 -(NSString*) titleForSection:(NSInteger) section palette:(THTabbarView*) tabBar{
@@ -351,11 +346,17 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
     return [items objectAtIndex:indexPath.row];
 }
 
+-(void) useDefaultPaletteSections{
+    
+    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, nil];
+    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, nil];
+}
+
 -(void) loadPaletteData {
     
-    NSArray * clothesArray = [NSArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
+    self.clothesSectionArray  = [NSArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
     
-    NSArray * uiArray = [NSArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
+    self.uiSectionArray = [NSArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
                          [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
                          [[THLabelPaletteItem alloc] initWithName:@"label"],
                          [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
@@ -367,7 +368,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
                          nil];
     
     
-    NSArray * hardwareArray = [NSArray arrayWithObjects:
+   self.hardwareSectionArray = [NSArray arrayWithObjects:
                                [[THLedPaletteItem alloc] initWithName:@"led"],
                                [[THButtonPaletteItem alloc] initWithName:@"button"],
                                [[THSwitchPaletteItem alloc] initWithName:@"switch"],
@@ -380,7 +381,7 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
                                nil];
     
     
-    NSArray * programmingArray = [NSArray arrayWithObjects:
+   self.programmingSectionArray  = [NSArray arrayWithObjects:
                                   [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
                                   [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
                                   [[THMapperPaletteItem alloc] initWithName:@"mapper"],
@@ -391,8 +392,10 @@ withRecognizer:(UIPanGestureRecognizer*)recognizer
                                   [[THStringValuePaletteItem alloc] initWithName:@"stringValue"],
                                   nil];
     
-    self.sections = [NSMutableArray arrayWithObjects:clothesArray, uiArray, hardwareArray, programmingArray, nil];
-    self.sectionNames = [NSMutableArray arrayWithObjects:@"Clothes", @"UI Elements", @"Hardware", @"Programming", nil];
+    self.clothesSectionName = @"Textiles";
+    self.uiSectionArrayName = @"UI Elements";
+    self.hardwareSectionName = @"Hardware Elements";
+    self.programmingSectionName = @"Visual Programming";
 }
 
 -(void) tabBar:(THTabbarView*) tabBar didAddSection:(THTabbarSection*) section{

@@ -25,6 +25,7 @@
 #import "THWire.h"
 #import "THTabbarViewController.h"
 #import "THProjectViewController.h"
+#import "THPaletteViewController.h"
 
 @implementation THCustomEditor
 
@@ -544,37 +545,20 @@
 }
 
 -(void) showAllPaletteSections{
-    
-    THDirector * director = [THDirector sharedDirector];
-    
-    //THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
-    /*
-    paletteDataSource.showClotheSection = YES;
-    paletteDataSource.showHardwareSection = YES;
-    paletteDataSource.showSoftwareSection = YES;
-    paletteDataSource.showProgrammingSection = YES;
-    
-    [paletteDataSource reloadPalettes];*/
-    
-    THTabbarViewController * tabController = director.projectController.tabController;
-    [tabController.paletteController reloadPalettes];
+        
+    THPaletteViewController * paletteController = [THDirector sharedDirector].projectController.tabController.paletteController;
+    [paletteController useDefaultPaletteSections];
+    [paletteController reloadPalettes];
 }
 
 -(void) hideNonLilypadPaletteSections{
     
-    THDirector * director = [THDirector sharedDirector];
+    THPaletteViewController * paletteController = [THDirector sharedDirector].projectController.tabController.paletteController;
     
-    //THPaletteDataSource * paletteDataSource = [THDirector sharedDirector].paletteDataSource;
-    /*
-    paletteDataSource.showClotheSection = NO;
-    paletteDataSource.showHardwareSection = YES;
-    paletteDataSource.showSoftwareSection = NO;
-    paletteDataSource.showProgrammingSection = NO;
+    paletteController.sections = [NSArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.hardwareSectionArray, nil];
+    paletteController.sectionNames = [NSArray arrayWithObjects:paletteController.clothesSectionName, paletteController.hardwareSectionName, nil];
     
-    [paletteDataSource reloadPalettes];*/
-    
-    THTabbarViewController * tabController = director.projectController.tabController;
-    [tabController.paletteController reloadPalettes];
+    [paletteController reloadPalettes];
 }
 
 -(void) startLilypadMode{
