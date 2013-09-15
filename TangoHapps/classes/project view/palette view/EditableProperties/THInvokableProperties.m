@@ -60,7 +60,9 @@
 -(void) changeObjectHighlighting:(TFEditableObject*) object highlighted:(BOOL) highlighted{
 
     object.highlighted = highlighted;
-    NSArray * connections = [object connectionsToObject:(TFEditableObject*) self.editableObject];
+    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    NSArray * connections = [project invocationConnectionsFrom:object to: (TFEditableObject*)self.editableObject];
+    
     for (TFConnectionLine * connection in connections) {
         connection.selected = highlighted;
     }

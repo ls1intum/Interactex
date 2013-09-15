@@ -42,12 +42,13 @@
     self.obj1 = [decoder decodeObjectForKey:@"object1"];
     self.obj2 = [decoder decodeObjectForKey:@"object2"];
     
+    /* Juan check
     if(self.obj1 != nil){
         [self registerNotificationsFor:self.obj1];
     }
     if(self.obj2 != nil){
         [self registerNotificationsFor:self.obj1];
-    }
+    }*/
     
     return self;
 }
@@ -178,12 +179,13 @@
     [_currentComparatorProperties reloadState];
 }
 
+/* Juan check
 -(void) addConnectionTo:(TFEditableObject *)object animated:(BOOL)animated{
     
     [_currentComparatorProperties reloadState];
     [super addConnectionTo:object animated:animated];
 }
-
+*/
 -(NSString*) description{
     return @"Comparison";
 }

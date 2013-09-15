@@ -58,7 +58,7 @@ typedef enum
 @property(nonatomic) ccColor3B color;
 
 +(id)connectionLine;
--(id)init;
+-(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2;
 -(void) draw;
 -(void) startShining;
 

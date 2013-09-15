@@ -25,6 +25,8 @@
 #import "THTabbarViewController.h"
 #import "THProjectViewController.h"
 #import "THPaletteViewController.h"
+#import "THInvocationConnectionLine.h"
+#import "THPropertySelectionPopup.h"
 
 @implementation THCustomEditor
 
@@ -141,7 +143,6 @@
     } else {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
-        
     }
 }
 
@@ -212,6 +213,24 @@
     }
 }
 
+-(void) propertySelectionPopup:(THPropertySelectionPopup*) popup didSelectProperty:(TFProperty*) property{
+    
+    popup.connection.state = THInvocationConnectionLineStateComplete;
+    popup.connection.action.firstParam = [TFPropertyInvocation invocationWithProperty:property target:popup.object];
+    [popup.connection reloadSprite];
+}
+
+-(void) attachObject:(TFEditableObject*) object toInvocationParameter:(THInvocationConnectionLine*) connectionLine{
+    if(object != nil){
+        
+        _propertySelectionPopup = [[THPropertySelectionPopup alloc] init];
+        _propertySelectionPopup.delegate = self;
+        _propertySelectionPopup.object = object;
+        _propertySelectionPopup.connection = connectionLine;
+        [_propertySelectionPopup present];
+    }
+}
+
 -(void) handleConnectionEndedAt:(CGPoint) location{
     
     THCustomProject * project = [THDirector sharedDirector].currentProject;
@@ -233,7 +252,12 @@
         }*/
         
         [self dehighlightCurrentPin];
-    } else{
+        
+    } else if([object2 isKindOfClass:[THInvocationConnectionLine class]]){
+        
+        [self attachObject:object1 toInvocationParameter:(THInvocationConnectionLine*) object2];
+        
+    } else {
         [super showMethodSelectionPopupFor:object1 and:object2];
     }
     
@@ -594,12 +618,17 @@
         [object removeFromLayer:self];
     }
     
+    for (THInvocationConnectionLine * connection in project.invocationConnections) {
+        [connection removeFromLayer:self];
+    }
+    
     for (TFEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
     }
 }
 
 -(void) addObjects{
+    
     THCustomProject * project = [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
@@ -607,6 +636,10 @@
     
     for (THWire * wire in project.wires) {
         [wire addToLayer:self];
+    }
+    
+    for (THInvocationConnectionLine * connection in project.invocationConnections) {
+        [connection addToLayer:self];
     }
     
     for (TFEditableObject * object in project.allObjects) {

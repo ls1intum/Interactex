@@ -67,7 +67,7 @@
 - (IBAction)addNodeTapped:(id)sender {
     
     THWire * wire = (THWire*) self.editableObject;
-    [wire addMiddleNode];
+    [wire addNodeInLongestEdge];
 }
 
 @end

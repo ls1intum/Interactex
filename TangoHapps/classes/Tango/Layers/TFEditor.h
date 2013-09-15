@@ -61,7 +61,7 @@ typedef enum {
     
     TFGestureState gestureState;
     
-    NSMutableArray * _connectionLines;
+    //NSMutableArray * _connectionLines;
     
     THEditorToolsViewController * _editorToolsController;
     
@@ -80,14 +80,14 @@ typedef enum {
 //object selection
 -(void) unselectCurrentObject;
 -(void) selectObject:(TFEditableObject*) editableObject;
-
+/*
 //lines
 -(void) addConnectionLine:(TFConnectionLine*) connection;
 -(void) removeConnectionLine:(TFConnectionLine*) connection;
-
+*/
 -(void) startNewConnectionForObject:(TFEditableObject*) object;
 -(void) handleConnectionEndedAt:(CGPoint) location;
 -(void) showMethodSelectionPopupFor:(TFEditableObject*) object1 and:(TFEditableObject*) object2;
--(void) handleNewConnectionMade:(NSNotification*) notification;
+//-(void) handleNewConnectionMade:(NSNotification*) notification;
 
 @end

@@ -362,7 +362,7 @@ float const kToolsTabMargin = 5;
     
     self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moved:)];
     self.panRecognizer.delegate = self;
-    self.panRecognizer.cancelsTouchesInView = YES;
+    self.panRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:self.panRecognizer];
 }
 

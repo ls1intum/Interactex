@@ -139,22 +139,22 @@
     return connection;
 }
 
--(void) addConnection:(TFConnectionLine*) connection{
+-(void) addConnection:(TFConnectionLine*) connection{/*
     TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
-    [editor addConnectionLine:connection];
+    [editor addConnectionLine:connection];*/
 }
 
 -(void) removeConnection:(TFConnectionLine*) connection{
-    
+    /*
     TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
-    [editor removeConnectionLine:connection];
+    [editor removeConnectionLine:connection];*/
 }
 
 -(void) selectionChanged{
     
     //[Editor sharedInstance].selectedConnections = self.selectedConnections;
-    THGrouperConditionEditable * conditionEditable = (THGrouperConditionEditable*) self.editableObject;
-    
+    //THGrouperConditionEditable * conditionEditable = (THGrouperConditionEditable*) self.editableObject;
+    /*
     if(button1Down){
         connection1 = [self createConnectionLineFor:conditionEditable.obj1];
         [self addConnection:connection1];
@@ -167,7 +167,7 @@
         [self addConnection:connection2];
     } else {
         [self removeConnection:connection2];
-    }
+    }*/
 }
 
 - (IBAction)button1Up:(id)sender {

@@ -80,9 +80,9 @@
 }
 
 -(void) handleLilypadRemoved:(NSNotification*) notification{
-    
+    /* Juan check
     TFEditableObject * object = notification.object;
-    [self removeAllConnectionsTo:object];
+    [self removeAllConnectionsTo:object];*/
 }
 
 -(void) registerNotificationsFor:(TFEditableObject*) object{

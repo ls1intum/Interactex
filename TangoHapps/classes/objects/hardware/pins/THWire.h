@@ -29,7 +29,7 @@
 
 -(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2;
 -(void) insertNode:(THWireNode*) node atIndex:(NSUInteger) index;
--(void) addMiddleNode;
+-(void) addNodeInLongestEdge;
 -(void) removeNode:(THWireNode*) node;
 -(void) removeAllNodes;
 -(THWireNode*) nodeAtPosition:(CGPoint) position;

@@ -27,14 +27,22 @@
 
 @implementation TFConnectionLine
 
-@synthesize obj1;
-@synthesize obj2;
 @synthesize p1 = _p1;
 @synthesize p2 = _p2;
 
 +(id)connectionLine
 {
     return [[TFConnectionLine alloc] init];
+}
+
+-(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2 {
+    self = [super init];
+    if (self) {
+        self.obj1 = obj1;
+        self.obj2 = obj2;
+        self.color = kConnectionLineDefaultColor;
+    }
+    return self;
 }
 
 -(id)init
@@ -48,28 +56,26 @@
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
-    
-    obj1 = [decoder decodeObjectForKey:@"obj1"];
-    obj2 = [decoder decodeObjectForKey:@"obj2"];
-    self.p2 = [decoder decodeCGPointForKey:@"p2"];
-    self.state = [decoder decodeIntForKey:@"state"];
-    self.type = [decoder decodeIntForKey:@"type"];
-    self.shouldAnimate = [decoder decodeBoolForKey:@"shouldAnimate"];
-    NSInteger red = [decoder decodeIntegerForKey:@"colorR"];
-    NSInteger green = [decoder decodeIntegerForKey:@"colorG"];
-    NSInteger blue = [decoder decodeIntegerForKey:@"colorB"];
-    self.color = ccc3(red, green, blue);
-    
+    if(self) {
+        self.obj1 = [decoder decodeObjectForKey:@"obj1"];
+        self.obj2 = [decoder decodeObjectForKey:@"obj2"];
+        self.p2 = [decoder decodeCGPointForKey:@"p2"];
+        self.state = [decoder decodeIntForKey:@"state"];
+        self.type = [decoder decodeIntForKey:@"type"];
+        self.shouldAnimate = [decoder decodeBoolForKey:@"shouldAnimate"];
+        NSInteger red = [decoder decodeIntegerForKey:@"colorR"];
+        NSInteger green = [decoder decodeIntegerForKey:@"colorG"];
+        NSInteger blue = [decoder decodeIntegerForKey:@"colorB"];
+        self.color = ccc3(red, green, blue);
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
-    [coder encodeObject:obj1 forKey:@"obj1"];
-    [coder encodeObject:obj2 forKey:@"obj2"];
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.obj1 forKey:@"obj1"];
+    [coder encodeObject:self.obj2 forKey:@"obj2"];
     [coder encodeCGPoint:self.p2 forKey:@"p2"];
     [coder encodeInt:self.state forKey:@"state"];
     [coder encodeInt:self.type forKey:@"type"];

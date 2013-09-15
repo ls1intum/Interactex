@@ -10,9 +10,12 @@
 @class THBoardPinEditable;
 @class THElementPinEditable;
 
+#import "THPropertySelectionPopup.h"
 
-@interface THCustomEditor : TFEditor {
+@interface THCustomEditor : TFEditor <THPropertySelectionPopupDelegate>{
     THPinEditable * _currentHighlightedPin;
+    
+    THPropertySelectionPopup * _propertySelectionPopup;
 }
 
 @property (nonatomic, readonly) BOOL isLilypadMode;

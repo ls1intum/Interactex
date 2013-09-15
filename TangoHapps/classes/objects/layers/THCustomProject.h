@@ -17,6 +17,7 @@
 @class THWire;
 @class THElementPinEditable;
 @class THBoardPinEditable;
+@class THInvocationConnectionLine;
 
 @class TFEditableObject;
 @class TFAction;
@@ -116,6 +117,13 @@
 -(void) addWireFrom:(THElementPinEditable*) elementPin to:(THBoardPinEditable*) boardPin;
 -(void) removeAllWiresTo:(id) object;
 
+//invocation conncetions
+-(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
+-(void) addInvocationConnection:(THInvocationConnectionLine*) connection animated:(BOOL) animated;
+-(void) removeInvocationConnection:(THInvocationConnectionLine*) connection;
+-(void) removeAllInvocationConnectionsTo:(id) object;
+-(void) removeAllConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
+
 //non editable project
 -(THClientProject*) nonEditableProject;
 
@@ -129,6 +137,8 @@
 @property (nonatomic,readonly) NSMutableArray * triggers;
 @property (nonatomic,readonly) NSMutableArray * actions;
 @property (nonatomic, readonly) NSMutableArray * wires;
+@property (nonatomic, readonly) NSMutableArray * invocationConnections;
+
 @property (nonatomic, readonly) NSArray * allObjects;
 @property (nonatomic, readonly) NSMutableArray * eventActionPairs;
 @property (nonatomic, copy) NSString * name;

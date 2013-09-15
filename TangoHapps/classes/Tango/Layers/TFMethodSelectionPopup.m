@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-
 #import "TFMethodSelectionPopup.h"
 #import "TFEditableObject.h"
 #import "TFProperty.h"
@@ -35,9 +34,9 @@
 -(id) init{
     self = [super init];
     if(self){
-        
+        /*
         _acceptedEvents = [NSMutableArray array];
-        _acceptedMethods = [NSMutableArray array];
+        _acceptedMethods = [NSMutableArray array];*/
         
     }
     return self;
@@ -102,7 +101,10 @@
 }
 
 -(void) selectEventsAndMethods{
+    _acceptedEvents = self.object1.events;
+    _acceptedMethods = self.object2.methods;
     
+    /*
     for (TFEvent * event in self.object1.events) {
         for (TFMethod * method in self.object2.methods) {
             if([event canTriggerMethod:method]){
@@ -114,7 +116,7 @@
                 }
             }
         }
-    }
+    }*/
 }
 
 -(void) loadTables{
@@ -170,22 +172,6 @@
     NSInteger maxItemCount = MAX(_acceptedEvents.count,_acceptedMethods.count);
     float contentHeight = maxItemCount * kMethodSelectionPopupRowHeight + kPopupHeaderHeight;
     self.contentSizeForViewInPopover = CGSizeMake(400, contentHeight);
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
 }
 
 @end

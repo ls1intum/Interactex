@@ -49,7 +49,7 @@
         
         _nodes = [NSMutableArray array];
         
-        [self addMiddleNode];
+        [self addNodeInLongestEdge];
     }
     return self;
 }
@@ -257,7 +257,7 @@
     return p1;
 }
 
--(void) addMiddleNode{
+-(void) addNodeInLongestEdge{
     
     NSInteger index = [self findLongestSegment];
     

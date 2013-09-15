@@ -38,13 +38,14 @@
     
     self.obj1 = [decoder decodeObjectForKey:@"object1"];
     self.obj2 = [decoder decodeObjectForKey:@"object2"];
-    
+    /*
+     Juan check
     if(self.obj1 != nil){
         [self registerNotificationsFor:self.obj1];
     }
     if(self.obj2 != nil){
         [self registerNotificationsFor:self.obj1];
-    }
+    }*/
     
     return self;
 }
@@ -153,7 +154,8 @@
 -(void) addConnectionTo:(TFEditableObject *)object animated:(BOOL)animated{
     
     [_currentGrouperProperties reloadState];
-    [super addConnectionTo:object animated:animated];
+    //[super addConnectionTo:object animated:animated];
+    //Juan check
 }
 
 -(void) prepareToDie{

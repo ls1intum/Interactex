@@ -107,14 +107,16 @@
 -(void) willStartEdition;
 -(void) prepareToDie;
 
-//connections
 -(BOOL) acceptsConnectionsTo:(TFEditableObject*) object;
+/*
+//connections
 -(void) addConnectionTo:(TFEditableObject*) object animated:(BOOL) animated;
 -(NSArray*) connectionsToObject:(TFEditableObject*) target;
 -(void) removeConnectionTo:(TFEditableObject*) object;
 -(void) removeAllConnectionsTo:(TFEditableObject*) object;
 -(void) registerNotificationsFor:(TFEditableObject*) object;
 -(void) handleEditableObjectRemoved:(NSNotification*) notification;
+*/
 
 //actions
 -(void) handleRegisteredAsSourceForAction:(TFAction*) action;

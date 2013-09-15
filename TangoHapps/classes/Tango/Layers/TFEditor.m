@@ -31,13 +31,13 @@
 #import "TFEventActionPair.h"
 #import "TFMethodInvokeAction.h"
 #import "THProjectViewController.h"
+#import "THInvocationConnectionLine.h"
 
 @implementation TFEditor
 
 -(id) init{
     self = [super init];
     if(self){
-        _connectionLines = [NSMutableArray array];
         self.shouldRecognizePanGestures = YES;
     }
     return self;
@@ -47,7 +47,7 @@
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
     [c addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:nil];
-    [c addObserver:self selector:@selector(handleNewConnectionMade:) name:kNotificationConnectionMade object:nil];
+    //[c addObserver:self selector:@selector(handleNewConnectionMade:) name:kNotificationConnectionMade object:nil];
     [c addObserver:self selector:@selector(startRemovingConnections) name:kNotificationStartRemovingConnections object:nil];
     [c addObserver:self selector:@selector(stopRemovingConnections) name:kNotificationStopRemovingConnections object:nil];
     
@@ -63,26 +63,19 @@
 -(void) stopRemovingConnections{
     self.removeConnections = NO;
 }
-
--(void) handleConnectionEffectFinished:(TFConnectionLine*) connection{
-    [_connectionLines removeObject:connection];
-}
-
+/*
 -(void) handleNewConnectionMade:(NSNotification*) notification{
     TFConnectionLine * connection = notification.object;
     
     if(connection.shouldAnimate){
         [connection startShining];
-        [_connectionLines addObject:connection];
-        
-        //NSBundle * bundle = [TFHelper frameworkBundle];
-        //NSString * soundPath = [bundle pathForResource:kConnectionMadeEffect ofType:@""];
+        //[_connectionLines addObject:connection];
 
         [[SimpleAudioEngine sharedEngine] playEffect:kConnectionMadeEffect];
         
-        [self performSelector:@selector(handleConnectionEffectFinished:) withObject:connection afterDelay:kLineAcceptedShinningTime];
+        //[self performSelector:@selector(handleConnectionEffectFinished:) withObject:connection afterDelay:kLineAcceptedShinningTime];
     }
-}
+}*/
 
 -(void) handleEditableObjectAdded:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
@@ -129,10 +122,10 @@
         ccDrawColor4B(255,255,255,255);
     }
 }
-
+/*
 -(void) drawConnectionLines{
     [TFHelper drawLines:_connectionLines];
-}
+}*/
 
 -(void) draw{
         
@@ -141,7 +134,7 @@
     
     //[self drawBoundingBoxes];
 }
-
+/*
 #pragma mark - Lines
 
 -(void) addConnectionLine:(TFConnectionLine*) connection{
@@ -150,7 +143,7 @@
 
 -(void) removeConnectionLine:(TFConnectionLine*) connection{
     [_connectionLines removeObject:connection];
-}
+}*/
 
 #pragma mark - Object Selection
 
@@ -191,11 +184,21 @@
 
 -(void) methodSelectionPopup:(TFMethodSelectionPopup*) popup didSelectAction:(TFMethodInvokeAction*) action forEvent:(TFEvent*) event{
     
+    [[SimpleAudioEngine sharedEngine] playEffect:kConnectionMadeEffect];
+    
     THCustomProject * project = [THDirector sharedDirector].currentProject;
     [project registerAction:(TFAction*)action forEvent:event];
     
-    TFEditableObject * source = (TFEditableObject*) popup.object1;
-    [source addConnectionTo:popup.object2 animated:YES];
+    THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
+    invocationConnection.action = action;
+    invocationConnection.numParameters = action.method.numParams;
+    if(action.method.numParams > 0){
+        invocationConnection.parameterType = action.method.firstParamType;
+        [invocationConnection reloadSprite];
+    }
+    
+    [project addInvocationConnection:invocationConnection animated:YES];
+        
 }
 
 -(void)startNewConnectionForObject:(TFEditableObject*) object {
@@ -391,7 +394,9 @@
             [project deregisterAction:action];
         }
         
-        [self.currentObject removeAllConnectionsTo:object];
+        [project removeAllConnectionsFrom:self.currentObject to:object];
+        //[self.currentObject removeAllConnectionsTo:object];
+        
         object.highlighted = NO;
         
         

@@ -72,4 +72,8 @@
     return [object valueForKey:self.property.name];
 }
 
+-(NSString*) description{
+    return [NSString stringWithFormat:@"%@ on %@",self.property,self.target];
+}
+
 @end

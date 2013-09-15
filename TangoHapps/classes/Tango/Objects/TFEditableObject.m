@@ -24,6 +24,8 @@
 
 #import "TFEditableObject.h"
 #import "TFConnectionLine.h"
+#import "THInvocationConnectionLine.h"
+
 #import "THEditableObjectProperties.h"
 #import "TFSimulableObject.h"
 #import "TFMethod.h"
@@ -145,10 +147,10 @@
 }
 
 #pragma mark - Connections
-
+/*
 -(void) handleConnectionsRemoved{
     [_triggerableProperties reloadState];
-}
+}*/
 
 -(void) removeConnectionTo:(TFEditableObject*) object{
     
@@ -163,9 +165,10 @@
         [_connections removeObject:toRemove];
     }
     
-    [self handleConnectionsRemoved];
+    //[self handleConnectionsRemoved];
 }
 
+/*
 -(void) removeAllConnectionsTo:(TFEditableObject*) object{
     NSMutableArray * toRemove = [NSMutableArray array];
     for (TFConnectionLine * connection in _connections) {
@@ -179,7 +182,7 @@
     }
     
     [self handleConnectionsRemoved];
-}
+}*/
 
 -(BOOL) acceptsConnectionsTo:(TFEditableObject*)object{
     
@@ -219,7 +222,7 @@
     }
     return connections;
 }
-
+/*
 -(void) handleEditableObjectRemoved:(NSNotification*) notification{
     
     TFEditableObject * object = notification.object;
@@ -237,9 +240,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:object];
 }
 
--(void) addConnectionTo:(TFEditableObject*) object animated:(BOOL) animated{
 
-    TFConnectionLine * connection = [[TFConnectionLine alloc] init];
+-(void) addConnectionTo:(TFEditableObject*) object animated:(BOOL) animated{
+    
+    
+    THInvocationConnectionLine * connection = [[THInvocationConnectionLine alloc] init];
     connection.obj1 = self;
     connection.obj2 = object;
     connection.shouldAnimate = animated;
@@ -250,8 +255,10 @@
     [self.triggerableProperties reloadState];
     
     [self registerNotificationsFor:object];
+    
 }
-
+*/
+/*
 -(NSArray*) connectionsToObject:(TFEditableObject*) target{
     NSMutableArray * connections = [NSMutableArray array];
     
@@ -261,7 +268,7 @@
         }
     }
     return connections;
-}
+}*/
 
 #pragma mark - Actions
 

@@ -37,6 +37,7 @@
 #import "THBoardPinEditable.h"
 #import "THElementPinEditable.h"
 #import "THWire.h"
+#import "THInvocationConnectionLine.h"
 
 @implementation THCustomProject
 
@@ -101,6 +102,7 @@
     _values = [NSMutableArray array];
     _triggers = [NSMutableArray array];
     _wires = [NSMutableArray array];
+    _invocationConnections = [NSMutableArray array];
     
     _assetCollection = [[THAssetCollection alloc] initWithLocalFiles];
     
@@ -162,6 +164,7 @@
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
         NSArray * wires = [decoder decodeObjectForKey:@"wires"];
+        NSArray * invocationConnections = [decoder decodeObjectForKey:@"invocationConnections"];
         
         for(TFEventActionPair * pair in eventActionPairs){
             [self registerAction:pair.action forEvent:pair.event];
@@ -202,6 +205,10 @@
             [self addWire:wire];
         }
         
+        for(THInvocationConnectionLine * connetion in invocationConnections){
+            [self addInvocationConnection:connetion animated:NO];
+        }
+        
         if(lilypad != nil){
             [self addLilypad:lilypad];
         }
@@ -224,6 +231,8 @@
     [coder encodeObject:self.triggers forKey:@"triggers"];
     [coder encodeObject:self.actions forKey:@"actions"];
     [coder encodeObject:self.wires forKey:@"wires"];
+    [coder encodeObject:self.invocationConnections forKey:@"invocationConnections"];
+
     
     if(self.lilypad != nil)
         [coder encodeObject:_lilypad forKey:@"lilypad"];
@@ -529,7 +538,8 @@
         idx++;
     }
     [_eventActionPairs removeObject:toRemove];
-    [toRemove.action.source removeConnectionTo:toRemove.action.target];
+    //Juan check
+    //[toRemove.action.source removeConnectionTo:toRemove.action.target];
     
     TFEditableObject * editable = toRemove.action.source;
     [[NSNotificationCenter defaultCenter] removeObserver:action name:toRemove.event.name object:editable.simulableObject];
@@ -617,6 +627,58 @@
     }
 }
 
+
+#pragma mark - Invocation Connections
+
+-(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2{
+    NSMutableArray * connections = [NSMutableArray array];
+    
+    for (THInvocationConnectionLine * connection in self.invocationConnections) {
+        if(connection.obj1 == obj1 && connection.obj2 == obj2){
+            [connections addObject:connection];
+        }
+    }
+    
+    return connections;
+}
+
+-(void) addInvocationConnection:(THInvocationConnectionLine*) connection animated:(BOOL) animated{
+    
+    connection.shouldAnimate = animated;
+    [self.invocationConnections addObject:connection];
+    [self notifyObjectAdded:connection];
+}
+
+-(void) removeInvocationConnection:(THInvocationConnectionLine*) invocationConnection{
+    [self.invocationConnections removeObject:invocationConnection];
+    
+    [self notifyObjectRemoved:invocationConnection];
+}
+
+-(void) removeAllInvocationConnectionsTo:(id) object{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (THInvocationConnectionLine * invocationConnection in self.invocationConnections) {
+        if(invocationConnection.obj2 == object){
+            [toRemove addObject:invocationConnection];
+        }
+    }
+    
+    for (id object in toRemove) {
+        [self.invocationConnections removeObject:object];
+    }
+}
+
+-(void) removeAllConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2{
+    NSArray * toRemove = [self invocationConnectionsFrom:obj1 to:obj2];
+    
+    for (TFConnectionLine * connection in toRemove) {
+        [self.invocationConnections removeObject:connection];
+        [connection.obj1 reloadProperties];//juan check if properties work
+    }
+    
+    //[self handleConnectionsRemoved];
+}
+
 #pragma mark - All Objects
 
 -(TFEditableObject*) objectAtLocation:(CGPoint)location{
@@ -625,6 +687,13 @@
             return object;
         }
     }
+    
+    for (THInvocationConnectionLine * connection in self.invocationConnections) {
+        if([connection testPoint:location]){
+            return connection;
+        }
+    }
+    
     if(self.lilypad.parent && [self.lilypad testPoint:location]){
         return self.lilypad;
     }

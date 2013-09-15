@@ -80,6 +80,7 @@
     return connection;
 }
 
+/*
 -(void) addConnection:(TFConnectionLine*) connection{
     TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
     [editor addConnectionLine:connection];
@@ -89,13 +90,13 @@
     
     TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
     [editor removeConnectionLine:connection];
-}
+}*/
 
 -(void) selectionChanged{
     
     //[Editor sharedInstance].selectedConnections = self.selectedConnections;
-    THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
-    
+    //THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
+    /*
     if(button1Down){
         _connection1 = [self createConnectionLineFor:condition.obj1];
         [self addConnection:_connection1];
@@ -108,7 +109,7 @@
         [self addConnection:_connection2];
     } else {
         [self removeConnection:_connection2];
-    }
+    }*/
 }
 
 - (IBAction)button1Up:(id)sender {
