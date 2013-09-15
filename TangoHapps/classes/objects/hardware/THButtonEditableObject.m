@@ -12,7 +12,6 @@
 #import "THButton.h"
 #import "THViewEditableObject.h"
 #import "THElementPin.h"
-#import "THResistorExtension.h"
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 

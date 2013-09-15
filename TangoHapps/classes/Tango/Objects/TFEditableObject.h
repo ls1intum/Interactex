@@ -23,7 +23,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "TFEditable.h"
 
 @class TFSimulableObject;
 @class THTriggerableProperties;
@@ -35,6 +34,12 @@
 @class THPaletteItem;
 @class TFLayer;
 @class TFAction;
+
+@protocol TFEditable <NSObject>
+
+@property (nonatomic, readonly) NSArray * propertyControllers;
+
+@end
 
 @interface TFEditableObject : CCNode <NSCoding, NSCopying, TFEditable> {
     CCLabelTTF * _selectionLabel;

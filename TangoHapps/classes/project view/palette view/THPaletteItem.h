@@ -23,7 +23,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "TFEditable.h"
 
 @class THPaletteItem;
 

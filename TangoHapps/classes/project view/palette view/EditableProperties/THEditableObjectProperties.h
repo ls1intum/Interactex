@@ -22,10 +22,23 @@
  * THE SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@protocol TFEditable <NSObject>
+@class THEditableObjectProperties;
 
-@property (nonatomic, readonly) NSArray * propertyControllers;
+@protocol THPropertiesSizeDelegate <NSObject>
+-(void) properties:(THEditableObjectProperties*) properties didChangeSize:(CGSize) newSize;
+@end
+
+@interface THEditableObjectProperties : UIViewController {
+}
+
+
+@property (nonatomic, weak) id<THPropertiesSizeDelegate> sizeDelegate;
+@property (nonatomic, weak) UIScrollView * scrollView;
+@property (nonatomic, strong) id<TFEditable> editableObject;
+
++(id) properties;
+-(void) reloadState;
 
 @end

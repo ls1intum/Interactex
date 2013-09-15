@@ -17,7 +17,6 @@
 #import "THiPhoneEditableObject.h"
 #import "THiPhone.h"
 #import "THConditionEditableObject.h"
-#import "THResistorExtension.h"
 #import "THLilypadEditable.h"
 #import "THNumberValueEditable.h"
 #import "THTimerEditable.h"
@@ -225,13 +224,13 @@
             if([object2 isKindOfClass:[THLilyPadEditable class]]){
                 [self connectElementPinToLilypad:objectPin at:location];
             }
-        } else if([object1 isKindOfClass:[THResistorExtension class]]){
+        } /*else if([object1 isKindOfClass:[THResistorExtension class]]){
             THResistorExtension * extension = (THResistorExtension*) object1;
             if([object2 isKindOfClass:[THLilyPadEditable class]]){
                 THElementPinEditable * objectPin = extension.pin;
                 [self connectElementPinToLilypad:objectPin at:location];
             }
-        }
+        }*/
         
         [self dehighlightCurrentPin];
     } else{

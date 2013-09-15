@@ -12,7 +12,6 @@
 #import "THSwitchProperties.h"
 #import "THElementPin.h"
 #import "THPin.h"
-#import "THResistorExtension.h"
 #import "THElementPinEditable.h"
 
 @implementation THSlideSwitchEditableObject

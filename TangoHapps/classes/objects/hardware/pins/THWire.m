@@ -220,26 +220,71 @@
     }
 }
 
+-(NSInteger) findLongestSegment{
+    float maxDist = 0;
+    NSInteger maxDistIdx = -1;
+    
+    CGPoint previousNodePosition = self.p1;
+    for (int i = 0; i < self.nodes.count; i++) {
+        THWireNode * node = [self.nodes objectAtIndex:i];
+        float distance = ccpDistance(node.position, previousNodePosition);
+        if(distance > maxDist){
+            maxDist = distance;
+            maxDistIdx = i-1;
+        }
+        previousNodePosition = node.position;
+    }
+    
+    float distance = ccpDistance(self.p2, previousNodePosition);
+    if(distance > maxDist){
+        maxDistIdx = self.nodes.count-1;
+    }
+    
+    return maxDistIdx;
+}
+
+-(CGPoint) positionForNodeOrObjectAtIndex:(NSInteger) index{
+    CGPoint p1;
+    
+    if(index < 0){
+        p1 = [self.obj1 convertToWorldSpace:ccp(0,0)];
+    } else if(index >= self.nodes.count){
+        p1 = [self.obj2 convertToWorldSpace:ccp(0,0)];
+    } else {
+        THWireNode * node = [self.nodes objectAtIndex:index];
+        p1 = [node convertToWorldSpace:ccp(0,0)];
+    }
+    return p1;
+}
+
 -(void) addMiddleNode{
     
+    NSInteger index = [self findLongestSegment];
+    
+    CGPoint p1 = [self positionForNodeOrObjectAtIndex:index];
+    CGPoint p2 = [self positionForNodeOrObjectAtIndex:index+1];
+        
     THWireNode * node = [[THWireNode alloc] init];
     
-    CGPoint global1 = [self.obj1 convertToWorldSpace:ccp(0,0)];
-    CGPoint global2 = [self.obj2 convertToWorldSpace:ccp(0,0)];
-    CGPoint position = ccp((global1.x + global2.x) / 2.0f, (global1.y + global2.y) / 2.0f);
+    CGPoint position = ccp((p1.x + p2.x) / 2.0f, (p1.y + p2.y) / 2.0f);
     
     THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
     
     node.position = [editor convertToNodeSpace:position];
     
-    [self addNode:node];
+    
+    [self insertNode:node atIndex:index+1];
 }
 
--(void) addNode:(THWireNode*) node{
+-(void) insertNode:(THWireNode*) node atIndex:(NSUInteger) index{
     [node addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
     node.wire = self;
     [self addChild:node];
-    [self.nodes addObject:node];
+    [self.nodes insertObject:node atIndex:index];
+}
+
+-(void) addNode:(THWireNode*) node{
+    [self insertNode:node atIndex:self.nodes.count];
 }
 
 -(void) removeNode:(THWireNode*) node{

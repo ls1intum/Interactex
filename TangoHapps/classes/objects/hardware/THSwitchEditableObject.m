@@ -10,7 +10,6 @@
 #import "THSwitch.h"
 #import "THElementPinEditable.h"
 #import "THElementPin.h"
-#import "THResistorExtension.h"
 
 @implementation THSwitchEditableObject
 
