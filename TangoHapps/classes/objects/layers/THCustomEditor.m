@@ -271,7 +271,7 @@
 
 -(void) moveCurrentObject:(CGPoint) d{
     
-    if(self.currentObject.parent == self.zoomableLayer){
+    if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
         d = ccpMult(d, 1.0f/_zoomableLayer.scale);
     }
     
@@ -311,8 +311,9 @@
         [object scaleBy:sender.scale];
     } else {
         float newScale = self.zoomableLayer.scale * sender.scale;
-        if(newScale > kLayerMinScale && newScale < kLayerMaxScale)
+        if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
             self.zoomableLayer.scale = newScale;
+        }
     }
     sender.scale = 1.0f;
 }
@@ -598,7 +599,6 @@
         [object removeFromLayer:self];
     }
 }
-
 
 -(void) addObjects{
     THCustomProject * project = [THDirector sharedDirector].currentProject;

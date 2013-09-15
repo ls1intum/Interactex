@@ -365,6 +365,7 @@
 -(void)displaceBy:(CGPoint)displacement {
     self.position = ccpAdd(self.position, displacement);
 }
+
 -(void) setPosition:(CGPoint)position{
     [super setPosition:position];
     //NSLog(@"%f %f",position.x,position.y);
