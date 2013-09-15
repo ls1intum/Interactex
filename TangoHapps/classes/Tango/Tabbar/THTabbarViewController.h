@@ -38,6 +38,8 @@
 @property (nonatomic, readonly) THPaletteViewController *paletteController;
 @property (nonatomic, readonly) THPropertiesViewController *propertiesController;
 @property (nonatomic) BOOL hidden;
+@property (weak, nonatomic) IBOutlet UIButton *paletteButton;
+@property (weak, nonatomic) IBOutlet UIButton *propertiesButton;
 
 - (IBAction)paletteTapped:(id)sender;
 - (IBAction)propertiesTapped:(id)sender;

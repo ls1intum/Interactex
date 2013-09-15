@@ -92,6 +92,15 @@ float const kTabbarToolbarHeight = 50;
 -(void) showTab:(NSInteger)index {
     [_paletteController.view setHidden:(index == 1)];
     [_propertiesController.view setHidden:(index == 0)];
+    
+    if(index == 0){
+        self.paletteButton.selected = YES;
+        self.propertiesButton.selected = NO;
+    } else if(index == 1){
+        
+        self.paletteButton.selected = NO;
+        self.propertiesButton.selected = YES;
+    }
 }
 
 - (IBAction)paletteTapped:(id)sender {
