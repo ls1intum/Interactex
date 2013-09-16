@@ -25,7 +25,6 @@
 
 #import <UIKit/UIKit.h>
 #import "THTabbarView.h"
-#import "TFEditor.h"
 
 @class THPaletteViewController;
 @class THPropertiesViewController;

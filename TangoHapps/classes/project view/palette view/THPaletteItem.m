@@ -24,7 +24,6 @@
 
 
 #import "THPaletteItem.h"
-#import "TFEditor.h"
 #import "THPaletteItemProperties.h"
 
 @implementation THPaletteItem

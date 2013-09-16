@@ -37,7 +37,6 @@
 				<string key="NSFrameSize">{379, 44}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -86,14 +85,6 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">hideiphone.png</string>
-						</object>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<reference key="IBUIToolbar" ref="67843244"/>
-					</object>
-					<object class="IBUIBarButtonItem" id="197455769">
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">editormode.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<reference key="IBUIToolbar" ref="67843244"/>
@@ -177,14 +168,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tshirtItem</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="197455769"/>
-					</object>
-					<int key="connectionID">38</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lilypadItem</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="878740563"/>
@@ -230,14 +213,6 @@
 						<reference key="destination" ref="841351856"/>
 					</object>
 					<int key="connectionID">37</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">tshirtPressed:</string>
-						<reference key="source" ref="197455769"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -290,7 +265,6 @@
 							<reference ref="445261724"/>
 							<reference ref="525699747"/>
 							<reference ref="176512998"/>
-							<reference ref="197455769"/>
 							<reference ref="81138099"/>
 							<reference ref="540019984"/>
 							<reference ref="526391763"/>
@@ -317,11 +291,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
 						<reference key="object" ref="540019984"/>
-						<reference key="parent" ref="67843244"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">20</int>
-						<reference key="object" ref="197455769"/>
 						<reference key="parent" ref="67843244"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -352,7 +321,6 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -485,7 +453,6 @@
 			<string key="connect.png">{30, 30}</string>
 			<string key="delete.png">{30, 30}</string>
 			<string key="duplicate.png">{30, 30}</string>
-			<string key="editormode.png">{30, 26}</string>
 			<string key="hideiphone.png">{23, 30}</string>
 			<string key="lilypadmode.png">{30, 30}</string>
 			<string key="pinsmode.png">{30, 30}</string>

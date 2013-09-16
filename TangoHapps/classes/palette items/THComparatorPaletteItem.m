@@ -15,7 +15,7 @@
     THComparisonConditionEditable * condition = [[THComparisonConditionEditable alloc] init];
     condition.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addCondition:condition];
 }
 

@@ -9,6 +9,8 @@
 #import "THHelper.h"
 #import "THProjectViewController.h"
 #import "THTabbarViewController.h"
+#import "THViewEditableObject.h"
+#import "THiPhoneEditableObject.h"
 
 @implementation THHelper
 
@@ -51,6 +53,10 @@
 
 +(CGRect) paletteFrame{
     return [THDirector sharedDirector].projectController.tabController.view.frame;
+}
+
++(BOOL) isUIObject:(TFEditableObject*) object{
+    return [object isKindOfClass: [THViewEditableObject class]] || [object isKindOfClass:[THiPhoneEditableObject class]];
 }
 
 @end

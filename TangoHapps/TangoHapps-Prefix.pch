@@ -28,6 +28,7 @@
 #import "TFPropertyInvocation.h"
 #import "TFMethodInvokeAction.h"
 #import "TFConnectionLine.h"
+#import "TFMethod.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -36,7 +37,7 @@
 #import "THUtils.h"
 #import "THConstants.h"
 #import "THHelper.h"
-#import "THCustomProject.h"
+#import "THProject.h"
 
 #import "THCondition.h"
 #import "THDirector.h"

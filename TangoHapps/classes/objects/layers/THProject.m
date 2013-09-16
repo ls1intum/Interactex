@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
-#import "THCustomProject.h"
+#import "THProject.h"
 #import "THViewEditableObject.h"
 #import "THHardwareComponentEditableObject.h"
 #import "THiPhoneEditableObject.h"
@@ -39,7 +39,7 @@
 #import "THWire.h"
 #import "THInvocationConnectionLine.h"
 
-@implementation THCustomProject
+@implementation THProject
 
 #pragma mark - Static Methods
 
@@ -71,11 +71,11 @@
 
 #pragma mark - Static Constructors
 
-+(THCustomProject*) emptyProject {
-    return [[THCustomProject alloc] init];
++(THProject*) emptyProject {
+    return [[THProject alloc] init];
 }
 
-+(THCustomProject*) projectSavedWithName:(NSString*) name{
++(THProject*) projectSavedWithName:(NSString*) name{
     
     NSString *filePath = [TFFileUtils dataFile:name inDirectory:kProjectsDirectory];
     return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
@@ -84,11 +84,11 @@
 +(id) newProject{
     NSString * newProjectName = [self newProjectName];
     
-    return [THCustomProject projectNamed:newProjectName];
+    return [THProject projectNamed:newProjectName];
 }
 
 +(id) projectNamed:(NSString*) name{
-    return [[THCustomProject alloc] initWithName:name];
+    return [[THProject alloc] initWithName:name];
 }
 
 #pragma mark - Initialization
@@ -261,7 +261,7 @@
 
 -(BOOL) renameTo:(NSString*) newName{
     
-    BOOL success = [THCustomProject renameProjectNamed:self.name toName:newName];
+    BOOL success = [THProject renameProjectNamed:self.name toName:newName];
     if(success){
         self.name = newName;
     }
@@ -629,6 +629,18 @@
 
 
 #pragma mark - Invocation Connections
+
+-(NSArray*) invocationConnectionsForObject:(TFEditableObject*) object{
+    NSMutableArray * connections = [NSMutableArray array];
+    
+    for (THInvocationConnectionLine * connection in self.invocationConnections) {
+        if(connection.obj1 == object){
+            [connections addObject:connection];
+        }
+    }
+    
+    return connections;
+}
 
 -(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2{
     NSMutableArray * connections = [NSMutableArray array];

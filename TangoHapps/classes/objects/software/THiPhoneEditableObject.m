@@ -13,7 +13,8 @@
 #import "THiPhone.h"
 #import "THViewEditableObject.h"
 #import "THView.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
+#import "THInvocationConnectionLine.h"
 
 @implementation THiPhoneEditableObject
 @dynamic type;
@@ -202,14 +203,14 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhone:self];
 }
 
 -(void) removeFromWorld{
     //[_currentView removeFromWorld];
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project removeiPhone];
     
     [super removeFromWorld];

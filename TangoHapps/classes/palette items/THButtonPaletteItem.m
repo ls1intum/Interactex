@@ -16,7 +16,7 @@
     THButtonEditableObject * clotheButton = [[THButtonEditableObject alloc] init];
     clotheButton.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:clotheButton];
 }
 

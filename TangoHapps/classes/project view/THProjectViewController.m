@@ -5,7 +5,7 @@
 #import "THEditorToolsDataSource.h"
 #import "THTabbarViewController.h"
 #import "TFSimulator.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 #import "THCustomSimulator.h"
 #import "THiPhoneEditableObject.h"
 #import "THProjectProxy.h"
@@ -181,13 +181,13 @@ float const kToolsTabMargin = 5;
 
 -(void) saveCurrentProject{
     THDirector * director = [THDirector sharedDirector];
-    THCustomProject * currentProject = director.currentProject;
+    THProject * currentProject = director.currentProject;
     
     //_projectName = [THDirector sharedDirector].currentProject.name;
     
     UIImage * image = [TFHelper screenshot];
     
-    if(![THCustomProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
+    if(![THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
         
         THProjectProxy * proxy = [THProjectProxy proxyWithName:director.currentProject.name];
         proxy.image = image;
@@ -210,7 +210,7 @@ float const kToolsTabMargin = 5;
     
     [director.currentProject prepareToDie];
     if(_currentProjectName != nil){
-        director.currentProject = [THCustomProject projectSavedWithName:_currentProjectName];
+        director.currentProject = [THProject projectSavedWithName:_currentProjectName];
     }
 }
 
@@ -269,7 +269,7 @@ float const kToolsTabMargin = 5;
 }
 
 -(NSString*) title{
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     return project.name;
 }
 
@@ -278,7 +278,7 @@ float const kToolsTabMargin = 5;
 }
 
 -(void) addTitleLabel{
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     if(!_titleLabel){
         _titleLabel = [TFHelper navBarTitleLabelNamed:project.name];
         _titleLabel.userInteractionEnabled = YES;
@@ -305,7 +305,7 @@ float const kToolsTabMargin = 5;
         _titleTextField.delegate = self;
     }
     
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     _titleTextField.text = project.name;
     self.navigationItem.titleView = _titleTextField;
     [_titleTextField becomeFirstResponder];
@@ -396,7 +396,7 @@ float const kToolsTabMargin = 5;
         if(CGRectContainsPoint(self.palettePullImageView.frame,location)){
             self.movingTabBar = YES;
             
-            TFEditor * editor = (TFEditor*) self.currentLayer;
+            THEditor * editor = (THEditor*) self.currentLayer;
             editor.shouldRecognizePanGestures = NO;
             
         } else {
@@ -429,7 +429,7 @@ float const kToolsTabMargin = 5;
     } else {
         self.movingTabBar = NO;
         
-        TFEditor * editor = (TFEditor*) self.currentLayer;
+        THEditor * editor = (THEditor*) self.currentLayer;
         editor.shouldRecognizePanGestures = YES;
     }
 }
@@ -460,7 +460,7 @@ float const kToolsTabMargin = 5;
 
 -(void) startWithEditor{
     
-    THCustomEditor * editor = [THCustomEditor node];
+    THEditor * editor = [THEditor node];
     editor.dragDelegate = self.tabController.paletteController;
     _currentLayer = editor;
     [_currentLayer willAppear];
@@ -491,7 +491,7 @@ float const kToolsTabMargin = 5;
         
         [self saveCurrentProject];
         
-        THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+        THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
         THCustomSimulator * simulator = [THCustomSimulator node];
         
         //wasEditorInLilypadMode = editor.isLilypadMode;
@@ -505,7 +505,7 @@ float const kToolsTabMargin = 5;
         [self addStopButton];
         [self.toolsController unselectAllButtons];
         
-        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         project.iPhone.visible = YES;
         [self.toolsController updateHideIphoneButtonTint];
         [self updatePalettePullVisibility];
@@ -521,7 +521,7 @@ float const kToolsTabMargin = 5;
         [self restoreCurrentProject];
         
         THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
-        THCustomEditor * editor = [THCustomEditor node];
+        THEditor * editor = [THEditor node];
         
         editor.dragDelegate = self.tabController.paletteController;
         [self switchToLayer:editor];

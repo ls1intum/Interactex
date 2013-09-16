@@ -23,7 +23,6 @@
  */
 
 #import "THPropertiesViewController.h"
-#import "TFEditor.h"
 #import "THEditableObjectProperties.h"
 #import "THTabbarView.h"
 #import "THTabbarSection.h"

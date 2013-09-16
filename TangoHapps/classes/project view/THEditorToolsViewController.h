@@ -14,8 +14,6 @@
     NSArray * _lilypadTools;
     NSArray * _simulatingTools;
     NSMutableArray * _barButtonItems;
-    
-    UIColor * _iPhoneTintColor;
 }
 
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
@@ -24,18 +22,17 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem * removeButton;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem * lilypadItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *hideiPhoneItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem * tshirtItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem * hideiPhoneItem;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem * pinsModeItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem * pushItem;
-@property (strong, nonatomic) UIColor * iPhoneItemTintColor;
+
+@property (strong, nonatomic) UIColor * highlightedItemTintColor;
 
 @property (nonatomic) BOOL hidden;
 
 
 -(void) addEditionButtons;
--(void) addLilypadButtons;
 -(void) addSimulationButtons;
 
 -(void) unselectAllButtons;
@@ -45,7 +42,6 @@
 - (IBAction) duplicateTapped:(id)sender;
 - (IBAction) removeTapped:(id)sender;
 - (IBAction)lilypadPressed:(id)sender;
-- (IBAction)tshirtPressed:(id)sender;
 - (IBAction)hideiPhonePressed:(id)sender;
 - (IBAction)pinsModePressed:(id)sender;
 - (IBAction)pushPressed:(id)sender;

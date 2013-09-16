@@ -10,7 +10,7 @@
 #import "THiPhoneControl.h"
 #import "THHardwareComponentEditableObject.h"
 #import "THConditionEditableObject.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 
 @implementation THiPhoneControlEditableObject
 

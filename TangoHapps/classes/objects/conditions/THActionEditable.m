@@ -46,12 +46,12 @@
 #pragma mark - World interaction
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addAction:self];
 }
 
 -(void) removeFromWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project removeAction:self];
     [super removeFromWorld];
 }

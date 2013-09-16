@@ -10,7 +10,7 @@
 #import "THProjectProxy.h"
 #import "THCollectionProjectCell.h"
 #import "THProjectDraggableCell.h"
-#import "THCustomProject.h"
+#import "THProject.h"
 #import "THTableProjectCell.h"
 
 @implementation THProjectSelectionViewController
@@ -121,7 +121,7 @@
 - (void)proceedToProjectAtIndex:(NSInteger) index{
     
     THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
-    THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:proxy.name];
+    THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
     
     //update its name since it could have been renamed while it was not loaded
     project.name = proxy.name;
@@ -134,7 +134,7 @@
 
 - (void)proceedToNewProject{
     
-    THCustomProject * project = [THCustomProject newProject];
+    THProject * project = [THProject newProject];
     
     [THDirector sharedDirector].currentProject = project;
     
@@ -298,7 +298,7 @@
     if(indexPath){
         THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
         //NSString * oldName = proxy.name;
-        BOOL success = [THCustomProject renameProjectNamed:proxy.name toName:name];
+        BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
         if(success){
             //[TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
             
@@ -472,8 +472,8 @@
     THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     
     //project
-    THCustomProject * project = [THCustomProject projectNamed:proxy.name];
-    project.name = [THCustomProject nextProjectNameForName:project.name];
+    THProject * project = [THProject projectNamed:proxy.name];
+    project.name = [THProject nextProjectNameForName:project.name];
     [project save];
     
     /*
@@ -595,7 +595,7 @@
         
         THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
         //NSString * oldName = [proxy.name stringByAppendingString:@".png"];
-        BOOL success = [THCustomProject renameProjectNamed:proxy.name toName:name];
+        BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
         
         if(success){
 /*

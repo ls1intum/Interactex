@@ -14,7 +14,7 @@
 
 - (BOOL)canBeDroppedAt:(CGPoint)location
 {
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if([project.iPhone testPoint:location]){
         return YES;
     }
@@ -27,7 +27,7 @@
     CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
     musicPlayer.position = locationTransformed;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:musicPlayer];
 }
 

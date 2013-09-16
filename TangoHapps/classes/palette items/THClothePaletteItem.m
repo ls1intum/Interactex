@@ -16,7 +16,7 @@
     THClothe * clothe = [[THClothe alloc] initWithName:self.name];
     clothe.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClothe:clothe];
 }
 

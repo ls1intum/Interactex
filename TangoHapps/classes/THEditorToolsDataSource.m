@@ -7,7 +7,7 @@
 //
 
 #import "THEditorToolsDataSource.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 #import "THCustomSimulator.h"
 #import "THProjectViewController.h"
 #import "THTabbarViewController.h"
@@ -65,7 +65,7 @@
 -(void) stopLilypadMode{
     THDirector * director = [THDirector sharedDirector];
     
-    THCustomEditor * editor = (THCustomEditor*) director.currentLayer;
+    THEditor * editor = (THEditor*) director.currentLayer;
     [editor stopLilypadMode];
     [self.lilypadItem setImage:[UIImage imageNamed:@"lilypadmode"]];
 }
@@ -73,13 +73,13 @@
 -(void) startLilypadMode{
     
     THDirector * director = [THDirector sharedDirector];
-    THCustomEditor * editor = (THCustomEditor*) director.currentLayer;
+    THEditor * editor = (THEditor*) director.currentLayer;
     [editor startLilypadMode];
     [self.lilypadItem setImage:[UIImage imageNamed:@"editormode"]];
 }
 
 - (void) lilypadPressed:(id)sender {
-    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     if(editor.isLilypadMode){
         [self stopLilypadMode];
     } else {
@@ -98,7 +98,7 @@
 - (void) pushPressed:(id)sender {
     THServerController * serverController = [THDirector sharedDirector].serverController;
     if([serverController serverIsRunning]){
-        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         [serverController pushProjectToAllClients:project];
     }
 }

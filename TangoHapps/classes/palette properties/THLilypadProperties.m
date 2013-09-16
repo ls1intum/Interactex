@@ -10,8 +10,8 @@
 #import "THBoardPinEditable.h"
 #import "THLilypadEditable.h"
 #import "THLilypadPropertiesPinView.h"
-#import "THCustomEditor.h"
-#import "THCustomProject.h"
+#import "THEditor.h"
+#import "THProject.h"
 
 @implementation THLilypadProperties
 
@@ -27,7 +27,7 @@ float const kLilypadPropertiesMinHeight = 300;
 
 -(void) addPinViews{
     _currentY = kLilypadPropertiesPadding;
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
     for (THBoardPinEditable * pin in project.lilypad.pins) {
         if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){
@@ -63,7 +63,7 @@ float const kLilypadPropertiesMinHeight = 300;
 
 -(void) handleConnectionChanged{
     THDirector * director = [THDirector sharedDirector];
-    THCustomEditor * editor = (THCustomEditor*) director.currentLayer;
+    THEditor * editor = (THEditor*) director.currentLayer;
     
     if(editor.isLilypadMode){
        [self reloadState]; 

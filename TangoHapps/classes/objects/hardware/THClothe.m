@@ -98,7 +98,7 @@
 #pragma mark - World and Layer
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClothe:self];
     
     for (TFEditableObject * attachment in _attachments) {
@@ -112,7 +112,7 @@
         [object removeFromWorld];
     }
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project removeClothe:self];
     [super removeFromWorld];
 }

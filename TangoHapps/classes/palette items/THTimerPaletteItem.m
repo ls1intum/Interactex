@@ -7,7 +7,7 @@
 //
 
 #import "THTimerPaletteItem.h"
-#import "THCustomProject.h"
+#import "THProject.h"
 #import "THTimerEditable.h"
 
 @implementation THTimerPaletteItem
@@ -20,7 +20,7 @@
     THTimerEditable * timer = [[THTimerEditable alloc] init];
     timer.position = location;
         
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addTrigger:timer];
 }
 

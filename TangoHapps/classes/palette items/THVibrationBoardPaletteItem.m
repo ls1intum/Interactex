@@ -15,7 +15,7 @@
     THVibrationBoardEditable * myObject = [[THVibrationBoardEditable alloc] init];
     myObject.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:myObject];
 }
 

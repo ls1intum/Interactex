@@ -23,7 +23,6 @@
  */
 
 #import "THPalette.h"
-#import "TFEditor.h"
 #import "THCustomPaletteItem.h"
 
 @implementation THPalette

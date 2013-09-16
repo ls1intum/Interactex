@@ -26,7 +26,7 @@
 
 #import "THUtils.h"
 
-#import "THCustomProject.h"
+#import "THProject.h"
 #import "THClientHelper.h"
 #import "THClientProject.h"
 #import "THSimulableWorldController.h"

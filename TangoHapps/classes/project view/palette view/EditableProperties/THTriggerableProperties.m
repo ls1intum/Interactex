@@ -81,7 +81,7 @@
     object.highlighted = highlighted;
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
     
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     NSArray * connections = [project invocationConnectionsFrom:editable to: object];
     for (TFConnectionLine * connection in connections) {
         connection.selected = highlighted;
@@ -89,7 +89,7 @@
 }
 
 -(void) highlightOrDeHighlightForEvent:(TFEvent*) event highlighted:(BOOL) highlighted{
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * actions = [project actionsForSource:(TFEditableObject*)self.editableObject];
     for (TFEventActionPair * pair in actions) {
         TFEvent * worldEvent = pair.event;
@@ -157,7 +157,7 @@
     TFEvent * event = [editable.events objectAtIndex:indexPath.row];
     label.text = event.description;
     
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * actions = [project actionsForSource:editable];
     for (TFEventActionPair * pair in actions) {
         if([pair.event.name isEqualToString:event.name]){
@@ -170,7 +170,7 @@
 }
 
 -(void)updateConnectionLabel {
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
     NSMutableArray * actions = [project actionsForSource:editable];
     self.connectionCountLabel.text = [NSString stringWithFormat:@"%d connections",actions.count];

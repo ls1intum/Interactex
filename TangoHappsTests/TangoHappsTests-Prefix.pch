@@ -22,7 +22,7 @@
 #import "THConstants.h"
 #import "THClientHelper.h"
 
-#import "THCustomProject.h"
+#import "THProject.h"
 
 #import "THLedEditableObject.h"
 #import "THButtonEditableObject.h"

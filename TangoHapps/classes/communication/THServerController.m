@@ -89,7 +89,7 @@
     [self queueTransferAgentActionOnAllClients:kTransferActionInputPinState withObject:pins];
 }*/
 
--(void) pushProjectToAllClients:(THCustomProject*)project {
+-(void) pushProjectToAllClients:(THProject*)project {
     
     NSString * projectName = project.name;
     [self queueTransferActionOnAllClients:kTransferActionSceneName withObject:projectName];

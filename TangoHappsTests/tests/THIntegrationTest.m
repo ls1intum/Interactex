@@ -41,7 +41,7 @@
 
 -(void) testLedOn{
 
-    THCustomProject * project = [THTestsHelper emptyProject];
+    THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
     [project addClotheObject:led];
@@ -59,7 +59,7 @@
 }
 
 -(void) testLedIntensity{
-    THCustomProject * project = [THTestsHelper emptyProject];
+    THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
     [project addClotheObject:led];
@@ -78,7 +78,7 @@
 
 -(void) testLabelText{
     
-    THCustomProject * project = [THTestsHelper emptyProject];
+    THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
     [project addClotheObject:led];
@@ -96,7 +96,7 @@
 }
 
 -(void) testComparisonCondition{
-    THCustomProject * project = [THTestsHelper emptyProject];
+    THProject * project = [THTestsHelper emptyProject];
     
     THBuzzerEditableObject * buzzer1 = [[THBuzzerEditableObject alloc] init];
     buzzer1.frequency = 1000;
@@ -125,7 +125,7 @@
 }
 
 -(void) testGrouperCondition{
-    THCustomProject * project = [THTestsHelper emptyProject];
+    THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
     [project addClotheObject:led1];

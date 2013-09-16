@@ -60,7 +60,7 @@
 -(void) changeObjectHighlighting:(TFEditableObject*) object highlighted:(BOOL) highlighted{
 
     object.highlighted = highlighted;
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     NSArray * connections = [project invocationConnectionsFrom:object to: (TFEditableObject*)self.editableObject];
     
     for (TFConnectionLine * connection in connections) {
@@ -140,7 +140,7 @@
     label.font = [UIFont fontWithName:kEditableObjectTableFont size:kEditableObjectTableFontSize];
     label.text = method.description;
     
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * actions = [project actionsForTarget:editable];
     for (TFEventActionPair * pair in actions) {
         TFMethodInvokeAction * action = (TFMethodInvokeAction*) pair.action;

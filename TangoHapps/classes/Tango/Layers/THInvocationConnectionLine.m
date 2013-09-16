@@ -8,7 +8,7 @@
 
 #import "THInvocationConnectionLine.h"
 #import "TFConnectionLine.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 #import "THInvocationConnectionProperties.h"
 
 @implementation THInvocationConnectionLine

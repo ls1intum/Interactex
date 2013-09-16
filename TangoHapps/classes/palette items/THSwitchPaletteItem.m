@@ -16,7 +16,7 @@
     THSlideSwitchEditableObject * clotheSwitch = [[THSlideSwitchEditableObject alloc] init];
     clotheSwitch.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:clotheSwitch];
 }
 

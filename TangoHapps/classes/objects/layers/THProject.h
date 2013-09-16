@@ -23,7 +23,7 @@
 @class TFAction;
 @class TFEvent;
 
-@interface THCustomProject : NSObject
+@interface THProject : NSObject
 {
     
 }
@@ -36,8 +36,8 @@
 
 
 //static constructors
-+(THCustomProject*) emptyProject;
-+(THCustomProject*) projectSavedWithName:(NSString*) name;
++(THProject*) emptyProject;
++(THProject*) projectSavedWithName:(NSString*) name;
 
 +(id) newProject;
 +(id) projectNamed:(NSString*) name;
@@ -120,6 +120,7 @@
 -(void) removeAllWiresTo:(id) object;
 
 //invocation conncetions
+-(NSArray*) invocationConnectionsForObject:(TFEditableObject*) object;
 -(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
 -(void) addInvocationConnection:(THInvocationConnectionLine*) connection animated:(BOOL) animated;
 -(void) removeInvocationConnection:(THInvocationConnectionLine*) connection;

@@ -12,11 +12,11 @@
 #import "THElementPinEditable.h"
 #import "THElementPin.h"
 #import "THHardwareProblem.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 #import "THLilypadEditable.h"
 #import "THBoardPinEditable.h"
 #import "THWire.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 
 @implementation THHardwareComponentEditableObject
 
@@ -201,12 +201,12 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:self];
 }
 
 -(void) removeFromWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project removeClotheObject:self];
     [super removeFromWorld];
 }
@@ -214,7 +214,7 @@
 -(void) addToLayer:(TFLayer*) layer{
     [layer addEditableObject:self];
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THLilyPadEditable * lilypad = project.lilypad;
     
     THElementPinEditable * plusPin = [self plusPin];

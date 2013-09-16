@@ -29,7 +29,7 @@
 -(void)startServer;
 -(void)stopServer;
 
--(void) pushProjectToAllClients:(THCustomProject*)project;
+-(void) pushProjectToAllClients:(THProject*)project;
 /*
 -(void) startPushingLilypadStateToAllClients;
 -(void) stopPushingLilypadState;*/

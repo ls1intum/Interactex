@@ -34,7 +34,7 @@
     
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
     
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     NSArray * actions = [project actionsForSource:condition];
     
     if(condition.obj1 && condition.obj2){

@@ -15,7 +15,7 @@
     THThreeColorLedEditable * led = [[THThreeColorLedEditable alloc] init];
     led.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:led];
 }
 

@@ -13,7 +13,7 @@
     
 }
 
-+(THCustomProject*) emptyProject;
++(THProject*) emptyProject;
 +(void) startWithEditor;
 +(void) startSimulation;
 +(void) stopSimulation;

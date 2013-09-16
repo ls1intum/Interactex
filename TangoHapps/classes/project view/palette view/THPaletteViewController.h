@@ -25,9 +25,9 @@
 #import <UIKit/UIKit.h>
 #import "THPaletteItem.h"
 #import "THPalette.h"
-#import "TFEditor.h"
 #import "THTabbarSection.h"
 #import "THTabbarView.h"
+#import "THEditor.h"
 
 @class PaletteItemContainer;
 @class THDraggedPaletteItem;
@@ -40,7 +40,7 @@ typedef enum {
 } TFDraggingState;
 
 @interface THPaletteViewController : UIViewController
-<THPaletteDragDelegate, THPaletteEditionDelegate, TFEditorDragDelegate, TFTabbarViewDataSource, TFTabBarViewDelegate>
+<THPaletteDragDelegate, THPaletteEditionDelegate, THEditorDragDelegate, TFTabbarViewDataSource, TFTabBarViewDelegate>
 {
     THDraggedPaletteItem * _dragView;
     THDraggedPaletteItem * _editorDragView;

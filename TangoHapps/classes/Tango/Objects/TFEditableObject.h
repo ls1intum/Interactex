@@ -28,7 +28,6 @@
 @class THTriggerableProperties;
 @class THViewableProperties;
 @class THInvokableProperties;
-@class TFEditor;
 @class TFEvent;
 @class TFMethod;
 @class THPaletteItem;

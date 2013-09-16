@@ -12,16 +12,16 @@
 #import "THProjectDelegate.h"
 #import "THPaletteDataSource.h"
 #import "THEditorToolsDataSource.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 #import "THProjectViewController.h"
 
 @implementation THTestsHelper
 
-static THCustomEditor * _editor;
+static THEditor * _editor;
 
-+(THCustomProject*) emptyProject{
++(THProject*) emptyProject{
     
-    THCustomProject * project = (THCustomProject*) [[THDirector sharedDirector].projectDelegate newCustomProject];
+    THProject * project = (THProject*) [[THDirector sharedDirector].projectDelegate newCustomProject];
     [TFDirector sharedDirector].currentProject = project;
      return project;
 }
@@ -57,7 +57,7 @@ static THCustomEditor * _editor;
 
 +(void) startEditor {
     
-    _editor = [THCustomEditor node];
+    _editor = [THEditor node];
     
     [_editor willAppear];
     CCScene * scene = [CCScene node];
@@ -138,7 +138,7 @@ static THCustomEditor * _editor;
     popup.object1 = source;
     popup.object2 = target;
     
-    TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor methodSelectionPopup:popup didSelectAction:action forEvent:event];
     
     return action;

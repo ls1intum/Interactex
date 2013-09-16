@@ -8,7 +8,7 @@
 
 #import "THWire.h"
 #import "THWireProperties.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 
 @implementation THWireNode
 
@@ -268,7 +268,7 @@
     
     CGPoint position = ccp((p1.x + p2.x) / 2.0f, (p1.y + p2.y) / 2.0f);
     
-    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
     node.position = [editor convertToNodeSpace:position];
     
@@ -315,7 +315,7 @@
 -(void) addToLayer:(TFLayer *)layer{
     [layer addEditableObject:self];
     
-    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     self.visible = editor.isLilypadMode;
 }
 

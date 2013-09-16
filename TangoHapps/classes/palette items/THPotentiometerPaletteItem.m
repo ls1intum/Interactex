@@ -16,7 +16,7 @@
     THPotentiometerEditableObject * potentiometer = [[THPotentiometerEditableObject alloc] init];
     potentiometer.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClotheObject:potentiometer];
 }
 

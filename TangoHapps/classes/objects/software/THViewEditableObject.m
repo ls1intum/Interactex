@@ -9,7 +9,7 @@
 #import "THViewEditableObject.h"
 #import "THiPhoneViewProperties.h"
 #import "THView.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 
 @implementation THViewEditableObject
 
@@ -116,14 +116,14 @@
     [view removeSubview:(THView*)object.simulableObject];
 }
 
--(void) addToLayer:(THCustomEditor*) editor{
+-(void) addToLayer:(THEditor*) editor{
     [editor addEditableObject:self];
     
     THView * view = (THView*) self.simulableObject;
     [view addToView:[CCDirector sharedDirector].view];
 }
 
--(void) removeFromLayer:(THCustomEditor*) editor{
+-(void) removeFromLayer:(THEditor*) editor{
     [editor removeEditableObject:self];
     
     THView * view = (THView*) self.simulableObject;
@@ -249,14 +249,14 @@
 }
 
 -(void) addToWorld{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:self];
 }
 
 -(void) removeFromWorld{
     if(!self.canBeRootView){
         
-        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         [project removeiPhoneObject:self];
         
         NSArray * copy = [NSArray arrayWithArray:_subviews];

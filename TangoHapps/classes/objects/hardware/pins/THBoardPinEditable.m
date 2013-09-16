@@ -9,7 +9,7 @@
 #import "THBoardPinEditable.h"
 #import "THBoardPin.h"
 #import "THElementPinEditable.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 
 @implementation THBoardPinEditable
 
@@ -58,7 +58,7 @@
 
 -(void) setHighlighted:(BOOL)selected{
     if(selected){
-        THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+        THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
         
         NSString * text = kPinTexts[self.type];
         

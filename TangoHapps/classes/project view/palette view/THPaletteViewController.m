@@ -23,7 +23,6 @@
  */
 
 #import "THPaletteViewController.h"
-#import "TFEditor.h"
 #import "THTabbarView.h"
 #import "THPalette.h"
 #import "THDraggedPaletteItem.h"

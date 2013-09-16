@@ -19,9 +19,9 @@
 @class THClientGridView;
 @class THEditorToolsDataSource;
 @class TFLayer;
-@class THCustomProject;
+@class THProject;
 
-@protocol TFEditorToolsDataSource <NSObject>
+@protocol THEditorToolsDataSource <NSObject>
 -(NSInteger) numberOfToolbarButtonsForState:(TFAppState) state;
 -(UIBarButtonItem*) toolbarButtonAtIdx:(NSInteger) idx forState:(TFAppState) state;
 @end
@@ -39,7 +39,7 @@ typedef enum {
 
 @property (nonatomic, weak) THProjectViewController * projectController;
 @property (nonatomic, readonly) TFLayer * currentLayer;
-@property (nonatomic, strong) THCustomProject * currentProject;
+@property (nonatomic, strong) THProject * currentProject;
 @property (nonatomic, weak) THProjectProxy * currentProxy;
 @property (nonatomic, strong) NSMutableArray * projectProxies;
 @property (nonatomic, strong) THServerController * serverController;

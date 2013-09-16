@@ -19,5 +19,6 @@
 +(CGSize) currentSize;
 +(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientatio;
 +(CGRect) paletteFrame;
++(BOOL) isUIObject:(TFEditableObject*) object;
 
 @end

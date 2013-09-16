@@ -7,7 +7,7 @@
 //
 
 #import "THSoundPaletteItem.h"
-#import "THCustomProject.h"
+#import "THProject.h"
 #import "THSoundEditable.h"
 
 @implementation THSoundPaletteItem
@@ -16,7 +16,7 @@
     THSoundEditable * sound = [[THSoundEditable alloc] init];
     sound.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addAction:sound];
 }
 

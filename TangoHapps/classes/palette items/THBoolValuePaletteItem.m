@@ -15,7 +15,7 @@
     THBoolValueEditable * value = [[THBoolValueEditable alloc] init];
     value.position = location;
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addValue:value];
 }
 

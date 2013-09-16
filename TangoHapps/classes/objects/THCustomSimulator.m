@@ -32,7 +32,7 @@
 
 -(void) addObjects{
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }
@@ -42,7 +42,7 @@
 }
 
 -(void) removeObjects{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){
         [project.iPhone removeFromLayer:self];
     }
@@ -119,7 +119,7 @@
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    THCustomProject * project = [THDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     
     if(!object) {
@@ -140,7 +140,7 @@
         
         if(sender.state == UIGestureRecognizerStateChanged){
             
-            THCustomProject * project = [THDirector sharedDirector].currentProject;
+            THProject * project = [THDirector sharedDirector].currentProject;
             TFEditableObject * object = [project objectAtLocation:location];
             if(!object){
                 

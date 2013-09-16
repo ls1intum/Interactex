@@ -24,7 +24,6 @@
 
 
 #import "THTabbarViewController.h"
-#import "TFEditor.h"
 #import "THTabbarViewController.h"
 #import "THPaletteViewController.h"
 #import "THPropertiesViewController.h"

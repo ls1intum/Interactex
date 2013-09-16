@@ -7,9 +7,8 @@
 //
 
 #import "THEditorToolsViewController.h"
-#import "TFEditor.h"
 #import "THProjectViewController.h"
-#import "THCustomEditor.h"
+#import "THEditor.h"
 #import "THCustomSimulator.h"
 #import "THDirector.h"
 #import "THiPhoneEditableObject.h"
@@ -29,13 +28,11 @@
     [super viewDidLoad];
     
     _editingTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.lilypadItem, self.hideiPhoneItem, nil];
-    
-    _lilypadTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.tshirtItem, nil];
-    
+    _lilypadTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.lilypadItem, nil];
     _simulatingTools = [NSArray arrayWithObjects:self.pinsModeItem,self.pushItem,nil];
     
-    self.iPhoneItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
-    self.hideiPhoneItem.tintColor = self.iPhoneItemTintColor;
+    self.highlightedItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
+    self.hideiPhoneItem.tintColor = self.highlightedItemTintColor;
     
     [self addEditionButtons];
 }
@@ -53,29 +50,41 @@
 }
 
 -(void) updateEditingButtonsTint{
-    TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
     [self unselectAllButtons];
     
     if(editor.state == kEditorStateConnect){
-        self.connectButton.tintColor = [UIColor blueColor];
+        self.connectButton.tintColor = self.highlightedItemTintColor;
     } else if(editor.state == kEditorStateDuplicate){
-        self.duplicateButton.tintColor = [UIColor blueColor];
+        self.duplicateButton.tintColor = self.highlightedItemTintColor;
     } else if(editor.state == kEditorStateDelete){
-        self.removeButton.tintColor = [UIColor blueColor];
+        self.removeButton.tintColor = self.highlightedItemTintColor;
     }
 }
 
 -(void) updateHideIphoneButtonTint{
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
-    self.hideiPhoneItem.tintColor = (project.iPhone.visible ? self.iPhoneItemTintColor : nil);
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    self.hideiPhoneItem.tintColor = (project.iPhone.visible ? self.highlightedItemTintColor : nil);
+}
+
+-(void) updateLilypadTint{
+    
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    self.lilypadItem.tintColor = (editor.isLilypadMode ? self.highlightedItemTintColor : nil);
+}
+
+-(void) updatePinsModeItemTint{
+    
+    THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
+    self.pinsModeItem.tintColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : nil);
 }
 
 -(void) checkSwitchToState:(TFEditorState) state{
     THProjectViewController * projectController = [THDirector sharedDirector].projectController;
     if(projectController.state == kAppStateEditor){
-        TFEditor * editor = (TFEditor*) projectController.currentLayer;
+        THEditor * editor = (THEditor*) projectController.currentLayer;
         if(editor.state == state){
             editor.state = kEditorStateNormal;
         } else {
@@ -131,29 +140,28 @@
 -(void) addLilypadButtons{
     
     self.toolBar.items = _lilypadTools;
+    [self updateFrame];
 }
 
 -(void) addSimulationButtons{
     
     self.toolBar.items = _simulatingTools;
+    [self updateFrame];
 }
 
 - (IBAction)lilypadPressed:(id)sender {
     
-    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
-    if(!editor.isLilypadMode){
-        [editor startLilypadMode];
-        [self addLilypadButtons];
-    }
-}
-
-- (IBAction)tshirtPressed:(id)sender {
-    
-    THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     if(editor.isLilypadMode){
         [editor stopLilypadMode];
         [self addEditionButtons];
+
+    } else {
+        [editor startLilypadMode];
+        [self addLilypadButtons];
     }
+    
+    [self updateLilypadTint];
 }
 
 - (IBAction)pinsModePressed:(id)sender {
@@ -164,21 +172,26 @@
     } else {
         [simulator removePinsController];
     }
+    
+    [self updatePinsModeItemTint];
 }
 
 - (IBAction)pushPressed:(id)sender {
     THServerController * serverController = [THDirector sharedDirector].serverController;
     if([serverController serverIsRunning]){
-        THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         [serverController pushProjectToAllClients:project];
     }
 }
 
 - (IBAction)hideiPhonePressed:(id)sender {
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     project.iPhone.visible = !project.iPhone.visible;
     [self updateHideIphoneButtonTint];
+    
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
 }
 
 @end

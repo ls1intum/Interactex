@@ -27,7 +27,7 @@ NSString * const kPinControllerNoPinsText = @"No pins connected";
 
 -(BOOL) areTherePins{
     
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     for (THBoardPinEditable * pin in project.lilypad.pins) {
         if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){
             return YES;
@@ -45,7 +45,7 @@ NSString * const kPinControllerNoPinsText = @"No pins connected";
 }
 
 -(void) addPinContainers{
-    THCustomProject * project = (THCustomProject*) [THDirector sharedDirector].currentProject;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
     for (THBoardPinEditable * pin in project.lilypad.pins) {
         if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){

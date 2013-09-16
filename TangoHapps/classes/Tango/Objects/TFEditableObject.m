@@ -31,7 +31,6 @@
 #import "TFMethod.h"
 #import "TFEvent.h"
 #import "TFProperty.h"
-#import "TFEditor.h"
 
 #import "THViewableProperties.h"
 #import "THInvokableProperties.h"
@@ -464,6 +463,9 @@
 -(void) draw {
     
     if(self.selected){
+        
+        ccDrawColor4B(kDefaultObjectSelectionColor.r, kDefaultObjectSelectionColor.g, kDefaultObjectSelectionColor.b, kDefaultObjectSelectionColor.a);
+        
         float kSelectionPadding = 5;
         
         CGRect box = self.boundingBox;

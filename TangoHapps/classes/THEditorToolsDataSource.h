@@ -10,7 +10,7 @@
 #import "THServerController.h"
 #import "THEditorToolsDataSource.h"
 
-@interface THEditorToolsDataSource : NSObject <TFEditorToolsDataSource> {
+@interface THEditorToolsDataSource : NSObject <THEditorToolsDataSource> {
     NSArray * _editingTools;
     NSArray * _simulatingTools;
 }
