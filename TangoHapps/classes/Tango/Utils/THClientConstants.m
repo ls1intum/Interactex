@@ -91,5 +91,6 @@ NSString* const kPinModeTexts[kNumPinModes] = {@"D In", @"D Out",@"A In",@"PWM",
 NSString * const kPaletteItemsDirectory = @"paletteItems";
 NSString * const kProjectsDirectory = @"projects";
 NSString * const kProjectImagesDirectory = @"projectImages";
+NSString * const kProjectProxiesFileName = @"projectProxies";
 
 float const kMaxAnalogValue = 255;

@@ -18,7 +18,7 @@
 -(void) updateButtonText{
     
     THInvocationConnectionLine * connectionLine = (THInvocationConnectionLine*) self.editableObject;
-    if(connectionLine.action){
+    if(connectionLine.action.firstParam){
         [self.propertyButton setTitle:connectionLine.action.firstParam.description forState:UIControlStateNormal];
     } else {
         [self.propertyButton setTitle:@"parameter missing!" forState:UIControlStateNormal];

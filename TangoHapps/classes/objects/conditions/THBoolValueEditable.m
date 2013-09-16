@@ -67,7 +67,8 @@ CGSize const kBoolValueLabelSize = {80,30};
 
 -(void) reloadLabel{
     [_label removeFromParentAndCleanup:YES];
-    NSString * text = [NSString stringWithFormat:@"%d",self.value];
+
+    NSString * text = self.value ? @"YES" : @"NO";
     
     _label = [CCLabelTTF labelWithString:text dimensions:kBoolValueLabelSize hAlignment:NSTextAlignmentCenter vAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
     
@@ -96,7 +97,7 @@ CGSize const kBoolValueLabelSize = {80,30};
 }
 
 -(NSString*) description{
-    return @"Bool Value";
+    return @"Boolean";
 }
 
 

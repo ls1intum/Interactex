@@ -95,7 +95,7 @@ CGSize const kLabelSize = {80,30};
 }
 
 -(NSString*) description{
-    return @"Number Value";
+    return @"Number";
 }
 
 @end

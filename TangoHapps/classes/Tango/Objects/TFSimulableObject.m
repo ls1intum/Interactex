@@ -34,7 +34,7 @@
 
 @synthesize events = _events;
 @synthesize methods = _methods;
-@synthesize viewableProperties = _viewableProperties;
+@synthesize properties = _viewableProperties;
 @synthesize visible = _visible;
 
 #pragma mark - Archiving
@@ -88,7 +88,7 @@
 }
 
 -(TFProperty*) propertyNamed:(NSString*) name{
-    for (TFProperty * property in self.viewableProperties) {
+    for (TFProperty * property in self.properties) {
         if([property.name isEqualToString:name]){
             return property;
         }

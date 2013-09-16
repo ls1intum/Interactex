@@ -31,7 +31,7 @@
 
 @property (nonatomic) BOOL simulating;
 @property(nonatomic) NSMutableArray * methods;
-@property (nonatomic) NSMutableArray* viewableProperties;
+@property (nonatomic) NSMutableArray* properties;
 @property (nonatomic) NSMutableArray* events;
 @property (nonatomic) BOOL visible;
 

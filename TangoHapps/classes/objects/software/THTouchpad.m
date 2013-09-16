@@ -31,7 +31,7 @@ float const kNotifyMinDistance = 10.0f;
     TFProperty * dxProperty = [TFProperty propertyWithName:@"dx" andType:kDataTypeFloat];
     TFProperty * dyProperty = [TFProperty propertyWithName:@"dy" andType:kDataTypeFloat];
     TFProperty * scaleProperty = [TFProperty propertyWithName:@"scale" andType:kDataTypeFloat];
-    self.viewableProperties = [NSMutableArray arrayWithObjects:dxProperty,dyProperty,scaleProperty,nil];
+    self.properties = [NSMutableArray arrayWithObjects:dxProperty,dyProperty,scaleProperty,nil];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventDxChanged];
     event1.param1 = [TFPropertyInvocation invocationWithProperty:dxProperty target:self];

@@ -285,7 +285,7 @@
 }
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
-    if(editableObject.zoomable){
+    if(editableObject.canBeScaled){
         [self.zoomableLayer addChild:editableObject z:editableObject.z];
     } else{
         [super addEditableObject:editableObject];
@@ -293,12 +293,13 @@
 }
 
 -(void) moveCurrentObject:(CGPoint) d{
-    
-    if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
-        d = ccpMult(d, 1.0f/_zoomableLayer.scale);
+    if(self.currentObject.canBeMoved){
+        if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
+            d = ccpMult(d, 1.0f/_zoomableLayer.scale);
+        }
+        
+        [self.currentObject displaceBy:d];
     }
-    
-    [self.currentObject displaceBy:d];
 }
 
 -(void) moveLayer:(CGPoint) d{

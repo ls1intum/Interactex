@@ -112,6 +112,8 @@
     
     [self stopEditingScenes];
     [self removeGestureRecognizers];
+    
+    [[THDirector sharedDirector] saveProjectProxies];
 }
 
 #pragma mark - Private
@@ -120,6 +122,9 @@
     
     THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     THCustomProject * project = (THCustomProject*) [THCustomProject projectSavedWithName:proxy.name];
+    
+    //update its name since it could have been renamed while it was not loaded
+    project.name = proxy.name;
     
     [THDirector sharedDirector].currentProxy = proxy;
     [THDirector sharedDirector].currentProject = project;
@@ -142,9 +147,9 @@
     [self.projectProxies removeObjectAtIndex:index];
     
     [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
-    
+    /*
     NSString * imageName = [projectProxy.name stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];
+    [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];*/
 }
 
 #pragma mark - Collection DataSource
@@ -292,10 +297,10 @@
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     if(indexPath){
         THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
-        NSString * oldName = proxy.name;
+        //NSString * oldName = proxy.name;
         BOOL success = [THCustomProject renameProjectNamed:proxy.name toName:name];
         if(success){
-            [TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
+            //[TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
             
             cell.nameLabel.text = name;
             proxy.name = name;
@@ -409,7 +414,7 @@
 
 -(void) handleStoppedMoving{
     
-    if(currentProjectCell){
+    if(currentDraggableCell){
         
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:currentDraggableCell.center];
         
@@ -426,6 +431,10 @@
         currentProject = nil;
         currentProjectCell = nil;
         currentDraggableCell = nil;
+        
+        THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.editing = YES;
+        //[cell startShaking];
         
         //[self stopEditingScenes];
     }
@@ -447,7 +456,7 @@
             
         } else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded){
             
-            //[self handleStoppedMoving];
+            [self handleStoppedMoving];
         }
     }
 }
@@ -467,11 +476,12 @@
     project.name = [THCustomProject nextProjectNameForName:project.name];
     [project save];
     
+    /*
     //image
     NSString * imageFileName = [project.name stringByAppendingString:@".png"];
     NSString * imageFilePath = [TFFileUtils dataFile:imageFileName
                                          inDirectory:kProjectImagesDirectory];
-    [TFFileUtils saveImageToFile:proxy.image file:imageFilePath];
+    [TFFileUtils saveImageToFile:proxy.image file:imageFilePath];*/
     
     //proxy array
     THProjectProxy * proxyCopy = [proxy copy];
@@ -555,6 +565,10 @@
         
         [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         
+        if(self.editingOneScene){
+            self.editingOneScene = NO;
+        }
+        
         if(self.projectProxies.count == 0){
             [self stopEditingScenes];
             [self updateEditButtonEnabledState];
@@ -578,13 +592,15 @@
 -(void) didRenameProjectCell:(THCollectionProjectCell *)cell toName:(NSString *)name{
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
+        
         THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
-        NSString * oldName = [proxy.name stringByAppendingString:@".png"];
+        //NSString * oldName = [proxy.name stringByAppendingString:@".png"];
         BOOL success = [THCustomProject renameProjectNamed:proxy.name toName:name];
+        
         if(success){
-
+/*
             NSString * imageName = [name stringByAppendingString:@".png"];
-            [TFFileUtils renameDataFile:oldName to:imageName inDirectory:kProjectImagesDirectory];
+            [TFFileUtils renameDataFile:oldName to:imageName inDirectory:kProjectImagesDirectory];*/
             
             cell.nameTextField.text = name;
             proxy.name = name;

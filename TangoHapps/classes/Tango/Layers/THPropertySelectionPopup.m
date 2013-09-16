@@ -31,7 +31,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    TFProperty * property = [self.object.simulableObject.viewableProperties objectAtIndex:indexPath.row];
+    TFProperty * property = [self.object.simulableObject.properties objectAtIndex:indexPath.row];
     [self.delegate propertySelectionPopup:self didSelectProperty:property];
     
     [popOverController dismissPopoverAnimated:YES];
@@ -44,7 +44,7 @@
 #pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.object.simulableObject.viewableProperties.count;
+    return self.object.simulableObject.properties.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -53,7 +53,7 @@
     UILabel * label = cell.textLabel;
     label.font = [UIFont fontWithName:@"Arial" size:13];
     
-    TFProperty * property = [self.object.simulableObject.viewableProperties objectAtIndex:indexPath.row];
+    TFProperty * property = [self.object.simulableObject.properties objectAtIndex:indexPath.row];
     
     label.text = property.name;
     return cell;
@@ -79,7 +79,7 @@
 
 -(void) selectEventsAndMethods{
     
-    for (TFProperty * property in self.object.simulableObject.viewableProperties) {
+    for (TFProperty * property in self.object.simulableObject.properties) {
         if([THClientHelper canConvertParam:property.type toType:self.connection.parameterType]){
             [_matchingProperties addObject:property];
         }
@@ -90,7 +90,7 @@
     
     [self selectEventsAndMethods];
     
-    if(self.object.simulableObject.viewableProperties.count > 0){
+    if(self.object.simulableObject.properties.count > 0){
         
         [self loadTables];
         
@@ -113,7 +113,7 @@
 
 -(void) adaptSizeToContent{
     
-    NSInteger itemCount = self.object.simulableObject.viewableProperties.count;
+    NSInteger itemCount = self.object.simulableObject.properties.count;
     float contentHeight = itemCount * kMethodSelectionPopupRowHeight + kPopupHeaderHeight;
     self.contentSizeForViewInPopover = CGSizeMake(200, contentHeight);
 }

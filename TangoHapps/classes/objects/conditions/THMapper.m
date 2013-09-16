@@ -14,7 +14,7 @@
 -(void) load{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
-    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    self.properties = [NSMutableArray arrayWithObject:property];
     
     TFMethod * method = [TFMethod methodWithName:@"setValue"];
     method.numParams = 1;

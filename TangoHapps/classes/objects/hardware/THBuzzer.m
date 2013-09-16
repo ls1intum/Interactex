@@ -21,7 +21,7 @@ float const kBuzzerMinFrequency = 20;
         
     TFProperty * property1 = [TFProperty propertyWithName:@"frequency" andType:kDataTypeFloat];
     TFProperty * property2 = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
-    self.viewableProperties = [NSMutableArray arrayWithObjects:property1, property2, nil];
+    self.properties = [NSMutableArray arrayWithObjects:property1, property2, nil];
     
     TFMethod * method1 =[TFMethod methodWithName:@"varyFrequency"];
     method1.numParams = 1;

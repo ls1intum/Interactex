@@ -27,10 +27,29 @@
         if([TFFileUtils dataFile:imageFile existsInDirectory:kProjectImagesDirectory])
             self.image = [UIImage imageWithContentsOfFile:imagePath];
         
-        
         self.date = [NSDate date];
     }
     return self;
+}
+
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if(self) {
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.image = [decoder decodeObjectForKey:@"image"];
+        self.date = [decoder decodeObjectForKey:@"date"];
+        
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeObject:self.image forKey:@"image"];
+    [coder encodeObject:self.date forKey:@"date"];
 }
 
 #pragma mark - Copying

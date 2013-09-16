@@ -35,7 +35,7 @@
     [self reloadiPhoneSprite];
     
     self.z = kiPhoneZ;
-    self.zoomable = NO;
+    self.canBeScaled = NO;
     self.canBeDuplicated = NO;
 }
 

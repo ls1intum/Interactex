@@ -73,7 +73,7 @@
 }
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
-    if(editableObject.zoomable){
+    if(editableObject.canBeScaled){
         [self.zoomableLayer addChild:editableObject z:editableObject.z];
     } else{
         [super addEditableObject:editableObject];

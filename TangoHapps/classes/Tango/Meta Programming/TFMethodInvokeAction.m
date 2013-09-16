@@ -78,6 +78,10 @@
 
 -(void) startAction {
     
+    if(self.method.numParams > 0 && !self.firstParam){
+        return;
+    }
+    
     SEL selector = NSSelectorFromString(self.method.signature);
     
     NSMethodSignature *signature = [self.target methodSignatureForSelector:selector];
@@ -87,16 +91,19 @@
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:self.target];
     [invocation setSelector:selector];
+    
     if(signature.numberOfArguments > 2){
+        
         id result = [self.firstParam invoke];
-        
-        //NSLog(@"sending b: %@",result);
-        
+                
         if(self.method.firstParamType == kDataTypeBoolean){
+            
             NSNumber * number = result;
             BOOL b = number.boolValue;
             [invocation setArgument:&b atIndex:2];
+            
         } else if(self.method.firstParamType == kDataTypeInteger){
+            
             NSNumber * number = result;
             NSInteger i = number.integerValue;
             if(self.method.firstParamType == kDataTypeInteger){
@@ -107,6 +114,7 @@
             }
             
         } else if(self.method.firstParamType == kDataTypeFloat){
+            
             NSNumber * number = result;
             float f = number.floatValue;
             if(self.method.firstParamType == kDataTypeInteger){
@@ -115,8 +123,11 @@
             } else if(self.method.firstParamType == kDataTypeFloat){
                 [invocation setArgument:&f atIndex:2];
             }
+            
         } else {
+            
             [invocation setArgument:&result atIndex:2];
+            
         }
     }
     [invocation invoke];

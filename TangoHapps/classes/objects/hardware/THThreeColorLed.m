@@ -23,7 +23,7 @@
     TFProperty * property2 = [TFProperty propertyWithName:@"red" andType:kDataTypeInteger];
     TFProperty * property3 = [TFProperty propertyWithName:@"green" andType:kDataTypeInteger];
     TFProperty * property4 = [TFProperty propertyWithName:@"blue" andType:kDataTypeInteger];
-    self.viewableProperties = [NSMutableArray arrayWithObjects:property1,property2,property3, property4, nil];
+    self.properties = [NSMutableArray arrayWithObjects:property1,property2,property3, property4, nil];
     
     TFMethod * method1 = [TFMethod methodWithName:kMethodTurnOn];
     TFMethod * method2 = [TFMethod methodWithName:kMethodTurnOff];

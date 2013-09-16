@@ -19,7 +19,7 @@
     
     TFProperty * property1 = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
     TFProperty * property2 = [TFProperty propertyWithName:@"intensity" andType:kDataTypeInteger];
-    self.viewableProperties = [NSMutableArray arrayWithObjects:property1,property2,nil];
+    self.properties = [NSMutableArray arrayWithObjects:property1,property2,nil];
     
     TFMethod * method1 =[TFMethod methodWithName:@"varyIntensity"];
     method1.numParams = 1;

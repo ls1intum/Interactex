@@ -387,9 +387,9 @@
                                   [[THMapperPaletteItem alloc] initWithName:@"mapper"],
                                   [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                   [[THSoundPaletteItem alloc] initWithName:@"sound"],
-                                  [[THValuePaletteItem alloc] initWithName:@"value"],
-                                  [[THBoolValuePaletteItem alloc] initWithName:@"boolValue"],
-                                  [[THStringValuePaletteItem alloc] initWithName:@"stringValue"],
+                                  [[THValuePaletteItem alloc] initWithName:@"number"],
+                                  [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
+                                  [[THStringValuePaletteItem alloc] initWithName:@"string"],
                                   nil];
     
     self.clothesSectionName = @"Textiles";

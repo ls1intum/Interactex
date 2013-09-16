@@ -14,7 +14,7 @@
 -(void) load{
     
     TFProperty * property = [TFProperty propertyWithName:@"light" andType:kDataTypeInteger];
-    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    self.properties = [NSMutableArray arrayWithObject:property];
     
     TFEvent * event = [TFEvent eventNamed:kEventLightChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
@@ -97,8 +97,10 @@
 }
 
 -(void) setLight:(NSInteger)light{
-    _light = light;
-    [self triggerEventNamed:kEventLightChanged];
-    [self updatePinValue];
+    if(_light != light){
+        _light = light;
+        [self triggerEventNamed:kEventLightChanged];
+        [self updatePinValue];
+    }
 }
 @end

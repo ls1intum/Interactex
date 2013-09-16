@@ -103,7 +103,7 @@ CGSize const kStringValueLabelSize = {100,30};
 }
 
 -(NSString*) description{
-    return @"String Value";
+    return @"String";
 }
 
 @end

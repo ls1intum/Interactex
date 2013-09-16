@@ -44,12 +44,13 @@
 
 -(void) loadEditableObject{
     
-    self.zoomable = YES;
+    self.canBeScaled = YES;
     self.anchorPoint = ccp(0.5,0.5);
     self.visible = YES;
     self.highlightColor = kDefaultObjectHighlightColor;
     self.canBeDuplicated = YES;
     self.canBeAddedToPalette = NO;
+    self.canBeMoved = YES;
 }
 
 -(id) init{
@@ -281,7 +282,7 @@
 #pragma mark - Properties
 
 -(NSMutableArray*) viewableProperties{
-    return self.simulableObject.viewableProperties;
+    return self.simulableObject.properties;
 }
 
 -(BOOL) acceptsPropertiesOfType:(TFDataType)type{
@@ -471,9 +472,7 @@
         CGPoint point = box.origin;
         point = [self convertToNodeSpace:point];
         point = ccpSub(point, ccp(kSelectionPadding, kSelectionPadding));
-        
-        //ccDrawSolidRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height), ccc4FFromccc4B( kDefaultObjectSelectionColor));
-        
+                
         ccDrawRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height));
     }
 }

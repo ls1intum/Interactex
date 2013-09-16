@@ -22,7 +22,7 @@
     [iswitch addTarget:self action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
     
     TFProperty * property = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
-    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    self.properties = [NSMutableArray arrayWithObject:property];
     
     TFEvent * event1 = [TFEvent eventNamed:@"switchOn"];
     TFEvent * event2 = [TFEvent eventNamed:@"switchOff"];

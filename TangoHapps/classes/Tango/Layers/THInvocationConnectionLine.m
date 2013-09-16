@@ -42,7 +42,9 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 -(void) loadConnectionLine{
-    self.zoomable = NO;
+    self.canBeScaled = NO;
+    self.canBeMoved = NO;
+    
     [self reloadSprite];
 }
 
@@ -82,8 +84,8 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 #pragma mark - Methods
 
 -(CGPoint) calculateLineCenter{
-    CGPoint pos1 = self.obj1.absolutePosition;
-    CGPoint pos2 = self.obj2.absolutePosition;
+    CGPoint pos1 = self.obj1.center;
+    CGPoint pos2 = self.obj2.center;
     return ccpMult(ccpAdd(pos1,pos2),0.5f);
 }
 
@@ -130,12 +132,31 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     [self.connectionLine startShining];
 }
 
+-(BOOL) selected{
+    return self.connectionLine.selected;
+}
+
+-(void) setSelected:(BOOL)selected{
+    self.connectionLine.selected = selected;
+}
+
 -(void) draw{
     _invocationStateSprite.position = [self calculateLineCenter];
     
     [self.connectionLine draw];
     
-    [super draw];
+    if(self.selected){
+        float kSelectionPadding = 5;
+        
+        CGRect box = _invocationStateSprite.boundingBox;
+        CGSize rectSize = CGSizeMake(box.size.width + kSelectionPadding * 2, box.size.height + kSelectionPadding * 2);
+        
+        CGPoint point = box.origin;
+        point = [self convertToNodeSpace:point];
+        point = ccpSub(point, ccp(kSelectionPadding, kSelectionPadding));
+        
+        ccDrawRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height));
+    }
 }
 
 #pragma mark - Layer
@@ -149,7 +170,8 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 -(BOOL) testPoint:(CGPoint)point{
-    if(self.visible && ccpDistance(_invocationStateSprite.position, point) < 40){
+    if(self.visible && CGRectContainsPoint(_invocationStateSprite.boundingBox, point)){
+    //if(self.visible && ccpDistance(_invocationStateSprite.position, point) < 40){
         return YES;
     }
     return NO;

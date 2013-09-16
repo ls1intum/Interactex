@@ -174,6 +174,7 @@ extern NSString* const kElementPinTexts[kNumElementPinTypes];
 extern NSString * const kPaletteItemsDirectory;
 extern NSString * const kProjectsDirectory;
 extern NSString * const kProjectImagesDirectory;
+extern NSString * const kProjectProxiesFileName;
 
 extern float const kMaxAnalogValue;
 

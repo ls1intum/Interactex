@@ -14,7 +14,7 @@
 -(void) loadEvents{
     
     TFProperty * property = [TFProperty propertyWithName:@"isTrue" andType:kDataTypeBoolean];
-    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    self.properties = [NSMutableArray arrayWithObject:property];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventConditionIsTrue];
     TFEvent * event2 = [TFEvent eventNamed:kEventConditionIsFalse];

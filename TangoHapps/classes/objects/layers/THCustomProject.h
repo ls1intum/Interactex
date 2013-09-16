@@ -32,11 +32,13 @@
 +(BOOL) doesProjectExistWithName:(NSString*) name;
 +(NSString*) newProjectName;
 +(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
++(NSString*) nextProjectNameForName:(NSString*) name;
+
 
 //static constructors
 +(THCustomProject*) emptyProject;
 +(THCustomProject*) projectSavedWithName:(NSString*) name;
-+(NSString*) nextProjectNameForName:(NSString*) name;
+
 +(id) newProject;
 +(id) projectNamed:(NSString*) name;
 

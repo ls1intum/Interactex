@@ -24,7 +24,7 @@
     self.view.multipleTouchEnabled = NO;
     
     TFProperty * valueProperty = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
-    self.viewableProperties = [NSMutableArray arrayWithObjects:valueProperty,nil];
+    self.properties = [NSMutableArray arrayWithObjects:valueProperty,nil];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventValueChanged];
     event1.param1 = [TFPropertyInvocation invocationWithProperty:valueProperty target:self];

@@ -83,6 +83,7 @@
 
 +(id) newProject{
     NSString * newProjectName = [self newProjectName];
+    
     return [THCustomProject projectNamed:newProjectName];
 }
 
@@ -262,15 +263,14 @@
     
     BOOL success = [THCustomProject renameProjectNamed:self.name toName:newName];
     if(success){
-    self.name = newName;
+        self.name = newName;
     }
     
-    return success;
+    return YES;
 }
 
 #pragma mark - Pins
 
-//pin
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe{
     
     if(!clotheObject.attachedToClothe){

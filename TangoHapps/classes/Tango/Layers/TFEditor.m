@@ -192,7 +192,15 @@
     THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
     invocationConnection.action = action;
     invocationConnection.numParameters = action.method.numParams;
+    
     if(action.method.numParams > 0){
+        
+        if(event.param1 && [action.method acceptsParemeterOfType:event.param1.property.type]){
+            
+            invocationConnection.state = THInvocationConnectionLineStateComplete;
+            invocationConnection.action.firstParam = event.param1;
+        }
+        
         invocationConnection.parameterType = action.method.firstParamType;
         [invocationConnection reloadSprite];
     }
@@ -209,7 +217,7 @@
 }
 
 -(void) showMethodSelectionPopupFor:(TFEditableObject*) object1 and:(TFEditableObject*) object2{
-    if(object2 != nil && [object1 acceptsConnectionsTo:object2]){
+    if(object2 != nil){
         
         _methodSelectionPopup = [[TFMethodSelectionPopup alloc] init];
         _methodSelectionPopup.delegate = self;
@@ -222,9 +230,10 @@
 #pragma mark - Input handling
 
 -(void) moveCurrentObject:(CGPoint) d{
-    
-    d = ccpMult(d, 1.0f/self.scale);
-    [_currentObject displaceBy:d];
+    if(self.currentObject.canBeMoved){
+        d = ccpMult(d, 1.0f/self.scale);
+        [self.currentObject displaceBy:d];
+    }
 }
 
 -(void) moveLayer:(CGPoint) d{

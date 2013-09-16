@@ -37,7 +37,6 @@
 -(id) initWithTarget:(id) target method:(TFMethod*) method;
 
 @property (nonatomic) TFMethod* method;
-
 @property (nonatomic, strong) TFPropertyInvocation* firstParam;
 
 -(BOOL) isEqualToAction:(TFAction*)action;

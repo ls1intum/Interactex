@@ -17,7 +17,7 @@ float const kMaxPotentiometerValue = 1023;
 -(void) load{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeInteger];
-    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    self.properties = [NSMutableArray arrayWithObject:property];
     
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];

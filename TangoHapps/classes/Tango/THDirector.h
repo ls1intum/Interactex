@@ -46,4 +46,7 @@ typedef enum {
 
 +(THDirector*)sharedDirector;
 
+-(NSMutableArray*) loadProjectProxies;
+-(void) saveProjectProxies;
+
 @end

@@ -52,7 +52,7 @@ static THDirector * _sharedInstance = nil;
     self = [super init];
     if(self){
         
-        [self loadProjects];
+        [self loadProjectProxies];
         
         self.serverController = [[THServerController alloc] init];
         self.serverController.delegate = self;
@@ -65,40 +65,34 @@ static THDirector * _sharedInstance = nil;
 
 #pragma mark - Methods
 
--(void) loadProjects {
+-(NSMutableArray*) loadProjectProxies {
     
+    if([TFFileUtils dataFile:kProjectProxiesFileName existsInDirectory:@""]){
+        
+        NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
+        self.projectProxies = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    } else {
+        self.projectProxies = [NSMutableArray array];
+        
+    }
+    
+    return self.projectProxies;
+    
+    /*
     NSString * directory = [TFFileUtils dataDirectory:kProjectsDirectory];
     NSArray * files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:nil];
     self.projectProxies = [[NSMutableArray alloc] init];
     for(NSString *archivePath in files){
         THProjectProxy * proxy = [THProjectProxy proxyWithName:[archivePath lastPathComponent]];
         [self.projectProxies addObject:proxy];
-    }
+    }*/
 }
 
-/*
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+-(void) saveProjectProxies{
     
-    if(viewController == self.selectionController){
-        if(_alreadyStartedEditor){
-            [self saveCurrentProject];
-            [self.currentProject prepareToDie];
-            self.currentProject = nil;
-            [self.projectController.tabController.propertiesController removeAllControllers];
-        }
-        [self.projectDelegate willStopEditingProject:self.currentProject];
-        [self.selectionController reloadData];
-        
-        [self.serverController stopServer];
-        
-    } else {
-        _alreadyStartedEditor = YES;
-        [self.projectDelegate willStartEditingProject:self.currentProject];
-        [self.serverController startServer];
-    }
-}*/
-
-
+    NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
+    [NSKeyedArchiver archiveRootObject:self.projectProxies toFile:filePath];
+}
 
 #pragma mark - Layer
 

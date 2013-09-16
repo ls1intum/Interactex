@@ -33,9 +33,9 @@
     TFProperty * property3 = [TFProperty propertyWithName:@"accelerometerZ" andType:kDataTypeInteger];
     
     TFProperty * property4 = [TFProperty propertyWithName:@"heading" andType:kDataTypeFloat];
-    self.viewableProperties = [NSMutableArray arrayWithObjects:property1,property2,property3,property4,nil];
+    self.properties = [NSMutableArray arrayWithObjects:property1,property2,property3,property4,nil];
     
-    self.viewableProperties = [NSMutableArray arrayWithObjects:property1,property2,property3,property4,nil];
+    self.properties = [NSMutableArray arrayWithObjects:property1,property2,property3,property4,nil];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventXChanged];
     event1.param1 = [TFPropertyInvocation invocationWithProperty:property1 target:self];

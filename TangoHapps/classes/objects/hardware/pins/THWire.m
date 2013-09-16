@@ -33,7 +33,7 @@
 -(void) loadWire{
     
     self.z = kWireObjectZ;
-    self.zoomable = YES;
+    self.canBeScaled = YES;
 }
 
 -(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2 {

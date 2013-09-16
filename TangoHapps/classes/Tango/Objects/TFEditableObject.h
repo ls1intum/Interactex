@@ -48,6 +48,8 @@
 @property (nonatomic) BOOL active;
 @property (nonatomic) BOOL canBeDuplicated;
 @property (nonatomic) BOOL canBeAddedToPalette;
+@property (nonatomic) BOOL canBeScaled;
+@property (nonatomic) BOOL canBeMoved;
 
 @property (nonatomic) float rotation;
 @property (nonatomic) float scale;
@@ -75,7 +77,6 @@
 
 @property (nonatomic, readonly) THPaletteItem * paletteItem;
 
-@property (nonatomic) BOOL zoomable;
 
 @property (nonatomic) THTriggerableProperties * triggerableProperties;
 @property (nonatomic) THViewableProperties * viewableEditableProperties;

@@ -14,7 +14,7 @@
 -(void) load{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeBoolean];
-    self.viewableProperties = [NSMutableArray arrayWithObject:property];
+    self.properties = [NSMutableArray arrayWithObject:property];
     
     TFMethod * method = [TFMethod methodWithName:@"setValue"];
     method.numParams = 1;
@@ -76,7 +76,7 @@
 }
 
 -(NSString*) description{
-    return @"bool value";
+    return @"boolean";
 }
 
 
