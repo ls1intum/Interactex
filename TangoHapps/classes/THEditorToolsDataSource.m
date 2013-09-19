@@ -8,7 +8,7 @@
 
 #import "THEditorToolsDataSource.h"
 #import "THEditor.h"
-#import "THCustomSimulator.h"
+#import "THSimulator.h"
 #import "THProjectViewController.h"
 #import "THTabbarViewController.h"
 
@@ -106,7 +106,7 @@
 #pragma Mark - Pins
 
 -(void) pinsModePressed:(id)sender {
-    THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
+    THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
     
     if(simulator.state == kSimulatorStateNormal){
         [simulator addPinsController];

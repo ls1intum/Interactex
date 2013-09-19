@@ -286,6 +286,7 @@
     [self.tabView reloadData];
     
     [self loadCustomPaletteItems];
+    [self addCustomPaletteItems];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSelectionLost) name:kNotificationObjectSelected object:nil];
 }

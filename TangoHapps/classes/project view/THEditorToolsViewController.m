@@ -9,7 +9,7 @@
 #import "THEditorToolsViewController.h"
 #import "THProjectViewController.h"
 #import "THEditor.h"
-#import "THCustomSimulator.h"
+#import "THSimulator.h"
 #import "THDirector.h"
 #import "THiPhoneEditableObject.h"
 
@@ -77,7 +77,7 @@
 
 -(void) updatePinsModeItemTint{
     
-    THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
+    THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
     self.pinsModeItem.tintColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : nil);
 }
 
@@ -165,7 +165,7 @@
 }
 
 - (IBAction)pinsModePressed:(id)sender {
-    THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
+    THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
     
     if(simulator.state == kSimulatorStateNormal){
         [simulator addPinsController];

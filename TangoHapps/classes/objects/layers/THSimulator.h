@@ -26,9 +26,26 @@
 #import <Foundation/Foundation.h>
 #import "TFLayer.h"
 
-@interface TFSimulator : TFLayer{
+@class THPinsController;
+
+typedef enum{
+    kSimulatorStateNormal,
+    kSimulatorStatePins
+} THSimulatorState;
+
+@interface THSimulator : TFLayer{
     
     NSMutableArray * _accelerometerObjects;
+    THPinsController * _pinsController;
 }
+
+@property (nonatomic) float zoomLevel;
+@property (nonatomic) CGPoint displacement;
+@property (nonatomic) CCLayer * zoomableLayer;
+
+@property (nonatomic, readonly) THSimulatorState state;
+
+-(void) addPinsController;
+-(void) removePinsController;
 
 @end

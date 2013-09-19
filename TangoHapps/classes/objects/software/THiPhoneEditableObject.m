@@ -26,8 +26,7 @@
         [self.sprite removeFromParentAndCleanup:YES];
     }
     NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
-    CCSprite * sprite = [CCSprite spriteWithFile:fileName];
-    self.sprite = sprite;
+    self.sprite = [CCSprite spriteWithFile:fileName];
     [self addChild:self.sprite z:kiPhoneZ];
 }
 

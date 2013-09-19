@@ -4,9 +4,8 @@
 #import "THEditorToolsViewController.h"
 #import "THEditorToolsDataSource.h"
 #import "THTabbarViewController.h"
-#import "TFSimulator.h"
+#import "THSimulator.h"
 #import "THEditor.h"
-#import "THCustomSimulator.h"
 #import "THiPhoneEditableObject.h"
 #import "THProjectProxy.h"
 
@@ -193,6 +192,7 @@ float const kToolsTabMargin = 5;
         proxy.image = image;
         if(![director.projectProxies containsObject:proxy]){
             [director.projectProxies addObject:proxy];
+            [director saveProjectProxies];
         }
     } else { //if it already existed, its name may have changed
         director.currentProxy.name = director.currentProject.name;
@@ -492,7 +492,7 @@ float const kToolsTabMargin = 5;
         [self saveCurrentProject];
         
         THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-        THCustomSimulator * simulator = [THCustomSimulator node];
+        THSimulator * simulator = [THSimulator node];
         
         //wasEditorInLilypadMode = editor.isLilypadMode;
         
@@ -520,7 +520,7 @@ float const kToolsTabMargin = 5;
         
         [self restoreCurrentProject];
         
-        THCustomSimulator * simulator = (THCustomSimulator*) [THDirector sharedDirector].currentLayer;
+        THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
         THEditor * editor = [THEditor node];
         
         editor.dragDelegate = self.tabController.paletteController;
