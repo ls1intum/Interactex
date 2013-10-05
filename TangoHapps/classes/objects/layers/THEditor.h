@@ -50,6 +50,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THPaletteItem;
 @class THDraggedPaletteItem;
 @class THPaletteItem;
+@class THPinEditable;
 
 typedef enum {
     kEditorStateNormal,

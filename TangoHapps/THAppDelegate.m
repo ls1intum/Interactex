@@ -2,7 +2,7 @@
 THAppDelegate.m
 Interactex Designer
 
-Created by Juan Haladjian on 14/12/2012.
+Created by Juan Haladjian on 05/10/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
