@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem * pushItem;
 
 @property (strong, nonatomic) UIColor * highlightedItemTintColor;
+@property (strong, nonatomic) UIColor * unselectedTintColor;
 
 @property (nonatomic) BOOL hidden;
 
@@ -41,9 +42,9 @@
 - (IBAction) connectTapped:(id)sender;
 - (IBAction) duplicateTapped:(id)sender;
 - (IBAction) removeTapped:(id)sender;
-- (IBAction)lilypadPressed:(id)sender;
-- (IBAction)hideiPhonePressed:(id)sender;
-- (IBAction)pinsModePressed:(id)sender;
-- (IBAction)pushPressed:(id)sender;
+- (IBAction) lilypadPressed:(id)sender;
+- (IBAction) hideiPhonePressed:(id)sender;
+- (IBAction) pinsModePressed:(id)sender;
+- (IBAction) pushPressed:(id)sender;
 
 @end

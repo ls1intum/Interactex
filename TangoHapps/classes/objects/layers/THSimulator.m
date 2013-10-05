@@ -103,12 +103,12 @@
     [self handleTouchesEnded:touches];
 }
 
-
+/*
 -(void) accelerated:(UIAcceleration*) acceleration{
     for (TFEditableObject * object in _accelerometerObjects) {
         [object handleAccelerated:acceleration];
     }
-}
+}*/
 
 
 -(void) tapped:(UITapGestureRecognizer *)sender{

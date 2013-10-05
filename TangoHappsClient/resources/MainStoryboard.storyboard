@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
     <dependencies>
         <development version="4500" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-1148" y="228"/>
         </scene>
-        <!--Client Scene Selection View Controller - Apps-->
+        <!--Client Scene Selection View Controller - Projects-->
         <scene sceneID="wnw-XR-syg">
             <objects>
                 <viewController id="1nI-qf-8XH" customClass="THClientSceneSelectionViewController" sceneMemberID="viewController">
@@ -172,7 +172,7 @@
                             <constraint firstItem="tfP-pW-Mfl" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="zye-ge-a7Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Apps" id="dag-TJ-uvv">
+                    <navigationItem key="navigationItem" title="Projects" id="dag-TJ-uvv">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="Q80-Or-CSO">
                             <connections>
                                 <action selector="editTapped:" destination="1nI-qf-8XH" id="l2W-eM-UFg"/>
@@ -197,7 +197,7 @@
             </objects>
             <point key="canvasLocation" x="-673" y="215"/>
         </scene>
-        <!--Client Download View Controller - Download App-->
+        <!--Client Download View Controller - Download Project-->
         <scene sceneID="eK9-VL-3ef">
             <objects>
                 <viewController id="PGp-Lq-9E8" customClass="THClientDownloadViewController" sceneMemberID="viewController">
@@ -254,7 +254,7 @@
                             <constraint firstAttribute="bottom" secondItem="N5K-7S-GLF" secondAttribute="bottom" constant="138" id="vXe-8e-om4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Download App" id="tEk-Xf-QMl"/>
+                    <navigationItem key="navigationItem" title="Download Project" id="tEk-Xf-QMl"/>
                     <connections>
                         <outlet property="activityIndicator" destination="ZEC-ub-RIq" id="YZd-vS-e9r"/>
                         <outlet property="checkImageView" destination="fcY-1u-pdw" id="tO3-7B-UMh"/>
@@ -272,7 +272,7 @@
         <scene sceneID="X7L-oF-nqh">
             <objects>
                 <viewController title="First" id="ooT-9x-Q8c" customClass="THClientAppViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Client App" id="h6l-f2-78d">
+                    <navigationItem key="navigationItem" title="Client" id="h6l-f2-78d">
                         <barButtonItem key="rightBarButtonItem" title="Start" id="cXQ-Ks-m7U">
                             <connections>
                                 <action selector="modeButtonTapped:" destination="ooT-9x-Q8c" id="9CT-mS-v4N"/>
@@ -293,6 +293,58 @@
         <image name="fakeSceneImage.png" width="50" height="46"/>
         <image name="removeButton.png" width="44" height="44"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="THClientAppViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientAppViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="modeButtonTapped:"/>
+                <relationship kind="outlet" name="modeButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="THClientDownloadViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientDownloadViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="checkImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="currentActivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="instructionsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
+            </relationships>
+        </class>
+        <class className="THClientSceneCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneCell.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteTapped:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="THClientSceneSelectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editTapped:"/>
+                <relationship kind="action" name="filterControlChanged:"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="filterControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="presetsCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="scenesCollectionView" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

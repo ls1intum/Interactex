@@ -194,9 +194,7 @@ static BLEDiscovery * sharedInstance;
             [self clearDevices];
             [self.discoveryDelegate discoveryDidRefresh];
             
-            if (previousState != -1) {
-                [self.discoveryDelegate discoveryStatePoweredOff];
-            }
+            [self.discoveryDelegate discoveryStatePoweredOff];
 			break;
 		}
             

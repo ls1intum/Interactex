@@ -27,7 +27,7 @@
     TFMethod * method =[TFMethod methodWithName:@"setText"];
     method.firstParamType = kDataTypeAny;
     method.numParams = 1;
-    self.methods = [NSArray arrayWithObject:method];
+    self.methods = [NSMutableArray arrayWithObject:method];
 }
 
 -(id) init{

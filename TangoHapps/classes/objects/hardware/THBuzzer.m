@@ -33,7 +33,7 @@ float const kBuzzerMinFrequency = 20;
     
     TFMethod * method3 = [TFMethod methodWithName:@"turnOn"];
     TFMethod * method4 = [TFMethod methodWithName:@"turnOff"];
-    self.methods = [NSArray arrayWithObjects:method1,method2,method3,method4,nil];
+    self.methods = [NSMutableArray arrayWithObjects:method1,method2,method3,method4,nil];
 
     TFEvent * event0 = [TFEvent eventNamed:kEventOnChanged];
     event0.param1 = [TFPropertyInvocation invocationWithProperty:property2 target:self];
@@ -41,7 +41,7 @@ float const kBuzzerMinFrequency = 20;
     event1.param1 = [TFPropertyInvocation invocationWithProperty:property1 target:self];
     TFEvent * event2 = [TFEvent eventNamed:kEventTurnedOn];
     TFEvent * event3 = [TFEvent eventNamed:kEventTurnedOff];
-    self.events = [NSArray arrayWithObjects:event0,event1,event2,event3,nil];
+    self.events = [NSMutableArray arrayWithObjects:event0,event1,event2,event3,nil];
 }
 
 -(void) loadPins{

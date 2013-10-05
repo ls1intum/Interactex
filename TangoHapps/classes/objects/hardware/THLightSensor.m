@@ -18,7 +18,7 @@
     
     TFEvent * event = [TFEvent eventNamed:kEventLightChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
-    self.events = [NSArray arrayWithObject:event];
+    self.events = [NSMutableArray arrayWithObject:event];
 }
 
 -(void) loadPins{

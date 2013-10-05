@@ -26,7 +26,7 @@
     self.methods = [NSArray arrayWithObject:method];*/
     
     TFEvent * event = [TFEvent eventNamed:kEventTriggered];
-    self.events = [NSArray arrayWithObject:event];
+    self.events = [NSMutableArray arrayWithObject:event];
 }
 
 #pragma mark - Archiving

@@ -8,12 +8,9 @@
 
 #import "THClientSceneSelectionViewController.h"
 #import "THClientAppViewController.h"
-#import "THClientGridView.h"
-#import "THClientGridItem.h"
 #import "THClientProject.h"
 #import "THClientScene.h"
 #import "THSimulableWorldController.h"
-#import "THGridView.h"
 #import "THClientPresetsGenerator.h"
 #import "THClientDownloadViewController.h"
 #import "THClientSceneCell.h"
@@ -50,7 +47,7 @@
     
     [self loadGestureRecognizers];
     
-    //[self generateRandomScenes];
+    [self generateRandomScenes];
     
     self.fakeScenesSource = [[THClientPresetsGenerator alloc] init];
     self.presets = self.fakeScenesSource.scenes;

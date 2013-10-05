@@ -21,7 +21,7 @@
 -(void) loadSound {
     
     TFMethod * method1 = [TFMethod methodWithName:@"play"];
-    self.methods = [NSArray arrayWithObjects:method1, nil];
+    self.methods = [NSMutableArray arrayWithObjects:method1, nil];
 }
 
 #pragma mark - Archiving

@@ -21,7 +21,7 @@ float const kMaxPotentiometerValue = 1023;
     
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
-    self.events = [NSArray arrayWithObject:event];
+    self.events = [NSMutableArray arrayWithObject:event];
 }
 
 -(void) loadPins{

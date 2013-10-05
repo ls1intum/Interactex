@@ -14,7 +14,7 @@
 -(void) loadiPhone{
     
     TFMethod * method = [TFMethod methodWithName:@"makeEmergencyCall"];
-    self.methods = [NSArray arrayWithObject:method];
+    self.methods = [NSMutableArray arrayWithObject:method];
 }
 
 -(id) init{

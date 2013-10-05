@@ -19,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.navigationController.navigationBar.translucent = NO;
+    
     self.projectProxies = [THDirector sharedDirector].projectProxies;
     
     CCDirector *director = [CCDirector sharedDirector];
@@ -40,9 +43,9 @@
 - (CCGLView *)createDirectorGLView {
 
     float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    //float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     
-    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight - statusBarHeight)
+    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight)
                                    pixelFormat:kEAGLColorFormatRGB565
                                    depthFormat:0
                             preserveBackbuffer:NO
@@ -114,6 +117,9 @@
     [self removeGestureRecognizers];
     
     [[THDirector sharedDirector] saveProjectProxies];
+    
+    //[[CCDirector sharedDirector] popScene];
+    
 }
 
 #pragma mark - Private
@@ -171,8 +177,6 @@
     
     return cell;
 }
-
-
 
 #pragma mark - Collection View Delegate
 

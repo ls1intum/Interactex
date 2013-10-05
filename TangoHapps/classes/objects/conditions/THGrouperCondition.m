@@ -23,7 +23,7 @@ NSString * const kGrouperTypeStrings[kNumGrouperTypes] = {@"and",@"or"};
     method2.numParams = 1;
     method2.firstParamType = kDataTypeBoolean;
     
-    self.methods = [NSArray arrayWithObjects:method1,method2,nil];
+    self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
 -(id) init{

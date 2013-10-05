@@ -28,7 +28,7 @@
 
 @implementation TFLayer
 
-@synthesize lastAcceleration;
+//@synthesize lastAcceleration;
 
 +(CCScene*) scene{
     CCScene * scene = [CCScene node];
@@ -40,11 +40,12 @@
 -(id) init{
     self = [super init];
     if(self){
-        self.isTouchEnabled = YES;
-        self.isAccelerometerEnabled = YES;
+        self.touchEnabled = YES;
+        self.accelerometerEnabled = YES;
+
         //_zoomableLayer.contentSize = self.contentSize;
 
-        [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0f/30.0f];
+        //[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0f/30.0f];
     }
     return self;
 }
@@ -124,12 +125,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(void) tapped:(UITapGestureRecognizer*)sender{}
 -(void) doubleTapped:(UITapGestureRecognizer*)sender{}
 -(void) pressedLong:(UILongPressGestureRecognizer*)sender{}
--(void) accelerated:(UIAcceleration*) acceleration{}
-
+//-(void) accelerated:(UIAcceleration*) acceleration{}
+/*
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
     [self accelerated:acceleration];
 }
-
+*/
 #pragma mark - Methods
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
@@ -144,13 +145,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 #pragma mark - Lifecycle
 
 -(void) willDisappear{
-    self.isAccelerometerEnabled = NO;
+    self.accelerometerEnabled = NO;
     [self removeGestureRecognizers];
 }
 
 -(void) willAppear{
     
-    self.isAccelerometerEnabled = YES;
+    self.accelerometerEnabled = YES;
     [self addGestureRecognizers];
 }
 

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Rxu-N8-p0E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Rxu-N8-p0E">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="xYB-bJ-rXG">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Rxu-N8-p0E" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dxu-i1-4TN">
                         <autoresizingMask key="autoresizingMask"/>
@@ -25,11 +27,11 @@
             <objects>
                 <viewController id="V0d-b1-hx3" customClass="THProjectSelectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ol-tG-yXW">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="DE4-vs-M39">
-                                <rect key="frame" x="0.0" y="-14" width="1024" height="674"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="or6-c6-Hsr">
                                     <size key="itemSize" width="169" height="161"/>
@@ -39,7 +41,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="projectCell" id="4fc-WK-8YE" customClass="THCollectionProjectCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="169" height="161"/>
+                                        <rect key="frame" x="0.0" y="44" width="169" height="161"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="169" height="161"/>
@@ -87,12 +89,12 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="JxZ-Z8-gTN">
-                                <rect key="frame" x="0.0" y="660" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0T3-XZ-hnq"/>
                                     <barButtonItem style="plain" id="dzP-yR-yL4">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="2mm-Yd-5Dn">
-                                            <rect key="frame" x="108" y="8" width="351" height="31"/>
+                                            <rect key="frame" x="109" y="7" width="351" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Icons"/>
@@ -106,7 +108,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="OlF-Rl-hjQ"/>
                                     <barButtonItem style="plain" id="PB9-hH-1hv">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Jny-8t-rID">
-                                            <rect key="frame" x="565" y="8" width="351" height="31"/>
+                                            <rect key="frame" x="564" y="7" width="351" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Name"/>
@@ -120,16 +122,16 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3WV-74-0zF"/>
                                 </items>
                             </toolbar>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="70" sectionHeaderHeight="10" sectionFooterHeight="10" id="uh0-P0-c2m">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="660"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="uh0-P0-c2m">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="5" reuseIdentifier="projectTableCell" rowHeight="70" id="qYG-vh-9Xd" customClass="THTableProjectCell">
-                                        <rect key="frame" x="0.0" y="54" width="1024" height="72"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="5" reuseIdentifier="projectTableCell" id="qYG-vh-9Xd" customClass="THTableProjectCell">
+                                        <rect key="frame" x="0.0" y="55" width="1024" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="45" y="1" width="914" height="69"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qYG-vh-9Xd" id="yka-Aa-bOD">
+                                            <rect key="frame" x="0.0" y="0.0" width="991" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Project Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v7j-dQ-Jm1">
@@ -162,8 +164,7 @@
                                                     </connections>
                                                 </textField>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="Bbt-u0-JOB" id="ilZ-AD-ncs"/>
                                             <outlet property="imageView" destination="RBK-f4-DLO" id="ccM-GC-7Ub"/>
@@ -206,7 +207,7 @@
             <objects>
                 <viewController id="mml-J8-jpC" customClass="THProjectViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E4K-et-RtV">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -223,7 +224,7 @@
         <image name="removeButton.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>

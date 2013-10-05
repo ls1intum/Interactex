@@ -21,7 +21,7 @@
     
     TFEvent * event1 = [TFEvent eventNamed:@"touchDown"];
     TFEvent * event2 = [TFEvent eventNamed:@"touchUp"];
-    self.events = [NSArray arrayWithObjects:event1, event2, nil];
+    self.events = [NSMutableArray arrayWithObjects:event1, event2, nil];
 }
 
 -(id) init{

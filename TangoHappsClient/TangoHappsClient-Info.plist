@@ -8,6 +8,16 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Icon</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>de.tum.in.www1.${PRODUCT_NAME}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -29,6 +39,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>gamekit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

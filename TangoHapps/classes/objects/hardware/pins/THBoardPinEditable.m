@@ -67,9 +67,7 @@
             text = [text stringByAppendingFormat:@" %d",self.number];
         }
         
-        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
-        
-        //_label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) alignment:NSTextAlignmentCenter fontName:@"Arial Rounded MT Bold" fontSize:20];
+        _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:15 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
         
         CGPoint position = [self convertToWorldSpace:ccp(0,0)];
         _label.position = ccpAdd(position,ccp(0,50));

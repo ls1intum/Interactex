@@ -41,7 +41,7 @@
     
     uint8_t buf[16];
     for (int i = 0; i < 16; i++) {
-        buf[i] = i+100;
+        buf[i] = (uint8_t)i+65;
         
     }
     BLEService * service = [BLEDiscovery sharedInstance].connectedService;

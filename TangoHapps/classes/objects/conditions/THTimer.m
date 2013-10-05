@@ -24,7 +24,7 @@
     
     TFMethod * method1 = [TFMethod methodWithName:@"start"];
     TFMethod * method2 = [TFMethod methodWithName:@"stop"];
-    self.methods = [NSArray arrayWithObjects:method1, method2, nil];
+    self.methods = [NSMutableArray arrayWithObjects:method1, method2, nil];
 }
 
 #pragma mark - Archiving

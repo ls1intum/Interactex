@@ -20,6 +20,7 @@
     //view.backgroundColor = [UIColor colorWithRed:0.88 green:0.69 blue:0.48 alpha:1];
     slider.frame = CGRectMake(0, 0, self.width, self.height);
     self.view = slider;
+    slider.enabled = NO;
     self.view.userInteractionEnabled = YES;
     self.view.multipleTouchEnabled = NO;
     
@@ -28,7 +29,7 @@
     
     TFEvent * event1 = [TFEvent eventNamed:kEventValueChanged];
     event1.param1 = [TFPropertyInvocation invocationWithProperty:valueProperty target:self];
-    self.events = [NSArray arrayWithObjects:event1, nil];
+    self.events = [NSMutableArray arrayWithObjects:event1, nil];
     
     [slider addTarget:self action:@selector(handleValueChanged) forControlEvents:UIControlEventValueChanged];
 }
@@ -115,6 +116,7 @@
 }
 
 -(void) didStartSimulating{
+    ((UISlider*) self.view).enabled = YES;
     
     [self triggerEventNamed:kEventValueChanged];
     [super didStartSimulating];

@@ -24,7 +24,7 @@ NSString * const kConditionTypeStrings[kNumConditionTypes] = {@"<",@"=",@">"};
     method2.firstParamType = kDataTypeFloat;
     
     
-    self.methods = [NSArray arrayWithObjects:method1,method2,nil];
+    self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
 -(id) init{

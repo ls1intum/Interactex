@@ -467,7 +467,12 @@ float const kToolsTabMargin = 5;
     CCScene * scene = [CCScene node];
 
     [scene addChild:_currentLayer];
-    [[CCDirector sharedDirector] runWithScene:scene];
+    
+    if([CCDirector sharedDirector].runningScene){
+        [[CCDirector sharedDirector] replaceScene:scene];
+    } else {
+        [[CCDirector sharedDirector] runWithScene:scene];
+    }
     
     _tabController.paletteController.delegate = editor;
     _state = kAppStateEditor;

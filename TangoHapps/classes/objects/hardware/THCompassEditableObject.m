@@ -78,7 +78,7 @@
 }
 
 #pragma mark - Methods
-
+/*
 -(void) handleAccelerated:(UIAcceleration*) acceleration{
     
     //NSLog(@"accel: %f %f",acceleration.y,-acceleration.x);
@@ -86,7 +86,7 @@
     self.accelerometerX = acceleration.y * 300;
     self.accelerometerY = -acceleration.x * 300;
     //NSLog(@"accel: %d %d",self.x,self.y);
-}
+}*/
 
 -(THElementPinEditable*) pin5Pin{
     return [self.pins objectAtIndex:0];

@@ -19,11 +19,11 @@
     TFMethod * method = [TFMethod methodWithName:@"setValue"];
     method.numParams = 1;
     method.firstParamType = kDataTypeFloat;
-    self.methods = [NSArray arrayWithObject:method];
+    self.methods = [NSMutableArray arrayWithObject:method];
     
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
-    self.events = [NSArray arrayWithObject:event];
+    self.events = [NSMutableArray arrayWithObject:event];
     
 }
 

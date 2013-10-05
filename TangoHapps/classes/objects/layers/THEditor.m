@@ -1014,8 +1014,8 @@
     
     THPaletteViewController * paletteController = [THDirector sharedDirector].projectController.tabController.paletteController;
     
-    paletteController.sections = [NSArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.hardwareSectionArray, nil];
-    paletteController.sectionNames = [NSArray arrayWithObjects:paletteController.clothesSectionName, paletteController.hardwareSectionName, nil];
+    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.hardwareSectionArray, nil];
+    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.clothesSectionName, paletteController.hardwareSectionName, nil];
     
     [paletteController reloadPalettes];
 }

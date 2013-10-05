@@ -152,7 +152,7 @@ NSString * const kPauseImageName = @"pause.png";
 #endif
 
     TFProperty * property1 = [TFProperty propertyWithName:@"volume" andType:kDataTypeFloat];
-    self.properties = [NSArray arrayWithObject:property1];
+    self.properties = [NSMutableArray arrayWithObject:property1];
     
     TFMethod * method1 = [TFMethod methodWithName:@"play"];
     TFMethod * method2 = [TFMethod methodWithName:@"stop"];

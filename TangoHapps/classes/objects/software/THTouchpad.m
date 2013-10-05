@@ -46,7 +46,7 @@ float const kNotifyMinDistance = 10.0f;
     
     TFEvent * event6 = [TFEvent eventNamed:kEventLongPressed];
     
-    self.events = [NSArray arrayWithObjects:event1,event2, event3,event4, event5, event6, nil];
+    self.events = [NSMutableArray arrayWithObjects:event1,event2, event3,event4, event5, event6, nil];
     
     _scale = 1.0f;
     

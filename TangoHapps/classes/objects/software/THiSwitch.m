@@ -28,7 +28,7 @@
     TFEvent * event2 = [TFEvent eventNamed:@"switchOff"];
     TFEvent * event3 = [TFEvent eventNamed:kEventOnChanged];
     event3.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
-    self.events = [NSArray arrayWithObjects:event1,event2,event3, nil];
+    self.events = [NSMutableArray arrayWithObjects:event1,event2,event3, nil];
 }
 
 -(id) init{

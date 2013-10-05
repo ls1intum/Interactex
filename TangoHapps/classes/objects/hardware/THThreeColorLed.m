@@ -41,12 +41,12 @@
     method5.numParams = 1;
     method5.firstParamType = kDataTypeInteger;
     
-    self.methods = [NSArray arrayWithObjects:method1, method2, method3, method4, method5,nil];
+    self.methods = [NSMutableArray arrayWithObjects:method1, method2, method3, method4, method5,nil];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventColorChanged];
     TFEvent * event2 = [TFEvent eventNamed:kEventTurnedOn];
     TFEvent * event3 = [TFEvent eventNamed:kEventTurnedOff];
-    self.events = [NSArray arrayWithObjects:event1,event2,event3,nil];
+    self.events = [NSMutableArray arrayWithObjects:event1,event2,event3,nil];
 }
 
 -(void) loadPins{

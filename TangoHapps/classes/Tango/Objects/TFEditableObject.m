@@ -446,9 +446,9 @@
 }
 
 #pragma mark - UI
-
+/*
 -(void) handleAccelerated:(UIAcceleration*) acceleration{
-}
+}*/
 
 -(BOOL)testPoint:(CGPoint)point {
     return (self.visible && CGRectContainsPoint(self.boundingBox, point));
@@ -509,7 +509,7 @@
 }*/
 
 -(void) addSelectionLabel{
-    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) hAlignment:NSTextAlignmentCenter vAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:NSTextAlignmentCenter];
     
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];

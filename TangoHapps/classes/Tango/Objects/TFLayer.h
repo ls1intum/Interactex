@@ -27,7 +27,7 @@
 @interface TFLayer : CCLayer <UIGestureRecognizerDelegate>{
 }
 
-@property(nonatomic, retain) UIAcceleration* lastAcceleration;
+//@property(nonatomic, retain) UIAcceleration* lastAcceleration;
 
 @property(nonatomic, retain) UIPanGestureRecognizer * panRecognizer;
 
@@ -43,7 +43,7 @@
 -(void)tapped:(UITapGestureRecognizer*)sender;
 -(void)doubleTapped:(UITapGestureRecognizer*)sender;
 -(void)pressedLong:(UILongPressGestureRecognizer*)sender;
--(void) accelerated:(UIAcceleration*) acceleration;
+//-(void) accelerated:(UIAcceleration*) acceleration;
 
 - (CGPoint)toLayerCoords:(CGPoint)touchLocation;
 

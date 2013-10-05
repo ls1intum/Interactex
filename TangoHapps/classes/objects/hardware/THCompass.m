@@ -47,7 +47,7 @@
     TFEvent * event4 = [TFEvent eventNamed:kEventHeadingChanged];
     event4.param1 = [TFPropertyInvocation invocationWithProperty:property4 target:self];
     
-    self.events = [NSArray arrayWithObjects:event1,event2,event3,event4,nil];
+    self.events = [NSMutableArray arrayWithObjects:event1,event2,event3,event4,nil];
 }
 
 -(void) loadPins{

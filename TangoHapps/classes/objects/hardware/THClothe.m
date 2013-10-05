@@ -107,7 +107,7 @@
 }
 
 -(void) removeFromWorld{
-    NSMutableArray * attachments = [NSArray arrayWithArray:_attachments];
+    NSMutableArray * attachments = [NSMutableArray arrayWithArray:_attachments];
     for (TFEditableObject * object in attachments) {
         [object removeFromWorld];
     }

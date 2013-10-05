@@ -27,12 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _editingTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.lilypadItem, self.hideiPhoneItem, nil];
-    _lilypadTools = [NSArray arrayWithObjects:self.connectButton,self.duplicateButton, self.removeButton,self.lilypadItem, nil];
+    _editingTools = [NSArray arrayWithObjects:self.connectButton, self.duplicateButton, self.removeButton, self.lilypadItem, self.hideiPhoneItem, nil];
+    _lilypadTools = [NSArray arrayWithObjects:self.connectButton, self.duplicateButton, self.removeButton, self.lilypadItem, nil];
     _simulatingTools = [NSArray arrayWithObjects:self.pinsModeItem,self.pushItem,nil];
     
-    self.highlightedItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
+    //self.highlightedItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
+    self.highlightedItemTintColor = nil;
     self.hideiPhoneItem.tintColor = self.highlightedItemTintColor;
+    self.unselectedTintColor = [UIColor grayColor];
     
     [self addEditionButtons];
 }
@@ -44,9 +46,10 @@
 
 -(void) unselectAllButtons{
     
-    self.connectButton.tintColor = nil;
-    self.duplicateButton.tintColor = nil;
-    self.removeButton.tintColor = nil;
+    self.connectButton.tintColor = self.unselectedTintColor;
+    self.duplicateButton.tintColor = self.unselectedTintColor;
+    self.removeButton.tintColor = self.unselectedTintColor;
+    self.lilypadItem.tintColor = self.unselectedTintColor;
 }
 
 -(void) updateEditingButtonsTint{
@@ -66,19 +69,19 @@
 -(void) updateHideIphoneButtonTint{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    self.hideiPhoneItem.tintColor = (project.iPhone.visible ? self.highlightedItemTintColor : nil);
+    self.hideiPhoneItem.tintColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor);
 }
 
 -(void) updateLilypadTint{
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    self.lilypadItem.tintColor = (editor.isLilypadMode ? self.highlightedItemTintColor : nil);
+    self.lilypadItem.tintColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor);
 }
 
 -(void) updatePinsModeItemTint{
     
     THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
-    self.pinsModeItem.tintColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : nil);
+    self.pinsModeItem.tintColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor);
 }
 
 -(void) checkSwitchToState:(TFEditorState) state{
@@ -147,6 +150,7 @@
     
     self.toolBar.items = _simulatingTools;
     [self updateFrame];
+    [self updatePinsModeItemTint];
 }
 
 - (IBAction)lilypadPressed:(id)sender {

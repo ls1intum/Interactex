@@ -87,7 +87,7 @@
 -(void) rotateBy: (float) rotation;
 
 //ui
--(void) handleAccelerated:(UIAcceleration*) acceleration;
+//-(void) handleAccelerated:(UIAcceleration*) acceleration;
 -(void) handleRotation:(float) degree;
 -(void) handleTap;
 -(BOOL) testPoint:(CGPoint)point;
