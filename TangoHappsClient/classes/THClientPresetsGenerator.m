@@ -94,7 +94,7 @@ NSString * const kCompassSceneName = @"Compass";
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.hardwareComponents = [NSArray arrayWithObject:led];
+    project.hardwareComponents = [NSMutableArray arrayWithObject:led];
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
     button.text = @"turnOn";
@@ -122,7 +122,7 @@ NSString * const kCompassSceneName = @"Compass";
     label.position = CGPointMake(150, 100);
     label.width = 200;
     
-    project.iPhoneObjects = [NSArray arrayWithObjects:button,button2,label,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label,nil];
     
     THBoardPin * lilypinled = [lilypad digitalPinWithNumber:5];
     lilypinled.mode = kPinModeDigitalOutput;
@@ -145,7 +145,7 @@ NSString * const kCompassSceneName = @"Compass";
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.hardwareComponents = [NSArray arrayWithObjects:led, lilybutton,nil];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:led, lilybutton,nil];
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
     button.text = @"turnOn";
@@ -179,7 +179,7 @@ NSString * const kCompassSceneName = @"Compass";
     label.height = 100;
     label.numLines = 2;
     
-    project.iPhoneObjects = [NSArray arrayWithObjects:button,button2,label, nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label, nil];
     
     //pins
     THBoardPin * lilypinled = [lilypad digitalPinWithNumber:5];
@@ -203,7 +203,7 @@ NSString * const kCompassSceneName = @"Compass";
     
     THBuzzer * buzzer = [[THBuzzer alloc] init];
     
-    project.hardwareComponents = [NSArray arrayWithObject:buzzer];
+    project.hardwareComponents = [NSMutableArray arrayWithObject:buzzer];
     
     THiPhoneButton * button1 = [[THiPhoneButton alloc] init];
     button1.text = @"turnOn";
@@ -221,7 +221,7 @@ NSString * const kCompassSceneName = @"Compass";
     label.position = CGPointMake(150, 50);
     label.width = 200;
     
-    project.iPhoneObjects = [NSArray arrayWithObjects:button1, button2, touchpad, label, nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:button1, button2, touchpad, label, nil];
     
     TFEvent * event = [button1.events objectAtIndex:0];
     
@@ -263,7 +263,7 @@ NSString * const kCompassSceneName = @"Compass";
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.hardwareComponents = [NSArray arrayWithObjects:led,nil];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:led,nil];
     
     //pins
     THBoardPin * lilypinled = [lilypad digitalPinWithNumber:9];
@@ -280,7 +280,7 @@ NSString * const kCompassSceneName = @"Compass";
     label.position = CGPointMake(150, 50);
     label.width = 200;
     
-    project.iPhoneObjects = [NSArray arrayWithObjects:touchpad,label,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:touchpad,label,nil];
     
     TFEvent * dxEvent = [touchpad.events objectAtIndex:0];
     TFMethod * varyIntensityMethod = [led.methods objectAtIndex:0];
@@ -300,7 +300,7 @@ NSString * const kCompassSceneName = @"Compass";
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.lilypad = lilypad;
-    project.hardwareComponents = [NSArray arrayWithObjects:lightSensor,nil];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:lightSensor,nil];
     
     THLabel * sensorLabel = [[THLabel alloc] init];
     sensorLabel.position = CGPointMake(150, 200);
@@ -310,7 +310,7 @@ NSString * const kCompassSceneName = @"Compass";
     label.position = CGPointMake(170, 50);
     label.width = 300;
     
-    project.iPhoneObjects = [NSArray arrayWithObjects:label,sensorLabel,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,sensorLabel,nil];
     
     //method
     TFEvent * lightChangeEvent = [lightSensor.events objectAtIndex:0];

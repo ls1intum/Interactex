@@ -45,9 +45,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
     [self loadGestureRecognizers];
     
-    [self generateRandomScenes];
+    //[self generateRandomScenes];
     
     self.fakeScenesSource = [[THClientPresetsGenerator alloc] init];
     self.presets = self.fakeScenesSource.scenes;

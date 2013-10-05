@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
     <dependencies>
-        <development version="4500" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -24,11 +24,16 @@
         <scene sceneID="wnw-XR-syg">
             <objects>
                 <viewController id="1nI-qf-8XH" customClass="THClientSceneSelectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JKh-Ys-3Yn"/>
+                        <viewControllerLayoutGuide type="bottom" id="y5E-Ji-nyL"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AWk-yn-l1N">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yq5-ya-uDz">
+                                <rect key="frame" x="0.0" y="452" width="320" height="29"/>
                                 <segments>
                                     <segment title="Custom"/>
                                     <segment title="Presets"/>
@@ -38,6 +43,7 @@
                                 </connections>
                             </segmentedControl>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tfP-pW-Mfl" userLabel="custom">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hCr-Fo-Zwi">
                                     <size key="itemSize" width="97" height="124"/>
@@ -54,12 +60,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35P-OU-Poi">
+                                                    <rect key="frame" x="14" y="11" width="69" height="93"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="93" id="oaO-YP-sNk"/>
                                                         <constraint firstAttribute="width" constant="69" id="shM-hh-AGT"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPT-A7-kT6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="VO5-vO-wKq"/>
                                                         <constraint firstAttribute="height" constant="30" id="e01-8M-CdO"/>
@@ -77,6 +85,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yv4-MX-ii9">
+                                                    <rect key="frame" x="0.0" y="103" width="97" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="r3h-Fd-c09"/>
                                                     </constraints>
@@ -88,13 +97,13 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="35P-OU-Poi" secondAttribute="bottom" constant="20" type="default" id="Guj-Bq-GnM"/>
-                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="leading" secondItem="eVK-zK-Wbj" secondAttribute="leading" type="default" id="XW4-f9-Rbf"/>
-                                            <constraint firstItem="35P-OU-Poi" firstAttribute="centerX" secondItem="yv4-MX-ii9" secondAttribute="centerX" type="default" id="izq-sn-1si"/>
-                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="trailing" secondItem="eVK-zK-Wbj" secondAttribute="trailing" type="default" id="jvn-Wr-XQa"/>
-                                            <constraint firstItem="WPT-A7-kT6" firstAttribute="leading" secondItem="eVK-zK-Wbj" secondAttribute="leading" type="default" id="lGy-RO-kWV"/>
-                                            <constraint firstItem="WPT-A7-kT6" firstAttribute="top" secondItem="eVK-zK-Wbj" secondAttribute="top" type="default" id="lSY-YJ-7ZE"/>
-                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="bottom" secondItem="eVK-zK-Wbj" secondAttribute="bottom" type="default" id="rHD-ig-91e"/>
+                                            <constraint firstAttribute="bottom" secondItem="35P-OU-Poi" secondAttribute="bottom" constant="20" id="Guj-Bq-GnM"/>
+                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="leading" secondItem="eVK-zK-Wbj" secondAttribute="leading" id="XW4-f9-Rbf"/>
+                                            <constraint firstItem="35P-OU-Poi" firstAttribute="centerX" secondItem="yv4-MX-ii9" secondAttribute="centerX" id="izq-sn-1si"/>
+                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="trailing" secondItem="eVK-zK-Wbj" secondAttribute="trailing" id="jvn-Wr-XQa"/>
+                                            <constraint firstItem="WPT-A7-kT6" firstAttribute="leading" secondItem="eVK-zK-Wbj" secondAttribute="leading" id="lGy-RO-kWV"/>
+                                            <constraint firstItem="WPT-A7-kT6" firstAttribute="top" secondItem="eVK-zK-Wbj" secondAttribute="top" id="lSY-YJ-7ZE"/>
+                                            <constraint firstItem="yv4-MX-ii9" firstAttribute="bottom" secondItem="eVK-zK-Wbj" secondAttribute="bottom" id="rHD-ig-91e"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="deleteButton" destination="WPT-A7-kT6" id="WiN-Yp-b7j"/>
@@ -109,10 +118,8 @@
                                 </connections>
                             </collectionView>
                             <collectionView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kG1-u9-qUo" userLabel="presets">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="388" id="d6K-cf-OK4"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v47-QU-aiT">
                                     <size key="itemSize" width="97" height="124"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -127,8 +134,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="fakeSceneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="WjU-ZH-zz2"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="fakeSceneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="WjU-ZH-zz2">
+                                                    <rect key="frame" x="24" y="39" width="50" height="46"/>
+                                                </imageView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ahH-lI-x2R">
+                                                    <rect key="frame" x="0.0" y="103" width="98" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="48z-Tl-utL"/>
                                                     </constraints>
@@ -140,11 +150,11 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerY" secondItem="YZO-nj-laJ" secondAttribute="centerY" type="default" id="XSZ-8b-eeZ"/>
-                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="YZO-nj-laJ" secondAttribute="centerX" type="default" id="ZdU-K0-8GI"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerY" secondItem="YZO-nj-laJ" secondAttribute="centerY" id="XSZ-8b-eeZ"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="YZO-nj-laJ" secondAttribute="centerX" id="ZdU-K0-8GI"/>
                                             <constraint firstItem="ahH-lI-x2R" firstAttribute="top" secondItem="YZO-nj-laJ" secondAttribute="top" constant="103" id="ZxV-cC-neH"/>
-                                            <constraint firstItem="ahH-lI-x2R" firstAttribute="leading" secondItem="YZO-nj-laJ" secondAttribute="leading" type="default" id="cbX-rm-H84"/>
-                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="ahH-lI-x2R" secondAttribute="centerX" type="default" id="eUe-tL-n1u"/>
+                                            <constraint firstItem="ahH-lI-x2R" firstAttribute="leading" secondItem="YZO-nj-laJ" secondAttribute="leading" id="cbX-rm-H84"/>
+                                            <constraint firstItem="WjU-ZH-zz2" firstAttribute="centerX" secondItem="ahH-lI-x2R" secondAttribute="centerX" id="eUe-tL-n1u"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="WjU-ZH-zz2" id="3Ga-Zm-mdf"/>
@@ -160,16 +170,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="top" secondItem="AWk-yn-l1N" secondAttribute="top" type="default" id="8iO-6d-f1M"/>
-                            <constraint firstItem="kG1-u9-qUo" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" type="default" id="BQQ-oi-dxj"/>
-                            <constraint firstItem="yq5-ya-uDz" firstAttribute="bottom" secondItem="AWk-yn-l1N" secondAttribute="bottom" type="default" id="HSQ-f7-eMd"/>
-                            <constraint firstItem="yq5-ya-uDz" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" type="default" id="Ijx-7F-OIg"/>
-                            <constraint firstItem="kG1-u9-qUo" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="Lbf-EG-2oq"/>
-                            <constraint firstItem="kG1-u9-qUo" firstAttribute="top" secondItem="AWk-yn-l1N" secondAttribute="top" type="default" id="ZYH-tB-NJs"/>
-                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="bottom" secondItem="kG1-u9-qUo" secondAttribute="bottom" type="default" id="cIr-oG-xqT"/>
-                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" type="default" id="dWl-w6-hx3"/>
-                            <constraint firstItem="yq5-ya-uDz" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="gRy-Da-mIx"/>
-                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" type="default" id="zye-ge-a7Y"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="trailing" secondItem="tfP-pW-Mfl" secondAttribute="trailing" id="7Ux-Jn-5RF"/>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="top" secondItem="AWk-yn-l1N" secondAttribute="top" id="8iO-6d-f1M"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="top" secondItem="AWk-yn-l1N" secondAttribute="top" id="Ffb-nv-BW0"/>
+                            <constraint firstItem="yq5-ya-uDz" firstAttribute="bottom" secondItem="AWk-yn-l1N" secondAttribute="bottom" id="HSQ-f7-eMd"/>
+                            <constraint firstItem="yq5-ya-uDz" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" id="Ijx-7F-OIg"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="bottom" secondItem="tfP-pW-Mfl" secondAttribute="bottom" id="N0V-OB-Ho6"/>
+                            <constraint firstItem="kG1-u9-qUo" firstAttribute="leading" secondItem="tfP-pW-Mfl" secondAttribute="leading" id="YS1-5C-Ia7"/>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="trailing" secondItem="AWk-yn-l1N" secondAttribute="trailing" id="dWl-w6-hx3"/>
+                            <constraint firstItem="yq5-ya-uDz" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" id="gRy-Da-mIx"/>
+                            <constraint firstItem="y5E-Ji-nyL" firstAttribute="top" secondItem="kG1-u9-qUo" secondAttribute="bottom" constant="27" id="iJO-XT-QV6"/>
+                            <constraint firstItem="tfP-pW-Mfl" firstAttribute="leading" secondItem="AWk-yn-l1N" secondAttribute="leading" id="zye-ge-a7Y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Projects" id="dag-TJ-uvv">
@@ -201,12 +212,19 @@
         <scene sceneID="eK9-VL-3ef">
             <objects>
                 <viewController id="PGp-Lq-9E8" customClass="THClientDownloadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3zz-49-gW5"/>
+                        <viewControllerLayoutGuide type="bottom" id="LnC-u9-0g0"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fM8-1D-3jL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-7S-GLF"/>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-7S-GLF">
+                                <rect key="frame" x="50" y="340" width="250" height="2"/>
+                            </progressView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Open a project in TangoHapps and tap the upload Button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-9u-4u8">
+                                <rect key="frame" x="20" y="18" width="280" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="hq4-Q2-ss4"/>
                                 </constraints>
@@ -214,19 +232,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZEC-ub-RIq"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZEC-ub-RIq">
+                                <rect key="frame" x="150" y="201" width="20" height="20"/>
+                            </activityIndicatorView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name: XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfo-uh-eh0">
+                                <rect key="frame" x="117" y="160" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="fakeSceneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="fcY-1u-pdw">
+                                <rect key="frame" x="142" y="193" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="15Q-xj-n7F"/>
                                     <constraint firstAttribute="height" constant="35" id="GMo-eB-3OZ"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Downloading assets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWU-ka-8A2">
+                                <rect key="frame" x="50" y="236" width="250" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="DPk-Ev-1OT"/>
                                     <constraint firstAttribute="height" constant="21" id="DdW-42-plV"/>
@@ -239,18 +262,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fcY-1u-pdw" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="142" id="3VB-JZ-sU8"/>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" type="default" id="EaG-dZ-tB9"/>
-                            <constraint firstItem="yWU-ka-8A2" firstAttribute="top" secondItem="fcY-1u-pdw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HU2-s1-h7A"/>
-                            <constraint firstItem="N5K-7S-GLF" firstAttribute="leading" secondItem="yWU-ka-8A2" secondAttribute="leading" type="default" id="TUT-O6-rsw"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" id="EaG-dZ-tB9"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="top" secondItem="fcY-1u-pdw" secondAttribute="bottom" constant="8" symbolic="YES" id="HU2-s1-h7A"/>
+                            <constraint firstItem="N5K-7S-GLF" firstAttribute="leading" secondItem="yWU-ka-8A2" secondAttribute="leading" id="TUT-O6-rsw"/>
                             <constraint firstItem="fcY-1u-pdw" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="193" id="VBx-uI-V7B"/>
                             <constraint firstItem="Kfo-uh-eh0" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="160" id="W0E-vG-3XF"/>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" type="default" id="aDi-NL-zWw"/>
-                            <constraint firstAttribute="trailing" secondItem="yWU-ka-8A2" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="bh8-0y-Wmb"/>
-                            <constraint firstAttribute="trailing" secondItem="UkX-9u-4u8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dd7-O4-7hk"/>
-                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dsS-MI-2AR"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" id="aDi-NL-zWw"/>
+                            <constraint firstAttribute="trailing" secondItem="yWU-ka-8A2" secondAttribute="trailing" constant="20" symbolic="YES" id="bh8-0y-Wmb"/>
+                            <constraint firstAttribute="trailing" secondItem="UkX-9u-4u8" secondAttribute="trailing" constant="20" symbolic="YES" id="dd7-O4-7hk"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="20" symbolic="YES" id="dsS-MI-2AR"/>
                             <constraint firstItem="UkX-9u-4u8" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="18" id="iBH-Ko-Q73"/>
                             <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="201" id="mcs-Jg-KrF"/>
-                            <constraint firstAttribute="trailing" secondItem="N5K-7S-GLF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tfq-Hp-tpD"/>
+                            <constraint firstAttribute="trailing" secondItem="N5K-7S-GLF" secondAttribute="trailing" constant="20" symbolic="YES" id="tfq-Hp-tpD"/>
                             <constraint firstAttribute="bottom" secondItem="N5K-7S-GLF" secondAttribute="bottom" constant="138" id="vXe-8e-om4"/>
                         </constraints>
                     </view>
@@ -293,58 +316,6 @@
         <image name="fakeSceneImage.png" width="50" height="46"/>
         <image name="removeButton.png" width="44" height="44"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="THClientAppViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientAppViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="modeButtonTapped:"/>
-                <relationship kind="outlet" name="modeButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="THClientDownloadViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientDownloadViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="checkImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="currentActivityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="instructionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
-            </relationships>
-        </class>
-        <class className="THClientSceneCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneCell.h"/>
-            <relationships>
-                <relationship kind="action" name="deleteTapped:"/>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="THClientSceneSelectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/THClientSceneSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editTapped:"/>
-                <relationship kind="action" name="filterControlChanged:"/>
-                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="filterControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="presetsCollectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="scenesCollectionView" candidateClass="UICollectionView"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

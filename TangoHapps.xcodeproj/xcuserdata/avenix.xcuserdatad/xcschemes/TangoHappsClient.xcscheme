@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-               BuildableName = "TangoHappsClient.app"
+               BuildableName = "Interactex Client.app"
                BlueprintName = "TangoHappsClient"
                ReferencedContainer = "container:TangoHapps.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "TangoHappsClient.app"
+            BuildableName = "Interactex Client.app"
             BlueprintName = "TangoHappsClient"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "TangoHappsClient.app"
+            BuildableName = "Interactex Client.app"
             BlueprintName = "TangoHappsClient"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "TangoHappsClient.app"
+            BuildableName = "Interactex Client.app"
             BlueprintName = "TangoHappsClient"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>

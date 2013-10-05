@@ -1177,7 +1177,7 @@
 		9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPaletteItem.h; sourceTree = "<group>"; };
 		9A097780172693E60028A6B4 /* THSoundPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPaletteItem.m; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
-		9A351189167B7A6800C7484B /* TangoHapps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHapps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A351189167B7A6800C7484B /* Interactex Designer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interactex Designer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35118D167B7A6800C7484B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A35118F167B7A6800C7484B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A351191167B7A6800C7484B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1837,7 +1837,7 @@
 		9AF505C9167B90C00020241C /* THTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestsHelper.m; sourceTree = "<group>"; };
 		9AF505DE167B91150020241C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		9AF506D0167B97760020241C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		9AF5FFF1167B82F70020241C /* TangoHappsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoHappsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF5FFF1167B82F70020241C /* Interactex Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interactex Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = connectionMade.mp3; sourceTree = "<group>"; };
 		9AF60BC416A04D9F00178439 /* THTabbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbar.xib; sourceTree = "<group>"; };
 		9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbarViewSection.xib; sourceTree = "<group>"; };
@@ -1937,8 +1937,8 @@
 		9A35118A167B7A6800C7484B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A351189167B7A6800C7484B /* TangoHapps.app */,
-				9AF5FFF1167B82F70020241C /* TangoHappsClient.app */,
+				9A351189167B7A6800C7484B /* Interactex Designer.app */,
+				9AF5FFF1167B82F70020241C /* Interactex Client.app */,
 				9AF505A4167B90780020241C /* TangoHappsTests.app */,
 			);
 			name = Products;
@@ -3096,7 +3096,7 @@
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
-			productReference = 9A351189167B7A6800C7484B /* TangoHapps.app */;
+			productReference = 9A351189167B7A6800C7484B /* Interactex Designer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9AF505A3167B90780020241C /* TangoHappsTests */ = {
@@ -3135,7 +3135,7 @@
 			);
 			name = TangoHappsClient;
 			productName = TangoHappsClient;
-			productReference = 9AF5FFF1167B82F70020241C /* TangoHappsClient.app */;
+			productReference = 9AF5FFF1167B82F70020241C /* Interactex Client.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4373,7 +4373,7 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Interactex Designer";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone.git/** Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
@@ -4387,7 +4387,7 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Interactex Designer";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone.git/** Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
@@ -4428,7 +4428,7 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Interactex Designer";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone.git/** Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
@@ -4445,7 +4445,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Interactex Client";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4480,7 +4480,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Interactex Client";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4496,7 +4496,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Interactex Client";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
 			};
