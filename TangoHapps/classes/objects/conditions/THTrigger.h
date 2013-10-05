@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface THTrigger : TFSimulableObject
 
 @property (nonatomic) NSMutableArray * actions;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Juan Haladjian. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
 @interface THPin : TFSimulableObject <NSCoding> {
     

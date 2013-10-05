@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @class THHardwareComponentEditableObject;
 @class THiPhoneEditableObject;
 @class THViewEditableObject;

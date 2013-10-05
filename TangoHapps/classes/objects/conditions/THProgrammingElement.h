@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Technische Universität München. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface THProgrammingElement : TFSimulableObject
 
 @end

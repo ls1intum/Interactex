@@ -1,4 +1,6 @@
 
+#import <Foundation/Foundation.h>
+
 @class TFProject;
 @class TFLayer;
 @class THPalette;
