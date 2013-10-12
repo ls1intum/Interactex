@@ -90,7 +90,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setHighlighted:(BOOL)selected{
     if(selected){
-        THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
         
         NSString * text = kPinTexts[self.type];
         
@@ -99,12 +98,12 @@ You should have received a copy of the GNU General Public License along with thi
             text = [text stringByAppendingFormat:@" %d",self.number];
         }
         
-        _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:15 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
+        _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:18 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
         
-        CGPoint position = [self convertToWorldSpace:ccp(0,0)];
-        _label.position = ccpAdd(position,ccp(0,50));
+        _label.position = ccp(0,50);
         
-        [editor addChild:_label];
+        [self addChild:_label];
+        
     } else {
         [_label removeFromParentAndCleanup:YES];
         _label = nil;
@@ -188,7 +187,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     
     if(self.highlighted){
+        
         glLineWidth(2);
+        
         if(self.attachedPins.count > 0 && !self.acceptsManyPins){
             ccDrawColor4F(0.82, 0.58, 0.58, 1.0);
 
@@ -197,9 +198,6 @@ You should have received a copy of the GNU General Public License along with thi
         }
         
         ccDrawCircle(ccp(0,0), kLilypadPinRadius, 0, 15, 0);
-        
-        glLineWidth(1);
-        
         ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0);
     }
     

@@ -209,12 +209,13 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Pin highlighting
 
 -(void) highlightPin:(THPinEditable*) pin{
-    
-    if(_currentHighlightedPin != nil){
-        _currentHighlightedPin.highlighted = NO;
+    if(pin != _currentHighlightedPin){
+        if(_currentHighlightedPin != nil){
+            _currentHighlightedPin.highlighted = NO;
+        }
+        _currentHighlightedPin = pin;
+        _currentHighlightedPin.highlighted = YES;
     }
-    _currentHighlightedPin = pin;
-    _currentHighlightedPin.highlighted = YES;
 }
 
 -(void) dehighlightCurrentPin{

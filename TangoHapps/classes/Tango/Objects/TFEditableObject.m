@@ -480,6 +480,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(self.selected){
         
+        glLineWidth(1);
+        
         ccDrawColor4B(kDefaultObjectSelectionColor.r, kDefaultObjectSelectionColor.g, kDefaultObjectSelectionColor.b, kDefaultObjectSelectionColor.a);
         
         float kSelectionPadding = 5;

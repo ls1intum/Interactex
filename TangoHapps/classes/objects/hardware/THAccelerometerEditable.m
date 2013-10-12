@@ -165,11 +165,9 @@
 -(void) willStartSimulation{
     [super willStartSimulation];
     
-    self.sprite.visible = NO;
 }
 
 -(void) willStartEdition{
-    self.sprite.visible = YES;
 }
 
 -(NSString*) description{

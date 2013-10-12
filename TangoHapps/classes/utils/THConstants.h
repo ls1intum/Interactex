@@ -162,6 +162,7 @@ NSString * kNotifyBehaviorsText[kMaxNumNotifyBehaviors];
 extern NSInteger const kCompassMin;
 extern NSInteger const kAnalogInMin;
 
+extern NSString * kSimulatorDefaultBoldFont;
 extern NSString * kSimulatorDefaultFont;
 extern CGSize const kDefaultViewMinSize;
 extern CGSize const kDefaultViewMaxSize;

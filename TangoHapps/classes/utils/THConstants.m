@@ -87,6 +87,7 @@ NSInteger const kAnalogInMin = 1000;
 
 NSString * kNotifyBehaviorsText[kMaxNumNotifyBehaviors] = {@"the value will be notified always when it changed",@"the value will be notified always when it changed whithin the range", @"the value will be notified once when the range is entered"};
 
+NSString * kSimulatorDefaultBoldFont = @"Arial Rounded MT Bold";
 NSString * kSimulatorDefaultFont = @"Arial";
 CGSize const kDefaultViewMinSize = {50,50};
 CGSize const kDefaultViewMaxSize = {300,300};

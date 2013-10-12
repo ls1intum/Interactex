@@ -45,11 +45,11 @@
 
 
 - (void)dropAt:(CGPoint)location {
-    THAccelerometerEditable * temperatureSensor = [[THAccelerometerEditable alloc] init];
-    temperatureSensor.position = location;
+    THAccelerometerEditable * accelerometer = [[THAccelerometerEditable alloc] init];
+    accelerometer.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:temperatureSensor];
+    [project addHardwareComponent:accelerometer];
 }
 
 @end
