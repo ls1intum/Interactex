@@ -279,11 +279,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Connection
 
--(void) connectElementPinToLilypad:(THElementPinEditable*) objectPin at:(CGPoint) position{
+-(void) connectElementPin:(THElementPinEditable*) objectPin toBoardAtPosition:(CGPoint) position{
+    
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THLilyPadEditable * lilypad = project.lilypad;
-    THBoardPinEditable * lilypadPin = [lilypad pinAtPosition:position];
+    THBoardEditable * board = [project boardAtLocation:position];
+    THBoardPinEditable * lilypadPin = [board pinAtPosition:position];
     
     if([objectPin acceptsConnectionsTo:lilypadPin]){
         [lilypadPin attachPin:objectPin];
@@ -298,10 +299,11 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.isLilypadMode){
         
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+        THBoardEditable * board = [project boardAtLocation:position];
         
-        if([project.lilypad testPoint:position]){
+        if([board testPoint:position]){
             
-            THBoardPinEditable * pin = [project.lilypad pinAtPosition:position];
+            THBoardPinEditable * pin = [board pinAtPosition:position];
             if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
                 [self highlightPin:pin];
             } else {
@@ -407,7 +409,7 @@ You should have received a copy of the GNU General Public License along with thi
         if([object1 isKindOfClass:[THElementPinEditable class]]){
             THElementPinEditable * objectPin = (THElementPinEditable*) object1;
             if([object2 isKindOfClass:[THLilyPadEditable class]]){
-                [self connectElementPinToLilypad:objectPin at:location];
+                [self connectElementPin:objectPin toBoardAtPosition:location];
             }
         } /*else if([object1 isKindOfClass:[THResistorExtension class]]){
             THResistorExtension * extension = (THResistorExtension*) object1;
@@ -573,6 +575,14 @@ You should have received a copy of the GNU General Public License along with thi
     
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
+    
+    
+    THProject * myProject = [THDirector sharedDirector].currentProject;
+    THBoardEditable * board = [myProject boardAtLocation:location];
+    if(board){
+        CGPoint newPos = ccpSub(board.position, location);
+        NSLog(@"%d %d",(int)newPos.x, (int)newPos.y);
+    }
     
     if(self.removeConnections){
         
@@ -982,9 +992,24 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) showBoards{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    for (THBoardEditable * board in project.boards) {
+        board.visible = YES;
+    }
+}
+
+-(void) hideBoards{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    for (THBoardEditable * board in project.boards) {
+        board.visible = NO;
+    }
+}
 
 #pragma mark - Lilypad Mode
-
+/*
 -(void) addLilypadObjects{
     THProject * project = [THDirector sharedDirector].currentProject;
     
@@ -997,7 +1022,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(project.lilypad != nil){
         [project.lilypad removeFromParentAndCleanup:YES];
     }
-}
+}*/
 
 -(void) hideNonLilypadObjects{
     [self hideClothes];
@@ -1060,7 +1085,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self hideConnectionsForAllObjects];
     
     [self hideNonLilypadObjects];
-    [self addLilypadObjects];
+    [self showBoards];
+//    [self addLilypadObjects];
     [self showAllLilypadWires];
     [self hideNonLilypadPaletteSections];
 }
@@ -1068,8 +1094,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) stopLilypadMode{
     
     _isLilypadMode = NO;
-    
-    [self removeLilypadObjects];
+    [self hideBoards];
+    //[self removeLilypadObjects];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
     [self hideAllLilypadWires];

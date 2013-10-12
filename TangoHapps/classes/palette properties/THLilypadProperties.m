@@ -59,9 +59,10 @@ float const kLilypadPropertiesMinHeight = 300;
 
 -(void) addPinViews{
     _currentY = kLilypadPropertiesPadding;
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
-    for (THBoardPinEditable * pin in project.lilypad.pins) {
+    THLilyPadEditable * lilypad = (THLilyPadEditable*) self.editableObject;
+    
+    for (THBoardPinEditable * pin in lilypad.pins) {
         if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){
             CGRect frame = CGRectMake(kLilypadPropertiesPadding, _currentY, self.containerView.frame.size.width - 20, kLilypadPropertiesContainerHeight);
             

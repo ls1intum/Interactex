@@ -183,7 +183,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) draw{
     
-    //ccDrawCircle(ccp(0,0), kLilypadPinRadius, 0, 15, 0);
+    //ccDrawColor4B(255, 0, 0, 255);
+    //ccDrawCircle(ccp(0,0), 3, 0, 15, 0);
     
     
     if(self.highlighted){

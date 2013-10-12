@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
     compass.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addClotheObject:compass];
+    [project addHardwareComponent:compass];
 }
 
 @end

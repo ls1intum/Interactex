@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     clotheButton.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addClotheObject:clotheButton];
+    [project addHardwareComponent:clotheButton];
 }
 
 @end

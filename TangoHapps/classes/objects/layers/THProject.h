@@ -52,6 +52,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THElementPinEditable;
 @class THBoardPinEditable;
 @class THInvocationConnectionLine;
+@class THBoardEditable;
 
 @class TFEditableObject;
 @class TFAction;
@@ -112,9 +113,14 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeiPhoneObject:(THViewEditableObject*) object;
 -(THViewEditableObject*) iPhoneObjectAtLocation:(CGPoint) location;
 
+//lilypad
+-(void) addBoard:(THBoardEditable *) board;
+-(void) removeBoard:(THBoardEditable*) board;
+-(THBoardEditable*) boardAtLocation:(CGPoint) location;
+
 //clotheObjects
--(void) addClotheObject:(THHardwareComponentEditableObject*) clotheObject;
--(void) removeClotheObject:(THHardwareComponentEditableObject*) clotheObject;
+-(void) addHardwareComponent:(THHardwareComponentEditableObject*) clotheObject;
+-(void) removeHardwareComponent:(THHardwareComponentEditableObject*) clotheObject;
 -(THHardwareComponentEditableObject*) clotheObjectAtLocation:(CGPoint) location;
 -(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject;
 
@@ -143,10 +149,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeAction:(TFEditableObject*) action;
 -(TFEditableObject*) actionAtLocation:(CGPoint) location;
 
-//lilypad
--(void) addLilypad:(THLilyPadEditable *)lilypad;
--(void) removeLilypad;
-
 //wires
 -(void) addWire:(THWire*) wire;
 -(void) removeWire:(THWire*) wire;
@@ -164,8 +166,8 @@ You should have received a copy of the GNU General Public License along with thi
 //non editable project
 -(THClientProject*) nonEditableProject;
 
-@property (nonatomic,readonly) THLilyPadEditable * lilypad;
 @property (nonatomic,readonly) THiPhoneEditableObject * iPhone;
+@property (nonatomic,readonly) NSMutableArray * boards;
 @property (nonatomic,readonly) NSMutableArray * hardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;

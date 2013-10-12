@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
     led.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addClotheObject:led];
+    [project addHardwareComponent:led];
 }
 
 @end

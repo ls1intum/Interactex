@@ -56,6 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) load{
     
+    _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
@@ -91,6 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
         [self load];
         
         self.name = [decoder decodeObjectForKey:@"name"];
+        self.boards = [decoder decodeObjectForKey:@"boards"];
         self.hardwareComponents = [decoder decodeObjectForKey:@"clotheObjects"];
         self.iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         self.iPhone = [decoder decodeObjectForKey:@"iPhone"];
@@ -111,6 +113,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.name forKey:@"name"];
     
+    [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"clotheObjects"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -147,6 +150,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(NSArray*) allObjects {
     NSArray * allObjects = [self.hardwareComponents arrayByAddingObjectsFromArray:self.iPhoneObjects];
+    
+    allObjects = [allObjects arrayByAddingObjectsFromArray:self.boards];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.conditions];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.actions];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.triggers];

@@ -76,10 +76,10 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led];
+    [project addHardwareComponent:led];
     
     THButtonEditableObject * button = [[THButtonEditableObject alloc] init];
-    [project addClotheObject:button];
+    [project addHardwareComponent:button];
     
     [THTestsHelper registerActionForObject:button target:led event:kEventStartedPressing method:@"turnOn"];
     
@@ -94,7 +94,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led];
+    [project addHardwareComponent:led];
     
     THTouchPadEditableObject * touchpad = [[THTouchPadEditableObject alloc] init];
     [project addiPhoneObject:touchpad];
@@ -113,7 +113,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led];
+    [project addHardwareComponent:led];
     
     THLabelEditableObject * label = [[THLabelEditableObject alloc] init];
     [project addiPhoneObject:label];
@@ -132,18 +132,18 @@ You should have received a copy of the GNU General Public License along with thi
     
     THBuzzerEditableObject * buzzer1 = [[THBuzzerEditableObject alloc] init];
     buzzer1.frequency = 1000;
-    [project addClotheObject:buzzer1];
+    [project addHardwareComponent:buzzer1];
     
     THBuzzerEditableObject * buzzer2 = [[THBuzzerEditableObject alloc] init];
     buzzer2.frequency = 2000;
-    [project addClotheObject:buzzer2];
+    [project addHardwareComponent:buzzer2];
     
     THComparisonConditionEditable * condition = [[THComparisonConditionEditable alloc] init];
     condition.type = kConditionTypeBiggerThan;
     [project addCondition:condition];
     
     THLedEditableObject * led = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led];
+    [project addHardwareComponent:led];
     
     [THTestsHelper registerActionForObject:buzzer1 target:condition event:kEventFrequencyChanged method:kMethodSetValue1];
     [THTestsHelper registerActionForObject:buzzer2 target:condition event:kEventFrequencyChanged method:kMethodSetValue2];
@@ -160,16 +160,16 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THTestsHelper emptyProject];
     
     THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led1];
+    [project addHardwareComponent:led1];
     
     THLedEditableObject * led2 = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led2];
+    [project addHardwareComponent:led2];
     
     THGrouperConditionEditable * condition = [[THGrouperConditionEditable alloc] init];
     [project addCondition:condition];
     
     THLedEditableObject * led3 = [[THLedEditableObject alloc] init];
-    [project addClotheObject:led3];
+    [project addHardwareComponent:led3];
     
     [THTestsHelper registerActionForObject:led1 target:condition event:kEventOnChanged method:kMethodSetValue1];
     [THTestsHelper registerActionForObject:led2 target:condition event:kEventOnChanged method:kMethodSetValue2];

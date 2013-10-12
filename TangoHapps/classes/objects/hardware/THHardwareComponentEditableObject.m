@@ -234,12 +234,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addClotheObject:self];
+    [project addHardwareComponent:self];
 }
 
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeClotheObject:self];
+    [project removeHardwareComponent:self];
     [super removeFromWorld];
 }
 
@@ -247,20 +247,22 @@ You should have received a copy of the GNU General Public License along with thi
     [layer addEditableObject:self];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THLilyPadEditable * lilypad = project.lilypad;
-    
-    THElementPinEditable * plusPin = [self plusPin];
-    if(plusPin && !plusPin.attachedToPin){
-        [lilypad.plusPin attachPin:plusPin];
-        [plusPin attachToPin:lilypad.plusPin animated:NO];
-        [project addWireFrom:plusPin to:lilypad.plusPin];
-    }
-    
-    THElementPinEditable * minusPin = [self minusPin];
-    if(minusPin && !minusPin.attachedToPin){
-        [lilypad.minusPin attachPin:minusPin];
-        [minusPin attachToPin:lilypad.minusPin animated:NO];
-        [project addWireFrom:minusPin to:lilypad.minusPin];
+    if(project.boards.count == 1){
+        THBoardEditable * board = [project.boards objectAtIndex:0];
+        
+        THElementPinEditable * plusPin = [self plusPin];
+        if(plusPin && !plusPin.attachedToPin){
+            [board.plusPin attachPin:plusPin];
+            [plusPin attachToPin:board.plusPin animated:NO];
+            [project addWireFrom:plusPin to:board.plusPin];
+        }
+        
+        THElementPinEditable * minusPin = [self minusPin];
+        if(minusPin && !minusPin.attachedToPin){
+            [board.minusPin attachPin:minusPin];
+            [minusPin attachToPin:board.minusPin animated:NO];
+            [project addWireFrom:minusPin to:board.minusPin];
+        }
     }
 }
 

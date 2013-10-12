@@ -50,15 +50,17 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic numberOfAnalogPins;
 
 
-CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{5,105},{-25,102},{-53.0, 90.0},{-76.0, 72.0},{-94.0, 46.0},{-103.0, 19.0},{-104.0, -11.0},{-97.0, -41.0},{-81.0, -67.0},{-59.0, -88.0},{-33.0, -101.0},{-3.0, -106.0},
-    
-    {28.0, -102.0},{56.0, -93.0},{79.0, -73.0},{97.0, -48.0},{107.0, -20.0},{106.0, 11.0},{100.0, 39.0},{84.0, 65.0},{62.0, 86.0},{34,100}
+CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
+    {-111.0, 16.0}, {-102.0, -17.0},//- +
+    {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
+    {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
+    {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
 };
 
 -(void) loadLilypad{
     self.z = kLilypadZ;
     
-    self.sprite = [CCSprite spriteWithFile:@"lilypad.png"];
+    self.sprite = [CCSprite spriteWithFile:@"lilypadComplex.png"];
     [self addChild:self.sprite];
     
     self.canBeDuplicated = NO;

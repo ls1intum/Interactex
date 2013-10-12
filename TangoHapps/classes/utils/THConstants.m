@@ -68,18 +68,18 @@ NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2};
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
     {{-24,14},{24,-14}},//buzzer
-    {{-21,-18},{22,-18},{0,18}},//button
+    {{-23,-20},{23,-20},{0,18}},//button
     {{-25,-18},{25,-18},{0,18}},//switch
-    {{-25,-10},{0,20},{25,-10}},//potentiometer
-    {{-22,-8},{0,23},{25,-8}},//light sensor
+    {{-23,-12},{0,26},{25,-12}},//potentiometer
+    {{-23,-12},{0,26},{25,-12}},//light sensor
     {{-20,20},{20,20},{20,-20},{-20,-20}},//compass
-    {{0,20},{-22,-7},{0,-25},{22,-7}},//three color led
-    {{-22,15},{22,15}}//vibeBoard
+    {{0,25},{-26,-11},{0,-25},{26,-11}},//three color led
+    {{-24,15},{24,15}},//vibeBoard
+    {{-23,-12},{0,26},{25,-12}}//temperature sensor
 };
 
 
 float const kUiViewOpacityEditor = 0.5f;
-
 
 NSInteger const kCompassMin = 1000;
 NSInteger const kAnalogInMin = 1000;

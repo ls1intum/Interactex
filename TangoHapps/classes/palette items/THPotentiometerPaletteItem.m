@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     potentiometer.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addClotheObject:potentiometer];
+    [project addHardwareComponent:potentiometer];
 }
 
 @end

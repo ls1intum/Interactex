@@ -149,10 +149,6 @@
 		9A41458C17DE7A060061EDF8 /* lightSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D417DE7A060061EDF8 /* lightSensor.png */; };
 		9A41458D17DE7A060061EDF8 /* lightSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D517DE7A060061EDF8 /* lightSensor@2x.png */; };
 		9A41458E17DE7A060061EDF8 /* lightSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D517DE7A060061EDF8 /* lightSensor@2x.png */; };
-		9A41458F17DE7A060061EDF8 /* lilypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D617DE7A060061EDF8 /* lilypad.png */; };
-		9A41459017DE7A060061EDF8 /* lilypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D617DE7A060061EDF8 /* lilypad.png */; };
-		9A41459117DE7A060061EDF8 /* lilypad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D717DE7A060061EDF8 /* lilypad@2x.png */; };
-		9A41459217DE7A060061EDF8 /* lilypad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D717DE7A060061EDF8 /* lilypad@2x.png */; };
 		9A41459317DE7A060061EDF8 /* mapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D817DE7A060061EDF8 /* mapper.png */; };
 		9A41459417DE7A060061EDF8 /* mapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D817DE7A060061EDF8 /* mapper.png */; };
 		9A41459517DE7A060061EDF8 /* mapper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144D917DE7A060061EDF8 /* mapper@2x.png */; };
@@ -669,6 +665,59 @@
 		9AB778A817E6C25700F82424 /* triangleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7789817E6C25700F82424 /* triangleFilled.png */; };
 		9AB7791F17E7055500F82424 /* THSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7791E17E7055500F82424 /* THSimulator.m */; };
 		9AB7792017E7055500F82424 /* THSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7791E17E7055500F82424 /* THSimulator.m */; };
+		9ABC27291809526C00B39D72 /* lilypadComplex.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27251809526C00B39D72 /* lilypadComplex.png */; };
+		9ABC272A1809526C00B39D72 /* lilypadComplex.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27251809526C00B39D72 /* lilypadComplex.png */; };
+		9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27261809526C00B39D72 /* lilypadComplex@2x.png */; };
+		9ABC272C1809526C00B39D72 /* lilypadComplex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27261809526C00B39D72 /* lilypadComplex@2x.png */; };
+		9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27271809526C00B39D72 /* lilypadSimple.png */; };
+		9ABC272E1809526C00B39D72 /* lilypadSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27271809526C00B39D72 /* lilypadSimple.png */; };
+		9ABC272F1809526C00B39D72 /* lilypadSimple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27281809526C00B39D72 /* lilypadSimple@2x.png */; };
+		9ABC27301809526C00B39D72 /* lilypadSimple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27281809526C00B39D72 /* lilypadSimple@2x.png */; };
+		9ABC275718098F2400B39D72 /* THBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274C18098F2400B39D72 /* THBoard.m */; };
+		9ABC275818098F2400B39D72 /* THBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274C18098F2400B39D72 /* THBoard.m */; };
+		9ABC275918098F2400B39D72 /* THBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274C18098F2400B39D72 /* THBoard.m */; };
+		9ABC275A18098F2400B39D72 /* THBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274E18098F2400B39D72 /* THBoardEditable.m */; };
+		9ABC275B18098F2400B39D72 /* THBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274E18098F2400B39D72 /* THBoardEditable.m */; };
+		9ABC275C18098F2400B39D72 /* THBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274E18098F2400B39D72 /* THBoardEditable.m */; };
+		9ABC275D18098F2400B39D72 /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275018098F2400B39D72 /* THLilyPad.m */; };
+		9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275018098F2400B39D72 /* THLilyPad.m */; };
+		9ABC275F18098F2400B39D72 /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275018098F2400B39D72 /* THLilyPad.m */; };
+		9ABC276018098F2400B39D72 /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275218098F2400B39D72 /* THLilypadEditable.m */; };
+		9ABC276118098F2400B39D72 /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275218098F2400B39D72 /* THLilypadEditable.m */; };
+		9ABC276218098F2400B39D72 /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275218098F2400B39D72 /* THLilypadEditable.m */; };
+		9ABC276318098F2400B39D72 /* THSimpleLilypad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275418098F2400B39D72 /* THSimpleLilypad.m */; };
+		9ABC276418098F2400B39D72 /* THSimpleLilypad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275418098F2400B39D72 /* THSimpleLilypad.m */; };
+		9ABC276518098F2400B39D72 /* THSimpleLilypad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275418098F2400B39D72 /* THSimpleLilypad.m */; };
+		9ABC276618098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */; };
+		9ABC276718098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */; };
+		9ABC276818098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */; };
+		9ABC276B1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */; };
+		9ABC276C1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */; };
+		9ABC276F180996C200B39D72 /* THLilypadPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */; };
+		9ABC2770180996C200B39D72 /* THLilypadPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */; };
+		9ABC27751809985900B39D72 /* palette_lilypadBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27711809985900B39D72 /* palette_lilypadBig.png */; };
+		9ABC27761809985900B39D72 /* palette_lilypadBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27711809985900B39D72 /* palette_lilypadBig.png */; };
+		9ABC27771809985900B39D72 /* palette_lilypadBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27721809985900B39D72 /* palette_lilypadBig@2x.png */; };
+		9ABC27781809985900B39D72 /* palette_lilypadBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27721809985900B39D72 /* palette_lilypadBig@2x.png */; };
+		9ABC27791809985900B39D72 /* palette_lilypadSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27731809985900B39D72 /* palette_lilypadSmall.png */; };
+		9ABC277A1809985900B39D72 /* palette_lilypadSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27731809985900B39D72 /* palette_lilypadSmall.png */; };
+		9ABC277B1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27741809985900B39D72 /* palette_lilypadSmall@2x.png */; };
+		9ABC277C1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27741809985900B39D72 /* palette_lilypadSmall@2x.png */; };
+		9ABC277F1809AC7A00B39D72 /* THTemperatureSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC277E1809AC7A00B39D72 /* THTemperatureSensor.m */; };
+		9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC277E1809AC7A00B39D72 /* THTemperatureSensor.m */; };
+		9ABC27811809AC7A00B39D72 /* THTemperatureSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC277E1809AC7A00B39D72 /* THTemperatureSensor.m */; };
+		9ABC27841809B01600B39D72 /* THTemperatureSensorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27831809B01600B39D72 /* THTemperatureSensorEditable.m */; };
+		9ABC27851809B01600B39D72 /* THTemperatureSensorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27831809B01600B39D72 /* THTemperatureSensorEditable.m */; };
+		9ABC27881809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */; };
+		9ABC27891809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */; };
+		9ABC278E1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278A1809B2A500B39D72 /* palette_temperatureSensor.png */; };
+		9ABC278F1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278A1809B2A500B39D72 /* palette_temperatureSensor.png */; };
+		9ABC27901809B2A500B39D72 /* palette_temperatureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278B1809B2A500B39D72 /* palette_temperatureSensor@2x.png */; };
+		9ABC27911809B2A500B39D72 /* palette_temperatureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278B1809B2A500B39D72 /* palette_temperatureSensor@2x.png */; };
+		9ABC27921809B2A500B39D72 /* temperatureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278C1809B2A500B39D72 /* temperatureSensor.png */; };
+		9ABC27931809B2A500B39D72 /* temperatureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278C1809B2A500B39D72 /* temperatureSensor.png */; };
+		9ABC27941809B2A500B39D72 /* temperatureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */; };
+		9ABC27951809B2A500B39D72 /* temperatureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */; };
 		9AC3CCEE18001FD500363CD2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3CCEC18001FD500363CD2 /* Icon.png */; };
 		9AC3CCEF18001FD500363CD2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3CCED18001FD500363CD2 /* Icon@2x.png */; };
 		9AC3CD201800252C00363CD2 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD07180024BD00363CD2 /* libcocos2d.a */; };
@@ -732,8 +781,6 @@
 		9AF50383167B84B40020241C /* THLedEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50246167B84B40020241C /* THLedEditableObject.m */; };
 		9AF50384167B84B40020241C /* THLightSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50248167B84B40020241C /* THLightSensor.m */; };
 		9AF50385167B84B40020241C /* THLightSensorEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024A167B84B40020241C /* THLightSensorEditableObject.m */; };
-		9AF50386167B84B40020241C /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024C167B84B40020241C /* THLilyPad.m */; };
-		9AF50387167B84B40020241C /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024E167B84B40020241C /* THLilypadEditable.m */; };
 		9AF50388167B84B40020241C /* THPotentiometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50250167B84B40020241C /* THPotentiometer.m */; };
 		9AF50389167B84B40020241C /* THPotentiometerEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50252167B84B40020241C /* THPotentiometerEditableObject.m */; };
 		9AF5038A167B84B40020241C /* THSlideSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50254167B84B40020241C /* THSlideSwitch.m */; };
@@ -824,7 +871,6 @@
 		9AF50455167B84F50020241C /* THCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50240167B84B40020241C /* THCompass.m */; };
 		9AF50456167B84F50020241C /* THLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50244167B84B40020241C /* THLed.m */; };
 		9AF50457167B84F50020241C /* THLightSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50248167B84B40020241C /* THLightSensor.m */; };
-		9AF50458167B84F50020241C /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024C167B84B40020241C /* THLilyPad.m */; };
 		9AF50459167B84F50020241C /* THPotentiometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50250167B84B40020241C /* THPotentiometer.m */; };
 		9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50254167B84B40020241C /* THSlideSwitch.m */; };
 		9AF5045B167B84F50020241C /* THSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50258167B84B40020241C /* THSwitch.m */; };
@@ -928,8 +974,6 @@
 		9AF50621167B922A0020241C /* THLedEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50246167B84B40020241C /* THLedEditableObject.m */; };
 		9AF50622167B922A0020241C /* THLightSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50248167B84B40020241C /* THLightSensor.m */; };
 		9AF50623167B922A0020241C /* THLightSensorEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024A167B84B40020241C /* THLightSensorEditableObject.m */; };
-		9AF50624167B922F0020241C /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024C167B84B40020241C /* THLilyPad.m */; };
-		9AF50625167B922F0020241C /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5024E167B84B40020241C /* THLilypadEditable.m */; };
 		9AF50626167B922F0020241C /* THPotentiometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50250167B84B40020241C /* THPotentiometer.m */; };
 		9AF50627167B922F0020241C /* THPotentiometerEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50252167B84B40020241C /* THPotentiometerEditableObject.m */; };
 		9AF50628167B92330020241C /* THSlideSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50254167B84B40020241C /* THSlideSwitch.m */; };
@@ -1234,8 +1278,6 @@
 		9A4144D317DE7A060061EDF8 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
 		9A4144D417DE7A060061EDF8 /* lightSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightSensor.png; sourceTree = "<group>"; };
 		9A4144D517DE7A060061EDF8 /* lightSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightSensor@2x.png"; sourceTree = "<group>"; };
-		9A4144D617DE7A060061EDF8 /* lilypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lilypad.png; sourceTree = "<group>"; };
-		9A4144D717DE7A060061EDF8 /* lilypad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lilypad@2x.png"; sourceTree = "<group>"; };
 		9A4144D817DE7A060061EDF8 /* mapper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapper.png; sourceTree = "<group>"; };
 		9A4144D917DE7A060061EDF8 /* mapper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapper@2x.png"; sourceTree = "<group>"; };
 		9A4144DA17DE7A060061EDF8 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
@@ -1569,6 +1611,40 @@
 		9AB7789817E6C25700F82424 /* triangleFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangleFilled.png; sourceTree = "<group>"; };
 		9AB7791D17E7055500F82424 /* THSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSimulator.h; sourceTree = "<group>"; };
 		9AB7791E17E7055500F82424 /* THSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSimulator.m; sourceTree = "<group>"; };
+		9ABC27251809526C00B39D72 /* lilypadComplex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lilypadComplex.png; sourceTree = "<group>"; };
+		9ABC27261809526C00B39D72 /* lilypadComplex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lilypadComplex@2x.png"; sourceTree = "<group>"; };
+		9ABC27271809526C00B39D72 /* lilypadSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lilypadSimple.png; sourceTree = "<group>"; };
+		9ABC27281809526C00B39D72 /* lilypadSimple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lilypadSimple@2x.png"; sourceTree = "<group>"; };
+		9ABC274B18098F2400B39D72 /* THBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoard.h; sourceTree = "<group>"; };
+		9ABC274C18098F2400B39D72 /* THBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoard.m; sourceTree = "<group>"; };
+		9ABC274D18098F2400B39D72 /* THBoardEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardEditable.h; sourceTree = "<group>"; };
+		9ABC274E18098F2400B39D72 /* THBoardEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardEditable.m; sourceTree = "<group>"; };
+		9ABC274F18098F2400B39D72 /* THLilyPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLilyPad.h; sourceTree = "<group>"; };
+		9ABC275018098F2400B39D72 /* THLilyPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilyPad.m; sourceTree = "<group>"; };
+		9ABC275118098F2400B39D72 /* THLilypadEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLilypadEditable.h; sourceTree = "<group>"; };
+		9ABC275218098F2400B39D72 /* THLilypadEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilypadEditable.m; sourceTree = "<group>"; };
+		9ABC275318098F2400B39D72 /* THSimpleLilypad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSimpleLilypad.h; sourceTree = "<group>"; };
+		9ABC275418098F2400B39D72 /* THSimpleLilypad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSimpleLilypad.m; sourceTree = "<group>"; };
+		9ABC275518098F2400B39D72 /* THSimpleLilypadEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSimpleLilypadEditable.h; sourceTree = "<group>"; };
+		9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSimpleLilypadEditable.m; sourceTree = "<group>"; };
+		9ABC27691809960D00B39D72 /* THSimpleLilypadPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSimpleLilypadPaletteItem.h; sourceTree = "<group>"; };
+		9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSimpleLilypadPaletteItem.m; sourceTree = "<group>"; };
+		9ABC276D180996C200B39D72 /* THLilypadPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLilypadPaletteItem.h; sourceTree = "<group>"; };
+		9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilypadPaletteItem.m; sourceTree = "<group>"; };
+		9ABC27711809985900B39D72 /* palette_lilypadBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_lilypadBig.png; sourceTree = "<group>"; };
+		9ABC27721809985900B39D72 /* palette_lilypadBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_lilypadBig@2x.png"; sourceTree = "<group>"; };
+		9ABC27731809985900B39D72 /* palette_lilypadSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_lilypadSmall.png; sourceTree = "<group>"; };
+		9ABC27741809985900B39D72 /* palette_lilypadSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_lilypadSmall@2x.png"; sourceTree = "<group>"; };
+		9ABC277D1809AC7A00B39D72 /* THTemperatureSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THTemperatureSensor.h; path = TangoHapps/classes/objects/hardware/THTemperatureSensor.h; sourceTree = SOURCE_ROOT; };
+		9ABC277E1809AC7A00B39D72 /* THTemperatureSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THTemperatureSensor.m; path = TangoHapps/classes/objects/hardware/THTemperatureSensor.m; sourceTree = SOURCE_ROOT; };
+		9ABC27821809B01600B39D72 /* THTemperatureSensorEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTemperatureSensorEditable.h; sourceTree = "<group>"; };
+		9ABC27831809B01600B39D72 /* THTemperatureSensorEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTemperatureSensorEditable.m; sourceTree = "<group>"; };
+		9ABC27861809B1E500B39D72 /* THTemperatureSensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTemperatureSensorPaletteItem.h; sourceTree = "<group>"; };
+		9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTemperatureSensorPaletteItem.m; sourceTree = "<group>"; };
+		9ABC278A1809B2A500B39D72 /* palette_temperatureSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_temperatureSensor.png; sourceTree = "<group>"; };
+		9ABC278B1809B2A500B39D72 /* palette_temperatureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_temperatureSensor@2x.png"; sourceTree = "<group>"; };
+		9ABC278C1809B2A500B39D72 /* temperatureSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperatureSensor.png; sourceTree = "<group>"; };
+		9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperatureSensor@2x.png"; sourceTree = "<group>"; };
 		9AC3CCEC18001FD500363CD2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9AC3CCED18001FD500363CD2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9AC3CCF2180024BC00363CD2 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "../cocos2d-iphone.git/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
@@ -1667,10 +1743,6 @@
 		9AF50248167B84B40020241C /* THLightSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLightSensor.m; sourceTree = "<group>"; };
 		9AF50249167B84B40020241C /* THLightSensorEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLightSensorEditableObject.h; sourceTree = "<group>"; };
 		9AF5024A167B84B40020241C /* THLightSensorEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLightSensorEditableObject.m; sourceTree = "<group>"; };
-		9AF5024B167B84B40020241C /* THLilyPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLilyPad.h; sourceTree = "<group>"; };
-		9AF5024C167B84B40020241C /* THLilyPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilyPad.m; sourceTree = "<group>"; };
-		9AF5024D167B84B40020241C /* THLilypadEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLilypadEditable.h; sourceTree = "<group>"; };
-		9AF5024E167B84B40020241C /* THLilypadEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilypadEditable.m; sourceTree = "<group>"; };
 		9AF5024F167B84B40020241C /* THPotentiometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPotentiometer.h; sourceTree = "<group>"; };
 		9AF50250167B84B40020241C /* THPotentiometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPotentiometer.m; sourceTree = "<group>"; };
 		9AF50251167B84B40020241C /* THPotentiometerEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPotentiometerEditableObject.h; sourceTree = "<group>"; };
@@ -2066,14 +2138,16 @@
 				9A4144CD17DE7A060061EDF8 /* iphone5.png */,
 				9A4144CE17DE7A060061EDF8 /* iphone5@2x.png */,
 				9A4144CF17DE7A060061EDF8 /* iphoneFrameSimulator.xcf */,
+				9ABC27251809526C00B39D72 /* lilypadComplex.png */,
+				9ABC27261809526C00B39D72 /* lilypadComplex@2x.png */,
+				9ABC27271809526C00B39D72 /* lilypadSimple.png */,
+				9ABC27281809526C00B39D72 /* lilypadSimple@2x.png */,
 				9A4144D017DE7A060061EDF8 /* led.png */,
 				9A4144D117DE7A060061EDF8 /* led@2x.png */,
 				9A4144D217DE7A060061EDF8 /* light.png */,
 				9A4144D317DE7A060061EDF8 /* light@2x.png */,
 				9A4144D417DE7A060061EDF8 /* lightSensor.png */,
 				9A4144D517DE7A060061EDF8 /* lightSensor@2x.png */,
-				9A4144D617DE7A060061EDF8 /* lilypad.png */,
-				9A4144D717DE7A060061EDF8 /* lilypad@2x.png */,
 				9A4144D817DE7A060061EDF8 /* mapper.png */,
 				9A4144D917DE7A060061EDF8 /* mapper@2x.png */,
 				9A4144DA17DE7A060061EDF8 /* music.png */,
@@ -2104,6 +2178,10 @@
 				9A4144F317DE7A060061EDF8 /* palette_iswitch@2x.png */,
 				9A4144F417DE7A060061EDF8 /* palette_label.png */,
 				9A4144F517DE7A060061EDF8 /* palette_label@2x.png */,
+				9ABC27711809985900B39D72 /* palette_lilypadBig.png */,
+				9ABC27721809985900B39D72 /* palette_lilypadBig@2x.png */,
+				9ABC27731809985900B39D72 /* palette_lilypadSmall.png */,
+				9ABC27741809985900B39D72 /* palette_lilypadSmall@2x.png */,
 				9A4144F617DE7A060061EDF8 /* palette_led.png */,
 				9A4144F717DE7A060061EDF8 /* palette_led@2x.png */,
 				9A4144F817DE7A060061EDF8 /* palette_lightSensor.png */,
@@ -2156,6 +2234,10 @@
 				9A41452717DE7A060061EDF8 /* vibeBoard@2x.png */,
 				9A41452817DE7A060061EDF8 /* yellowLight.png */,
 				9A41452917DE7A060061EDF8 /* yellowLight@2x.png */,
+				9ABC278A1809B2A500B39D72 /* palette_temperatureSensor.png */,
+				9ABC278B1809B2A500B39D72 /* palette_temperatureSensor@2x.png */,
+				9ABC278C1809B2A500B39D72 /* temperatureSensor.png */,
+				9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */,
 			);
 			path = palette;
 			sourceTree = "<group>";
@@ -2481,6 +2563,25 @@
 			path = "method invocation";
 			sourceTree = "<group>";
 		};
+		9ABC274A18098F2400B39D72 /* boards */ = {
+			isa = PBXGroup;
+			children = (
+				9ABC274B18098F2400B39D72 /* THBoard.h */,
+				9ABC274C18098F2400B39D72 /* THBoard.m */,
+				9ABC274D18098F2400B39D72 /* THBoardEditable.h */,
+				9ABC274E18098F2400B39D72 /* THBoardEditable.m */,
+				9ABC274F18098F2400B39D72 /* THLilyPad.h */,
+				9ABC275018098F2400B39D72 /* THLilyPad.m */,
+				9ABC275118098F2400B39D72 /* THLilypadEditable.h */,
+				9ABC275218098F2400B39D72 /* THLilypadEditable.m */,
+				9ABC275318098F2400B39D72 /* THSimpleLilypad.h */,
+				9ABC275418098F2400B39D72 /* THSimpleLilypad.m */,
+				9ABC275518098F2400B39D72 /* THSimpleLilypadEditable.h */,
+				9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */,
+			);
+			path = boards;
+			sourceTree = "<group>";
+		};
 		9AC3CCF3180024BC00363CD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2639,10 +2740,7 @@
 			children = (
 				9AF50219167B84B40020241C /* other */,
 				9AF5021E167B84B40020241C /* pins */,
-				9AF5024B167B84B40020241C /* THLilyPad.h */,
-				9AF5024C167B84B40020241C /* THLilyPad.m */,
-				9AF5024D167B84B40020241C /* THLilypadEditable.h */,
-				9AF5024E167B84B40020241C /* THLilypadEditable.m */,
+				9ABC274A18098F2400B39D72 /* boards */,
 				9AF50235167B84B40020241C /* THClothe.h */,
 				9AF50236167B84B40020241C /* THClothe.m */,
 				9AF50237167B84B40020241C /* THHardwareComponent.h */,
@@ -2689,6 +2787,10 @@
 				9A09767B171864BA0028A6B4 /* THVibrationBoard.m */,
 				9A09767F171866020028A6B4 /* THVibrationBoardEditable.h */,
 				9A097680171866020028A6B4 /* THVibrationBoardEditable.m */,
+				9ABC277D1809AC7A00B39D72 /* THTemperatureSensor.h */,
+				9ABC277E1809AC7A00B39D72 /* THTemperatureSensor.m */,
+				9ABC27821809B01600B39D72 /* THTemperatureSensorEditable.h */,
+				9ABC27831809B01600B39D72 /* THTemperatureSensorEditable.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -2852,6 +2954,12 @@
 				9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */,
 				9A56CDC417D8F357001021B2 /* THStringValuePaletteItem.h */,
 				9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */,
+				9ABC27691809960D00B39D72 /* THSimpleLilypadPaletteItem.h */,
+				9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */,
+				9ABC276D180996C200B39D72 /* THLilypadPaletteItem.h */,
+				9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */,
+				9ABC27861809B1E500B39D72 /* THTemperatureSensorPaletteItem.h */,
+				9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -3287,6 +3395,7 @@
 				9AF5043F167B84B40020241C /* peer_disconnected.mp3 in Resources */,
 				9AF50440167B84B40020241C /* song1.mp3 in Resources */,
 				9AF50441167B84B40020241C /* song2.mp3 in Resources */,
+				9ABC27941809B2A500B39D72 /* temperatureSensor@2x.png in Resources */,
 				9AF50442167B84B40020241C /* song3.mp3 in Resources */,
 				9A8BB90E167C7D6400FBABFB /* buzzerPlay.png in Resources */,
 				9A8BB910167C7D6400FBABFB /* buzzerStop.png in Resources */,
@@ -3295,8 +3404,10 @@
 				9A8BBA45167F2FAD00FBABFB /* compassHit.mp3 in Resources */,
 				9A94F3E816A00EA400AF52AB /* ipadFrame.png in Resources */,
 				9A94F3EA16A00EA400AF52AB /* ipadFrame@2x.png in Resources */,
+				9ABC27291809526C00B39D72 /* lilypadComplex.png in Resources */,
 				9A94F3EC16A00EA400AF52AB /* removeButton.png in Resources */,
 				9A94F3EE16A00EA400AF52AB /* removeButton@2x.png in Resources */,
+				9ABC27791809985900B39D72 /* palette_lilypadSmall.png in Resources */,
 				9A94F41616A0192700AF52AB /* THButtonProperties.xib in Resources */,
 				9A94F41816A0192700AF52AB /* THBuzzerProperties.xib in Resources */,
 				9A94F41A16A0192700AF52AB /* THClotheObjectProperties.xib in Resources */,
@@ -3332,6 +3443,7 @@
 				9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */,
 				9A56CD5217D88888001021B2 /* THBoolValueProperties.xib in Resources */,
 				9A56CDBC17D8EF61001021B2 /* THStringValueProperties.xib in Resources */,
+				9ABC272F1809526C00B39D72 /* lilypadSimple@2x.png in Resources */,
 				9A56D03B17D946FF001021B2 /* Storyboard.storyboard in Resources */,
 				9A41453B17DE7A060061EDF8 /* add.png in Resources */,
 				9A41453D17DE7A060061EDF8 /* add@2x.png in Resources */,
@@ -3366,6 +3478,7 @@
 				9A41457717DE7A060061EDF8 /* grouper@2x.png in Resources */,
 				9A41457917DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457B17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
+				9ABC277B1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */,
 				9A41457D17DE7A060061EDF8 /* iphone5.png in Resources */,
 				9A41457F17DE7A060061EDF8 /* iphone5@2x.png in Resources */,
 				9A41458117DE7A060061EDF8 /* iphoneFrameSimulator.xcf in Resources */,
@@ -3375,8 +3488,6 @@
 				9A41458917DE7A060061EDF8 /* light@2x.png in Resources */,
 				9A41458B17DE7A060061EDF8 /* lightSensor.png in Resources */,
 				9A41458D17DE7A060061EDF8 /* lightSensor@2x.png in Resources */,
-				9A41458F17DE7A060061EDF8 /* lilypad.png in Resources */,
-				9A41459117DE7A060061EDF8 /* lilypad@2x.png in Resources */,
 				9A41459317DE7A060061EDF8 /* mapper.png in Resources */,
 				9A41459517DE7A060061EDF8 /* mapper@2x.png in Resources */,
 				9A41459717DE7A060061EDF8 /* music.png in Resources */,
@@ -3391,10 +3502,12 @@
 				9A4145A917DE7A060061EDF8 /* palette_comparator@2x.png in Resources */,
 				9A4145AB17DE7A060061EDF8 /* palette_compass.png in Resources */,
 				9A4145AD17DE7A060061EDF8 /* palette_compass@2x.png in Resources */,
+				9ABC27921809B2A500B39D72 /* temperatureSensor.png in Resources */,
 				9A4145AF17DE7A060061EDF8 /* palette_condition.png in Resources */,
 				9A4145B117DE7A060061EDF8 /* palette_condition@2x.png in Resources */,
 				9A4145B317DE7A060061EDF8 /* palette_contactBook.png in Resources */,
 				9A4145B517DE7A060061EDF8 /* palette_contactBook@2x.png in Resources */,
+				9ABC27771809985900B39D72 /* palette_lilypadBig@2x.png in Resources */,
 				9A4145B717DE7A060061EDF8 /* palette_grouper.png in Resources */,
 				9A4145B917DE7A060061EDF8 /* palette_grouper@2x.png in Resources */,
 				9A4145BB17DE7A060061EDF8 /* palette_ibutton.png in Resources */,
@@ -3413,6 +3526,7 @@
 				9A4145D517DE7A060061EDF8 /* palette_lightSensor@2x.png in Resources */,
 				9A4145D717DE7A060061EDF8 /* palette_mapper.png in Resources */,
 				9A4145D917DE7A060061EDF8 /* palette_mapper@2x.png in Resources */,
+				9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */,
 				9A4145DB17DE7A060061EDF8 /* palette_musicplayer.png in Resources */,
 				9A4145DD17DE7A060061EDF8 /* palette_musicplayer@2x.png in Resources */,
 				9A4145DF17DE7A060061EDF8 /* palette_potentiometer.png in Resources */,
@@ -3436,10 +3550,12 @@
 				9A41460317DE7A060061EDF8 /* palette_number.png in Resources */,
 				9A41460517DE7A060061EDF8 /* palette_number@2x.png in Resources */,
 				9A41460717DE7A060061EDF8 /* palette_vibeBoard.png in Resources */,
+				9ABC27901809B2A500B39D72 /* palette_temperatureSensor@2x.png in Resources */,
 				9A41460917DE7A060061EDF8 /* palette_vibeBoard@2x.png in Resources */,
 				9A41460B17DE7A060061EDF8 /* potentiometer.png in Resources */,
 				9A41460D17DE7A060061EDF8 /* potentiometer@2x.png in Resources */,
 				9A41460F17DE7A060061EDF8 /* sewed.png in Resources */,
+				9ABC27751809985900B39D72 /* palette_lilypadBig.png in Resources */,
 				9A41461117DE7A060061EDF8 /* sewed@2x.png in Resources */,
 				9A41461317DE7A060061EDF8 /* sound.png in Resources */,
 				9A41461517DE7A060061EDF8 /* sound@2x.png in Resources */,
@@ -3451,6 +3567,7 @@
 				9A41462117DE7A060061EDF8 /* threeColorLed@2x.png in Resources */,
 				9A41462317DE7A060061EDF8 /* timer.png in Resources */,
 				9A41462517DE7A060061EDF8 /* timer@2x.png in Resources */,
+				9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */,
 				9A41462717DE7A060061EDF8 /* tshirt.png in Resources */,
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
@@ -3491,6 +3608,7 @@
 				9AB7789D17E6C25700F82424 /* squareEmpty.png in Resources */,
 				9AB7789F17E6C25700F82424 /* squareFilled.png in Resources */,
 				9AB778A117E6C25700F82424 /* starEmpty.png in Resources */,
+				9ABC278E1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */,
 				9AB778A317E6C25700F82424 /* starFilled.png in Resources */,
 				9AB778A517E6C25700F82424 /* triangleEmpty.png in Resources */,
 				9AB778A717E6C25700F82424 /* triangleFilled.png in Resources */,
@@ -3524,6 +3642,7 @@
 				9A94F42516A0192700AF52AB /* THiPhoneProperties.xib in Resources */,
 				9A94F42716A0192700AF52AB /* THiPhoneViewProperties.xib in Resources */,
 				9A94F42916A0192700AF52AB /* THiSwitchEditableProperties.xib in Resources */,
+				9ABC27781809985900B39D72 /* palette_lilypadBig@2x.png in Resources */,
 				9A94F42B16A0192700AF52AB /* THLabelProperties.xib in Resources */,
 				9A94F42D16A0192700AF52AB /* THLedProperties.xib in Resources */,
 				9A94F42F16A0192700AF52AB /* THLilypadProperties.xib in Resources */,
@@ -3531,8 +3650,10 @@
 				9A94F43316A0192700AF52AB /* THMusicPlayerProperties.xib in Resources */,
 				9A94F43516A0192700AF52AB /* THPotentiometerProperties.xib in Resources */,
 				9A94F43716A0192700AF52AB /* THSliderProperties.xib in Resources */,
+				9ABC277C1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */,
 				9A94F43916A0192700AF52AB /* THSwitchProperties.xib in Resources */,
 				9A94F43B16A0192700AF52AB /* THThreeColorLedProperties.xib in Resources */,
+				9ABC277A1809985900B39D72 /* palette_lilypadSmall.png in Resources */,
 				9A94F43D16A0192700AF52AB /* THTouchpadProperties.xib in Resources */,
 				9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */,
 				9A94F44116A0192700AF52AB /* THEditorTools.xib in Resources */,
@@ -3551,9 +3672,11 @@
 				9AF3E6DA16FA20090013DE13 /* fakeSceneImage@2x.png in Resources */,
 				9A097689171868730028A6B4 /* THVibrationBoardProperties.xib in Resources */,
 				9A09777E17268EF40028A6B4 /* THSoundProperties.xib in Resources */,
+				9ABC27761809985900B39D72 /* palette_lilypadBig.png in Resources */,
 				9A9FEB6517BC080C004AB8CF /* THWireProperties.xib in Resources */,
 				9A56CD5317D88888001021B2 /* THBoolValueProperties.xib in Resources */,
 				9A56CDBD17D8EF61001021B2 /* THStringValueProperties.xib in Resources */,
+				9ABC27911809B2A500B39D72 /* palette_temperatureSensor@2x.png in Resources */,
 				9A56D03C17D946FF001021B2 /* Storyboard.storyboard in Resources */,
 				9A41453C17DE7A060061EDF8 /* add.png in Resources */,
 				9A41453E17DE7A060061EDF8 /* add@2x.png in Resources */,
@@ -3580,6 +3703,7 @@
 				9A41456817DE7A060061EDF8 /* compass@2x.png in Resources */,
 				9A41456A17DE7A060061EDF8 /* compassCircle.png in Resources */,
 				9A41456C17DE7A060061EDF8 /* compassCircle@2x.png in Resources */,
+				9ABC27951809B2A500B39D72 /* temperatureSensor@2x.png in Resources */,
 				9A41456E17DE7A060061EDF8 /* condition.png in Resources */,
 				9A41457017DE7A060061EDF8 /* condition@2x.png in Resources */,
 				9A41457217DE7A060061EDF8 /* contactBook.png in Resources */,
@@ -3597,8 +3721,6 @@
 				9A41458A17DE7A060061EDF8 /* light@2x.png in Resources */,
 				9A41458C17DE7A060061EDF8 /* lightSensor.png in Resources */,
 				9A41458E17DE7A060061EDF8 /* lightSensor@2x.png in Resources */,
-				9A41459017DE7A060061EDF8 /* lilypad.png in Resources */,
-				9A41459217DE7A060061EDF8 /* lilypad@2x.png in Resources */,
 				9A41459417DE7A060061EDF8 /* mapper.png in Resources */,
 				9A41459617DE7A060061EDF8 /* mapper@2x.png in Resources */,
 				9A41459817DE7A060061EDF8 /* music.png in Resources */,
@@ -3638,6 +3760,7 @@
 				9A4145DC17DE7A060061EDF8 /* palette_musicplayer.png in Resources */,
 				9A4145DE17DE7A060061EDF8 /* palette_musicplayer@2x.png in Resources */,
 				9A4145E017DE7A060061EDF8 /* palette_potentiometer.png in Resources */,
+				9ABC272E1809526C00B39D72 /* lilypadSimple.png in Resources */,
 				9A4145E217DE7A060061EDF8 /* palette_potentiometer@2x.png in Resources */,
 				9A4145E417DE7A060061EDF8 /* palette_slider.png in Resources */,
 				9A4145E617DE7A060061EDF8 /* palette_slider@2x.png in Resources */,
@@ -3658,6 +3781,7 @@
 				9A41460417DE7A060061EDF8 /* palette_number.png in Resources */,
 				9A41460617DE7A060061EDF8 /* palette_number@2x.png in Resources */,
 				9A41460817DE7A060061EDF8 /* palette_vibeBoard.png in Resources */,
+				9ABC278F1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */,
 				9A41460A17DE7A060061EDF8 /* palette_vibeBoard@2x.png in Resources */,
 				9A41460C17DE7A060061EDF8 /* potentiometer.png in Resources */,
 				9A41460E17DE7A060061EDF8 /* potentiometer@2x.png in Resources */,
@@ -3665,8 +3789,10 @@
 				9A41461217DE7A060061EDF8 /* sewed@2x.png in Resources */,
 				9A41461417DE7A060061EDF8 /* sound.png in Resources */,
 				9A41461617DE7A060061EDF8 /* sound@2x.png in Resources */,
+				9ABC272A1809526C00B39D72 /* lilypadComplex.png in Resources */,
 				9A41461817DE7A060061EDF8 /* switch.png in Resources */,
 				9A41461A17DE7A060061EDF8 /* switch@2x.png in Resources */,
+				9ABC27301809526C00B39D72 /* lilypadSimple@2x.png in Resources */,
 				9A41461C17DE7A060061EDF8 /* switchOn.png in Resources */,
 				9A41461E17DE7A060061EDF8 /* switchOn@2x.png in Resources */,
 				9A41462017DE7A060061EDF8 /* threeColorLed.png in Resources */,
@@ -3707,10 +3833,12 @@
 				9A5931D517E5CD4500B20D99 /* propertiesIcon@2x.png in Resources */,
 				9A5931D717E5CD4500B20D99 /* propertiesIconSelected.png in Resources */,
 				9A5931D917E5CD4500B20D99 /* propertiesIconSelected@2x.png in Resources */,
+				9ABC272C1809526C00B39D72 /* lilypadComplex@2x.png in Resources */,
 				9AB7784917E66B3300F82424 /* THInvocationConnectionProperties.xib in Resources */,
 				9AB7789A17E6C25700F82424 /* circleEmpty.png in Resources */,
 				9AB7789C17E6C25700F82424 /* circleFilled.png in Resources */,
 				9AB7789E17E6C25700F82424 /* squareEmpty.png in Resources */,
+				9ABC27931809B2A500B39D72 /* temperatureSensor.png in Resources */,
 				9AB778A017E6C25700F82424 /* squareFilled.png in Resources */,
 				9AB778A217E6C25700F82424 /* starEmpty.png in Resources */,
 				9AB778A417E6C25700F82424 /* starFilled.png in Resources */,
@@ -3783,8 +3911,6 @@
 				9AF50383167B84B40020241C /* THLedEditableObject.m in Sources */,
 				9AF50384167B84B40020241C /* THLightSensor.m in Sources */,
 				9AF50385167B84B40020241C /* THLightSensorEditableObject.m in Sources */,
-				9AF50386167B84B40020241C /* THLilyPad.m in Sources */,
-				9AF50387167B84B40020241C /* THLilypadEditable.m in Sources */,
 				9AF50388167B84B40020241C /* THPotentiometer.m in Sources */,
 				9AF50389167B84B40020241C /* THPotentiometerEditableObject.m in Sources */,
 				9AF5038A167B84B40020241C /* THSlideSwitch.m in Sources */,
@@ -3795,6 +3921,7 @@
 				9AF5038F167B84B40020241C /* THEditor.m in Sources */,
 				9AF50390167B84B40020241C /* THProject.m in Sources */,
 				9AF50391167B84B40020241C /* THSimulableWorldController.m in Sources */,
+				9ABC276F180996C200B39D72 /* THLilypadPaletteItem.m in Sources */,
 				9AF50392167B84B40020241C /* THiPhone.m in Sources */,
 				9AF50393167B84B40020241C /* THiPhoneButton.m in Sources */,
 				9AF50394167B84B40020241C /* THiPhoneButtonEditableObject.m in Sources */,
@@ -3825,6 +3952,7 @@
 				9AF503AE167B84B40020241C /* THLightSensorPaletteItem.m in Sources */,
 				9AF503AF167B84B40020241C /* THMusicPlayerPaletteItem.m in Sources */,
 				9AF503B0167B84B40020241C /* THPotentiometerPaletteItem.m in Sources */,
+				9ABC275A18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9AF503B1167B84B40020241C /* THSwitchPaletteItem.m in Sources */,
 				9AF503B2167B84B40020241C /* THTouchpadPaletteItem.m in Sources */,
 				9AF503B3167B84B40020241C /* THValuePaletteItem.m in Sources */,
@@ -3835,6 +3963,7 @@
 				9AF503B8167B84B40020241C /* THComparatorEditableProperties.m in Sources */,
 				9AF503B9167B84B40020241C /* THGrouperEditableProperties.m in Sources */,
 				9AF503BA167B84B40020241C /* THiPhoneButtonProperties.m in Sources */,
+				9ABC27841809B01600B39D72 /* THTemperatureSensorEditable.m in Sources */,
 				9AF503BB167B84B40020241C /* THiPhoneProperties.m in Sources */,
 				9AF503BC167B84B40020241C /* THiPhoneViewProperties.m in Sources */,
 				9AF503BD167B84B40020241C /* THiSwitchEditableProperties.m in Sources */,
@@ -3877,6 +4006,7 @@
 				9A06EFC3169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */,
 				9A94F3F116A010BB00AF52AB /* THProjectSelectionViewController.m in Sources */,
 				9A94F3F916A014BB00AF52AB /* THProjectProxy.m in Sources */,
+				9ABC276018098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */,
 				9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */,
 				9A5F8D8A16A2C4E4000DF472 /* THContactBookProperties.m in Sources */,
@@ -3892,8 +4022,10 @@
 				9A097681171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
 				9A097685171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
 				9A09768C17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */,
+				9ABC276618098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A09772E17267CFC0028A6B4 /* THSound.m in Sources */,
 				9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */,
+				9ABC27881809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */,
 				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
 				9A85721C172804B600510D23 /* THSoundPicker.m in Sources */,
@@ -3907,11 +4039,14 @@
 				9A8426B817564A80009495AB /* TFEventActionPair.m in Sources */,
 				9A8426BB17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BE17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
+				9ABC276318098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9A8426C117564A80009495AB /* TFProperty.m in Sources */,
 				9A8426C417564A80009495AB /* TFPropertyInvocation.m in Sources */,
 				9A8426C717564A80009495AB /* TFEditableObject.m in Sources */,
 				9A8426CD17564A80009495AB /* TFLayer.m in Sources */,
+				9ABC275718098F2400B39D72 /* THBoard.m in Sources */,
 				9A8426D317564A80009495AB /* TFSimulableObject.m in Sources */,
+				9ABC276B1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */,
 				9A84270C17564A80009495AB /* TFConstants.m in Sources */,
 				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
@@ -3941,6 +4076,8 @@
 				9A59324417E5D58300B20D99 /* THCustomPaletteItem.m in Sources */,
 				9A59324617E5D58300B20D99 /* THDraggedPaletteItem.m in Sources */,
 				9A59324817E5D58300B20D99 /* THPalette.m in Sources */,
+				9ABC277F1809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
+				9ABC275D18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9A59324A17E5D58300B20D99 /* THPaletteItem.m in Sources */,
 				9A59324C17E5D58300B20D99 /* THPaletteViewController.m in Sources */,
 				9A59324E17E5D58300B20D99 /* THPropertiesViewController.m in Sources */,
@@ -3977,6 +4114,7 @@
 				9AF505F8167B91F10020241C /* THGrouperCondition.m in Sources */,
 				9AF505F9167B91F10020241C /* THGrouperConditionEditable.m in Sources */,
 				9AF505FA167B91F10020241C /* THNumberValue.m in Sources */,
+				9ABC275F18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AF505FB167B91F30020241C /* THNumberValueEditable.m in Sources */,
 				9AF505FC167B91FA0020241C /* THiPhone.m in Sources */,
 				9AF505FD167B91FA0020241C /* THiPhoneEditableObject.m in Sources */,
@@ -4008,6 +4146,7 @@
 				9AF50618167B92200020241C /* THBuzzerEditableObject.m in Sources */,
 				9AF50619167B92200020241C /* THClothe.m in Sources */,
 				9AF5061A167B92250020241C /* THHardwareComponent.m in Sources */,
+				9ABC275918098F2400B39D72 /* THBoard.m in Sources */,
 				9AF5061B167B92250020241C /* THHardwareComponentEditableObject.m in Sources */,
 				9AF5061E167B92250020241C /* THCompass.m in Sources */,
 				9AF5061F167B922A0020241C /* THCompassEditableObject.m in Sources */,
@@ -4015,11 +4154,10 @@
 				9AF50621167B922A0020241C /* THLedEditableObject.m in Sources */,
 				9AF50622167B922A0020241C /* THLightSensor.m in Sources */,
 				9AF50623167B922A0020241C /* THLightSensorEditableObject.m in Sources */,
-				9AF50624167B922F0020241C /* THLilyPad.m in Sources */,
-				9AF50625167B922F0020241C /* THLilypadEditable.m in Sources */,
 				9AF50626167B922F0020241C /* THPotentiometer.m in Sources */,
 				9AF50627167B922F0020241C /* THPotentiometerEditableObject.m in Sources */,
 				9AF50628167B92330020241C /* THSlideSwitch.m in Sources */,
+				9ABC276C1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */,
 				9AF50629167B92330020241C /* THSlideSwitchEditableObject.m in Sources */,
 				9AF5062A167B92330020241C /* THSwitch.m in Sources */,
 				9AF5062B167B92330020241C /* THSwitchEditableObject.m in Sources */,
@@ -4036,11 +4174,14 @@
 				9AF50637167B92550020241C /* THiPhoneButtonPaletteItem.m in Sources */,
 				9AF50638167B925A0020241C /* THiPhonePaletteItem.m in Sources */,
 				9AF50639167B925A0020241C /* THiSwitchPaletteItem.m in Sources */,
+				9ABC276518098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9AF5063A167B925A0020241C /* THLabelPaletteItem.m in Sources */,
 				9AF5063B167B925A0020241C /* THLedPaletteItem.m in Sources */,
+				9ABC27811809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
 				9AF5063C167B925A0020241C /* THLightSensorPaletteItem.m in Sources */,
 				9AF5063D167B925A0020241C /* THMusicPlayerPaletteItem.m in Sources */,
 				9AF5063E167B92670020241C /* THPotentiometerPaletteItem.m in Sources */,
+				9ABC27851809B01600B39D72 /* THTemperatureSensorEditable.m in Sources */,
 				9AF5063F167B92670020241C /* THSwitchPaletteItem.m in Sources */,
 				9AF50640167B92670020241C /* THTouchpadPaletteItem.m in Sources */,
 				9AF50641167B92670020241C /* THValuePaletteItem.m in Sources */,
@@ -4052,6 +4193,7 @@
 				9AF50647167B927B0020241C /* THGrouperEditableProperties.m in Sources */,
 				9AF50648167B927B0020241C /* THiPhoneButtonProperties.m in Sources */,
 				9AF50649167B927B0020241C /* THiPhoneProperties.m in Sources */,
+				9ABC2770180996C200B39D72 /* THLilypadPaletteItem.m in Sources */,
 				9AF5064A167B92800020241C /* THiPhoneViewProperties.m in Sources */,
 				9AF5064B167B92800020241C /* THiSwitchEditableProperties.m in Sources */,
 				9AF5064C167B92800020241C /* THLabelProperties.m in Sources */,
@@ -4064,6 +4206,7 @@
 				9AF50653167B92840020241C /* THValueProperties.m in Sources */,
 				9AF50654167B928A0020241C /* THEditorToolsDataSource.m in Sources */,
 				9A8BB9A3167C815D00FBABFB /* THPinsController.m in Sources */,
+				9ABC276818098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A8BB9A5167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
 				9AB29B66167F82B500F5AF62 /* THMapper.m in Sources */,
 				9AB29B67167F82B500F5AF62 /* THMapperEditable.m in Sources */,
@@ -4071,6 +4214,7 @@
 				9AB29B69167F82B500F5AF62 /* THMapperProperties.m in Sources */,
 				9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */,
 				9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */,
+				9ABC276218098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */,
 				9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */,
 				9A06EE87169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */,
@@ -4094,6 +4238,7 @@
 				9A93841C16D651D700A41BD2 /* THTimer.m in Sources */,
 				9A93846316D652EC00A41BD2 /* THTimerEditable.m in Sources */,
 				9A93846916D6534500A41BD2 /* THTimerProperties.m in Sources */,
+				9ABC27891809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */,
 				9A93847116D6723600A41BD2 /* THTimerPaletteItem.m in Sources */,
 				9A93847716D6746200A41BD2 /* THTrigger.m in Sources */,
 				9A93847C16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
@@ -4117,6 +4262,7 @@
 				9A8572BE172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C3172AD7F500510D23 /* THAssetCollection.m in Sources */,
 				9A8426A817564A80009495AB /* TFConnectionLine.m in Sources */,
+				9ABC275C18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9A8426AE17564A80009495AB /* TFMethodSelectionPopup.m in Sources */,
 				9A8426B417564A80009495AB /* TFAction.m in Sources */,
 				9A8426B717564A80009495AB /* TFEvent.m in Sources */,
@@ -4180,12 +4326,14 @@
 				9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */,
 				9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */,
 				9AF5002D167B83140020241C /* THClientScene.m in Sources */,
+				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AF5002E167B83140020241C /* THClientSceneSelectionViewController.m in Sources */,
 				9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */,
 				9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */,
 				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
+				9ABC276118098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
 				9AF5044E167B84D90020241C /* THBoardPin.m in Sources */,
 				9AF5044F167B84D90020241C /* THElementPin.m in Sources */,
@@ -4196,11 +4344,12 @@
 				9AF50455167B84F50020241C /* THCompass.m in Sources */,
 				9AF50456167B84F50020241C /* THLed.m in Sources */,
 				9AF50457167B84F50020241C /* THLightSensor.m in Sources */,
-				9AF50458167B84F50020241C /* THLilyPad.m in Sources */,
 				9AF50459167B84F50020241C /* THPotentiometer.m in Sources */,
 				9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */,
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
+				9ABC276418098F2400B39D72 /* THSimpleLilypad.m in Sources */,
+				9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
 				9AF5045D167B850D0020241C /* THSimulableWorldController.m in Sources */,
 				9AF5045E167B852F0020241C /* THiPhone.m in Sources */,
 				9AF5045F167B852F0020241C /* THiPhoneButton.m in Sources */,
@@ -4222,11 +4371,13 @@
 				9A94F1E8169ED5E600AF52AB /* THImageView.m in Sources */,
 				9A94F1EA169ED60000AF52AB /* THLinearFunction.m in Sources */,
 				9A5F8D8716A2C473000DF472 /* THContactBook.m in Sources */,
+				9ABC275818098F2400B39D72 /* THBoard.m in Sources */,
 				9A93841B16D651D700A41BD2 /* THTimer.m in Sources */,
 				9A93847616D6746200A41BD2 /* THTrigger.m in Sources */,
 				9AF3E6D316FA07250013DE13 /* THClientPresetsGenerator.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
+				9ABC276718098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
@@ -4238,6 +4389,7 @@
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,
 				9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */,
 				9A8426D417564A80009495AB /* TFSimulableObject.m in Sources */,
+				9ABC275B18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,

@@ -44,7 +44,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THDraggedPaletteItem.h"
 #import "THCustomPaletteItem.h"
 
-
+#import "THLilypadPaletteItem.h"
+#import "THSimpleLilypadPaletteItem.h"
 #import "THLedPaletteItem.h"
 #import "THButtonPaletteItem.h"
 #import "THBuzzerPaletteItem.h"
@@ -54,6 +55,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THSwitchPaletteItem.h"
 #import "THThreeColorLedPaletteItem.h"
 #import "THVibrationBoardPaletteItem.h"
+#import "THTemperatureSensorPaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -384,7 +386,9 @@ You should have received a copy of the GNU General Public License along with thi
                          nil];
     
     
-   self.hardwareSectionArray = [NSArray arrayWithObjects:
+    self.hardwareSectionArray = [NSArray arrayWithObjects:
+                               [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
+                               [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
                                [[THLedPaletteItem alloc] initWithName:@"led"],
                                [[THButtonPaletteItem alloc] initWithName:@"button"],
                                [[THSwitchPaletteItem alloc] initWithName:@"switch"],
@@ -393,7 +397,8 @@ You should have received a copy of the GNU General Public License along with thi
                                [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
                                [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
                                [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
-                               [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
+                                 [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
+                                 [[THTemperatureSensorPaletteItem alloc] initWithName:@"temperatureSensor"],
                                nil];
     
     

@@ -128,6 +128,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadCustomProject{
     
     _clothes = [NSMutableArray array];
+    _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
@@ -145,10 +146,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) initCustomProject{
     
     [self loadCustomProject];
-    
+    /*
     THLilyPadEditable * lilypad = [[THLilyPadEditable alloc] init];
     lilypad.position = kLilypadDefaultPosition;
-    [self addLilypad:lilypad];
+    [self addBoard:lilypad];*/
     
     THiPhoneEditableObject * iPhone = [THiPhoneEditableObject iPhoneWithDefaultView];
     iPhone.position = kDefaultiPhonePosition;
@@ -187,7 +188,8 @@ You should have received a copy of the GNU General Public License along with thi
         
         THiPhoneEditableObject * iPhone = [decoder decodeObjectForKey:@"iPhone"];
         
-        NSArray * clotheObjects = [decoder decodeObjectForKey:@"clotheObjects"];
+        NSArray * boards = [decoder decodeObjectForKey:@"boards"];
+        NSArray * hardwareComponents = [decoder decodeObjectForKey:@"hardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
         NSArray * iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         NSArray * conditions = [decoder decodeObjectForKey:@"conditions"];
@@ -210,8 +212,12 @@ You should have received a copy of the GNU General Public License along with thi
             [self addClothe:clothe];
         }
         
-        for(THHardwareComponentEditableObject* clotheObject in clotheObjects){
-            [self addClotheObject:clotheObject];
+        for(THBoardEditable * board in boards){
+            [self addBoard:board];
+        }
+        
+        for(THHardwareComponentEditableObject* hardwareComponent in hardwareComponents){
+            [self addHardwareComponent:hardwareComponent];
         }
         
         for(THViewEditableObject* iphoneObject in iPhoneObjects){
@@ -243,7 +249,7 @@ You should have received a copy of the GNU General Public License along with thi
         }
         
         if(lilypad != nil){
-            [self addLilypad:lilypad];
+            [self addBoard:lilypad];
         }
     }
     return self;
@@ -254,7 +260,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     [coder encodeObject:_name forKey:@"name"];
     [coder encodeObject:_eventActionPairs forKey:@"eventActionPairs"];
-    [coder encodeObject:self.hardwareComponents forKey:@"clotheObjects"];
+    
+    [coder encodeObject:self.boards forKey:@"boards"];
+    [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -266,9 +274,6 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.wires forKey:@"wires"];
     [coder encodeObject:self.invocationConnections forKey:@"invocationConnections"];
 
-    
-    if(self.lilypad != nil)
-        [coder encodeObject:_lilypad forKey:@"lilypad"];
 }
 
 #pragma mark - Notifications
@@ -319,17 +324,24 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Lilypad
 
--(void) addLilypad:(THLilyPadEditable *)lilypad{
-    _lilypad = lilypad;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLilypadAdded object:_lilypad];
+
+-(void) addBoard:(THBoardEditable*)board{
+    [self.boards addObject:board];
+    [self notifyObjectAdded:board];
 }
 
--(void) removeLilypad{
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLilypadRemoved object:_lilypad];
-    
-    _lilypad = nil;
+-(void) removeBoard:(THBoardEditable*) board{
+    [self.boards removeObject:board];
+    [self notifyObjectRemoved:board];
+}
+
+-(THBoardEditable*) boardAtLocation:(CGPoint) location{
+    for (THBoardEditable* board in _boards) {
+        if([board testPoint:location]){
+            return board;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - iPhoneObjects
@@ -387,13 +399,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Clothe Objects
 
--(void) addClotheObject:(THHardwareComponentEditableObject*) clotheObject{
+-(void) addHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
     [self.hardwareComponents addObject:clotheObject];
     [self notifyObjectAdded:clotheObject];
     [self tryAttachClotheObject:clotheObject];
 }
 
--(void) removeClotheObject:(THHardwareComponentEditableObject*) clotheObject{
+-(void) removeHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
     [self.hardwareComponents removeObject:clotheObject];
 
     [self deregisterActionsForObject:clotheObject];
@@ -738,10 +750,6 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     
-    if(self.lilypad.parent && [self.lilypad testPoint:location]){
-        return self.lilypad;
-    }
-    
     if(self.iPhone){
         if([self.iPhone.currentView testPoint:location]){
             return self.iPhone.currentView;
@@ -770,6 +778,7 @@ enum zPositions{
     [allObjects addObjectsFromArray:self.actions];
     [allObjects addObjectsFromArray:self.triggers];
     [allObjects addObjectsFromArray:self.values];
+    [allObjects addObjectsFromArray:self.boards];
     [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.clothes];
@@ -938,6 +947,8 @@ enum zPositions{
 
 -(THClientProject*) nonEditableProject{
     THClientProject * project = [[THClientProject alloc] initWithName:self.name];
+    
+    project.boards = [self nonEditableElementsForArray:self.boards forProject:project];
     project.hardwareComponents = [self nonEditableElementsForArray:self.hardwareComponents forProject:project];
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
     project.conditions = [self nonEditableElementsForArray:self.conditions forProject:project];
@@ -945,7 +956,6 @@ enum zPositions{
     project.values = [self nonEditableElementsForArray:self.values forProject:project];
     project.triggers = [self nonEditableElementsForArray:self.triggers forProject:project];
     project.iPhone = (THiPhone*) self.iPhone.simulableObject;
-    project.lilypad = [self.lilypad.simulableObject copy];
     
     [self cleanLilypadPinsFor:project];
     [self addNonEditableActionPairsTo:project];
@@ -993,8 +1003,6 @@ enum zPositions{
     for (THWire * wire in self.wires) {
         [wire prepareToDie];
     }
-    
-    [self.lilypad prepareToDie];
     
     _iPhone = nil;
 }

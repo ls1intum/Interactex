@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
     buzzer.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addClotheObject:buzzer];
+    [project addHardwareComponent:buzzer];
 }
 
 @end

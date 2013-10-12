@@ -50,4 +50,6 @@ extern float const kPinsControllerMinHeight;
 
 -(void) prepareToDie;
 
+@property (nonatomic, weak) THBoardEditable * board;
+
 @end
