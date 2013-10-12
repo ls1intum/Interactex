@@ -211,7 +211,7 @@
 }
 
 -(NSString*) description{
-    return @"Potentiometer";
+    return @"Temperature Sensor";
 }
 
 @end

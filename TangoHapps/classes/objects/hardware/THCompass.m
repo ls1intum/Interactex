@@ -211,5 +211,7 @@ You should have received a copy of the GNU General Public License along with thi
     [reg removeObserver:self forKeyPath:@"value"];
     
     self.i2cComponent = nil;
+    
+    [super prepareToDie];
 }
 @end

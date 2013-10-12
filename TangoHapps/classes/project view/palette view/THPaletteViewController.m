@@ -56,6 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THThreeColorLedPaletteItem.h"
 #import "THVibrationBoardPaletteItem.h"
 #import "THTemperatureSensorPaletteItem.h"
+#import "THAccelerometerPaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -386,9 +387,11 @@ You should have received a copy of the GNU General Public License along with thi
                          nil];
     
     
+    self.boardsSectionArray  = [NSArray arrayWithObjects:
+                                [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
+                                [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],nil];
+    
     self.hardwareSectionArray = [NSArray arrayWithObjects:
-                               [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
-                               [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
                                [[THLedPaletteItem alloc] initWithName:@"led"],
                                [[THButtonPaletteItem alloc] initWithName:@"button"],
                                [[THSwitchPaletteItem alloc] initWithName:@"switch"],
@@ -399,6 +402,7 @@ You should have received a copy of the GNU General Public License along with thi
                                [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
                                  [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
                                  [[THTemperatureSensorPaletteItem alloc] initWithName:@"temperatureSensor"],
+                                 [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                nil];
     
     
@@ -415,6 +419,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";
+    self.boardsSectionName = @"Boards";
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Visual Programming";
 }

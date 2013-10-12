@@ -312,7 +312,7 @@ You should have received a copy of the GNU General Public License along with thi
             
         } else {
             
-            THHardwareComponentEditableObject * clotheObject = [project clotheObjectAtLocation:position];
+            THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:position];
             
             if(clotheObject){
                 THElementPinEditable * pin = [clotheObject pinAtPosition:position];
@@ -408,7 +408,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.isLilypadMode){
         if([object1 isKindOfClass:[THElementPinEditable class]]){
             THElementPinEditable * objectPin = (THElementPinEditable*) object1;
-            if([object2 isKindOfClass:[THLilyPadEditable class]]){
+            if([object2 isKindOfClass:[THBoardEditable class]]){
                 [self connectElementPin:objectPin toBoardAtPosition:location];
             }
         } /*else if([object1 isKindOfClass:[THResistorExtension class]]){
@@ -578,9 +578,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     
     THProject * myProject = [THDirector sharedDirector].currentProject;
-    THBoardEditable * board = [myProject boardAtLocation:location];
+    THHardwareComponentEditableObject * board = [myProject hardwareComponentAtLocation:location];
     if(board){
-        CGPoint newPos = ccpSub(board.position, location);
+        CGPoint newPos = ccpSub(location, board.position);
         NSLog(@"%d %d",(int)newPos.x, (int)newPos.y);
     }
     
@@ -686,7 +686,7 @@ You should have received a copy of the GNU General Public License along with thi
     location = [self toLayerCoords:location];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THHardwareComponentEditableObject * clotheObject = [project clotheObjectAtLocation:location];
+    THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:location];
     if(clotheObject){
         if(clotheObject.attachedToClothe){
             [self checkUnPinClotheObject:clotheObject];
@@ -1071,8 +1071,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     THPaletteViewController * paletteController = [THDirector sharedDirector].projectController.tabController.paletteController;
     
-    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.hardwareSectionArray, nil];
-    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.clothesSectionName, paletteController.hardwareSectionName, nil];
+    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.boardsSectionArray, paletteController.hardwareSectionArray, nil];
+    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.clothesSectionName, paletteController.boardsSectionName, paletteController.hardwareSectionName, nil];
     
     [paletteController reloadPalettes];
 }
@@ -1086,7 +1086,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self hideNonLilypadObjects];
     [self showBoards];
-//    [self addLilypadObjects];
     [self showAllLilypadWires];
     [self hideNonLilypadPaletteSections];
 }
@@ -1095,7 +1094,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     _isLilypadMode = NO;
     [self hideBoards];
-    //[self removeLilypadObjects];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
     [self hideAllLilypadWires];

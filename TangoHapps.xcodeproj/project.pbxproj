@@ -718,6 +718,21 @@
 		9ABC27931809B2A500B39D72 /* temperatureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278C1809B2A500B39D72 /* temperatureSensor.png */; };
 		9ABC27941809B2A500B39D72 /* temperatureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */; };
 		9ABC27951809B2A500B39D72 /* temperatureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */; };
+		9ABC279C1809B46C00B39D72 /* accelerometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27981809B46C00B39D72 /* accelerometer.png */; };
+		9ABC279D1809B46C00B39D72 /* accelerometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27981809B46C00B39D72 /* accelerometer.png */; };
+		9ABC279E1809B46C00B39D72 /* accelerometer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27991809B46C00B39D72 /* accelerometer@2x.png */; };
+		9ABC279F1809B46C00B39D72 /* accelerometer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27991809B46C00B39D72 /* accelerometer@2x.png */; };
+		9ABC27A01809B46C00B39D72 /* palette_accelerometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC279A1809B46C00B39D72 /* palette_accelerometer.png */; };
+		9ABC27A11809B46C00B39D72 /* palette_accelerometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC279A1809B46C00B39D72 /* palette_accelerometer.png */; };
+		9ABC27A21809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC279B1809B46C00B39D72 /* palette_accelerometer@2x.png */; };
+		9ABC27A31809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC279B1809B46C00B39D72 /* palette_accelerometer@2x.png */; };
+		9ABC27AF1809B48500B39D72 /* THAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27AE1809B48500B39D72 /* THAccelerometer.m */; };
+		9ABC27B01809B48500B39D72 /* THAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27AE1809B48500B39D72 /* THAccelerometer.m */; };
+		9ABC27B11809B48500B39D72 /* THAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27AE1809B48500B39D72 /* THAccelerometer.m */; };
+		9ABC27B41809B57900B39D72 /* THAccelerometerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */; };
+		9ABC27B51809B57900B39D72 /* THAccelerometerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */; };
+		9ABC27B81809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
+		9ABC27B91809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
 		9AC3CCEE18001FD500363CD2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3CCEC18001FD500363CD2 /* Icon.png */; };
 		9AC3CCEF18001FD500363CD2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3CCED18001FD500363CD2 /* Icon@2x.png */; };
 		9AC3CD201800252C00363CD2 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD07180024BD00363CD2 /* libcocos2d.a */; };
@@ -1645,6 +1660,16 @@
 		9ABC278B1809B2A500B39D72 /* palette_temperatureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_temperatureSensor@2x.png"; sourceTree = "<group>"; };
 		9ABC278C1809B2A500B39D72 /* temperatureSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperatureSensor.png; sourceTree = "<group>"; };
 		9ABC278D1809B2A500B39D72 /* temperatureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temperatureSensor@2x.png"; sourceTree = "<group>"; };
+		9ABC27981809B46C00B39D72 /* accelerometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accelerometer.png; sourceTree = "<group>"; };
+		9ABC27991809B46C00B39D72 /* accelerometer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accelerometer@2x.png"; sourceTree = "<group>"; };
+		9ABC279A1809B46C00B39D72 /* palette_accelerometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_accelerometer.png; sourceTree = "<group>"; };
+		9ABC279B1809B46C00B39D72 /* palette_accelerometer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_accelerometer@2x.png"; sourceTree = "<group>"; };
+		9ABC27AD1809B48500B39D72 /* THAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAccelerometer.h; sourceTree = "<group>"; };
+		9ABC27AE1809B48500B39D72 /* THAccelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometer.m; sourceTree = "<group>"; };
+		9ABC27B21809B57900B39D72 /* THAccelerometerEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAccelerometerEditable.h; sourceTree = "<group>"; };
+		9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerEditable.m; sourceTree = "<group>"; };
+		9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAccelerometerPaletteItem.h; sourceTree = "<group>"; };
+		9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerPaletteItem.m; sourceTree = "<group>"; };
 		9AC3CCEC18001FD500363CD2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9AC3CCED18001FD500363CD2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9AC3CCF2180024BC00363CD2 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "../cocos2d-iphone.git/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
@@ -2112,6 +2137,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9ABC27981809B46C00B39D72 /* accelerometer.png */,
+				9ABC27991809B46C00B39D72 /* accelerometer@2x.png */,
+				9ABC279A1809B46C00B39D72 /* palette_accelerometer.png */,
+				9ABC279B1809B46C00B39D72 /* palette_accelerometer@2x.png */,
 				9A4144B617DE7A060061EDF8 /* accelerometerArrow.png */,
 				9A4144B717DE7A060061EDF8 /* accelerometerArrow@2x.png */,
 				9A4144B817DE7A060061EDF8 /* accelerometerBall.png */,
@@ -2791,6 +2820,10 @@
 				9ABC277E1809AC7A00B39D72 /* THTemperatureSensor.m */,
 				9ABC27821809B01600B39D72 /* THTemperatureSensorEditable.h */,
 				9ABC27831809B01600B39D72 /* THTemperatureSensorEditable.m */,
+				9ABC27AD1809B48500B39D72 /* THAccelerometer.h */,
+				9ABC27AE1809B48500B39D72 /* THAccelerometer.m */,
+				9ABC27B21809B57900B39D72 /* THAccelerometerEditable.h */,
+				9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -2960,6 +2993,8 @@
 				9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */,
 				9ABC27861809B1E500B39D72 /* THTemperatureSensorPaletteItem.h */,
 				9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */,
+				9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */,
+				9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -3390,6 +3425,7 @@
 				9AF503D0167B84B40020241C /* PeerCellServer.xib in Resources */,
 				9AF503D1167B84B40020241C /* ServerController.xib in Resources */,
 				9AF503DF167B84B40020241C /* THColorPicker.xib in Resources */,
+				9ABC279C1809B46C00B39D72 /* accelerometer.png in Resources */,
 				9AF5043D167B84B40020241C /* data_pushed.mp3 in Resources */,
 				9AF5043E167B84B40020241C /* peer_connected.mp3 in Resources */,
 				9AF5043F167B84B40020241C /* peer_disconnected.mp3 in Resources */,
@@ -3427,12 +3463,14 @@
 				9A94F43616A0192700AF52AB /* THSliderProperties.xib in Resources */,
 				9A94F43816A0192700AF52AB /* THSwitchProperties.xib in Resources */,
 				9A94F43A16A0192700AF52AB /* THThreeColorLedProperties.xib in Resources */,
+				9ABC27A01809B46C00B39D72 /* palette_accelerometer.png in Resources */,
 				9A94F43C16A0192700AF52AB /* THTouchpadProperties.xib in Resources */,
 				9A94F43E16A0192700AF52AB /* THValueProperties.xib in Resources */,
 				9A94F44016A0192700AF52AB /* THEditorTools.xib in Resources */,
 				9AF60BBF16A04BDB00178439 /* connectionMade.mp3 in Resources */,
 				9AF60BC616A04D9F00178439 /* THTabbar.xib in Resources */,
 				9AF60BC816A04D9F00178439 /* THTabbarViewSection.xib in Resources */,
+				9ABC279E1809B46C00B39D72 /* accelerometer@2x.png in Resources */,
 				9A5F8D8D16A2C524000DF472 /* THContactBookProperties.xib in Resources */,
 				9A87C06116A4140C0059CC2E /* THGridItem.xib in Resources */,
 				9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */,
@@ -3527,6 +3565,7 @@
 				9A4145D717DE7A060061EDF8 /* palette_mapper.png in Resources */,
 				9A4145D917DE7A060061EDF8 /* palette_mapper@2x.png in Resources */,
 				9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */,
+				9ABC27A21809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */,
 				9A4145DB17DE7A060061EDF8 /* palette_musicplayer.png in Resources */,
 				9A4145DD17DE7A060061EDF8 /* palette_musicplayer@2x.png in Resources */,
 				9A4145DF17DE7A060061EDF8 /* palette_potentiometer.png in Resources */,
@@ -3680,10 +3719,12 @@
 				9A56D03C17D946FF001021B2 /* Storyboard.storyboard in Resources */,
 				9A41453C17DE7A060061EDF8 /* add.png in Resources */,
 				9A41453E17DE7A060061EDF8 /* add@2x.png in Resources */,
+				9ABC27A11809B46C00B39D72 /* palette_accelerometer.png in Resources */,
 				9A41454017DE7A060061EDF8 /* backwards.png in Resources */,
 				9A41454217DE7A060061EDF8 /* backwards@2x.png in Resources */,
 				9A41454417DE7A060061EDF8 /* forward.png in Resources */,
 				9A41454617DE7A060061EDF8 /* forward@2x.png in Resources */,
+				9ABC279D1809B46C00B39D72 /* accelerometer.png in Resources */,
 				9A41454817DE7A060061EDF8 /* musicPlay.png in Resources */,
 				9A41454A17DE7A060061EDF8 /* musicPlay@2x.png in Resources */,
 				9A41454C17DE7A060061EDF8 /* pause.png in Resources */,
@@ -3738,6 +3779,7 @@
 				9A4145B017DE7A060061EDF8 /* palette_condition.png in Resources */,
 				9A4145B217DE7A060061EDF8 /* palette_condition@2x.png in Resources */,
 				9A4145B417DE7A060061EDF8 /* palette_contactBook.png in Resources */,
+				9ABC279F1809B46C00B39D72 /* accelerometer@2x.png in Resources */,
 				9A4145B617DE7A060061EDF8 /* palette_contactBook@2x.png in Resources */,
 				9A4145B817DE7A060061EDF8 /* palette_grouper.png in Resources */,
 				9A4145BA17DE7A060061EDF8 /* palette_grouper@2x.png in Resources */,
@@ -3785,6 +3827,7 @@
 				9A41460A17DE7A060061EDF8 /* palette_vibeBoard@2x.png in Resources */,
 				9A41460C17DE7A060061EDF8 /* potentiometer.png in Resources */,
 				9A41460E17DE7A060061EDF8 /* potentiometer@2x.png in Resources */,
+				9ABC27A31809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */,
 				9A41461017DE7A060061EDF8 /* sewed.png in Resources */,
 				9A41461217DE7A060061EDF8 /* sewed@2x.png in Resources */,
 				9A41461417DE7A060061EDF8 /* sound.png in Resources */,
@@ -3912,6 +3955,7 @@
 				9AF50384167B84B40020241C /* THLightSensor.m in Sources */,
 				9AF50385167B84B40020241C /* THLightSensorEditableObject.m in Sources */,
 				9AF50388167B84B40020241C /* THPotentiometer.m in Sources */,
+				9ABC27AF1809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9AF50389167B84B40020241C /* THPotentiometerEditableObject.m in Sources */,
 				9AF5038A167B84B40020241C /* THSlideSwitch.m in Sources */,
 				9AF5038B167B84B40020241C /* THSlideSwitchEditableObject.m in Sources */,
@@ -3938,6 +3982,7 @@
 				9AF5039F167B84B40020241C /* THTouchPadEditableObject.m in Sources */,
 				9AF503A0167B84B40020241C /* THView.m in Sources */,
 				9AF503A1167B84B40020241C /* THViewEditableObject.m in Sources */,
+				9ABC27B41809B57900B39D72 /* THAccelerometerEditable.m in Sources */,
 				9AF503A3167B84B40020241C /* THButtonPaletteItem.m in Sources */,
 				9AF503A4167B84B40020241C /* THBuzzerPaletteItem.m in Sources */,
 				9AF503A5167B84B40020241C /* THClothePaletteItem.m in Sources */,
@@ -3985,6 +4030,7 @@
 				9A8BB9A4167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
 				9AB29B40167F4B5D00F5AF62 /* THImageViewPaletteItem.m in Sources */,
 				9AB29B43167F4CF300F5AF62 /* THImageView.m in Sources */,
+				9ABC27B81809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */,
 				9AB29B46167F4DF800F5AF62 /* THImageViewEditable.m in Sources */,
 				9AB29B4A167F4F2600F5AF62 /* THImageViewProperties.m in Sources */,
 				9AB29B59167F78C300F5AF62 /* THHelper.m in Sources */,
@@ -4121,6 +4167,7 @@
 				9AF505FE167B91FA0020241C /* THiPhoneButton.m in Sources */,
 				9AF505FF167B91FA0020241C /* THiPhoneButtonEditableObject.m in Sources */,
 				9AF50600167B91FA0020241C /* THiPhoneControl.m in Sources */,
+				9ABC27B51809B57900B39D72 /* THAccelerometerEditable.m in Sources */,
 				9AF50601167B91FE0020241C /* THiPhoneControlEditableObject.m in Sources */,
 				9AF50602167B91FE0020241C /* THiSwitch.m in Sources */,
 				9AF50603167B91FE0020241C /* THiSwitchEditableObject.m in Sources */,
@@ -4138,6 +4185,7 @@
 				9AF50610167B92150020241C /* THElementPin.m in Sources */,
 				9AF50611167B92150020241C /* THElementPinEditable.m in Sources */,
 				9AF50612167B92150020241C /* THPin.m in Sources */,
+				9ABC27B91809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */,
 				9AF50613167B92150020241C /* THPinEditable.m in Sources */,
 				9AF50614167B92150020241C /* THPinValue.m in Sources */,
 				9AF50615167B92200020241C /* THButton.m in Sources */,
@@ -4250,6 +4298,7 @@
 				9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */,
 				9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */,
 				9A09767E171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
+				9ABC27B11809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9A097682171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
 				9A097686171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
 				9A09768D17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */,
@@ -4391,6 +4440,7 @@
 				9A8426D417564A80009495AB /* TFSimulableObject.m in Sources */,
 				9ABC275B18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
+				9ABC27B01809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
 				9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */,

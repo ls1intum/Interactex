@@ -412,7 +412,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self notifyObjectRemoved:clotheObject];
 }
 
--(THHardwareComponentEditableObject*) clotheObjectAtLocation:(CGPoint) location{
+-(THHardwareComponentEditableObject*) hardwareComponentAtLocation:(CGPoint) location{
     for (THHardwareComponentEditableObject * object in self.hardwareComponents) {
         if([object testPoint:location]){
             return object;

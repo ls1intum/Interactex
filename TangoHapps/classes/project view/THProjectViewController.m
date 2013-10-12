@@ -538,8 +538,6 @@ float const kToolsTabMargin = 5;
         THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
         THSimulator * simulator = [THSimulator node];
         
-        //wasEditorInLilypadMode = editor.isLilypadMode;
-        
         [self switchToLayer:simulator];
         simulator.zoomLevel = editor.zoomLevel;
         

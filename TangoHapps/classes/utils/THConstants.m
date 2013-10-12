@@ -63,7 +63,7 @@ NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";
 
-NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2};
+NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2,3,5};
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
@@ -75,7 +75,8 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-20,20},{20,20},{20,-20},{-20,-20}},//compass
     {{0,25},{-26,-11},{0,-25},{26,-11}},//three color led
     {{-24,15},{24,15}},//vibeBoard
-    {{-23,-12},{0,26},{25,-12}}//temperature sensor
+    {{-23,-12},{0,26},{25,-12}},//temperature sensor
+    {{1,-29},{-24,10},{1,25},{25,11},{25,-15}}//accelerometer
 };
 
 

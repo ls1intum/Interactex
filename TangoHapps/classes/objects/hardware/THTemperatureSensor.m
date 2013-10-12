@@ -180,7 +180,7 @@ float const kMaxTemperatureSensorValue = 1023;
 }
 
 -(NSString*) description{
-    return @"potentiometer";
+    return @"temperature sensor";
 }
 
 @end
