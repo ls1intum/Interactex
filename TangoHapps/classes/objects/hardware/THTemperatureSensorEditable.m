@@ -113,15 +113,15 @@
 #pragma mark - Pins
 
 -(THElementPinEditable*) minusPin{
-    return [self.pins objectAtIndex:0];
-}
-
--(THElementPinEditable*) analogPin{
     return [self.pins objectAtIndex:1];
 }
 
--(THElementPinEditable*) plusPin{
+-(THElementPinEditable*) analogPin{
     return [self.pins objectAtIndex:2];
+}
+
+-(THElementPinEditable*) plusPin{
+    return [self.pins objectAtIndex:0];
 }
 
 #pragma mark - Methods

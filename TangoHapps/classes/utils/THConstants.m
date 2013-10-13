@@ -121,7 +121,9 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//light
     {70,75},//compass
     {70,65},//tricolor
-    {70,65}//vibeBoard
+    {70,65},//vibeBoard
+    {70,65},//temperature sensor
+    {70,65}//accelerometer
 };
 
 

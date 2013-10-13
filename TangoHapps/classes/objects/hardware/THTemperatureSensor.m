@@ -62,8 +62,9 @@ float const kMaxTemperatureSensorValue = 1023;
     pin1.hardware = self;
     THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
     pin2.hardware = self;
-    pin2.defaultBoardPinMode = kPinModeAnalogInput;
     THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeAnalog];
+    pin3.hardware = self;
+    pin3.defaultBoardPinMode = kPinModeAnalogInput;
     
     [self.pins addObject:pin1];
     [self.pins addObject:pin2];
@@ -115,15 +116,15 @@ float const kMaxTemperatureSensorValue = 1023;
 #pragma mark - Methods
 
 -(THElementPin*) minusPin{
-    return [self.pins objectAtIndex:0];
-}
-
--(THElementPin*) analogPin{
     return [self.pins objectAtIndex:1];
 }
 
--(THElementPin*) plusPin{
+-(THElementPin*) analogPin{
     return [self.pins objectAtIndex:2];
+}
+
+-(THElementPin*) plusPin{
+    return [self.pins objectAtIndex:0];
 }
 
 -(void) updatePinValue{
