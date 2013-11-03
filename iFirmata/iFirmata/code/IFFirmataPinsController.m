@@ -377,7 +377,8 @@
             uint8_t values[reg.size];
             NSInteger parseBufCount = 6;
             for (int i = 0; i < reg.size; i++) {
-                uint8_t value = buffer[parseBufCount++] + (buffer[parseBufCount++] << 7);
+                uint8_t byte1 = buffer[parseBufCount++];
+                uint8_t value = byte1 + (buffer[parseBufCount++] << 7);
                 values[i] = value;
             }
             NSData * data = [NSData dataWithBytes:values length:reg.size];

@@ -14,6 +14,8 @@
 #import "IFI2CComponentCell.h"
 #import "AppDelegate.h"
 #import "IFI2CComponent.h"
+#import "IFFirmataCommunicationModule.h"
+#import "IFFirmataBLECommunicationModule.h"
 
 @implementation IFFirmataViewController
 
@@ -38,7 +40,10 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     
-    self.firmataPinsController.firmataController.bleService = [BLEDiscovery sharedInstance].connectedService;
+    IFFirmataBLECommunicationModule * commModule = [[IFFirmataBLECommunicationModule alloc] init];
+    commModule.bleService = [BLEDiscovery sharedInstance].connectedService;
+    
+    self.firmataPinsController.firmataController.communicationModule = commModule;
     [BLEDiscovery sharedInstance].connectedService.dataDelegate = self.firmataPinsController.firmataController;
     
     if(self.firmataPinsController.analogPins.count == 0 && self.firmataPinsController.digitalPins.count == 0){

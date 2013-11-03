@@ -13,7 +13,8 @@
 
 @implementation IFMainViewController
 
-const NSInteger IFRefreshHeaderHeight = 56;
+const NSInteger IFRefreshHeaderHeight = 120;
+const NSInteger IFRefreshHeaderInitialY = 40;
 const NSInteger IFDiscoveryTime = 3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -30,7 +31,8 @@ const NSInteger IFDiscoveryTime = 3;
     
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
     [BLEDiscovery sharedInstance].peripheralDelegate = self;
-    [[BLEDiscovery sharedInstance] startScanningForAnyUUID];
+    //[[BLEDiscovery sharedInstance] startScanningForAnyUUID];
+    
     //[[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
     
     NSURL * pullDownSoundUrl = [[NSBundle mainBundle] URLForResource: @"pullDown" withExtension: @"wav"];
@@ -182,7 +184,7 @@ const NSInteger IFDiscoveryTime = 3;
     
     [self performSegueWithIdentifier:@"toDeviceMenuSegue" sender:self];
     
-    [service clearRx];
+    //[service clearRx];
 }
 
 -(void) bleServiceDidReset {
@@ -231,7 +233,7 @@ const NSInteger IFDiscoveryTime = 3;
     [[BLEDiscovery sharedInstance] stopScanning];
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.table.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.table.contentInset = UIEdgeInsetsMake(IFRefreshHeaderInitialY, 0, 0, 0);
         
         [self.activityIndicator stopAnimating];
         self.refreshingLabel.text = [NSString stringWithFormat:@"Pull down to refresh"];
@@ -249,6 +251,8 @@ const NSInteger IFDiscoveryTime = 3;
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{
+    //NSLog(@"%f",scrollView.contentOffset.y);
+    
     if (!shouldRefreshOnRelease && !isRefreshing && scrollView.contentOffset.y <= -IFRefreshHeaderHeight) {
         self.refreshingLabel.text = [NSString stringWithFormat:@"Release to refresh"];
         shouldRefreshOnRelease = YES;

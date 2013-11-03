@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2AD76A24-F0A0-4CFC-9808-44F2A9694DB0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iFirmata</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>301E97FB-2FCF-4220-809F-61C3184433B2</key>
+		<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iFirmata/iFirmata.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>301E97FB-2FCF-4220-809F-61C3184433B2</key>
+		<string>../../..</string>
+		<key>F702AE8F-33D5-490E-82CC-55E9D935BE62</key>
+		<string>../../../Frameworks/BLEFirmata</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>301E97FB-2FCF-4220-809F-61C3184433B2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F702AE8F-33D5-490E-82CC-55E9D935BE62</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BLEFirmata</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>301E97FB-2FCF-4220-809F-61C3184433B2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wearablesm2m</string>
+		</dict>
+	</array>
+</dict>
+</plist>

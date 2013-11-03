@@ -91,8 +91,9 @@
 }
 
 -(CBCharacteristic*) characteristicWithIdx:(NSInteger) idx{
-    BLEService * bleService = [BLEDiscovery sharedInstance].connectedService;
+   // BLEService * bleService = [BLEDiscovery sharedInstance].connectedService;
     
+    /*
     if(idx == 0){
         return bleService.bdCharacteristic;
     } else if(idx == 1){
@@ -103,7 +104,8 @@
         return bleService.rxClearCharacteristic;
     } else if(idx == 4){
         return bleService.txCharacteristic;
-    }
+    }*/
+    
     return nil;
 }
 

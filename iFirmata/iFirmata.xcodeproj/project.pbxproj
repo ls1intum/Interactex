@@ -13,6 +13,9 @@
 		9A6F9A621780741800089B34 /* IFCharacteristicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */; };
 		9A6F9A651780754C00089B34 /* IFDeviceMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A641780754C00089B34 /* IFDeviceMenuViewController.m */; };
 		9A6F9A681780798A00089B34 /* IFCharacteristicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */; };
+		9A7D0B6418159FA1001CA90A /* IFPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D0B6318159FA1001CA90A /* IFPin.m */; };
+		9A7D0B6918159FDD001CA90A /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D0B6618159FDD001CA90A /* IFI2CComponent.m */; };
+		9A7D0B6A18159FDD001CA90A /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D0B6818159FDD001CA90A /* IFI2CRegister.m */; };
 		9A86CF8217A2793100E3F9E4 /* IFDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CF8117A2793100E3F9E4 /* IFDeviceCell.m */; };
 		9A86CF8417A29F7000E3F9E4 /* arrowUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A86CF8317A29F7000E3F9E4 /* arrowUp.png */; };
 		9A86CF8617A2A13300E3F9E4 /* arrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A86CF8517A2A13300E3F9E4 /* arrowDown.png */; };
@@ -69,6 +72,12 @@
 		9A6F9A641780754C00089B34 /* IFDeviceMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFDeviceMenuViewController.m; sourceTree = "<group>"; };
 		9A6F9A661780798A00089B34 /* IFCharacteristicDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFCharacteristicDetailsViewController.h; sourceTree = "<group>"; };
 		9A6F9A671780798A00089B34 /* IFCharacteristicDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFCharacteristicDetailsViewController.m; sourceTree = "<group>"; };
+		9A7D0B6218159FA1001CA90A /* IFPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFPin.h; sourceTree = "<group>"; };
+		9A7D0B6318159FA1001CA90A /* IFPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPin.m; sourceTree = "<group>"; };
+		9A7D0B6518159FDD001CA90A /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
+		9A7D0B6618159FDD001CA90A /* IFI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponent.m; sourceTree = "<group>"; };
+		9A7D0B6718159FDD001CA90A /* IFI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegister.h; sourceTree = "<group>"; };
+		9A7D0B6818159FDD001CA90A /* IFI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegister.m; sourceTree = "<group>"; };
 		9A86CF8017A2793000E3F9E4 /* IFDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFDeviceCell.h; sourceTree = "<group>"; };
 		9A86CF8117A2793100E3F9E4 /* IFDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFDeviceCell.m; sourceTree = "<group>"; };
 		9A86CF8317A29F7000E3F9E4 /* arrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowUp.png; sourceTree = "<group>"; };
@@ -221,6 +230,12 @@
 				9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */,
 				9A86CFDE17A92E1800E3F9E4 /* IFI2CComponentCell.h */,
 				9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */,
+				9A7D0B6518159FDD001CA90A /* IFI2CComponent.h */,
+				9A7D0B6618159FDD001CA90A /* IFI2CComponent.m */,
+				9A7D0B6718159FDD001CA90A /* IFI2CRegister.h */,
+				9A7D0B6818159FDD001CA90A /* IFI2CRegister.m */,
+				9A7D0B6218159FA1001CA90A /* IFPin.h */,
+				9A7D0B6318159FA1001CA90A /* IFPin.m */,
 			);
 			path = code;
 			sourceTree = "<group>";
@@ -344,14 +359,17 @@
 				9AEE5943177CA8AC00C6D5E8 /* AppDelegate.m in Sources */,
 				9AEE5957177CAA2E00C6D5E8 /* IFMainViewController.m in Sources */,
 				9AEE595A177CB01C00C6D5E8 /* IFHelper.m in Sources */,
+				9A7D0B6A18159FDD001CA90A /* IFI2CRegister.m in Sources */,
 				9AEE595D177CD29700C6D5E8 /* IFFirmataViewController.m in Sources */,
 				9AEE5963177CD3F300C6D5E8 /* IFPinCell.m in Sources */,
 				9AEE59BF177DEA7500C6D5E8 /* IFConstants.m in Sources */,
 				9A6F9A621780741800089B34 /* IFCharacteristicsViewController.m in Sources */,
+				9A7D0B6418159FA1001CA90A /* IFPin.m in Sources */,
 				9A6F9A651780754C00089B34 /* IFDeviceMenuViewController.m in Sources */,
 				9A6F9A681780798A00089B34 /* IFCharacteristicDetailsViewController.m in Sources */,
 				9A86CF8217A2793100E3F9E4 /* IFDeviceCell.m in Sources */,
 				9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */,
+				9A7D0B6918159FDD001CA90A /* IFI2CComponent.m in Sources */,
 				9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */,
 				9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */,
 				9A9FEA8017BB91ED004AB8CF /* IFFirmataPinsController.m in Sources */,

@@ -7,10 +7,8 @@
 //
 
 #import "IFFirmataController.h"
-#import "IFI2CComponent.h"
-#import "IFI2CRegister.h"
-#import "IFPin.h"
 #import "BLEService.h"
+#import "IFFirmataCommunicationModule.h"
 
 #define START_SYSEX             0xF0
 #define END_SYSEX               0xF7
@@ -56,7 +54,8 @@
     buf[1] = REPORT_FIRMWARE;
     buf[2] = END_SYSEX;
     
-    [self.bleService sendData:buf count:3];
+    [self.communicationModule sendDataWithCRC:buf count:3];
+    //[self.bleService sendData:buf count:3];
 }
 
 -(void) sendCapabilitiesAndReportRequest{
@@ -76,7 +75,8 @@
         buf[len++] = 1;
     }
     
-    [self.bleService sendData:buf count:16];
+    [self.communicationModule sendDataWithCRC:buf count:16];
+//    [self.bleService sendData:buf count:16];
 }
 
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
@@ -92,7 +92,9 @@
         buf[bufLength++] = END_SYSEX;
         
     }
-    [self.bleService sendData:buf count:bufLength];
+    
+    [self.communicationModule sendDataWithCRC:buf count:bufLength];
+//    [self.bleService sendData:buf count:bufLength];
 }
 
 -(void) sendPinQueryForPinNumber:(NSInteger) pinNumber{
@@ -103,14 +105,17 @@
     buf[2] = pinNumber;
     buf[3] = END_SYSEX;
     
-    [self.bleService sendData:buf count:4];
+    
+    [self.communicationModule sendDataWithCRC:buf count:4];
+//    [self.bleService sendData:buf count:4];
 }
 
 -(void) sendResetRequest{
     
     uint8_t msg = SYSTEM_RESET;
     
-    [self.bleService sendData:&msg count:1];
+    [self.communicationModule sendDataWithCRC:&msg count:1];
+//    [self.bleService sendData:&msg count:1];
 }
 
 -(void) sendPinModeForPin:(NSInteger) pin mode:(IFPinMode) mode {
@@ -123,7 +128,8 @@
 		buf[1] = pin;
 		buf[2] = mode;
         
-        [self.bleService sendData:buf count:3];
+        [self.communicationModule sendDataWithCRC:buf count:3];
+        //[self.bleService sendData:buf count:3];
     }
 }
 
@@ -135,7 +141,9 @@
 		buf[1] = value & 0x7F;
 		buf[2] = (value >> 7) & 0x7F;
         
-        [self.bleService sendData:buf count:3];
+        
+        [self.communicationModule sendDataWithCRC:buf count:3];
+//        [self.bleService sendData:buf count:3];
         
 	}
     
@@ -164,7 +172,7 @@
     buf[1] = value & 0x7F;
     buf[2] = (value >> 7) & 0x7F;
     
-    [self.bleService sendData:buf count:3];
+    [self.communicationModule sendDataWithCRC:buf count:3];
 }
 
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
@@ -173,7 +181,8 @@
     buf[0] = 0xC0 | pin;
     buf[1] = reports;
     
-    [self.bleService sendData:buf count:2];
+    [self.communicationModule sendDataWithCRC:buf count:2];
+    //[self.communicationModule sendData:buf count:2];
 }
 
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
@@ -191,7 +200,8 @@
     buf[7] = 0;
     buf[8] = END_SYSEX;
     
-    [self.bleService sendData:buf count:9];
+    [self.communicationModule sendDataWithCRC:buf count:9];
+    //[self.communicationModule sendData:buf count:9];
 }
 
 -(void) sendI2CStopReadingAddress:(NSInteger) address{
@@ -203,7 +213,8 @@
     buf[3] = I2C_STOP_READING;
     buf[4] = END_SYSEX;
     
-    [self.bleService sendData:buf count:5];
+    [self.communicationModule sendDataWithCRC:buf count:5];
+    //[self.communicationModule sendData:buf count:5];
 }
 
 -(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg {
@@ -221,7 +232,8 @@
     buf[7] = 0;
     buf[8] = END_SYSEX;
     
-    [self.bleService sendData:buf count:9];
+    [self.communicationModule sendDataWithCRC:buf count:9];
+    //[self.communicationModule sendData:buf count:9];
 }
 
 -(void) checkStartI2C{
@@ -241,7 +253,8 @@
     buf[3] = 0;
     buf[4] = END_SYSEX;
     
-    [self.bleService sendData:buf count:5];
+    [self.communicationModule sendDataWithCRC:buf count:5];
+    //[self.communicationModule sendData:buf count:5];
 }
 
 #pragma mark - Receive Messages
@@ -265,7 +278,7 @@
         int portVal = parseBuf[1] | (parseBuf[2] << 7);
         int port = portNum * 8;
         
-        if([self.delegate respondsToSelector:@selector(firmataController:didReceiveDigitalMessageForPort:value:)]){
+        if([self.delegate respondsToSelector:@selector(firmataController:didReceiveDigitalMessageForPort:value:)]){ 
             [self.delegate firmataController:self didReceiveDigitalMessageForPort:port value:portVal];
         }
         

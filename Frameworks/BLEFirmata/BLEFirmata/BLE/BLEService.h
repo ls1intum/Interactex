@@ -3,6 +3,7 @@
 
 
 #define SEND_BUFFER_SIZE 512
+#define RECEIVE_BUFFER_SIZE 512
 #define TX_BUFFER_SIZE 16
 
 extern NSString *kBleServiceUUIDString;
@@ -42,35 +43,56 @@ extern const NSTimeInterval kFlushInterval;
 -(void) updatedValueForCharacteristic:(CBCharacteristic *)characteristic;
 @end
 
+typedef enum{
+    BLEReceiveBufferStateNormal,
+    BLEReceiveBufferStateParsingLength,
+    BLEReceiveBufferStateParsingData,
+    BLEReceiveBufferStateParsingCrc1,
+    BLEReceiveBufferStateParsingCrc2
+} BLEReceiveBufferState;
 
 @interface BLEService : NSObject <CBPeripheralDelegate> {
     CBService			*bleService;
     
-    CBUUID              *bdUUID;
+    //CBUUID              *bdUUID;
     CBUUID              *rxUUID;
     CBUUID              *rxCountUUID;
     CBUUID              *rxClearUUID;
     CBUUID              *txUUID;
     
     NSTimer * timer;
-    char sendBuffer[SEND_BUFFER_SIZE];
+    
+    uint8_t sendBuffer[SEND_BUFFER_SIZE];
+    
+    uint8_t receiveBuffer[RECEIVE_BUFFER_SIZE];
+    int receiveDataStart;
+    int receiveDataCurrentIndex;
+    
+    int receiveDataCount;
+    int receiveDataLength;
+    
+    uint8_t firstCrcByte;
+    uint8_t secondCrcByte;
+    BLEReceiveBufferState parsingState;
+    
     int sendBufferStart;
     int sendBufferCount;
     NSTimeInterval lastTimeFlushed;
+    
 }
 
-@property (nonatomic, readonly) CBCharacteristic * bdCharacteristic;
+//@property (nonatomic, readonly) CBCharacteristic * bdCharacteristic;
 @property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;
-@property (nonatomic, readonly) CBCharacteristic * rxCountCharacteristic;
-@property (nonatomic, readonly) CBCharacteristic * rxClearCharacteristic;
+//@property (nonatomic, readonly) CBCharacteristic * rxCountCharacteristic;
+//@property (nonatomic, readonly) CBCharacteristic * rxClearCharacteristic;
 @property (nonatomic, readonly) CBCharacteristic * txCharacteristic;
 
 @property (nonatomic, readonly) CBUUID* uuid;
 
 @property (nonatomic, readonly) NSString* tx;
 @property (nonatomic, readonly) NSString* rx;
-@property (nonatomic, readonly) NSInteger rxCount;
-@property (nonatomic, readonly) NSInteger rxClear;
+//@property (nonatomic, readonly) NSInteger rxCount;
+//@property (nonatomic, readonly) NSInteger rxClear;
 
 @property (nonatomic, readonly) CBPeripheral *peripheral;
 @property (nonatomic) id<BLEServiceDelegate> delegate;
@@ -83,16 +105,17 @@ extern const NSTimeInterval kFlushInterval;
 -(void) start;
 -(void) disconnect;
 
--(void)enteredBackground;
--(void)enteredForeground;
+-(void) enteredBackground;
+-(void) enteredForeground;
 
--(void) clearRx;
+//-(void) clearRx;
 
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
+-(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count;
 -(void) flushData;
 
--(void) updateRxClear;
--(void) updateRxCount;
+//-(void) updateRxClear;
+//-(void) updateRxCount;
 -(void) updateRx;
 -(void) updateTx;
 -(void) updateCharacteristic:(CBCharacteristic*) characteristic;

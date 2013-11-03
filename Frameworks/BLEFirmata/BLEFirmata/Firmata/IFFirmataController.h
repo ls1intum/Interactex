@@ -12,11 +12,9 @@
 
 #define IFParseBufSize 4096
 
+@class IFFirmataCommunicationModule;
 @class IFFirmataController;
 @class BLEService;
-@class IFPin;
-@class IFI2CRegister;
-@class IFI2CComponent;
 
 @protocol IFFirmataControllerDelegate <NSObject>
 
@@ -48,7 +46,7 @@
     BOOL startedSysex;
 }
 
-@property (nonatomic, weak) BLEService * bleService;
+@property (nonatomic, weak) IFFirmataCommunicationModule * communicationModule;
 @property (nonatomic, weak) id<IFFirmataControllerDelegate> delegate;
 @property (nonatomic, readonly) BOOL startedI2C;
 
