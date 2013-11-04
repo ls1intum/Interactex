@@ -40,8 +40,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THButton.h"
 #import "THElementPin.h"
-#import "THPin.h"
-#import "IFPin.h"
 
 @implementation THButton
 
@@ -87,11 +85,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{
     
-    if(!self.isDown && pin.pin.value == kDigitalPinValueHigh){
+    if(!self.isDown && pin.value == kDigitalPinValueHigh){
         
         [self handleStartedPressing];
         
-    } else if(self.isDown && pin.pin.value == kDigitalPinValueLow){
+    } else if(self.isDown && pin.value == kDigitalPinValueLow){
         
         [self handleStoppedPressing];
         

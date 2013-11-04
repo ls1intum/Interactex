@@ -1,8 +1,8 @@
 /*
- BLEFMainViewController.h
+ THMonitor.m
  Interactex Designer
  
- Created by Juan Haladjian on 06/08/2013.
+ Created by Juan Haladjian on 04/11/2013.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -38,20 +38,80 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import "THMonitor.h"
+#import <GLKit/GLKit.h>
 
-#import "BLEFirmata.h"
+@implementation THMonitor
 
-@interface BLEFMainViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, BLEServiceDataDelegate>
+//@dynamic scaleMode;
 
-{
-    NSTimer * timer;
+-(void) loadMonitor{
+    
+    GLKView * view = [[GLKView alloc] init];
+    
+    view.frame = CGRectMake(0, 0, self.width, self.height);
+    view.layer.borderWidth = 1.0f;
+    view.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.view = view;
 }
 
-//@property (strong, nonatomic) IFFirmataController * firmataController;
-@property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *receivedLabel;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
-- (IBAction)startSendingTapped:(id)sender;
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        self.width = 200;
+        self.height = 200;
+        
+        [self loadMonitor];
+    }
+    return self;
+}
+
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    
+    [self loadMonitor];
+    
+    //self.image = [decoder decodeObjectForKey:@"image"];
+    
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [super encodeWithCoder:coder];
+    
+    //[coder encodeObject:self.image forKey:@"image"];
+}
+
+
+-(id)copyWithZone:(NSZone *)zone {
+    THMonitor * copy = [super copyWithZone:zone];
+    
+    return copy;
+}
+
+#pragma mark - Methods
+/*
+ -(void) setScaleMode:(THImageViewScaleMode)scaleMode{
+ ((UIImageView*) self.view).contentMode = [THHelper ScaleModeForCustomScaleMode:scaleMode];
+ }
+ 
+ -(THImageViewScaleMode) scaleMode{
+ return [THHelper customScaleModeForScaleMode:((UIImageView*)self.view).contentMode];
+ }
+ */
+
+
+-(NSString*) description{
+    return @"monitor";
+}
+
+-(void) prepareToDie{
+    
+    [super prepareToDie];
+}
 
 @end

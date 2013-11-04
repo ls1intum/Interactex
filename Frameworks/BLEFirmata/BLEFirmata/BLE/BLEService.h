@@ -6,6 +6,13 @@
 #define RECEIVE_BUFFER_SIZE 512
 #define TX_BUFFER_SIZE 16
 
+
+#define kBleNumSupportedServices 2
+
+extern NSString * const kBleSupportedServices[kBleNumSupportedServices];
+extern NSString * const kBleCharacteristics[kBleNumSupportedServices][2];
+
+/*
 extern NSString *kBleServiceUUIDString;
 extern NSString *kRxCharacteristicUUIDString;
 extern NSString *kRxCountCharacteristicUUIDString; 
@@ -14,9 +21,8 @@ extern NSString *kTxCharacteristicUUIDString;
 
 extern NSString *kBleServiceEnteredBackgroundNotification;
 extern NSString *kBleServiceEnteredForegroundNotification;
+*/
 
-extern const short kMsgPinModeStarted;
-extern const short kMsgPinValueStarted;
 extern const NSTimeInterval kFlushInterval;
 
 @class BLEService;
@@ -54,17 +60,20 @@ typedef enum{
 @interface BLEService : NSObject <CBPeripheralDelegate> {
     CBService			*bleService;
     
+    /*
     //CBUUID              *bdUUID;
     CBUUID              *rxUUID;
     CBUUID              *rxCountUUID;
     CBUUID              *rxClearUUID;
     CBUUID              *txUUID;
-    
+    */
+     
     NSTimer * timer;
     
     uint8_t sendBuffer[SEND_BUFFER_SIZE];
     
     uint8_t receiveBuffer[RECEIVE_BUFFER_SIZE];
+    
     int receiveDataStart;
     int receiveDataCurrentIndex;
     
@@ -81,41 +90,37 @@ typedef enum{
     
 }
 
-//@property (nonatomic, readonly) CBCharacteristic * bdCharacteristic;
 @property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;
-//@property (nonatomic, readonly) CBCharacteristic * rxCountCharacteristic;
-//@property (nonatomic, readonly) CBCharacteristic * rxClearCharacteristic;
 @property (nonatomic, readonly) CBCharacteristic * txCharacteristic;
 
 @property (nonatomic, readonly) CBUUID* uuid;
 
 @property (nonatomic, readonly) NSString* tx;
 @property (nonatomic, readonly) NSString* rx;
-//@property (nonatomic, readonly) NSInteger rxCount;
-//@property (nonatomic, readonly) NSInteger rxClear;
+
+@property (nonatomic) NSArray * currentCharacteristicUUIDs;
 
 @property (nonatomic, readonly) CBPeripheral *peripheral;
 @property (nonatomic) id<BLEServiceDelegate> delegate;
 @property (nonatomic) id<BLEServiceDataDelegate> dataDelegate;
 
++(NSMutableArray*) supportedServiceUUIDs;
++(NSMutableArray*) supportedCharacteristicUUIDs;
+
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic;
 
 -(id) initWithPeripheral:(CBPeripheral *)peripheral;
--(void) reset;
 -(void) start;
+-(void) reset;
 -(void) disconnect;
 
 -(void) enteredBackground;
 -(void) enteredForeground;
 
-//-(void) clearRx;
-
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
 -(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count;
 -(void) flushData;
 
-//-(void) updateRxClear;
-//-(void) updateRxCount;
 -(void) updateRx;
 -(void) updateTx;
 -(void) updateCharacteristic:(CBCharacteristic*) characteristic;

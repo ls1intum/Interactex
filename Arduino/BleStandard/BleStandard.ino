@@ -76,7 +76,7 @@ void setup()
   //bleShield.begin(14400);
   Serial.begin(9600);
   
-    //Serial.println("Starting");
+  Serial.println("Starting");
     //bleShield.flush();
     //bleShield.write(121);
 }
@@ -99,16 +99,16 @@ if(!val){
   Serial.println("button pressed");
     
         }*/
-/*
+
   while (bleShield.available()) {
     Serial.print(bleShield.read());
-    Serial.print(" ");
+    Serial.print(" ");/*
     counter++;
     if(counter == 16){
       counter = 0;
       Serial.println("");
-    }
-  }*/
+    }*/
+  }
   
-  delay(40);
+  //delay(40);
 }

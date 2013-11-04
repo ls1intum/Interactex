@@ -14,7 +14,6 @@
 @implementation IFMainViewController
 
 const NSInteger IFRefreshHeaderHeight = 120;
-const NSInteger IFRefreshHeaderInitialY = 40;
 const NSInteger IFDiscoveryTime = 3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,15 +30,15 @@ const NSInteger IFDiscoveryTime = 3;
     
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
     [BLEDiscovery sharedInstance].peripheralDelegate = self;
-    //[[BLEDiscovery sharedInstance] startScanningForAnyUUID];
     
-    //[[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
     
     NSURL * pullDownSoundUrl = [[NSBundle mainBundle] URLForResource: @"pullDown" withExtension: @"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)pullDownSoundUrl, &pullDownSound);
     
     NSURL * pullUpSoundUrl = [[NSBundle mainBundle] URLForResource: @"pullUp" withExtension: @"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)pullUpSoundUrl, &pullUpSound);
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -50,6 +49,8 @@ const NSInteger IFDiscoveryTime = 3;
     if([BLEDiscovery sharedInstance].currentPeripheral.isConnected){
         [self disconnect];
     }
+    
+    refreshHeaderTop = self.table.contentInset.top;
 }
 
 - (void)didReceiveMemoryWarning
@@ -208,8 +209,9 @@ const NSInteger IFDiscoveryTime = 3;
 }
 
 - (void) startRefreshingPeripherals {
+    
     isRefreshing = YES;
-    [[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+    [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
 
     // Show the header
     [UIView animateWithDuration:0.3 animations:^{
@@ -233,7 +235,7 @@ const NSInteger IFDiscoveryTime = 3;
     [[BLEDiscovery sharedInstance] stopScanning];
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.table.contentInset = UIEdgeInsetsMake(IFRefreshHeaderInitialY, 0, 0, 0);
+        self.table.contentInset = UIEdgeInsetsMake(refreshHeaderTop, 0, 0, 0);
         
         [self.activityIndicator stopAnimating];
         self.refreshingLabel.text = [NSString stringWithFormat:@"Pull down to refresh"];

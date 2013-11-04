@@ -11,6 +11,3 @@
 #import "BLEDiscovery.h"
 #import "BLEService.h"
 #import "IFFirmataController.h"
-#import "IFPin.h"
-#import "IFI2CRegister.h"
-#import "IFI2CComponent.h"

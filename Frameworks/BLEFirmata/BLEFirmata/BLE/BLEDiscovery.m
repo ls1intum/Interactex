@@ -121,6 +121,14 @@ static BLEDiscovery * sharedInstance;
 	[centralManager scanForPeripheralsWithServices:nil options:options];
 }
 
+-(void) startScanningForSupportedUUIDs{
+    
+	NSArray			*uuidArray	= [BLEService supportedServiceUUIDs];
+	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+    
+	[centralManager scanForPeripheralsWithServices:uuidArray options:options];
+}
+
 -(void) startScanningForUUIDString:(NSString *)uuidString {
 	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];

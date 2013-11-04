@@ -31,6 +31,8 @@ extern const NSInteger IFDiscoveryTime;
     
     SystemSoundID pullDownSound;
     SystemSoundID pullUpSound;
+    
+    NSInteger refreshHeaderTop;
 }
 
 

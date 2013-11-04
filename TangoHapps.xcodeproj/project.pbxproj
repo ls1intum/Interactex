@@ -53,6 +53,18 @@
 		9A097782172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
 		9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A1384DC16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
+		9A3165971827935700CB3E59 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165941827935700CB3E59 /* IFI2CComponent.m */; };
+		9A3165981827935700CB3E59 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165941827935700CB3E59 /* IFI2CComponent.m */; };
+		9A3165991827935700CB3E59 /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165961827935700CB3E59 /* IFI2CRegister.m */; };
+		9A31659A1827935700CB3E59 /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165961827935700CB3E59 /* IFI2CRegister.m */; };
+		9A31659D1827955200CB3E59 /* THMonitorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A31659C1827955200CB3E59 /* THMonitorEditable.m */; };
+		9A3165A1182795D000CB3E59 /* THMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165A0182795D000CB3E59 /* THMonitor.m */; };
+		9A3165A2182795D000CB3E59 /* THMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165A0182795D000CB3E59 /* THMonitor.m */; };
+		9A3165A5182796A200CB3E59 /* THMonitorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */; };
+		9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3165A61827989D00CB3E59 /* palette_monitor.png */; };
+		9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3165A71827989D00CB3E59 /* palette_monitor@2x.png */; };
+		9A3165AB1827994100CB3E59 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3165AA1827994100CB3E59 /* GLKit.framework */; };
+		9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3165AA1827994100CB3E59 /* GLKit.framework */; };
 		9A35118E167B7A6800C7484B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118D167B7A6800C7484B /* UIKit.framework */; };
 		9A351190167B7A6800C7484B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118F167B7A6800C7484B /* Foundation.framework */; };
 		9A351192167B7A6800C7484B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A351191167B7A6800C7484B /* CoreGraphics.framework */; };
@@ -617,8 +629,6 @@
 		9A9FEB6517BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
 		9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
 		9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
-		9AB1185917EB830E001955D9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB1185817EB830E001955D9 /* Icon.png */; };
-		9AB1189317EB8336001955D9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB1189217EB8336001955D9 /* Icon@2x.png */; };
 		9AB29B40167F4B5D00F5AF62 /* THImageViewPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */; };
 		9AB29B43167F4CF300F5AF62 /* THImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B42167F4CF300F5AF62 /* THImageView.m */; };
 		9AB29B46167F4DF800F5AF62 /* THImageViewEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B45167F4DF800F5AF62 /* THImageViewEditable.m */; };
@@ -1236,6 +1246,19 @@
 		9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPaletteItem.h; sourceTree = "<group>"; };
 		9A097780172693E60028A6B4 /* THSoundPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPaletteItem.m; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
+		9A3165931827935700CB3E59 /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
+		9A3165941827935700CB3E59 /* IFI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponent.m; sourceTree = "<group>"; };
+		9A3165951827935700CB3E59 /* IFI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegister.h; sourceTree = "<group>"; };
+		9A3165961827935700CB3E59 /* IFI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegister.m; sourceTree = "<group>"; };
+		9A31659B1827955200CB3E59 /* THMonitorEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMonitorEditable.h; sourceTree = "<group>"; };
+		9A31659C1827955200CB3E59 /* THMonitorEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMonitorEditable.m; sourceTree = "<group>"; };
+		9A31659F182795D000CB3E59 /* THMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMonitor.h; sourceTree = "<group>"; };
+		9A3165A0182795D000CB3E59 /* THMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMonitor.m; sourceTree = "<group>"; };
+		9A3165A3182796A200CB3E59 /* THMonitorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMonitorPaletteItem.h; sourceTree = "<group>"; };
+		9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMonitorPaletteItem.m; sourceTree = "<group>"; };
+		9A3165A61827989D00CB3E59 /* palette_monitor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_monitor.png; sourceTree = "<group>"; };
+		9A3165A71827989D00CB3E59 /* palette_monitor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_monitor@2x.png"; sourceTree = "<group>"; };
+		9A3165AA1827994100CB3E59 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9A351189167B7A6800C7484B /* Interactex Designer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interactex Designer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35118D167B7A6800C7484B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A35118F167B7A6800C7484B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1582,8 +1605,6 @@
 		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
 		9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientDownloadViewController.h; sourceTree = "<group>"; };
 		9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientDownloadViewController.m; sourceTree = "<group>"; };
-		9AB1185817EB830E001955D9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		9AB1189217EB8336001955D9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageViewPaletteItem.h; sourceTree = "<group>"; };
 		9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THImageViewPaletteItem.m; sourceTree = "<group>"; };
 		9AB29B41167F4CF300F5AF62 /* THImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageView.h; sourceTree = "<group>"; };
@@ -1945,6 +1966,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3165AB1827994100CB3E59 /* GLKit.framework in Frameworks */,
 				9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */,
 				9AC3CD211800253000363CD2 /* libCocosDenshion.a in Frameworks */,
 				9AC3CD201800252C00363CD2 /* libcocos2d.a in Frameworks */,
@@ -1995,6 +2017,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */,
 				9A776DBB17B51889008CD877 /* libBLEFirmata.a in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
@@ -2020,8 +2043,6 @@
 		9A35117E167B7A6800C7484B = {
 			isa = PBXGroup;
 			children = (
-				9AB1189217EB8336001955D9 /* Icon@2x.png */,
-				9AB1185817EB830E001955D9 /* Icon.png */,
 				9AF50474167B86490020241C /* Default-568h@2x.png */,
 				9A351193167B7A6800C7484B /* TangoHapps */,
 				9AF5FFF6167B82F70020241C /* TangoHappsClient */,
@@ -2044,6 +2065,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A3165AA1827994100CB3E59 /* GLKit.framework */,
 				9AC3CD221800255400363CD2 /* CoreText.framework */,
 				9AC3CCF2180024BC00363CD2 /* cocos2d-ios.xcodeproj */,
 				9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */,
@@ -2137,6 +2159,8 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9A3165A61827989D00CB3E59 /* palette_monitor.png */,
+				9A3165A71827989D00CB3E59 /* palette_monitor@2x.png */,
 				9ABC27981809B46C00B39D72 /* accelerometer.png */,
 				9ABC27991809B46C00B39D72 /* accelerometer@2x.png */,
 				9ABC279A1809B46C00B39D72 /* palette_accelerometer.png */,
@@ -2831,6 +2855,10 @@
 		9AF50219167B84B40020241C /* other */ = {
 			isa = PBXGroup;
 			children = (
+				9A3165931827935700CB3E59 /* IFI2CComponent.h */,
+				9A3165941827935700CB3E59 /* IFI2CComponent.m */,
+				9A3165951827935700CB3E59 /* IFI2CRegister.h */,
+				9A3165961827935700CB3E59 /* IFI2CRegister.m */,
 				9AF5021A167B84B40020241C /* THHardwareProblem.h */,
 				9AF5021B167B84B40020241C /* THHardwareProblem.m */,
 			);
@@ -2926,6 +2954,10 @@
 				9A5F8D8016A2C46E000DF472 /* THContactBook.m */,
 				9A5F8D8116A2C46E000DF472 /* THContactBookEditable.h */,
 				9A5F8D8216A2C46E000DF472 /* THContactBookEditable.m */,
+				9A31659B1827955200CB3E59 /* THMonitorEditable.h */,
+				9A31659C1827955200CB3E59 /* THMonitorEditable.m */,
+				9A31659F182795D000CB3E59 /* THMonitor.h */,
+				9A3165A0182795D000CB3E59 /* THMonitor.m */,
 			);
 			path = software;
 			sourceTree = "<group>";
@@ -2995,6 +3027,8 @@
 				9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */,
 				9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */,
 				9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */,
+				9A3165A3182796A200CB3E59 /* THMonitorPaletteItem.h */,
+				9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -3457,6 +3491,7 @@
 				9A94F42A16A0192700AF52AB /* THLabelProperties.xib in Resources */,
 				9A94F42C16A0192700AF52AB /* THLedProperties.xib in Resources */,
 				9A94F42E16A0192700AF52AB /* THLilypadProperties.xib in Resources */,
+				9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */,
 				9A94F43016A0192700AF52AB /* THMapperProperties.xib in Resources */,
 				9A94F43216A0192700AF52AB /* THMusicPlayerProperties.xib in Resources */,
 				9A94F43416A0192700AF52AB /* THPotentiometerProperties.xib in Resources */,
@@ -3598,6 +3633,7 @@
 				9A41461117DE7A060061EDF8 /* sewed@2x.png in Resources */,
 				9A41461317DE7A060061EDF8 /* sound.png in Resources */,
 				9A41461517DE7A060061EDF8 /* sound@2x.png in Resources */,
+				9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */,
 				9A41461717DE7A060061EDF8 /* switch.png in Resources */,
 				9A41461917DE7A060061EDF8 /* switch@2x.png in Resources */,
 				9A41461B17DE7A060061EDF8 /* switchOn.png in Resources */,
@@ -3651,8 +3687,6 @@
 				9AB778A317E6C25700F82424 /* starFilled.png in Resources */,
 				9AB778A517E6C25700F82424 /* triangleEmpty.png in Resources */,
 				9AB778A717E6C25700F82424 /* triangleFilled.png in Resources */,
-				9AB1185917EB830E001955D9 /* Icon.png in Resources */,
-				9AB1189317EB8336001955D9 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3968,6 +4002,7 @@
 				9ABC276F180996C200B39D72 /* THLilypadPaletteItem.m in Sources */,
 				9AF50392167B84B40020241C /* THiPhone.m in Sources */,
 				9AF50393167B84B40020241C /* THiPhoneButton.m in Sources */,
+				9A3165A5182796A200CB3E59 /* THMonitorPaletteItem.m in Sources */,
 				9AF50394167B84B40020241C /* THiPhoneButtonEditableObject.m in Sources */,
 				9AF50395167B84B40020241C /* THiPhoneControl.m in Sources */,
 				9AF50396167B84B40020241C /* THiPhoneControlEditableObject.m in Sources */,
@@ -3977,6 +4012,7 @@
 				9AF5039A167B84B40020241C /* THLabel.m in Sources */,
 				9AF5039B167B84B40020241C /* THLabelEditableObject.m in Sources */,
 				9AF5039C167B84B40020241C /* THMusicPlayer.m in Sources */,
+				9A3165971827935700CB3E59 /* IFI2CComponent.m in Sources */,
 				9AF5039D167B84B40020241C /* THMusicPlayerEditableObject.m in Sources */,
 				9AF5039E167B84B40020241C /* THTouchpad.m in Sources */,
 				9AF5039F167B84B40020241C /* THTouchPadEditableObject.m in Sources */,
@@ -4014,6 +4050,7 @@
 				9AF503BD167B84B40020241C /* THiSwitchEditableProperties.m in Sources */,
 				9AF503BE167B84B40020241C /* THLabelProperties.m in Sources */,
 				9AF503BF167B84B40020241C /* THLedProperties.m in Sources */,
+				9A31659D1827955200CB3E59 /* THMonitorEditable.m in Sources */,
 				9AF503C0167B84B40020241C /* THLilypadProperties.m in Sources */,
 				9AF503C1167B84B40020241C /* THLilypadPropertiesPinView.m in Sources */,
 				9AF503C2167B84B40020241C /* THMusicPlayerProperties.m in Sources */,
@@ -4034,6 +4071,7 @@
 				9AB29B46167F4DF800F5AF62 /* THImageViewEditable.m in Sources */,
 				9AB29B4A167F4F2600F5AF62 /* THImageViewProperties.m in Sources */,
 				9AB29B59167F78C300F5AF62 /* THHelper.m in Sources */,
+				9A3165A1182795D000CB3E59 /* THMonitor.m in Sources */,
 				9AB29B5E167F824300F5AF62 /* THMapper.m in Sources */,
 				9AB29B5F167F824300F5AF62 /* THMapperEditable.m in Sources */,
 				9AB29B62167F828F00F5AF62 /* THLinearFunction.m in Sources */,
@@ -4067,6 +4105,7 @@
 				9A09767C171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A097681171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
 				9A097685171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
+				9A3165991827935700CB3E59 /* IFI2CRegister.m in Sources */,
 				9A09768C17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */,
 				9ABC276618098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A09772E17267CFC0028A6B4 /* THSound.m in Sources */,
@@ -4412,6 +4451,7 @@
 				9AF5046D167B85710020241C /* THUtils.m in Sources */,
 				9AF5046E167B85A00020241C /* THHardwareComponent.m in Sources */,
 				9AF5046F167B85C30020241C /* THConditionObject.m in Sources */,
+				9A3165A2182795D000CB3E59 /* THMonitor.m in Sources */,
 				9AF50473167B860E0020241C /* main.m in Sources */,
 				9AB29C04167F89C100F5AF62 /* THProgrammingElement.m in Sources */,
 				9A7DBF6A169AC49900F86D71 /* THThreeColorLed.m in Sources */,
@@ -4435,6 +4475,7 @@
 				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
+				9A3165981827935700CB3E59 /* IFI2CComponent.m in Sources */,
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,
 				9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */,
 				9A8426D417564A80009495AB /* TFSimulableObject.m in Sources */,
@@ -4442,6 +4483,7 @@
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9ABC27B01809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
+				9A31659A1827935700CB3E59 /* IFI2CRegister.m in Sources */,
 				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
 				9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */,
 				9A56CDAD17D8EDA2001021B2 /* THStringValue.m in Sources */,

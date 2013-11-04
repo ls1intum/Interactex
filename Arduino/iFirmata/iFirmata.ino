@@ -316,18 +316,21 @@ void setPinModeCallback(byte pin, int mode)
 
 void analogWriteCallback(byte pin, int value)
 {
+  Serial.println("calling analog");
+  
   if (pin < TOTAL_PINS) {
     switch(pinConfig[pin]) {
     case SERVO:
-      if (IS_PIN_SERVO(pin))
+      if (IS_PIN_SERVO(pin)){
         servos[PIN_TO_SERVO(pin)].write(value);
-        pinState[pin] = value;
+      }
+      //pinState[pin] = value;
       break;
     case PWM:
     
       if (IS_PIN_PWM(pin))
         analogWrite(PIN_TO_PWM(pin), value);
-        pinState[pin] = value;
+        //pinState[pin] = value;
       break;
     }
   }
@@ -355,7 +358,6 @@ void digitalWriteCallback(byte port, int value)
     } 
     writePort(port, (byte)value, pinWriteMask);
   }
-  
 }
 
 void reportAnalogCallback(byte analogPin, int value)
@@ -651,7 +653,7 @@ void disableI2CPins() {
 void systemResetCallback()
 {
   Serial.println("resets");
-  
+  /*
   // initialize a defalt state
   // TODO: option to load config from EEPROM instead of default
   if (isI2CEnabled) {
@@ -678,15 +680,14 @@ void systemResetCallback()
   
   // by default, do not report any analog inputs
   analogInputsToReport = 0;
-
+*/
   //iFirmata.bleBufferReset();
 }
 
 void setup() 
 {
   Serial.begin(9600);
-  Serial.println("starting");
-  
+
   iFirmata.setFirmwareVersion(FIRMATA_MAJOR_VERSION, FIRMATA_MINOR_VERSION);
 
   iFirmata.attach(ANALOG_MESSAGE, analogWriteCallback);
@@ -697,13 +698,18 @@ void setup()
   iFirmata.attach(START_SYSEX, sysexCallback);
   iFirmata.attach(SYSTEM_RESET, systemResetCallback);
 
-  //iFirmata.begin(14400);
   iFirmata.begin(19200);
   
-  systemResetCallback();  // reset to default config  
+  systemResetCallback();  // reset to default config */ 
   
+  Serial.println("starting");
+  /*
   Serial.print("Nun Pins: ");
-  Serial.println(TOTAL_PINS);
+  Serial.println(5);
+  //Serial.println(TOTAL_PINS);
+  
+  Serial.println("Nun Ports: ");
+  Serial.println(TOTAL_PORTS);*/
 }
 
 
@@ -716,18 +722,20 @@ void loop()
   
   /* DIGITALREAD - as fast as possible, check for changes and output them to the
    * FTDI buffer using Serial.print()  */
-  checkDigitalInputs();
-
+  //checkDigitalInputs();
+  
+/*
   currentMillis = millis();
   unsigned long difference = currentMillis - previousMillisTest;
   if(difference > biggestDifference){
     biggestDifference = difference;
-    Serial.println(biggestDifference);
+    //Serial.println(biggestDifference);
   }
-  previousMillisTest = currentMillis;
+  previousMillisTest = currentMillis;*/
     
   /* SERIALREAD - processing incoming messagse as soon as possible, while still
    * checking digital inputs.  */
+   
   while(iFirmata.available()){
     
     iFirmata.processInput();
@@ -736,7 +744,7 @@ void loop()
   /* SEND FTDI WRITE BUFFER - make sure that the FTDI buffer doesn't go over
    * 60 bytes. use a timer to sending an event character every 4 ms to
    * trigger the buffer to dump. */
-
+/*
   currentMillis = millis();
   if (currentMillis - previousMillis > samplingInterval) {
     previousMillis += samplingInterval;
@@ -755,7 +763,7 @@ void loop()
         readAndReportData(query[i].addr, query[i].reg, query[i].bytes);
       }
     }
-  }
+  }*/
   
   //flushing data
   currentMillis = millis();

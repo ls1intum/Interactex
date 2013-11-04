@@ -41,7 +41,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPin.h"
 #import "THElementPin.h"
 #import "THHardwareComponent.h"
-#import "IFPin.h"
 
 @implementation THBoardPin
 @dynamic acceptsManyPins;
@@ -58,9 +57,10 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         if(type == kPintypeAnalog || type == kPintypeDigital){
-            IFPinType ifType = [THClientHelper THPinTypeToIFPinType:type];
-            
-            self.pin = [[IFPin alloc] initWithNumber:pinNumber type:ifType mode:IFPinModeOutput];
+            //IFPinType pinTypeFirmata = [THClientHelper THPinTypeToIFPinType:type];
+            self.number = pinNumber;
+            //self.type = pinTypeFirmata;
+            self.mode = IFPinModeOutput;
         }
         
         self.type = type;
@@ -85,7 +85,8 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         _attachedElementPins = [decoder decodeObjectForKey:@"attachedPins"];
         self.isPWM = [decoder decodeBoolForKey:@"isPWM"];
-        self.pin = [decoder decodeObjectForKey:@"pin"];
+        self.number = [decoder decodeIntegerForKey:@"number"];
+        self.mode = [decoder decodeIntegerForKey:@"mode"];
         self.type = [decoder decodeIntegerForKey:@"type"];
     }
     return self;
@@ -95,21 +96,24 @@ You should have received a copy of the GNU General Public License along with thi
 
     [coder encodeObject:self.attachedElementPins forKey:@"attachedPins"];
     [coder encodeBool:self.isPWM forKey:@"isPWM"];
-    [coder encodeObject:self.pin forKey:@"pin"];
+    [coder encodeInteger:self.number forKey:@"number"];
+    [coder encodeInteger:self.mode forKey:@"mode"];
     [coder encodeInteger:self.type forKey:@"type"];
     
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     THBoardPin * copy = [super copyWithZone:zone];
-    copy.pin = self.pin;
+    copy.number = self.number;
     copy.type = self.type;
+    copy.mode = self.mode;
+    copy.value = self.value;
     
     return copy;
 }
 
 #pragma mark - Methods
-
+/*
 -(NSInteger) number{
     return self.pin.number;
 }
@@ -132,17 +136,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setValue:(NSInteger)value{
     self.pin.value = value;
-}
+}*/
 
 -(void) setValueWithoutNotifications:(NSInteger) value{
     
     [self removePinObserver];
     
-    self.pin.value = value;
+    self.value = value;
     
     [self addPinObserver];
 }
-
+/*
 -(void) setPin:(IFPin *)pin{
     if(_pin != pin){
         
@@ -150,7 +154,7 @@ You should have received a copy of the GNU General Public License along with thi
         _pin = pin;
         [self addPinObserver];
     }
-}
+}*/
 
 -(BOOL) acceptsManyPins{
     return (self.type == kPintypeMinus || self.type == kPintypePlus);
@@ -191,17 +195,13 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Pin Observing & Value Notification
 
 -(void) removePinObserver{
-    if(self.pin){
         
-        [self.pin removeObserver:self forKeyPath:@"value"];
-    }
+    [self removeObserver:self forKeyPath:@"value"];
 }
 
 -(void) addPinObserver{
-    if(self.pin){
 
-        [self.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-    }
+    [self addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
@@ -213,7 +213,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) notifyNewValue{
     
     for (THElementPin * pin in self.attachedElementPins) {
-        [pin.hardware handlePin:self changedValueTo:self.pin.value];
+        [pin.hardware handlePin:self changedValueTo:self.value];
     }
 }
 
@@ -223,7 +223,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.type == kPintypeMinus || self.type == kPintypePlus){
         text = [NSString stringWithFormat:@"(%@) pin",kPinTexts[self.type]];
     } else {
-        text = [NSString stringWithFormat:@"pin %d (%@)",self.pin.number, kPinTexts[self.type]];
+        text = [NSString stringWithFormat:@"pin %d (%@)",self.number, kPinTexts[self.type]];
     }
     
     return text;
@@ -231,7 +231,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) dealloc{
     _attachedElementPins = nil;
-    self.pin = nil;
 }
 
 @end

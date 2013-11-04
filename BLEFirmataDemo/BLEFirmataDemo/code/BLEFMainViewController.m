@@ -58,9 +58,8 @@
     [BLEDiscovery sharedInstance].peripheralDelegate = self;
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
     
-    self.firmataController = [[IFFirmataController alloc] init];
-    //[[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
-    [[BLEDiscovery sharedInstance] startScanningForAnyUUID];
+    //self.firmataController = [[IFFirmataController alloc] init];
+    [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +84,7 @@
 }
 
 -(void) sendFirmwareRequest{
-    [self.firmataController sendFirmwareRequest];
+    //[self.firmataController sendFirmwareRequest];
 }
 
 -(void) stopSending{
@@ -158,7 +157,6 @@
 -(void) bleServiceDidConnect:(BLEService *)service{
     service.delegate = self;
     service.dataDelegate = self;
-    self.firmataController.bleService = service;
     [self updateConnectedLabel];
 }
 
@@ -168,7 +166,7 @@
 
 -(void) bleServiceIsReady:(BLEService *)service{
     
-    [service clearRx];
+    //[service clearRx];
 }
 
 -(void) bleServiceDidReset {

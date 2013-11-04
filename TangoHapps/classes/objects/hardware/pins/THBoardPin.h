@@ -39,7 +39,6 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THPin.h"
-#import "IFPin.h"
 
 @class THSimulableObject;
 @class THElementPin;
@@ -54,7 +53,6 @@ You should have received a copy of the GNU General Public License along with thi
     
 }
 
-@property (strong, nonatomic) IFPin * pin;
 @property (nonatomic) NSInteger value;
 @property (nonatomic) NSInteger number;
 @property (nonatomic) THPinType type;

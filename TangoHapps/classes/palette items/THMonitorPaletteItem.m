@@ -1,8 +1,8 @@
 /*
- BLEFMainViewController.h
+ THMonitorPaletteItem.m
  Interactex Designer
  
- Created by Juan Haladjian on 06/08/2013.
+ Created by Juan Haladjian on 04/11/2013.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -38,20 +38,17 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import "THMonitorPaletteItem.h"
+#import "THMonitorEditable.h"
 
-#import "BLEFirmata.h"
+@implementation THMonitorPaletteItem
 
-@interface BLEFMainViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, BLEServiceDataDelegate>
-
-{
-    NSTimer * timer;
+- (void)dropAt:(CGPoint)location {
+    THMonitorEditable * monitor = [[THMonitorEditable alloc] init];
+    monitor.position = location;
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project addiPhoneObject:monitor];
 }
-
-//@property (strong, nonatomic) IFFirmataController * firmataController;
-@property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *receivedLabel;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
-- (IBAction)startSendingTapped:(id)sender;
 
 @end

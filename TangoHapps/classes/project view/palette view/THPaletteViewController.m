@@ -67,6 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THImageViewPaletteItem.h"
 #import "THSliderPaletteItem.h"
 #import "THContactBookPaletteItem.h"
+#import "THMonitorPaletteItem.h"
 
 #import "THClothePaletteItem.h"
 
@@ -376,15 +377,16 @@ You should have received a copy of the GNU General Public License along with thi
     self.clothesSectionArray  = [NSArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
     
     self.uiSectionArray = [NSArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
-                         [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
-                         [[THLabelPaletteItem alloc] initWithName:@"label"],
-                         [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
-                         [[THSliderPaletteItem alloc] initWithName:@"slider"],
-                         [[THTouchpadPaletteItem alloc] initWithName:@"touchpad"],
-                         [[THMusicPlayerPaletteItem alloc] initWithName:@"musicplayer"],
-                         [[THImageViewPaletteItem alloc] initWithName:@"imageview"],
-                         [[THContactBookPaletteItem alloc] initWithName:@"contactBook"],
-                         nil];
+                           [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
+                           [[THLabelPaletteItem alloc] initWithName:@"label"],
+                           [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
+                           [[THSliderPaletteItem alloc] initWithName:@"slider"],
+                           [[THTouchpadPaletteItem alloc] initWithName:@"touchpad"],
+                           [[THMusicPlayerPaletteItem alloc] initWithName:@"musicplayer"],
+                           [[THImageViewPaletteItem alloc] initWithName:@"imageview"],
+                           [[THContactBookPaletteItem alloc] initWithName:@"contactBook"],
+                           [[THMonitorPaletteItem alloc] initWithName:@"monitor"],
+                           nil];
     
     
     self.boardsSectionArray  = [NSArray arrayWithObjects:
@@ -392,30 +394,30 @@ You should have received a copy of the GNU General Public License along with thi
                                 [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],nil];
     
     self.hardwareSectionArray = [NSArray arrayWithObjects:
-                               [[THLedPaletteItem alloc] initWithName:@"led"],
-                               [[THButtonPaletteItem alloc] initWithName:@"button"],
-                               [[THSwitchPaletteItem alloc] initWithName:@"switch"],
-                               [[THBuzzerPaletteItem alloc] initWithName:@"buzzer"],
-                               [[THCompassPaletteItem alloc] initWithName:@"compass"],
-                               [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
-                               [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
-                               [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
+                                 [[THLedPaletteItem alloc] initWithName:@"led"],
+                                 [[THButtonPaletteItem alloc] initWithName:@"button"],
+                                 [[THSwitchPaletteItem alloc] initWithName:@"switch"],
+                                 [[THBuzzerPaletteItem alloc] initWithName:@"buzzer"],
+                                 [[THCompassPaletteItem alloc] initWithName:@"compass"],
+                                 [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
+                                 [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
+                                 [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
                                  [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
                                  [[THTemperatureSensorPaletteItem alloc] initWithName:@"temperatureSensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
-                               nil];
+                                 nil];
     
     
-   self.programmingSectionArray  = [NSArray arrayWithObjects:
-                                  [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
-                                  [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
-                                  [[THMapperPaletteItem alloc] initWithName:@"mapper"],
-                                  [[THTimerPaletteItem alloc] initWithName:@"timer"],
-                                  [[THSoundPaletteItem alloc] initWithName:@"sound"],
-                                  [[THValuePaletteItem alloc] initWithName:@"number"],
-                                  [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
-                                  [[THStringValuePaletteItem alloc] initWithName:@"string"],
-                                  nil];
+    self.programmingSectionArray  = [NSArray arrayWithObjects:
+                                     [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
+                                     [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
+                                     [[THMapperPaletteItem alloc] initWithName:@"mapper"],
+                                     [[THTimerPaletteItem alloc] initWithName:@"timer"],
+                                     [[THSoundPaletteItem alloc] initWithName:@"sound"],
+                                     [[THValuePaletteItem alloc] initWithName:@"number"],
+                                     [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
+                                     [[THStringValuePaletteItem alloc] initWithName:@"string"],
+                                     nil];
     
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";

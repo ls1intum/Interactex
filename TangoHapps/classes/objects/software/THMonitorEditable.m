@@ -1,8 +1,8 @@
 /*
- BLEFMainViewController.h
+ THMonitorEditableObject.m
  Interactex Designer
  
- Created by Juan Haladjian on 06/08/2013.
+ Created by Juan Haladjian on 04/11/2013.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -38,20 +38,79 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import "THMonitorEditable.h"
+#import "THMonitor.h"
 
-#import "BLEFirmata.h"
+@implementation THMonitorEditable
 
-@interface BLEFMainViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, BLEServiceDataDelegate>
+@dynamic image;
 
-{
-    NSTimer * timer;
+-(void) loadImageView{
+    self.acceptsConnections = YES;
+    self.canBeRootView = NO;
 }
 
-//@property (strong, nonatomic) IFFirmataController * firmataController;
-@property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *receivedLabel;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
-- (IBAction)startSendingTapped:(id)sender;
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        self.simulableObject = [[THMonitor alloc] init];
+        [self loadImageView];
+    }
+    return self;
+}
+
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    
+    [self loadImageView];
+    
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder
+{
+    [super encodeWithCoder:coder];
+}
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    THMonitorEditable * copy = [super copyWithZone:zone];
+    
+    return copy;
+}
+
+#pragma mark - Property Controller
+
+-(NSArray*)propertyControllers {
+    NSMutableArray *controllers = [NSMutableArray array];
+    //[controllers addObject:[THMonitorProperties properties]];
+    [controllers addObjectsFromArray:[super propertyControllers]];
+    return controllers;
+}
+
+#pragma mark - Methods
+/*
+ -(void) setScaleMode:(THImageViewScaleMode)scaleMode{
+ THImageView * imageView = (THImageView*) self.simulableObject;
+ imageView.scaleMode = scaleMode;
+ }
+ 
+ -(THImageViewScaleMode) scaleMode{
+ THImageView * imageView = (THImageView*) self.simulableObject;
+ return imageView.scaleMode;
+ }*/
+
+
+-(void) prepareToDie{
+    [super prepareToDie];
+}
+
+-(NSString*) description{
+    return @"Monitor";
+}
 
 @end
