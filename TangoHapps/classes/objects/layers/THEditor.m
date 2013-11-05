@@ -153,11 +153,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) draw{
-    /*
-    if(!self.isLilypadMode){
-        
-        [self drawObjectsConnections];
-    }*/
     
     [self drawTemporaryLine];
 }

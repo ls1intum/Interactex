@@ -107,8 +107,10 @@ CGSize const kStringValueLabelSize = {100,30};
         text = [NSString stringWithFormat:@"%@",self.value];
     }
     
+    _label = [CCLabelTTF labelWithString:text dimensions:kStringValueLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:14];
     
-    _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:14 dimensions:kStringValueLabelSize hAlignment:NSTextAlignmentCenter];
+    //_label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:14 dimensions:kStringValueLabelSize hAlignment:NSTextAlignmentCenter];
+    
     _label.position = ccp(25,25);
     [self addChild:_label];
     

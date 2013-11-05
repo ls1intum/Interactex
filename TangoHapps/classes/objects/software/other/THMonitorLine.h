@@ -1,8 +1,8 @@
 /*
- THMonitor.h
+ THMonitorLine.h
  Interactex Designer
  
- Created by Juan Haladjian on 04/11/2013.
+ Created by Juan Haladjian on 05/11/2013.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -38,22 +38,26 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "THView.h"
+#import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
-@interface THMonitor : THView <GLKViewDelegate, GLKViewControllerDelegate>
-{
-    NSInteger updateCounter;
-    GLKBaseEffect * effect;
+#define kMonitorVerticesLength 10
+
+@interface THMonitorLine : NSObject{
+    
+    GLKVector3 vertices[kMonitorVerticesLength];
+    GLKVector3 verticesAux[kMonitorVerticesLength];
+    NSInteger verticesStart;
+    NSInteger numVertices;
 }
 
-@property (nonatomic, readonly) GLKView * glView;
-@property (strong, nonatomic) GLKViewController *glController;
-@property (strong, nonatomic) NSMutableArray * lines;
+@property (nonatomic, readonly) GLKBaseEffect *effect;
+@property (nonatomic) GLKVector4 color;
 
--(void) start;
--(void) stop;
+-(id) initWithColor:(GLKVector4) aColor;
+-(void) render;
+-(void) addPointWithX:(float) x y:(float) y z:(float) z;
+-(void) removeAllPoints;
+-(void) update:(float) dt;
 
 @end
-

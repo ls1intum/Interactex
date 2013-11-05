@@ -527,7 +527,10 @@ You should have received a copy of the GNU General Public License along with thi
 }*/
 
 -(void) addSelectionLabel{
-    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:NSTextAlignmentCenter];
+    
+    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    
+   // _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:NSTextAlignmentCenter];
     
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];

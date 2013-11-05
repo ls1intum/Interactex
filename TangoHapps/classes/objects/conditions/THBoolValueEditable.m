@@ -102,7 +102,9 @@ CGSize const kBoolValueLabelSize = {80,30};
 
     NSString * text = self.value ? @"YES" : @"NO";
     
-    _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:15 dimensions:kBoolValueLabelSize hAlignment:NSTextAlignmentCenter];
+    _label = [CCLabelTTF labelWithString:text dimensions:kBoolValueLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
+    
+//    _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:15 dimensions:kBoolValueLabelSize hAlignment:NSTextAlignmentCenter];
     
     _label.position = ccp(25,20);
     [self addChild:_label];

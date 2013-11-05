@@ -39,11 +39,12 @@
  */
 
 #import "THMonitor.h"
-#import <GLKit/GLKit.h>
+#import "THMonitorLine.h"
 
 @implementation THMonitor
 
-//@dynamic scaleMode;
+float const kMonitorUpdateFrequency = 0.5f; //monitor updated every 0.5 seconds
+float const kMonitorNewValueX = 0.8f;
 
 -(void) loadMonitor{
     
@@ -52,8 +53,37 @@
     view.frame = CGRectMake(0, 0, self.width, self.height);
     view.layer.borderWidth = 1.0f;
     view.contentMode = UIViewContentModeScaleAspectFit;
-    
+    view.delegate = self;
     self.view = view;
+    
+    self.glView.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    
+    //self.glView.context = ((CCGLView*)[CCDirector sharedDirector].view).context;
+    self.glView.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
+    self.glView.drawableDepthFormat = GLKViewDrawableDepthFormat16;
+    self.glView.drawableMultisample = GLKViewDrawableMultisample4X;
+    
+    self.glController = [[GLKViewController alloc] init];
+    self.glController.preferredFramesPerSecond = 30;
+    self.glController.view = view;
+    self.glController.delegate = self;
+    self.glController.pauseOnWillResignActive = YES;
+    self.glController.paused = YES;
+    
+    //self.delegate = self;
+    //self.preferredFramesPerSecond = 30;
+    
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    
+    self.lines = [NSMutableArray array];
+    
+    GLKVector4 colors[2] = {{1, 0, 0, 1},{0, 1, 0, 1}};
+    
+    THMonitorLine * line = [[THMonitorLine alloc] initWithColor:colors[0]];
+    [self.lines addObject:line];
+    
+    //MonitorLine * line2 = [[MonitorLine alloc] initWithColor:colors[1]];
+    //[self.lines addObject:line2];
 }
 
 -(id) init{
@@ -94,24 +124,84 @@
 }
 
 #pragma mark - Methods
-/*
- -(void) setScaleMode:(THImageViewScaleMode)scaleMode{
- ((UIImageView*) self.view).contentMode = [THHelper ScaleModeForCustomScaleMode:scaleMode];
- }
- 
- -(THImageViewScaleMode) scaleMode{
- return [THHelper customScaleModeForScaleMode:((UIImageView*)self.view).contentMode];
- }
- */
 
+-(GLKView*) glView{
+    return (GLKView*)self.view;
+}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
+    
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    for (THMonitorLine * line in self.lines) {
+        [line render];
+    }
+}
+
+- (void)glkViewControllerUpdate:(GLKViewController *)controller{
+    
+    //float pixelsToSeconds = 10;//30 pixels are a second
+    updateCounter++;
+    
+    float timeElapsed = (float)updateCounter / (float)controller.framesPerSecond;
+    
+    if(timeElapsed >= kMonitorUpdateFrequency){
+        
+        updateCounter = 0;
+        
+        for (THMonitorLine * line in self.lines) {
+            [line update:timeElapsed];
+        }
+        
+        [self feedMonitor];
+    }
+}
+
+-(void) feedMonitor{
+    
+    static int counter = 0;
+    
+    float y;
+    if(counter == 1){
+        counter = 0;
+        y = 1;
+    } else{
+        counter = 1;
+        y = -1;
+    }
+    
+    THMonitorLine * line = [self.lines objectAtIndex:0];
+    [line addPointWithX:kMonitorNewValueX y:y z:1];
+}
+
+-(void) start{
+    self.glController.paused = NO;
+}
+
+-(void) stop{
+    self.glController.paused = YES;
+}
 
 -(NSString*) description{
     return @"monitor";
 }
 
+-(void) willStartSimulating{
+    [self start];
+    [super willStartSimulating];
+}
+
 -(void) prepareToDie{
     
     [super prepareToDie];
+    
+    if ([EAGLContext currentContext] == self.glView.context) {
+        [EAGLContext setCurrentContext:nil];
+    }
+}
+
+-(void) dealloc{
+    NSLog(@"deallocing THMonitor");
 }
 
 @end

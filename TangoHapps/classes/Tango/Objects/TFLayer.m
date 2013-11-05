@@ -56,8 +56,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        self.touchEnabled = YES;
-        self.accelerometerEnabled = YES;
+        self.isTouchEnabled = YES;
+        self.isAccelerometerEnabled = YES;
 
         //_zoomableLayer.contentSize = self.contentSize;
 
@@ -161,13 +161,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 #pragma mark - Lifecycle
 
 -(void) willDisappear{
-    self.accelerometerEnabled = NO;
+    self.isAccelerometerEnabled = NO;
     [self removeGestureRecognizers];
 }
 
 -(void) willAppear{
     
-    self.accelerometerEnabled = YES;
+    self.isAccelerometerEnabled = YES;
     [self addGestureRecognizers];
 }
 

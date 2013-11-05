@@ -98,7 +98,10 @@ You should have received a copy of the GNU General Public License along with thi
             text = [text stringByAppendingFormat:@" %d",self.number];
         }
         
-        _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:18 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
+        
+        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultBoldFont fontSize:18];
+        
+        //_label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:18 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
         
         _label.position = ccp(0,50);
         

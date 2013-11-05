@@ -75,6 +75,7 @@ float const kToolsTabMargin = 5;
     [super viewWillAppear:animated];
     
     
+    
     _tabController = [[THTabbarViewController alloc] initWithNibName:@"THTabbar" bundle:nil];
     
     _toolsController = [[THEditorToolsViewController alloc] initWithNibName:@"THEditorTools" bundle:nil];
@@ -497,6 +498,7 @@ float const kToolsTabMargin = 5;
 
 #pragma mark - Simulation
 
+//XXX check
 -(void) startWithEditor{
     
     THEditor * editor = [THEditor node];
