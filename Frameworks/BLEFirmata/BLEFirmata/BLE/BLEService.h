@@ -7,21 +7,10 @@
 #define TX_BUFFER_SIZE 16
 
 
-#define kBleNumSupportedServices 2
+#define kBleNumSupportedServices 1
 
 extern NSString * const kBleSupportedServices[kBleNumSupportedServices];
 extern NSString * const kBleCharacteristics[kBleNumSupportedServices][2];
-
-/*
-extern NSString *kBleServiceUUIDString;
-extern NSString *kRxCharacteristicUUIDString;
-extern NSString *kRxCountCharacteristicUUIDString; 
-extern NSString *kRxClearCharacteristicUUIDString;
-extern NSString *kTxCharacteristicUUIDString;
-
-extern NSString *kBleServiceEnteredBackgroundNotification;
-extern NSString *kBleServiceEnteredForegroundNotification;
-*/
 
 extern const NSTimeInterval kFlushInterval;
 
@@ -42,12 +31,13 @@ extern const NSTimeInterval kFlushInterval;
 @protocol BLEServiceDataDelegate<NSObject>
 
 @required
--(void) dataReceived:(Byte*) buffer lenght:(NSInteger) length;
+-(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength;
 
 @optional
 -(void) bleServiceIsReady:(BLEService *)service;
 -(void) updatedValueForCharacteristic:(CBCharacteristic *)characteristic;
 @end
+
 
 typedef enum{
     BLEReceiveBufferStateNormal,
@@ -57,37 +47,29 @@ typedef enum{
     BLEReceiveBufferStateParsingCrc2
 } BLEReceiveBufferState;
 
+
+
 @interface BLEService : NSObject <CBPeripheralDelegate> {
     CBService			*bleService;
     
-    /*
-    //CBUUID              *bdUUID;
-    CBUUID              *rxUUID;
-    CBUUID              *rxCountUUID;
-    CBUUID              *rxClearUUID;
-    CBUUID              *txUUID;
-    */
-     
     NSTimer * timer;
-    
+
     uint8_t sendBuffer[SEND_BUFFER_SIZE];
+    uint8_t receiveBuffer[SEND_BUFFER_SIZE];
     
-    uint8_t receiveBuffer[RECEIVE_BUFFER_SIZE];
+    int sendBufferStart;
+    int sendBufferCount;
+    NSTimeInterval lastTimeFlushed;
+    
     
     int receiveDataStart;
     int receiveDataCurrentIndex;
-    
     int receiveDataCount;
     int receiveDataLength;
     
     uint8_t firstCrcByte;
     uint8_t secondCrcByte;
     BLEReceiveBufferState parsingState;
-    
-    int sendBufferStart;
-    int sendBufferCount;
-    NSTimeInterval lastTimeFlushed;
-    
 }
 
 @property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;
@@ -104,6 +86,8 @@ typedef enum{
 @property (nonatomic) id<BLEServiceDelegate> delegate;
 @property (nonatomic) id<BLEServiceDataDelegate> dataDelegate;
 
+@property (nonatomic) BOOL shouldUseCRC;
+
 +(NSMutableArray*) supportedServiceUUIDs;
 +(NSMutableArray*) supportedCharacteristicUUIDs;
 
@@ -117,8 +101,7 @@ typedef enum{
 -(void) enteredBackground;
 -(void) enteredForeground;
 
--(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
--(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count;
+-(void) sendData:(const uint8_t*) bytes count:(NSInteger) count;
 -(void) flushData;
 
 -(void) updateRx;

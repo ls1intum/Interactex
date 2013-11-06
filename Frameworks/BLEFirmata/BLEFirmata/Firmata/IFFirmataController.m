@@ -54,7 +54,7 @@
     buf[1] = REPORT_FIRMWARE;
     buf[2] = END_SYSEX;
     
-    [self.communicationModule sendDataWithCRC:buf count:3];
+    [self.communicationModule sendData:buf count:3];
     //[self.bleService sendData:buf count:3];
 }
 
@@ -75,7 +75,7 @@
         buf[len++] = 1;
     }
     
-    [self.communicationModule sendDataWithCRC:buf count:16];
+    [self.communicationModule sendData:buf count:16];
 //    [self.bleService sendData:buf count:16];
 }
 
@@ -93,7 +93,7 @@
         
     }
     
-    [self.communicationModule sendDataWithCRC:buf count:bufLength];
+    [self.communicationModule sendData:buf count:bufLength];
 //    [self.bleService sendData:buf count:bufLength];
 }
 
@@ -106,7 +106,7 @@
     buf[3] = END_SYSEX;
     
     
-    [self.communicationModule sendDataWithCRC:buf count:4];
+    [self.communicationModule sendData:buf count:4];
 //    [self.bleService sendData:buf count:4];
 }
 
@@ -114,7 +114,7 @@
     
     uint8_t msg = SYSTEM_RESET;
     
-    [self.communicationModule sendDataWithCRC:&msg count:1];
+    [self.communicationModule sendData:&msg count:1];
 //    [self.bleService sendData:&msg count:1];
 }
 
@@ -128,7 +128,7 @@
 		buf[1] = pin;
 		buf[2] = mode;
         
-        [self.communicationModule sendDataWithCRC:buf count:3];
+        [self.communicationModule sendData:buf count:3];
         //[self.bleService sendData:buf count:3];
     }
 }
@@ -142,7 +142,7 @@
 		buf[2] = (value >> 7) & 0x7F;
         
         
-        [self.communicationModule sendDataWithCRC:buf count:3];
+        [self.communicationModule sendData:buf count:3];
 //        [self.bleService sendData:buf count:3];
         
 	}
@@ -172,7 +172,7 @@
     buf[1] = value & 0x7F;
     buf[2] = (value >> 7) & 0x7F;
     
-    [self.communicationModule sendDataWithCRC:buf count:3];
+    [self.communicationModule sendData:buf count:3];
 }
 
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
@@ -181,7 +181,7 @@
     buf[0] = 0xC0 | pin;
     buf[1] = reports;
     
-    [self.communicationModule sendDataWithCRC:buf count:2];
+    [self.communicationModule sendData:buf count:2];
     //[self.communicationModule sendData:buf count:2];
 }
 
@@ -200,7 +200,7 @@
     buf[7] = 0;
     buf[8] = END_SYSEX;
     
-    [self.communicationModule sendDataWithCRC:buf count:9];
+    [self.communicationModule sendData:buf count:9];
     //[self.communicationModule sendData:buf count:9];
 }
 
@@ -213,7 +213,7 @@
     buf[3] = I2C_STOP_READING;
     buf[4] = END_SYSEX;
     
-    [self.communicationModule sendDataWithCRC:buf count:5];
+    [self.communicationModule sendData:buf count:5];
     //[self.communicationModule sendData:buf count:5];
 }
 
@@ -232,7 +232,7 @@
     buf[7] = 0;
     buf[8] = END_SYSEX;
     
-    [self.communicationModule sendDataWithCRC:buf count:9];
+    [self.communicationModule sendData:buf count:9];
     //[self.communicationModule sendData:buf count:9];
 }
 
@@ -253,7 +253,7 @@
     buf[3] = 0;
     buf[4] = END_SYSEX;
     
-    [self.communicationModule sendDataWithCRC:buf count:5];
+    [self.communicationModule sendData:buf count:5];
     //[self.communicationModule sendData:buf count:5];
 }
 
@@ -317,11 +317,11 @@
 	}
 }
 
--(void) dataReceived:(Byte *)buffer lenght:(NSInteger)originalLength{
+-(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
     
     NSInteger length = originalLength;
     
-    //cut all END_SYSEX messages at the end of the buffer
+    //remove all END_SYSEX messages at the end of the buffer
     for (int i = 15; i >= 0; i--) {
         if(buffer[i] != END_SYSEX){
             break;
@@ -344,7 +344,7 @@
         startedSysex = NO;
     }
     
-    
+    /*
      printf("\n ");
      NSLog(@"**Data received, length: %d**",length);
      
@@ -352,7 +352,7 @@
      int value = buffer[i];
      printf("%d ",value);
      }
-     printf("\n ");
+     printf("\n ");*/
     
     
     for (int i = 0 ; i < length; i++) {

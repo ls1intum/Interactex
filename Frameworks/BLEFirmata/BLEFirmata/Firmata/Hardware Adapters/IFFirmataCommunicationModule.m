@@ -10,13 +10,8 @@
 
 @implementation IFFirmataCommunicationModule
 
-
--(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count{
-    NSLog(@"Virtually Sending %d bytes ",count);
-}
-
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count{
-    NSLog(@"Virtually Sending %d bytes ",count);
+    NSLog(@"Dont call sendData on IFFirmataCommunicationModule Superclass");
 }
 
 @end

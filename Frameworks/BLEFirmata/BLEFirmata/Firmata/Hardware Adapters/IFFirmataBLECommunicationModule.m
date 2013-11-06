@@ -11,12 +11,9 @@
 
 @implementation IFFirmataBLECommunicationModule
 
--(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count{
-    [self.bleService sendDataWithCRC:bytes count:count];
-}
-
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count{
     [self.bleService sendData:bytes count:count];
 }
+
 
 @end

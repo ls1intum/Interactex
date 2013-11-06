@@ -40,14 +40,23 @@
 
 #import "THMonitor.h"
 #import "THMonitorLine.h"
+#import "THMonitorLine.h"
 
 @implementation THMonitor
 
 float const kMonitorUpdateFrequency = 0.5f; //monitor updated every 0.5 seconds
-float const kMonitorNewValueX = 0.8f;
+float const kMonitorNewValueX = 75.0f;
 
 -(void) loadMonitor{
     
+    UIView * view = [[UIView alloc] init];
+    view.frame = CGRectMake(0, 0, self.width, self.height);
+    view.layer.borderWidth = 1.0f;
+    view.contentMode = UIViewContentModeScaleAspectFit;
+
+    self.view = view;
+    
+    /*
     GLKView * view = [[GLKView alloc] init];
     
     view.frame = CGRectMake(0, 0, self.width, self.height);
@@ -56,12 +65,12 @@ float const kMonitorNewValueX = 0.8f;
     view.delegate = self;
     self.view = view;
     
+    //self.glView.context = ((CCGLView*)[CCDirector sharedDirector].view).context;
     self.glView.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
-    //self.glView.context = ((CCGLView*)[CCDirector sharedDirector].view).context;
-    self.glView.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
-    self.glView.drawableDepthFormat = GLKViewDrawableDepthFormat16;
-    self.glView.drawableMultisample = GLKViewDrawableMultisample4X;
+    self.glView.drawableColorFormat = GLKViewDrawableColorFormatRGB565;
+    self.glView.drawableDepthFormat = GLKViewDrawableDepthFormatNone;
+    self.glView.drawableMultisample = GLKViewDrawableMultisampleNone;
     
     self.glController = [[GLKViewController alloc] init];
     self.glController.preferredFramesPerSecond = 30;
@@ -70,20 +79,44 @@ float const kMonitorNewValueX = 0.8f;
     self.glController.pauseOnWillResignActive = YES;
     self.glController.paused = YES;
     
-    //self.delegate = self;
-    //self.preferredFramesPerSecond = 30;
-    
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    
+    */
+    
+    //GLKVector4 colors[2] = {{1, 0, 0, 1},{0, 1, 0, 1}};
+    /*
+    THMonitorLine * line = [[THMonitorLine alloc] initWithColor:colors[0]];
+    [self.lines addObject:line];*/
+    
     
     self.lines = [NSMutableArray array];
     
-    GLKVector4 colors[2] = {{1, 0, 0, 1},{0, 1, 0, 1}};
+    CGColorRef blue = [[UIColor blueColor] CGColor];
+    THMonitorLine * line = [[THMonitorLine alloc] initWithColor:blue];
     
-    THMonitorLine * line = [[THMonitorLine alloc] initWithColor:colors[0]];
+    CGColorRef red = [[UIColor redColor] CGColor];
+    THMonitorLine * line2 = [[THMonitorLine alloc] initWithColor:red];
+    
+    line.view = self.view;
     [self.lines addObject:line];
+    [self.lines addObject:line2];
     
-    //MonitorLine * line2 = [[MonitorLine alloc] initWithColor:colors[1]];
-    //[self.lines addObject:line2];
+    [line addPointWithX:kMonitorNewValueX y:0];
+    [line addPointWithX:kMonitorNewValueX y:self.view.frame.size.height];
+    [line addPointWithX:kMonitorNewValueX y:0];
+    /*
+    [line addPointWithX:self.view.frame.size.width y:0];
+    [line addPointWithX:self.view.frame.size.width y:self.view.frame.size.height];*/
+    
+    [self addMethods];
+}
+
+-(void) addMethods{
+    
+    TFMethod * method =[TFMethod methodWithName:@"addValue1"];
+    method.firstParamType = kDataTypeFloat;
+    method.numParams = 1;
+    self.methods = [NSMutableArray arrayWithObject:method];
 }
 
 -(id) init{
@@ -125,61 +158,33 @@ float const kMonitorNewValueX = 0.8f;
 
 #pragma mark - Methods
 
--(GLKView*) glView{
-    return (GLKView*)self.view;
-}
-
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
-    
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    for (THMonitorLine * line in self.lines) {
-        [line render];
-    }
-}
-
-- (void)glkViewControllerUpdate:(GLKViewController *)controller{
-    
-    //float pixelsToSeconds = 10;//30 pixels are a second
-    updateCounter++;
-    
-    float timeElapsed = (float)updateCounter / (float)controller.framesPerSecond;
-    
-    if(timeElapsed >= kMonitorUpdateFrequency){
-        
-        updateCounter = 0;
-        
-        for (THMonitorLine * line in self.lines) {
-            [line update:timeElapsed];
-        }
-        
-        [self feedMonitor];
-    }
-}
-
--(void) feedMonitor{
-    
-    static int counter = 0;
-    
-    float y;
-    if(counter == 1){
-        counter = 0;
-        y = 1;
-    } else{
-        counter = 1;
-        y = -1;
-    }
+-(void) addValue1:(float) value{
     
     THMonitorLine * line = [self.lines objectAtIndex:0];
-    [line addPointWithX:kMonitorNewValueX y:y z:1];
+    [line addPointWithX:kMonitorNewValueX y:value];
+}
+
+-(void) update{
+    
+    for (THMonitorLine * line in self.lines) {
+        [line update:kMonitorUpdateFrequency];
+        
+        /*
+        [line addPointWithX:0 y:0];
+        [line addPointWithX:0 y:self.view.frame.size.height];*/
+        
+    }
 }
 
 -(void) start{
-    self.glController.paused = NO;
+    currentTimer = [NSTimer scheduledTimerWithTimeInterval:kMonitorUpdateFrequency target:self selector:@selector(update) userInfo:nil repeats:YES];
+    _running = YES;
 }
 
 -(void) stop{
-    self.glController.paused = YES;
+    [currentTimer invalidate];
+    currentTimer = nil;
+    _running = NO;
 }
 
 -(NSString*) description{
@@ -194,10 +199,6 @@ float const kMonitorNewValueX = 0.8f;
 -(void) prepareToDie{
     
     [super prepareToDie];
-    
-    if ([EAGLContext currentContext] == self.glView.context) {
-        [EAGLContext setCurrentContext:nil];
-    }
 }
 
 -(void) dealloc{

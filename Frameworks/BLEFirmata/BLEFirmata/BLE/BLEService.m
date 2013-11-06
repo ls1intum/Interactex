@@ -7,11 +7,17 @@
 uint8_t const kBleCrcStart = 170;
 
 
-NSString * const kBleSupportedServices[kBleNumSupportedServices] = {@"F9266FD7-EF07-45D6-8EB6-BD74F13620F9",@"ffe0"};//Kroll's BLE; Kyle's BLE
+NSString * const kBleSupportedServices[kBleNumSupportedServices] = {@"F9266FD7-EF07-45D6-8EB6-BD74F13620F9"};
+
+NSString * const kBleCharacteristics[kBleNumSupportedServices][2] = {
+    {@"4585C102-7784-40B4-88E1-3CB5C4FD37A3",@"E788D73B-E793-4D9E-A608-2F2BAFC59A00"}};
+
+/*NSString * const kBleSupportedServices[kBleNumSupportedServices] = {@"F9266FD7-EF07-45D6-8EB6-BD74F13620F9",@"ffe0"};//Kroll's BLE; Kyle's BLE
 
 NSString * const kBleCharacteristics[kBleNumSupportedServices][2] = {
     {@"4585C102-7784-40B4-88E1-3CB5C4FD37A3",@"E788D73B-E793-4D9E-A608-2F2BAFC59A00"},
     {@"ffe1",@"ffe1"}};//RX; TX
+*/
 
 const NSTimeInterval kFlushInterval = 1.0f/30.0f;
 
@@ -65,13 +71,6 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     }
 }
 
-
-- (void) reset {
-	if (self.peripheral) {
-		_peripheral = nil;
-	}
-}
-
 -(CBUUID*) uuid{
     return bleService.UUID;
 }
@@ -84,6 +83,12 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 	//NSArray	*serviceArray	= [NSArray arrayWithObjects:serviceUUID, nil];
     
     [_peripheral discoverServices:supportedServiceUUIDs];
+}
+
+- (void) reset {
+	if (self.peripheral) {
+		_peripheral = nil;
+	}
 }
 
 - (void) disconnect {
@@ -117,14 +122,14 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
 	for (CBService *service in services) {
         
-        NSLog(@"service found is: %@", [BLEHelper UUIDToString:service.UUID]);
+        //NSLog(@"service found is: %@", [BLEHelper UUIDToString:service.UUID]);
         
         for (int i = 0; i < supportedServiceUUIDs.count; i++) {
             CBUUID * serviceUUID = [supportedServiceUUIDs objectAtIndex:i];
             
             if([service.UUID isEqual:serviceUUID]){
                 
-                NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
+               // NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
                 
                 self.currentCharacteristicUUIDs = [supportedCharacteristicUUIDs objectAtIndex:i];
                 bleService = service;
@@ -234,7 +239,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     return crc;
 }
 
--(NSData*) crcPackageForBytes:(uint8_t*) bytes count:(NSInteger) count{
+-(NSData*) crcPackageForBytes:(const uint8_t*) bytes count:(NSInteger) count{
     
     uint8_t crcBytes[count+4];
     crcBytes[0] = kBleCrcStart;
@@ -244,20 +249,13 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     uint16_t crcValue = [self calculateCRCForBytes:crcBytes+1 count:count+1];
     
-    NSLog(@"crc value: %d",crcValue);
+    //NSLog(@"crc value: %d",crcValue);
     
     uint8_t firstByte = (crcValue & 0xFF00) >> 8;
     uint8_t secondByte = (crcValue & 0x00FF);
     
     crcBytes[count+2] = firstByte;
     crcBytes[count+3] = secondByte;
-    
-    
-    printf("Sending:\n");
-    for (int i = 0; i < count+4; i++) {
-        printf("%X ",crcBytes[i]);
-    }
-    printf("\n");
     
     return [NSData dataWithBytes:crcBytes length:count + 4];
 }
@@ -267,44 +265,17 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     if(self.txCharacteristic){
         //without response does not work with BLE Shield
         [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
-        
-        /*
-        for (int i = 0; i < data.length; i++) {
-            printf("%d ",(int)((char*)data.bytes)[i]);
-        }
-        printf("\n");*/
-    }
-}
-
--(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count{
-    /*
-     NSData * data = [NSData dataWithBytes:bytes length:count];
-     [self writeToTx:data];*/
-    
-    NSData * crcData = [self crcPackageForBytes:bytes count:count];
-    
-    int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
-    for (int i = 0; i < crcData.length; i++) {
-        sendBuffer[idx] = ((uint8_t*)crcData.bytes)[i];
-        idx = (idx + 1) % SEND_BUFFER_SIZE;
-    }
-    sendBufferCount += crcData.length;
-    if(sendBufferCount >= SEND_BUFFER_SIZE){
-        NSLog(@"Warning, reaching limits of ble send buffer");
-        sendBufferCount = SEND_BUFFER_SIZE;
-    }
-    
-    double currentTime = CACurrentMediaTime();
-    if(currentTime - lastTimeFlushed > kFlushInterval){
-        [self flushData];
     }
 }
 
 
--(void) sendData:(uint8_t*) bytes count:(NSInteger) count{
-    /*
-    NSData * data = [NSData dataWithBytes:bytes length:count];
-    [self writeToTx:data];*/
+-(void) sendData:(const uint8_t*) bytes count:(NSInteger) count{
+
+    if(self.shouldUseCRC){
+        NSData * crcData = [self crcPackageForBytes:bytes count:count];
+        bytes = crcData.bytes;
+        count = crcData.length;
+    }
     
     int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
     for (int i = 0; i < count; i++) {
@@ -318,9 +289,17 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     }
     
     double currentTime = CACurrentMediaTime();
+    
     if(currentTime - lastTimeFlushed > kFlushInterval){
         [self flushData];
     }
+    
+    /*
+    printf("Sending:\n");
+    for (int i = 0; i < count+4; i++) {
+        printf("%X ",crcBytes[i]);
+    }
+    printf("\n");*/
 }
 
 -(void) flushData {
@@ -472,11 +451,13 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 }
 
 -(NSInteger) receiveBufferSize{
+    
     if(receiveDataCurrentIndex > receiveDataStart){
         return receiveDataCurrentIndex - receiveDataStart;
     } else {
         return RECEIVE_BUFFER_SIZE - receiveDataStart + receiveDataCurrentIndex;
     }
+    
 }
 
 -(NSData*) checkCRCAndNotify:(NSData*) data{
@@ -529,7 +510,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             uint16_t myCrc = [self calculateCRCForBytes:bytesWithLength count:receiveDataLength+1];
 
             if(crc == myCrc){
-                [self.dataDelegate dataReceived:receiveBuffer lenght:receiveDataLength];
+                [self.dataDelegate didReceiveData:receiveBuffer lenght:receiveDataLength];
             }
             
             parsingState = BLEReceiveBufferStateNormal;
@@ -540,34 +521,41 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    
 	if (peripheral != _peripheral) {
 		NSLog(@"Wrong peripheral\n");
-		return ;
+		return;
 	}
 
     if ([error code] != 0) {
 		NSLog(@"Error %@\n", error);
 		return ;
 	}
-
-    //NSLog(@"characteristic %@ updated value",characteristic);
-    
     
     if(characteristic == self.rxCharacteristic){
         
-        Byte * data;
-        NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         
+        /*
         printf("receiving:\n");
         for (int i = 0 ; i < length; i++) {
             int value = data[i];
             printf("%X ",value);
         }
-        printf("\n");
+        printf("\n");*/
         
-        [self checkCRCAndNotify:characteristic.value];
+        if(self.shouldUseCRC){
+            
+            [self checkCRCAndNotify:characteristic.value];
+            
+        } else{
+            
+            uint8_t * data;
+            NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
+            [self.dataDelegate didReceiveData:data lenght:length];
+        }
 
     } else {
+        
         if([self.dataDelegate respondsToSelector:@selector(updatedValueForCharacteristic:)]){
             [self.dataDelegate updatedValueForCharacteristic:characteristic];
         }
@@ -578,4 +566,5 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 -(NSString*) description{
     return @"BLEService";
 }
+
 @end

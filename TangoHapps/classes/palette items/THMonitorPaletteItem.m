@@ -45,7 +45,10 @@
 
 - (void)dropAt:(CGPoint)location {
     THMonitorEditable * monitor = [[THMonitorEditable alloc] init];
-    monitor.position = location;
+    //monitor.position = location;
+    
+    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
+    monitor.position = locationTransformed;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:monitor];

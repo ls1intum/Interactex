@@ -105,6 +105,12 @@
  }*/
 
 
+-(void) addValue1:(float)value{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    [monitor addValue1:value];
+}
+
 -(void) prepareToDie{
     [super prepareToDie];
 }

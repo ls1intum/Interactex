@@ -9,7 +9,6 @@
 #import "IFMainViewController.h"
 #import "IFDeviceMenuViewController.h"
 #import "IFDeviceCell.h"
-#import "BLEHelper.h"
 
 @implementation IFMainViewController
 

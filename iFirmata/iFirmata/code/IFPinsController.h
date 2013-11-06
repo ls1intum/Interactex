@@ -18,7 +18,7 @@ typedef struct{
 
 #define IFPinInfoBufSize 128
 
-@class IFFirmataPinsController;
+@class IFPinsController;
 @class IFI2CComponent;
 @class IFI2CRegister;
 @class IFFirmataController;
@@ -26,15 +26,15 @@ typedef struct{
 
 @protocol IFFirmataControllerPinsDelegate <NSObject>
 
--(void) firmataDidUpdateDigitalPins:(IFFirmataPinsController*) firmataController;
--(void) firmataDidUpdateAnalogPins:(IFFirmataPinsController*) firmataController;
--(void) firmataDidUpdateI2CComponents:(IFFirmataPinsController*) firmataController;
+-(void) firmataDidUpdateDigitalPins:(IFPinsController*) firmataController;
+-(void) firmataDidUpdateAnalogPins:(IFPinsController*) firmataController;
+-(void) firmataDidUpdateI2CComponents:(IFPinsController*) firmataController;
 
--(void) firmata:(IFFirmataPinsController*) firmataController didUpdateTitle:(NSString*) title;
+-(void) firmata:(IFPinsController*) firmataController didUpdateTitle:(NSString*) title;
 
 @end
 
-@interface IFFirmataPinsController : NSObject <IFFirmataControllerDelegate> {
+@interface IFPinsController : NSObject <IFFirmataControllerDelegate> {
     
     PinInfo pinInfo[IFPinInfoBufSize];
     

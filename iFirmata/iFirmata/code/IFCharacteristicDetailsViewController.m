@@ -49,6 +49,7 @@
 }
 
 -(void) updateCharacteristicUUID{
+    
     self.uuidLabel.text = [BLEHelper UUIDToString:self.currentCharacteristic.UUID];
 }
 
@@ -193,7 +194,7 @@
     }
 }
 
--(void) dataReceived:(Byte *)buffer lenght:(NSInteger)length{
+-(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
     if(self.currentCharacteristic == self.bleService.rxCharacteristic){
         [self updateLabel];
     }

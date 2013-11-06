@@ -12,7 +12,7 @@
 
 @interface BLEHelper : NSObject
 
-+(NSInteger) Data:(NSData*) data toArray:(Byte**) bytes;
++(NSInteger) Data:(NSData*) data toArray:(uint8_t**) bytes;
 
 +(NSString *)UUIDToString:(CBUUID*) uuid;
 

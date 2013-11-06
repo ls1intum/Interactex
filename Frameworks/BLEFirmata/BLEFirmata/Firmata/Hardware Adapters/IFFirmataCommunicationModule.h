@@ -10,8 +10,6 @@
 
 @interface IFFirmataCommunicationModule : NSObject
 
-
--(void) sendDataWithCRC:(uint8_t*) bytes count:(NSInteger) count;
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
 
 @end

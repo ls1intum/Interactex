@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class IFFirmataPinsController;
+@class IFPinsController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) IFFirmataPinsController *firmataController;
+@property (strong, nonatomic) IFPinsController *firmataController;
 
 @end

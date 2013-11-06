@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 TUM. All rights reserved.
 //
 
-#import "IFFirmataPinsController.h"
+#import "IFPinsController.h"
 #import "IFPin.h"
 #import "BLEService.h"
 #import "BLEHelper.h"
@@ -14,7 +14,7 @@
 #import "IFI2CRegister.h"
 #import "IFFirmataController.h"
 
-@implementation IFFirmataPinsController
+@implementation IFPinsController
 
 -(id) init{
     self = [super init];

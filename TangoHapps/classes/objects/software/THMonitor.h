@@ -42,18 +42,19 @@
 #import "THView.h"
 #import <GLKit/GLKit.h>
 
-@interface THMonitor : THView <GLKViewDelegate, GLKViewControllerDelegate>
+@interface THMonitor : THView
 {
     NSInteger updateCounter;
-    GLKBaseEffect * effect;
+    NSTimer * currentTimer;
 }
 
-@property (nonatomic, readonly) GLKView * glView;
-@property (strong, nonatomic) GLKViewController *glController;
 @property (strong, nonatomic) NSMutableArray * lines;
+@property (nonatomic, readonly) BOOL running;
 
 -(void) start;
 -(void) stop;
+
+-(void) addValue1:(float) value;
 
 @end
 

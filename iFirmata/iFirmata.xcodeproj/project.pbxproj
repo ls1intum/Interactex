@@ -25,7 +25,7 @@
 		9A86CFDA17A922BB00E3F9E4 /* IFI2CComponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFD917A922BB00E3F9E4 /* IFI2CComponentViewController.m */; };
 		9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */; };
 		9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */; };
-		9A9FEA8017BB91ED004AB8CF /* IFFirmataPinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEA7F17BB91ED004AB8CF /* IFFirmataPinsController.m */; };
+		9A9FEA8017BB91ED004AB8CF /* IFPinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEA7F17BB91ED004AB8CF /* IFPinsController.m */; };
 		9AEE5933177CA8AC00C6D5E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */; };
 		9AEE5935177CA8AC00C6D5E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */; };
 		9AEE5937177CA8AC00C6D5E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE5936177CA8AC00C6D5E8 /* CoreGraphics.framework */; };
@@ -38,7 +38,7 @@
 		9AEE5954177CA90F00C6D5E8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEE5953177CA90F00C6D5E8 /* Storyboard.storyboard */; };
 		9AEE5957177CAA2E00C6D5E8 /* IFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE5956177CAA2E00C6D5E8 /* IFMainViewController.m */; };
 		9AEE595A177CB01C00C6D5E8 /* IFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE5959177CB01C00C6D5E8 /* IFHelper.m */; };
-		9AEE595D177CD29700C6D5E8 /* IFFirmataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE595C177CD29700C6D5E8 /* IFFirmataViewController.m */; };
+		9AEE595D177CD29700C6D5E8 /* IFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE595C177CD29700C6D5E8 /* IFViewController.m */; };
 		9AEE5963177CD3F300C6D5E8 /* IFPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */; };
 		9AEE59AA177CE78B00C6D5E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE59A9177CE78B00C6D5E8 /* QuartzCore.framework */; };
 		9AEE59BC177DD31700C6D5E8 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEE59BB177DD31700C6D5E8 /* CoreBluetooth.framework */; };
@@ -91,8 +91,8 @@
 		9A86CFDF17A92E1800E3F9E4 /* IFI2CComponentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponentCell.m; sourceTree = "<group>"; };
 		9A86CFE417AA461A00E3F9E4 /* IFI2CRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegisterViewController.h; sourceTree = "<group>"; };
 		9A86CFE517AA461B00E3F9E4 /* IFI2CRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CRegisterViewController.m; sourceTree = "<group>"; };
-		9A9FEA7E17BB91ED004AB8CF /* IFFirmataPinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataPinsController.h; sourceTree = "<group>"; };
-		9A9FEA7F17BB91ED004AB8CF /* IFFirmataPinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataPinsController.m; sourceTree = "<group>"; };
+		9A9FEA7E17BB91ED004AB8CF /* IFPinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFPinsController.h; sourceTree = "<group>"; };
+		9A9FEA7F17BB91ED004AB8CF /* IFPinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPinsController.m; sourceTree = "<group>"; };
 		9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFirmata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,8 +111,8 @@
 		9AEE5956177CAA2E00C6D5E8 /* IFMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFMainViewController.m; sourceTree = "<group>"; };
 		9AEE5958177CB01C00C6D5E8 /* IFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFHelper.h; sourceTree = "<group>"; };
 		9AEE5959177CB01C00C6D5E8 /* IFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFHelper.m; sourceTree = "<group>"; };
-		9AEE595B177CD29700C6D5E8 /* IFFirmataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataViewController.h; sourceTree = "<group>"; };
-		9AEE595C177CD29700C6D5E8 /* IFFirmataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataViewController.m; sourceTree = "<group>"; };
+		9AEE595B177CD29700C6D5E8 /* IFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFViewController.h; sourceTree = "<group>"; };
+		9AEE595C177CD29700C6D5E8 /* IFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFViewController.m; sourceTree = "<group>"; };
 		9AEE5961177CD3F300C6D5E8 /* IFPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFPinCell.h; sourceTree = "<group>"; };
 		9AEE5962177CD3F300C6D5E8 /* IFPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPinCell.m; sourceTree = "<group>"; };
 		9AEE59A9177CE78B00C6D5E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -212,10 +212,10 @@
 				9AEE5956177CAA2E00C6D5E8 /* IFMainViewController.m */,
 				9A6F9A631780754C00089B34 /* IFDeviceMenuViewController.h */,
 				9A6F9A641780754C00089B34 /* IFDeviceMenuViewController.m */,
-				9AEE595B177CD29700C6D5E8 /* IFFirmataViewController.h */,
-				9AEE595C177CD29700C6D5E8 /* IFFirmataViewController.m */,
-				9A9FEA7E17BB91ED004AB8CF /* IFFirmataPinsController.h */,
-				9A9FEA7F17BB91ED004AB8CF /* IFFirmataPinsController.m */,
+				9AEE595B177CD29700C6D5E8 /* IFViewController.h */,
+				9AEE595C177CD29700C6D5E8 /* IFViewController.m */,
+				9A9FEA7E17BB91ED004AB8CF /* IFPinsController.h */,
+				9A9FEA7F17BB91ED004AB8CF /* IFPinsController.m */,
 				9A6F9A601780741700089B34 /* IFCharacteristicsViewController.h */,
 				9A6F9A611780741800089B34 /* IFCharacteristicsViewController.m */,
 				9A6F9A661780798A00089B34 /* IFCharacteristicDetailsViewController.h */,
@@ -360,7 +360,7 @@
 				9AEE5957177CAA2E00C6D5E8 /* IFMainViewController.m in Sources */,
 				9AEE595A177CB01C00C6D5E8 /* IFHelper.m in Sources */,
 				9A7D0B6A18159FDD001CA90A /* IFI2CRegister.m in Sources */,
-				9AEE595D177CD29700C6D5E8 /* IFFirmataViewController.m in Sources */,
+				9AEE595D177CD29700C6D5E8 /* IFViewController.m in Sources */,
 				9AEE5963177CD3F300C6D5E8 /* IFPinCell.m in Sources */,
 				9AEE59BF177DEA7500C6D5E8 /* IFConstants.m in Sources */,
 				9A6F9A621780741800089B34 /* IFCharacteristicsViewController.m in Sources */,
@@ -372,7 +372,7 @@
 				9A7D0B6918159FDD001CA90A /* IFI2CComponent.m in Sources */,
 				9A86CFE017A92E1800E3F9E4 /* IFI2CComponentCell.m in Sources */,
 				9A86CFE617AA461D00E3F9E4 /* IFI2CRegisterViewController.m in Sources */,
-				9A9FEA8017BB91ED004AB8CF /* IFFirmataPinsController.m in Sources */,
+				9A9FEA8017BB91ED004AB8CF /* IFPinsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

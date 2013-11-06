@@ -45,4 +45,6 @@
 @property (nonatomic) UIImage * image;
 //@property (nonatomic) THImageViewScaleMode scaleMode;
 
+-(void) addValue1:(float) value;
+
 @end

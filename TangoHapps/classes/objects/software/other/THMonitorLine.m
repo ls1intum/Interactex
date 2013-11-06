@@ -1,177 +1,127 @@
-/*
- THMonitorLine.m
- Interactex Designer
- 
- Created by Juan Haladjian on 05/11/2013.
- 
- Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
- 
- www.interactex.org
- 
- Copyright (C) 2013 TU Munich, Munich, Germany; DRLab, University of the Arts Berlin, Berlin, Germany; Telekom Innovation Laboratories, Berlin, Germany
- 
- Contacts:
- juan.haladjian@cs.tum.edu
- katharina.bredies@udk-berlin.de
- opensource@telekom.de
- 
- 
- The first version of the software was designed and implemented as part of "Wearable M2M", a joint project of UdK Berlin and TU Munich, which was founded by Telekom Innovation Laboratories Berlin. It has been extended with funding from EIT ICT, as part of the activity "Connected Textiles".
- 
- Interactex is built using the Tango framework developed by TU Munich.
- 
- In the Interactex software, we use the GHUnit (a test framework for iOS developed by Gabriel Handford) and cocos2D libraries (a framework for building 2D games and graphical applications developed by Zynga Inc.).
- www.cocos2d-iphone.org
- github.com/gabriel/gh-unit
- 
- Interactex also implements the Firmata protocol. Its software serial library is based on the original Arduino Firmata library.
- www.firmata.org
- 
- All hardware part graphics in Interactex Designer are reproduced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
- www.frizting.org
- 
- 
- This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+//
+//  THMonitorLine2.m
+//  TangoHapps
+//
+//  Created by Juan Haladjian on 11/6/13.
+//  Copyright (c) 2013 Technische Universität München. All rights reserved.
+//
 
 #import "THMonitorLine.h"
+float const kMonitorPixelsToSeconds = 5;
+
+@implementation Point2D
+
+
+@end
 
 @implementation THMonitorLine
 
-float const kMonitorLeftBorder = -1.0f;
-float const kMonitorPixelsToSeconds = 3.0f / 50.0f;
-
--(id) initWithColor:(GLKVector4) aColor{
+-(id) initWithColor:(CGColorRef) aColor{
     
     self = [super init];
     
     if(self){
         
         self.color = aColor;
-        
-        _effect = [[GLKBaseEffect alloc] init];
-        
-        self.effect.useConstantColor = YES;
-        self.effect.constantColor = self.color;
-        
-        verticesStart = 4;
-
-        memset(vertices, 0, sizeof(GLKVector3) * kMonitorVerticesLength);
+        self.points = [NSMutableArray array];
     }
+    
     return self;
 }
 
--(void) addPointWithX:(float) x y:(float) y z:(float) z{
-    if(numVertices < kMonitorVerticesLength){
-        //NSLog(@"adds %f %f %f",x,y,z);
-        NSInteger currentIdx = (verticesStart + numVertices) % kMonitorVerticesLength;
-        
-        vertices[currentIdx].x = x;
-        vertices[currentIdx].y = y;
-        vertices[currentIdx].z = z;
-        
-        numVertices++;
-    }
-}
-
--(void) removeAllPoints{
+-(void) addPointWithX:(float) x y:(float) y{
     
-}
-
--(void) render{
-    
-    if(numVertices > 1){
+    if(self.points.count > 1){
         
-        [self.effect prepareToDraw];
+        CGRect rect = self.view.frame;
         
-        glEnableVertexAttribArray(GLKVertexAttribPosition);
-        
-        if(verticesStart + numVertices < kMonitorVerticesLength){
-            
-            glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, vertices + verticesStart);
-            
-        } else{
-            
-            NSInteger lastPartLength = kMonitorVerticesLength - verticesStart;
-            NSInteger firstPartLength = numVertices - lastPartLength;
-            
-            memcpy(verticesAux, vertices + verticesStart,  sizeof(GLKVector3) * lastPartLength);
-            
-            if(firstPartLength > 0){
-                memcpy(verticesAux + lastPartLength, vertices, sizeof(GLKVector3) * firstPartLength);
-            }
-            
-            glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, verticesAux);
+        if(x < rect.origin.x){
+            x = rect.origin.x;
+        } else if(x > rect.size.width){
+            x = rect.origin.x + rect.size.width;
+        }
+        if(y < rect.origin.y){
+            y = rect.origin.y;
+        } else if(y > rect.size.height){
+            y = rect.origin.y + rect.size.height;
         }
         
-        glDrawArrays(GL_LINE_STRIP, 0, numVertices);
+        Point2D * previousPoint = [self.points objectAtIndex:self.points.count-1];
         
-        glDisableVertexAttribArray(GLKVertexAttribPosition);
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(previousPoint.x, previousPoint.y)];
+        [path addLineToPoint:CGPointMake(x, y)];
+        
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        shapeLayer.strokeColor = self.color;
+        shapeLayer.path = [path CGPath];
+        shapeLayer.lineWidth = 2.0;
+        shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+        
+        [self.view.layer addSublayer:shapeLayer];
     }
+    
+    Point2D * point = [[Point2D alloc] init];
+    point.x = x;
+    point.y = y;
+    
+    [self.points addObject:point];
 }
+
 
 -(NSInteger) moveVerticesLeftBy:(float) dx{
     
-    NSInteger firstIdx = verticesStart;
-    BOOL selectedFirstIdx = NO;
+    NSInteger firstIdx = -1;
     
-    for (int i = verticesStart; i < MIN(verticesStart + numVertices,kMonitorVerticesLength); i++) {
-        vertices[i].x -= dx;
+    for (int i = 0 ; i < self.points.count ; i++){
         
-        if(!selectedFirstIdx && vertices[i].x > kMonitorLeftBorder){
+        Point2D * point = [self.points objectAtIndex:i];
+        
+        point.x -= dx;
+        
+        if(point.x < 0){            
             firstIdx = i;
-            selectedFirstIdx = YES;
         }
     }
     
-    if(verticesStart + numVertices >= kMonitorVerticesLength){
-        for (int i = 0; i < numVertices - (kMonitorVerticesLength - verticesStart); i++) {
-            vertices[i].x -= dx;
-            if(!selectedFirstIdx && vertices[i].x > kMonitorLeftBorder){
-                firstIdx = i;
-                selectedFirstIdx = YES;
-            }
-        }
+    for (CAShapeLayer * layer in self.view.layer.sublayers) {
+        CGPoint origin = layer.frame.origin;
+        origin.x -=dx;
+        CGRect rect = layer.frame;
+        rect.origin = origin;
+        layer.frame = rect;
     }
+    
     return firstIdx;
 }
 
 -(void) removeVerticesUntilIndex:(NSInteger) index{
     
-    if(index > verticesStart){
+    if(index >= 0){
         
-        NSInteger removeAmount = index - verticesStart;
+        for (int i = 0; i <= index; i++) {
+            [self.points removeObjectAtIndex:0];
+        }
         
-        verticesStart = index;
-        
-        numVertices -= removeAmount;
-        
-    } else if(index < verticesStart) {
-        
-        NSInteger removeAmount = (kMonitorVerticesLength - verticesStart) + index;
-        
-        verticesStart = index;
-        
-        numVertices -= removeAmount;
+        for (int i = 0 ; i <= index ; i++){
+            CALayer * layer = [self.view.layer.sublayers objectAtIndex:0];
+            [layer removeFromSuperlayer];
+        }
     }
 }
 
 -(void) update:(float) dt{
     
-    float dx = dt * kMonitorPixelsToSeconds;
-
+    float dx = 10;
     NSInteger removeUntilIndex = [self moveVerticesLeftBy:dx];
+    
     [self removeVerticesUntilIndex:removeUntilIndex];
     
     /*
-    for (int i = 0; i < kMonitorVerticesLength; i++) {
-        printf("(%.1f %.1f %.1f)  ",vertices[i].x,vertices[i].y,vertices[i].z);
-    }
-    printf("\n");*/
+     for (int i = 0; i < kMonitorVerticesLength; i++) {
+     printf("(%.1f %.1f %.1f)  ",vertices[i].x,vertices[i].y,vertices[i].z);
+     }
+     printf("\n");*/
 }
 
 @end

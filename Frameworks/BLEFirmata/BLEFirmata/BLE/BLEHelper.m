@@ -12,7 +12,7 @@
 @implementation BLEHelper
 
 
-+(NSInteger) Data:(NSData*) data toArray:(Byte**) bytes{
++(NSInteger) Data:(NSData*) data toArray:(uint8_t**) bytes{
     
     (*bytes) = (Byte*)malloc(data.length);
     memcpy(*bytes, data.bytes, data.length);

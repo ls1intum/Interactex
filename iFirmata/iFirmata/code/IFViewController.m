@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 TUM. All rights reserved.
 //
 
-#import "IFFirmataViewController.h"
+#import "IFViewController.h"
 #import "IFPinCell.h"
 #import "IFPin.h"
-#import "IFFirmataPinsController.h"
-#import "BLEDiscovery.h"
+#import "IFPinsController.h"
 #import "IFI2CComponentCell.h"
 #import "AppDelegate.h"
 #import "IFI2CComponent.h"
 #import "IFFirmataCommunicationModule.h"
 #import "IFFirmataBLECommunicationModule.h"
+#import "IFI2CRegister.h"
 
-@implementation IFFirmataViewController
+@implementation IFViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
@@ -91,7 +91,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) setFirmataPinsController:(IFFirmataPinsController *)firmataController{
+-(void) setFirmataPinsController:(IFPinsController *)firmataController{
     if(_firmataPinsController != firmataController){
         _firmataPinsController = firmataController;
         _firmataPinsController.delegate = self;
@@ -100,20 +100,20 @@
 
 #pragma mark FirmataDelegate
 
--(void) firmataDidUpdateDigitalPins:(IFFirmataPinsController *)firmataController{
+-(void) firmataDidUpdateDigitalPins:(IFPinsController *)firmataController{
     [self.table reloadData];
     /*
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:0];
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
 }
 
--(void) firmataDidUpdateAnalogPins:(IFFirmataPinsController *)firmataController{
+-(void) firmataDidUpdateAnalogPins:(IFPinsController *)firmataController{
     [self.table reloadData];/*
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:1];
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
 }
 
--(void) firmataDidUpdateI2CComponents:(IFFirmataPinsController *)firmataController{
+-(void) firmataDidUpdateI2CComponents:(IFPinsController *)firmataController{
 
     //[self.table reloadData];
     
@@ -121,7 +121,7 @@
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
 }
 
--(void) firmata:(IFFirmataPinsController *)firmataController didUpdateTitle:(NSString *)title{
+-(void) firmata:(IFPinsController *)firmataController didUpdateTitle:(NSString *)title{
     self.title = title;
 }
 

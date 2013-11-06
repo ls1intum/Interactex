@@ -769,6 +769,9 @@ void loop()
   currentMillis = millis();
   if(currentMillis - previousMillisBle > bleInterval) {
     previousMillisBle = currentMillis;
+
+      iFirmata.bleSend(127);
     iFirmata.bleFlush();
+    
   }
 }

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BLEService.h"
+
 
 @class CBPeripheral;
-@class IFFirmataPinsController;
+@class IFPinsController;
 
 @interface IFDeviceMenuViewController : UIViewController
 {

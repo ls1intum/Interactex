@@ -8,6 +8,5 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BLEDiscovery.h"
-#import "BLEService.h"
+#import "BLE.h"
 #import "IFFirmataController.h"
