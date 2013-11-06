@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IFFirmataConstants.h"
 #import "IFPin.h"
-#import "IFFirmataController.h"
+#import "IFFirmata.h"
 
 typedef struct{
     uint64_t supportedModes;
@@ -21,7 +20,7 @@ typedef struct{
 @class IFPinsController;
 @class IFI2CComponent;
 @class IFI2CRegister;
-@class IFFirmataController;
+@class IFFirmata;
 @class BLEService;
 
 @protocol IFFirmataControllerPinsDelegate <NSObject>
@@ -48,7 +47,7 @@ typedef struct{
 @property (nonatomic, strong) NSMutableArray * i2cComponents;
 
 //@property (nonatomic, weak) BLEService * bleService;
-@property (nonatomic, strong) IFFirmataController * firmataController;
+@property (nonatomic, strong) IFFirmata * firmataController;
 @property (nonatomic, weak) id<IFFirmataControllerPinsDelegate> delegate;
 
 @property (nonatomic, strong) NSString* firmataName;

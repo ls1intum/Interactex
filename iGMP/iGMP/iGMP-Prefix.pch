@@ -1,5 +1,7 @@
 //
-// Prefix header for all source files of the 'iFirmata' target in the 'iFirmata' project
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
 //
 
 #import <Availability.h>
@@ -13,8 +15,4 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#import "IFHelper.h"
-#import "IFConstants.h"
-#import <QuartzCore/QuartzCore.h>
-
-#import "Firmata.h"
+#import "BLE.h"

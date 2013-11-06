@@ -12,7 +12,7 @@
 #import "BLEHelper.h"
 #import "IFI2CComponent.h"
 #import "IFI2CRegister.h"
-#import "IFFirmataController.h"
+#import "IFFirmata.h"
 
 @implementation IFPinsController
 
@@ -20,7 +20,7 @@
     self = [super init];
     if(self){
         
-        self.firmataController = [[IFFirmataController alloc] init];
+        self.firmataController = [[IFFirmata alloc] init];
         self.firmataController.delegate = self;
         
         self.digitalPins = [NSMutableArray array];
@@ -208,7 +208,7 @@
 
 #pragma mark - Firmata Message Handles
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveFirmwareReport:(uint8_t*) buffer length:(NSInteger) length{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareReport:(uint8_t*) buffer length:(NSInteger) length{
     
     char name[140];
     int len=0;
@@ -227,7 +227,7 @@
     [self.firmataController sendCapabilitiesAndReportRequest];
 }
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
     
     for (IFPin * pin in self.analogPins) {
         if (pin.analogChannel == channel) {
@@ -237,7 +237,7 @@
     }
 }
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
     
     IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
     int mask = 1;
@@ -272,7 +272,7 @@
     [self.firmataController sendPinQueryForPinNumbers:buf length:len];
 }
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveCapabilityResponse:(uint8_t*) buffer length:(NSInteger) length{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveCapabilityResponse:(uint8_t*) buffer length:(NSInteger) length{
     
     for (int i=2, n=0, pin=0; i<length; i++) {
         if (buffer[i] == 127) {
@@ -292,7 +292,7 @@
 }
 
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
+-(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
     
     int pin=0;
     for (int i=2; i<length-1; i++) {
@@ -319,7 +319,7 @@
     }
 }
 
--(void) firmataController:(IFFirmataController*) firmataController didReceivePinStateResponse:(uint8_t*) buffer length:(NSInteger) length {
+-(void) firmataController:(IFFirmata*) firmataController didReceivePinStateResponse:(uint8_t*) buffer length:(NSInteger) length {
 
     int pinNumber = buffer[2];
     int mode = buffer[3];
@@ -352,7 +352,7 @@
     }
 }
 
--(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
+-(void) firmataController:(IFFirmata*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
     
     uint8_t address = buffer[2] + (buffer[3] << 7);
     NSInteger registerNumber = buffer[4];

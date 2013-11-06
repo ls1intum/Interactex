@@ -19,6 +19,8 @@
 	<dict>
 		<key>64E1C063-9271-4A9C-A9E6-D776507F80AA</key>
 		<string>../../frameworks/BLE</string>
+		<key>BEC0043A-F389-42B4-9595-84E150E7E6C9</key>
+		<string>../../../Frameworks/BLE</string>
 		<key>C830E036-A824-4CD2-8EA1-47F5AECDCE59</key>
 		<string>../../..</string>
 	</dict>
@@ -34,7 +36,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>64E1C063-9271-4A9C-A9E6-D776507F80AA</string>
+			<string>BEC0043A-F389-42B4-9595-84E150E7E6C9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BLE</string>
 		</dict>

@@ -17,20 +17,20 @@
 		9A79EAE9182ADA1900F1983C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A79EAE6182ADA1900F1983C /* main.m */; };
 		9A79EAEA182ADA1900F1983C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A79EAE7182ADA1900F1983C /* Storyboard.storyboard */; };
 		9A79EAEC182ADA2000F1983C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A79EAEB182ADA2000F1983C /* Default-568h@2x.png */; };
-		9A79EAF8182ADA8000F1983C /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A79EAE3182AD9F900F1983C /* libBLE.a */; };
+		9AAF2777182AEF2200531E3A /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF2774182AEEF700531E3A /* libBLE.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A79EAE2182AD9F900F1983C /* PBXContainerItemProxy */ = {
+		9AAF2773182AEEF700531E3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A79EADE182AD9F900F1983C /* BLE.xcodeproj */;
+			containerPortal = 9AAF276F182AEEF700531E3A /* BLE.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A17359617B11D87001DD4A4;
 			remoteInfo = BLE;
 		};
-		9A79EAF6182ADA7C00F1983C /* PBXContainerItemProxy */ = {
+		9AAF2775182AEF1E00531E3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A79EADE182AD9F900F1983C /* BLE.xcodeproj */;
+			containerPortal = 9AAF276F182AEEF700531E3A /* BLE.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
 			remoteInfo = BLE;
@@ -48,11 +48,11 @@
 		9A79EAD9182AD9F200F1983C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9A79EADA182AD9F200F1983C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		9A79EADB182AD9F200F1983C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		9A79EADE182AD9F900F1983C /* BLE.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLE.xcodeproj; path = frameworks/BLE/BLE.xcodeproj; sourceTree = "<group>"; };
 		9A79EAE5182ADA1900F1983C /* BLEDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BLEDemo-Prefix.pch"; path = "BLEDemo/BLEDemo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		9A79EAE6182ADA1900F1983C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BLEDemo/main.m; sourceTree = SOURCE_ROOT; };
 		9A79EAE7182ADA1900F1983C /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = BLEDemo/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		9A79EAEB182ADA2000F1983C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9AAF276F182AEEF700531E3A /* BLE.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLE.xcodeproj; path = ../Frameworks/BLE/BLE.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A79EAF8182ADA8000F1983C /* libBLE.a in Frameworks */,
+				9AAF2777182AEF2200531E3A /* libBLE.a in Frameworks */,
 				9A1735D017B12BBD001DD4A4 /* QuartzCore.framework in Frameworks */,
 				9A1735CE17B12B3D001DD4A4 /* CoreBluetooth.framework in Frameworks */,
 				9A17355417B11CA7001DD4A4 /* UIKit.framework in Frameworks */,
@@ -93,7 +93,7 @@
 		9A17355217B11CA7001DD4A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A79EADE182AD9F900F1983C /* BLE.xcodeproj */,
+				9AAF276F182AEEF700531E3A /* BLE.xcodeproj */,
 				9A1735CF17B12BBD001DD4A4 /* QuartzCore.framework */,
 				9A1735CD17B12B3D001DD4A4 /* CoreBluetooth.framework */,
 				9A17355317B11CA7001DD4A4 /* UIKit.framework */,
@@ -135,10 +135,10 @@
 			path = BLEDemo/code;
 			sourceTree = SOURCE_ROOT;
 		};
-		9A79EADF182AD9F900F1983C /* Products */ = {
+		9AAF2770182AEEF700531E3A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A79EAE3182AD9F900F1983C /* libBLE.a */,
+				9AAF2774182AEEF700531E3A /* libBLE.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A79EAF7182ADA7C00F1983C /* PBXTargetDependency */,
+				9AAF2776182AEF1E00531E3A /* PBXTargetDependency */,
 			);
 			name = BLEDemo;
 			productName = BLEFirmataDemo;
@@ -186,8 +186,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A79EADF182AD9F900F1983C /* Products */;
-					ProjectRef = 9A79EADE182AD9F900F1983C /* BLE.xcodeproj */;
+					ProductGroup = 9AAF2770182AEEF700531E3A /* Products */;
+					ProjectRef = 9AAF276F182AEEF700531E3A /* BLE.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -198,11 +198,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A79EAE3182AD9F900F1983C /* libBLE.a */ = {
+		9AAF2774182AEEF700531E3A /* libBLE.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libBLE.a;
-			remoteRef = 9A79EAE2182AD9F900F1983C /* PBXContainerItemProxy */;
+			remoteRef = 9AAF2773182AEEF700531E3A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -233,10 +233,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A79EAF7182ADA7C00F1983C /* PBXTargetDependency */ = {
+		9AAF2776182AEF1E00531E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BLE;
-			targetProxy = 9A79EAF6182ADA7C00F1983C /* PBXContainerItemProxy */;
+			targetProxy = 9AAF2775182AEF1E00531E3A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -307,7 +307,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "BLEDemo/BLEDemo-Info.plist";
 				PRODUCT_NAME = BLEDemo;
-				USER_HEADER_SEARCH_PATHS = "./frameworks/BLE/**";
+				USER_HEADER_SEARCH_PATHS = "../Frameworks/BLE/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -320,7 +320,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "BLEDemo/BLEDemo-Info.plist";
 				PRODUCT_NAME = BLEDemo;
-				USER_HEADER_SEARCH_PATHS = "./frameworks/BLE/**";
+				USER_HEADER_SEARCH_PATHS = "../Frameworks/BLE/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

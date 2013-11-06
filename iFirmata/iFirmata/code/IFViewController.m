@@ -44,7 +44,8 @@
     commModule.bleService = [BLEDiscovery sharedInstance].connectedService;
     
     self.firmataPinsController.firmataController.communicationModule = commModule;
-    [BLEDiscovery sharedInstance].connectedService.dataDelegate = self.firmataPinsController.firmataController;
+    [BLEDiscovery sharedInstance].connectedService.dataDelegate = commModule;
+    commModule.firmataController = self.firmataPinsController.firmataController;
     
     if(self.firmataPinsController.analogPins.count == 0 && self.firmataPinsController.digitalPins.count == 0){
         

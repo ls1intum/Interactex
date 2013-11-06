@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IFFirmataConstants.h"
 
 @class IFPin;
 

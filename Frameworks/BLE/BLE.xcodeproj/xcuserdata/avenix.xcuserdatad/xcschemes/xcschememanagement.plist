@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BLEDemo.xcscheme</key>
+		<key>BLE.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9A17354F17B11CA7001DD4A4</key>
+		<key>9A17359517B11D87001DD4A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
