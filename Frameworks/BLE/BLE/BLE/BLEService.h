@@ -7,7 +7,7 @@
 #define TX_BUFFER_SIZE 16
 
 
-#define kBleNumSupportedServices 1
+#define kBleNumSupportedServices 2
 
 extern NSString * const kBleSupportedServices[kBleNumSupportedServices];
 extern NSString * const kBleCharacteristics[kBleNumSupportedServices][2];

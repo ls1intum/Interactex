@@ -9,73 +9,96 @@
 #import "GMP.h"
 #import "GMPCommunicationModule.h"
 
-#define START_SYSEX             0xF0
-#define END_SYSEX               0xF7
-#define PIN_MODE_QUERY          0x72
-#define PIN_MODE_RESPONSE       0x73
-#define PIN_STATE_QUERY         0x6D
-#define PIN_STATE_RESPONSE      0x6E
-#define CAPABILITY_QUERY        0x6B
-#define CAPABILITY_RESPONSE     0x6C
-#define ANALOG_MAPPING_QUERY    0x69
-#define ANALOG_MAPPING_RESPONSE 0x6A
-#define REPORT_FIRMWARE         0x79
-#define I2C_CONFIG              0x78
-#define I2C_REQUEST             0x76
-#define I2C_REPLY               0x77
-#define I2C_READ_CONTINUOUSLY   0b00010000
-#define I2C_WRITE               0b00000000
-#define I2C_READ                0b00001000
-#define I2C_STOP_READING        0b00011000
-#define SYSTEM_RESET            0xFF
+#define DELIMITER   0xAA
+
+//message type
+enum
+{
+    FIRMWARE_QUERY = 0x00,
+    FIRMWARE_RESPONSE,
+    CAPABILITY_QUERY,
+    CAPABILITY_RESPONSE,
+    CREATE_GROUP_REQUEST,
+    CREATE_GROUP_RESPONSE,
+    PIN_MODE_SET,
+    PIN_MODE_QUERY,
+    PIN_MODE_RESPONSE,
+    DIO_INPUT,
+    DIO_OUTPUT,
+    ADC_READ,
+    DAC_WRITE,
+    PWM_CONFIG,
+    I2C_CONFIG,
+    I2C_READ,
+    I2C_READ_STREAM,
+    I2C_WRITE,
+    I2C_WRITE_STREAM,
+    I2C_STOP_STREAM,
+    SPI_CONFIG,
+    SPI_READ,
+    SPI_WRITE,
+    UART_CONFIG,
+    UART_READ,
+    UART_WRITE,
+    HW_TIMER_CONFIG,
+    WATCHDOG_CONFIG,
+    SYS_RESET,
+    CLK_CONFIG,
+    ACK_ENABLE = 0x80,
+    ACK = 0x81,
+};
+
 
 @implementation GMP
 
 #pragma mark - Send Messages
 
--(void) reset{
-    parseCommandLength = 0;
-    parseCount = 0;
-    
-    for (int i = 0; i < IFParseBufSize; i++) {
-        parseBuf[i] = 0;
-    }
-    
-    waitingForFirmware = NO;
-}
-
 -(void) sendFirmwareRequest{
     
-    uint8_t buf[3];
-    buf[0] = START_SYSEX;
-    buf[1] = REPORT_FIRMWARE;
-    buf[2] = END_SYSEX;
+    uint8_t data = FIRMWARE_QUERY;
     
-    [self.communicationModule sendData:buf count:3];
+    [self.communicationModule sendData:&data count:1];
+}
+
+
+-(void) sendCapabilitiesAndReportRequest{
+    
+    uint8_t data = CAPABILITY_QUERY;
+    
+    [self.communicationModule sendData:&data count:1];
+}
+
+-(void) sendPinModeForPin:(NSInteger) pin mode:(GMPPinMode) mode {
+    
+    uint8_t buf[4];
+    
+    buf[0] = PIN_MODE_SET;
+    buf[1] = 1;
+    buf[2] = pin;
+    buf[3] = mode;
+    
+    [self.communicationModule sendData:buf count:4];
+}
+
+-(void) sendPinModesForPins:(pin_t*) pinModes count:(NSInteger) count{
+    
+    NSInteger bufLength = count*2+2;
+    
+    uint8_t buf[bufLength];
+    
+    buf[0] = PIN_MODE_SET;
+    buf[1] = count;
+    
+    for (int i = 0; i < count; i++) {
+        
+        buf[i*2+2] = pinModes[i].index;
+        buf[i*2+3] = pinModes[i].capability;
+        
+        [self.communicationModule sendData:buf count:bufLength];
+    }
 }
 
 /*
--(void) sendCapabilitiesAndReportRequest{
-    NSInteger len = 0;
-    
-    uint8_t buf[16];
-    
-    buf[len++] = START_SYSEX;
-    buf[len++] = ANALOG_MAPPING_QUERY;
-    buf[len++] = END_SYSEX;
-    buf[len++] = START_SYSEX;
-    buf[len++] = CAPABILITY_QUERY;
-    buf[len++] = END_SYSEX;
-    
-    for (int i=0; i<3; i++) {
-        buf[len++] = 0xD0 | i;
-        buf[len++] = 1;
-    }
-    
-    [self.communicationModule sendData:buf count:16];
-    //    [self.bleService sendData:buf count:16];
-}
-
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
     
     uint8_t buf[length * 4];
@@ -106,30 +129,9 @@
     [self.communicationModule sendData:buf count:4];
     //    [self.bleService sendData:buf count:4];
 }
+*/
 
--(void) sendResetRequest{
-    
-    uint8_t msg = SYSTEM_RESET;
-    
-    [self.communicationModule sendData:&msg count:1];
-    //    [self.bleService sendData:&msg count:1];
-}
-
--(void) sendPinModeForPin:(NSInteger) pin mode:(IFPinMode) mode {
-    
-	if (pin >= 0 && pin < 128){
-        
-		uint8_t buf[3];
-        
-		buf[0] = 0xF4;
-		buf[1] = pin;
-		buf[2] = mode;
-        
-        [self.communicationModule sendData:buf count:3];
-        //[self.bleService sendData:buf count:3];
-    }
-}
-
+/*
 -(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value{
     
 	if (pin <= 15 && value <= 16383) {
@@ -164,182 +166,141 @@
     [self.communicationModule sendData:buf count:2];
     //[self.communicationModule sendData:buf count:2];
 }
+*/
+
+-(void) sendI2CReadAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
+    
+    uint8_t buf[4];
+    
+    buf[0] = I2C_READ;
+    buf[1] = address;
+    buf[2] = reg;
+    buf[3] = size;
+    
+    [self.communicationModule sendData:buf count:4];
+}
 
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
     
-    [self checkStartI2C];
+    uint8_t buf[4];
     
-    uint8_t buf[9];
-    buf[0] = START_SYSEX;
-    buf[1] = I2C_REQUEST;
-    buf[2] = address;//compass address = 24
-    buf[3] = I2C_READ_CONTINUOUSLY;
-    buf[4] = reg;//compass register = 40
-    buf[5] = 1;
-    buf[6] = size;//6 bytes to read
-    buf[7] = 0;
-    buf[8] = END_SYSEX;
+    buf[0] = I2C_READ_STREAM;
+    buf[1] = address;
+    buf[2] = reg;
+    buf[3] = size;
     
-    [self.communicationModule sendData:buf count:9];
-    //[self.communicationModule sendData:buf count:9];
+    [self.communicationModule sendData:buf count:4];
 }
 
--(void) sendI2CStopReadingAddress:(NSInteger) address{
-    
-    uint8_t buf[5];
-    buf[0] = START_SYSEX;
-    buf[1] = I2C_REQUEST;
-    buf[2] = address;
-    buf[3] = I2C_STOP_READING;
-    buf[4] = END_SYSEX;
-    
-    [self.communicationModule sendData:buf count:5];
-    //[self.communicationModule sendData:buf count:5];
-}
 
 -(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg {
     
-    [self checkStartI2C];
+    uint8_t buf[4];
     
-    uint8_t buf[9];
-    buf[0] = START_SYSEX;
-    buf[1] = I2C_REQUEST;
-    buf[2] = address;//compass address = 24
-    buf[3] = I2C_WRITE;
-    buf[4] = reg;//compass register = 40
-    buf[5] = 0;
-    buf[6] = value;
-    buf[7] = 0;
-    buf[8] = END_SYSEX;
+    buf[0] = I2C_WRITE;
+    buf[1] = address;
+    buf[2] = reg;
+    buf[3] = value;
     
-    [self.communicationModule sendData:buf count:9];
-    //[self.communicationModule sendData:buf count:9];
+    [self.communicationModule sendData:buf count:4];
 }
 
--(void) checkStartI2C{
+-(void) sendI2CStartWritingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
+    /*
+    uint8_t buf[4];
     
-    if(!self.startedI2C){
-        _startedI2C = YES;
-        [self sendI2CConfigMessage];
-    }
+    buf[0] = I2C_WRITE_STREAM;
+    buf[1] = address;
+    buf[2] = reg;
+    buf[3] = size;
+    
+    [self.communicationModule sendData:buf count:4];*/
+}
+
+-(void) sendI2CStopStreamingAddress:(NSInteger) address{
+    
+    uint8_t buf[2];
+    
+    buf[0] = I2C_STOP_STREAM;
+    buf[1] = address;
+    
+    [self.communicationModule sendData:buf count:2];
 }
 
 -(void) sendI2CConfigMessage{
-    
+    /*
     uint8_t buf[5];
-    buf[0] = START_SYSEX;
-    buf[1] = I2C_CONFIG;
-    buf[2] = 0;
-    buf[3] = 0;
-    buf[4] = END_SYSEX;
     
     [self.communicationModule sendData:buf count:5];
     //[self.communicationModule sendData:buf count:5];
+     */
+}
+
+-(void) sendResetRequest{
+    
+    uint8_t msg = SYS_RESET;
+    
+    [self.communicationModule sendData:&msg count:1];
 }
 
 #pragma mark - Receive Messages
 
- 
--(void) handleMessage{
-    
-	uint8_t cmd = (parseBuf[0] & START_SYSEX);
-    
-	if (cmd == 0xE0 && parseCount == 3) {
-        
-        int channel = (parseBuf[0] & 0x0F);
-        int value = parseBuf[1] | (parseBuf[2] << 7);
-        
-        if([self.delegate respondsToSelector:@selector(firmataController:didReceiveAnalogMessageOnChannel:value:)]){
-            [self.delegate firmataController:self didReceiveAnalogMessageOnChannel:channel value:value];
-        }
-        
-	} else if (cmd == 0x90 && parseCount == 3) {
-        
-        int portNum = (parseBuf[0] & 0x0F);
-        int portVal = parseBuf[1] | (parseBuf[2] << 7);
-        int port = portNum * 8;
-        
-        if([self.delegate respondsToSelector:@selector(firmataController:didReceiveDigitalMessageForPort:value:)]){
-            [self.delegate firmataController:self didReceiveDigitalMessageForPort:port value:portVal];
-        }
-        
-	} else if (parseBuf[0] == START_SYSEX && parseBuf[parseCount-1] == END_SYSEX) {
-        
-		if (parseBuf[1] == REPORT_FIRMWARE) {
-            
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveFirmwareReport:length:)]){
-                [self.delegate firmataController:self didReceiveFirmwareReport:parseBuf length:parseCommandLength];
-            }
-            
-		} else if (parseBuf[1] == CAPABILITY_RESPONSE) {
-            
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveCapabilityResponse:length:)]){
-                [self.delegate firmataController:self didReceiveCapabilityResponse:parseBuf length:parseCommandLength];
-            }
-            
-		} else if (parseBuf[1] == ANALOG_MAPPING_RESPONSE) {
-            
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveAnalogMappingResponse:length::length:)]){
-                [self.delegate firmataController:self didReceiveAnalogMappingResponse:parseBuf length:parseCommandLength];
-            }
-            
-		} else if (parseBuf[1] == PIN_STATE_RESPONSE && parseCount >= 6) {
-            
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceivePinStateResponse:length:)]){
-                [self.delegate firmataController:self didReceivePinStateResponse:parseBuf length:parseCommandLength];
-            }
-            
-		} else if(parseBuf[1] == I2C_REPLY){
-            
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveI2CReply:length:)]){
-                [self.delegate firmataController:self didReceiveI2CReply:parseBuf length:parseCommandLength];
-            }
-        }
-	}
-}*/
 
--(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
+-(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)length{
     
-    NSInteger length = originalLength;
-    
-    //remove all END_SYSEX messages at the end of the buffer
-    for (int i = 15; i >= 0; i--) {
-        if(buffer[i] != END_SYSEX){
-            break;
-        }
-        length --;
-    }
-    
-    //check if we had started a sysex somewhere
-    for (int i = 0; i < length; i++) {
-        if(buffer[i] == START_SYSEX){
-            startedSysex = YES;
-        } else if (buffer[i] == END_SYSEX ){
-            startedSysex = NO;
-        }
-    }
-    
-    //restore the wrongly removed sysex at the end
-    if(length < originalLength && startedSysex){
-        buffer[length++] = END_SYSEX;
-        startedSysex = NO;
-    }
-    
-    /*
      printf("\n ");
      NSLog(@"**Data received, length: %d**",length);
-     
-     for (int i = 0 ; i < length; i++) {
-     int value = buffer[i];
-     printf("%d ",value);
-     }
-     printf("\n ");*/
-    
     
     for (int i = 0 ; i < length; i++) {
-        uint8_t value = buffer[i];
+        int value = buffer[i];
+        printf("%d ",value);
+    }
+    printf("\n ");
+    
+    uint8_t value = buffer[0];
+    
+    if(value == FIRMWARE_RESPONSE){
         
-	}
+        char buf[length];
+        memcpy(buf, buffer+1, length-1);
+        buf[length-1] = 0;
+        
+        NSString * firmwareName = [NSString stringWithUTF8String:buf];
+        
+        [self.delegate gmpController:self didReceiveFirmwareName:firmwareName];
+        
+    } else if(value == CAPABILITY_RESPONSE){
+        
+        pin_t currentPin;
+        numPins = 0;
+        
+        for(int i = 1 ; i < length ; i+=3){
+            
+            currentPin.index = buffer[i];
+            currentPin.capability = buffer[i+1];
+            
+            pins[numPins++] = currentPin;
+        }
+        
+        /*
+        NSLog(@"capabilities!");
+        for (int i = 0 ; i < numPins; i++) {
+            NSLog(@"pin: %d %d",pins[i].index,pins[i].mode);
+        }*/
+        
+    } else if(value == I2C_READ){
+        /*
+        for(int i = 1 ; i < length ; i++){
+            uint8_t val = buffer[i];
+            NSLog(@"received i2c value: %d",val);
+        }*/
+        
+        uint8_t buf[length-1];
+        memcpy(buf, buffer+1, length-1);
+        
+        [self.delegate gmpController:self didReceiveI2CReply:buf length:length-1];
+        
+    }
 }
 
 @end

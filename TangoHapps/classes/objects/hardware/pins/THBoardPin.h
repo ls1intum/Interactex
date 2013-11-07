@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) NSInteger value;
 @property (nonatomic) NSInteger number;
 @property (nonatomic) THPinType type;
-@property (nonatomic) IFPinMode mode;
+@property (nonatomic) THPinMode mode;
 @property (nonatomic, readonly) NSMutableArray * attachedElementPins;
 @property (nonatomic) BOOL hasChanged;
 @property (nonatomic, readonly) BOOL acceptsManyPins;

@@ -60,7 +60,7 @@ You should have received a copy of the GNU General Public License along with thi
             //IFPinType pinTypeFirmata = [THClientHelper THPinTypeToIFPinType:type];
             self.number = pinNumber;
             //self.type = pinTypeFirmata;
-            self.mode = IFPinModeOutput;
+//            self.mode = IFPinModeOutput;
         }
         
         self.type = type;

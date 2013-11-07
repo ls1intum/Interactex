@@ -39,7 +39,6 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
-#import "BLEFirmata.h"
 #import "THClientConstants.h"
 
 @interface THClientHelper : NSObject
@@ -48,6 +47,6 @@ You should have received a copy of the GNU General Public License along with thi
 +(float) LinearMapping:(float)value min:(float) min max:(float) max retMin:(float) retMin retMax:(float) retMax;
 +(BOOL) canConvertParam:(TFDataType) type1 toType:(TFDataType) type2;
 +(void) MakeCallTo:(NSString*) number;
-+(IFPinType) THPinTypeToIFPinType:(THPinType) type;
+//+(IFPinType) THPinTypeToIFPinType:(THPinType) type;
 
 @end

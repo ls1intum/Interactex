@@ -458,7 +458,6 @@
 		9A5F8D8E16A2C524000DF472 /* THContactBookProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */; };
 		9A5F8E2A16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
 		9A5F8E2B16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
-		9A776DBB17B51889008CD877 /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
 		9A7DBF6A169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
 		9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
@@ -621,14 +620,17 @@
 		9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
 		9A94F44016A0192700AF52AB /* THEditorTools.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41516A0192700AF52AB /* THEditorTools.xib */; };
 		9A94F44116A0192700AF52AB /* THEditorTools.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41516A0192700AF52AB /* THEditorTools.xib */; };
-		9A9FEACC17BBBDAE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
-		9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A776D7617B5185E008CD877 /* libBLEFirmata.a */; };
 		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
 		9A9FEB6517BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
 		9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
 		9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
+		9AAF2840182B8AB200531E3A /* THMonitorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A31659C1827955200CB3E59 /* THMonitorEditable.m */; };
+		9AAF2841182B8AB500531E3A /* THMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165A0182795D000CB3E59 /* THMonitor.m */; };
+		9AAF2842182B8ABF00531E3A /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
+		9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF283F182B88F000531E3A /* libBLE.a */; };
+		9AAF2846182B8B1C00531E3A /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
 		9AB29B40167F4B5D00F5AF62 /* THImageViewPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */; };
 		9AB29B43167F4CF300F5AF62 /* THImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B42167F4CF300F5AF62 /* THImageView.m */; };
 		9AB29B46167F4DF800F5AF62 /* THImageViewEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B45167F4DF800F5AF62 /* THImageViewEditable.m */; };
@@ -687,19 +689,16 @@
 		9ABC275818098F2400B39D72 /* THBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274C18098F2400B39D72 /* THBoard.m */; };
 		9ABC275918098F2400B39D72 /* THBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274C18098F2400B39D72 /* THBoard.m */; };
 		9ABC275A18098F2400B39D72 /* THBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274E18098F2400B39D72 /* THBoardEditable.m */; };
-		9ABC275B18098F2400B39D72 /* THBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274E18098F2400B39D72 /* THBoardEditable.m */; };
 		9ABC275C18098F2400B39D72 /* THBoardEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC274E18098F2400B39D72 /* THBoardEditable.m */; };
 		9ABC275D18098F2400B39D72 /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275018098F2400B39D72 /* THLilyPad.m */; };
 		9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275018098F2400B39D72 /* THLilyPad.m */; };
 		9ABC275F18098F2400B39D72 /* THLilyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275018098F2400B39D72 /* THLilyPad.m */; };
 		9ABC276018098F2400B39D72 /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275218098F2400B39D72 /* THLilypadEditable.m */; };
-		9ABC276118098F2400B39D72 /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275218098F2400B39D72 /* THLilypadEditable.m */; };
 		9ABC276218098F2400B39D72 /* THLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275218098F2400B39D72 /* THLilypadEditable.m */; };
 		9ABC276318098F2400B39D72 /* THSimpleLilypad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275418098F2400B39D72 /* THSimpleLilypad.m */; };
 		9ABC276418098F2400B39D72 /* THSimpleLilypad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275418098F2400B39D72 /* THSimpleLilypad.m */; };
 		9ABC276518098F2400B39D72 /* THSimpleLilypad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275418098F2400B39D72 /* THSimpleLilypad.m */; };
 		9ABC276618098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */; };
-		9ABC276718098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */; };
 		9ABC276818098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC275618098F2400B39D72 /* THSimpleLilypadEditable.m */; };
 		9ABC276B1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */; };
 		9ABC276C1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */; };
@@ -1063,7 +1062,6 @@
 		9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A50D91918296D3700335926 /* libcocos2d.a */; };
 		9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A50D91D18296D3700335926 /* libCocosDenshion.a */; };
 		9AFA65F3182A81790082990F /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
-		9AFA65F4182A81790082990F /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1466,33 +1464,19 @@
 			remoteGlobalIDString = E0EA56A5134B9CA800F212C8;
 			remoteInfo = Bug1159;
 		};
-		9A776D7517B5185E008CD877 /* PBXContainerItemProxy */ = {
+		9AAF283E182B88F000531E3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+			containerPortal = 9AAF283A182B88EF00531E3A /* BLE.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A17359617B11D87001DD4A4;
-			remoteInfo = BLEFirmata;
+			remoteInfo = BLE;
 		};
-		9A776DB917B51881008CD877 /* PBXContainerItemProxy */ = {
+		9AAF2843182B8AFE00531E3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+			containerPortal = 9AAF283A182B88EF00531E3A /* BLE.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
-			remoteInfo = BLEFirmata;
-		};
-		9A9FEA8817BBBDA5004AB8CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
-			remoteInfo = BLEFirmata;
-		};
-		9A9FEACD17BBBDB6004AB8CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
-			remoteInfo = BLEFirmata;
+			remoteInfo = BLE;
 		};
 		9AF505D1167B91020020241C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1840,7 +1824,6 @@
 		9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THContactBookProperties.xib; sourceTree = "<group>"; };
 		9A5F8E2816A2C6EE000DF472 /* THContactBookPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookPaletteItem.h; sourceTree = "<group>"; };
 		9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBookPaletteItem.m; sourceTree = "<group>"; };
-		9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLEFirmata.xcodeproj; path = Frameworks/BLEFirmata/BLEFirmata.xcodeproj; sourceTree = "<group>"; };
 		9A7DBF67169AC49900F86D71 /* THThreeColorLed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLed.h; sourceTree = "<group>"; };
 		9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THThreeColorLed.m; sourceTree = "<group>"; };
 		9A7DBF6C169ACD5C00F86D71 /* THThreeColorLedEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedEditable.h; sourceTree = "<group>"; };
@@ -1946,6 +1929,7 @@
 		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
 		9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientDownloadViewController.h; sourceTree = "<group>"; };
 		9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientDownloadViewController.m; sourceTree = "<group>"; };
+		9AAF283A182B88EF00531E3A /* BLE.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLE.xcodeproj; path = Frameworks/BLE/BLE.xcodeproj; sourceTree = "<group>"; };
 		9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageViewPaletteItem.h; sourceTree = "<group>"; };
 		9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THImageViewPaletteItem.m; sourceTree = "<group>"; };
 		9AB29B41167F4CF300F5AF62 /* THImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageView.h; sourceTree = "<group>"; };
@@ -2312,7 +2296,6 @@
 				9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */,
 				9A3165AB1827994100CB3E59 /* GLKit.framework in Frameworks */,
 				9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */,
-				9A9FEACC17BBBDAE004AB8CF /* libBLEFirmata.a in Frameworks */,
 				9AF50505167B8C820020241C /* AVFoundation.framework in Frameworks */,
 				9AB29B56167F68F600F5AF62 /* AssetsLibrary.framework in Frameworks */,
 				9A8BBA3B167F27FC00FBABFB /* CoreLocation.framework in Frameworks */,
@@ -2335,7 +2318,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9FEACF17BBBDBE004AB8CF /* libBLEFirmata.a in Frameworks */,
 				9A94F1F0169ED6A200AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9AF50658167B92A10020241C /* OpenAL.framework in Frameworks */,
 				9A8BBA3D167F281700FBABFB /* CoreLocation.framework in Frameworks */,
@@ -2359,10 +2341,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */,
 				9AFA65E718296D9A0082990F /* libcocos2d.a in Frameworks */,
 				9AFA65E818296D9A0082990F /* libCocosDenshion.a in Frameworks */,
 				9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */,
-				9A776DBB17B51889008CD877 /* libBLEFirmata.a in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */,
@@ -2418,10 +2400,10 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */,
 				9A3165AA1827994100CB3E59 /* GLKit.framework */,
 				9AC3CD221800255400363CD2 /* CoreText.framework */,
-				9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
 				9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */,
 				9A8BBA3A167F27FC00FBABFB /* CoreLocation.framework */,
@@ -2816,14 +2798,6 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		9A776D7217B5185E008CD877 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A776D7617B5185E008CD877 /* libBLEFirmata.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A84265017564A80009495AB /* Tango */ = {
 			isa = PBXGroup;
 			children = (
@@ -3016,6 +2990,14 @@
 				9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */,
 			);
 			path = properties;
+			sourceTree = "<group>";
+		};
+		9AAF283B182B88EF00531E3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AAF283F182B88F000531E3A /* libBLE.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9AB7789017E6C25700F82424 /* method invocation */ = {
@@ -3669,7 +3651,6 @@
 			dependencies = (
 				9AFA65EA18296E000082990F /* PBXTargetDependency */,
 				9AFA65EC18296E000082990F /* PBXTargetDependency */,
-				9A9FEA8917BBBDA5004AB8CF /* PBXTargetDependency */,
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
@@ -3687,7 +3668,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A9FEACE17BBBDB6004AB8CF /* PBXTargetDependency */,
 				9AF505D2167B91020020241C /* PBXTargetDependency */,
 				9AF505D4167B91020020241C /* PBXTargetDependency */,
 			);
@@ -3708,9 +3688,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
 				9AFA65AB18296D940082990F /* PBXTargetDependency */,
 				9AFA65AD18296D940082990F /* PBXTargetDependency */,
-				9A776DBA17B51881008CD877 /* PBXTargetDependency */,
 			);
 			name = TangoHappsClient;
 			productName = TangoHappsClient;
@@ -3745,8 +3725,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A776D7217B5185E008CD877 /* Products */;
-					ProjectRef = 9A776D7117B5185E008CD877 /* BLEFirmata.xcodeproj */;
+					ProductGroup = 9AAF283B182B88EF00531E3A /* Products */;
+					ProjectRef = 9AAF283A182B88EF00531E3A /* BLE.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A50D8D718296D3600335926 /* Products */;
@@ -4162,11 +4142,11 @@
 			remoteRef = 9A50D98218296D3700335926 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A776D7617B5185E008CD877 /* libBLEFirmata.a */ = {
+		9AAF283F182B88F000531E3A /* libBLE.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libBLEFirmata.a;
-			remoteRef = 9A776D7517B5185E008CD877 /* PBXContainerItemProxy */;
+			path = libBLE.a;
+			remoteRef = 9AAF283E182B88F000531E3A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -5036,6 +5016,7 @@
 				9A06EEA1169ADA9C00B88519 /* THSliderPaletteItem.m in Sources */,
 				9A06EF30169AE51F00B88519 /* THPotentiometerProperties.m in Sources */,
 				9A06EFC4169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */,
+				9AAF2840182B8AB200531E3A /* THMonitorEditable.m in Sources */,
 				9A94F1E2169ED5C500AF52AB /* THMapperPaletteItem.m in Sources */,
 				9A94F1E4169ED5DC00AF52AB /* THImageViewPaletteItem.m in Sources */,
 				9A94F1E5169ED5E100AF52AB /* THImageViewProperties.m in Sources */,
@@ -5072,6 +5053,7 @@
 				9A097782172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
 				9A85721D172804B600510D23 /* THSoundPicker.m in Sources */,
 				9A8572B9172AD64C00510D23 /* THAsset.m in Sources */,
+				9AAF2841182B8AB500531E3A /* THMonitor.m in Sources */,
 				9A8572BE172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C3172AD7F500510D23 /* THAssetCollection.m in Sources */,
 				9A8426A817564A80009495AB /* TFConnectionLine.m in Sources */,
@@ -5113,6 +5095,7 @@
 				9A59323917E5D58300B20D99 /* THEditableObjectProperties.m in Sources */,
 				9A59323B17E5D58300B20D99 /* THInvokableProperties.m in Sources */,
 				9A59323D17E5D58300B20D99 /* THPaletteItemProperties.m in Sources */,
+				9AAF2842182B8ABF00531E3A /* THMonitorLine.m in Sources */,
 				9A59323F17E5D58300B20D99 /* THTriggerableProperties.m in Sources */,
 				9A59324117E5D58300B20D99 /* THViewableProperties.m in Sources */,
 				9A59324317E5D58300B20D99 /* THImagePickerController.m in Sources */,
@@ -5145,9 +5128,7 @@
 				9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */,
 				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
-				9AFA65F4182A81790082990F /* THMonitorLine.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
-				9ABC276118098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
 				9AF5044E167B84D90020241C /* THBoardPin.m in Sources */,
 				9AF5044F167B84D90020241C /* THElementPin.m in Sources */,
@@ -5192,7 +5173,6 @@
 				9AF3E6D316FA07250013DE13 /* THClientPresetsGenerator.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
-				9ABC276718098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
@@ -5201,11 +5181,11 @@
 				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
+				9AAF2846182B8B1C00531E3A /* THMonitorLine.m in Sources */,
 				9A3165981827935700CB3E59 /* IFI2CComponent.m in Sources */,
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,
 				9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */,
 				9A8426D417564A80009495AB /* TFSimulableObject.m in Sources */,
-				9ABC275B18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9ABC27B01809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
@@ -5221,20 +5201,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A776DBA17B51881008CD877 /* PBXTargetDependency */ = {
+		9AAF2844182B8AFE00531E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = BLEFirmata;
-			targetProxy = 9A776DB917B51881008CD877 /* PBXContainerItemProxy */;
-		};
-		9A9FEA8917BBBDA5004AB8CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BLEFirmata;
-			targetProxy = 9A9FEA8817BBBDA5004AB8CF /* PBXContainerItemProxy */;
-		};
-		9A9FEACE17BBBDB6004AB8CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BLEFirmata;
-			targetProxy = 9A9FEACD17BBBDB6004AB8CF /* PBXContainerItemProxy */;
+			name = BLE;
+			targetProxy = 9AAF2843182B8AFE00531E3A /* PBXContainerItemProxy */;
 		};
 		9AF505D2167B91020020241C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5426,7 +5396,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
-				USER_HEADER_SEARCH_PATHS = "Frameworks/BLEFirmata/BLEFirmata/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -5461,7 +5431,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
-				USER_HEADER_SEARCH_PATHS = "Frameworks/BLEFirmata/BLEFirmata/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5477,7 +5447,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
-				USER_HEADER_SEARCH_PATHS = "Frameworks/BLEFirmata/BLEFirmata/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

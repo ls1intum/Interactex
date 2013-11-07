@@ -168,7 +168,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     if([THSimulableWorldController sharedInstance].currentProject != nil){
         
-        [[BLEDiscovery sharedInstance] startScanningForUUIDString:kBleServiceUUIDString];
+        [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
         
         [self loadUIObjects];
         [self addPinObservers];
@@ -242,7 +242,7 @@ You should have received a copy of the GNU General Public License along with thi
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
     for (THBoardPin * pin in project.lilypad.pins) {
-        [pin.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+        //[pin.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
 
@@ -250,13 +250,14 @@ You should have received a copy of the GNU General Public License along with thi
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
     for (THBoardPin * pin in project.lilypad.pins) {
-        [pin.pin removeObserver:self forKeyPath:@"value"];
+        //[pin.pin removeObserver:self forKeyPath:@"value"];
     }
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
     if([keyPath isEqualToString:@"value"]){
-        
+        /*
         IFPin * pin = object;
         
         if(pin.mode == kPinModeDigitalOutput){
@@ -266,22 +267,23 @@ You should have received a copy of the GNU General Public License along with thi
         } else if(pin.mode == kPinModePWM){
             
             [self sendPWMOutputForPin:pin];
-        }
+        }*/
     }
 }
 
+/*
 #pragma mark Firmata Interaction
 
 -(void) sendDigitalOutputForPin:(IFPin*) pin{
-    [self.firmataController sendDigitalOutputForPort:pin.number value:pin.value];
+    //[self.firmataController sendDigitalOutputForPort:pin.number value:pin.value];
 }
 
 -(void) sendPWMOutputForPin:(IFPin*) pin{
-    [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
+    //[self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
 }
 
 -(void) sendServoOutputForPin:(IFPin*) pin{
-    [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
+    //[self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
 }
 
 -(void) sendPinModes{
@@ -301,8 +303,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     int pin=0;
     for (int i=2; i<length-1; i++) {
-        NSLog(@"%d to channel: %d",pin,buffer[i]);/*
-        pinInfo[pin].analogChannel = buffer[i];*/
+        NSLog(@"%d to channel: %d",pin,buffer[i]);
         pin++;
     }
 }
@@ -338,7 +339,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
-    /*
+ 
     uint8_t address = buffer[2] + (buffer[3] << 7);
     NSInteger registerNumber = buffer[4];
     
@@ -365,9 +366,10 @@ You should have received a copy of the GNU General Public License along with thi
         }
 
     }
-     */
+
 }
 
+*/
 
 #pragma mark LeDiscoveryDelegate
 
@@ -406,23 +408,23 @@ You should have received a copy of the GNU General Public License along with thi
     
     service.delegate = nil;
     service.dataDelegate = nil;
-    if(self.firmataController.bleService == service){
-        self.firmataController.bleService = nil;
-    }
+    
+    //if(self.firmataController.bleService == service){
+    //    self.firmataController.bleService = nil;
+    //}
+    
     [self updateModeButton];
 }
 
 -(void) bleServiceIsReady:(BLEService*) service{
     
     [self stopActivityIndicator];
-        
-    //[service clearRx];
     
-    self.firmataController.bleService = service;
-    service.dataDelegate = self.firmataController;
+    //self.firmataController.bleService = service;
+    //service.dataDelegate = self.firmataController;
     
     [self stopActivityIndicator];
-    [self sendPinModes];
+    //[self sendPinModes];
 }
 
 - (void) bleServiceDidReset {

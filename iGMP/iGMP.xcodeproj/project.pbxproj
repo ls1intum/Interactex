@@ -20,6 +20,12 @@
 		9AAF27FA182AFB5800531E3A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF27F9182AFB5800531E3A /* CoreBluetooth.framework */; };
 		9AAF27FD182AFB7700531E3A /* GMP.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF27FC182AFB7700531E3A /* GMP.m */; };
 		9AAF2800182AFBD700531E3A /* GMPCommunicationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF27FF182AFBD700531E3A /* GMPCommunicationModule.m */; };
+		9AAF284A182B8EB600531E3A /* GMPBLECommunicationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF2849182B8EB600531E3A /* GMPBLECommunicationModule.m */; };
+		9AAF284F182BAE4400531E3A /* GMPPinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF284E182BAE4400531E3A /* GMPPinsController.m */; };
+		9AAF2857182BAE9800531E3A /* GMPI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF2852182BAE9800531E3A /* GMPI2CComponent.m */; };
+		9AAF2858182BAE9800531E3A /* GMPI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF2854182BAE9800531E3A /* GMPI2CRegister.m */; };
+		9AAF2859182BAE9800531E3A /* GMPPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF2856182BAE9800531E3A /* GMPPin.m */; };
+		9AAF285C182BC56100531E3A /* GMPDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF285B182BC56100531E3A /* GMPDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,18 @@
 		9AAF27FC182AFB7700531E3A /* GMP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMP.m; sourceTree = "<group>"; };
 		9AAF27FE182AFBD700531E3A /* GMPCommunicationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPCommunicationModule.h; sourceTree = "<group>"; };
 		9AAF27FF182AFBD700531E3A /* GMPCommunicationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPCommunicationModule.m; sourceTree = "<group>"; };
+		9AAF2848182B8EB600531E3A /* GMPBLECommunicationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPBLECommunicationModule.h; sourceTree = "<group>"; };
+		9AAF2849182B8EB600531E3A /* GMPBLECommunicationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPBLECommunicationModule.m; sourceTree = "<group>"; };
+		9AAF284D182BAE4400531E3A /* GMPPinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPPinsController.h; sourceTree = "<group>"; };
+		9AAF284E182BAE4400531E3A /* GMPPinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPPinsController.m; sourceTree = "<group>"; };
+		9AAF2851182BAE9800531E3A /* GMPI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPI2CComponent.h; sourceTree = "<group>"; };
+		9AAF2852182BAE9800531E3A /* GMPI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPI2CComponent.m; sourceTree = "<group>"; };
+		9AAF2853182BAE9800531E3A /* GMPI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPI2CRegister.h; sourceTree = "<group>"; };
+		9AAF2854182BAE9800531E3A /* GMPI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPI2CRegister.m; sourceTree = "<group>"; };
+		9AAF2855182BAE9800531E3A /* GMPPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPPin.h; sourceTree = "<group>"; };
+		9AAF2856182BAE9800531E3A /* GMPPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPPin.m; sourceTree = "<group>"; };
+		9AAF285A182BC56100531E3A /* GMPDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPDelegate.h; sourceTree = "<group>"; };
+		9AAF285B182BC56100531E3A /* GMPDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +130,21 @@
 		9AAF27BE182AF96E00531E3A /* iGMP */ = {
 			isa = PBXGroup;
 			children = (
+				9AAF2850182BAE9800531E3A /* I2C */,
 				9AAF27C7182AF96E00531E3A /* GMPAppDelegate.h */,
 				9AAF27C8182AF96E00531E3A /* GMPAppDelegate.m */,
 				9AAF27F1182AFA3000531E3A /* GMPViewController.h */,
 				9AAF27F2182AFA3000531E3A /* GMPViewController.m */,
 				9AAF27FE182AFBD700531E3A /* GMPCommunicationModule.h */,
 				9AAF27FF182AFBD700531E3A /* GMPCommunicationModule.m */,
+				9AAF2848182B8EB600531E3A /* GMPBLECommunicationModule.h */,
+				9AAF2849182B8EB600531E3A /* GMPBLECommunicationModule.m */,
+				9AAF2855182BAE9800531E3A /* GMPPin.h */,
+				9AAF2856182BAE9800531E3A /* GMPPin.m */,
+				9AAF284D182BAE4400531E3A /* GMPPinsController.h */,
+				9AAF284E182BAE4400531E3A /* GMPPinsController.m */,
+				9AAF285A182BC56100531E3A /* GMPDelegate.h */,
+				9AAF285B182BC56100531E3A /* GMPDelegate.m */,
 				9AAF27FB182AFB7700531E3A /* GMP.h */,
 				9AAF27FC182AFB7700531E3A /* GMP.m */,
 				9AAF27CA182AF96E00531E3A /* Images.xcassets */,
@@ -144,6 +171,17 @@
 				9AAF27EC182AF97E00531E3A /* libBLE.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AAF2850182BAE9800531E3A /* I2C */ = {
+			isa = PBXGroup;
+			children = (
+				9AAF2851182BAE9800531E3A /* GMPI2CComponent.h */,
+				9AAF2852182BAE9800531E3A /* GMPI2CComponent.m */,
+				9AAF2853182BAE9800531E3A /* GMPI2CRegister.h */,
+				9AAF2854182BAE9800531E3A /* GMPI2CRegister.m */,
+			);
+			path = I2C;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,10 +267,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AAF2800182AFBD700531E3A /* GMPCommunicationModule.m in Sources */,
+				9AAF284A182B8EB600531E3A /* GMPBLECommunicationModule.m in Sources */,
+				9AAF2859182BAE9800531E3A /* GMPPin.m in Sources */,
+				9AAF284F182BAE4400531E3A /* GMPPinsController.m in Sources */,
+				9AAF2857182BAE9800531E3A /* GMPI2CComponent.m in Sources */,
+				9AAF2858182BAE9800531E3A /* GMPI2CRegister.m in Sources */,
 				9AAF27F3182AFA3000531E3A /* GMPViewController.m in Sources */,
 				9AAF27C5182AF96E00531E3A /* main.m in Sources */,
 				9AAF27FD182AFB7700531E3A /* GMP.m in Sources */,
 				9AAF27C9182AF96E00531E3A /* GMPAppDelegate.m in Sources */,
+				9AAF285C182BC56100531E3A /* GMPDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

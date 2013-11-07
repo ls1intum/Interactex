@@ -39,12 +39,11 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
-#import "IFFirmataController.h"
-#import "BLEDiscovery.h"
+#import "BLE.h"
 
 @class THTransferAgent;
 
-@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, IFFirmataControllerDelegate> {
+@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate> {
     
     UIActivityIndicatorView * _activityIndicator;
 }
@@ -53,6 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic) THTransferAgent  * transferAgent;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem * modeButton;
-@property (strong, nonatomic) IFFirmataController  * firmataController;
+//@property (strong, nonatomic) IFFirmataController  * firmataController;
 
 @end

@@ -70,6 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+/*
 +(IFPinType) THPinTypeToIFPinType:(THPinType) type{
     if(type == kPintypeDigital){
         return IFPinTypeDigital;
@@ -80,6 +81,6 @@ You should have received a copy of the GNU General Public License along with thi
     NSAssert(FALSE, @"wrong parameter to method THPinTypeToIFPinType");
     return IFPinTypeDigital;
 }
-
+*/
 
 @end

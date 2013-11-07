@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class GMP;
+@class GMPDelegate;
+
 @interface GMPViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate>
+
+- (IBAction)sendFirmwareTapped:(id)sender;
+- (IBAction)sendModesTapped:(id)sender;
+- (IBAction)sendGroupTapped:(id)sender;
+- (IBAction)sendResetTapped:(id)sender;
+- (IBAction)sendI2CTapped:(id)sender;
+- (IBAction)sendI2CStopTapped:(id)sender;
+
+@property (nonatomic, strong) GMP * gmpController;
+@property (nonatomic, strong) GMPDelegate * gmpDelegate;
 
 @end
