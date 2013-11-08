@@ -17,4 +17,5 @@
 #import "IFConstants.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "Firmata.h"
+#import "IFFirmata.h"
+#import "BLE.h"

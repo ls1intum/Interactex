@@ -249,6 +249,7 @@ float const kToolsTabMargin = 5;
     THDirector * director = [THDirector sharedDirector];
     
     [director.currentProject prepareToDie];
+    
     if(_currentProjectName != nil){
         director.currentProject = [THProject projectSavedWithName:_currentProjectName];
     }
@@ -260,7 +261,6 @@ float const kToolsTabMargin = 5;
 {
     [[CCDirector sharedDirector] pause];
 }
-
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {

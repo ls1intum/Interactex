@@ -335,7 +335,6 @@ NSString * const kGMPFirmwareName = @"eGMCP1.0";
     uint8_t address = buffer[2] + (buffer[3] << 7);
    // NSInteger registerNumber = buffer[4];
     
-    
     GMPI2CComponent * component = nil;
     for (GMPI2CComponent * aComponent in self.i2cComponents) {
         if(aComponent.address == address){

@@ -51,10 +51,14 @@
 @property (strong, nonatomic) NSMutableArray * lines;
 @property (nonatomic, readonly) BOOL running;
 
+@property (nonatomic) NSInteger maxValue;
+@property (nonatomic) NSInteger minValue;
+
 -(void) start;
 -(void) stop;
 
 -(void) addValue1:(float) value;
+-(void) addValue2:(float) value;
 
 @end
 

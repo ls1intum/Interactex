@@ -45,7 +45,7 @@
 
 @dynamic image;
 
--(void) loadImageView{
+-(void) loadMonitor{
     self.acceptsConnections = YES;
     self.canBeRootView = NO;
 }
@@ -55,29 +55,27 @@
     if(self){
         
         self.simulableObject = [[THMonitor alloc] init];
-        [self loadImageView];
+        
+        [self loadMonitor];
     }
     return self;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadImageView];
-    
+    if(self) {
+        [self loadMonitor];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THMonitorEditable * copy = [super copyWithZone:zone];
     
     return copy;
@@ -111,12 +109,13 @@
     [monitor addValue1:value];
 }
 
--(void) prepareToDie{
-    [super prepareToDie];
-}
 
 -(NSString*) description{
     return @"Monitor";
+}
+
+-(void) dealloc{
+    NSLog(@"deallocing THMonitorEditable");
 }
 
 @end

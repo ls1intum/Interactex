@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "GMPCommunicationModule.h"
 
 #define IFParseBufSize 1024
@@ -30,16 +31,18 @@ typedef struct
 // bit 3~1 001: pwm, 010: adc, 011: dac, 100: comperator
 // bit 7~4 0001: uart, 0010: spi, 0100: i2c, 1000: one wire
 typedef enum {
-    GPIO = 0x01,
-    PWM	= 0x02,
-    ADC	= 0x04,
-    DAC	= 0x06,
-    COMP = 0x08,
-    UART = 0x10,
-    SPI	= 0x20,
-    I2C	= 0x40,
-    ONE_WIRE = 0x80
+    kGMPModeGPIO = 0x01,
+    kGMPModePWM	= 0x02,
+    kGMPModeADC	= 0x04,
+    kGMPModeDAC	= 0x06,
+    kGMPModeCOMP = 0x08,
+    kGMPModeUART = 0x10,
+    kGMPModeSPI	= 0x20,
+    kGMPModeI2C	= 0x40,
+    kGMPModeOneWire = 0x80
 } GMPPinMode;
+
+//servo?
 
 /*
 typedef enum{

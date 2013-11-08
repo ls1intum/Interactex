@@ -21,17 +21,16 @@
 @interface GMPPin : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic) NSInteger number;
-/*
-@property (nonatomic) IFPinType type;
-@property (nonatomic) IFPinMode mode;
-@property (nonatomic) BOOL supportsPwm;//only for digitals
+@property (nonatomic) GMPPinMode mode;
 @property (nonatomic) NSInteger value;//only for output
+
+//@property (nonatomic) IGMPinType type;
+@property (nonatomic) uint8_t supportedModes;
+@property (nonatomic) BOOL supportsPwm;//only for digitals
 @property (nonatomic) BOOL updatesValues;//only for analog
 
-@property (nonatomic) uint64_t supportedModes;
+//+(id) pinWithNumber:(NSInteger) number type:(GMPPinType) type mode:(GMPPinMode) mode;
+-(id) initWithNumber:(NSInteger) number;
 
-+(id) pinWithNumber:(NSInteger) number type:(IFPinType) type mode:(IFPinMode) mode;
--(id) initWithNumber:(NSInteger) number type:(IFPinType) type mode:(IFPinMode) mode;
-*/
 
 @end

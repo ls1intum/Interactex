@@ -53,6 +53,8 @@
 		9A097782172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
 		9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A1384DC16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
+		9A2CAD8C182C4791002AB9E8 /* libGMP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2CAD87182C4772002AB9E8 /* libGMP.a */; };
+		9A2CAD8E182C47FC002AB9E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */; };
 		9A3165971827935700CB3E59 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165941827935700CB3E59 /* IFI2CComponent.m */; };
 		9A3165981827935700CB3E59 /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165941827935700CB3E59 /* IFI2CComponent.m */; };
 		9A3165991827935700CB3E59 /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165961827935700CB3E59 /* IFI2CRegister.m */; };
@@ -742,8 +744,6 @@
 		9ABC27B51809B57900B39D72 /* THAccelerometerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */; };
 		9ABC27B81809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
 		9ABC27B91809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
-		9AC3CCEE18001FD500363CD2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3CCEC18001FD500363CD2 /* Icon.png */; };
-		9AC3CCEF18001FD500363CD2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC3CCED18001FD500363CD2 /* Icon@2x.png */; };
 		9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD221800255400363CD2 /* CoreText.framework */; };
 		9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
 		9AF3E6D316FA07250013DE13 /* THClientPresetsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D216FA07250013DE13 /* THClientPresetsGenerator.m */; };
@@ -762,8 +762,6 @@
 		9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50020167B83140020241C /* MainStoryboard.storyboard */; };
 		9AF50036167B83140020241C /* removeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50022167B83140020241C /* removeButton.png */; };
 		9AF50037167B83140020241C /* removeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50023167B83140020241C /* removeButton@2x.png */; };
-		9AF50038167B83140020241C /* screenRemote.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50024167B83140020241C /* screenRemote.png */; };
-		9AF50039167B83140020241C /* screenRemote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50025167B83140020241C /* screenRemote@2x.png */; };
 		9AF5003A167B83140020241C /* THClientGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50026167B83140020241C /* THClientGridItem.xib */; };
 		9AF5003B167B83140020241C /* virtualmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50027167B83140020241C /* virtualmode.png */; };
 		9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50028167B83140020241C /* virtualmode@2x.png */; };
@@ -1065,6 +1063,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A2CAD86182C4772002AB9E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A2CAD0B182C4624002AB9E8;
+			remoteInfo = GMP;
+		};
+		9A2CAD88182C4772002AB9E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A2CAD1B182C4624002AB9E8;
+			remoteInfo = GMPTests;
+		};
+		9A2CAD8A182C478E002AB9E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A2CAD0A182C4624002AB9E8;
+			remoteInfo = GMP;
+		};
 		9A50D91218296D3700335926 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */;
@@ -1570,6 +1589,8 @@
 		9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPaletteItem.h; sourceTree = "<group>"; };
 		9A097780172693E60028A6B4 /* THSoundPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPaletteItem.m; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
+		9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMP.xcodeproj; path = Frameworks/GMP/GMP.xcodeproj; sourceTree = "<group>"; };
+		9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A3165931827935700CB3E59 /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
 		9A3165941827935700CB3E59 /* IFI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CComponent.m; sourceTree = "<group>"; };
 		9A3165951827935700CB3E59 /* IFI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CRegister.h; sourceTree = "<group>"; };
@@ -2016,8 +2037,6 @@
 		9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerEditable.m; sourceTree = "<group>"; };
 		9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAccelerometerPaletteItem.h; sourceTree = "<group>"; };
 		9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerPaletteItem.m; sourceTree = "<group>"; };
-		9AC3CCEC18001FD500363CD2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		9AC3CCED18001FD500363CD2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9AC3CD221800255400363CD2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		9AF3E6CE16F868790013DE13 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9AF3E6D116FA07250013DE13 /* THClientPresetsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientPresetsGenerator.h; sourceTree = "<group>"; };
@@ -2039,8 +2058,6 @@
 		9AF50020167B83140020241C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9AF50022167B83140020241C /* removeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeButton.png; sourceTree = "<group>"; };
 		9AF50023167B83140020241C /* removeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removeButton@2x.png"; sourceTree = "<group>"; };
-		9AF50024167B83140020241C /* screenRemote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenRemote.png; sourceTree = "<group>"; };
-		9AF50025167B83140020241C /* screenRemote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenRemote@2x.png"; sourceTree = "<group>"; };
 		9AF50026167B83140020241C /* THClientGridItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClientGridItem.xib; sourceTree = "<group>"; };
 		9AF50027167B83140020241C /* virtualmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = virtualmode.png; sourceTree = "<group>"; };
 		9AF50028167B83140020241C /* virtualmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "virtualmode@2x.png"; sourceTree = "<group>"; };
@@ -2341,6 +2358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2CAD8C182C4791002AB9E8 /* libGMP.a in Frameworks */,
 				9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */,
 				9AFA65E718296D9A0082990F /* libcocos2d.a in Frameworks */,
 				9AFA65E818296D9A0082990F /* libCocosDenshion.a in Frameworks */,
@@ -2366,6 +2384,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A2CAD4B182C4772002AB9E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A2CAD87182C4772002AB9E8 /* libGMP.a */,
+				9A2CAD89182C4772002AB9E8 /* GMPTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A3165F718292AB300CB3E59 /* other */ = {
 			isa = PBXGroup;
 			children = (
@@ -2401,6 +2428,7 @@
 			isa = PBXGroup;
 			children = (
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
+				9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */,
 				9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */,
 				9A3165AA1827994100CB3E59 /* GLKit.framework */,
 				9AC3CD221800255400363CD2 /* CoreText.framework */,
@@ -3064,8 +3092,6 @@
 		9AF5001B167B83140020241C /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				9AC3CCEC18001FD500363CD2 /* Icon.png */,
-				9AC3CCED18001FD500363CD2 /* Icon@2x.png */,
 				9AF50020167B83140020241C /* MainStoryboard.storyboard */,
 				9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */,
 				9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */,
@@ -3073,8 +3099,6 @@
 				9AF5001F167B83140020241C /* iphoneFrame@2x.png */,
 				9AF50022167B83140020241C /* removeButton.png */,
 				9AF50023167B83140020241C /* removeButton@2x.png */,
-				9AF50024167B83140020241C /* screenRemote.png */,
-				9AF50025167B83140020241C /* screenRemote@2x.png */,
 				9AF50026167B83140020241C /* THClientGridItem.xib */,
 				9AF50027167B83140020241C /* virtualmode.png */,
 				9AF50028167B83140020241C /* virtualmode@2x.png */,
@@ -3621,6 +3645,7 @@
 			children = (
 				9AF5000C167B83140020241C /* classes */,
 				9AF5001B167B83140020241C /* resources */,
+				9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */,
 				9AF5FFF7167B82F70020241C /* Supporting Files */,
 			);
 			path = TangoHappsClient;
@@ -3688,6 +3713,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A2CAD8B182C478E002AB9E8 /* PBXTargetDependency */,
 				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
 				9AFA65AB18296D940082990F /* PBXTargetDependency */,
 				9AFA65AD18296D940082990F /* PBXTargetDependency */,
@@ -3732,6 +3758,10 @@
 					ProductGroup = 9A50D8D718296D3600335926 /* Products */;
 					ProjectRef = 9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A2CAD4B182C4772002AB9E8 /* Products */;
+					ProjectRef = 9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -3743,6 +3773,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A2CAD87182C4772002AB9E8 /* libGMP.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGMP.a;
+			remoteRef = 9A2CAD86182C4772002AB9E8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2CAD89182C4772002AB9E8 /* GMPTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GMPTests.xctest;
+			remoteRef = 9A2CAD88182C4772002AB9E8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A50D91318296D3700335926 /* libbuild all tests.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4633,19 +4677,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF50032167B83140020241C /* iphoneFrame.png in Resources */,
-				9AC3CCEF18001FD500363CD2 /* Icon@2x.png in Resources */,
 				9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */,
 				9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */,
 				9AF50036167B83140020241C /* removeButton.png in Resources */,
 				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
-				9AF50038167B83140020241C /* screenRemote.png in Resources */,
-				9AF50039167B83140020241C /* screenRemote@2x.png in Resources */,
 				9AF5003A167B83140020241C /* THClientGridItem.xib in Resources */,
 				9AF5003B167B83140020241C /* virtualmode.png in Resources */,
 				9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */,
+				9A2CAD8E182C47FC002AB9E8 /* Images.xcassets in Resources */,
 				9AF50475167B86490020241C /* Default-568h@2x.png in Resources */,
 				9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
-				9AC3CCEE18001FD500363CD2 /* Icon.png in Resources */,
 				9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */,
 				9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */,
 			);
@@ -5201,6 +5242,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A2CAD8B182C478E002AB9E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GMP;
+			targetProxy = 9A2CAD8A182C478E002AB9E8 /* PBXContainerItemProxy */;
+		};
 		9AAF2844182B8AFE00531E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BLE;
@@ -5319,6 +5365,8 @@
 		9A3511A8167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -5333,6 +5381,8 @@
 		9A3511A9167B7A6800C7484B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -5374,6 +5424,8 @@
 		9A94F279169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -5388,6 +5440,8 @@
 		9A94F27A169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -5423,6 +5477,8 @@
 		9AF50008167B82F70020241C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -5439,6 +5495,8 @@
 		9AF50009167B82F70020241C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";

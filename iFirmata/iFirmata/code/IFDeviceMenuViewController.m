@@ -34,7 +34,6 @@
     self.title = self.currentPeripheral.name;
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

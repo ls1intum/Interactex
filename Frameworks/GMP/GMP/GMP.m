@@ -247,7 +247,7 @@ enum
 
 
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)length{
-    
+    /*
      printf("\n ");
      NSLog(@"**Data received, length: %d**",length);
     
@@ -255,7 +255,7 @@ enum
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n ");
+    printf("\n ");*/
     
     uint8_t value = buffer[0];
     

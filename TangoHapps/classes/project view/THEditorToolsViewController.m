@@ -59,9 +59,9 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _editingTools = [NSArray arrayWithObjects:self.connectButton, self.duplicateButton, self.removeButton, self.lilypadItem, self.hideiPhoneItem, nil];
+    _editingTools = [NSArray arrayWithObjects:self.connectButton, self.duplicateButton, self.removeButton, self.lilypadItem, self.hideiPhoneItem,self.pushItem, nil];
     _lilypadTools = [NSArray arrayWithObjects:self.connectButton, self.duplicateButton, self.removeButton, self.lilypadItem, nil];
-    _simulatingTools = [NSArray arrayWithObjects:self.pinsModeItem,self.pushItem,nil];
+    _simulatingTools = [NSArray arrayWithObjects:self.pinsModeItem,nil];
     
     //self.highlightedItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
     self.highlightedItemTintColor = nil;
@@ -69,6 +69,8 @@ You should have received a copy of the GNU General Public License along with thi
     self.unselectedTintColor = [UIColor grayColor];
     
     [self addEditionButtons];
+    
+    //self.pushItem.tintColor = self.unselectedTintColor;
 }
 
 - (void)didReceiveMemoryWarning {

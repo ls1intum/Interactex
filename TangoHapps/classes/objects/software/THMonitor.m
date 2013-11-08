@@ -46,6 +46,7 @@
 
 float const kMonitorUpdateFrequency = 0.5f; //monitor updated every 0.5 seconds
 float const kMonitorNewValueX = 75.0f;
+float const kMonitorMargin = 5;
 
 -(void) loadMonitor{
     
@@ -56,38 +57,14 @@ float const kMonitorNewValueX = 75.0f;
 
     self.view = view;
     
-    /*
-    GLKView * view = [[GLKView alloc] init];
+    self.maxValue = 255;
+    self.minValue = -255;
     
-    view.frame = CGRectMake(0, 0, self.width, self.height);
-    view.layer.borderWidth = 1.0f;
-    view.contentMode = UIViewContentModeScaleAspectFit;
-    view.delegate = self;
-    self.view = view;
-    
-    //self.glView.context = ((CCGLView*)[CCDirector sharedDirector].view).context;
-    self.glView.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    
-    self.glView.drawableColorFormat = GLKViewDrawableColorFormatRGB565;
-    self.glView.drawableDepthFormat = GLKViewDrawableDepthFormatNone;
-    self.glView.drawableMultisample = GLKViewDrawableMultisampleNone;
-    
-    self.glController = [[GLKViewController alloc] init];
-    self.glController.preferredFramesPerSecond = 30;
-    self.glController.view = view;
-    self.glController.delegate = self;
-    self.glController.pauseOnWillResignActive = YES;
-    self.glController.paused = YES;
-    
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    
-    */
-    
-    //GLKVector4 colors[2] = {{1, 0, 0, 1},{0, 1, 0, 1}};
-    /*
-    THMonitorLine * line = [[THMonitorLine alloc] initWithColor:colors[0]];
-    [self.lines addObject:line];*/
-    
+    [self addLines];
+    [self addMethods];
+}
+
+-(void) addLines{
     
     self.lines = [NSMutableArray array];
     
@@ -98,25 +75,30 @@ float const kMonitorNewValueX = 75.0f;
     THMonitorLine * line2 = [[THMonitorLine alloc] initWithColor:red];
     
     line.view = self.view;
+    line2.view = self.view;
+    
     [self.lines addObject:line];
-    [self.lines addObject:line2];
+    //[self.lines addObject:line2];
     
-    [line addPointWithX:kMonitorNewValueX y:0];
-    [line addPointWithX:kMonitorNewValueX y:self.view.frame.size.height];
-    [line addPointWithX:kMonitorNewValueX y:0];
     /*
-    [line addPointWithX:self.view.frame.size.width y:0];
-    [line addPointWithX:self.view.frame.size.width y:self.view.frame.size.height];*/
+    [line addPoint:[self transformedPointForValue:0]];
+    [line addPoint:[self transformedPointForValue:self.view.frame.size.height/2]];
     
-    [self addMethods];
+    
+    [self start];*/
 }
 
 -(void) addMethods{
     
-    TFMethod * method =[TFMethod methodWithName:@"addValue1"];
-    method.firstParamType = kDataTypeFloat;
-    method.numParams = 1;
-    self.methods = [NSMutableArray arrayWithObject:method];
+    TFMethod * method1 =[TFMethod methodWithName:@"addValue1"];
+    method1.firstParamType = kDataTypeFloat;
+    method1.numParams = 1;
+    
+    TFMethod * method2 =[TFMethod methodWithName:@"addValue2"];
+    method2.firstParamType = kDataTypeFloat;
+    method2.numParams = 1;
+    
+    self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
 -(id) init{
@@ -134,10 +116,12 @@ float const kMonitorNewValueX = 75.0f;
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
+    
     self = [super initWithCoder:decoder];
     
-    [self loadMonitor];
-    
+    if(self){
+        [self loadMonitor];
+    }
     //self.image = [decoder decodeObjectForKey:@"image"];
     
     return self;
@@ -158,21 +142,29 @@ float const kMonitorNewValueX = 75.0f;
 
 #pragma mark - Methods
 
--(void) addValue1:(float) value{
+-(CGPoint) transformedPointForValue:(float) value{
+    float range = (self.maxValue - self.minValue);
+    value = (value / range) * (self.view.frame.size.height - 2 * kMonitorMargin);
     
+    return CGPointMake(self.view.frame.size.width - kMonitorMargin, self.view.frame.size.height/2 - value);
+}
+
+-(void) addValue1:(float) value{
+    //NSLog(@"adding value: %f",value);
     THMonitorLine * line = [self.lines objectAtIndex:0];
-    [line addPointWithX:kMonitorNewValueX y:value];
+    [line addPoint: [self transformedPointForValue:value]];
+}
+
+-(void) addValue2:(float) value{
+    
+    THMonitorLine * line = [self.lines objectAtIndex:1];
+    [line addPoint: [self transformedPointForValue:value]];
 }
 
 -(void) update{
     
     for (THMonitorLine * line in self.lines) {
         [line update:kMonitorUpdateFrequency];
-        
-        /*
-        [line addPointWithX:0 y:0];
-        [line addPointWithX:0 y:self.view.frame.size.height];*/
-        
     }
 }
 
@@ -192,11 +184,15 @@ float const kMonitorNewValueX = 75.0f;
 }
 
 -(void) willStartSimulating{
+    
     [self start];
+    
     [super willStartSimulating];
 }
 
 -(void) prepareToDie{
+    
+    [self stop];
     
     [super prepareToDie];
 }

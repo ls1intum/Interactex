@@ -13,21 +13,15 @@
 /*
 +(id) pinWithNumber:(NSInteger) number type:(IFPinType) type mode:(IFPinMode) mode{
     return [[GMPPin alloc] initWithNumber:number type:type mode:mode];
-}
+}*/
 
--(id) initWithNumber:(NSInteger) number type:(IFPinType) type mode:(IFPinMode) mode{
+-(id) initWithNumber:(NSInteger) number{
     self = [super init];
     if(self){
         self.number = number;
-        
-        self.type = type;
-        self.mode = mode;
-        if(_mode == IFPinModeInput){
-            _value = 1;
-        }
     }
     return self;
-}*/
+}
 
 #pragma mark - Archiving
 

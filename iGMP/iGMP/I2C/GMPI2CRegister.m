@@ -13,7 +13,7 @@
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeInt:self.number forKey:@"number"];
+    //[aCoder encodeInt:self.number forKey:@"number"];
     
 }
 

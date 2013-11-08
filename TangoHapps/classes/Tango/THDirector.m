@@ -149,8 +149,7 @@ static THDirector * _sharedInstance = nil;
     }
 }
 
--(void) server:(THServerController*)controller
- peerConnected:(NSString*)peerName {
+-(void) server:(THServerController*)controller peerConnected:(NSString*)peerName {
     [self updateServerButtonState];
 }
 
@@ -159,11 +158,10 @@ static THDirector * _sharedInstance = nil;
 }
 
 -(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
-    //self.serverItem.enabled = enabled;
+    [self updateServerButtonState];
 }
 
--(void) server:(THServerController*)controller
-isTransferring:(BOOL)transferring {
+-(void) server:(THServerController*)controller isTransferring:(BOOL)transferring {
     /*
      UIImage * image;
      if(transferring){

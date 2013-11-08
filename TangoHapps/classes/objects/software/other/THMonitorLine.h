@@ -20,11 +20,11 @@
 }
 
 @property (nonatomic) CGColorRef color;
-@property (nonatomic) UIView * view;
+@property (nonatomic, weak) UIView * view;
 @property (nonatomic) NSMutableArray * points;
 
 -(id) initWithColor:(CGColorRef) aColor;
--(void) addPointWithX:(float) x y:(float) y;
+-(void) addPoint:(CGPoint) point;
 -(void) update:(float) dt;
 
 @end

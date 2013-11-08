@@ -1,26 +1,30 @@
 //
-//  GMPViewController.h
-//  iGMP
+//  IFFirmataViewController.h
+//  iFirmata
 //
-//  Created by Juan Haladjian on 11/6/13.
-//  Copyright (c) 2013 Technical University Munich. All rights reserved.
+//  Created by Juan Haladjian on 6/27/13.
+//  Copyright (c) 2013 TUM. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "IFPinsController.h"
+#import "IFI2CComponentViewController.h"
 
-@class GMP;
-@class GMPDelegate;
+@class IFPinsController;
+@class CBPeripheral;
 
-@interface GMPViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate>
+@interface GMPViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
+{
+    BOOL connected;
+    BOOL goingToI2CScene;
+}
 
-- (IBAction)sendFirmwareTapped:(id)sender;
-- (IBAction)sendModesTapped:(id)sender;
-- (IBAction)sendGroupTapped:(id)sender;
-- (IBAction)sendResetTapped:(id)sender;
-- (IBAction)sendI2CTapped:(id)sender;
-- (IBAction)sendI2CStopTapped:(id)sender;
+@property (weak, nonatomic) IFPinsController * firmataPinsController;
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
-@property (nonatomic, strong) GMP * gmpController;
-@property (nonatomic, strong) GMPDelegate * gmpDelegate;
+@property (strong, nonatomic) IFI2CComponent *removingComponent;
+@property (strong, nonatomic) NSIndexPath *removingComponentPath;
+
+- (IBAction) optionsMenuTapped:(id)sender;
 
 @end

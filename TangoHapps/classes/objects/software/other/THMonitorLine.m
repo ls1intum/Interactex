@@ -29,28 +29,36 @@ float const kMonitorPixelsToSeconds = 5;
     return self;
 }
 
--(void) addPointWithX:(float) x y:(float) y{
+-(void) addPoint:(CGPoint) point{
     
-    if(self.points.count > 1){
+    CGRect rect = self.view.bounds;
+    
+    NSLog(@"enters: %f ,max %f min %f",point.y,rect.origin.y + rect.size.height/2, rect.origin.y);
+    
+    if(point.x < rect.origin.x){
+        point.x = rect.origin.x;
+    } else if(point.x > rect.origin.x + rect.size.width){
+        point.x = rect.origin.x + rect.size.width;
+    }
+    if(point.y < rect.origin.y){
+        point.y = rect.origin.y;
+    } else if(point.y > rect.origin.y + rect.size.height/2){
+        point.y = rect.origin.y + rect.size.height/2;
+    }
+    
+    Point2D * myPoint = [[Point2D alloc] init];
+    myPoint.x = point.x;
+    myPoint.y = point.y;
+    
+    [self.points addObject:myPoint];
+    
+    if(self.points.count >= 2){
         
-        CGRect rect = self.view.frame;
-        
-        if(x < rect.origin.x){
-            x = rect.origin.x;
-        } else if(x > rect.size.width){
-            x = rect.origin.x + rect.size.width;
-        }
-        if(y < rect.origin.y){
-            y = rect.origin.y;
-        } else if(y > rect.size.height){
-            y = rect.origin.y + rect.size.height;
-        }
-        
-        Point2D * previousPoint = [self.points objectAtIndex:self.points.count-1];
+        Point2D * previousPoint = [self.points objectAtIndex:self.points.count-2];
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         [path moveToPoint:CGPointMake(previousPoint.x, previousPoint.y)];
-        [path addLineToPoint:CGPointMake(x, y)];
+        [path addLineToPoint:CGPointMake(point.x, point.y)];
         
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
         shapeLayer.strokeColor = self.color;
@@ -60,12 +68,6 @@ float const kMonitorPixelsToSeconds = 5;
         
         [self.view.layer addSublayer:shapeLayer];
     }
-    
-    Point2D * point = [[Point2D alloc] init];
-    point.x = x;
-    point.y = y;
-    
-    [self.points addObject:point];
 }
 
 
@@ -112,9 +114,9 @@ float const kMonitorPixelsToSeconds = 5;
 
 -(void) update:(float) dt{
     
-    float dx = 10;
-    NSInteger removeUntilIndex = [self moveVerticesLeftBy:dx];
+    float dx = 1;
     
+    NSInteger removeUntilIndex = [self moveVerticesLeftBy:dx];
     [self removeVerticesUntilIndex:removeUntilIndex];
     
     /*
