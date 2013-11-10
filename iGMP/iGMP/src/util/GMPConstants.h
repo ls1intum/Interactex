@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
-extern NSString * const IFNotificationModeChanged;
+extern NSString * const GMPNotificationModeChanged;
 
-extern NSInteger const IFTextFieldHeight;
+extern NSInteger const GMPTextFieldHeight;
 
-extern NSString * const IFDefaultsI2CComponents;
+extern NSString * const GMPDefaultI2CComponents;

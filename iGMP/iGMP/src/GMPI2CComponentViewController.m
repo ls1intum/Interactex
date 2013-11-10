@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 TUM. All rights reserved.
 //
 
-#import "IFI2CComponentViewController.h"
-#import "IFI2CComponent.h"
-#import "IFI2CRegister.h"
-#import "IFI2CRegisterViewController.h"
-#import "IFHelper.h"
+#import "GMPI2CComponentViewController.h"
+#import "GMPI2CComponent.h"
+#import "GMPI2CRegister.h"
+#import "GMPI2CRegisterViewController.h"
+#import "GMPHelper.h"
 
-@implementation IFI2CComponentViewController
+@implementation GMPI2CComponentViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,7 +56,7 @@
     self.addressTextField.text = [NSString stringWithFormat:@"%d",self.component.address];
 }
 
--(void) setComponent:(IFI2CComponent *)component{
+-(void) setComponent:(GMPI2CComponent *)component{
     if(_component != component){
         _component = component;
         [self reloadUI];
@@ -86,14 +86,14 @@
 #pragma mark - Register Observers
 
 -(void) addRegisterObservers{
-    for (IFI2CRegister * reg in self.component.registers) {
+    for (GMPI2CRegister * reg in self.component.registers) {
         [reg addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
         [reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
 
 -(void) removeRegisterObservers{
-    for (IFI2CRegister * reg in self.component.registers) {
+    for (GMPI2CRegister * reg in self.component.registers) {
         [reg removeObserver:self forKeyPath:@"value"];
         [reg removeObserver:self forKeyPath:@"notifies"];
     }
@@ -115,9 +115,11 @@
 
 - (IBAction)addRegisterTapped:(id)sender {
     
-    IFI2CRegister * newRegister = [[IFI2CRegister alloc] init];
+    GMPI2CRegister * newRegister = [[GMPI2CRegister alloc] init];
     newRegister.number = 32;
-    newRegister.size = 3;
+    newRegister.numElements = 3;
+    newRegister.sizePerElement = 2;
+    
     
     [self.delegate i2cComponent:self.component addedRegister:newRegister];
     
@@ -167,9 +169,9 @@
     
     UITableViewCell * cell = [self.table dequeueReusableCellWithIdentifier:@"i2cRegisterCell"];
     
-    IFI2CRegister * reg = [self.component.registers objectAtIndex:idx];
+    GMPI2CRegister * reg = [self.component.registers objectAtIndex:idx];
     cell.textLabel.text =  [NSString stringWithFormat:@"Register #%d", reg.number];
-    cell.detailTextLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:reg];
+    cell.detailTextLabel.text = [GMPHelper valueAsBracketedStringForI2CRegister:reg];
     
     return cell;
 }
@@ -179,9 +181,9 @@
         
         NSIndexPath * indexPath = [self.table indexPathForSelectedRow];
         NSInteger row = indexPath.row;
-        IFI2CRegister * reg = [self.component.registers objectAtIndex:row];
+        GMPI2CRegister * reg = [self.component.registers objectAtIndex:row];
         
-        IFI2CRegisterViewController * viewController = (IFI2CRegisterViewController*) segue.destinationViewController;
+        GMPI2CRegisterViewController * viewController = (GMPI2CRegisterViewController*) segue.destinationViewController;
         viewController.reg = reg;
         viewController.delegate = self;
     }
@@ -189,7 +191,7 @@
 
 #pragma mark - RegisterController delegate
 
--(NSIndexPath*) indexPathForRegister:(IFI2CRegister*) reg{
+-(NSIndexPath*) indexPathForRegister:(GMPI2CRegister*) reg{
     NSInteger row = [self.component.registers indexOfObject:reg];
     if(row>= 0 && row < self.component.registers.count){
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:0];
@@ -198,22 +200,22 @@
     return nil;
 }
 
--(void) i2cRegister:(IFI2CRegister *)reg wroteData:(NSString *)data{
+-(void) i2cRegister:(GMPI2CRegister *)reg wroteData:(NSString *)data{
     [self.delegate i2cComponent:self.component wroteData:data toRegister:reg];
 }
 
--(void) i2cRegister:(IFI2CRegister*) reg changedNumber:(NSInteger) newNumber{
+-(void) i2cRegister:(GMPI2CRegister*) reg changedNumber:(NSInteger) newNumber{
     NSIndexPath * indexPath = [self indexPathForRegister:reg];
     [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Register Observer
 
--(void) handleStartedNotifyingRegister:(IFI2CRegister*) reg{
+-(void) handleStartedNotifyingRegister:(GMPI2CRegister*) reg{
     
 }
 
--(void) handleStoppedNotifyingRegister:(IFI2CRegister*) reg{
+-(void) handleStoppedNotifyingRegister:(GMPI2CRegister*) reg{
     
     NSIndexPath * indexPath = [self indexPathForRegister:reg];
     [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -231,7 +233,7 @@
     self.removingRegisterPath = nil;
 }
 
--(void) i2cRegisterRemoved:(IFI2CRegister *)reg{
+-(void) i2cRegisterRemoved:(GMPI2CRegister *)reg{
     
     //[reg removeObserver:self forKeyPath:@"value"];
     
@@ -274,7 +276,7 @@
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
         [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     } else if([keyPath isEqualToString:@"notifies"]){
-        IFI2CRegister * reg = object;
+        GMPI2CRegister * reg = object;
         if(reg.notifies){
             [self handleStartedNotifyingRegister:reg];
         } else {

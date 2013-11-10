@@ -195,37 +195,96 @@ NSString * const kGMPFirmwareName = @"eGMCP1.0";
 -(void) gmpController:(GMP*) gmpController didReceiveFirmwareName: (NSString*) name{
     
     if([name isEqualToString:kGMPFirmwareName]){
-        [self.gmpController sendCapabilitiesAndReportRequest];
+        [self.gmpController sendResetRequest];
+        [self.gmpController sendCapabilitiesRequest];
     }
 }
 
--(void) firmataController:(GMP*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
+/*
+-(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode{
+ 
+     int pinNumber = buffer[2];
+     int mode = buffer[3];
+     
+     //NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
+     
+     if((pinInfo[pinNumber].supportedModes & (1<<IFPinModeInput) || pinInfo[pinNumber].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[pinNumber].supportedModes & (1<<IFPinModeAnalog))){
+     
+     IFPin * pin = [IFPin pinWithNumber:pinNumber type:IFPinTypeDigital mode:mode];
+     [self.digitalPins addObject:pin];
+     
+     int value = buffer[4];
+     if (length > 6) value |= (buffer[5] << 7);
+     if (length > 7) value |= (buffer[6] << 14);
+     pin.value = value;
+     
+     [pin addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
+     [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+     
+     [self.delegate firmataDidUpdateDigitalPins:self];
+     
+     if(self.digitalPins.count % 4 == 0){
+     [self makePinQueryForSubsequentPinsStartingAtPin:pinNumber+1];
+     }
+     
+     } else {
+     
+     // NSLog(@"pin %d is in mode: %d",pinNumber,mode);
+     
+     }
+}*/
+
+-(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPin:(pin_t) pin{
     
-    /*
-    for (GMPPin * pin in self.analogPins) {
-        if (pin.analogChannel == channel) {
-            pin.value = value;
-            return;
-        }
-    }*/
+    NSLog(@"received capability %d %d",pin.index,pin.capability);
+    
+    GMPPin * pinObj;
+    
+    if(pin.capability | kGMPCapabilityGPIO){
+        
+        pinObj = [[GMPPin alloc] initWithNumber:pin.index];
+        [self.digitalPins addObject:pinObj];
+        
+        [self.delegate pinsControllerDidUpdateDigitalPins:self];
+        
+    } else if(pin.capability | kGMPCapabilityADC){
+        
+        pinObj = [[GMPPin alloc] initWithNumber:pin.index];
+        [self.digitalPins addObject:pinObj];
+        [pinObj addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
+        
+        [self.delegate pinsControllerDidUpdateAnalogPins:self];
+    }
+    
+    [pinObj addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
+    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    
 }
 
--(void) firmataController:(GMP*) gmpController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
-    
-    /*
-    IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
-    int mask = 1;
-    
-    for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
-        IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
-        if (pinObj.mode == IFPinModeInput) {
-            uint32_t val = (value & mask) ? 1 : 0;
-            if (pinObj.value != val) {
-                pinObj.value = val;
-            }
-        }
-    }*/
+-(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode{
+    GMPPin * pinObj;
+    if(pin < self.digitalPins.count){
+        pinObj = [self.digitalPins objectAtIndex:pin];
+    } else  {
+        pinObj = [self.analogPins objectAtIndex:pin - self.digitalPins.count];
+    }
+    pinObj.mode = mode;
 }
+
+-(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
+    
+    NSLog(@"digital msg for pin: %d",pin);
+    GMPPin * pinObj = [self.digitalPins objectAtIndex:pin];
+    pinObj.value = value;
+}
+
+-(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
+    
+    NSLog(@"analog msg for pin: %d",pin);
+    GMPPin * pinObj = [self.analogPins objectAtIndex:pin];
+    pinObj.value = value;
+}
+
 /*
 //makes the pin query for the initial pins. The other queries happen later
 -(void) sendInitialPinStateQuery{
@@ -246,38 +305,6 @@ NSString * const kGMPFirmwareName = @"eGMCP1.0";
     [self.firmataController sendPinQueryForPinNumbers:buf length:len];
 }*/
 
--(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPin:(pin_t) pin{
-    
-    NSLog(@"received capability %d %d",pin.index,pin.capability);
-    
-    /*
-    for (int i=2, n=0, pin=0; i<length; i++) {
-        if (buffer[i] == 127) {
-            pin++;
-            n = 0;
-            continue;
-        }
-        if (n == 0) {
-            pinInfo[pin].supportedModes |= (1<<buffer[i]);
-        }
-        n = n ^ 1;
-    }
-    
-    [self countPins];
-    [self createAnalogPinsFromBuffer:buffer length:length];
-    [self sendInitialPinStateQuery];*/
-}
-
--(void) firmataController:(GMP*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
-    /*
-    int pin=0;
-    for (int i=2; i<length-1; i++) {
-        
-        pinInfo[pin].analogChannel = buffer[i];
-        pin++;
-    }*/
-}
-
 -(void) makePinQueryForSubsequentPinsStartingAtPin:(int) pin{
     /*
     NSInteger numPinsToSend = 0;
@@ -292,41 +319,6 @@ NSString * const kGMPFirmwareName = @"eGMCP1.0";
     }
     if(numPinsToSend > 0){
         [self.firmataController sendPinQueryForPinNumbers:pinNumbers length:numPinsToSend];
-    }*/
-}
-
-
--(void) gmpController:(GMP*) gmpController didReceivePinStateResponse:(uint8_t*) buffer length:(NSInteger) length{
-    
-/*
-    int pinNumber = buffer[2];
-    int mode = buffer[3];
-    
-    //NSLog(@"Handles PinState Response %d %d",pinNumber,mode);
-    
-    if((pinInfo[pinNumber].supportedModes & (1<<IFPinModeInput) || pinInfo[pinNumber].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[pinNumber].supportedModes & (1<<IFPinModeAnalog))){
-        
-        IFPin * pin = [IFPin pinWithNumber:pinNumber type:IFPinTypeDigital mode:mode];
-        [self.digitalPins addObject:pin];
-        
-        int value = buffer[4];
-        if (length > 6) value |= (buffer[5] << 7);
-        if (length > 7) value |= (buffer[6] << 14);
-        pin.value = value;
-        
-        [pin addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
-        [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-        
-        [self.delegate firmataDidUpdateDigitalPins:self];
-        
-        if(self.digitalPins.count % 4 == 0){
-            [self makePinQueryForSubsequentPinsStartingAtPin:pinNumber+1];
-        }
-        
-    } else {
-        
-       // NSLog(@"pin %d is in mode: %d",pinNumber,mode);
-        
     }*/
 }
 

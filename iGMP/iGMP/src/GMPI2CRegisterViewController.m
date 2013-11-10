@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 TUM. All rights reserved.
 //
 
-#import "IFI2CRegisterViewController.h"
-#import "IFI2CRegister.h"
+#import "GMPI2CRegisterViewController.h"
+#import "GMPI2CRegister.h"
 
-@implementation IFI2CRegisterViewController
+@implementation GMPI2CRegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,15 +27,15 @@
     defaultButtonColor = [self.startButton titleColorForState:UIControlStateNormal];
           
     CGRect frame = self.registerTextField.frame;
-    frame.size.height = IFTextFieldHeight;
+    frame.size.height = GMPTextFieldHeight;
     self.registerTextField.frame = frame;
     
     frame = self.sendTextField.frame;
-    frame.size.height = IFTextFieldHeight;
+    frame.size.height = GMPTextFieldHeight;
     self.sendTextField.frame = frame;
     
     frame = self.sizeTextField.frame;
-    frame.size.height = IFTextFieldHeight;
+    frame.size.height = GMPTextFieldHeight;
     self.sizeTextField.frame = frame;
     
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
@@ -88,7 +88,7 @@
 
 -(void) updateValueLabel{
 
-    self.valueLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:self.reg];
+    self.valueLabel.text = [GMPHelper valueAsBracketedStringForI2CRegister:self.reg];
 }
 
 - (IBAction)startTapped:(id)sender {
@@ -132,7 +132,7 @@
     [self updateValueLabel];
 }
 
--(void) setRegister:(IFI2CRegister *)reg{
+-(void) setRegister:(GMPI2CRegister *)reg{
     if(_reg != reg){
         _reg = reg;
         [self reloadUI];
@@ -163,7 +163,7 @@
     
     [self checkUpdateNumber];
     
-    self.reg.size = [self.sizeTextField.text integerValue];
+    self.reg.numElements = [self.sizeTextField.text integerValue];
     
     [self updateSizeText];
 }

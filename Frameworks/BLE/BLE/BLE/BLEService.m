@@ -499,13 +499,18 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     if(characteristic == self.rxCharacteristic){
         
-        /*
+        
+        uint8_t * debugData;
+        NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
+        
         printf("receiving:\n");
         for (int i = 0 ; i < length; i++) {
-            int value = data[i];
+            int value = debugData[i];
             printf("%X ",value);
         }
-        printf("\n");*/
+    
+        printf("\n");
+            
         
         if(self.shouldUseCRC){
             

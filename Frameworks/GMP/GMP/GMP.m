@@ -24,8 +24,10 @@ enum
     PIN_MODE_QUERY,
     PIN_MODE_RESPONSE,
     DIO_INPUT,
+    DIO_INPUT_STREAM,
     DIO_OUTPUT,
     ADC_READ,
+	ADC_READ_STREAM,
     DAC_WRITE,
     PWM_CONFIG,
     I2C_CONFIG,
@@ -48,7 +50,6 @@ enum
     ACK = 0x81,
 };
 
-
 @implementation GMP
 
 #pragma mark - Send Messages
@@ -61,11 +62,18 @@ enum
 }
 
 
--(void) sendCapabilitiesAndReportRequest{
+-(void) sendCapabilitiesRequest{
     
     uint8_t data = CAPABILITY_QUERY;
     
     [self.communicationModule sendData:&data count:1];
+}
+
+-(void) sendResetRequest{
+    
+    uint8_t msg = SYS_RESET;
+    
+    [self.communicationModule sendData:&msg count:1];
 }
 
 -(void) sendPinModeForPin:(NSInteger) pin mode:(GMPPinMode) mode {
@@ -93,80 +101,94 @@ enum
         
         buf[i*2+2] = pinModes[i].index;
         buf[i*2+3] = pinModes[i].capability;
-        
-        [self.communicationModule sendData:buf count:bufLength];
-    }
-}
-
-/*
--(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
-    
-    uint8_t buf[length * 4];
-    NSInteger bufLength = 0;
-    
-    for (int i = 0; i < length; i++) {
-        
-        buf[bufLength++] = START_SYSEX;
-        buf[bufLength++] = PIN_STATE_QUERY;
-        buf[bufLength++] = pinNumbers[i];
-        buf[bufLength++] = END_SYSEX;
-        
     }
     
     [self.communicationModule sendData:buf count:bufLength];
-    //    [self.bleService sendData:buf count:bufLength];
 }
 
--(void) sendPinQueryForPinNumber:(NSInteger) pinNumber{
-    
-    uint8_t buf[4];
-    buf[0] = START_SYSEX;
-    buf[1] = PIN_STATE_QUERY;
-    buf[2] = pinNumber;
-    buf[3] = END_SYSEX;
-    
-    
-    [self.communicationModule sendData:buf count:4];
-    //    [self.bleService sendData:buf count:4];
-}
-*/
-
-/*
--(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value{
-    
-	if (pin <= 15 && value <= 16383) {
-		uint8_t buf[3];
-		buf[0] = 0xE0 | pin;
-		buf[1] = value & 0x7F;
-		buf[2] = (value >> 7) & 0x7F;
-        
-        
-        [self.communicationModule sendData:buf count:3];
-        //        [self.bleService sendData:buf count:3];
-        
-	}
-}
-
--(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value{
+-(void) sendDigitalOutputForPin:(NSInteger) pin value:(NSInteger) value{
     
     uint8_t buf[3];
-    buf[0] = 0x90 | port;
-    buf[1] = value & 0x7F;
-    buf[2] = (value >> 7) & 0x7F;
+    
+    buf[0] = DIO_OUTPUT;
+    buf[1] = pin;
+    buf[2] = value;
     
     [self.communicationModule sendData:buf count:3];
 }
 
--(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
+-(void) sendDigitalReadForPin:(NSInteger) pin{
     
     uint8_t buf[2];
-    buf[0] = 0xC0 | pin;
-    buf[1] = reports;
+    
+    buf[0] = DIO_INPUT;
+    buf[1] = pin;
     
     [self.communicationModule sendData:buf count:2];
-    //[self.communicationModule sendData:buf count:2];
 }
-*/
+
+-(void) sendReportRequestForDigitalPin:(NSInteger) pin reports:(BOOL) reports{
+    
+    uint8_t buf[3];
+    
+    buf[0] = DIO_INPUT_STREAM;
+    buf[1] = pin;
+    buf[2] = reports;
+    
+    [self.communicationModule sendData:buf count:3];
+}
+
+
+-(void) sendAnalogReadForPin:(NSInteger) pin{
+    
+    uint8_t buf[2];
+    
+    buf[0] = ADC_READ;
+    buf[1] = pin;
+    
+    [self.communicationModule sendData:buf count:2];
+}
+
+-(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
+    
+    uint8_t buf[3];
+    
+    buf[0] = ADC_READ_STREAM;
+    buf[1] = pin;
+    buf[2] = reports;
+    
+    [self.communicationModule sendData:buf count:3];
+}
+
+-(void) sendAnalogWriteForPin:(NSInteger) pin value:(NSInteger) value{
+    
+    uint8_t buf[3];
+    
+    buf[0] = DAC_WRITE;
+    buf[1] = pin;
+    buf[2] = value;
+    
+    [self.communicationModule sendData:buf count:3];
+}
+
+-(void)sendI2CConfigMessage{
+    
+    uint8_t buf[3];
+    
+    buf[0] = I2C_CONFIG;
+    buf[1] = 0;
+    buf[2] = 0;
+    
+    [self.communicationModule sendData:buf count:3];
+    
+    _isI2CEnabled = YES;
+}
+
+-(void) checkEnableI2C{
+    if (!self.isI2CEnabled) {
+        [self sendI2CConfigMessage];
+    }
+}
 
 -(void) sendI2CReadAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
     
@@ -182,6 +204,8 @@ enum
 
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
     
+    [self checkEnableI2C];
+    
     uint8_t buf[4];
     
     buf[0] = I2C_READ_STREAM;
@@ -193,19 +217,27 @@ enum
 }
 
 
--(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg {
+-(void) sendI2CWriteToAddress:(NSInteger) address reg:(NSInteger) reg values:(uint8_t*) values numValues:(NSInteger) numValues {
     
-    uint8_t buf[4];
+    [self checkEnableI2C];
+    
+    NSInteger size = 2*numValues + 4;
+    uint8_t buf[size];
     
     buf[0] = I2C_WRITE;
     buf[1] = address;
     buf[2] = reg;
-    buf[3] = value;
+    buf[3] = numValues;
     
-    [self.communicationModule sendData:buf count:4];
+    memcpy(buf + 4, values, 2*numValues);
+    
+    [self.communicationModule sendData:buf count:size];
 }
 
 -(void) sendI2CStartWritingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
+    
+    [self checkEnableI2C];
+    
     /*
     uint8_t buf[4];
     
@@ -219,28 +251,14 @@ enum
 
 -(void) sendI2CStopStreamingAddress:(NSInteger) address{
     
+    [self checkEnableI2C];
+    
     uint8_t buf[2];
     
     buf[0] = I2C_STOP_STREAM;
     buf[1] = address;
     
     [self.communicationModule sendData:buf count:2];
-}
-
--(void) sendI2CConfigMessage{
-    /*
-    uint8_t buf[5];
-    
-    [self.communicationModule sendData:buf count:5];
-    //[self.communicationModule sendData:buf count:5];
-     */
-}
-
--(void) sendResetRequest{
-    
-    uint8_t msg = SYS_RESET;
-    
-    [self.communicationModule sendData:&msg count:1];
 }
 
 #pragma mark - Receive Messages
@@ -279,21 +297,37 @@ enum
             currentPin.index = buffer[i];
             currentPin.capability = buffer[i+1];
             
-            pins[numPins++] = currentPin;
+            [self.delegate gmpController:self didReceiveCapabilityResponseForPin:currentPin];
         }
         
-        /*
-        NSLog(@"capabilities!");
-        for (int i = 0 ; i < numPins; i++) {
-            NSLog(@"pin: %d %d",pins[i].index,pins[i].mode);
-        }*/
+    } else if(value == PIN_MODE_RESPONSE){
+        
+        NSInteger pin = buffer[1];
+        uint8_t mode = buffer[2];
+        [self.delegate gmpController:self didReceivePinStateResponseForPin:pin mode:mode];
+        
+    } else if(value == DIO_INPUT){
+        
+        NSInteger pin = buffer[1];
+        BOOL value = buffer[2];
+        [self.delegate gmpController:self didReceiveDigitalMessageForPin:pin value:value];
+        
+    } else if(value == ADC_READ){
+        
+        NSInteger pin = buffer[1];
+        uint8_t value1 = buffer[2];
+        uint8_t value2 = buffer[3];
+        
+        NSInteger value = value1 | (value2 << 7);
+        
+        [self.delegate gmpController:self didReceiveAnalogMessageForPin:pin value:value];
         
     } else if(value == I2C_READ){
         /*
-        for(int i = 1 ; i < length ; i++){
-            uint8_t val = buffer[i];
-            NSLog(@"received i2c value: %d",val);
-        }*/
+         for(int i = 1 ; i < length ; i++){
+         uint8_t val = buffer[i];
+         NSLog(@"received i2c value: %d",val);
+         }*/
         
         uint8_t buf[length-1];
         memcpy(buf, buffer+1, length-1);

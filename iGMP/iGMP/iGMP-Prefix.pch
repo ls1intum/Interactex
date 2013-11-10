@@ -17,3 +17,5 @@
 
 #import "BLE.h"
 #import "GMP.h"
+#import "GMPConstants.h"
+#import "GMPHelper.h"

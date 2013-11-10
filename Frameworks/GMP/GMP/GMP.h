@@ -31,16 +31,16 @@ typedef struct
 // bit 3~1 001: pwm, 010: adc, 011: dac, 100: comperator
 // bit 7~4 0001: uart, 0010: spi, 0100: i2c, 1000: one wire
 typedef enum {
-    kGMPModeGPIO = 0x01,
-    kGMPModePWM	= 0x02,
-    kGMPModeADC	= 0x04,
-    kGMPModeDAC	= 0x06,
-    kGMPModeCOMP = 0x08,
-    kGMPModeUART = 0x10,
-    kGMPModeSPI	= 0x20,
-    kGMPModeI2C	= 0x40,
-    kGMPModeOneWire = 0x80
-} GMPPinMode;
+    kGMPCapabilityGPIO = 0x01,
+    kGMPCapabilityPWM	= 0x02,
+    kGMPCapabilityADC	= 0x04,
+    kGMPCapabilityDAC	= 0x06,
+    kGMPCapabilityCOMP = 0x08,
+    kGMPCapabilityUART = 0x10,
+    kGMPCapabilitySPI	= 0x20,
+    kGMPCapabilityI2C	= 0x40,
+    kGMPCapabilityOneWire = 0x80
+} GMPPinCapability;
 
 //servo?
 
@@ -48,17 +48,18 @@ typedef enum {
 typedef enum{
     IFPinTypeDigital,
     IFPinTypeAnalog,
-} IFPinType;
+} IFPinType;*/
 
 typedef enum{
-    IFPinModeInput,
-    IFPinModeOutput,
-    IFPinModeAnalog,
-    IFPinModePWM,
-    IFPinModeServo,
-    IFPinModeShift,
-    IFPinModeI2C
-} IFPinMode;*/
+    kGMPPinModeInput,
+    kGMPPinModeOutput,
+    kGMPPinModeAnalog,
+    kGMPPinModePWM,
+    kGMPPinModeServo,
+    kGMPPinModeShift,
+    kGMPPinModeI2C
+} GMPPinMode;
+
 /*
 typedef enum {
     kGMPParsinStateNone,
@@ -74,11 +75,11 @@ typedef enum {
 
 -(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPin:(pin_t) pin;
 
--(void) gmpController:(GMP*) gmpController didReceivePinStateResponse:(uint8_t*) buffer length:(NSInteger) length;
-/*
--(void) gmpController:(GMP*) gmpController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value;*/
+-(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode;
 
--(void) gmpController:(GMP*) gmpController didReceiveDigitalMessageForPin:(NSInteger) pin value:(NSInteger) value;
+-(void) gmpController:(GMP*) gmpController didReceiveAnalogMessageForPin:(NSInteger) pin value:(NSInteger) value;
+
+-(void) gmpController:(GMP*) gmpController didReceiveDigitalMessageForPin:(NSInteger) pin value:(BOOL) value;
 
 -(void) gmpController:(GMP*) gmpController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length;
 
@@ -86,40 +87,44 @@ typedef enum {
 
 @interface GMP : NSObject
 {
-    pin_t pins[64];
+    //pin_t pins[64];
     NSInteger numPins;
+    
 }
 
 @property (nonatomic, strong) GMPCommunicationModule * communicationModule;
 @property (nonatomic, weak) id<GMPControllerDelegate> delegate;
-@property (nonatomic, readonly) BOOL startedI2C;
 
+@property (nonatomic, readonly) BOOL isI2CEnabled;
+
+//Initialization / Termination
 -(void) sendFirmwareRequest;
--(void) sendCapabilitiesAndReportRequest;
+-(void) sendCapabilitiesRequest;
+-(void) sendResetRequest;
+
+//Modes
 -(void) sendPinModeForPin:(NSInteger) pin mode:(GMPPinMode) mode;
 -(void) sendPinModesForPins:(pin_t*) pinModes count:(NSInteger) count;
 
-/*
--(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length;
--(void) sendPinQueryForPinNumber:(NSInteger) pinNumber;
+//Digital
+-(void) sendDigitalOutputForPin:(NSInteger) pin value:(NSInteger) value;
+-(void) sendDigitalReadForPin:(NSInteger) pin;
+-(void) sendReportRequestForDigitalPin:(NSInteger) pin reports:(BOOL) reports;
 
--(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value;
--(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value;
+//Analog
+-(void) sendAnalogReadForPin:(NSInteger) pin;
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports;
- */
+-(void) sendAnalogWriteForPin:(NSInteger) pin value:(NSInteger) value;
 
 //I2C
-
 -(void) sendI2CReadAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size;
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size;
-
--(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg;
+-(void) sendI2CWriteToAddress:(NSInteger) address reg:(NSInteger) reg values:(uint8_t*) values numValues:(NSInteger) numValues;
 
 -(void) sendI2CStopStreamingAddress:(NSInteger) address;
 -(void) sendI2CConfigMessage;
 
- -(void) sendResetRequest;
-
+//Other
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength;
 
 @end

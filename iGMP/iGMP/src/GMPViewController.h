@@ -7,22 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IFPinsController.h"
-#import "IFI2CComponentViewController.h"
+#import "GMPPinsController.h"
+#import "GMPI2CComponentViewController.h"
 
-@class IFPinsController;
+@class GMPPinsController;
 @class CBPeripheral;
 
-@interface GMPViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
+@interface GMPViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, GMPControllerPinsDelegate, GMPI2CComponentDelegate, UIActionSheetDelegate>
 {
     BOOL connected;
     BOOL goingToI2CScene;
 }
 
-@property (weak, nonatomic) IFPinsController * firmataPinsController;
+@property (weak, nonatomic) GMPPinsController * gmpPinsController;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 
-@property (strong, nonatomic) IFI2CComponent *removingComponent;
+@property (strong, nonatomic) GMPI2CComponent *removingComponent;
 @property (strong, nonatomic) NSIndexPath *removingComponentPath;
 
 - (IBAction) optionsMenuTapped:(id)sender;

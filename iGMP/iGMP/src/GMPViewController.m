@@ -7,15 +7,16 @@
 //
 
 #import "GMPViewController.h"
-#import "IFPinCell.h"
-#import "IFPin.h"
-#import "IFPinsController.h"
-#import "IFI2CComponentCell.h"
-#import "AppDelegate.h"
-#import "IFI2CComponent.h"
-#import "IFFirmataCommunicationModule.h"
-#import "IFFirmataBLECommunicationModule.h"
-#import "IFI2CRegister.h"
+#import "GMPPinCell.h"
+#import "GMPPin.h"
+#import "GMPPinsController.h"
+#import "GMPI2CComponentCell.h"
+#import "GMPAppDelegate.h"
+#import "GMPI2CComponent.h"
+#import "GMPCommunicationModule.h"
+#import "GMPBLECommunicationModule.h"
+#import "GMPI2CRegister.h"
+#import "GMPConstants.h"
 
 @implementation GMPViewController
 
@@ -32,24 +33,24 @@
     
     [super viewDidLoad];
     
-    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
-    self.firmataPinsController = appDelegate.firmataController;
+    GMPAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.gmpPinsController = appDelegate.gmpController;
     
     [self loadPersistedObjects];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     
-    IFFirmataBLECommunicationModule * commModule = [[IFFirmataBLECommunicationModule alloc] init];
+    GMPBLECommunicationModule * commModule = [[GMPBLECommunicationModule alloc] init];
     commModule.bleService = [BLEDiscovery sharedInstance].connectedService;
     
-    self.firmataPinsController.firmataController.communicationModule = commModule;
+    self.gmpPinsController.gmpController.communicationModule = commModule;
     [BLEDiscovery sharedInstance].connectedService.dataDelegate = commModule;
-    commModule.firmataController = self.firmataPinsController.firmataController;
+    commModule.gmpController = self.gmpPinsController.gmpController;
     
-    if(self.firmataPinsController.analogPins.count == 0 && self.firmataPinsController.digitalPins.count == 0){
+    if(self.gmpPinsController.analogPins.count == 0 && self.gmpPinsController.digitalPins.count == 0){
         
-        [self.firmataPinsController.firmataController sendFirmwareRequest];
+        [self.gmpPinsController.gmpController sendFirmwareRequest];
     }
     
     [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
@@ -65,8 +66,8 @@
 -(void) viewWillDisappear:(BOOL)animated{
     if(!goingToI2CScene){
         
-        [self.firmataPinsController stopReportingI2CComponents];
-        [self.firmataPinsController stopReportingAnalogPins];
+        [self.gmpPinsController stopReportingI2CComponents];
+        [self.gmpPinsController stopReportingAnalogPins];
         [self persistObjects];
     }
     goingToI2CScene = NO;
@@ -74,15 +75,15 @@
 
 -(void) loadPersistedObjects{
         
-    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:IFDefaultsI2CComponents];
+    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:GMPDefaultI2CComponents];
     if(data){
-        self.firmataPinsController.i2cComponents = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        self.gmpPinsController.i2cComponents = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     }
 }
 
 -(void) persistObjects{
-    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.firmataPinsController.i2cComponents];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:IFDefaultsI2CComponents];
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.gmpPinsController.i2cComponents];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:GMPDefaultI2CComponents];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -92,38 +93,31 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) setFirmataPinsController:(IFPinsController *)firmataController{
-    if(_firmataPinsController != firmataController){
-        _firmataPinsController = firmataController;
-        _firmataPinsController.delegate = self;
+-(void) setGmpPinsController:(GMPPinsController *)firmataController{
+    if(_gmpPinsController != firmataController){
+        _gmpPinsController = firmataController;
+        _gmpPinsController.delegate = self;
     }
 }
 
 #pragma mark FirmataDelegate
 
--(void) firmataDidUpdateDigitalPins:(IFPinsController *)firmataController{
+-(void) pinsControllerDidUpdateDigitalPins:(GMPPinsController *)firmataController{
     [self.table reloadData];
-    /*
-    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:0];
-    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
 }
 
--(void) firmataDidUpdateAnalogPins:(IFPinsController *)firmataController{
-    [self.table reloadData];/*
-    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:1];
-    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
+-(void) pinsControllerDidUpdateAnalogPins:(GMPPinsController *)firmataController{
+    [self.table reloadData];
 }
 
--(void) firmataDidUpdateI2CComponents:(IFPinsController *)firmataController{
-
-    //[self.table reloadData];
+-(void) pinsControllerDidUpdateI2CComponents:(GMPPinsController *)firmataController{
     
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:2];
     [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
 }
 
--(void) firmata:(IFPinsController *)firmataController didUpdateTitle:(NSString *)title{
-    self.title = title;
+-(void) pinsController:(GMPPinsController*) pinsController didUpdateFirmwareName:(NSString*) firmwareName{
+    self.title = firmwareName;
 }
 
 #pragma mark TableViewDataSource
@@ -144,11 +138,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == 0){
-        return self.firmataPinsController.digitalPins.count;
+        return self.gmpPinsController.digitalPins.count;
     } else if(section == 1){
-        return self.firmataPinsController.analogPins.count;
+        return self.gmpPinsController.analogPins.count;
     } else {
-        return self.firmataPinsController.i2cComponents.count;
+        return self.gmpPinsController.i2cComponents.count;
     }
 }
 
@@ -162,7 +156,7 @@
     if(indexPath.section == 0 || indexPath.section == 1){
         NSInteger pinNumber = indexPath.row;
         BOOL digital = (indexPath.section == 0);
-        IFPin * pin = (digital ? [self.firmataPinsController.digitalPins objectAtIndex:pinNumber] : [self.firmataPinsController.analogPins objectAtIndex:pinNumber]);
+        GMPPin * pin = (digital ? [self.gmpPinsController.digitalPins objectAtIndex:pinNumber] : [self.gmpPinsController.analogPins objectAtIndex:pinNumber]);
         
         if(digital){
             cell = [self.table dequeueReusableCellWithIdentifier:@"digitalCell"];
@@ -170,14 +164,14 @@
             cell = [self.table dequeueReusableCellWithIdentifier:@"analogCell"];
         }
         
-        ((IFPinCell*)cell).pin = pin;
+        ((GMPPinCell*)cell).pin = pin;
     } else {
         
         NSInteger idx = indexPath.row;
-        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:idx];
+        GMPI2CComponent * component = [self.gmpPinsController.i2cComponents objectAtIndex:idx];
         
          cell = [self.table dequeueReusableCellWithIdentifier:@"i2cCell"];
-        ((IFI2CComponentCell*) cell).component = component;
+        ((GMPI2CComponentCell*) cell).component = component;
     }
     
     return cell;
@@ -185,10 +179,10 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if( [segue.identifier isEqualToString:@"toI2CDeviceSegue"]){
-        IFI2CComponentViewController * viewController = segue.destinationViewController;
+        GMPI2CComponentViewController * viewController = segue.destinationViewController;
         viewController.delegate = self;
         
-        IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.table.indexPathForSelectedRow];
+        GMPI2CComponentCell * cell = (GMPI2CComponentCell*) [self.table cellForRowAtIndexPath:self.table.indexPathForSelectedRow];
         viewController.component = cell.component;
         
         goingToI2CScene = YES;
@@ -200,7 +194,7 @@
 //called after view did appear when there is a component to remove
 -(void) removeComponentAnimated{
     
-    IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.removingComponentPath];
+    GMPI2CComponentCell * cell = (GMPI2CComponentCell*) [self.table cellForRowAtIndexPath:self.removingComponentPath];
     [cell removeComponentObservers];
     
     [self.table scrollToRowAtIndexPath:self.removingComponentPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -210,37 +204,37 @@
     self.removingComponent = nil;
 }
 
--(void) i2cComponentRemoved:(IFI2CComponent*) component{
-    NSInteger row = [self.firmataPinsController.i2cComponents indexOfObject:component];
+-(void) i2cComponentRemoved:(GMPI2CComponent*) component{
+    NSInteger row = [self.gmpPinsController.i2cComponents indexOfObject:component];
     self.removingComponentPath = [NSIndexPath indexPathForRow:row inSection:2];
     
-    self.firmataPinsController.delegate = nil;
-    [self.firmataPinsController removeI2CComponent:component];
-    self.firmataPinsController.delegate = self;
+    self.gmpPinsController.delegate = nil;
+    [self.gmpPinsController removeI2CComponent:component];
+    self.gmpPinsController.delegate = self;
     
     self.removingComponent = component;
 }
 
--(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg{
+-(void) i2cComponent:(GMPI2CComponent*) component wroteData:(NSString*) data toRegister:(GMPI2CRegister*) reg{
     NSInteger value = data.integerValue;
-    [self.firmataPinsController.firmataController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
+    [self.gmpPinsController.gmpController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
     
 }
 
--(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg{
-    [self.firmataPinsController.firmataController sendI2CStartReadingAddress:component.address reg:reg.number size:reg.size];
+-(void) i2cComponent:(GMPI2CComponent*) component startedNotifyingRegister:(GMPI2CRegister*) reg{
+    [self.gmpPinsController.gmpController sendI2CStartReadingAddress:component.address reg:reg.number size:reg.numElements * reg.sizePerElement];
 }
 
--(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg{
-    [self.firmataPinsController.firmataController sendI2CStopReadingAddress:component.address];
+-(void) i2cComponent:(GMPI2CComponent*) component stoppedNotifyingRegister:(GMPI2CRegister*) reg{
+    [self.gmpPinsController.gmpController sendI2CStopStreamingAddress:component.address];
 }
 
--(void) i2cComponent:(IFI2CComponent *)component addedRegister:(IFI2CRegister *)reg{
-    [self.firmataPinsController addI2CRegister:reg toComponent:component];
+-(void) i2cComponent:(GMPI2CComponent *)component addedRegister:(GMPI2CRegister *)reg{
+    [self.gmpPinsController addI2CRegister:reg toComponent:component];
 }
 
--(void) i2cComponent:(IFI2CComponent *)component removedRegister:(IFI2CRegister *)reg{
-    [self.firmataPinsController removeI2CRegister:reg fromComponent:component];
+-(void) i2cComponent:(GMPI2CComponent *)component removedRegister:(GMPI2CRegister *)reg{
+    [self.gmpPinsController removeI2CRegister:reg fromComponent:component];
 }
 
 #pragma mark - Additional Options
@@ -253,9 +247,9 @@
         
     } else if(buttonIndex == 1){
         
-        [self.firmataPinsController.firmataController sendResetRequest];
-        [self.firmataPinsController reset];
-        [self.firmataPinsController.firmataController sendFirmwareRequest];
+        [self.gmpPinsController.gmpController sendResetRequest];
+        [self.gmpPinsController reset];
+        [self.gmpPinsController.gmpController sendFirmwareRequest];
     }
     
     NSLog(@"%d",buttonIndex);
@@ -263,13 +257,13 @@
 
 -(void) addI2CComponent {
     
-    IFI2CComponent * component = [[IFI2CComponent alloc] init];
+    GMPI2CComponent * component = [[GMPI2CComponent alloc] init];
     component.name = @"New I2C Component";
     component.address = 24;
     
-    [self.firmataPinsController addI2CComponent:component];
+    [self.gmpPinsController addI2CComponent:component];
     
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.firmataPinsController.i2cComponents.count-1 inSection:2];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.gmpPinsController.i2cComponents.count-1 inSection:2];
     [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
