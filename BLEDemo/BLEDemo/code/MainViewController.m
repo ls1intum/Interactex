@@ -90,7 +90,7 @@ MainViewController.m
 
 #pragma mark BleServiceDataDelegate
 
--(void) dataReceived:(Byte*) buffer lenght:(NSInteger) length{
+-(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)length{
     
     NSString * text = @"";
     for (int i = 0 ; i < length; i++) {

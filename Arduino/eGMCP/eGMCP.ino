@@ -31,6 +31,7 @@ int pinState[TOTAL_PINS];           // any value that has been written
 unsigned long currentMillis;        // store the current value from millis()
 unsigned long previousMillis;       // for comparison with currentMillis
 unsigned long bleInterval = 80;
+unsigned long reportInterval = 160;
 
 Servo servos[MAX_SERVOS];
 
@@ -45,7 +46,7 @@ void outputPort(byte portNumber, byte portValue, byte forceSend)
   portValue = portValue & portConfigInputs[portNumber];
   // only send if the value is different than previously sent
   if(forceSend || previousPINs[portNumber] != portValue) {
-    iFirmata.sendDigitalPort(portNumber, portValue);
+    iFirmata.sendDigitalPort(portNum6ber, portValue);
     previousPINs[portNumber] = portValue;
   }
 }*/
@@ -152,6 +153,7 @@ void setPinModeCallback(byte pin, int mode)
     break;
   case MODE_I2C:
     if (IS_PIN_I2C(pin)) {
+      Serial.println("marking pin as i2c");
       // mark the pin as i2c
       // the user must call I2C_CONFIG to enable I2C for a device
       pinConfig[pin] = MODE_I2C;
@@ -489,10 +491,10 @@ void loop() {
     myeGMCP.processInput();
   }
 
-  currentMillis = millis();
-  if(currentMillis - previousMillis > bleInterval) {
-    previousMillis = currentMillis;
     
+  currentMillis = millis();
+  if(currentMillis - previousMillis > reportInterval) {
+    previousMillis = currentMillis;
     checkDigitalInputs();
   
     for(pin=0; pin<TOTAL_PINS; pin++) {
@@ -505,7 +507,11 @@ void loop() {
     }
     
     myeGMCP.reportI2CData();
+  }
     
+  currentMillis = millis();
+  if(currentMillis - previousMillis > bleInterval) {
+    previousMillis = currentMillis;
     myeGMCP.bleFlush();
   }
   

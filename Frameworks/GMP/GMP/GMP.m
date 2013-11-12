@@ -67,6 +67,9 @@ enum
     uint8_t data = CAPABILITY_QUERY;
     
     [self.communicationModule sendData:&data count:1];
+    
+    _numberOfPins = 0;
+    _isI2CEnabled = NO;
 }
 
 -(void) sendResetRequest{
@@ -74,6 +77,7 @@ enum
     uint8_t msg = SYS_RESET;
     
     [self.communicationModule sendData:&msg count:1];
+    
 }
 
 -(void) sendPinModeForPin:(NSInteger) pin mode:(GMPPinMode) mode {
@@ -86,6 +90,17 @@ enum
     buf[3] = mode;
     
     [self.communicationModule sendData:buf count:4];
+}
+
+-(void) sendPinModeRequestForPin:(NSInteger) pin {
+    
+    uint8_t buf[3];
+    
+    buf[0] = PIN_MODE_QUERY;
+    buf[1] = 1;
+    buf[2] = pin;
+    
+    [self.communicationModule sendData:buf count:3];
 }
 
 -(void) sendPinModesForPins:(pin_t*) pinModes count:(NSInteger) count{
@@ -221,7 +236,7 @@ enum
     
     [self checkEnableI2C];
     
-    NSInteger size = 2*numValues + 4;
+    NSInteger size = 2 * numValues + 4;
     uint8_t buf[size];
     
     buf[0] = I2C_WRITE;
@@ -229,7 +244,7 @@ enum
     buf[2] = reg;
     buf[3] = numValues;
     
-    memcpy(buf + 4, values, 2*numValues);
+    memcpy(buf + 4, values, 2 * numValues);
     
     [self.communicationModule sendData:buf count:size];
 }
@@ -290,7 +305,7 @@ enum
     } else if(value == CAPABILITY_RESPONSE){
         
         pin_t currentPin;
-        numPins = 0;
+        _numberOfPins = 0;
         
         for(int i = 1 ; i < length ; i+=3){
             
@@ -329,10 +344,13 @@ enum
          NSLog(@"received i2c value: %d",val);
          }*/
         
-        uint8_t buf[length-1];
-        memcpy(buf, buffer+1, length-1);
+        NSInteger address = buffer[1];
+        NSInteger reg = buffer[2];
         
-        [self.delegate gmpController:self didReceiveI2CReply:buf length:length-1];
+        uint8_t buf[length-3];
+        memcpy(buf, buffer+3, length-3);
+        
+        [self.delegate gmpController:self didReceiveI2CReplyForAddress:address reg:reg buffer:buf length:length-3];
         
     }
 }

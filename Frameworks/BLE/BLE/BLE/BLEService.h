@@ -86,6 +86,7 @@ typedef enum{
 @property (nonatomic) id<BLEServiceDataDelegate> dataDelegate;
 
 @property (nonatomic) BOOL shouldUseCRC;
+@property (nonatomic) BOOL shouldUseTurnBasedCommunication;
 
 +(NSMutableArray*) supportedServiceUUIDs;
 +(NSMutableArray*) supportedCharacteristicUUIDs;

@@ -271,6 +271,8 @@ static NSMutableArray * supportedCharacteristicUUIDs;
                 
         char buf[TX_BUFFER_SIZE];
         
+        sendBufferCount += 2;
+        
         int numBytesSend = MIN(TX_BUFFER_SIZE,sendBufferCount);
         
         if(sendBufferStart + numBytesSend > SEND_BUFFER_SIZE){

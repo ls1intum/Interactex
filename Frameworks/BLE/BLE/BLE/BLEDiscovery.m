@@ -148,7 +148,6 @@ static BLEDiscovery * sharedInstance;
 	}
 }
 
-
 #pragma mark Connection/Disconnection
 
 -(void) connectPeripheral:(CBPeripheral*)peripheral {

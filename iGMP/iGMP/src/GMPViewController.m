@@ -217,8 +217,9 @@
 
 -(void) i2cComponent:(GMPI2CComponent*) component wroteData:(NSString*) data toRegister:(GMPI2CRegister*) reg{
     NSInteger value = data.integerValue;
-    [self.gmpPinsController.gmpController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
-    
+    uint8_t buf[2];
+    [GMPHelper valueAsTwo7bitBytes:value buffer:buf];
+    [self.gmpPinsController.gmpController sendI2CWriteToAddress:component.address reg:reg.number values:buf numValues:1];
 }
 
 -(void) i2cComponent:(GMPI2CComponent*) component startedNotifyingRegister:(GMPI2CRegister*) reg{

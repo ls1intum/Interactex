@@ -61,20 +61,25 @@ this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Wire.h>
 
 #define MAG_ADDRESS            (0x3C >> 1)
-#define ACC_ADDRESS_SA0_A_LOW  (0x30 >> 1)
+#define ACC_ADDRESS_SA0_A_LOW  (0x30 >> 1)//24
 #define LSM303DLM_OUT_Y_H_M      0x07
-#define LSM303_OUT_X_L_A         0x28
-#define LSM303_CTRL_REG1_A       0x20
+#define LSM303_OUT_X_L_A         0x28//40
+#define LSM303_CTRL_REG1_A       0x20//32
+
+/*
+#define ACCEL_ADDR 0x68
+#define ACCEL_WAKEUP_REGISTER 0x6B
+#define WHO_AM_I 0x75
+#define INTERRUPT 0x38
+*/
 
 void readAcc() {
+  
   Wire.beginTransmission(ACC_ADDRESS_SA0_A_LOW);
   Wire.write(LSM303_OUT_X_L_A | (1 << 7)); //168
   Wire.endTransmission();
+  
   Wire.requestFrom((byte)ACC_ADDRESS_SA0_A_LOW, (byte)6);
-
-int av = Wire.available();
-Serial.println(av);
-
   unsigned int millis_start = millis();
 
   byte xla = Wire.read();
@@ -100,7 +105,7 @@ Serial.println(av);
 void setup() {
   
   Serial.begin(9600);
-  
+  /*
   Serial.print(" first: ");
   Serial.print(ACC_ADDRESS_SA0_A_LOW);//addr
   Serial.print(" ");
@@ -112,12 +117,26 @@ void setup() {
   Serial.print(ACC_ADDRESS_SA0_A_LOW);
   Serial.print(" ");
   Serial.println(LSM303_OUT_X_L_A | (1 << 7));
+  */
   
   Wire.begin();
+  /*
+  Wire.beginTransmission(ACCEL_ADDR);
+  Wire.write(ACCEL_WAKEUP_REGISTER);
+  Wire.write(0);
+  Wire.endTransmission();
+  
+  Wire.requestFrom((byte)WHO_AM_I, (byte)1);
+  int av = Wire.available();
+  byte reading = Wire.read();
+  
+  Serial.print("who am i ");
+  Serial.println(reading);*/
+  
   
   Wire.beginTransmission(ACC_ADDRESS_SA0_A_LOW);
   Wire.write(LSM303_CTRL_REG1_A);
-  Wire.write(0x27);
+  Wire.write(0x27);//39
   Wire.endTransmission();
   
   Serial.println("finished");

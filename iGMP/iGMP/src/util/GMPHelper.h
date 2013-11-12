@@ -16,4 +16,6 @@
 
 +(NSString*) valueAsBracketedStringForI2CRegister:(GMPI2CRegister*) reg;
 
++(void) valueAsTwo7bitBytes:(NSInteger) value buffer:(uint8_t[2]) buf;
+
 @end

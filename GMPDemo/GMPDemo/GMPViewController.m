@@ -178,7 +178,6 @@
 }
 
 //I2C
-
 - (IBAction)sendI2CReadTapped:(id)sender {
     [self.gmpController sendI2CStartReadingAddress:24 reg:40 size:6];//Juan's accelerometer
 }
@@ -187,13 +186,19 @@
     
     uint8_t buf[2];
     [GMPHelper valueAsTwo7bitBytes:39 buffer:buf];
-    [self.gmpController sendI2CWriteToAddress:24 reg:32 values:buf numValues:1];
+    [self.gmpController sendI2CWriteToAddress:0x3B reg:32 values:buf numValues:1];
+    
+    /*
+    uint8_t buf[2];
+    [GMPHelper valueAsTwo7bitBytes:39 buffer:buf];
+    [self.gmpController sendI2CWriteToAddress:24 reg:32 values:buf numValues:1];*/
 }
 
 - (IBAction)sendI2CStartReadingTapped:(id)sender{
     
     //[self.gmpController sendI2CReadAddress:104 reg:0x3B size:6];//Kyle accelerometer
-    [self.gmpController sendI2CStartReadingAddress:24 reg:40 size:6];//Juan's accelerometer
+    //[self.gmpController sendI2CStartReadingAddress:24 reg:40 size:6];//Juan's accelerometer
+    [self.gmpController sendI2CStartReadingAddress:24 reg:168 size:6];//Juan's accelerometer
 }
 
 - (IBAction)sendI2CStopTapped:(id)sender {
@@ -218,7 +223,7 @@
 -(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPin:(pin_t) pin{
     NSLog(@"capability: %d %d",pin.index,pin.capability);
     
-    self.textField.text = [self.textField.text stringByAppendingString:[NSString stringWithFormat:@"capability received: %d %d\n",pin.index,pin.capability]];
+    self.textField.text = [NSString stringWithFormat:@"capability received: %d %d\n",pin.index,pin.capability];
 }
 /*
 -(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin state:(NSInteger) state{
@@ -228,22 +233,22 @@
 
 -(void) gmpController:(GMP*) gmpController didReceiveDigitalMessageForPin:(NSInteger) pin value:(BOOL) value{
     
-    self.textField.text = [self.textField.text stringByAppendingString:[NSString stringWithFormat:@"digital message received: %d %d",pin,value]];
+    self.textField.text = [NSString stringWithFormat:@"digital message received: %d %d",pin,value];
 }
 
 -(void) gmpController:(GMP*) gmpController didReceiveAnalogMessageForPin:(NSInteger) pin value:(NSInteger) value{
     
-    self.textField.text = [self.textField.text stringByAppendingString:[NSString stringWithFormat:@"analog message received: %d %d",pin,value]];
+    self.textField.text = [NSString stringWithFormat:@"analog message received: %d %d",pin,value];
 }
 
--(void) gmpController:(GMP*) gmpController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length{
+-(void) gmpController:(GMP*) gmpController didReceiveI2CReplyForAddress:(NSInteger) address reg:(NSInteger) reg buffer:(uint8_t*) buffer length:(NSInteger) length{
     
     uint8_t value1 = buffer[0];
     uint8_t value2 = buffer[1];
     
-    NSInteger value = value1 | (value2 << 7);
+    NSInteger value = ((int16_t)(value2 << 8 | value1)) >> 4;
     
-    self.textField.text = [self.textField.text stringByAppendingString:[NSString stringWithFormat:@"i2c reply received: %d ...",value]];
+    self.textField.text = [NSString stringWithFormat:@"i2c reply received: %d ",value];
 }
 
 @end

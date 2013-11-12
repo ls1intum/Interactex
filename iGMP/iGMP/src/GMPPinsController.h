@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GMP.h"
 
+#define GMPMaxNumPins 128
+
 @class GMPPinsController;
 @class GMPI2CComponent;
 @class GMPI2CRegister;
@@ -28,6 +30,7 @@
 
 @interface GMPPinsController : NSObject <GMPControllerDelegate> {
     
+    GMPPinCapability pinCapabilities[GMPMaxNumPins];
     NSInteger numDigitalPins;
     NSInteger numAnalogPins;
     NSInteger numPins;

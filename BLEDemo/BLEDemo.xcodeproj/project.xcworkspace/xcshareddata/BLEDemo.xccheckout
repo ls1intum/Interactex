@@ -5,38 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>21C74607-E94D-46D5-9806-821FAF2068BC</string>
+	<string>0A58519C-B47A-4413-8D1A-3C5CD66A5931</string>
 	<key>IDESourceControlProjectName</key>
 	<string>BLEDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C830E036-A824-4CD2-8EA1-47F5AECDCE59</key>
-		<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
+		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
+		<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>BLEDemo/BLEDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>64E1C063-9271-4A9C-A9E6-D776507F80AA</key>
-		<string>../../frameworks/BLE</string>
-		<key>BEC0043A-F389-42B4-9595-84E150E7E6C9</key>
-		<string>../../../Frameworks/BLE</string>
-		<key>C830E036-A824-4CD2-8EA1-47F5AECDCE59</key>
+		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
 		<string>../../..</string>
+		<key>EC3D748B-B117-45AA-8D74-25CE72CD2CA0</key>
+		<string>../../../Frameworks/BLE</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
+	<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C830E036-A824-4CD2-8EA1-47F5AECDCE59</string>
+	<string>720A638E-E4F5-413C-9006-7AAEE8B91024</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BEC0043A-F389-42B4-9595-84E150E7E6C9</string>
+			<string>EC3D748B-B117-45AA-8D74-25CE72CD2CA0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BLE</string>
 		</dict>
@@ -44,7 +42,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C830E036-A824-4CD2-8EA1-47F5AECDCE59</string>
+			<string>720A638E-E4F5-413C-9006-7AAEE8B91024</string>
 			<key>IDESourceControlWCCName</key>
 			<string>wearablesm2m</string>
 		</dict>

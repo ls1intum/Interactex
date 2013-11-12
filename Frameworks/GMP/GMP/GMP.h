@@ -81,21 +81,19 @@ typedef enum {
 
 -(void) gmpController:(GMP*) gmpController didReceiveDigitalMessageForPin:(NSInteger) pin value:(BOOL) value;
 
--(void) gmpController:(GMP*) gmpController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length;
+-(void) gmpController:(GMP*) gmpController didReceiveI2CReplyForAddress:(NSInteger) address reg:(NSInteger) reg buffer:(uint8_t*) buffer length:(NSInteger) length;
 
 @end
 
 @interface GMP : NSObject
 {
-    //pin_t pins[64];
-    NSInteger numPins;
-    
 }
 
 @property (nonatomic, strong) GMPCommunicationModule * communicationModule;
 @property (nonatomic, weak) id<GMPControllerDelegate> delegate;
 
 @property (nonatomic, readonly) BOOL isI2CEnabled;
+@property (nonatomic, readonly) NSInteger numberOfPins;
 
 //Initialization / Termination
 -(void) sendFirmwareRequest;
@@ -103,6 +101,7 @@ typedef enum {
 -(void) sendResetRequest;
 
 //Modes
+-(void) sendPinModeRequestForPin:(NSInteger) pin;
 -(void) sendPinModeForPin:(NSInteger) pin mode:(GMPPinMode) mode;
 -(void) sendPinModesForPins:(pin_t*) pinModes count:(NSInteger) count;
 
