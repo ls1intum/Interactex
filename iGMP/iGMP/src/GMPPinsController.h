@@ -31,9 +31,8 @@
 @interface GMPPinsController : NSObject <GMPControllerDelegate> {
     
     GMPPinCapability pinCapabilities[GMPMaxNumPins];
-    NSInteger numDigitalPins;
-    NSInteger numAnalogPins;
-    NSInteger numPins;
+    
+    NSTimer * timer;
 }
 
 @property (nonatomic, strong) NSMutableArray * digitalPins;
@@ -44,6 +43,10 @@
 @property (nonatomic, weak) id<GMPControllerPinsDelegate> delegate;
 
 @property (nonatomic, strong) NSString* firmwareName;
+
+@property (nonatomic, readonly) NSInteger numPins;
+@property (nonatomic, readonly) NSInteger numDigitalPins;
+@property (nonatomic, readonly) NSInteger numAnalogPins;
 
 -(void) reset;
 

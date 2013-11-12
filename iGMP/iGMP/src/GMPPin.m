@@ -29,20 +29,20 @@
     self = [super init];
     if(self){
         self.number = [decoder decodeIntForKey:@"number"];
-        /*
+        
         self.type = [decoder decodeIntForKey:@"type"];
         self.mode = [decoder decodeIntForKey:@"mode"];
-        self.supportedModes = [decoder decodeIntForKey:@"supportedModes"];*/
+        self.supportedModes = [decoder decodeIntForKey:@"supportedModes"];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
-    /*
+    
     [coder encodeInt:self.number forKey:@"number"];
     [coder encodeInt:self.type forKey:@"type"];
     [coder encodeInt:self.mode forKey:@"mode"];
-    [coder encodeInt:self.supportedModes forKey:@"supportedModes"];*/
+    [coder encodeInt:self.supportedModes forKey:@"supportedModes"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -50,10 +50,9 @@
     if(copy){
         
         copy.number = self.number;
-        /*
         copy.type = self.type;
         copy.mode = self.mode;
-        copy.supportedModes = self.supportedModes;*/
+        copy.supportedModes = self.supportedModes;
     }
     return copy;
 }

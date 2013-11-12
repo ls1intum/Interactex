@@ -19,7 +19,8 @@ NSString * const kBleCharacteristics[kBleNumSupportedServices][2] = {
     {@"ffe1",@"ffe1"}};//RX; TX
 
 
-const NSTimeInterval kFlushInterval = 1.0f/30.0f;
+const NSTimeInterval kFlushInterval = 1.0f/20.0f;
+const NSTimeInterval kBleSendOverCommandInterval = 1.0f/10.0f;
 
 @implementation BLEService
 
@@ -57,7 +58,13 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             [supportedServiceUUIDs addObject:service];
         }
         
+        shouldSend = YES;
+        overBit = NO;
+        
         timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
+        
+        sendOverTimer = [NSTimer scheduledTimerWithTimeInterval:kBleSendOverCommandInterval target:self selector:@selector(sendOverCommand) userInfo:nil repeats:YES];
+        
 	}
     return self;
 }
@@ -229,72 +236,94 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     if(self.txCharacteristic){
         //without response does not work with BLE Shield
         [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        /*
+        printf("Sending:\n");
+        for (int i = 0; i < data.length; i++) {
+            printf("%X ",((uint8_t*)data.bytes)[i]);
+        }
+        printf("\n");*/
     }
 }
 
-
--(void) sendData:(const uint8_t*) bytes count:(NSInteger) count{
-
-    if(self.shouldUseCRC){
-        NSData * crcData = [self crcPackageForBytes:bytes count:count];
-        bytes = crcData.bytes;
-        count = crcData.length;
-    }
+-(void) addBytesToBuffer:(const uint8_t*) bytes count:(NSInteger) count{
     
     int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
     for (int i = 0; i < count; i++) {
         sendBuffer[idx] = bytes[i];
         idx = (idx + 1) % SEND_BUFFER_SIZE;
     }
+    
     sendBufferCount += count;
     if(sendBufferCount >= SEND_BUFFER_SIZE){
         NSLog(@"Warning, reaching limits of ble send buffer");
         sendBufferCount = SEND_BUFFER_SIZE;
     }
+}
+
+-(void) sendData:(const uint8_t*) bytes count:(NSInteger) count{
+    
+    if(self.shouldUseCRC){
+        NSData * crcData = [self crcPackageForBytes:bytes count:count];
+        bytes = crcData.bytes;
+        count = crcData.length;
+    }
+    
+    [self addBytesToBuffer:bytes count:count];
     
     double currentTime = CACurrentMediaTime();
     
     if(currentTime - lastTimeFlushed > kFlushInterval){
+        
         [self flushData];
     }
     
-    
+    /*
     printf("Sending:\n");
     for (int i = 0; i < count; i++) {
         printf("%X ",bytes[i]);
     }
-    printf("\n");
+    printf("\n");*/
+}
+
+-(void) sendOverCommand{
+    uint8_t buf[2];
+    buf[0] = kBleCrcStart;
+    buf[1] = 0;
+    [self addBytesToBuffer:buf count:2];
 }
 
 -(void) flushData {
-    if(sendBufferCount > 0){
+    
+    if(shouldSend){
+        if(sendBufferCount > 0){
+            
+            char buf[TX_BUFFER_SIZE];
+            int numBytesSend = MIN(TX_BUFFER_SIZE, sendBufferCount);
+            
+            if(sendBufferStart + numBytesSend > SEND_BUFFER_SIZE){
                 
-        char buf[TX_BUFFER_SIZE];
-        
-        sendBufferCount += 2;
-        
-        int numBytesSend = MIN(TX_BUFFER_SIZE,sendBufferCount);
-        
-        if(sendBufferStart + numBytesSend > SEND_BUFFER_SIZE){
+                char firstPartSize = SEND_BUFFER_SIZE - sendBufferStart ;
+                
+                memcpy(buf,&sendBuffer[0] + sendBufferStart,firstPartSize);
+                memcpy(&buf[0] + firstPartSize,&sendBuffer[0],numBytesSend-firstPartSize);
+                
+            } else {
+                
+                memcpy(buf,&sendBuffer[0] + sendBufferStart,numBytesSend);
+            }
             
-            char firstPartSize = SEND_BUFFER_SIZE - sendBufferStart ;
+            //int missing = TX_BUFFER_SIZE - numBytesSend;
+            //buf[numBytesSend] = kBleCrcStart;
+            //buf[numBytesSend+1] = 0;
             
-            memcpy(buf,&sendBuffer[0] + sendBufferStart,firstPartSize);
-            memcpy(&buf[0] + firstPartSize,&sendBuffer[0],numBytesSend-firstPartSize);
+            NSData * data = [NSData dataWithBytes:buf length:numBytesSend];
+            [self writeToTx:data];
             
-        } else {
-            
-            memcpy(buf,&sendBuffer[0] + sendBufferStart,numBytesSend);
+            sendBufferCount -= numBytesSend;
+            sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
+
+            lastTimeFlushed = CACurrentMediaTime();
         }
-        
-        NSData * data = [NSData dataWithBytes:buf length:numBytesSend];
-        [self writeToTx:data];
-        
-        sendBufferCount -= numBytesSend;
-        sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
-        
-        //NSLog(@"sendbufCount: %d",sendBufferCount);
-        lastTimeFlushed = CACurrentMediaTime();
     }
 }
 
@@ -405,14 +434,14 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 -(void) peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     
     if(characteristic == self.txCharacteristic){
-        
+        /*
         Byte * data;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
         for (int i = 0 ; i < length; i++) {
             int value = data[i];
             printf("%d ",value);
         }
-        printf("\n");
+        printf("\n");*/
     }
 }
 
@@ -444,9 +473,15 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             
         } else if(parsingState == BLEReceiveBufferStateParsingLength){
             
-            receiveDataLength = byte;
-            
-            parsingState = BLEReceiveBufferStateParsingData;
+            if(byte == 0){
+                parsingState =BLEReceiveBufferStateNormal;
+                shouldSend = YES;
+                
+            } else {
+                receiveDataLength = byte;
+                
+                parsingState = BLEReceiveBufferStateParsingData;
+            }
             
         } else if(parsingState == BLEReceiveBufferStateParsingData){
             
@@ -501,17 +536,17 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     if(characteristic == self.rxCharacteristic){
         
-        
+        /*
         uint8_t * debugData;
-        NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
-        
+    
+        //NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
         printf("receiving:\n");
         for (int i = 0 ; i < length; i++) {
             int value = debugData[i];
             printf("%X ",value);
         }
     
-        printf("\n");
+        printf("\n");*/
             
         
         if(self.shouldUseCRC){

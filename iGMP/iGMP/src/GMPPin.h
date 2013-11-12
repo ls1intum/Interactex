@@ -11,6 +11,12 @@
 
 @class GMPPin;
 
+
+typedef enum{
+    kGMPPinTypeDigital,
+    kGMPPinTypeAnalog,
+} GMPPinType;
+
 @protocol IFPinDelegate <NSObject>
 
 -(void) pin:(GMPPin*) pin changedMode:(GMPPinMode) newMode;
@@ -23,6 +29,8 @@
 @property (nonatomic) NSInteger number;
 @property (nonatomic) GMPPinMode mode;
 @property (nonatomic) NSInteger value;//only for output
+@property (nonatomic) GMPPinType type;//only for output
+
 
 //@property (nonatomic) IGMPinType type;
 @property (nonatomic) uint8_t supportedModes;

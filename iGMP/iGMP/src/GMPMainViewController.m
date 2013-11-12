@@ -182,6 +182,8 @@ const NSInteger GMPDiscoveryTime = 3;
     GMPDeviceCell * cell = (GMPDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
     [cell.activityIndicator stopAnimating];
     
+    service.shouldUseCRC = YES;
+    
     [self performSegueWithIdentifier:@"toDeviceMenuSegue" sender:self];
     
     //[service clearRx];

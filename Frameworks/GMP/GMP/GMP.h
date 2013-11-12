@@ -44,14 +44,8 @@ typedef enum {
 
 //servo?
 
-/*
 typedef enum{
-    IFPinTypeDigital,
-    IFPinTypeAnalog,
-} IFPinType;*/
-
-typedef enum{
-    kGMPPinModeInput,
+    kGMPPinModeInput = 0x00,
     kGMPPinModeOutput,
     kGMPPinModeAnalog,
     kGMPPinModePWM,
@@ -73,7 +67,7 @@ typedef enum {
 
 -(void) gmpController:(GMP*) gmpController didReceiveFirmwareName: (NSString*) name;
 
--(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPin:(pin_t) pin;
+-(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPins:(uint8_t*) buffer count:(NSInteger) count;
 
 -(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode;
 
@@ -93,7 +87,7 @@ typedef enum {
 @property (nonatomic, weak) id<GMPControllerDelegate> delegate;
 
 @property (nonatomic, readonly) BOOL isI2CEnabled;
-@property (nonatomic, readonly) NSInteger numberOfPins;
+//@property (nonatomic, readonly) NSInteger numberOfPins;
 
 //Initialization / Termination
 -(void) sendFirmwareRequest;

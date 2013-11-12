@@ -11,7 +11,6 @@
 #define I2C_READ_WRITE_MODE_MASK B00011000
 #define I2C_10BIT_ADDRESS_MODE_MASK B00100000
 
-
 /*==============================================================================
  * GLOBAL VARIABLES
  *============================================================================*/
@@ -21,16 +20,18 @@ int analogInputsToReport = 0; // bitwise array to store pin reporting
 
 /* digital input ports */
 boolean reportPINs[TOTAL_PINS];
-byte previousPINs[TOTAL_PINS];
+boolean previousPINs[TOTAL_PINS];
 
 /* pins configuration */
 byte pinConfig[TOTAL_PINS];         // configuration of every pin
-int pinState[TOTAL_PINS];           // any value that has been written
+//int pinState[TOTAL_PINS];           // any value that has been written
 
 /* timer variables */
-unsigned long currentMillis;        // store the current value from millis()
-unsigned long previousMillis;       // for comparison with currentMillis
-unsigned long bleInterval = 80;
+unsigned long currentMillis;
+unsigned long previousMillis = 0; 
+unsigned long previousMillisBle = 0; 
+
+unsigned long bleInterval = 40;
 unsigned long reportInterval = 160;
 
 Servo servos[MAX_SERVOS];
@@ -39,45 +40,28 @@ Servo servos[MAX_SERVOS];
  * FUNCTIONS
  *============================================================================*/
 
-/*
-void outputPort(byte portNumber, byte portValue, byte forceSend)
-{
-  // pins not configured as INPUT are cleared to zeros
-  portValue = portValue & portConfigInputs[portNumber];
-  // only send if the value is different than previously sent
-  if(forceSend || previousPINs[portNumber] != portValue) {
-    iFirmata.sendDigitalPort(portNum6ber, portValue);
-    previousPINs[portNumber] = portValue;
-  }
-}*/
-
 void outputPin(byte pin, byte value){
-  
-  byte buf[3];
-  
-  buf[0] = DIO_INPUT;
-  buf[1] = pin;
-  buf[2] = value;
-  
-  myeGMCP.bleSendWithCRC(buf, 3);
+  if(previousPINs[pin] != value){
+    byte buf[3];
+    
+    buf[0] = DIO_INPUT;
+    buf[1] = pin;
+    buf[2] = value;
+    
+    myeGMCP.bleSendWithCRC(buf, 3);
+    previousPINs[pin] = value;
+  }
 } 
 
-void checkDigitalInputs(void)
-{
+void checkDigitalInputs(void) {
   if (TOTAL_PINS > 4 && reportPINs[4]) outputPin(4, digitalRead(4));
   if (TOTAL_PINS > 5 && reportPINs[5]) outputPin(5, digitalRead(5));
-  /*
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);
-  if (TOTAL_PINS > 0 && reportPINs[0]) outputPin(0, digitalRead(0), false);*/
-  
+  if (TOTAL_PINS > 6 && reportPINs[6]) outputPin(6, digitalRead(6));
+  if (TOTAL_PINS > 7 && reportPINs[7]) outputPin(7, digitalRead(7));
+  if (TOTAL_PINS > 8 && reportPINs[8]) outputPin(8, digitalRead(8));
+  if (TOTAL_PINS > 9 && reportPINs[9]) outputPin(9, digitalRead(9));
+  if (TOTAL_PINS > 10 && reportPINs[10]) outputPin(10, digitalRead(10));
+  if (TOTAL_PINS > 11 && reportPINs[11]) outputPin(11, digitalRead(11));
 }
 
 void setPinModeCallback(byte pin, int mode)
@@ -108,7 +92,7 @@ void setPinModeCallback(byte pin, int mode)
     }
   }*/
   
-  pinState[pin] = 0;
+  //pinState[pin] = 0;
   
   switch(mode) {
   case MODE_ANALOG:
@@ -137,6 +121,7 @@ void setPinModeCallback(byte pin, int mode)
     }
     break;
   case MODE_PWM:
+  
     if (IS_PIN_PWM(pin)) {
       pinMode(PIN_TO_PWM(pin), MODE_OUTPUT);
       analogWrite(PIN_TO_PWM(pin), 0);
@@ -144,6 +129,8 @@ void setPinModeCallback(byte pin, int mode)
     }
     break;
   case MODE_SERVO:
+      Serial.print("servo enters");
+      
     if (IS_PIN_SERVO(pin)) {
       pinConfig[pin] = MODE_SERVO;
       if (!servos[PIN_TO_SERVO(pin)].attached()) {
@@ -169,12 +156,20 @@ void pinModeQueryCallback(byte pin, int notUsed){
   
   if (pin < TOTAL_PINS) {
     byte reply[3];
-      
+     
+     
     reply[0] = PIN_MODE_RESPONSE;  
     reply[1] = pin;
     reply[2] = (byte)pinConfig[pin];
     
     myeGMCP.bleSendWithCRC(reply, 3);
+    
+    
+  Serial.print("sending mode ");
+  Serial.print(pin);
+  Serial.print(" ");
+  Serial.print(reply[2]);
+  Serial.println();
   }
 }
 
@@ -188,18 +183,17 @@ void analogWriteCallback(byte pin, int value)
   
   if (pin < TOTAL_PINS) {
     switch(pinConfig[pin]) {
+      
     case MODE_SERVO:
-      if (IS_PIN_SERVO(pin)){
+      if (IS_PIN_SERVO(pin))
         servos[PIN_TO_SERVO(pin)].write(value);
-      }
-      pinState[pin] = value;
+      //pinState[pin] = value;
       break;
     case MODE_PWM:
       if (IS_PIN_PWM(pin)){
-    Serial.print("pwm!");
         analogWrite(PIN_TO_PWM(pin), value);
       }
-       pinState[pin] = value;
+       //pinState[pin] = value;
       break;
     }
   }
@@ -252,8 +246,11 @@ void analogReportCallback(byte analogPin, int value)
 }
 
 void digitalReadCallback(byte pin, int value) {
+  
+    Serial.print("digital read ");
+    Serial.println(pin);
+    
   if(pin < TOTAL_PINS){
-    Serial.println("digital reading pin");
     outputPin(pin,value);
     /*
     uint8_t reply[3];
@@ -268,9 +265,12 @@ void digitalReadCallback(byte pin, int value) {
 
 void digitalReportCallback(byte pin, int value) {
      
+    Serial.print("digital report ");
+    Serial.println(pin);
+    
   if (pin < TOTAL_PINS) {
   
-    Serial.println("digital report");
+    
     reportPINs[pin] = (byte)value;
   }
   // do not disable analog reporting on these 8 pins, to allow some
@@ -491,28 +491,32 @@ void loop() {
     myeGMCP.processInput();
   }
 
-    
   currentMillis = millis();
-  if(currentMillis - previousMillis > reportInterval) {
-    previousMillis = currentMillis;
-    checkDigitalInputs();
-  
-    for(pin=0; pin<TOTAL_PINS; pin++) {
-      if (IS_PIN_ANALOG(pin) && pinConfig[pin] == MODE_ANALOG) {
-        analogPin = PIN_TO_ANALOG(pin);
-        if (analogInputsToReport & (1 << analogPin)) {
-          myeGMCP.sendAnalog(analogPin, analogRead(analogPin));
-        }
+  if(myeGMCP.isConnected()){
+    if(currentMillis - previousMillisBle > bleInterval) {
+      
+      previousMillisBle = currentMillis;
+      
+      if(currentMillis - previousMillis > reportInterval) {
+        
+         previousMillis = currentMillis;
+      
+         checkDigitalInputs();
+      
+         for(pin=0; pin<TOTAL_PINS; pin++) {
+          if (IS_PIN_ANALOG(pin) && pinConfig[pin] == MODE_ANALOG) {
+             analogPin = PIN_TO_ANALOG(pin);
+             if (analogInputsToReport & (1 << analogPin)) {
+               myeGMCP.sendAnalog(analogPin, analogRead(analogPin));
+             }
+           }
+         }
+    
+         myeGMCP.reportI2CData();
+         myeGMCP.bleSendOver();
       }
-    }
     
-    myeGMCP.reportI2CData();
+      myeGMCP.bleFlush();
+     }
   }
-    
-  currentMillis = millis();
-  if(currentMillis - previousMillis > bleInterval) {
-    previousMillis = currentMillis;
-    myeGMCP.bleFlush();
-  }
-  
 }

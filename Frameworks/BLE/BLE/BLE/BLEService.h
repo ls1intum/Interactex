@@ -52,6 +52,7 @@ typedef enum{
     CBService			*bleService;
     
     NSTimer * timer;
+    NSTimer * sendOverTimer;
 
     uint8_t sendBuffer[SEND_BUFFER_SIZE];
     uint8_t receiveBuffer[SEND_BUFFER_SIZE];
@@ -59,7 +60,7 @@ typedef enum{
     int sendBufferStart;
     int sendBufferCount;
     NSTimeInterval lastTimeFlushed;
-    
+    BOOL shouldSend;
     
     int receiveDataStart;
     int receiveDataCurrentIndex;
@@ -69,6 +70,9 @@ typedef enum{
     uint8_t firstCrcByte;
     uint8_t secondCrcByte;
     BLEReceiveBufferState parsingState;
+    
+    BOOL overBit;
+    
 }
 
 @property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;

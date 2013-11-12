@@ -68,7 +68,6 @@ enum
     
     [self.communicationModule sendData:&data count:1];
     
-    _numberOfPins = 0;
     _isI2CEnabled = NO;
 }
 
@@ -304,16 +303,10 @@ enum
         
     } else if(value == CAPABILITY_RESPONSE){
         
-        pin_t currentPin;
-        _numberOfPins = 0;
+        //_numberOfPins = (length-1)/2;
         
-        for(int i = 1 ; i < length ; i+=3){
-            
-            currentPin.index = buffer[i];
-            currentPin.capability = buffer[i+1];
-            
-            [self.delegate gmpController:self didReceiveCapabilityResponseForPin:currentPin];
-        }
+        [self.delegate gmpController:self didReceiveCapabilityResponseForPins:&buffer[1] count:length-1];
+       
         
     } else if(value == PIN_MODE_RESPONSE){
         

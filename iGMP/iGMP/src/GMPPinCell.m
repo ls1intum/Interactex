@@ -46,15 +46,15 @@
 #pragma mark -- GUI Setup
 
 -(void) setLabelText{
-    /*
-    if(self.pin.type == GMPP){
+    
+    if(self.pin.type == kGMPPinTypeDigital){
         self.label.text = @"D";
     } else {
         self.label.text = @"A";
     }
     
     self.label.text = [self.label.text stringByAppendingFormat:@"%d",self.pin.number];
-     */
+    
 }
 
 -(void) addDigitalButton{
@@ -66,18 +66,17 @@
 
 -(void) addValueLabel{
     self.valueLabel.hidden = NO;
-
 }
 
 -(void) addSlider{
-    /*
-    if(self.pin.mode == GMPPinModeServo){
+    
+    if(self.pin.mode == kGMPPinModeServo){
         self.slider.maximumValue = 180;
     } else {
         self.slider.maximumValue = 255;
     }
     self.slider.hidden = NO;
-     */
+
 }
 
 -(void) removeControls{
@@ -96,23 +95,24 @@
 
 -(void) reloadPinModeControls{
     [self removeControls];
-    /*
-    if(self.pin.type == kGMPModeGPIO){
-        if(self.pin.mode == GMPPinModeOutput){
+    
+    if(self.pin.type == kGMPPinTypeDigital){
+        if(self.pin.mode == kGMPPinModeOutput){
             
             [self addDigitalButton];
             self.modeControl.selectedSegmentIndex = 1;
-        } else if(self.pin.mode == GMPPinModeInput){
+            
+        } else if(self.pin.mode == kGMPPinModeInput){
             
             [self addValueLabel];
             [self updateDigitalLabel];
-        } else if(self.pin.mode == GMPPinModePWM){
+        } else if(self.pin.mode == kGMPPinModePWM){
             
             self.modeControl.selectedSegmentIndex = 3;
             [self addSlider];
             [self updateSlider];
             
-        } else if(self.pin.mode == GMPPinModeServo){
+        } else if(self.pin.mode == kGMPPinModeServo){
             
             self.modeControl.selectedSegmentIndex = 2;
             [self addSlider];
@@ -126,7 +126,7 @@
         //[self addAnalogSwitch];
         //[self addValueLabel];
     }
-     */
+    
 }
 
 #pragma mark -- Update
@@ -144,17 +144,14 @@
 }
 
 -(IBAction) segmentedControlChanged:(UISegmentedControl*) sender{
-    /*
+    
     if(sender.selectedSegmentIndex < 2){
         self.pin.mode = sender.selectedSegmentIndex;
     } else if(sender.selectedSegmentIndex == 2){
-        self.pin.mode = IFPinModeServo;
+        self.pin.mode = kGMPPinModeServo;
     } else {
-        self.pin.mode = IFPinModePWM;
+        self.pin.mode = kGMPPinModePWM;
     }
-    */
-    /*
-    self.pin.mode = (sender.selectedSegmentIndex >= 2) ? sender.selectedSegmentIndex -1 : sender.selectedSegmentIndex;*/
     
     [self reloadPinModeControls];
 }
@@ -187,28 +184,26 @@
 #pragma mark -- Keyvalue coding
 
 -(void) handlePinValueChanged:(GMPPin*) pin{
-    /*
-    if(pin.mode == IFPinModeInput){
+    
+    if(pin.mode == kGMPPinModeInput){
         [self updateDigitalLabel];
-    } else if(pin.mode == IFPinModeAnalog){
+    } else if(pin.mode == kGMPPinModeAnalog){
         if(pin.updatesValues){
             [self updateAnalogLabel];
         }
-    } else if(pin.mode == IFPinModePWM){
+    } else if(pin.mode == kGMPPinModePWM){
         [self updateSlider];
     }
-     */
 }
 
 -(void) handlePinUpdatesValuesChanged:(GMPPin*) pin{
-    /*
-    if(pin.mode == IFPinModeAnalog){
+    
+    if(pin.mode == kGMPPinModeAnalog){
         self.analogSwitch.on = pin.updatesValues;
         if(!pin.updatesValues){
             self.analogValueLabel.text = @"";
         }
     }
-     */
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath  ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
