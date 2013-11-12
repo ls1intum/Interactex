@@ -1,8 +1,8 @@
 /*
-THCollectionProjectCell.m
+THClientCollectionProjectCell.m
 Interactex Designer
 
-Created by Juan Haladjian on 05/10/2013.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,11 +38,11 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "THCollectionProjectCell.h"
+#import "THClientCollectionProjectCell.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
-@implementation THCollectionProjectCell
+@implementation THClientCollectionProjectCell
 
 const float kShakingEffectAngleInRadians = 2.0f;
 const float kShakingEffectRotationTime = 0.10f;

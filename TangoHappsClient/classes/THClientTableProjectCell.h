@@ -1,8 +1,8 @@
 /*
-THClientProject.h
+THClientTableProjectCell.h
 Interactex Designer
 
-Created by Juan Haladjian on 05/10/2013.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,46 +38,25 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class THHardwareComponent;
-@class THiPhone;
-@class THiPhoneObject;
-@class THConditionObject;
-@class THLilyPad;
+@class THClientTableProjectCell;
 
-@interface THClientProject : NSObject <NSCoding, NSCopying>
-{
-}
+@protocol THClientTableProjectCellDelegate <NSObject>
 
-@property (nonatomic, copy) NSString * name;
+-(void) tableProjectCell:(THClientTableProjectCell*) cell didChangeNameTo:(NSString*) name;
+-(void) didDuplicateTableProjectCell:(THClientTableProjectCell*)cell;
+@end
 
-@property (nonatomic, strong) NSMutableArray * boards;
-@property (nonatomic, strong) NSMutableArray * hardwareComponents;
-@property (nonatomic, strong) NSMutableArray * iPhoneObjects;
-@property (nonatomic, strong) NSMutableArray * conditions;
-@property (nonatomic, strong) NSMutableArray * values;
-@property (nonatomic, strong) NSMutableArray * actionPairs;
-@property (nonatomic, strong) NSMutableArray * actions;
-@property (nonatomic, strong) NSMutableArray * triggers;
-@property (nonatomic, strong) THiPhone * iPhone;
-@property (nonatomic, strong) THLilyPad * lilypad;
-@property (nonatomic, readonly) NSArray * allObjects;
+@interface THClientTableProjectCell : UITableViewCell
 
-+(id)emptyProject;
-+(THClientProject*) projectSavedWithName:(NSString*) name;
-+(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
 
--(id) initWithName:(NSString*) name;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) id<THClientTableProjectCellDelegate> delegate;
 
--(void) prepareAllObjectsToDie;
-
--(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event;
-
--(void) startSimulating;
--(void) willStartSimulating;
--(void) didStartSimulating;
-
--(void) save;
+- (IBAction)textChanged:(id)sender;
 
 @end

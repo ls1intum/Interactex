@@ -127,8 +127,6 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 -(void) didFinishReceivingProject:(THClientProject *)project {
     
     //THClientScene * scene = [[THClientScene alloc] initWithName:project.name];
-    
-    
     //scene.project = nil;
     
     [self.delegate didFinishReceivingProject:project];

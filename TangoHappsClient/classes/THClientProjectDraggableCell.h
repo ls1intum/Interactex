@@ -1,8 +1,8 @@
 /*
-THProjectDraggableCell.m
+THProjectDraggableCell.h
 Interactex Designer
 
-Created by Juan Haladjian on 05/10/2013.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,24 +38,11 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "THProjectDraggableCell.h"
+#import <UIKit/UIKit.h>
 
-@implementation THProjectDraggableCell
+@interface THClientProjectDraggableCell : UIView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        
-        self.imageView = [[UIImageView alloc] init];
-        [self addSubview:self.imageView];
-        
-        /*
-        CGRect textFieldFrame = CGRectMake(0, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-        self.textField = [[UITextField alloc] initWithFrame:textFieldFrame];*/
-    }
-    return self;
-}
+@property (nonatomic) UIImageView * imageView;
+//@property (nonatomic) UITextField * textField;
 
 @end

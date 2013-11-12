@@ -1,66 +1,61 @@
 /*
-THProjectSelectionViewController.m
-Interactex Designer
-
-Created by Juan Haladjian on 05/10/2013.
-
-Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
-
-www.interactex.org
-
-Copyright (C) 2013 TU Munich, Munich, Germany; DRLab, University of the Arts Berlin, Berlin, Germany; Telekom Innovation Laboratories, Berlin, Germany
-	
-Contacts:
-juan.haladjian@cs.tum.edu
-katharina.bredies@udk-berlin.de
-opensource@telekom.de
-
-    
-The first version of the software was designed and implemented as part of "Wearable M2M", a joint project of UdK Berlin and TU Munich, which was founded by Telekom Innovation Laboratories Berlin. It has been extended with funding from EIT ICT, as part of the activity "Connected Textiles".
-
-Interactex is built using the Tango framework developed by TU Munich.
-
-In the Interactex software, we use the GHUnit (a test framework for iOS developed by Gabriel Handford) and cocos2D libraries (a framework for building 2D games and graphical applications developed by Zynga Inc.). 
-www.cocos2d-iphone.org
-github.com/gabriel/gh-unit
-
-Interactex also implements the Firmata protocol. Its software serial library is based on the original Arduino Firmata library.
-www.firmata.org
-
-All hardware part graphics in Interactex Designer are reproduced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
-www.frizting.org
-
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ THClientProjectSelectionViewController.m
+ Interactex Designer
  
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ Created by Juan Haladjian on 05/10/2013.
  
-You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
+ 
+ www.interactex.org
+ 
+ Copyright (C) 2013 TU Munich, Munich, Germany; DRLab, University of the Arts Berlin, Berlin, Germany; Telekom Innovation Laboratories, Berlin, Germany
+ 
+ Contacts:
+ juan.haladjian@cs.tum.edu
+ katharina.bredies@udk-berlin.de
+ opensource@telekom.de
+ 
+ 
+ The first version of the software was designed and implemented as part of "Wearable M2M", a joint project of UdK Berlin and TU Munich, which was founded by Telekom Innovation Laboratories Berlin. It has been extended with funding from EIT ICT, as part of the activity "Connected Textiles".
+ 
+ Interactex is built using the Tango framework developed by TU Munich.
+ 
+ In the Interactex software, we use the GHUnit (a test framework for iOS developed by Gabriel Handford) and cocos2D libraries (a framework for building 2D games and graphical applications developed by Zynga Inc.).
+ www.cocos2d-iphone.org
+ github.com/gabriel/gh-unit
+ 
+ Interactex also implements the Firmata protocol. Its software serial library is based on the original Arduino Firmata library.
+ www.firmata.org
+ 
+ All hardware part graphics in Interactex Designer are reproduced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
+ www.frizting.org
+ 
+ 
+ This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#import "THProjectSelectionViewController.h"
-#import "THProjectProxy.h"
-#import "THCollectionProjectCell.h"
-#import "THProjectDraggableCell.h"
-#import "THProject.h"
+#import "THClientSceneSelectionViewController2.h"
+#import "THClientCollectionProjectCell.h"
+#import "THClientProjectDraggableCell.h"
+#import "THClientProject.h"
 #import "THTableProjectCell.h"
+#import "THClientAppDelegate.h"
+#import "THClientProjectProxy.h"
+#import "THClientDownloadViewController.h"
 
-@implementation THProjectSelectionViewController
-
+@implementation THClientSceneSelectionViewController2
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.projectProxies = appDelegate.scenes;
     
     self.navigationController.navigationBar.translucent = NO;
-    
-    self.projectProxies = [THDirector sharedDirector].projectProxies;
-    
-    CCDirector *director = [CCDirector sharedDirector];
-    if([director isViewLoaded] == NO) {
-        director.view = [self createDirectorGLView];
-        [self didInitializeDirector];
-    }
     
     self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
     
@@ -68,31 +63,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.navigationItem.leftBarButtonItem = self.editButton;
     
-}
-
-#pragma  mark - init cocos2d
-
-- (CCGLView *)createDirectorGLView {
-
-    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    //float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    
-    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight)
-                                   pixelFormat:kEAGLColorFormatRGB565
-                                   depthFormat:0
-                            preserveBackbuffer:NO
-                                    sharegroup:nil
-                                 multiSampling:NO
-                               numberOfSamples:0];
-    return glView;
-}
-
-- (void)didInitializeDirector
-{
-    CCDirector *director = [CCDirector sharedDirector];
-    
-    [director setAnimationInterval:1.0f/60.0f];
-    [director enableRetinaDisplay:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -148,8 +118,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self stopEditingScenes];
     [self removeGestureRecognizers];
     
-    [[THDirector sharedDirector] saveProjectProxies];
-    
     //[[CCDirector sharedDirector] popScene];
     
 }
@@ -158,49 +126,35 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)proceedToProjectAtIndex:(NSInteger) index{
     
-    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
-    THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
+    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+    THClientProject * project = (THClientProject*) [THClientProject projectSavedWithName:proxy.name];
     
     //update its name since it could have been renamed while it was not loaded
     project.name = proxy.name;
-    
-    [THDirector sharedDirector].currentProxy = proxy;
-    [THDirector sharedDirector].currentProject = project;
-    
-    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
-}
-
-- (void)proceedToNewProject{
-    
-    THProject * project = [THProject newProject];
-    
-    [THDirector sharedDirector].currentProject = project;
     
     [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
 }
 
 -(void) deleteProjectAtIndex:(NSInteger) index{
     
-    THProjectProxy * projectProxy = [self.projectProxies objectAtIndex:index];
+    THClientProjectProxy * projectProxy = [self.projectProxies objectAtIndex:index];
     [self.projectProxies removeObjectAtIndex:index];
     
     [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
-    /*
-    NSString * imageName = [projectProxy.name stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];*/
 }
 
 #pragma mark - Collection DataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [THDirector sharedDirector].projectProxies.count;
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    return appDelegate.scenes;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:indexPath.row];
-
-    THCollectionProjectCell * cell = (THCollectionProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
+    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+    
+    THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
     cell.delegate = self;
     cell.nameTextField.text = proxy.name;
     cell.imageView.image = proxy.image;
@@ -222,7 +176,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         for(int i = 0 ; i < self.projectProxies.count ; i++){
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+            THClientCollectionProjectCell * cell =  (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
             [cell startShaking];
         }
     }
@@ -232,7 +186,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
     if(self.editingScenes || self.editingOneScene) return NO;
     
-    THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+    THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
     [self showDuplicateMenuForCell:cell];
     
     return YES;
@@ -249,14 +203,14 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - TableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [THDirector sharedDirector].projectProxies.count;
+    return self.projectProxies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:indexPath.row];
+    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
     
-    THTableProjectCell * cell = (THTableProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectTableCell"];
+    THClientTableProjectCell * cell = (THClientTableProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectTableCell"];
     cell.nameLabel.text = proxy.name;
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
@@ -267,20 +221,13 @@ You should have received a copy of the GNU General Public License along with thi
     cell.imageView.image = proxy.image;
     cell.delegate = self;
     
-    /*
-    cell.delegate = self;
-    cell.title = proxy.name;
-    cell.imageView.image = proxy.image;
-    cell.editing = NO;
-    cell.titleTextField.hidden = NO;*/
-    
     return cell;
 }
 
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-       
+    
     [self proceedToProjectAtIndex:indexPath.row];
 }
 
@@ -329,12 +276,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Table Project Cell Delegate
 
--(void) tableProjectCell:(THTableProjectCell*) cell didChangeNameTo:(NSString*) name{
+-(void) tableProjectCell:(THClientTableProjectCell*) cell didChangeNameTo:(NSString*) name{
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     if(indexPath){
-        THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+        THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
         //NSString * oldName = proxy.name;
-        BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
+        BOOL success = [THClientProject renameProjectNamed:proxy.name toName:name];
         if(success){
             //[TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
             
@@ -353,7 +300,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(indexPath){
         
         [self duplicateProjectAtIndex:indexPath.row];
-
+        
         NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
         [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -366,7 +313,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.showingIcons){
         for(int i = 0 ; i < self.projectProxies.count ; i++){
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+            THClientCollectionProjectCell * cell =  (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
             cell.editing = YES;
         }
     } else {
@@ -383,13 +330,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) stopEditingScenes{
     
     //if(self.showingIcons){
-        for(int i = 0 ; i < self.projectProxies.count ; i++){
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
-            cell.editing = NO;
-        }
+    for(int i = 0 ; i < self.projectProxies.count ; i++){
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THClientCollectionProjectCell * cell =  (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.editing = NO;
+    }
     //} else {
-        [self.tableView setEditing:NO animated:YES];
+    [self.tableView setEditing:NO animated:YES];
     //}
     
     self.editButton.title = @"Edit";
@@ -419,7 +366,7 @@ You should have received a copy of the GNU General Public License along with thi
     if((gestureRecognizer == tapRecognizer && otherGestureRecognizer == longpressRecognizer) || (gestureRecognizer == longpressRecognizer && otherGestureRecognizer == tapRecognizer)){
         return (self.editingScenes || self.editingOneScene);
     }
-
+    
     return YES;
 }
 
@@ -429,12 +376,12 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(indexPath){
         
-        currentProjectCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        currentProjectCell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         currentProject = [self.projectProxies objectAtIndex:indexPath.row];
         
         if(currentProjectCell.editing){
             
-            currentDraggableCell = [[THProjectDraggableCell alloc] initWithFrame:currentProjectCell.frame];
+            currentDraggableCell = [[THClientProjectDraggableCell alloc] initWithFrame:currentProjectCell.frame];
             currentDraggableCell.imageView.image = currentProjectCell.imageView.image;
             currentDraggableCell.imageView.frame = currentProjectCell.imageView.frame;
             
@@ -468,7 +415,7 @@ You should have received a copy of the GNU General Public License along with thi
         currentProjectCell = nil;
         currentDraggableCell = nil;
         
-        THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         cell.editing = YES;
         //[cell startShaking];
         
@@ -504,28 +451,22 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) duplicateProjectAtIndex:(NSInteger) index{
-    
-    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+    /*
+    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     
     //project
-    THProject * project = [THProject projectNamed:proxy.name];
-    project.name = [THProject nextProjectNameForName:project.name];
+    THClientProject * project = [THClientProject projectNamed:proxy.name];
+    project.name = [THClientProject nextProjectNameForName:project.name];
     [project save];
     
-    /*
-    //image
-    NSString * imageFileName = [project.name stringByAppendingString:@".png"];
-    NSString * imageFilePath = [TFFileUtils dataFile:imageFileName
-                                         inDirectory:kProjectImagesDirectory];
-    [TFFileUtils saveImageToFile:proxy.image file:imageFilePath];*/
     
     //proxy array
-    THProjectProxy * proxyCopy = [proxy copy];
+    THClientProjectProxy * proxyCopy = [proxy copy];
     proxyCopy.name = project.name;
-    [self.projectProxies insertObject:proxyCopy atIndex:index+1];
+    [self.projectProxies insertObject:proxyCopy atIndex:index+1];*/
 }
 
--(void) showDuplicateMenuForCell:(THCollectionProjectCell*) cell{
+-(void) showDuplicateMenuForCell:(THClientCollectionProjectCell*) cell{
     
     //[cell becomeFirstResponder];
     
@@ -543,7 +484,7 @@ You should have received a copy of the GNU General Public License along with thi
             
             CGPoint position = [recognizer locationInView:self.collectionView];
             NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
-            THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
+            THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
             
             if(cell){
                 [cell scaleEffect];
@@ -552,7 +493,7 @@ You should have received a copy of the GNU General Public License along with thi
                 
                 //[self showDuplicateMenuForCell:cell];
             }
-        }        
+        }
     }
 }
 
@@ -561,13 +502,13 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.editingScenes || self.editingOneScene){
         
         [self stopEditingScenes];
-
+        
     } else {
         
         CGPoint position = [recognizer locationInView:self.collectionView];
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
         
-        if(indexPath){            
+        if(indexPath){
             [self proceedToProjectAtIndex:indexPath.row];
         }
     }
@@ -576,7 +517,11 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Segue
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-
+    if([segue.identifier isEqualToString:@"segueToDownloadApp"]){
+        THClientDownloadViewController * controller = segue.destinationViewController;
+        controller.scenes = self.projectProxies;
+        controller.delegate = self;
+    }
 }
 
 #pragma mark - GridItem Delegate
@@ -585,12 +530,12 @@ You should have received a copy of the GNU General Public License along with thi
     
     for (int i = 0 ; i < self.projectProxies.count; i++) {
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        THCollectionProjectCell * aCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        THClientCollectionProjectCell * aCell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         [aCell.nameTextField resignFirstResponder];
     }
 }
 
--(void) didDeleteProjectCell:(THCollectionProjectCell*) cell {
+-(void) didDeleteProjectCell:(THClientCollectionProjectCell*) cell {
     
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
@@ -612,7 +557,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) didDuplicateProjectCell:(THCollectionProjectCell*) cell {
+-(void) didDuplicateProjectCell:(THClientCollectionProjectCell*) cell {
     
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
@@ -625,18 +570,18 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) didRenameProjectCell:(THCollectionProjectCell *)cell toName:(NSString *)name{
+-(void) didRenameProjectCell:(THClientCollectionProjectCell *)cell toName:(NSString *)name{
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
         
-        THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+        THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
         //NSString * oldName = [proxy.name stringByAppendingString:@".png"];
-        BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
+        BOOL success = [THClientProject renameProjectNamed:proxy.name toName:name];
         
         if(success){
-/*
-            NSString * imageName = [name stringByAppendingString:@".png"];
-            [TFFileUtils renameDataFile:oldName to:imageName inDirectory:kProjectImagesDirectory];*/
+            /*
+             NSString * imageName = [name stringByAppendingString:@".png"];
+             [TFFileUtils renameDataFile:oldName to:imageName inDirectory:kProjectImagesDirectory];*/
             
             cell.nameTextField.text = name;
             proxy.name = name;
@@ -663,7 +608,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (IBAction)addButtonTapped:(id)sender {
     
-    [self proceedToNewProject];
 }
 
 - (IBAction)viewControlChanged:(id)sender {
@@ -692,10 +636,7 @@ You should have received a copy of the GNU General Public License along with thi
     
 }
 
-- (IBAction)filterControlChanged:(id)sender {
-}
-
-- (IBAction)orderControlChanged:(id)sender {
+- (IBAction)projectTypeControlChanged:(id)sender {
 }
 
 - (IBAction)textEditingFinished:(id)sender {
@@ -710,5 +651,15 @@ You should have received a copy of the GNU General Public License along with thi
     [self stopEditingScenes];
 }
 
+#pragma mark - DownloadDelegate
+
+-(void) didFinishReceivingProject:(THClientProjectProxy*) project{
+    
+    THClientProjectProxy * proxy = [[THClientProjectProxy alloc] initWithName:project.name];
+    [self.projectProxies addObject:proxy];
+    
+    [self.collectionView reloadData];
+    [self.tableView reloadData];
+}
 
 @end

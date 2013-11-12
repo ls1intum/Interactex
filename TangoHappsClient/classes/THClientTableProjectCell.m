@@ -1,8 +1,8 @@
 /*
-THClientProject.h
+THClientTableProjectCell.m
 Interactex Designer
 
-Created by Juan Haladjian on 05/10/2013.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,46 +38,61 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <Foundation/Foundation.h>
+#import "THClientTableProjectCell.h"
 
-@class THHardwareComponent;
-@class THiPhone;
-@class THiPhoneObject;
-@class THConditionObject;
-@class THLilyPad;
+@implementation THClientTableProjectCell
 
-@interface THClientProject : NSObject <NSCoding, NSCopying>
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
 }
 
-@property (nonatomic, copy) NSString * name;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
 
-@property (nonatomic, strong) NSMutableArray * boards;
-@property (nonatomic, strong) NSMutableArray * hardwareComponents;
-@property (nonatomic, strong) NSMutableArray * iPhoneObjects;
-@property (nonatomic, strong) NSMutableArray * conditions;
-@property (nonatomic, strong) NSMutableArray * values;
-@property (nonatomic, strong) NSMutableArray * actionPairs;
-@property (nonatomic, strong) NSMutableArray * actions;
-@property (nonatomic, strong) NSMutableArray * triggers;
-@property (nonatomic, strong) THiPhone * iPhone;
-@property (nonatomic, strong) THLilyPad * lilypad;
-@property (nonatomic, readonly) NSArray * allObjects;
+    // Configure the view for the selected state
+}
 
-+(id)emptyProject;
-+(THClientProject*) projectSavedWithName:(NSString*) name;
-+(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
+-(void) didTransitionToState:(UITableViewCellStateMask)state{
+    [super didTransitionToState:state];
+    
+    if(state == UITableViewCellStateDefaultMask){
+        
+        [self.textField resignFirstResponder];
+        self.textField.hidden = YES;
+        self.nameLabel.hidden = NO;
+        
+    } else {
+        
+        self.textField.text = self.nameLabel.text;
+        self.nameLabel.hidden = YES;
+        self.textField.hidden = NO;
+    }
+}
 
--(id) initWithName:(NSString*) name;
+- (IBAction)textChanged:(id)sender {
+    [self.delegate tableProjectCell:self didChangeNameTo:self.textField.text];
+    [self.textField resignFirstResponder];
+}
 
--(void) prepareAllObjectsToDie;
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+        
+    [self.textField resignFirstResponder];
+    
+    return YES;
+}
 
--(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event;
+-(BOOL) canPerformAction:(SEL)action withSender:(id)sender {
+    return (action == @selector(duplicate:));
+}
 
--(void) startSimulating;
--(void) willStartSimulating;
--(void) didStartSimulating;
-
--(void) save;
+-(void) duplicate: (id) sender {
+    [self.delegate didDuplicateTableProjectCell:self];
+}
 
 @end

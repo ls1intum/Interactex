@@ -25,7 +25,6 @@
 		9A06EFC3169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EFC1169C0B0C00B88519 /* THThreeColorLedProperties.m */; };
 		9A06EFC4169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EFC1169C0B0C00B88519 /* THThreeColorLedProperties.m */; };
 		9A09762F171570050028A6B4 /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
-		9A097630171570090028A6B4 /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */; };
 		9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionController.m */; };
 		9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
@@ -395,8 +394,6 @@
 		9A56D03C17D946FF001021B2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D03A17D946FF001021B2 /* Storyboard.storyboard */; };
 		9A56D05317D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */; };
 		9A56D05417D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */; };
-		9A56D05717D9C4FF001021B2 /* THClientSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */; };
-		9A56D05817D9C4FF001021B2 /* THClientSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */; };
 		9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */; };
 		9A56D05C17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */; };
 		9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D19517DBDAA7001021B2 /* THDirector.m */; };
@@ -755,7 +752,6 @@
 		9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9AF5002D167B83140020241C /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
-		9AF5002E167B83140020241C /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */; };
 		9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionController.m */; };
 		9AF50032167B83140020241C /* iphoneFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001E167B83140020241C /* iphoneFrame.png */; };
 		9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001F167B83140020241C /* iphoneFrame@2x.png */; };
@@ -1060,6 +1056,16 @@
 		9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A50D91918296D3700335926 /* libcocos2d.a */; };
 		9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A50D91D18296D3700335926 /* libCocosDenshion.a */; };
 		9AFA65F3182A81790082990F /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
+		9AFB7DC61832A91500694CCE /* THClientSceneSelectionViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController2.m */; };
+		9AFB7DC71832A91500694CCE /* THClientSceneSelectionViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController2.m */; };
+		9AFB7DCC1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC91832AAD100694CCE /* THClientCollectionProjectCell.m */; };
+		9AFB7DCD1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC91832AAD100694CCE /* THClientCollectionProjectCell.m */; };
+		9AFB7DCE1832AAD100694CCE /* THClientProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DCB1832AAD100694CCE /* THClientProjectDraggableCell.m */; };
+		9AFB7DCF1832AAD100694CCE /* THClientProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DCB1832AAD100694CCE /* THClientProjectDraggableCell.m */; };
+		9AFB7DD21832AE2600694CCE /* THClientTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DD11832AE2600694CCE /* THClientTableProjectCell.m */; };
+		9AFB7DD31832AE2600694CCE /* THClientTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DD11832AE2600694CCE /* THClientTableProjectCell.m */; };
+		9AFB7DD61832B0B100694CCE /* THClientProjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DD51832B0B100694CCE /* THClientProjectProxy.m */; };
+		9AFB7DD71832B0B100694CCE /* THClientProjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DD51832B0B100694CCE /* THClientProjectProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1789,8 +1795,6 @@
 		9A56D03A17D946FF001021B2 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = gui/Storyboard.storyboard; sourceTree = "<group>"; };
 		9A56D05117D9C4DA001021B2 /* THCollectionProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCollectionProjectCell.h; sourceTree = "<group>"; };
 		9A56D05217D9C4DA001021B2 /* THCollectionProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCollectionProjectCell.m; sourceTree = "<group>"; };
-		9A56D05517D9C4FE001021B2 /* THClientSceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneCell.h; sourceTree = "<group>"; };
-		9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneCell.m; sourceTree = "<group>"; };
 		9A56D05917D9CD38001021B2 /* THProjectDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectDraggableCell.h; sourceTree = "<group>"; };
 		9A56D05A17D9CD39001021B2 /* THProjectDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectDraggableCell.m; sourceTree = "<group>"; };
 		9A56D19417DBDAA6001021B2 /* THDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDirector.h; sourceTree = "<group>"; };
@@ -2049,8 +2053,6 @@
 		9AF50010167B83140020241C /* THClientAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientAppViewController.m; sourceTree = "<group>"; };
 		9AF50015167B83140020241C /* THClientScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientScene.h; sourceTree = "<group>"; };
 		9AF50016167B83140020241C /* THClientScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientScene.m; sourceTree = "<group>"; };
-		9AF50017167B83140020241C /* THClientSceneSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneSelectionViewController.h; sourceTree = "<group>"; };
-		9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneSelectionViewController.m; sourceTree = "<group>"; };
 		9AF50019167B83140020241C /* THClientConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController.h; sourceTree = "<group>"; };
 		9AF5001A167B83140020241C /* THClientConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController.m; sourceTree = "<group>"; };
 		9AF5001E167B83140020241C /* iphoneFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneFrame.png; sourceTree = "<group>"; };
@@ -2302,6 +2304,16 @@
 		9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbarViewSection.xib; sourceTree = "<group>"; };
 		9AFA65F1182A81790082990F /* THMonitorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMonitorLine.h; sourceTree = "<group>"; };
 		9AFA65F2182A81790082990F /* THMonitorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMonitorLine.m; sourceTree = "<group>"; };
+		9AFB7DC41832A91500694CCE /* THClientSceneSelectionViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneSelectionViewController2.h; sourceTree = "<group>"; };
+		9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneSelectionViewController2.m; sourceTree = "<group>"; };
+		9AFB7DC81832AAD100694CCE /* THClientCollectionProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientCollectionProjectCell.h; sourceTree = "<group>"; };
+		9AFB7DC91832AAD100694CCE /* THClientCollectionProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientCollectionProjectCell.m; sourceTree = "<group>"; };
+		9AFB7DCA1832AAD100694CCE /* THClientProjectDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientProjectDraggableCell.h; sourceTree = "<group>"; };
+		9AFB7DCB1832AAD100694CCE /* THClientProjectDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientProjectDraggableCell.m; sourceTree = "<group>"; };
+		9AFB7DD01832AE2600694CCE /* THClientTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientTableProjectCell.h; sourceTree = "<group>"; };
+		9AFB7DD11832AE2600694CCE /* THClientTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientTableProjectCell.m; sourceTree = "<group>"; };
+		9AFB7DD41832B0B100694CCE /* THClientProjectProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientProjectProxy.h; sourceTree = "<group>"; };
+		9AFB7DD51832B0B100694CCE /* THClientProjectProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientProjectProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3067,10 +3079,8 @@
 			children = (
 				9AF5000D167B83140020241C /* THClientAppDelegate.h */,
 				9AF5000E167B83140020241C /* THClientAppDelegate.m */,
-				9AF50017167B83140020241C /* THClientSceneSelectionViewController.h */,
-				9AF50018167B83140020241C /* THClientSceneSelectionViewController.m */,
-				9A56D05517D9C4FE001021B2 /* THClientSceneCell.h */,
-				9A56D05617D9C4FE001021B2 /* THClientSceneCell.m */,
+				9AFB7DC41832A91500694CCE /* THClientSceneSelectionViewController2.h */,
+				9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController2.m */,
 				9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */,
 				9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */,
 				9AF50019167B83140020241C /* THClientConnectionController.h */,
@@ -3083,8 +3093,16 @@
 				9AF50016167B83140020241C /* THClientScene.m */,
 				9AF5025C167B84B40020241C /* THClientProject.h */,
 				9AF5025D167B84B40020241C /* THClientProject.m */,
+				9AFB7DD41832B0B100694CCE /* THClientProjectProxy.h */,
+				9AFB7DD51832B0B100694CCE /* THClientProjectProxy.m */,
 				9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */,
 				9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */,
+				9AFB7DC81832AAD100694CCE /* THClientCollectionProjectCell.h */,
+				9AFB7DC91832AAD100694CCE /* THClientCollectionProjectCell.m */,
+				9AFB7DCA1832AAD100694CCE /* THClientProjectDraggableCell.h */,
+				9AFB7DCB1832AAD100694CCE /* THClientProjectDraggableCell.m */,
+				9AFB7DD01832AE2600694CCE /* THClientTableProjectCell.h */,
+				9AFB7DD11832AE2600694CCE /* THClientTableProjectCell.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -3733,6 +3751,9 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Technische Universität München";
 				TargetAttributes = {
+					9A351188167B7A6800C7484B = {
+						DevelopmentTeam = WCM2L8RG39;
+					};
 					9AF5FFF0167B82F70020241C = {
 						DevelopmentTeam = WCM2L8RG39;
 					};
@@ -4931,6 +4952,7 @@
 				9AF505CD167B90C00020241C /* THIntegrationTest.m in Sources */,
 				9AF505D0167B90C00020241C /* THTestsHelper.m in Sources */,
 				9AF505E8167B91DB0020241C /* THColorPicker.m in Sources */,
+				9AFB7DD71832B0B100694CCE /* THClientProjectProxy.m in Sources */,
 				9AF505E9167B91DB0020241C /* THClientHelper.m in Sources */,
 				9AF505EA167B91DB0020241C /* THConstants.m in Sources */,
 				9AF505EB167B91DB0020241C /* THToneGenerator.m in Sources */,
@@ -4959,6 +4981,7 @@
 				9AF50604167B91FE0020241C /* THLabel.m in Sources */,
 				9AF50605167B92020020241C /* THLabelEditableObject.m in Sources */,
 				9AF50606167B92020020241C /* THMusicPlayer.m in Sources */,
+				9AFB7DCF1832AAD100694CCE /* THClientProjectDraggableCell.m in Sources */,
 				9AF50607167B92020020241C /* THMusicPlayerEditableObject.m in Sources */,
 				9AF50608167B92020020241C /* THTouchpad.m in Sources */,
 				9AF50609167B92050020241C /* THTouchPadEditableObject.m in Sources */,
@@ -5035,12 +5058,14 @@
 				9AF5064F167B92840020241C /* THLilypadPropertiesPinView.m in Sources */,
 				9AF50650167B92840020241C /* THMusicPlayerProperties.m in Sources */,
 				9AF50651167B92840020241C /* THSwitchProperties.m in Sources */,
+				9AFB7DCD1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */,
 				9AF50652167B92840020241C /* THTouchpadProperties.m in Sources */,
 				9AF50653167B92840020241C /* THValueProperties.m in Sources */,
 				9AF50654167B928A0020241C /* THEditorToolsDataSource.m in Sources */,
 				9A8BB9A3167C815D00FBABFB /* THPinsController.m in Sources */,
 				9ABC276818098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A8BB9A5167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
+				9AFB7DD31832AE2600694CCE /* THClientTableProjectCell.m in Sources */,
 				9AB29B66167F82B500F5AF62 /* THMapper.m in Sources */,
 				9AB29B67167F82B500F5AF62 /* THMapperEditable.m in Sources */,
 				9AB29B68167F82B500F5AF62 /* THLinearFunction.m in Sources */,
@@ -5079,11 +5104,11 @@
 				9A9384B016D69CCA00A41BD2 /* THActionEditable.m in Sources */,
 				9AF3E6D416FA07250013DE13 /* THClientPresetsGenerator.m in Sources */,
 				9A09762F171570050028A6B4 /* THClientScene.m in Sources */,
-				9A097630171570090028A6B4 /* THClientSceneSelectionViewController.m in Sources */,
 				9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */,
 				9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */,
 				9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */,
 				9A09767E171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
+				9AFB7DC71832A91500694CCE /* THClientSceneSelectionViewController2.m in Sources */,
 				9ABC27B11809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9A097682171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
 				9A097686171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
@@ -5125,7 +5150,6 @@
 				9A56CDB817D8EF31001021B2 /* THStringValueProperties.m in Sources */,
 				9A56CDC717D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
 				9A56D05417D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
-				9A56D05817D9C4FF001021B2 /* THClientSceneCell.m in Sources */,
 				9A56D05C17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19717DBDAA9001021B2 /* THDirector.m in Sources */,
 				9A41446D17DE64420061EDF8 /* THClientConstants.m in Sources */,
@@ -5164,7 +5188,6 @@
 				9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */,
 				9AF5002D167B83140020241C /* THClientScene.m in Sources */,
 				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
-				9AF5002E167B83140020241C /* THClientSceneSelectionViewController.m in Sources */,
 				9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */,
 				9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */,
 				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
@@ -5181,6 +5204,7 @@
 				9AF50456167B84F50020241C /* THLed.m in Sources */,
 				9AF50457167B84F50020241C /* THLightSensor.m in Sources */,
 				9AF50459167B84F50020241C /* THPotentiometer.m in Sources */,
+				9AFB7DD61832B0B100694CCE /* THClientProjectProxy.m in Sources */,
 				9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */,
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
@@ -5193,6 +5217,7 @@
 				9AF50461167B852F0020241C /* THiSwitch.m in Sources */,
 				9AF50462167B852F0020241C /* THLabel.m in Sources */,
 				9AF50463167B852F0020241C /* THMusicPlayer.m in Sources */,
+				9AFB7DC61832A91500694CCE /* THClientSceneSelectionViewController2.m in Sources */,
 				9AF50464167B852F0020241C /* THTouchpad.m in Sources */,
 				9AF50465167B852F0020241C /* THView.m in Sources */,
 				9AF5046B167B85710020241C /* THClientHelper.m in Sources */,
@@ -5214,6 +5239,7 @@
 				9AF3E6D316FA07250013DE13 /* THClientPresetsGenerator.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A09772F17267CFC0028A6B4 /* THSound.m in Sources */,
+				9AFB7DCE1832AAD100694CCE /* THClientProjectDraggableCell.m in Sources */,
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
@@ -5230,12 +5256,13 @@
 				9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */,
 				9ABC27B01809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
+				9AFB7DCC1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */,
 				9A31659A1827935700CB3E59 /* IFI2CRegister.m in Sources */,
 				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
 				9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */,
 				9A56CDAD17D8EDA2001021B2 /* THStringValue.m in Sources */,
-				9A56D05717D9C4FF001021B2 /* THClientSceneCell.m in Sources */,
 				9A41446C17DE64410061EDF8 /* THClientConstants.m in Sources */,
+				9AFB7DD21832AE2600694CCE /* THClientTableProjectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5365,8 +5392,8 @@
 		9A3511A8167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -5381,8 +5408,8 @@
 		9A3511A9167B7A6800C7484B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -5424,8 +5451,8 @@
 		9A94F279169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -5440,8 +5467,8 @@
 		9A94F27A169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -5477,8 +5504,8 @@
 		9AF50008167B82F70020241C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -5495,8 +5522,8 @@
 		9AF50009167B82F70020241C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";

@@ -1,8 +1,8 @@
 /*
-THClientSceneCell.h
+THClientProjectProxy.h
 Interactex Designer
 
-Created by Juan Haladjian on 18/08/2013.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,35 +38,15 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-extern const float kShakingEffectAngleInRadians;
-extern const float kShakingEffectRotationTime;
+@interface THClientProjectProxy : NSObject <NSCoding, NSCopying>
 
-@class THClientSceneCell;
+@property (nonatomic) NSString * name;
+@property (nonatomic) UIImage * image;
+@property (nonatomic) NSDate * date;
 
-@protocol THClientSceneCellDelegate <NSObject>
-
--(void) didDeleteClientSceneCell:(THClientSceneCell*)cell;
-
-@end
-
-@interface THClientSceneCell : UICollectionViewCell <UITextFieldDelegate>
-
-@property (nonatomic) BOOL editing;
-
-@property (nonatomic) NSString * title;
-
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-@property (weak, nonatomic) id<THClientSceneCellDelegate> delegate;
-
-- (IBAction)deleteTapped:(id)sender;
-
--(void) startShaking;
--(void) stopShaking;
--(void) scaleEffect;
++(id) proxyWithName:(NSString*) name;
+-(id) initWithName:(NSString*) name;
 
 @end

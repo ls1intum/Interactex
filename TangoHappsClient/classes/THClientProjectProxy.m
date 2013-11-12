@@ -1,8 +1,8 @@
 /*
-THClientProject.h
+THClientProjectProxy.m
 Interactex Designer
 
-Created by Juan Haladjian on 05/10/2013.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,46 +38,57 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <Foundation/Foundation.h>
+#import "THClientProjectProxy.h"
 
-@class THHardwareComponent;
-@class THiPhone;
-@class THiPhoneObject;
-@class THConditionObject;
-@class THLilyPad;
+@implementation THClientProjectProxy
 
-@interface THClientProject : NSObject <NSCoding, NSCopying>
-{
+#pragma mark - Construction
+
++(id) proxyWithName:(NSString*) name{
+    return [[THClientProjectProxy alloc] initWithName:name];
 }
 
-@property (nonatomic, copy) NSString * name;
+-(id) initWithName:(NSString*) name{
+    self = [super init];
+    if(self){
+        self.name = name;
+        
+        NSString * imageFile = [self.name stringByAppendingString:@".png"];
+        NSString * imagePath = [TFFileUtils dataFile:imageFile
+                                             inDirectory:kProjectImagesDirectory];
+        if([TFFileUtils dataFile:imageFile existsInDirectory:kProjectImagesDirectory])
+            self.image = [UIImage imageWithContentsOfFile:imagePath];
+        
+        self.date = [NSDate date];
+    }
+    return self;
+}
 
-@property (nonatomic, strong) NSMutableArray * boards;
-@property (nonatomic, strong) NSMutableArray * hardwareComponents;
-@property (nonatomic, strong) NSMutableArray * iPhoneObjects;
-@property (nonatomic, strong) NSMutableArray * conditions;
-@property (nonatomic, strong) NSMutableArray * values;
-@property (nonatomic, strong) NSMutableArray * actionPairs;
-@property (nonatomic, strong) NSMutableArray * actions;
-@property (nonatomic, strong) NSMutableArray * triggers;
-@property (nonatomic, strong) THiPhone * iPhone;
-@property (nonatomic, strong) THLilyPad * lilypad;
-@property (nonatomic, readonly) NSArray * allObjects;
+#pragma mark - Archiving
 
-+(id)emptyProject;
-+(THClientProject*) projectSavedWithName:(NSString*) name;
-+(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if(self) {
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.image = [decoder decodeObjectForKey:@"image"];
+        self.date = [decoder decodeObjectForKey:@"date"];
+    }
+    return self;
+}
 
--(id) initWithName:(NSString*) name;
+-(void)encodeWithCoder:(NSCoder *)coder {
 
--(void) prepareAllObjectsToDie;
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeObject:self.image forKey:@"image"];
+    [coder encodeObject:self.date forKey:@"date"];
+}
 
--(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event;
+#pragma mark - Copying
 
--(void) startSimulating;
--(void) willStartSimulating;
--(void) didStartSimulating;
-
--(void) save;
+- (id)copyWithZone:(NSZone *)zone{
+    THClientProjectProxy * proxy = [[THClientProjectProxy alloc] initWithName:self.name];
+    proxy.image = self.image;
+    return proxy;
+}
 
 @end

@@ -46,7 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @dynamic image;
 
-
 #pragma mark - Class Methods
 
 +(NSMutableArray*) persistentScenes {

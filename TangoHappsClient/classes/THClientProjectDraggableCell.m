@@ -1,8 +1,8 @@
 /*
-THClientSceneSelectionViewController.h
+THClientProjectDraggableCell.m
 Interactex Designer
 
-Created by Juan Haladjian on 25/09/2012.
+Created by Juan Haladjian on 12/11/2013.
 
 Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
 
@@ -38,43 +38,24 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import <UIKit/UIKit.h>
-#import "THClientSceneCell.h"
-#import "THClientDownloadViewController.h"
+#import "THClientProjectDraggableCell.h"
 
-@class THClientPresetsGenerator;
-@class THClientSceneCell;
-@class THClientSceneDraggableCell;
+@implementation THClientProjectDraggableCell
 
-@interface THClientSceneSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, THClientSceneCellDelegate, THClientDownloadViewControllerDelegate> {
-    
-    THClientScene * currentScene;
-    THClientSceneCell * currentSceneCell;
-    THClientSceneDraggableCell * currentDraggableCell;
-    
-    UITapGestureRecognizer * tapRecognizer;
-    UIPanGestureRecognizer * panRecognizer;
-    UILongPressGestureRecognizer * longpressRecognizer;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        
+        self.imageView = [[UIImageView alloc] init];
+        [self addSubview:self.imageView];
+        
+        /*
+        CGRect textFieldFrame = CGRectMake(0, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+        self.textField = [[UITextField alloc] initWithFrame:textFieldFrame];*/
+    }
+    return self;
 }
-
-@property (nonatomic) BOOL editingScenes;
-@property (nonatomic) BOOL showingCustomApps;
-
-@property (nonatomic, strong) NSMutableArray * presets;
-@property (nonatomic, weak) NSMutableArray * scenes;
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (weak, nonatomic) IBOutlet UICollectionView * scenesCollectionView;
-@property (weak, nonatomic) IBOutlet UICollectionView * presetsCollectionView;
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl * filterControl;
-
-@property (nonatomic, readonly) UICollectionView * currentCollectionView;
-@property (nonatomic, readonly) NSMutableArray * currentScenesArray;
-
-@property (nonatomic, strong) THClientPresetsGenerator * fakeScenesSource;
-
-- (IBAction) filterControlChanged:(id)sender;
-- (IBAction) editTapped:(id)sender;
 
 @end
