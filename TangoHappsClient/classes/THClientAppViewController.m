@@ -119,8 +119,6 @@ You should have received a copy of the GNU General Public License along with thi
     CGFloat viewHeight = self.view.bounds.size.height;
     
     //CGFloat navigationBarOffset = screenHeight - viewHeight;
-
-    NSLog(@"counted %d objects",self.currentProject.iPhoneObjects.count);
     
     for (THView * object in self.currentProject.iPhoneObjects) {
 
@@ -276,9 +274,7 @@ You should have received a copy of the GNU General Public License along with thi
     if([keyPath isEqualToString:@"value"]){
         
         THBoardPin * pin = object;
-        
-        NSLog(@"pin value changed to: %d",pin.value);
-        
+                
         if(pin.mode == kPinModeDigitalOutput){
             
             [self sendDigitalOutputForPin:pin];
@@ -473,11 +469,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
     
-    NSLog(@"digital msg for pin: %d",pin);
+    //NSLog(@"digital msg for pin: %d",pin);
     
-    for (THBoardPin * pinObj in self.digitalPins) {
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pinObj in project.lilypad.pins) {
         if(pinObj.number == pin){
+            
+            [pinObj removeObserver:self forKeyPath:@"value"];
             pinObj.value = value;
+            [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+            
             break;
         }
     }

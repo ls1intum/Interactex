@@ -195,8 +195,6 @@ static BLEDiscovery * sharedInstance;
 -(void) centralManagerDidUpdateState:(CBCentralManager *)central {
     static CBCentralManagerState previousState = -1;
     
-    NSLog(@"new state: %d",central.state);
-    
 	switch ([centralManager state]) {
 		case CBCentralManagerStatePoweredOff:
 		{

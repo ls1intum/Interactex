@@ -51,21 +51,24 @@ You should have received a copy of the GNU General Public License along with thi
     return [[THBoardPin alloc] initWithPinNumber:pinNumber andType:type];
 }
 
+-(void) loadBoardPin{
+    
+    _attachedElementPins = [NSMutableArray array];
+    [self addPinObserver];
+}
+
 -(id) initWithPinNumber:(NSInteger) pinNumber andType:(THPinType) type{
     
     self = [super init];
     if(self){
         
         if(type == kPintypeAnalog || type == kPintypeDigital){
-            //IFPinType pinTypeFirmata = [THClientHelper THPinTypeToIFPinType:type];
             self.number = pinNumber;
-            //self.type = pinTypeFirmata;
-//            self.mode = IFPinModeOutput;
         }
         
         self.type = type;
         
-        _attachedElementPins = [NSMutableArray array];
+        [self loadBoardPin];
     }
     return self;
 }
@@ -73,7 +76,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        _attachedElementPins = [NSMutableArray array];
+        [self loadBoardPin];
     }
     return self;
 }
@@ -88,6 +91,8 @@ You should have received a copy of the GNU General Public License along with thi
         self.number = [decoder decodeIntegerForKey:@"number"];
         self.mode = [decoder decodeIntegerForKey:@"mode"];
         self.type = [decoder decodeIntegerForKey:@"type"];
+        
+        [self addPinObserver];
     }
     return self;
 }
@@ -103,7 +108,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(id)copyWithZone:(NSZone *)zone {
+    
     THBoardPin * copy = [super copyWithZone:zone];
+    
     copy.number = self.number;
     copy.type = self.type;
     copy.mode = self.mode;
@@ -229,8 +236,15 @@ You should have received a copy of the GNU General Public License along with thi
     return text;
 }
 
--(void) dealloc{
+-(void) prepareToDie{
     _attachedElementPins = nil;
+    
+    [super prepareToDie];
+}
+
+-(void) dealloc{
+    
+    [self removePinObserver];
 }
 
 @end
