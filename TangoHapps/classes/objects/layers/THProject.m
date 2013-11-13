@@ -53,6 +53,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THConditionObject.h"
 #import "THNumberValue.h"
 #import "THNumberValueEditable.h"
+#import "THBoolValueEditable.h"
+#import "THStringValueEditable.h"
+#import "THBoolValue.h"
+#import "THStringValue.h"
+
 #import "THMapperEditable.h"
 #import "THMapper.h"
 #import "THTriggerEditable.h"
@@ -820,7 +825,7 @@ enum zPositions{
     } else if ([editable isKindOfClass:[THConditionEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.conditions];
         return [project.conditions objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THNumberValueEditable class]] || [editable isKindOfClass:[THMapperEditable class]]){
+    } else if ([editable isKindOfClass:[THNumberValueEditable class]] || [editable isKindOfClass:[THBoolValueEditable class]] || [editable isKindOfClass:[THStringValueEditable class]] || [editable isKindOfClass:[THMapperEditable class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.values];
         return [project.values objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
@@ -847,7 +852,7 @@ enum zPositions{
     } else if ([simulable isKindOfClass:[THConditionObject class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.conditions];
         return [project.conditions objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THNumberValue class]] || [simulable isKindOfClass:[THMapper class]]){
+    } else if ([simulable isKindOfClass:[THNumberValue class]] || [simulable isKindOfClass:[THBoolValue class]] || [simulable isKindOfClass:[THStringValue class]] ||[simulable isKindOfClass:[THMapper class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.values];
         return [project.values objectAtIndex:idx];
     } else if ([simulable isKindOfClass:[THTrigger class]]){
@@ -857,7 +862,7 @@ enum zPositions{
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.actions];
         return [project.triggers objectAtIndex:idx];
     } else {
-        NSAssert(NO, @"returning nil in simulableForEditable");
+        NSAssert(NO, @"returning nil for %@ in simulableForSimulable",simulable);
         return nil;
     }
 }
@@ -883,8 +888,20 @@ enum zPositions{
         TFMethodInvokeAction * action = [[TFMethodInvokeAction alloc] initWithTarget:target method:originalAction.method];
         if(originalAction.firstParam != nil){
             action.firstParam = [originalAction.firstParam copy];
-            action.firstParam.target = [self simulableForSimulable:originalAction.firstParam.target inProject:project];
+            
+            NSLog(@"replacing simulable: %@",originalAction.firstParam.target);
+            
+            if([originalAction.firstParam.target isKindOfClass:[TFEditableObject class]]){
+                
+                action.firstParam.target = [self simulableForEditable:originalAction.firstParam.target inProject:project];
+                
+            } else if([originalAction.firstParam.target isKindOfClass:[TFSimulableObject class]]){
+                
+                action.firstParam.target = [self simulableForSimulable:originalAction.firstParam.target inProject:project];
+                
+            }
         }
+        
         TFSimulableObject * source = [self simulableForEditable:pair.action.source inProject:project];
         action.source = source;
         

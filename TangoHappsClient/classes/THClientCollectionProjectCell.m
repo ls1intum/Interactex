@@ -53,7 +53,7 @@ const float kProjectCellScaleEffectDuration = 0.5;
     if (self) {
         // Initialization code
 
-        
+        self.nameTextField.delegate = self;
     }
     return self;
 }

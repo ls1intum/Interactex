@@ -45,7 +45,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLabel.h"
 #import "THBoardPin.h"
 #import "THElementPin.h"
-#import "THClientScene.h"
 #import "THiPhone.h"
 #import "THButton.h"
 #import "THBuzzer.h"
@@ -53,44 +52,68 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLightSensor.h"
 #import "THCompass.h"
 #import "THClientProject.h"
+#import "THClientProjectProxy.h"
 
 @implementation THClientPresetsGenerator
 
-NSString * const kDigitalOutputSceneName = @"Digital Output";
-NSString * const kDigitalInputSceneName = @"Digital Input";
-NSString * const kBuzzerSceneName = @"Buzzer";
-NSString * const kAnalogOutputSceneName = @"Analog Output";
-NSString * const kAnalogInputSceneName = @"Analog Input";
-NSString * const kCompassSceneName = @"Compass";
+NSString * const kDigitalOutputProjectName = @"Digital Output";
+NSString * const kDigitalInputProjectName = @"Digital Input";
+NSString * const kBuzzerProjectName = @"Buzzer";
+NSString * const kAnalogOutputProjectName = @"Analog Output";
+NSString * const kAnalogInputProjectName = @"Analog Input";
+NSString * const kCompassProjectName = @"Compass";
 
 -(id) init{
     
     self = [super init];
     if(self){
-        _scenes = [NSMutableArray array];       
+       
         
-        THClientScene * scene1 = [[THClientScene alloc] initWithName:kDigitalOutputSceneName];
-        THClientScene * scene2 = [[THClientScene alloc] initWithName:kDigitalInputSceneName];
-        THClientScene * scene3 = [[THClientScene alloc] initWithName:kBuzzerSceneName];
-        THClientScene * scene4 = [[THClientScene alloc] initWithName:kAnalogOutputSceneName];
-        THClientScene * scene5 = [[THClientScene alloc] initWithName:kAnalogInputSceneName];
-        THClientScene * scene6 = [[THClientScene alloc] initWithName:kCompassSceneName];
-        
-        [self.scenes addObject:scene1];
-        [self.scenes addObject:scene2];
-        [self.scenes addObject:scene3];
-        [self.scenes addObject:scene4];
-        [self.scenes addObject:scene5];
-        [self.scenes addObject:scene6];
-        
-        for (THClientScene * scene in self.scenes) {
-            scene.isFakeScene = YES;
-        }
-
     }
     return self;
 }
+/*
+-(void) loadPresets{
+    
+    NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
+    _presets = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+}*/
 
+-(void) generatePresets{
+    
+    _presets = [NSMutableArray array];
+    
+    NSMutableArray * array = [NSMutableArray array];
+    [array addObject:[self digitalOutputProject]];
+    [array addObject:[self digitalInputProject]];
+    [array addObject:[self buzzerProject]];
+    //[array addObject:[self analogOutputProject]];
+    [array addObject:[self analogInputProject]];
+    [array addObject:[self compassProject]];
+    
+    
+    NSMutableArray * imagesArray = [NSMutableArray array];
+    [imagesArray addObject:[UIImage imageNamed:@"led.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"button.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"buzzer.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"lightSensor.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
+    
+    for (int i = 0 ; i < array.count ; i++) {
+        
+        THClientProject * project = [array objectAtIndex:i];
+        [project saveToDirectory:kPresetsDirectory];
+        
+        THClientProjectProxy * proxy = [[THClientProjectProxy alloc] initWithName:project.name];
+        
+        UIImage * image = [imagesArray objectAtIndex:i];
+        proxy.image = image;
+        
+        [_presets addObject:proxy];
+    }
+}
+
+/*
 -(THClientProject*) projectNamed:(NSString *)name{
     
     if([name isEqualToString:kDigitalOutputSceneName]){
@@ -107,7 +130,7 @@ NSString * const kCompassSceneName = @"Compass";
         return [self compassProject];
     }
     return nil;
-}
+}*/
 
 -(THClientProject*) defaultClientProject{
     
@@ -121,6 +144,8 @@ NSString * const kCompassSceneName = @"Compass";
 -(THClientProject*) digitalOutputProject{
     
     THClientProject * project = [self defaultClientProject];
+    
+    project.name = kDigitalOutputProjectName;
     
     THLed * led = [[THLed alloc] init];
     
@@ -150,20 +175,17 @@ NSString * const kCompassSceneName = @"Compass";
     [project registerAction:turnOff forEvent:event2];
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a LED to pin 5";
+    label.text = @"connect a LED to pin 4";
     label.position = CGPointMake(150, 100);
     label.width = 200;
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label,nil];
     
-    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:5];
+    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:4];
     lilypinled.mode = kPinModeDigitalOutput;
     THElementPin * ledpin = [led.pins objectAtIndex:1];
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
-    
-    [project save];
-    
     
     return project;
 }
@@ -171,6 +193,8 @@ NSString * const kCompassSceneName = @"Compass";
 -(THClientProject*) digitalInputProject{
     
     THClientProject * project = [self defaultClientProject];
+    
+    project.name = kDigitalInputProjectName;
     
     THLed * led = [[THLed alloc] init];
     THButton * lilybutton = [[THButton alloc] init];
@@ -205,7 +229,7 @@ NSString * const kCompassSceneName = @"Compass";
     [project registerAction:turnOff2 forEvent:event2];
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a LED to pin 5 and a button to pin 4";
+    label.text = @"connect a LED to pin 4 and a button to pin 5";
     label.position = CGPointMake(150, 100);
     label.width = 200;
     label.height = 100;
@@ -214,13 +238,13 @@ NSString * const kCompassSceneName = @"Compass";
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label, nil];
     
     //pins
-    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:5];
+    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:4];
     lilypinled.mode = kPinModeDigitalOutput;
     THElementPin * ledpin = [led.pins objectAtIndex:1];
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:4];
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:5];
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
@@ -232,6 +256,8 @@ NSString * const kCompassSceneName = @"Compass";
 -(THClientProject*) buzzerProject{
     
     THClientProject * project = [self defaultClientProject];
+    
+    project.name = kBuzzerProjectName;
     
     THBuzzer * buzzer = [[THBuzzer alloc] init];
     
@@ -249,7 +275,7 @@ NSString * const kCompassSceneName = @"Compass";
     touchpad.position = CGPointMake(150, 300);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a Buzzer to pin 9";
+    label.text = @"connect a PWM element to pin 9";
     label.position = CGPointMake(150, 50);
     label.width = 200;
     
@@ -279,7 +305,7 @@ NSString * const kCompassSceneName = @"Compass";
     project.lilypad = lilypad;
     
     THBoardPin * lilypinBuzzer = [lilypad digitalPinWithNumber:9];
-    lilypinBuzzer.mode = kPinModeBuzzer;
+    lilypinBuzzer.mode = kPinModePWM;
     THElementPin * buzzerPin = [buzzer.pins objectAtIndex:0];
     [lilypinBuzzer attachPin:buzzerPin];
     [buzzerPin attachToPin:lilypinBuzzer];
@@ -290,6 +316,8 @@ NSString * const kCompassSceneName = @"Compass";
 -(THClientProject*) analogOutputProject{
     
     THClientProject * project = [self defaultClientProject];
+    
+    project.name = kAnalogOutputProjectName;
     
     THLed * led = [[THLed alloc] init];
     
@@ -327,6 +355,8 @@ NSString * const kCompassSceneName = @"Compass";
 
 -(THClientProject*) analogInputProject{
     THClientProject * project = [self defaultClientProject];
+    
+    project.name = kAnalogInputProjectName;
     
     THLightSensor * lightSensor = [[THLightSensor alloc] init];
     
@@ -366,6 +396,9 @@ NSString * const kCompassSceneName = @"Compass";
 -(THClientProject*) compassProject{
     
     THClientProject * project = [self defaultClientProject];
+    
+    project.name = kCompassProjectName;
+    
     /*
     THCompass * compass = [[THCompass alloc] init];
     
@@ -427,7 +460,7 @@ NSString * const kCompassSceneName = @"Compass";
 }
 
 -(NSInteger) numFakeScenes{
-    return _scenes.count;
+    return _presets.count;
 }
 
 @end

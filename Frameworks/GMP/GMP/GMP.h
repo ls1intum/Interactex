@@ -61,6 +61,8 @@ typedef enum {
     
 }GMPParsinState;*/
 
+extern NSString * const kGMPFirmwareName;
+
 @protocol GMPControllerDelegate <NSObject>
 
 @optional

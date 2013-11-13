@@ -84,7 +84,7 @@ typedef enum{
 
 
 #define kNumPinModes 7
-
+/*
 typedef enum{
     kPinModeDigitalInput = 0,
     kPinModeDigitalOutput = 1,
@@ -93,6 +93,16 @@ typedef enum{
     kPinModeBuzzer = 4,
     kPinModeCompass = 5,
     kPinModeUndefined = 6
+} THPinMode;*/
+
+typedef enum{
+    kPinModeDigitalInput = 0x00,
+    kPinModeDigitalOutput,
+    kPinModeAnalogInput,
+    kPinModePWM ,
+    kPinModeServo,
+    kPinModeShift,
+    kPinModeUndefined
 } THPinMode;
 
 
@@ -207,6 +217,8 @@ extern NSString* const kElementPinTexts[kNumElementPinTypes];
 
 extern NSString * const kPaletteItemsDirectory;
 extern NSString * const kProjectsDirectory;
+extern NSString * const kPresetsDirectory;
+
 extern NSString * const kProjectImagesDirectory;
 extern NSString * const kProjectProxiesFileName;
 

@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THSimulableWorldController.h"
 #import "THClientProject.h"
-#import "THClientScene.h"
+#import "THClientProjectProxy.h"
 
 @implementation THSimulableWorldController
 

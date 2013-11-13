@@ -16,7 +16,6 @@
 
 @implementation GMPPinsController
 
-NSString * const kGMPFirmwareName = @"eGMCP1.0";
 float const kRequestTimeoutTime = 2.0f;
 
 -(id) init{
@@ -151,7 +150,7 @@ float const kRequestTimeoutTime = 2.0f;
     NSLog(@"NumPins: %d, Digital: %d, Analog: %d",self.numPins,self.numDigitalPins,self.numAnalogPins);
 }
 
-#pragma mark - Firmata Message Handles
+#pragma mark - GMP Message Handles
 
 -(void) gmpController:(GMP*) gmpController didReceiveFirmwareName: (NSString*) name{
     
@@ -160,21 +159,6 @@ float const kRequestTimeoutTime = 2.0f;
         [self.gmpController sendCapabilitiesRequest];
     }
 }
-
-/*
--(void) sendInitialPinStateQuery{
- 
-    for(int i = 0 ; i < GMPMaxNumPins ; i++){
-        
-        if(pinCapabilities[i] & (1<<kGMPCapabilityGPIO) || (pinCapabilities[i] & (1<<kGMPCapabilityPWM)) || pinCapabilities[i] & (1<<kGMPCapabilityADC)){
-            
-            NSLog(@"sending pin query for: %d",i);
-            
-            [self.gmpController sendPinModeRequestForPin:i];
-            break;
-        }
-    }
-}*/
 
 -(void) resendLastPinModeRequest{
     
@@ -285,43 +269,6 @@ float const kRequestTimeoutTime = 2.0f;
     //NSLog(@"analog msg for pin: %d",pin);
     GMPPin * pinObj = [self.analogPins objectAtIndex:pin];
     pinObj.value = value;
-}
-
-/*
-//makes the pin query for the initial pins. The other queries happen later
--(void) sendInitialPinStateQuery{
-    
-    NSInteger buf[4];
-    int len = 0;
-    for (int pin=0; pin < IFPinInfoBufSize; pin++) {
-        if((pinInfo[pin].supportedModes & (1<<IFPinModeInput)) && (pinInfo[pin].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[pin].supportedModes & (1<<IFPinModeAnalog))){
-            
-            buf[len++] = pin;
-            
-            if(len == 4){
-                break;
-            }
-        }
-    }
-    
-    [self.firmataController sendPinQueryForPinNumbers:buf length:len];
-}*/
-
--(void) makePinQueryForSubsequentPinsStartingAtPin:(int) pin{
-    /*
-    NSInteger numPinsToSend = 0;
-    NSInteger pinNumbers[4];
-    
-    for(int i = pin ; i < pin + 4; i++){
-
-        if((pinInfo[i].supportedModes & (1<<IFPinModeInput)) && (pinInfo[i].supportedModes & (1<<IFPinModeOutput)) && !(pinInfo[i].supportedModes & (1<<IFPinModeAnalog))){
-            pinNumbers[numPinsToSend++] = i;
-            
-        }
-    }
-    if(numPinsToSend > 0){
-        [self.firmataController sendPinQueryForPinNumbers:pinNumbers length:numPinsToSend];
-    }*/
 }
 
 -(void) gmpController:(GMP*) gmpController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length {

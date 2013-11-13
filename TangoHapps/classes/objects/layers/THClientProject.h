@@ -65,7 +65,9 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) NSArray * allObjects;
 
 +(id)emptyProject;
++(THClientProject*) projectSavedWithName:(NSString*) name inDirectory:(NSString*) directory;
 +(THClientProject*) projectSavedWithName:(NSString*) name;
+
 +(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName;
 
 -(id) initWithName:(NSString*) name;
@@ -79,5 +81,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) didStartSimulating;
 
 -(void) save;
+-(void) saveToDirectory:(NSString*) directory;
 
 @end

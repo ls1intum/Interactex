@@ -52,12 +52,12 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         self.name = name;
-        
+        /*
         NSString * imageFile = [self.name stringByAppendingString:@".png"];
         NSString * imagePath = [TFFileUtils dataFile:imageFile
                                              inDirectory:kProjectImagesDirectory];
         if([TFFileUtils dataFile:imageFile existsInDirectory:kProjectImagesDirectory])
-            self.image = [UIImage imageWithContentsOfFile:imagePath];
+            self.image = [UIImage imageWithContentsOfFile:imagePath];*/
         
         self.date = [NSDate date];
     }

@@ -63,7 +63,7 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Properties
 
 -(BOOL)serverIsRunning {
-    return (session);
+    return (session != nil);
 }
 
 #pragma mark - Server Control
@@ -172,8 +172,10 @@ You should have received a copy of the GNU General Public License along with thi
         [_peers removeObjectForKey:peerID];
         [_agents removeObjectForKey:peerID];
         [_delegate server:self peerDisconnected:[session displayNameForPeer:peerID]];
-    }
-    if(state == GKPeerStateConnected){
+        
+    } else if(state == GKPeerStateConnecting){
+        
+    } else if(state == GKPeerStateConnected){
 
         NSString *peerName = [session displayNameForPeer:peerID];
         NSMutableDictionary *peer = [NSMutableDictionary dictionary];
@@ -186,11 +188,11 @@ You should have received a copy of the GNU General Public License along with thi
         THTransferAgent *agent = [THTransferAgent masterAgentForClientPeerID:peerID session:session];
         [agent setDelegate:self];
         [_agents setObject:agent forKey:peerID];
+        
         [_delegate server:self peerConnected:peerName];
+        //[_delegate server:self isReadyForSceneTransfer:([_agents count] > 0)];
     }
     [self updateBusyState];
-
-    [_delegate server:self isReadyForSceneTransfer:([_agents count] > 0)];
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void*)context {

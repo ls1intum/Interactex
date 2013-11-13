@@ -46,14 +46,21 @@
 #import "THClientAppDelegate.h"
 #import "THClientProjectProxy.h"
 #import "THClientDownloadViewController.h"
+#import "THClientAppViewController.h"
+#import "THClientPresetsGenerator.h"
+#import "THClientScene.h"
 
 @implementation THClientSceneSelectionViewController2
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
-    self.projectProxies = appDelegate.scenes;
+    self.projectProxies = appDelegate.projectProxies;
+    
+    THClientPresetsGenerator * fakeScenesSource = [[THClientPresetsGenerator alloc] init];
+    [fakeScenesSource generatePresets];
+    self.presetProxies = fakeScenesSource.presets;
     
     self.navigationController.navigationBar.translucent = NO;
     
@@ -118,46 +125,63 @@
     [self stopEditingScenes];
     [self removeGestureRecognizers];
     
-    //[[CCDirector sharedDirector] popScene];
-    
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate saveProjectProxies];
 }
 
 #pragma mark - Private
 
 - (void)proceedToProjectAtIndex:(NSInteger) index{
     
-    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
-    THClientProject * project = (THClientProject*) [THClientProject projectSavedWithName:proxy.name];
+    THClientProjectProxy * proxy = [self.currentProxiesArray objectAtIndex:index];
+    
+    THClientProject * project;
+    
+    if(self.showingCustomApps){
+        
+        project = (THClientProject*) [THClientProject projectSavedWithName:proxy.name];
+        
+    } else {
+        
+        project = (THClientProject*) [THClientProject projectSavedWithName:proxy.name inDirectory:kPresetsDirectory];
+    }
     
     //update its name since it could have been renamed while it was not loaded
     project.name = proxy.name;
+    
+    [THSimulableWorldController sharedInstance].currentProject = project;
+    [THSimulableWorldController sharedInstance].currentProjectProxy = proxy;
     
     [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
 }
 
 -(void) deleteProjectAtIndex:(NSInteger) index{
     
-    THClientProjectProxy * projectProxy = [self.projectProxies objectAtIndex:index];
-    [self.projectProxies removeObjectAtIndex:index];
+    THClientProjectProxy * projectProxy = [self.currentProxiesArray objectAtIndex:index];
+    [self.currentProxiesArray removeObjectAtIndex:index];
     
     [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
+    
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate saveProjectProxies];
 }
 
 #pragma mark - Collection DataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
-    return appDelegate.scenes;
+    return self.currentProxiesArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+    THClientProjectProxy * proxy = [self.currentProxiesArray objectAtIndex:indexPath.row];
     
     THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
     cell.delegate = self;
     cell.nameTextField.text = proxy.name;
     cell.imageView.image = proxy.image;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     cell.editing = NO;
     cell.nameTextField.hidden = NO;
     
@@ -167,14 +191,13 @@
 #pragma mark - Collection View Delegate
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //NSLog(@"selected: %@",indexPath);
     return YES;
 }
 
 -(void) collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     if(self.editingScenes){
         
-        for(int i = 0 ; i < self.projectProxies.count ; i++){
+        for(int i = 0 ; i < self.currentProxiesArray.count ; i++){
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             THClientCollectionProjectCell * cell =  (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
             [cell startShaking];
@@ -203,22 +226,16 @@
 #pragma mark - TableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.projectProxies.count;
+    return self.currentProxiesArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+    THClientProjectProxy * proxy = [self.currentProxiesArray objectAtIndex:indexPath.row];
     
     THClientTableProjectCell * cell = (THClientTableProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectTableCell"];
     cell.nameLabel.text = proxy.name;
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
-    NSString *dateString = [dateFormat stringFromDate:proxy.date];
-    
-    cell.dateLabel.text = dateString;
-    cell.imageView.image = proxy.image;
     cell.delegate = self;
     
     return cell;
@@ -238,7 +255,7 @@
         
         [self deleteProjectAtIndex:indexPath.row];
         [self.tableView reloadData];
-        if(self.projectProxies.count == 0){
+        if(self.currentProxiesArray.count == 0){
             [self stopEditingScenes];
         }
     }
@@ -250,9 +267,9 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     
-    id object = [self.projectProxies objectAtIndex:sourceIndexPath.row];
-    [self.projectProxies removeObjectAtIndex:sourceIndexPath.row];
-    [self.projectProxies insertObject:object atIndex:destinationIndexPath.row];
+    id object = [self.currentProxiesArray objectAtIndex:sourceIndexPath.row];
+    [self.currentProxiesArray removeObjectAtIndex:sourceIndexPath.row];
+    [self.currentProxiesArray insertObject:object atIndex:destinationIndexPath.row];
     
     [self.collectionView reloadData];
 }
@@ -279,7 +296,7 @@
 -(void) tableProjectCell:(THClientTableProjectCell*) cell didChangeNameTo:(NSString*) name{
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     if(indexPath){
-        THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+        THClientProjectProxy * proxy = [self.currentProxiesArray objectAtIndex:indexPath.row];
         //NSString * oldName = proxy.name;
         BOOL success = [THClientProject renameProjectNamed:proxy.name toName:name];
         if(success){
@@ -311,7 +328,7 @@
 -(void) startEditingScenes{
     
     if(self.showingIcons){
-        for(int i = 0 ; i < self.projectProxies.count ; i++){
+        for(int i = 0 ; i < self.currentProxiesArray.count ; i++){
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             THClientCollectionProjectCell * cell =  (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
             cell.editing = YES;
@@ -330,7 +347,7 @@
 -(void) stopEditingScenes{
     
     //if(self.showingIcons){
-    for(int i = 0 ; i < self.projectProxies.count ; i++){
+    for(int i = 0 ; i < self.currentProxiesArray.count ; i++){
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         THClientCollectionProjectCell * cell =  (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         cell.editing = NO;
@@ -377,7 +394,7 @@
     if(indexPath){
         
         currentProjectCell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
-        currentProject = [self.projectProxies objectAtIndex:indexPath.row];
+        currentProject = [self.currentProxiesArray objectAtIndex:indexPath.row];
         
         if(currentProjectCell.editing){
             
@@ -385,7 +402,7 @@
             currentDraggableCell.imageView.image = currentProjectCell.imageView.image;
             currentDraggableCell.imageView.frame = currentProjectCell.imageView.frame;
             
-            [self.projectProxies removeObject:currentProject];
+            [self.currentProxiesArray removeObject:currentProject];
             NSArray * indexPaths = [NSArray arrayWithObjects:indexPath, nil];
             [self.collectionView deleteItemsAtIndexPaths:indexPaths];
             
@@ -402,10 +419,10 @@
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:currentDraggableCell.center];
         
         if(!indexPath){
-            indexPath = [NSIndexPath indexPathForRow:self.projectProxies.count inSection:0];
+            indexPath = [NSIndexPath indexPathForRow:self.currentProxiesArray.count inSection:0];
         }
         
-        [self.projectProxies insertObject:currentProject atIndex:indexPath.row];
+        [self.currentProxiesArray insertObject:currentProject atIndex:indexPath.row];
         [currentDraggableCell removeFromSuperview];
         
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
@@ -517,10 +534,16 @@
 #pragma mark - Segue
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
     if([segue.identifier isEqualToString:@"segueToDownloadApp"]){
+        
         THClientDownloadViewController * controller = segue.destinationViewController;
-        controller.scenes = self.projectProxies;
         controller.delegate = self;
+        
+    } else if([segue.identifier isEqualToString:@"segueToProjectView"]){
+        
+        THClientAppViewController * controller = segue.destinationViewController;
+        controller.showingPreset = !self.showingCustomApps;
     }
 }
 
@@ -528,7 +551,7 @@
 
 -(void) resignAllCellFirstResponders{
     
-    for (int i = 0 ; i < self.projectProxies.count; i++) {
+    for (int i = 0 ; i < self.currentProxiesArray.count; i++) {
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         THClientCollectionProjectCell * aCell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         [aCell.nameTextField resignFirstResponder];
@@ -550,7 +573,7 @@
             self.editingOneScene = NO;
         }
         
-        if(self.projectProxies.count == 0){
+        if(self.currentProxiesArray.count == 0){
             [self stopEditingScenes];
             [self updateEditButtonEnabledState];
         }
@@ -574,7 +597,7 @@
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
     if(indexPath){
         
-        THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
+        THClientProjectProxy * proxy = [self.currentProxiesArray objectAtIndex:indexPath.row];
         //NSString * oldName = [proxy.name stringByAppendingString:@".png"];
         BOOL success = [THClientProject renameProjectNamed:proxy.name toName:name];
         
@@ -589,6 +612,9 @@
             //[self.collectionView reloadData];
             //[self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         }
+        
+        THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate saveProjectProxies];
     }
 }
 
@@ -599,7 +625,7 @@
 }
 
 -(void) updateEditButtonEnabledState{
-    if(self.projectProxies.count == 0){
+    if(self.currentProxiesArray.count == 0){
         self.editButton.enabled = NO;
     } else{
         self.editButton.enabled = YES;
@@ -637,9 +663,8 @@
 }
 
 - (IBAction)projectTypeControlChanged:(id)sender {
-}
-
-- (IBAction)textEditingFinished:(id)sender {
+    
+    [self reloadCurrentView];
 }
 
 - (void) editButtonTapped:(id)sender {
@@ -653,13 +678,70 @@
 
 #pragma mark - DownloadDelegate
 
--(void) didFinishReceivingProject:(THClientProjectProxy*) project{
+-(NSInteger) indexOfProjectNamed:(NSString*) name{
+    for (int i = 0; i < self.projectProxies.count; i++) {
+        THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:i];
+        if([name isEqualToString:proxy.name]){
+            return i;
+        }
+    }
+    return -1;
+}
+
+-(void) removeProxyNamed:(NSString*) name{
+    
+    NSInteger indexOfProjectWithSameName = [self indexOfProjectNamed:name];
+    if(indexOfProjectWithSameName != -1){
+        [self.projectProxies removeObjectAtIndex:indexOfProjectWithSameName];
+    }
+}
+
+-(void) didFinishReceivingProject:(THClientProject*) project{
+    
+    [project save];
+    
+    [self removeProxyNamed:project.name];
     
     THClientProjectProxy * proxy = [[THClientProjectProxy alloc] initWithName:project.name];
     [self.projectProxies addObject:proxy];
     
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate saveProjectProxies];
+    
     [self.collectionView reloadData];
     [self.tableView reloadData];
+}
+
+#pragma mark - Other
+/*
+- (void)reloadData {
+    if([self showingCustomApps]){
+        [self.currentCollectionView reloadData];
+    } else {
+        
+    }
+}*/
+
+-(void) reloadCurrentView{
+    
+    if(self.editingScenes){
+        [self stopEditingScenes];
+    }
+    
+    if(self.showingIcons){
+        [self.collectionView reloadData];
+    } else {
+        [self.tableView reloadData];
+    }
+}
+
+-(BOOL) showingCustomApps{
+    
+    return (self.projectTypeControl.selectedSegmentIndex == 0);
+}
+
+-(NSMutableArray*) currentProxiesArray{
+    return self.showingCustomApps ? self.projectProxies : self.presetProxies;
 }
 
 @end

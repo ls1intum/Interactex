@@ -78,14 +78,7 @@ float const kMonitorMargin = 5;
     line2.view = self.view;
     
     [self.lines addObject:line];
-    //[self.lines addObject:line2];
-    
-    /*
-    [line addPoint:[self transformedPointForValue:0]];
-    [line addPoint:[self transformedPointForValue:self.view.frame.size.height/2]];
-    
-    
-    [self start];*/
+    [self.lines addObject:line2];
 }
 
 -(void) addMethods{
@@ -102,7 +95,9 @@ float const kMonitorMargin = 5;
 }
 
 -(id) init{
+    
     self = [super init];
+    
     if(self){
         
         self.width = 200;
@@ -120,9 +115,12 @@ float const kMonitorMargin = 5;
     self = [super initWithCoder:decoder];
     
     if(self){
+        
+        self.maxValue = [decoder decodeIntegerForKey:@"maxValue"];
+        self.minValue = [decoder decodeIntegerForKey:@"minValue"];
+        
         [self loadMonitor];
     }
-    //self.image = [decoder decodeObjectForKey:@"image"];
     
     return self;
 }
@@ -130,12 +128,16 @@ float const kMonitorMargin = 5;
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    //[coder encodeObject:self.image forKey:@"image"];
+    [coder encodeInteger:self.maxValue forKey:@"maxValue"];
+    [coder encodeInteger:self.minValue forKey:@"minValue"];
 }
 
 
 -(id)copyWithZone:(NSZone *)zone {
     THMonitor * copy = [super copyWithZone:zone];
+    
+    copy.maxValue = self.maxValue;
+    copy.minValue = self.minValue;
     
     return copy;
 }

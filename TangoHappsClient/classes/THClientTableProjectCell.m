@@ -46,7 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
     return self;
 }

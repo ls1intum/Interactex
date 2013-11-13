@@ -108,7 +108,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(NSString*) description{
-    return @"boolean";
+    return @"bool";
 }
 
 

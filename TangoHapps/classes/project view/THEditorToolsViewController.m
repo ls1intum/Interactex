@@ -216,7 +216,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (IBAction)pushPressed:(id)sender {
     THServerController * serverController = [THDirector sharedDirector].serverController;
-    if([serverController serverIsRunning]){
+    if(serverController.serverIsRunning){
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         [serverController pushProjectToAllClients:project];
     }

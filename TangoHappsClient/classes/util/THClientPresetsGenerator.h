@@ -40,21 +40,20 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const kDigitalOutputSceneName;
-extern NSString * const kDigitalInputSceneName;
-extern NSString * const kBuzzerSceneName;
-extern NSString * const kAnalogOutputSceneName;
-extern NSString * const kAnalogInputSceneName;
-extern NSString * const kCompassSceneName;
+extern NSString * const kDigitalOutputProjectName;
+extern NSString * const kDigitalInputProjectName;
+extern NSString * const kBuzzerProjectName;
+extern NSString * const kAnalogOutputProjectName;
+extern NSString * const kAnalogInputProjectName;
+extern NSString * const kCompassProjectName;
 
 @interface THClientPresetsGenerator : NSObject
 {
 }
 
 -(NSInteger) numFakeScenes;
+-(void) generatePresets;
 
-@property(nonatomic, readonly) NSMutableArray * scenes;
-
--(THClientProject*) projectNamed:(NSString*) name;
+@property(nonatomic, readonly) NSMutableArray * presets;
 
 @end

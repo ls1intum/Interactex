@@ -58,6 +58,10 @@ float const kToolsTabMargin = 5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     CCDirector * ccDirector = [CCDirector sharedDirector];
     
     ccDirector.delegate = self;
@@ -73,7 +77,6 @@ float const kToolsTabMargin = 5;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     
     
     _tabController = [[THTabbarViewController alloc] initWithNibName:@"THTabbar" bundle:nil];
@@ -144,6 +147,10 @@ float const kToolsTabMargin = 5;
     [self addPalettePull];
     [self updatePalettePullVisibility];
     
+    THDirector * director = [THDirector sharedDirector];
+    NSLog(@"%d",director.serverController.serverIsRunning);
+    
+    self.toolsController.pushItem.enabled = director.serverController.serverIsRunning;
     
     _currentProjectName = [THDirector sharedDirector].currentProject.name;
 }
@@ -152,7 +159,7 @@ float const kToolsTabMargin = 5;
     
     [self saveCurrentProjectAndPalette];
     
-    [[THDirector sharedDirector].serverController stopServer];
+    //[[THDirector sharedDirector].serverController stopServer];
     
     [self.toolsController unselectAllButtons];
     

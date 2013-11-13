@@ -40,25 +40,56 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THClientAppDelegate.h"
 #import "THClientScene.h"
+#import "THClientProjectProxy.h"
 
 @implementation THClientAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.scenes = [THClientScene persistentScenes];
+    if([TFFileUtils dataFile:kProjectProxiesFileName existsInDirectory:@""]){
+        
+        NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
+        self.projectProxies = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        
+    } else {
+        
+        self.projectProxies = [NSMutableArray array];
+        
+    }
+    
+    //[self generateRandomScenes];
     
     // Override point for customization after application launch.
     return YES;
 }
-							
+
+-(void) saveProjectProxies{
+    
+    NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
+    [NSKeyedArchiver archiveRootObject:self.projectProxies toFile:filePath];
+}
+
+-(void) generateRandomScenes{
+    
+    for (int i = 0; i < 7; i ++) {
+        NSString * name = [NSString stringWithFormat:@"halloProject %d",i];
+        THClientProject * project = [[THClientProject alloc] initWithName:name];
+        [project save];
+        
+        THClientProjectProxy * proxy = [THClientProjectProxy proxyWithName:name];
+        [self.projectProxies addObject:proxy];
+    }
+    
+    [self saveProjectProxies];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     
     
-    [THClientScene persistScenes:self.scenes];
+    [THClientScene persistScenes:self.projectProxies];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

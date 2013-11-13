@@ -78,14 +78,14 @@ typedef enum{
 @property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;
 @property (nonatomic, readonly) CBCharacteristic * txCharacteristic;
 
-@property (nonatomic, readonly) CBUUID* uuid;
+@property (nonatomic, readonly) CBUUID * uuid;
 
-@property (nonatomic, readonly) NSString* tx;
-@property (nonatomic, readonly) NSString* rx;
+@property (nonatomic, readonly) NSString * tx;
+@property (nonatomic, readonly) NSString * rx;
 
 @property (nonatomic) NSArray * currentCharacteristicUUIDs;
 
-@property (nonatomic, readonly) CBPeripheral *peripheral;
+@property (nonatomic, readonly) CBPeripheral * peripheral;
 @property (nonatomic) id<BLEServiceDelegate> delegate;
 @property (nonatomic) id<BLEServiceDataDelegate> dataDelegate;
 
@@ -98,9 +98,9 @@ typedef enum{
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic;
 
 -(id) initWithPeripheral:(CBPeripheral *)peripheral;
+
 -(void) start;
--(void) reset;
--(void) disconnect;
+-(void) stop;
 
 -(void) enteredBackground;
 -(void) enteredForeground;

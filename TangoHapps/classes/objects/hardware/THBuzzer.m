@@ -80,7 +80,7 @@ float const kBuzzerMinFrequency = 20;
     
     THElementPin * pin1 = [THElementPin pinWithType:kElementPintypeDigital];
     pin1.hardware = self;
-    pin1.defaultBoardPinMode = kPinModeBuzzer;
+    pin1.defaultBoardPinMode = kPinModePWM;
     THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
     pin2.hardware = self;
     
@@ -160,7 +160,7 @@ float const kBuzzerMinFrequency = 20;
         } else if(self.on && newValue == kDigitalPinValueLow){
             [self turnOff];
         }
-    } else if(pin.mode == kPinModeBuzzer){
+    } else if(pin.mode == kPinModePWM){
         self.frequency = [self pinToFrequency:newValue];
     }
 }
@@ -174,7 +174,7 @@ float const kBuzzerMinFrequency = 20;
         
         [lilypadPin setValueWithoutNotifications:self.on];
         
-    } else if(lilypadPin.mode == kPinModeBuzzer){
+    } else if(lilypadPin.mode == kPinModePWM){
         
         float newPinValue = [self frequencyToPin:self.frequency];
         [lilypadPin setValueWithoutNotifications:(self.on ? newPinValue : -1)];

@@ -29,3 +29,6 @@
 #import "THClientHelper.h"
 #import "THClientProject.h"
 #import "THSimulableWorldController.h"
+
+#import "BLE.h"
+#import "GMP.h"

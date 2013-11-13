@@ -40,10 +40,9 @@
 
 #import "THMonitorEditable.h"
 #import "THMonitor.h"
+#import "THMonitorProperties.h"
 
 @implementation THMonitorEditable
-
-@dynamic image;
 
 -(void) loadMonitor{
     self.acceptsConnections = YES;
@@ -85,28 +84,47 @@
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    //[controllers addObject:[THMonitorProperties properties]];
+    [controllers addObject:[THMonitorProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
 
 #pragma mark - Methods
-/*
- -(void) setScaleMode:(THImageViewScaleMode)scaleMode{
- THImageView * imageView = (THImageView*) self.simulableObject;
- imageView.scaleMode = scaleMode;
- }
- 
- -(THImageViewScaleMode) scaleMode{
- THImageView * imageView = (THImageView*) self.simulableObject;
- return imageView.scaleMode;
- }*/
-
 
 -(void) addValue1:(float)value{
     
     THMonitor * monitor = (THMonitor*) self.simulableObject;
     [monitor addValue1:value];
+}
+
+-(void) addValue2:(float)value{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    [monitor addValue2:value];
+}
+
+-(void) setMaxValue:(NSInteger)value{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    [monitor setMaxValue:value];
+}
+
+-(void) setMinValue:(NSInteger)value{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    [monitor setMinValue:value];
+}
+
+-(NSInteger) maxValue{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    return monitor.maxValue;
+}
+
+-(NSInteger) minValue{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    return monitor.minValue;
 }
 
 

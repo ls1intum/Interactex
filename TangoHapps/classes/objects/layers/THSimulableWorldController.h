@@ -41,12 +41,12 @@ You should have received a copy of the GNU General Public License along with thi
 #import <Foundation/Foundation.h>
 
 @class THClientProject;
-@class THClientScene;
+@class THClientProjectProxy;
 
 @interface THSimulableWorldController : NSObject
 
 @property (nonatomic, strong) THClientProject * currentProject;
-@property (nonatomic, strong) THClientScene * currentScene;
+@property (nonatomic, strong) THClientProjectProxy * currentProjectProxy;
 
 +(THSimulableWorldController *)sharedInstance;
 

@@ -62,11 +62,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateButtonText];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)propertyButtonPressed:(id)sender {
     

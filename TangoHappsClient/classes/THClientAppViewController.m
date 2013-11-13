@@ -44,16 +44,16 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THView.h"
 #import "THiPhone.h"
-#import "THClientScene.h"
+#import "THClientProjectProxy.h"
 
 #import "THLilyPad.h"
 #import "THBoardPin.h"
-#import "THTransferAgent.h"
 #import "THPinValue.h"
 #import "THElementPin.h"
 #import "THCompass.h"
 
 #import "THLabel.h"
+#import "THBLECommunicationModule.h"
 
 @implementation THClientAppViewController
 /*
@@ -105,10 +105,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadUIObjects{
         
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
-    
-    THiPhone * iPhone = project.iPhone;
+    THiPhone * iPhone = self.currentProject.iPhone;
     
     CGSize size = iPhone.currentView.view.frame.size;
     
@@ -120,14 +117,20 @@ You should have received a copy of the GNU General Public License along with thi
     
     THIPhoneType type = screenHeight < 500;
     CGFloat viewHeight = self.view.bounds.size.height;
-    CGFloat navigationBarOffset = screenHeight - viewHeight;
+    
+    //CGFloat navigationBarOffset = screenHeight - viewHeight;
 
-    for (THView * object in project.iPhoneObjects) {
+    NSLog(@"counted %d objects",self.currentProject.iPhoneObjects.count);
+    
+    for (THView * object in self.currentProject.iPhoneObjects) {
 
-        if(!scene.isFakeScene){
-
+        if(!self.showingPreset){
+/*
+            NSLog(@"pos y: %f",object.position.y);
+            NSLog(@"iphone pos y: %f",iPhone.position.y);*/
+            
             float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
-            float rely = (object.position.y - iPhone.position.y - navigationBarOffset + size.height/2) / kiPhoneFrames[type].size.height;
+            float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
             
             CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
             
@@ -137,7 +140,7 @@ You should have received a copy of the GNU General Public License along with thi
         [object addToView:self.view];
     }
     
-    [project startSimulating];
+    [self.currentProject startSimulating];
 }
 
 -(void) stopActivityIndicator {
@@ -164,58 +167,140 @@ You should have received a copy of the GNU General Public License along with thi
     [self.view addSubview:_activityIndicator];
 }
 
+-(void) viewDidLoad{
+    
+    [super viewDidLoad];
+    
+    [BLEDiscovery sharedInstance].discoveryDelegate = self;
+    [BLEDiscovery sharedInstance].peripheralDelegate = self;
+    
+    self.gmpController = [[GMP alloc] init];
+    self.gmpController.delegate = self;
+}
+
 -(void) viewWillAppear:(BOOL)animated{
     
-    if([THSimulableWorldController sharedInstance].currentProject != nil){
+    self.currentProject = [THSimulableWorldController sharedInstance].currentProject;
+    
+    if(self.currentProject){
         
         [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
         
+        
+        [self setTitle:self.currentProject.name];
+        
         [self loadUIObjects];
         [self addPinObservers];
-        [self updateModeButton];
+        
+        //[self updateStartButton];
     }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    UIImage * image = [THUtils screenshot];
+    if(!self.showingPreset){
+        UIImage * image = [THUtils screenshot];
+        THClientProjectProxy * proxy = [THSimulableWorldController sharedInstance].currentProjectProxy;
+        proxy.image = image;
+    }
     
     [self removePinObservers];
     [self disconnectFromBle];
     
-    THClientScene * scene = [THSimulableWorldController sharedInstance].currentScene;
-    if(!scene.image){
-        [scene saveImage:image];
-    }
+    /*
+    if(!proxy.image){
+        
+        NSString *screenshotFile = [self.currentProject.name stringByAppendingString:@".png"];
+        NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile inDirectory:kProjectImagesDirectory];
+        proxy.image = image;
+        
+        //[TFFileUtils saveImageToFile:image file:screenshotPath];
+    }*/
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
     
-    [THSimulableWorldController sharedInstance].currentScene = nil;
+    [THSimulableWorldController sharedInstance].currentProjectProxy = nil;
     [THSimulableWorldController sharedInstance].currentProject = nil;
 }
 
 - (void)viewDidUnload {
-    [self setModeButton:nil];
     [super viewDidUnload];
 }
-
--(void) updateModeButton{
+/*
+-(void) updateStartButton{
     
     if([BLEDiscovery sharedInstance].connectedService){
         
-        self.modeButton.title = @"Stop";
-        self.modeButton.enabled = YES;
+        self.startButton.tintColor = [UIColor redColor];
+        self.startButton.title = @"Stop";
+        self.startButton.enabled = YES;
         
     } else {
         
-        self.modeButton.title = @"Start";
+        self.startButton.tintColor = nil;
+        self.startButton.title = @"Start";
+        
         if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
-            self.modeButton.enabled = YES;
+            
+            self.startButton.enabled = YES;
+            
         } else {
             
-            self.modeButton.enabled = NO;
+            self.startButton.enabled = NO;
         }
+    }
+}*/
+
+#pragma mark Pins Observing
+
+-(void) addPinObservers{
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.pins) {
+        [pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+-(void) removePinObservers{
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.pins) {
+        [pin removeObserver:self forKeyPath:@"value"];
+    }
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+    if([keyPath isEqualToString:@"value"]){
+        
+        THBoardPin * pin = object;
+        
+        NSLog(@"pin value changed to: %d",pin.value);
+        
+        if(pin.mode == kPinModeDigitalOutput){
+            
+            [self sendDigitalOutputForPin:pin];
+            
+        } else if(pin.mode == kPinModePWM){
+            
+            [self sendAnalogOutputForPin:pin];
+        }
+    }
+}
+
+#pragma mark UI Interaction
+
+-(IBAction)startButtonTapped:(id)sender {
+    if([BLEDiscovery sharedInstance].connectedService){
+        
+        [self disconnectFromBle];
+        
+    } else {
+        
+        [self updateStartButtonToStarting];
+        [self connectToBle];
     }
 }
 
@@ -231,145 +316,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) disconnectFromBle{
     if([BLEDiscovery sharedInstance].currentPeripheral){
+        [[BLEDiscovery sharedInstance].connectedService stop];
         [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
     }
 }
-
-#pragma mark Pins Observing
-
--(void) addPinObservers{
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
-    for (THBoardPin * pin in project.lilypad.pins) {
-        //[pin.pin addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-    }
-}
-
--(void) removePinObservers{
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
-    for (THBoardPin * pin in project.lilypad.pins) {
-        //[pin.pin removeObserver:self forKeyPath:@"value"];
-    }
-}
-
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    
-    if([keyPath isEqualToString:@"value"]){
-        /*
-        IFPin * pin = object;
-        
-        if(pin.mode == kPinModeDigitalOutput){
-            
-            [self sendDigitalOutputForPin:pin];
-            
-        } else if(pin.mode == kPinModePWM){
-            
-            [self sendPWMOutputForPin:pin];
-        }*/
-    }
-}
-
-/*
-#pragma mark Firmata Interaction
-
--(void) sendDigitalOutputForPin:(IFPin*) pin{
-    //[self.firmataController sendDigitalOutputForPort:pin.number value:pin.value];
-}
-
--(void) sendPWMOutputForPin:(IFPin*) pin{
-    //[self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
-}
-
--(void) sendServoOutputForPin:(IFPin*) pin{
-    //[self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
-}
-
--(void) sendPinModes{
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
-    for (THBoardPin * pin in project.lilypad.pins) {
-        
-        if((pin.type == kPintypeDigital || pin.type == kPintypeAnalog) && pin.mode != kPinModeUndefined){
-            
-            [self.firmataController sendPinModeForPin:pin.pin.number mode:pin.mode];
-        }
-    }
-}
-
--(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
-    
-    int pin=0;
-    for (int i=2; i<length-1; i++) {
-        NSLog(@"%d to channel: %d",pin,buffer[i]);
-        pin++;
-    }
-}
-
--(void) firmataController:(IFFirmataController*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
-    for (THBoardPin * pin in project.lilypad.analogPins) {
-        if (pin.pin.analogChannel == channel) {
-            pin.value = value;
-            return;
-        }
-    }
-}
-
--(void) firmataController:(IFFirmataController*) firmataController didReceiveDigitalMessageForPort:(NSInteger) port value:(NSInteger) value{
-    
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    NSInteger pinNumber = port * 8;
-    
-    for (int mask = 1; mask & 0xFF; mask <<= 1, pinNumber++) {
-        THBoardPin * pin = [project.lilypad digitalPinWithNumber:pinNumber];
-        
-        if (pin && pin.mode == IFPinModeInput) {
-            uint32_t val = (value & mask) ? 1 : 0;
-            if (pin.value != val) {
-                pin.value = val;
-            }
-        }
-    }
-}
-
--(void) firmataController:(IFFirmataController*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
- 
-    uint8_t address = buffer[2] + (buffer[3] << 7);
-    NSInteger registerNumber = buffer[4];
-    
-    //NSLog(@"addr: %d reg %d ",address,registerNumber);
-    if(!self.firmataController.startedI2C){
-        
-        NSLog(@"reporting but i2c did not start");
-        [self.firmataController sendI2CStopReadingAddress:address];
-        
-    } else {
-        THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-        IFI2CComponent * component = [project.lilypad i2cComponentWithAddress:address];
-        
-        IFI2CRegister * reg = [component registerWithNumber:registerNumber];
-        if(reg){
-            uint8_t values[reg.size];
-            NSInteger parseBufCount = 6;
-            for (int i = 0; i < reg.size; i++) {
-                uint8_t value = buffer[parseBufCount++] + (buffer[parseBufCount++] << 7);
-                values[i] = value;
-            }
-            NSData * data = [NSData dataWithBytes:values length:reg.size];
-            reg.value = data;
-        }
-
-    }
-
-}
-
-*/
 
 #pragma mark LeDiscoveryDelegate
 
@@ -385,13 +335,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral {
     
-    [self updateModeButton];
+    //[self updateStartButton];
     
     //[[LeDiscovery sharedInstance] connectPeripheral:peripheral];
 }
 
 - (void) discoveryStatePoweredOff {
-    [self updateModeButton];
+    //[self updateStartButton];
     
     NSLog(@"Powered Off");
 }
@@ -399,116 +349,175 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark BleServiceProtocol
 
+-(void) updateStartButtonToStarting{
+    
+    self.startButton.tintColor = nil;
+    self.startButton.title = @"Starting";
+    self.startButton.enabled = NO;
+}
+
+-(void) updateStartButtonToStop{
+    
+    self.startButton.tintColor = [UIColor redColor];
+    self.startButton.title = @"Stop";
+    self.startButton.enabled = YES;
+}
+
+-(void) updateStartButtonToStart{
+    
+    self.startButton.tintColor = nil;
+    self.startButton.title = @"Start";
+    self.startButton.enabled = YES;
+}
+
 -(void) bleServiceDidConnect:(BLEService*) service{
     service.delegate = self;
-    [self updateModeButton];
+    service.shouldUseCRC = YES;
+    service.shouldUseTurnBasedCommunication = YES;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{
     
+    NSLog(@"disconnected");
+    
     service.delegate = nil;
     service.dataDelegate = nil;
     
-    //if(self.firmataController.bleService == service){
-    //    self.firmataController.bleService = nil;
-    //}
-    
-    [self updateModeButton];
+    [self updateStartButtonToStart];
 }
 
 -(void) bleServiceIsReady:(BLEService*) service{
+    NSLog(@"is ready");
     
-    [self stopActivityIndicator];
+    [self updateStartButtonToStop];
     
-    //self.firmataController.bleService = service;
-    //service.dataDelegate = self.firmataController;
+    THBLECommunicationModule * bleCommunicationModule = [[THBLECommunicationModule alloc] init];
+    bleCommunicationModule.bleService = service;
+    bleCommunicationModule.gmpController = self.gmpController;
     
-    [self stopActivityIndicator];
-    //[self sendPinModes];
+    service.dataDelegate = bleCommunicationModule;
+    
+    self.gmpController.communicationModule = bleCommunicationModule;
+    
+    [self.gmpController sendFirmwareRequest];
 }
 
 - (void) bleServiceDidReset {
+    NSLog(@"ble service reseted");
     //_bleService = nil;
 }
 
+#pragma mark GMP Sending
 
--(IBAction)modeButtonTapped:(id)sender {
-    if([BLEDiscovery sharedInstance].connectedService){
-        [self stopActivityIndicator];
-        [self disconnectFromBle];
-    } else {
-        [self startActivityIndicator];
-        [self connectToBle];
-    }
+-(void) sendDigitalOutputForPin:(THBoardPin*) pin{
+    [self.gmpController sendDigitalOutputForPin:pin.number value:pin.value];
 }
 
-
-/*
--(float) angleFromMagnetometer:(Byte*) data{
-    
-    int i = 0;
-    short x1 = data[i++];
-    short x2 = data[i++];
-    
-    int heading = ((x1 << 8) | x2);
-    
-    return heading;
+-(void) sendAnalogOutputForPin:(THBoardPin*) pin{
+    [self.gmpController sendAnalogWriteForPin:pin value:pin.value];
 }
 
-
--(void) fillAccelerometerValues:(Byte*) data to:(THCompass*) compass{
-    int i = 0;
-    
-    short x1 = data[i++];
-    short x2 = data[i++];
-    short y1 = data[i++];
-    short y2 = data[i++];
-    short z1 = data[i++];
-    short z2 = data[i++];
-    
-    int x = ((x1 << 8) | x2) - kCompassMin;
-    int y = ((y1 << 8) | y2) - kCompassMin;
-    int z = ((z1 << 8) | z2) - kCompassMin;
-    
-    compass.accelerometerX = x;
-    compass.accelerometerY = y;
-    compass.accelerometerZ = z;
-    
-    //NSLog(@"%d %d %d",x,y,z);
-}
-
-
--(void) dataReceived:(Byte*) data lenght:(NSInteger) length{
+-(void) sendPinModes{
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
-    for (int i = 0 ; i < length;) {
-        short pin = data[i++];
+    for (THBoardPin * pin in project.lilypad.pins) {
         
-        THBoardPin * lilypadPin = [project.lilypad pinWithRealIdx:pin];
-        if(lilypadPin.mode == kPinModeCompass){
+        if(pin.type == kPintypeDigital && pin.mode != kPinModeUndefined && pin.attachedElementPins.count > 0){
             
-            THElementPin * epin = [lilypadPin.attachedElementPins objectAtIndex:0];
-            THCompass * compass = (THCompass*) epin.hardware;
-            
-            [self fillAccelerometerValues:&(data[1]) to:compass];
-            compass.heading = [self angleFromMagnetometer:&(data[7])];
-
-        } else if(lilypadPin.mode == kPinModeAnalogInput){
-            
-            short x1 = data[i++];
-            short x2 = data[i++];
-            int value = ((x1 << 8) | x2) - kAnalogInMin;
-            lilypadPin.value = value;
-            [lilypadPin notifyNewValue];
-            
-            //NSLog(@"received: %d",value);
-            
-        } else {
-            lilypadPin.value = data[i++];
-            [lilypadPin notifyNewValue];
+            [self.gmpController sendPinModeForPin:pin.number mode:pin.mode];
         }
     }
-}*/
+}
+
+-(void) sendInputRequests{
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    
+    for (THBoardPin * pin in project.lilypad.pins) {
+        
+        if(pin.attachedElementPins.count > 0){
+            
+            if(pin.mode == kPinModeDigitalInput && pin.attachedElementPins.count > 0){
+                
+                [self.gmpController sendReportRequestForDigitalPin:pin.number reports:YES];
+                
+            } else if(pin.mode == kPinModeAnalogInput && pin.attachedElementPins.count > 0){
+                
+                [self.gmpController sendReportRequestForAnalogPin:pin.number reports:YES];
+            }
+        }
+    }
+}
+
+#pragma mark - GMP Message Handles
+
+-(void) gmpController:(GMP*) gmpController didReceiveFirmwareName: (NSString*) name{
+    
+    if([name isEqualToString:kGMPFirmwareName]){
+        [self.gmpController sendResetRequest];
+        
+        [self sendPinModes];
+        [self sendInputRequests];
+    }
+}
+
+-(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPins:(uint8_t*) buffer count:(NSInteger) count{
+    
+}
+
+-(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode{
+    
+    NSLog(@"received mode %d %d",pin,mode);
+}
+
+-(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
+    
+    NSLog(@"digital msg for pin: %d",pin);
+    
+    for (THBoardPin * pinObj in self.digitalPins) {
+        if(pinObj.number == pin){
+            pinObj.value = value;
+            break;
+        }
+    }
+}
+
+-(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
+    
+    NSLog(@"analog msg for pin: %d",pin);
+    /*
+    GMPPin * pinObj = [self.analogPins objectAtIndex:pin];
+    pinObj.value = value;*/
+}
+
+-(void) gmpController:(GMP*) gmpController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length {
+    
+    //uint8_t address = buffer[2] + (buffer[3] << 7);
+    // NSInteger registerNumber = buffer[4];
+    /*
+    GMPI2CComponent * component = nil;
+    for (GMPI2CComponent * aComponent in self.i2cComponents) {
+        if(aComponent.address == address){
+            component = aComponent;
+        }
+    }*/
+    
+    /*
+     GMPI2CRegister * reg = [component registerWithNumber:registerNumber];
+     if(reg){
+     uint8_t values[reg.size];
+     NSInteger parseBufCount = 6;
+     for (int i = 0; i < reg.size; i++) {
+     uint8_t byte1 = buffer[parseBufCount++];
+     uint8_t value = byte1 + (buffer[parseBufCount++] << 7);
+     values[i] = value;
+     }
+     NSData * data = [NSData dataWithBytes:values length:reg.size];
+     reg.value = data;
+     
+     }*/
+}
+
 
 @end

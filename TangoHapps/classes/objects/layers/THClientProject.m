@@ -48,10 +48,14 @@ You should have received a copy of the GNU General Public License along with thi
     return [[THClientProject alloc] init];
 }
 
-+(THClientProject*) projectSavedWithName:(NSString*) name {
++(THClientProject*) projectSavedWithName:(NSString*) name inDirectory:(NSString*) directory{
     
-    NSString * fileName = [TFFileUtils dataFile:name inDirectory:@"projects"];
+    NSString * fileName = [TFFileUtils dataFile:name inDirectory:directory];
     return [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+}
+
++(THClientProject*) projectSavedWithName:(NSString*) name {
+    return [self projectSavedWithName:name inDirectory:kProjectsDirectory];
 }
 
 
@@ -195,15 +199,19 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) save {
+-(void) saveToDirectory:(NSString*) directory {
     
-    NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:kProjectsDirectory];
-    NSLog(@"saving %@",filePath);
+    NSString *filePath = [TFFileUtils dataFile:self.name inDirectory:directory];
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:filePath];
     if(!success){
         NSLog(@"failed to save object at path: %@",filePath);
     }
+}
+
+-(void) save {
+    
+    [self saveToDirectory:kProjectsDirectory];
 }
 
 -(void) dealloc{

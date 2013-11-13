@@ -39,19 +39,20 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
-#import "BLE.h"
 
 @class THTransferAgent;
 
-@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate> {
+@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, GMPControllerDelegate> {
     
     UIActivityIndicatorView * _activityIndicator;
 }
 
--(IBAction) modeButtonTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *startButton;
+@property (weak, nonatomic) THClientProject * currentProject;
+@property (nonatomic) BOOL showingPreset;
 
-@property (nonatomic) THTransferAgent  * transferAgent;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem * modeButton;
-//@property (strong, nonatomic) IFFirmataController  * firmataController;
+@property (strong, nonatomic) GMP * gmpController;
+
+- (IBAction)startButtonTapped:(id)sender;
 
 @end

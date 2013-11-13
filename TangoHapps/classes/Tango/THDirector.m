@@ -158,7 +158,7 @@ static THDirector * _sharedInstance = nil;
 }
 
 -(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
-    [self updateServerButtonState];
+    //[self updateServerButtonState];
 }
 
 -(void) server:(THServerController*)controller isTransferring:(BOOL)transferring {

@@ -42,9 +42,10 @@
 
 @interface THMonitorEditable : THViewEditableObject
 
-@property (nonatomic) UIImage * image;
-//@property (nonatomic) THImageViewScaleMode scaleMode;
-
 -(void) addValue1:(float) value;
+-(void) addValue2:(float) value;
+
+@property (nonatomic) NSInteger maxValue;
+@property (nonatomic) NSInteger minValue;
 
 @end

@@ -131,7 +131,7 @@ CGSize const kBoolValueLabelSize = {80,30};
 }
 
 -(NSString*) description{
-    return @"Boolean";
+    return @"Bool";
 }
 
 

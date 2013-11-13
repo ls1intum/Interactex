@@ -164,10 +164,11 @@ static BLEDiscovery * sharedInstance;
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
 	_connectedService = [[BLEService alloc] initWithPeripheral:peripheral];
-	[_connectedService start];
 
     [self.peripheralDelegate bleServiceDidConnect:_connectedService];
     _currentPeripheral = peripheral;
+    
+	[_connectedService start];
 }
 
 -(void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -176,17 +177,18 @@ static BLEDiscovery * sharedInstance;
 
 -(void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
-    [self.peripheralDelegate bleServiceDidDisconnect:self.connectedService];
     
     _connectedService = nil;
     _currentPeripheral = nil;
 	[_discoveryDelegate discoveryDidRefresh];
+    
+    [self.peripheralDelegate bleServiceDidDisconnect:self.connectedService];
 }
 
 -(void) clearDevices {
 
     [self.foundPeripherals removeAllObjects];
-    [self.connectedService reset];
+    [self.connectedService stop];
     _connectedService = nil;
 }
 

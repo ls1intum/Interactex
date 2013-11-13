@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPin.h"
 
 @class THClothe;
-@class IFI2CComponent;
+@class I2CComponent;
 
 @interface THHardwareComponent : TFSimulableObject <THPinDelegate>
 {
@@ -52,7 +52,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, strong) NSMutableArray * pins;
 @property (nonatomic) BOOL isInputObject;
-@property (nonatomic, strong) IFI2CComponent * i2cComponent;
+@property (nonatomic, strong) I2CComponent * i2cComponent;
 
 -(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue;
 

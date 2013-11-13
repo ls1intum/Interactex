@@ -40,8 +40,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THCompass.h"
 #import "THElementPin.h"
-#import "IFI2CComponent.h"
-#import "IFI2CRegister.h"
+#import "I2CComponent.h"
+#import "I2CRegister.h"
 
 @implementation THCompass
 
@@ -88,10 +88,10 @@ You should have received a copy of the GNU General Public License along with thi
     minusPin.hardware = self;
     THElementPin * sclPin = [THElementPin pinWithType:kElementPintypeScl];
     sclPin.hardware = self;
-    sclPin.defaultBoardPinMode = kPinModeCompass;
+    //sclPin.defaultBoardPinMode = kPinModeCompass;
     THElementPin * sdaPin = [THElementPin pinWithType:kElementPintypeSda];
     sdaPin.hardware = self;
-    sdaPin.defaultBoardPinMode = kPinModeCompass;
+    //sdaPin.defaultBoardPinMode = kPinModeCompass;
     
     THElementPin * plusPin = [THElementPin pinWithType:kElementPintypePlus];
     
@@ -101,15 +101,15 @@ You should have received a copy of the GNU General Public License along with thi
     [self.pins addObject:plusPin];
 }
 
--(IFI2CComponent*) loadI2CComponent{
+-(I2CComponent*) loadI2CComponent{
     
-    self.i2cComponent = [[IFI2CComponent alloc] init];
+    self.i2cComponent = [[I2CComponent alloc] init];
     self.i2cComponent.address = 24;
     
-    IFI2CRegister * reg1 = [[IFI2CRegister alloc] init];
+    I2CRegister * reg1 = [[I2CRegister alloc] init];
     reg1.number = 32;
     
-    IFI2CRegister * reg2 = [[IFI2CRegister alloc] init];
+    I2CRegister * reg2 = [[I2CRegister alloc] init];
     reg2.number = 40;
     
     [self.i2cComponent addRegister:reg1];
@@ -197,7 +197,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     
     if([keyPath isEqualToString:@"value"]){
-        IFI2CRegister * reg = object;
+        I2CRegister * reg = object;
         [self setValuesFromBuffer:(uint8_t*)reg.value.bytes length:reg.value.length];
     }
 }
@@ -207,7 +207,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) prepareToDie{
-    IFI2CRegister * reg = [self.i2cComponent.registers objectAtIndex:1];
+    I2CRegister * reg = [self.i2cComponent.registers objectAtIndex:1];
     [reg removeObserver:self forKeyPath:@"value"];
     
     self.i2cComponent = nil;

@@ -63,11 +63,17 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (weak, nonatomic) NSMutableArray * projectProxies;
+@property (strong, nonatomic) NSMutableArray * presetProxies;
+@property (nonatomic, readonly) NSMutableArray * currentProxiesArray;
 
 @property (nonatomic) BOOL editingScenes;
 @property (nonatomic) BOOL editingOneScene;
+
 @property (nonatomic) BOOL showingIcons;
+@property (nonatomic) BOOL showingCustomApps;
+
 @property (strong, nonatomic) UIBarButtonItem * editButton;
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
 

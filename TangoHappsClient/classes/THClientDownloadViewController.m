@@ -56,8 +56,7 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.connectionController = [[THClientConnectionController alloc] init];
@@ -111,6 +110,8 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 
 -(void) didStartReceivingProjectNamed:(NSString *)name {
     
+    NSLog(@"started receiving a project %@",name);
+    
     timeWhenInstallationStarted = CACurrentMediaTime();
     
     [self.activityIndicator startAnimating];
@@ -118,7 +119,6 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     self.descriptionLabel.text = [NSString stringWithFormat:@"Project Name: %@",name];
     self.descriptionLabel.hidden = NO;
     self.currentActivityLabel.hidden = NO;
-    self.instructionsLabel.hidden = NO;
     self.progressBar.hidden = NO;
     self.progressBar.progress = 0;
     self.checkImageView.hidden = YES;
@@ -126,13 +126,12 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 
 -(void) didFinishReceivingProject:(THClientProject *)project {
     
-    //THClientScene * scene = [[THClientScene alloc] initWithName:project.name];
-    //scene.project = nil;
+    NSLog(@"received a project");
+    
+    self.progressBar.hidden = YES;
     
     [self.delegate didFinishReceivingProject:project];
-    
-    [project save];
-    
+        
     NSTimeInterval currentTime = CACurrentMediaTime();
     if(currentTime - timeWhenInstallationStarted > kMinInstallationDuration){
         

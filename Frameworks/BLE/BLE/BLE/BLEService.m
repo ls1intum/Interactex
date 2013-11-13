@@ -57,14 +57,6 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             CBUUID * service = [CBUUID UUIDWithString:kBleSupportedServices[i]];
             [supportedServiceUUIDs addObject:service];
         }
-        
-        shouldSend = YES;
-        overBit = NO;
-        
-        timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
-        
-        sendOverTimer = [NSTimer scheduledTimerWithTimeInterval:kBleSendOverCommandInterval target:self selector:@selector(sendOverCommand) userInfo:nil repeats:YES];
-        
 	}
     return self;
 }
@@ -85,20 +77,28 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 
 - (void) start {
     
+    sendBufferCount = 0;
+    sendBufferStart = 0;
+    shouldSend = YES;
+    
     [_peripheral discoverServices:supportedServiceUUIDs];
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
+    
+    sendOverTimer = [NSTimer scheduledTimerWithTimeInterval:kBleSendOverCommandInterval target:self selector:@selector(sendOverCommand) userInfo:nil repeats:YES];
 }
 
-- (void) reset {
+- (void) stop {
+    
+    [timer invalidate];
+    timer = nil;
+    
+    [sendOverTimer invalidate];
+    sendOverTimer = nil;
+    
 	if (self.peripheral) {
 		_peripheral = nil;
 	}
-}
-
-- (void) disconnect {
-    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
-    
-    sendBufferCount = 0;
-    sendBufferStart = 0;
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
@@ -132,7 +132,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             
             if([service.UUID isEqual:serviceUUID]){
                 
-               // NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
+                //NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
                 
                 self.currentCharacteristicUUIDs = [supportedCharacteristicUUIDs objectAtIndex:i];
                 bleService = service;
@@ -143,7 +143,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 
 	if (bleService) {
         [peripheral discoverCharacteristics:nil forService:bleService];
-		//[peripheral discoverCharacteristics:uuids forService:bleService];
+		//[peripheral discoverCharacteristics:self.currentCharacteristicUUIDs forService:bleService];
 	}
 }
 
@@ -277,12 +277,12 @@ static NSMutableArray * supportedCharacteristicUUIDs;
         [self flushData];
     }
     
-    /*
+    
     printf("Sending:\n");
     for (int i = 0; i < count; i++) {
         printf("%X ",bytes[i]);
     }
-    printf("\n");*/
+    printf("\n");
 }
 
 -(void) sendOverCommand{
@@ -312,10 +312,6 @@ static NSMutableArray * supportedCharacteristicUUIDs;
                 memcpy(buf,&sendBuffer[0] + sendBufferStart,numBytesSend);
             }
             
-            //int missing = TX_BUFFER_SIZE - numBytesSend;
-            //buf[numBytesSend] = kBleCrcStart;
-            //buf[numBytesSend+1] = 0;
-            
             NSData * data = [NSData dataWithBytes:buf length:numBytesSend];
             [self writeToTx:data];
             
@@ -336,17 +332,6 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 {
     [_peripheral setNotifyValue:YES forCharacteristic:self.rxCharacteristic];
 }
-
-/*
--(void) updateRxClear{
-    
-    [self.peripheral readValueForCharacteristic:self.rxClearCharacteristic];
-}
-
--(void) updateRxCount{
-    
-    [self.peripheral readValueForCharacteristic:self.rxCountCharacteristic];
-}*/
 
 -(void) updateRx{
     
@@ -380,33 +365,6 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     return nil;
 }
 
-/*
-- (NSInteger) rxCount {
-    
-    NSInteger result  = NAN;
-    int16_t value	= 0;
-	
-    if (self.rxCountCharacteristic) {
-        NSData * data = [self.rxCountCharacteristic value];
-        [data getBytes:&value length:sizeof (value)];
-        result = value;
-    }
-    return result;
-}
-
-- (NSInteger) rxClear {
-    
-    NSInteger result  = NAN;
-    int16_t value	= 0;
-	
-    if (self.rxClearCharacteristic) {
-        NSData * data = [self.rxClearCharacteristic value];
-        [data getBytes:&value length:sizeof (value)];
-        result = value;
-    }
-    return result;
-}*/
-
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic{
     
     if(characteristic == self.rxCharacteristic) {
@@ -414,19 +372,6 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     } else if(characteristic == self.txCharacteristic){
         return @"TX";
     }
-    
-    /*
-    if(characteristic == self.bdCharacteristic) {
-        return @"BD";
-    } else if(characteristic == self.rxCharacteristic) {
-        return @"RX";
-    } else if(characteristic == self.txCharacteristic){
-        return @"TX";
-    } else if(characteristic == self.rxClearCharacteristic){
-        return @"RX Clear";
-    } else if(characteristic == self.rxCountCharacteristic){
-        return @"RX Count";
-    }*/
     
     return @"Unknown";
 }
@@ -538,8 +483,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
         
         /*
         uint8_t * debugData;
-    
-        //NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
+        NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
         printf("receiving:\n");
         for (int i = 0 ; i < length; i++) {
             int value = debugData[i];

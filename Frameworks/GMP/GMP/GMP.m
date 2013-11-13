@@ -52,6 +52,9 @@ enum
 
 @implementation GMP
 
+
+NSString * const kGMPFirmwareName = @"eGMCP1.0";
+
 #pragma mark - Send Messages
 
 -(void) sendFirmwareRequest{

@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THBoardPin;
 @class THElementPin;
-@class IFI2CComponent;
+@class I2CComponent;
 
 @interface THLilyPad : THBoard
 {
@@ -74,8 +74,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSInteger) realIdxForPin:(THBoardPin*) pin;
 -(THBoardPin*) pinWithRealIdx:(NSInteger) pinNumber;
 
--(void) addI2CCOmponent:(IFI2CComponent*) component;
--(void) removeI2CCOmponent:(IFI2CComponent*) component;
--(IFI2CComponent*) I2CComponentWithAddress:(NSInteger) address;
+-(void) addI2CCOmponent:(I2CComponent*) component;
+-(void) removeI2CCOmponent:(I2CComponent*) component;
+-(I2CComponent*) I2CComponentWithAddress:(NSInteger) address;
 
 @end

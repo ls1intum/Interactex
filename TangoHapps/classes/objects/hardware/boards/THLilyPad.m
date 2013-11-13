@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THLilyPad.h"
 #import "THBoardPin.h"
-#import "IFI2CComponent.h"
+#import "I2CComponent.h"
 #import "THHardwareComponent.h"
 #import "THElementPin.h"
 
@@ -254,17 +254,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - I2C Components
 
--(void) addI2CCOmponent:(IFI2CComponent*) component{
+-(void) addI2CCOmponent:(I2CComponent*) component{
     [self.i2cComponents addObject:component];
 }
 
--(void) removeI2CCOmponent:(IFI2CComponent*) component{
+-(void) removeI2CCOmponent:(I2CComponent*) component{
     [self.i2cComponents removeObject:component];
 }
 
--(IFI2CComponent*) I2CComponentWithAddress:(NSInteger) address{
+-(I2CComponent*) I2CComponentWithAddress:(NSInteger) address{
 
-    for (IFI2CComponent * component in self.i2cComponents) {
+    for (I2CComponent * component in self.i2cComponents) {
         if(component.address == address){
             return component;
         }
