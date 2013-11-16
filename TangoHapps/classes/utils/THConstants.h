@@ -108,6 +108,7 @@ You should have received a copy of the GNU General Public License along with thi
 #define INITIAL_TRIGGER_AREA 100
 
 enum zPositions{
+    kYannicZ = -30,
     kLilypadZ = -25,
     kDefaultZ = -20,
     kClotheZ = -20,

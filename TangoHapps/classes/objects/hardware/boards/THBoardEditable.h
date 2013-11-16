@@ -21,6 +21,14 @@
 
 -(THBoardPinEditable*) minusPin;
 -(THBoardPinEditable*) plusPin;
+
+-(THBoardPinEditable*) sclPin;
+-(THBoardPinEditable*) sdaPin;
+
 -(THBoardPinEditable*) pinAtPosition:(CGPoint) position;
+
+-(NSInteger) pinNumberAtPosition:(CGPoint) position;
+-(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
+-(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
 
 @end

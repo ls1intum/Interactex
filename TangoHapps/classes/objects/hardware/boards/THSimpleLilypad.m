@@ -40,9 +40,10 @@
 
 #import "THSimpleLilyPad.h"
 #import "THBoardPin.h"
-#import "I2CComponent.h"
+#import "THI2CComponent.h"
 #import "THHardwareComponent.h"
 #import "THElementPin.h"
+#import "THI2CComponent.h"
 
 @implementation THSimpleLilypad
 
@@ -52,8 +53,8 @@
 @dynamic sdaPin;
 
 -(void) load{
-    _numberOfDigitalPins = 5;
-    _numberOfAnalogPins = 4;
+    self.numberOfDigitalPins = 5;
+    self.numberOfAnalogPins = 4;
 }
 
 -(void) loadPins{
@@ -70,30 +71,37 @@
     pin10.isPWM = YES;
     pin11.isPWM = YES;
     
-    [_pins addObject:pin2];
-    [_pins addObject:pin3];
-    [_pins addObject:pin9];
-    [_pins addObject:pin10];
-    [_pins addObject:pin11];
+    [self.pins addObject:pin2];
+    [self.pins addObject:pin3];
+    [self.pins addObject:pin9];
+    [self.pins addObject:pin10];
+    [self.pins addObject:pin11];
     
     THBoardPin * minusPin = [THBoardPin pinWithPinNumber:-1 andType:kPintypeMinus];
-    [_pins addObject:minusPin];
+    [self.pins addObject:minusPin];//5
     
     THBoardPin * plusPin = [THBoardPin pinWithPinNumber:-1 andType:kPintypePlus];
-    [_pins addObject:plusPin];
+    [self.pins addObject:plusPin];//6
     
     for (int i = 2; i <= 5; i++) {
         THBoardPin * pin = [THBoardPin pinWithPinNumber:i andType:kPintypeAnalog];
-        [_pins addObject:pin];
+        [self.pins addObject:pin];
     }
+    
+    THBoardPin * sclPin =  self.sclPin;
+    sclPin.supportsSCL = YES;
+    
+    THBoardPin * sdaPin =  self.sdaPin;
+    sdaPin.supportsSDA = YES;
+    
 }
 
 -(id) init{
     self = [super init];
     if(self){
         
-        _pins = [NSMutableArray array];
-        _i2cComponents = [NSMutableArray array];
+        self.pins = [NSMutableArray array];
+        self.i2cComponents = [NSMutableArray array];
         
         [self load];
         [self loadPins];
@@ -105,107 +113,44 @@
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    _pins = [decoder decodeObjectForKey:@"pins"];
-    [self load];
-    
+    if(self){
+        
+        [self load];
+    }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    [coder encodeObject:_pins forKey:@"pins"];
-}
-
--(id)copyWithZone:(NSZone *)zone {
-    THSimpleLilypad * copy = [super copyWithZone:zone];
     
-    NSMutableArray * array = [NSMutableArray arrayWithCapacity:_pins.count];
-    for (THPin * pin in _pins) {
-        THPin * copy = [pin copy];
-        [array addObject:copy];
-    }
-    copy.pins = array;
-    
-    return copy;
 }
 
 #pragma mark - Pins
 
--(NSMutableArray*) analogPins{
-    NSMutableArray * array = [NSMutableArray arrayWithCapacity:self.numberOfAnalogPins];
-    for (int i = 0; i < self.numberOfAnalogPins; i++) {
-        THBoardPin * pin = [self analogPinWithNumber:i];
-        [array addObject:pin];
-    }
-    return array;
-}
-
--(NSMutableArray*) digitalPins{
-    NSMutableArray * array = [NSMutableArray arrayWithCapacity:self.numberOfDigitalPins];
-    for (int i = 0; i < self.numberOfDigitalPins; i++) {
-        THBoardPin * pin = [self digitalPinWithNumber:i];
-        [array addObject:pin];
-    }
-    return array;
-}
-
 -(THBoardPin*) minusPin{
-    return [_pins objectAtIndex:4];
+    return [self.pins objectAtIndex:5];
 }
 
 -(THBoardPin*) plusPin{
-    return [_pins objectAtIndex:5];
+    return [self.pins objectAtIndex:6];
 }
 
 -(THBoardPin*) sclPin{
-    return [self analogPinWithNumber:3];
+    return [self analogPinWithNumber:5];
 }
 
 -(THBoardPin*) sdaPin{
-    return [self analogPinWithNumber:2];
-}
-
-/*
- -(BOOL) supportsSCL{
- return (self.type == kPintypeAnalog && self.number == 5);
- }
- 
- -(BOOL) supportsSDA{
- return (self.type == kPintypeAnalog && self.number == 4);
- }*/
-
--(NSInteger) realIdxForPin:(THBoardPin*) pin{
-    
-    if(pin.type == kPintypeDigital){
-        return pin.number;
-    } else {
-        return pin.number + self.numberOfDigitalPins;
-    }
-}
-
--(THBoardPin*) pinWithRealIdx:(NSInteger) pinNumber{
-    NSInteger pinidx;
-    
-    if(pinNumber <= self.numberOfDigitalPins){
-        return [self digitalPinWithNumber:pinNumber];
-    } else {
-        return [self analogPinWithNumber:pinNumber - self.numberOfDigitalPins];
-    }
-    return [self.pins objectAtIndex:pinidx];
+    return [self analogPinWithNumber:4];
 }
 
 -(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type{
     if(type == kPintypeDigital){
         if(pinNumber <= 4) {
             return pinNumber;
-        } else if(pinNumber <= self.numberOfDigitalPins){
-            return pinNumber + 2;
         }
-        
-        return pinNumber;
     } else if(type == kPintypeAnalog){
-        if(pinNumber >= 0 && pinNumber <= 5){
-            return pinNumber + 16;
+        if(pinNumber >= 2 && pinNumber <= 5){
+            return pinNumber + self.numberOfDigitalPins;
         }
     } else if(type == kPintypeMinus){
         return 5;
@@ -219,7 +164,7 @@
 -(THBoardPin*) digitalPinWithNumber:(NSInteger) number{
     NSInteger idx = [self pinIdxForPin:number ofType:kPintypeDigital];
     if(idx >= 0){
-        return [_pins objectAtIndex:idx];
+        return [self.pins objectAtIndex:idx];
     }
     return nil;
 }
@@ -228,48 +173,28 @@
     
     NSInteger idx = [self pinIdxForPin:number ofType:kPintypeAnalog];
     if(idx >= 0){
-        return [_pins objectAtIndex:idx];
+        return [self.pins objectAtIndex:idx];
     }
     return nil;
 }
 
 -(NSArray*) objectsAtPin:(NSInteger) pinNumber{
-    THBoardPin * pin = _pins[pinNumber];
+    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
     return pin.attachedElementPins;
 }
 
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
-    THBoardPin * pin = [_pins objectAtIndex:pinNumber];
+    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
     [pin attachPin:object];
     
-    if(object.hardware.i2cComponent && (pin.supportsSCL || pin.supportsSDA)){
-        
+    if([object.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (pin.supportsSCL || pin.supportsSDA)){
         if((pin.supportsSCL && [self.sdaPin isClotheObjectAttached:object.hardware]) ||
            (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
             
-            [self addI2CCOmponent:object.hardware.i2cComponent];
+            THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)object.hardware;
+            [self addI2CComponent:i2cObject];
         }
     }
-}
-
-#pragma mark - I2C Components
-
--(void) addI2CCOmponent:(I2CComponent*) component{
-    [self.i2cComponents addObject:component];
-}
-
--(void) removeI2CCOmponent:(I2CComponent*) component{
-    [self.i2cComponents removeObject:component];
-}
-
--(I2CComponent*) I2CComponentWithAddress:(NSInteger) address{
-    
-    for (I2CComponent * component in self.i2cComponents) {
-        if(component.address == address){
-            return component;
-        }
-    }
-    return nil;
 }
 
 #pragma mark - Other
@@ -282,7 +207,7 @@
     for (THBoardPin * pin in self.pins) {
         [pin prepareToDie];
     }
-    _pins = nil;
+    self.pins = nil;
     [super prepareToDie];
 }
 

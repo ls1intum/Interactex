@@ -29,6 +29,8 @@
 		9A2CAE90182CE860002AB9E8 /* GMPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CAE7F182CE860002AB9E8 /* GMPViewController.m */; };
 		9A2CAE91182CE860002AB9E8 /* GMPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CAE82182CE860002AB9E8 /* GMPConstants.m */; };
 		9A2CAE92182CE860002AB9E8 /* GMPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CAE84182CE860002AB9E8 /* GMPHelper.m */; };
+		9A7B65261834EACC009D0103 /* GMPI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65231834EACC009D0103 /* GMPI2CComponent.m */; };
+		9A7B65271834EACC009D0103 /* GMPI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65251834EACC009D0103 /* GMPI2CRegister.m */; };
 		9AAF27B9182AF96E00531E3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF27B8182AF96E00531E3A /* Foundation.framework */; };
 		9AAF27BB182AF96E00531E3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF27BA182AF96E00531E3A /* CoreGraphics.framework */; };
 		9AAF27BD182AF96E00531E3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF27BC182AF96E00531E3A /* UIKit.framework */; };
@@ -37,8 +39,6 @@
 		9AAF27CB182AF96E00531E3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AAF27CA182AF96E00531E3A /* Images.xcassets */; };
 		9AAF27F8182AFB4B00531E3A /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF27EC182AF97E00531E3A /* libBLE.a */; };
 		9AAF27FA182AFB5800531E3A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF27F9182AFB5800531E3A /* CoreBluetooth.framework */; };
-		9AAF2857182BAE9800531E3A /* GMPI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF2852182BAE9800531E3A /* GMPI2CComponent.m */; };
-		9AAF2858182BAE9800531E3A /* GMPI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF2854182BAE9800531E3A /* GMPI2CRegister.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +116,10 @@
 		9A2CAE82182CE860002AB9E8 /* GMPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPConstants.m; sourceTree = "<group>"; };
 		9A2CAE83182CE860002AB9E8 /* GMPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPHelper.h; sourceTree = "<group>"; };
 		9A2CAE84182CE860002AB9E8 /* GMPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPHelper.m; sourceTree = "<group>"; };
+		9A7B65221834EACC009D0103 /* GMPI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPI2CComponent.h; sourceTree = "<group>"; };
+		9A7B65231834EACC009D0103 /* GMPI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPI2CComponent.m; sourceTree = "<group>"; };
+		9A7B65241834EACC009D0103 /* GMPI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPI2CRegister.h; sourceTree = "<group>"; };
+		9A7B65251834EACC009D0103 /* GMPI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPI2CRegister.m; sourceTree = "<group>"; };
 		9AAF27B5182AF96E00531E3A /* iGMP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGMP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAF27B8182AF96E00531E3A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AAF27BA182AF96E00531E3A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,10 +132,6 @@
 		9AAF27D1182AF96E00531E3A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AAF27E7182AF97E00531E3A /* BLE.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLE.xcodeproj; path = ../Frameworks/BLE/BLE.xcodeproj; sourceTree = "<group>"; };
 		9AAF27F9182AFB5800531E3A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		9AAF2851182BAE9800531E3A /* GMPI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPI2CComponent.h; sourceTree = "<group>"; };
-		9AAF2852182BAE9800531E3A /* GMPI2CComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPI2CComponent.m; sourceTree = "<group>"; };
-		9AAF2853182BAE9800531E3A /* GMPI2CRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPI2CRegister.h; sourceTree = "<group>"; };
-		9AAF2854182BAE9800531E3A /* GMPI2CRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPI2CRegister.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +177,7 @@
 		9A2CAE67182CE860002AB9E8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9A7B65211834EACC009D0103 /* I2C */,
 				9A2CAE68182CE860002AB9E8 /* GMPAppDelegate.h */,
 				9A2CAE69182CE860002AB9E8 /* GMPAppDelegate.m */,
 				9A2CAE76182CE860002AB9E8 /* GMPMainViewController.h */,
@@ -218,6 +219,17 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		9A7B65211834EACC009D0103 /* I2C */ = {
+			isa = PBXGroup;
+			children = (
+				9A7B65221834EACC009D0103 /* GMPI2CComponent.h */,
+				9A7B65231834EACC009D0103 /* GMPI2CComponent.m */,
+				9A7B65241834EACC009D0103 /* GMPI2CRegister.h */,
+				9A7B65251834EACC009D0103 /* GMPI2CRegister.m */,
+			);
+			path = I2C;
+			sourceTree = "<group>";
+		};
 		9AAF27AC182AF96E00531E3A = {
 			isa = PBXGroup;
 			children = (
@@ -252,7 +264,7 @@
 		9AAF27BE182AF96E00531E3A /* iGMP */ = {
 			isa = PBXGroup;
 			children = (
-				9AAF2850182BAE9800531E3A /* I2C */,
+				9A2CAE67182CE860002AB9E8 /* src */,
 				9AAF27CA182AF96E00531E3A /* Images.xcassets */,
 				9A2CAE3B182CDC1B002AB9E8 /* resources */,
 				9AAF27BF182AF96E00531E3A /* Supporting Files */,
@@ -277,18 +289,6 @@
 				9AAF27EC182AF97E00531E3A /* libBLE.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9AAF2850182BAE9800531E3A /* I2C */ = {
-			isa = PBXGroup;
-			children = (
-				9A2CAE67182CE860002AB9E8 /* src */,
-				9AAF2851182BAE9800531E3A /* GMPI2CComponent.h */,
-				9AAF2852182BAE9800531E3A /* GMPI2CComponent.m */,
-				9AAF2853182BAE9800531E3A /* GMPI2CRegister.h */,
-				9AAF2854182BAE9800531E3A /* GMPI2CRegister.m */,
-			);
-			path = I2C;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,13 +399,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2CAE90182CE860002AB9E8 /* GMPViewController.m in Sources */,
+				9A7B65261834EACC009D0103 /* GMPI2CComponent.m in Sources */,
 				9A2CAE86182CE860002AB9E8 /* GMPBLECommunicationModule.m in Sources */,
 				9A2CAE88182CE860002AB9E8 /* GMPDeviceMenuViewController.m in Sources */,
-				9AAF2857182BAE9800531E3A /* GMPI2CComponent.m in Sources */,
 				9A2CAE8B182CE860002AB9E8 /* GMPI2CRegisterViewController.m in Sources */,
+				9A7B65271834EACC009D0103 /* GMPI2CRegister.m in Sources */,
 				9A2CAE8F182CE860002AB9E8 /* GMPPinsController.m in Sources */,
 				9A2CAE8C182CE860002AB9E8 /* GMPMainViewController.m in Sources */,
-				9AAF2858182BAE9800531E3A /* GMPI2CRegister.m in Sources */,
 				9A2CAE92182CE860002AB9E8 /* GMPHelper.m in Sources */,
 				9A2CAE8D182CE860002AB9E8 /* GMPPin.m in Sources */,
 				9A2CAE8E182CE860002AB9E8 /* GMPPinCell.m in Sources */,

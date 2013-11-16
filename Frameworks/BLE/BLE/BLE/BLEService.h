@@ -52,7 +52,7 @@ typedef enum{
     CBService			*bleService;
     
     NSTimer * timer;
-    NSTimer * sendOverTimer;
+    //NSTimer * sendOverTimer;
 
     uint8_t sendBuffer[SEND_BUFFER_SIZE];
     uint8_t receiveBuffer[SEND_BUFFER_SIZE];

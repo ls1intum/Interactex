@@ -211,6 +211,15 @@ float const kRequestTimeoutTime = 2.0f;
     [self sendPinModeQueryStartingFromPin:0];
 }
 
+-(BOOL)isPinContained:(NSInteger) pinNumber inArray:(NSMutableArray*) pins{
+    for (GMPPin * pin in pins) {
+        if(pin.number == pinNumber){
+            return YES;
+        }
+    }
+    return NO;
+}
+
 -(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode{
     
     NSLog(@"received mode %d %d",pin,mode);
@@ -222,35 +231,49 @@ float const kRequestTimeoutTime = 2.0f;
         timer = nil;
     }
     
-    if (mode == kGMPPinModeAnalog) {
+    BOOL pinExists = NO;
+    
+    if(mode == kGMPPinModeAnalog){
         
-        GMPPin * lastDigitalPin = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
-        
-        pinObj = [[GMPPin alloc] initWithNumber:pin - lastDigitalPin.number-1];
-        pinObj.type = kGMPPinTypeAnalog;
-        pinObj.mode = mode;
-        
-        [self.analogPins addObject:pinObj];
-        
-        [pinObj addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
-        
-        [self.delegate pinsControllerDidUpdateAnalogPins:self];
-        
+        if(self.digitalPins.count > 0){
+            GMPPin * lastDigitalPin = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
+            pinExists = [self isPinContained:pin - lastDigitalPin.number - 1 inArray:self.analogPins];
+        }
     } else {
-        
-        pinObj = [[GMPPin alloc] initWithNumber:pin];
-        pinObj.type = kGMPPinTypeDigital;
-        pinObj.mode = mode;
-        
-        [self.digitalPins addObject:pinObj];
-        
-        [self.delegate pinsControllerDidUpdateDigitalPins:self];
+        pinExists = [self isPinContained:pin inArray:self.digitalPins];
+
     }
     
-    [pinObj addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
-    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-    
-    [self sendPinModeQueryStartingFromPin:pin+1];
+    if(!pinExists){
+        if (mode == kGMPPinModeAnalog) {
+            
+            GMPPin * lastDigitalPin = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
+            pinObj = [[GMPPin alloc] initWithNumber:pin - lastDigitalPin.number-1];
+            pinObj.type = kGMPPinTypeAnalog;
+            pinObj.mode = mode;
+            
+            [self.analogPins addObject:pinObj];
+            
+            [pinObj addObserver:self forKeyPath:@"updatesValues" options:NSKeyValueObservingOptionNew context:nil];
+            
+            [self.delegate pinsControllerDidUpdateAnalogPins:self];
+            
+        } else {
+            
+            pinObj = [[GMPPin alloc] initWithNumber:pin];
+            pinObj.type = kGMPPinTypeDigital;
+            pinObj.mode = mode;
+            
+            [self.digitalPins addObject:pinObj];
+            
+            [self.delegate pinsControllerDidUpdateDigitalPins:self];
+        }
+        
+        [pinObj addObserver:self forKeyPath:@"mode" options:NSKeyValueObservingOptionNew context:nil];
+        [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+        
+        [self sendPinModeQueryStartingFromPin:pin+1];
+    }
 }
 
 -(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
@@ -266,7 +289,7 @@ float const kRequestTimeoutTime = 2.0f;
 
 -(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
     
-    //NSLog(@"analog msg for pin: %d",pin);
+    NSLog(@"analog msg for pin: %d",pin);
     GMPPin * pinObj = [self.analogPins objectAtIndex:pin];
     pinObj.value = value;
 }
@@ -342,7 +365,9 @@ float const kRequestTimeoutTime = 2.0f;
     } else if([keyPath isEqual:@"updatesValues"]){
         
         GMPPin * pin = object;
-        [self.gmpController sendReportRequestForAnalogPin:pin.number reports:pin.updatesValues];
+        
+        GMPPin * lastDigital = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
+        [self.gmpController sendReportRequestForAnalogPin:pin.number + lastDigital.number + 1 reports:pin.updatesValues];
         
     } else if([keyPath isEqual:@"notifies"]){
         

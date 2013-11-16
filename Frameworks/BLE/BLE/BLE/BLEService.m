@@ -84,17 +84,19 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     [_peripheral discoverServices:supportedServiceUUIDs];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
-    
-    sendOverTimer = [NSTimer scheduledTimerWithTimeInterval:kBleSendOverCommandInterval target:self selector:@selector(sendOverCommand) userInfo:nil repeats:YES];
+    /*
+    if(self.shouldUseTurnBasedCommunication){
+        sendOverTimer = [NSTimer scheduledTimerWithTimeInterval:kBleSendOverCommandInterval target:self selector:@selector(sendOverCommand) userInfo:nil repeats:YES];
+    }*/
 }
 
 - (void) stop {
     
     [timer invalidate];
     timer = nil;
-    
+    /*
     [sendOverTimer invalidate];
-    sendOverTimer = nil;
+    sendOverTimer = nil;*/
     
 	if (self.peripheral) {
 		_peripheral = nil;
@@ -111,8 +113,8 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 	}
     
     if (error != nil) {
-        NSString * message = [NSString stringWithFormat:@"Error: %@",error];
-        [self.delegate reportMessage:message];
+        //NSString * message = [NSString stringWithFormat:@"Error: %@",error];
+        //[self.delegate reportMessage:message];
 		return ;
 	}
 
@@ -236,12 +238,12 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     if(self.txCharacteristic){
         //without response does not work with BLE Shield
         [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
-        /*
+        
         printf("Sending:\n");
         for (int i = 0; i < data.length; i++) {
             printf("%X ",((uint8_t*)data.bytes)[i]);
         }
-        printf("\n");*/
+        printf("\n");
     }
 }
 
@@ -277,19 +279,24 @@ static NSMutableArray * supportedCharacteristicUUIDs;
         [self flushData];
     }
     
-    
+    /*
     printf("Sending:\n");
     for (int i = 0; i < count; i++) {
         printf("%X ",bytes[i]);
     }
-    printf("\n");
+    printf("\n");*/
 }
 
 -(void) sendOverCommand{
-    uint8_t buf[2];
-    buf[0] = kBleCrcStart;
-    buf[1] = 0;
-    [self addBytesToBuffer:buf count:2];
+    if(sendBufferCount == 0){
+        
+        uint8_t buf[2];
+        buf[0] = kBleCrcStart;
+        buf[1] = 0;
+        NSData * data = [NSData dataWithBytes:buf length:2];
+        [self writeToTx:data];
+        shouldSend = NO;
+    }
 }
 
 -(void) flushData {
@@ -317,8 +324,25 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             
             sendBufferCount -= numBytesSend;
             sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
-
+            
+            /*
+            if(self.shouldUseTurnBasedCommunication){
+                [self sendOverCommand];
+            }*/
+            
             lastTimeFlushed = CACurrentMediaTime();
+            
+        } else {
+            
+            if(self.shouldUseTurnBasedCommunication){
+                static int bleTimeOutCount = 0;
+                
+                if(bleTimeOutCount++ > 2 && sendBufferCount == 0)///XXX dirty!
+                {
+                    bleTimeOutCount = 0;
+                    [self sendOverCommand];
+                }
+            }
         }
     }
 }
@@ -419,7 +443,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
         } else if(parsingState == BLEReceiveBufferStateParsingLength){
             
             if(byte == 0){
-                parsingState =BLEReceiveBufferStateNormal;
+                parsingState = BLEReceiveBufferStateNormal;
                 shouldSend = YES;
                 
             } else {
@@ -481,7 +505,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     if(characteristic == self.rxCharacteristic){
         
-        /*
+        
         uint8_t * debugData;
         NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
         printf("receiving:\n");
@@ -490,7 +514,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             printf("%X ",value);
         }
     
-        printf("\n");*/
+        printf("\n");
             
         
         if(self.shouldUseCRC){

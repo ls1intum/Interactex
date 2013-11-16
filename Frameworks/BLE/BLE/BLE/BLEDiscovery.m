@@ -177,7 +177,6 @@ static BLEDiscovery * sharedInstance;
 
 -(void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
-    
     _connectedService = nil;
     _currentPeripheral = nil;
 	[_discoveryDelegate discoveryDidRefresh];

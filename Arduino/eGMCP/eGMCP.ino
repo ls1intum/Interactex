@@ -223,7 +223,7 @@ void analogReadCallback(byte pin, int notUsed){
         myeGMCP.valueAsTwo7bitBytes(value,buf);
         
         reply[0] = ADC_READ;
-        reply[1] = PIN_TO_ANALOG(pin);;
+        reply[1] = PIN_TO_ANALOG(pin);
         reply[2] = buf[0];
         reply[3] = buf[1];
         
@@ -430,7 +430,7 @@ void sysexCallback(byte command, byte argc, byte *argv)
 
 void systemResetCallback()
 {
-  Serial.println("resets");
+  Serial.println("resetting");
   
   // initialize a defalt state
   // TODO: option to load config from EEPROM instead of default
@@ -438,7 +438,7 @@ void systemResetCallback()
   	myeGMCP.disableI2CPins();
   }
   
-  for (byte i=0; i < TOTAL_PINS; i++) {
+  for (byte i=4; i < TOTAL_PINS; i++) {
     reportPINs[i] = false;      // by default, reporting off
     //portConfigInputs[i] = 0;	// until activated
     previousPINs[i] = 0;
@@ -463,7 +463,7 @@ void systemResetCallback()
 void setup()
 {
   Serial.begin(9600);
-
+  
   myeGMCP.attach(PIN_MODE_QUERY, pinModeQueryCallback);
   myeGMCP.attach(PIN_MODE_SET, setPinModeCallback);
   myeGMCP.attach(DIO_OUTPUT, digitalWriteCallback);
@@ -492,18 +492,14 @@ void loop() {
   }
 
   currentMillis = millis();
-  if(myeGMCP.isConnected()){
+  //if(myeGMCP.isConnected()){
     if(currentMillis - previousMillisBle > bleInterval) {
       
-      previousMillisBle = currentMillis;
-      
       if(currentMillis - previousMillis > reportInterval) {
-        
-         previousMillis = currentMillis;
       
          checkDigitalInputs();
       
-         for(pin=0; pin<TOTAL_PINS; pin++) {
+         for(pin=4; pin<TOTAL_PINS; pin++) {
           if (IS_PIN_ANALOG(pin) && pinConfig[pin] == MODE_ANALOG) {
              analogPin = PIN_TO_ANALOG(pin);
              if (analogInputsToReport & (1 << analogPin)) {
@@ -513,10 +509,12 @@ void loop() {
          }
     
          myeGMCP.reportI2CData();
-         myeGMCP.bleSendOver();
+         previousMillis = currentMillis;
       }
-    
       myeGMCP.bleFlush();
-     }
-  }
+      previousMillisBle = currentMillis;
+      //Serial.println(s);
+     } 
+ // }
+  //Serial.println("s");
 }

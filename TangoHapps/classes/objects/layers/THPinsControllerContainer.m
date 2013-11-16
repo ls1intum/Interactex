@@ -102,7 +102,7 @@ float const kPinControllerInnerPadding = 5;
             
             [self addSubview:_valueLabel];
             
-        } else if(pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer){
+        } else if(pin.mode == kPinModePWM){
             
             CGRect sliderFrame = CGRectMake(typeLabelFrame.origin.x + kPinControllerTypeLabelSize.width + kPinControllerInnerPadding, kPinControllerInnerPadding, kPinControllerSliderSize.width, kPinControllerSliderSize.height);
             _slider = [[UISlider alloc] initWithFrame:sliderFrame];
@@ -146,7 +146,7 @@ float const kPinControllerInnerPadding = 5;
         
         NSString * valueStr = (pin.value == kDigitalPinValueHigh) ? @"High" : @"Low";
         _valueLabel.text = valueStr;
-    } else if(pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer) {
+    } else if(pin.mode == kPinModePWM) {
 
         _slider.value = pin.value;
     } else if(pin.mode == kPinModeAnalogInput){

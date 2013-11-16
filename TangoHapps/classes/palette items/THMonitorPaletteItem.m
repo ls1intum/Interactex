@@ -40,8 +40,18 @@
 
 #import "THMonitorPaletteItem.h"
 #import "THMonitorEditable.h"
+#import "THProject.h"
+#import "THiPhoneEditableObject.h"
 
 @implementation THMonitorPaletteItem
+
+- (BOOL)canBeDroppedAt:(CGPoint)location {
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    if([project.iPhone testPoint:location]){
+        return YES;
+    }
+    return NO;
+}
 
 - (void)dropAt:(CGPoint)location {
     THMonitorEditable * monitor = [[THMonitorEditable alloc] init];

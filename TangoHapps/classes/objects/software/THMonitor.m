@@ -57,9 +57,6 @@ float const kMonitorMargin = 5;
 
     self.view = view;
     
-    self.maxValue = 255;
-    self.minValue = -255;
-    
     [self addLines];
     [self addMethods];
 }
@@ -102,6 +99,9 @@ float const kMonitorMargin = 5;
         
         self.width = 200;
         self.height = 200;
+        
+        self.maxValue = 255;
+        self.minValue = -255;
         
         [self loadMonitor];
     }
@@ -148,7 +148,10 @@ float const kMonitorMargin = 5;
     float range = (self.maxValue - self.minValue);
     value = (value / range) * (self.view.frame.size.height - 2 * kMonitorMargin);
     
+    //NSLog(@"value %d",(int)value);
+    
     return CGPointMake(self.view.frame.size.width - kMonitorMargin, self.view.frame.size.height/2 - value);
+    //return CGPointMake(100, self.view.frame.size.height/2 - value);
 }
 
 -(void) addValue1:(float) value{

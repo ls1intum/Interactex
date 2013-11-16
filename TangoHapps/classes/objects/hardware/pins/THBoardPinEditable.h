@@ -42,15 +42,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THElementPinEditable;
 @class THBoardPin;
+@class THHardwareComponentEditableObject;
 
 @interface THBoardPinEditable : THPinEditable {
     CCLabelTTF * _label;
 }
 
--(id) initWithPin:(THBoardPin*) pin;
-
--(void) attachPin:(THElementPinEditable*) pinEditable;
--(void) deattachPin:(THElementPinEditable*) pinEditable;
 
 @property (nonatomic,readonly) NSMutableArray * attachedPins;
 @property (nonatomic) NSInteger number;
@@ -61,5 +58,11 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL isPWM;
 @property (nonatomic) BOOL supportsSCL;
 @property (nonatomic) BOOL supportsSDA;
+
+
+-(id) initWithPin:(THBoardPin*) pin;
+-(void) attachPin:(THElementPinEditable*) pinEditable;
+-(void) deattachPin:(THElementPinEditable*) pinEditable;
+-(BOOL) isClotheObjectAttached:(THHardwareComponentEditableObject*) object;
 
 @end

@@ -38,17 +38,17 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "I2CComponent.h"
-#import "I2CRegister.h"
+#import "THI2CComponent.h"
+#import "THI2CRegister.h"
 
-@implementation I2CComponent
+@implementation THI2CComponent
 
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     
     [aCoder encodeObject:self.name forKey:@"name"];
-    //[aCoder encodeInt:self.address forKey:@"address"];
+    [aCoder encodeInteger:self.address forKey:@"address"];
     [aCoder encodeObject:self.registers forKey:@"registers"];
 }
 
@@ -62,6 +62,21 @@
     return self;
 }
 
+-(id)copyWithZone:(NSZone *)zone{
+    
+    THI2CComponent * copy = [[THI2CComponent alloc] init];
+    
+    if(copy){
+        copy.name = self.name;
+        copy.address = self.address;
+        
+        for (THI2CRegister * reg in self.registers) {
+            [copy addRegister:[reg copy]];
+        }
+    }
+    return copy;
+}
+
 #pragma mark - Methods
 
 -(id) init{
@@ -72,17 +87,21 @@
     return self;
 }
 
--(void) addRegister:(I2CRegister*) reg{
+-(void) addRegister:(THI2CRegister*) reg{
     
     [self.registers addObject:reg];
 }
 
--(void) removeRegister:(I2CRegister *)reg{
+-(void) removeRegister:(THI2CRegister *)reg{
    [self.registers removeObject:reg];
 }
 
--(I2CRegister*) registerWithNumber:(NSInteger) number{
-    for (I2CRegister * reg in self.registers) {
+-(NSMutableArray*) registers{
+    return _registers;
+}
+
+-(THI2CRegister*) registerWithNumber:(NSInteger) number{
+    for (THI2CRegister * reg in self.registers) {
         if(reg.number == number){
             return reg;
         }

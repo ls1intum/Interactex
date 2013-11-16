@@ -39,7 +39,7 @@
  */
 
 #import "THHardwareComponent.h"
-
+#import "THI2CProtocol.h"
 
 @interface THAccelerometer : THHardwareComponent
 

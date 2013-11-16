@@ -76,7 +76,6 @@
 
 -(id)copyWithZone:(NSZone *)zone {
     THMonitorEditable * copy = [super copyWithZone:zone];
-    
     return copy;
 }
 

@@ -45,6 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THiPhoneObject;
 @class THConditionObject;
 @class THLilyPad;
+@class THBoard;
 
 @interface THClientProject : NSObject <NSCoding, NSCopying>
 {
@@ -61,7 +62,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, strong) NSMutableArray * actions;
 @property (nonatomic, strong) NSMutableArray * triggers;
 @property (nonatomic, strong) THiPhone * iPhone;
-@property (nonatomic, strong) THLilyPad * lilypad;
+@property (nonatomic, readonly) THBoard * currentBoard;
 @property (nonatomic, readonly) NSArray * allObjects;
 
 +(id)emptyProject;

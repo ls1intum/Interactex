@@ -53,6 +53,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THCompass.h"
 #import "THClientProject.h"
 #import "THClientProjectProxy.h"
+#import "THI2CRegister.h"
+#import "THMonitor.h"
 
 @implementation THClientPresetsGenerator
 
@@ -61,7 +63,8 @@ NSString * const kDigitalInputProjectName = @"Digital Input";
 NSString * const kBuzzerProjectName = @"Buzzer";
 NSString * const kAnalogOutputProjectName = @"Analog Output";
 NSString * const kAnalogInputProjectName = @"Analog Input";
-NSString * const kCompassProjectName = @"Compass";
+NSString * const kMCUCompassProjectName = @"MCU";
+NSString * const kLSMCompassProjectName = @"LSM";
 
 -(id) init{
     
@@ -87,9 +90,9 @@ NSString * const kCompassProjectName = @"Compass";
     [array addObject:[self digitalOutputProject]];
     [array addObject:[self digitalInputProject]];
     [array addObject:[self buzzerProject]];
-    //[array addObject:[self analogOutputProject]];
-    [array addObject:[self analogInputProject]];
-    [array addObject:[self compassProject]];
+    [array addObject:[self analogInputProject]];;
+    [array addObject:[self lsmProject]];
+    [array addObject:[self mcuProject]];
     
     
     NSMutableArray * imagesArray = [NSMutableArray array];
@@ -97,6 +100,7 @@ NSString * const kCompassProjectName = @"Compass";
     [imagesArray addObject:[UIImage imageNamed:@"button.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"buzzer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"lightSensor.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     
     for (int i = 0 ; i < array.count ; i++) {
@@ -150,7 +154,8 @@ NSString * const kCompassProjectName = @"Compass";
     THLed * led = [[THLed alloc] init];
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
-    project.lilypad = lilypad;
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
     project.hardwareComponents = [NSMutableArray arrayWithObject:led];
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
@@ -200,7 +205,8 @@ NSString * const kCompassProjectName = @"Compass";
     THButton * lilybutton = [[THButton alloc] init];
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
-    project.lilypad = lilypad;
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+
     project.hardwareComponents = [NSMutableArray arrayWithObjects:led, lilybutton,nil];
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
@@ -302,7 +308,7 @@ NSString * const kCompassProjectName = @"Compass";
     [project registerAction:methodInvoke forEvent:dxEvent];
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
-    project.lilypad = lilypad;
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
     
     THBoardPin * lilypinBuzzer = [lilypad digitalPinWithNumber:9];
     lilypinBuzzer.mode = kPinModePWM;
@@ -322,7 +328,8 @@ NSString * const kCompassProjectName = @"Compass";
     THLed * led = [[THLed alloc] init];
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
-    project.lilypad = lilypad;
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
     project.hardwareComponents = [NSMutableArray arrayWithObjects:led,nil];
     
     //pins
@@ -361,7 +368,8 @@ NSString * const kCompassProjectName = @"Compass";
     THLightSensor * lightSensor = [[THLightSensor alloc] init];
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
-    project.lilypad = lilypad;
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
     project.hardwareComponents = [NSMutableArray arrayWithObjects:lightSensor,nil];
     
     THLabel * sensorLabel = [[THLabel alloc] init];
@@ -393,18 +401,30 @@ NSString * const kCompassProjectName = @"Compass";
     return project;
 }
 
--(THClientProject*) compassProject{
+-(THClientProject*) mcuProject{
     
     THClientProject * project = [self defaultClientProject];
     
-    project.name = kCompassProjectName;
+    project.name = kMCUCompassProjectName;
     
-    /*
     THCompass * compass = [[THCompass alloc] init];
     
+    compass.i2cComponent = [[THI2CComponent alloc] init];
+    THI2CRegister * reg = [[THI2CRegister alloc] init];
+    
+    compass.type = kI2CComponentTypeMCU;
+    compass.i2cComponent.address = 104;
+    reg.number = 0x3B;
+    
+    [compass.i2cComponent addRegister:reg];
+    
     THLilyPad * lilypad = [[THLilyPad alloc] init];
-    project.lilypad = lilypad;
-    project.hardwareComponents = [NSArray arrayWithObjects:compass,nil];
+
+    [lilypad addI2CComponent:compass];
+    
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
     
     THLabel * label1 = [[THLabel alloc] init];
     label1.position = CGPointMake(100, 150);
@@ -416,17 +436,17 @@ NSString * const kCompassProjectName = @"Compass";
     label3.position = CGPointMake(150, 250);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a Compass to the I2C pins";
+    label.text = @"connect an MCU Compass to the I2C pins";
     label.position = CGPointMake(150, 50);
     label.width = 300;
     
-    project.iPhoneObjects = [NSArray arrayWithObjects:label1,label2,label3,label,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label1,label2,label3,label,nil];
     
     //method x
     TFEvent * xEvent = [compass.events objectAtIndex:0];
     TFMethod * setTextMethod = [label1.methods objectAtIndex:0];
     TFMethodInvokeAction * methodInvoke1 = [TFMethodInvokeAction actionWithTarget:label1 method:setTextMethod];
-    TFProperty * property1 = [compass.viewableProperties objectAtIndex:0];
+    TFProperty * property1 = [compass.properties objectAtIndex:0];
     methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property1 target:compass];
     methodInvoke1.source = compass;
     [project registerAction:methodInvoke1 forEvent:xEvent];
@@ -435,7 +455,7 @@ NSString * const kCompassProjectName = @"Compass";
     TFEvent * yEvent = [compass.events objectAtIndex:1];
     TFMethod * setTextMethod2 = [label2.methods objectAtIndex:0];
     TFMethodInvokeAction * methodInvoke2 = [TFMethodInvokeAction actionWithTarget:label2 method:setTextMethod2];
-    TFProperty * property2 = [compass.viewableProperties objectAtIndex:1];
+    TFProperty * property2 = [compass.properties objectAtIndex:1];
     methodInvoke2.firstParam = [TFPropertyInvocation invocationWithProperty:property2 target:compass];
     methodInvoke2.source = compass;
     [project registerAction:methodInvoke2 forEvent:yEvent];
@@ -444,18 +464,81 @@ NSString * const kCompassProjectName = @"Compass";
     TFEvent * headingEvent = [compass.events objectAtIndex:1];
     TFMethod * setTextMethod3 = [label3.methods objectAtIndex:0];
     TFMethodInvokeAction * methodInvoke3 = [TFMethodInvokeAction actionWithTarget:label3 method:setTextMethod3];
-    TFProperty * property3 = [compass.viewableProperties objectAtIndex:3];
+    TFProperty * property3 = [compass.properties objectAtIndex:3];
     methodInvoke3.firstParam = [TFPropertyInvocation invocationWithProperty:property3 target:compass];
     methodInvoke3.source = compass;
     [project registerAction:methodInvoke3 forEvent:headingEvent];
     
     //pins
-    THElementPin * compassPin = compass.pin5;
-    THBoardPin * pin5 = [lilypad analogPinWithNumber:5];
-    NSLog(@"");
-    [pin5 attachPin:compassPin];
-    [compassPin attachToPin:pin5];
-    */
+    [lilypad.sclPin attachPin:compass.sclPin];
+    [lilypad.sdaPin attachPin:compass.sdaPin];
+    
+    [compass.sclPin attachToPin:lilypad.sclPin];
+    [compass.sdaPin attachToPin:lilypad.sdaPin];
+    
+    return project;
+}
+
+-(THClientProject*) lsmProject{
+    
+    THClientProject * project = [self defaultClientProject];
+    
+    project.name = kLSMCompassProjectName;
+    
+    THCompass * compass = [[THCompass alloc] init];
+    
+    compass.i2cComponent = [[THI2CComponent alloc] init];
+    THI2CRegister * reg = [[THI2CRegister alloc] init];
+    
+    compass.type = kI2CComponentTypeLSM;
+    compass.i2cComponent.address = 24;
+    reg.number = 168;
+    
+    [compass.i2cComponent addRegister:reg];
+    
+    THLilyPad * lilypad = [[THLilyPad alloc] init];
+    
+    [lilypad addI2CComponent:compass];
+    
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
+    
+    THMonitor * monitor = [[THMonitor alloc] init];
+    monitor.position = CGPointMake(100, 150);
+    
+    THLabel * label = [[THLabel alloc] init];
+    label.text = @"connect an LSM Compass to the I2C pins";
+    label.position = CGPointMake(150, 50);
+    label.width = 300;
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:monitor,label,nil];
+    
+    //method x
+    TFEvent * xEvent = [compass.events objectAtIndex:0];
+    TFMethod * addValue1Method = [monitor.methods objectAtIndex:0];
+    TFMethodInvokeAction * methodInvoke1 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue1Method];
+    TFProperty * property1 = [compass.properties objectAtIndex:0];
+    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property1 target:compass];
+    methodInvoke1.source = compass;
+    [project registerAction:methodInvoke1 forEvent:xEvent];
+    
+    //method y
+    TFEvent * yEvent = [compass.events objectAtIndex:1];
+    TFMethod * addValue2Method = [monitor.methods objectAtIndex:1];
+    TFMethodInvokeAction * methodInvoke2 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue2Method];
+    TFProperty * property2 = [compass.properties objectAtIndex:1];
+    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property2 target:compass];
+    methodInvoke1.source = compass;
+    [project registerAction:methodInvoke2 forEvent:yEvent];
+    
+    //pins
+    [lilypad.sclPin attachPin:compass.sclPin];
+    [lilypad.sdaPin attachPin:compass.sdaPin];
+    
+    [compass.sclPin attachToPin:lilypad.sclPin];
+    [compass.sdaPin attachToPin:lilypad.sdaPin];
+    
     return project;
 }
 

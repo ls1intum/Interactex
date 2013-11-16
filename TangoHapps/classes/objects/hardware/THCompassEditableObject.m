@@ -41,11 +41,12 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THCompassEditableObject.h"
 #import "THCompass.h"
 #import "THElementPinEditable.h"
+#import "THCompassProperties.h"
 
 @implementation THCompassEditableObject
 
 -(void) loadCompass{
-    self.sprite = [CCSprite spriteWithFile:@"compass.png"];
+    self.sprite = [CCSprite spriteWithFile:@"LSMCompass.png"];
     [self addChild:self.sprite];
     
     self.acceptsConnections = YES;
@@ -104,7 +105,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-
+    
+    [controllers addObject:[THCompassProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
@@ -119,6 +121,17 @@ You should have received a copy of the GNU General Public License along with thi
     self.accelerometerY = -acceleration.x * 300;
     //NSLog(@"accel: %d %d",self.x,self.y);
 }*/
+
+-(void) setComponentType:(THI2CComponentType)componentType{
+    THCompass * compass = (THCompass*)self.simulableObject;
+    compass.componentType = componentType;
+}
+
+-(THI2CComponentType) componentType{
+    
+    THCompass * compass = (THCompass*)self.simulableObject;
+    return compass.componentType;
+}
 
 -(THElementPinEditable*) pin5Pin{
     return [self.pins objectAtIndex:0];

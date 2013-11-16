@@ -86,7 +86,7 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Connectable
 
 -(BOOL) acceptsConnectionsTo:(id)anObject{
-    if([anObject isKindOfClass:[THLilyPadEditable class]] || [anObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+    if([anObject isKindOfClass:[THBoardEditable class]] || [anObject isKindOfClass:[THHardwareComponentEditableObject class]]){
         return YES;
     }
     

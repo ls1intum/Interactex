@@ -48,9 +48,4 @@
     THBoardPinEditable * _highlightedPin;
 }
 
--(NSInteger) pinNumberAtPosition:(CGPoint) position;
-
--(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
--(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
-
 @end

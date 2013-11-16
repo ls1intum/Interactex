@@ -50,12 +50,4 @@ You should have received a copy of the GNU General Public License along with thi
     THBoardPinEditable * _highlightedPin;
 }
 
-/*
--(void) attachElementPin:(THElementPinEditable*) elementPin atPin:(NSInteger) pinNumber ofType:(THPinType) type;
-*/
--(NSInteger) pinNumberAtPosition:(CGPoint) position;
-
--(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
--(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
-
 @end

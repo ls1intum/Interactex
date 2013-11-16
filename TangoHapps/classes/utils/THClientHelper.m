@@ -70,6 +70,11 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
++(void) valueAsTwo7bitBytes:(NSInteger) value buffer:(uint8_t[2]) buf {
+    buf[0] = value & 0b01111111;
+    buf[1] = value >> 7 & 0b01111111;
+}
+
 /*
 +(IFPinType) THPinTypeToIFPinType:(THPinType) type{
     if(type == kPintypeDigital){

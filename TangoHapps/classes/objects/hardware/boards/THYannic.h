@@ -1,8 +1,8 @@
 /*
- I2CComponent.h
+ THYannic.h
  Interactex Designer
  
- Created by Juan Haladjian on 13/11/2013.
+ Created by Juan Haladjian on 15/11/2013.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -39,19 +39,11 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "THBoard.h"
+#import "THI2CProtocol.h"
 
-@class I2CRegister;
+@interface THYannic : THBoard {
+}
 
-@interface I2CComponent : NSObject <NSCoding>
-
-@property (copy, nonatomic) NSString * name;
-@property (nonatomic) NSInteger address;
-
-@property (strong, nonatomic) NSMutableArray * registers;
-
--(void) addRegister:(I2CRegister*) reg;
--(void) removeRegister:(I2CRegister *)reg;
-
--(I2CRegister*) registerWithNumber:(NSInteger) number;
 
 @end

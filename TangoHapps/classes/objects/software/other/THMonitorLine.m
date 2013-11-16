@@ -33,17 +33,24 @@ float const kMonitorPixelsToSeconds = 5;
     
     CGRect rect = self.view.bounds;
     
-    NSLog(@"enters: %f ,max %f min %f",point.y,rect.origin.y + rect.size.height/2, rect.origin.y);
+    float maxX = rect.size.width;
+    float minX = 0;
     
-    if(point.x < rect.origin.x){
-        point.x = rect.origin.x;
-    } else if(point.x > rect.origin.x + rect.size.width){
-        point.x = rect.origin.x + rect.size.width;
+    float maxY = rect.size.height;
+    float minY = 0;
+    
+    //NSLog(@"enters: %f ,max %f min %f",point.y, maxY, minY);
+    //NSLog(@"enters: %f ,max %f min %f",point.x, maxX, minX);
+    
+    if(point.x < minX){
+        point.x = minX;
+    } else if(point.x > maxX){
+        point.x = maxX;
     }
-    if(point.y < rect.origin.y){
-        point.y = rect.origin.y;
-    } else if(point.y > rect.origin.y + rect.size.height/2){
-        point.y = rect.origin.y + rect.size.height/2;
+    if(point.y < minY){
+        point.y = minY;
+    } else if(point.y > maxY){
+        point.y = maxY;
     }
     
     Point2D * myPoint = [[Point2D alloc] init];
@@ -70,7 +77,6 @@ float const kMonitorPixelsToSeconds = 5;
     }
 }
 
-
 -(NSInteger) moveVerticesLeftBy:(float) dx{
     
     NSInteger firstIdx = -1;
@@ -80,15 +86,19 @@ float const kMonitorPixelsToSeconds = 5;
         Point2D * point = [self.points objectAtIndex:i];
         
         point.x -= dx;
-        
-        if(point.x < 0){            
+        /*
+        if(i == 0){
+            NSLog(@"%f",point.x);
+        }
+        */
+        if(point.x < 100){
             firstIdx = i;
         }
     }
     
     for (CAShapeLayer * layer in self.view.layer.sublayers) {
         CGPoint origin = layer.frame.origin;
-        origin.x -=dx;
+        origin.x -= dx;
         CGRect rect = layer.frame;
         rect.origin = origin;
         layer.frame = rect;
@@ -114,7 +124,7 @@ float const kMonitorPixelsToSeconds = 5;
 
 -(void) update:(float) dt{
     
-    float dx = 1;
+    float dx = 3;
     
     NSInteger removeUntilIndex = [self moveVerticesLeftBy:dx];
     [self removeVerticesUntilIndex:removeUntilIndex];

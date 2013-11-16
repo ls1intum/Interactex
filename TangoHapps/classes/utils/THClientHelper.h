@@ -48,5 +48,6 @@ You should have received a copy of the GNU General Public License along with thi
 +(BOOL) canConvertParam:(TFDataType) type1 toType:(TFDataType) type2;
 +(void) MakeCallTo:(NSString*) number;
 //+(IFPinType) THPinTypeToIFPinType:(THPinType) type;
++(void) valueAsTwo7bitBytes:(NSInteger) value buffer:(uint8_t[2]) buf;
 
 @end

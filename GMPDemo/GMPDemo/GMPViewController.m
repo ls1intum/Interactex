@@ -64,6 +64,7 @@
     service.delegate = self;
     service.dataDelegate = communicationModule;
     service.shouldUseCRC = YES;
+    service.shouldUseTurnBasedCommunication = YES;
     
     communicationModule.bleService = service;
     communicationModule.gmpController = self.gmpController;
@@ -179,25 +180,24 @@
 
 //I2C
 - (IBAction)sendI2CReadTapped:(id)sender {
-    [self.gmpController sendI2CStartReadingAddress:24 reg:40 size:6];//Juan's accelerometer
+    [self.gmpController sendI2CStartReadingAddress:24 reg:168 size:6];//Juan's accelerometer
 }
 
 - (IBAction)sendI2CWriteTapped:(id)sender {
-    
-    uint8_t buf[2];
+    /*
+    uint8_t buf[2];//Kyle's accelerometer
     [GMPHelper valueAsTwo7bitBytes:39 buffer:buf];
     [self.gmpController sendI2CWriteToAddress:0x3B reg:32 values:buf numValues:1];
+    */
     
-    /*
     uint8_t buf[2];
     [GMPHelper valueAsTwo7bitBytes:39 buffer:buf];
-    [self.gmpController sendI2CWriteToAddress:24 reg:32 values:buf numValues:1];*/
+    [self.gmpController sendI2CWriteToAddress:24 reg:32 values:buf numValues:1];
 }
 
 - (IBAction)sendI2CStartReadingTapped:(id)sender{
     
     //[self.gmpController sendI2CReadAddress:104 reg:0x3B size:6];//Kyle accelerometer
-    //[self.gmpController sendI2CStartReadingAddress:24 reg:40 size:6];//Juan's accelerometer
     [self.gmpController sendI2CStartReadingAddress:24 reg:168 size:6];//Juan's accelerometer
 }
 

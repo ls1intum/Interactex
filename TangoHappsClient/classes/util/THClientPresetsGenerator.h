@@ -39,14 +39,14 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
-
+/*
 extern NSString * const kDigitalOutputProjectName;
 extern NSString * const kDigitalInputProjectName;
 extern NSString * const kBuzzerProjectName;
 extern NSString * const kAnalogOutputProjectName;
 extern NSString * const kAnalogInputProjectName;
 extern NSString * const kCompassProjectName;
-
+*/
 @interface THClientPresetsGenerator : NSObject
 {
 }

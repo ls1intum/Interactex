@@ -58,5 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) THElementPinEditable * pin5Pin;
 @property (nonatomic, readonly) THElementPinEditable * pin4Pin;
 
+@property (nonatomic) THI2CComponentType componentType;
 
 @end

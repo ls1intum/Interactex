@@ -40,10 +40,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THCompass.h"
 #import "THElementPin.h"
-#import "I2CComponent.h"
-#import "I2CRegister.h"
+#import "THI2CComponent.h"
+#import "THI2CRegister.h"
 
 @implementation THCompass
+
+@synthesize i2cComponent;
+@synthesize type;
 
 #pragma mark - Initialization
 
@@ -51,22 +54,20 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        [self load];
+        [self loadMethods];
         [self loadPins];
-        [self loadI2CComponent];
+        self.componentType = kI2CComponentTypeMCU;
     }
     return self;
 }
 
--(void) load{
+-(void) loadMethods{
     
     TFProperty * property1 = [TFProperty propertyWithName:@"accelerometerX" andType:kDataTypeInteger];
     TFProperty * property2 = [TFProperty propertyWithName:@"accelerometerY" andType:kDataTypeInteger];
     TFProperty * property3 = [TFProperty propertyWithName:@"accelerometerZ" andType:kDataTypeInteger];
     
     TFProperty * property4 = [TFProperty propertyWithName:@"heading" andType:kDataTypeFloat];
-    self.properties = [NSMutableArray arrayWithObjects:property1,property2,property3,property4,nil];
-    
     self.properties = [NSMutableArray arrayWithObjects:property1,property2,property3,property4,nil];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventXChanged];
@@ -101,21 +102,21 @@ You should have received a copy of the GNU General Public License along with thi
     [self.pins addObject:plusPin];
 }
 
--(I2CComponent*) loadI2CComponent{
+-(THI2CComponent*) loadI2CComponent{
     
-    self.i2cComponent = [[I2CComponent alloc] init];
+    self.i2cComponent = [[THI2CComponent alloc] init];
     self.i2cComponent.address = 24;
     
-    I2CRegister * reg1 = [[I2CRegister alloc] init];
+    THI2CRegister * reg1 = [[THI2CRegister alloc] init];
     reg1.number = 32;
     
-    I2CRegister * reg2 = [[I2CRegister alloc] init];
+    THI2CRegister * reg2 = [[THI2CRegister alloc] init];
     reg2.number = 40;
     
     [self.i2cComponent addRegister:reg1];
     [self.i2cComponent addRegister:reg2];
     
-    [reg2 addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    self.componentType = kI2CComponentTypeLSM;
     
     return self.i2cComponent;
 }
@@ -126,28 +127,82 @@ You should have received a copy of the GNU General Public License along with thi
     
     self = [super initWithCoder:decoder];
     if(self){
-        [self load];
+        [self loadMethods];
+        
+        self.componentType = [decoder decodeIntegerForKey:@"componentType"];
+        //self.i2cComponent = [decoder decodeObjectForKey:@"i2cComponent"];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder{
     [super encodeWithCoder:coder];
+    
+    [coder encodeInteger:self.componentType forKey:@"componentType"];
+    //[coder encodeObject:self.i2cComponent forKey:@"i2cComponent"];
 }
 
 -(id)copyWithZone:(NSZone *)zone{
+    
     THCompass * copy = [super copyWithZone:zone];
+    
+    copy.componentType = self.componentType;
+    //copy.i2cComponent = [self.i2cComponent copy];
     
     return copy;
 }
 
 #pragma mark - Methods
 
+-(void) setComponentType:(THI2CComponentType)componentType{
+    
+    _componentType = componentType;
+    
+    self.i2cComponent = [[THI2CComponent alloc] init];
+    
+    if(self.componentType == kI2CComponentTypeMCU){
+        
+        self.i2cComponent.address = 104;
+        THI2CRegister * reg = [[THI2CRegister alloc] init];
+        reg.number = 0x3B;
+        NSMutableArray * registers = [NSMutableArray arrayWithObject:reg];
+        self.i2cComponent.registers = registers;
+        
+    } else {
+        
+        self.i2cComponent.address = 24;
+        THI2CRegister * reg = [[THI2CRegister alloc] init];
+        reg.number = 168;
+        NSMutableArray * registers = [NSMutableArray arrayWithObject:reg];
+        self.i2cComponent.registers = registers;
+    }
+}
+
+-(THElementPin*) sclPin{
+    return [self.pins objectAtIndex:1];
+}
+
+-(THElementPin*) sdaPin{
+    return [self.pins objectAtIndex:2];
+}
+
 -(void) setValuesFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
     
-    self.accelerometerX = ((int16_t)(buffer[1] << 8 | buffer[0])) >> 4;
-    self.accelerometerY = ((int16_t)(buffer[3] << 8 | buffer[2])) >> 4;
-    self.accelerometerZ = ((int16_t)(buffer[5] << 8 | buffer[4])) >> 4;
+    if(self.componentType == kI2CComponentTypeLSM){
+        
+        self.accelerometerX = ((int16_t)(buffer[1] << 8 | buffer[0])) >> 4;
+        self.accelerometerY = ((int16_t)(buffer[3] << 8 | buffer[2])) >> 4;
+        self.accelerometerZ = ((int16_t)(buffer[5] << 8 | buffer[4])) >> 4;
+        
+    } else {
+        
+        self.accelerometerX = ((int16_t)(buffer[0] << 8 | buffer[1]));
+        self.accelerometerY = ((int16_t)(buffer[2] << 8 | buffer[3]));
+        self.accelerometerZ = ((int16_t)(buffer[4] << 8 | buffer[5]));
+        
+        NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
+    }
+    
 }
 
 -(void) setAccelerometerX:(NSInteger)accelerometerX{
@@ -194,21 +249,12 @@ You should have received a copy of the GNU General Public License along with thi
     [super didStartSimulating];
 }
 
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    
-    if([keyPath isEqualToString:@"value"]){
-        I2CRegister * reg = object;
-        [self setValuesFromBuffer:(uint8_t*)reg.value.bytes length:reg.value.length];
-    }
-}
 
 -(NSString*) description{
     return @"compass";
 }
 
 -(void) prepareToDie{
-    I2CRegister * reg = [self.i2cComponent.registers objectAtIndex:1];
-    [reg removeObserver:self forKeyPath:@"value"];
     
     self.i2cComponent = nil;
     

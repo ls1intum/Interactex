@@ -75,6 +75,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 #import "THWire.h"
 #import "THInvocationConnectionLine.h"
+#import "THBoard.h"
 
 @implementation THProject
 
@@ -871,7 +872,7 @@ enum zPositions{
     NSMutableArray * ret = [NSMutableArray arrayWithCapacity:objects.count];
     
     for (TFEditableObject * object in objects) {
-        THSimulableObject * copy = [object.simulableObject copy];
+        TFSimulableObject * copy = [object.simulableObject copy];
         [ret addObject:copy];
     }
     
@@ -922,8 +923,7 @@ enum zPositions{
     return nil;
 }
 
--(void) cleanLilypadPinsFor:(THClientProject*) project{
-    //THLilyPad * lilypad = (THLilyPad*) self.lilypad.object;
+-(void) cleanBoardPinsFor:(THClientProject*) project{
     
     NSInteger i = 0;
     for (THHardwareComponentEditableObject * editableClothe in self.hardwareComponents){
@@ -936,8 +936,8 @@ enum zPositions{
                 THElementPin * nepin = [neclothe.pins objectAtIndex:j];
                 THBoardPin * lilyPin = (THBoardPin*) epin.attachedToPin;
                 
-                NSInteger idx = [project.lilypad pinIdxForPin:lilyPin.number ofType:lilyPin.type];
-                THBoardPin * newlilyPin = [project.lilypad.pins objectAtIndex:idx];
+                NSInteger idx = [project.currentBoard pinIdxForPin:lilyPin.number ofType:lilyPin.type];
+                THBoardPin * newlilyPin = [project.currentBoard.pins objectAtIndex:idx];
                 
                 [newlilyPin attachPin:nepin];
                 [nepin attachToPin:newlilyPin];
@@ -946,20 +946,22 @@ enum zPositions{
         }
         i++;
     }
+}
+
+-(void) cleanI2CComponentsFor:(THClientProject*) project{
     
-    /*
-     NSInteger i = 0;
-     for (THPin * pin in lilypad.pins) {
-     THPin * nePin = [world.lilypad.pins objectAtIndex:i];
-     if(pin.attachedPins.count > 0){
-     NSLog(@"pin %@ has %d attached",nePin,pin.attachedPins.count);
-     }
-     for (THElementPin * epin in pin.attachedPins) {
-     THElementPin * nePinWorld = [self findElementPin:epin inWorld:world];
-     [nePin attachPin:nePinWorld];
-     }
-     i++;
-     }*/
+    NSInteger i = 0;
+    
+    for (THBoardEditable * board in self.boards) {
+        THBoard * realBoard = [project.boards objectAtIndex:i++];
+        realBoard.i2cComponents = [NSMutableArray array];
+        
+        THBoard * boardSimulable = (THBoard*)board.simulableObject;
+        for (TFSimulableObject * component in boardSimulable.i2cComponents){
+            TFSimulableObject * simulable = [self simulableForSimulable:component inProject:project];
+            [realBoard.i2cComponents addObject:simulable];
+        }
+    }
 }
 
 -(THClientProject*) nonEditableProject{
@@ -974,7 +976,8 @@ enum zPositions{
     project.triggers = [self nonEditableElementsForArray:self.triggers forProject:project];
     project.iPhone = (THiPhone*) self.iPhone.simulableObject;
     
-    [self cleanLilypadPinsFor:project];
+    [self cleanBoardPinsFor:project];
+    [self cleanI2CComponentsFor:project];
     [self addNonEditableActionPairsTo:project];
     
     return project;

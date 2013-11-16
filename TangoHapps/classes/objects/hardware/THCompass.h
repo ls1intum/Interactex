@@ -39,14 +39,20 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THHardwareComponent.h"
+#import "THI2CProtocol.h"
 
-@class I2CComponent;
+@class THI2CComponent;
 
-@interface THCompass : THHardwareComponent
+@interface THCompass : THHardwareComponent <THI2CProtocol>
 
 @property (nonatomic) NSInteger accelerometerX;
 @property (nonatomic) NSInteger accelerometerY;
 @property (nonatomic) NSInteger accelerometerZ;
 @property (nonatomic) NSInteger heading;
+
+@property (nonatomic) THElementPin * sclPin;
+@property (nonatomic) THElementPin * sdaPin;
+
+@property (nonatomic) THI2CComponentType componentType;
 
 @end

@@ -40,7 +40,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THPin.h"
 
-@class THSimulableObject;
 @class THElementPin;
 @class THPin;
 @class THHardwareComponent;

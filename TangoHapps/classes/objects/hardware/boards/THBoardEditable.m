@@ -7,8 +7,29 @@
 //
 
 #import "THBoardEditable.h"
+#import "TFLayer.h"
+#import "THElementPinEditable.h"
+#import "THBoardPinEditable.h"
 
 @implementation THBoardEditable
+
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if(self){
+        self.pins = [decoder decodeObjectForKey:@"pins"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [super encodeWithCoder:coder];
+    
+    [coder encodeObject:self.pins forKey:@"pins"];
+}
+
+#pragma mark - Methods
 
 -(THBoardPinEditable*) minusPin{
     NSLog(@"Warning, THBoard subclasses should implement method minusPin");
@@ -20,10 +41,45 @@
     return  nil;
 }
 
--(THBoardPinEditable*) pinAtPosition:(CGPoint) position{
-    NSLog(@"Warning, THBoard subclasses should implement method pinAtPosition");
+-(THBoardPinEditable*) sclPin{
+    NSLog(@"Warning, THBoard subclasses should implement method sclPin");
     return nil;
 }
+
+-(THBoardPinEditable*) sdaPin{
+    NSLog(@"Warning, THBoard subclasses should implement method sdaPin");
+    return  nil;
+}
+
+-(NSInteger) pinNumberAtPosition:(CGPoint) position{
+    
+    for (THBoardPinEditable * pin in self.pins) {
+        if([pin testPoint:position]){
+            return pin.number;
+        }
+    }
+    
+    return -1;
+}
+
+-(THPinEditable*) pinAtPosition:(CGPoint) position{
+    for (THBoardPinEditable * pin in self.pins) {
+        if([pin testPoint:position]){
+            return pin;
+        }
+    }
+    
+    return nil;
+}
+
+-(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number{
+    return nil;
+}
+
+-(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number{
+    return nil;
+}
+
 
 
 #pragma mark - Object's Lifecycle
@@ -47,7 +103,7 @@
     [super removeFromWorld];
 }
 
-/*
+
 -(void) prepareToDie{
     
     for (THElementPinEditable * pin in _pins) {
@@ -56,6 +112,6 @@
     
     _pins = nil;
     [super prepareToDie];
-}*/
+}
 
 @end

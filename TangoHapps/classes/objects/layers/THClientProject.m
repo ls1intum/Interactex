@@ -58,7 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
     return [self projectSavedWithName:name inDirectory:kProjectsDirectory];
 }
 
-
 +(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName{
     if([TFFileUtils dataFile:newName existsInDirectory:kProjectsDirectory])
         return NO;
@@ -112,7 +111,6 @@ You should have received a copy of the GNU General Public License along with thi
         self.values = [decoder decodeObjectForKey:@"values"];
         self.triggers = [decoder decodeObjectForKey:@"triggers"];
         self.actions = [decoder decodeObjectForKey:@"actions"];
-        self.lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
         NSMutableArray * actionPairs = [decoder decodeObjectForKey:@"actionPairs"];
         for (TFEventActionPair * pair in actionPairs) {
@@ -135,7 +133,6 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.values forKey:@"values"];
     [coder encodeObject:self.triggers forKey:@"triggers"];
     [coder encodeObject:self.actions forKey:@"actions"];
-    [coder encodeObject:self.lilypad forKey:@"lilypad"];
     
     [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
@@ -149,6 +146,13 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
+
+-(THBoard*) currentBoard{
+    if(self.boards.count == 0){
+        return nil;
+    }
+    return [self.boards objectAtIndex:0];
+}
 
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event {
     
@@ -178,6 +182,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) willStartSimulating {
     for (TFSimulableObject * object in self.allObjects) {
+        NSLog(@"starts simulating %p",object);
+        
         [object willStartSimulating];
     }
 }

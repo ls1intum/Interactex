@@ -50,11 +50,14 @@
 @dynamic numberOfDigitalPins;
 @dynamic numberOfAnalogPins;
 
+#define kSimpleLilypadNumberOfPins 11
+
 CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     {55.0, -94.0}, {94.0, -55.0},{109.0, -2.0},{94.0, 52.0},{54.0, 91.0},//D2,3,9,10,11
     {-52, -94}, {2.0, -110.0},//- +
     {-52,91},{-92,51},{-105, -3},{-91, -55}//A2 - A5
 };
+
 /*
 CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     {0, 0}, {0, 0},{0, 0},{0, 0},{0, 0},//D2,3,9,10,11
@@ -119,7 +122,6 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-        self.pins = [decoder decodeObjectForKey:@"pins"];
         
         [self loadLilypad];
         [self addPins];
@@ -130,7 +132,6 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeObject:self.pins forKey:@"pins"];
 }
 
 #pragma mark - Property Controller
@@ -179,39 +180,6 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 
 -(THPinEditable*) plusPin{
     return [_pins objectAtIndex:6];
-}
-
--(NSInteger) pinNumberAtPosition:(CGPoint) position{
-    
-    for (THBoardPinEditable * pin in self.pins) {
-        if([pin testPoint:position]){
-            return pin.number;
-        }
-    }
-    
-    return -1;
-}
-
--(THPinEditable*) pinAtPosition:(CGPoint) position{
-    for (THBoardPinEditable * pin in self.pins) {
-        if([pin testPoint:position]){
-            return pin;
-        }
-    }
-    
-    return nil;
-}
-
--(void) removeFromWorld{
-    
-}
-
--(void) prepareToDie{
-    for (THBoardPinEditable * pin in self.pins) {
-        [pin prepareToDie];
-    }
-    self.pins = nil;
-    [super prepareToDie];
 }
 
 -(void) willStartSimulation{

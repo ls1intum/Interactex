@@ -112,7 +112,6 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-        self.pins = [decoder decodeObjectForKey:@"pins"];
         
         [self loadLilypad];
         [self addPins];
@@ -123,7 +122,6 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeObject:self.pins forKey:@"pins"];
 }
 
 #pragma mark - Property Controller
@@ -172,39 +170,6 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 
 -(THPinEditable*) plusPin{
     return [_pins objectAtIndex:6];
-}
-
--(NSInteger) pinNumberAtPosition:(CGPoint) position{
-    
-    for (THBoardPinEditable * pin in self.pins) {
-        if([pin testPoint:position]){
-            return pin.number;
-        }
-    }
-    
-    return -1;
-}
-
--(THPinEditable*) pinAtPosition:(CGPoint) position{
-    for (THBoardPinEditable * pin in self.pins) {
-        if([pin testPoint:position]){
-            return pin;
-        }
-    }
-
-    return nil;
-}
-
--(void) removeFromWorld{
-    
-}
-
--(void) prepareToDie{
-    for (THBoardPinEditable * pin in self.pins) {
-        [pin prepareToDie];
-    }
-    self.pins = nil;
-    [super prepareToDie];
 }
 
 -(void) willStartSimulation{

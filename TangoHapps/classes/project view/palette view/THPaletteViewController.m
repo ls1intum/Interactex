@@ -46,6 +46,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THLilypadPaletteItem.h"
 #import "THSimpleLilypadPaletteItem.h"
+#import "THYannicPaletteItem.h"
+
 #import "THLedPaletteItem.h"
 #import "THButtonPaletteItem.h"
 #import "THBuzzerPaletteItem.h"
@@ -391,7 +393,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.boardsSectionArray  = [NSArray arrayWithObjects:
                                 [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
-                                [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],nil];
+                                [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
+                                [[THYannicPaletteItem alloc] initWithName:@"yannic"],nil];
     
     self.hardwareSectionArray = [NSArray arrayWithObjects:
                                  [[THLedPaletteItem alloc] initWithName:@"led"],

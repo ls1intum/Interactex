@@ -81,8 +81,7 @@ extern NSString * const kGMPFirmwareName;
 
 @end
 
-@interface GMP : NSObject
-{
+@interface GMP : NSObject {
 }
 
 @property (nonatomic, strong) GMPCommunicationModule * communicationModule;

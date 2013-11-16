@@ -134,6 +134,11 @@ typedef enum{
 
 extern CGRect const kiPhoneFrames[kNumiPhoneTypes];
 
+typedef enum{
+    kI2CComponentTypeLSM,
+    kI2CComponentTypeMCU
+    
+}THI2CComponentType;
 
 //notifications
 extern NSString * const kNotificationLedOn;

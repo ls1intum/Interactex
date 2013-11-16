@@ -1,8 +1,8 @@
 /*
- I2CRegister.h
+ THYannicPaletteItem.h
  Interactex Designer
  
- Created by Juan Haladjian on 13/11/2013.
+ Created by Juan Haladjian on 15/11/13.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -38,21 +38,8 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "THPaletteItem.h"
 
-#import <Foundation/Foundation.h>
-
-#define IFMaxI2CRegisterSize 128
-
-@interface I2CRegister : NSObject <NSCoding>
-{
-    NSInteger _values[IFMaxI2CRegisterSize];
-}
-
-@property (nonatomic) NSInteger number;
-@property (nonatomic) NSInteger numElements;
-@property (nonatomic) NSInteger sizePerElement;
-
-@property (strong, nonatomic) NSData * value;
-@property (nonatomic) BOOL notifies;
+@interface THYannicPaletteItem : THPaletteItem
 
 @end

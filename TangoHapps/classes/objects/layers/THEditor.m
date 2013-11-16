@@ -61,6 +61,10 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPropertySelectionPopup.h"
 #import "TFEventActionPair.h"
 #import "THDraggedPaletteItem.h"
+#import "THI2CProtocol.h"
+#import "THElementPin.h"
+#import "THBoard.h"
+#import "THHardwareComponent.h"
 
 @implementation THEditor
 
@@ -286,6 +290,27 @@ You should have received a copy of the GNU General Public License along with thi
         [lilypadPin attachPin:objectPin];
         [objectPin attachToPin:lilypadPin animated:YES];
         [project addWireFrom:objectPin to:lilypadPin];
+        
+        THElementPin * elementPin = (THElementPin*)objectPin.simulableObject;
+        
+        if([elementPin.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (lilypadPin.supportsSCL || lilypadPin.supportsSDA)){
+            
+            THBoard * boardNonEditable = (THBoard*) board.simulableObject;
+            
+            THBoardPin * sdaPinNonEditable = boardNonEditable.sdaPin;
+            THBoardPin * sclPinNonEditable = boardNonEditable.sclPin;
+            
+            //NSLog(@"supports scl %d supports sda %d",lilypadPin.supportsSCL, lilypadPin.supportsSDA);
+            
+            if((lilypadPin.supportsSCL && [sdaPinNonEditable isClotheObjectAttached:elementPin.hardware]) ||
+               (lilypadPin.supportsSDA && [sclPinNonEditable isClotheObjectAttached:elementPin.hardware])) {
+                
+                THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)elementPin.hardware;
+                [(THBoard*)board.simulableObject addI2CComponent:i2cObject];
+            }
+        }
+        
+        //if(lilypadPin.)
     }
 }
 
@@ -300,6 +325,11 @@ You should have received a copy of the GNU General Public License along with thi
         if([board testPoint:position]){
             
             THBoardPinEditable * pin = [board pinAtPosition:position];
+            /*XXX Juan
+            if(pin != nil){
+                [self.currentConnection.obj1 acceptsConnectionsTo:pin]
+            }*/
+            
             if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
                 [self highlightPin:pin];
             } else {
@@ -574,7 +604,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     
     THProject * myProject = [THDirector sharedDirector].currentProject;
-    THHardwareComponentEditableObject * board = [myProject hardwareComponentAtLocation:location];
+    THBoardEditable * board = [myProject boardAtLocation:location];
     if(board){
         CGPoint newPos = ccpSub(location, board.position);
         NSLog(@"%d %d",(int)newPos.x, (int)newPos.y);

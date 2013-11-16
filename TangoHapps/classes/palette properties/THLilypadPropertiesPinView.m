@@ -85,10 +85,6 @@ float const kLilypadPropertyInnerPadding = 5;
         
         if(pin.mode == kPinModeDigitalInput){
             _modeView = [self labelWithFrame:typeLabelFrame text:@"Digital input"];
-        } else if(pin.mode== kPinModeBuzzer){
-            _modeView = [self labelWithFrame:typeLabelFrame text:@"Buzzer"];
-        } else if(pin.mode == kPinModeCompass){
-            _modeView = [self labelWithFrame:typeLabelFrame text:@"Compass"];
         } else if(pin.isPWM){
             
             _segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Digital", @"PWM", nil]];
@@ -97,7 +93,7 @@ float const kLilypadPropertyInnerPadding = 5;
             _segmentedControl.frame = segmentedControlFrame;
             if(realPin.mode == kPinModeDigitalOutput){
                 _segmentedControl.selectedSegmentIndex = 0;
-            } else if(realPin.mode == kPinModePWM || realPin.mode == kPinModeBuzzer){
+            } else if(realPin.mode == kPinModePWM){
                 _segmentedControl.selectedSegmentIndex = 1;
             }
             
@@ -141,12 +137,8 @@ float const kLilypadPropertyInnerPadding = 5;
     if(control.selectedSegmentIndex == 0){
         pin.mode = kPinModeDigitalOutput;
     } else {
-        THElementPinEditable * elementPin = [pin.attachedElementPins objectAtIndex:0];
-        if(elementPin.defaultBoardPinMode == kPinModeBuzzer){
-            pin.mode = kPinModeBuzzer;
-        } else {
-            pin.mode = kPinModePWM;
-        }
+        //THElementPinEditable * elementPin = [pin.attachedElementPins objectAtIndex:0];
+        pin.mode = kPinModePWM;
     }
     //NSLog(@"seting mode: %@",kPinModeTexts[pin.mode]);
 }

@@ -183,6 +183,7 @@ const NSInteger GMPDiscoveryTime = 3;
     [cell.activityIndicator stopAnimating];
     
     service.shouldUseCRC = YES;
+    service.shouldUseTurnBasedCommunication = YES;
     
     [self performSegueWithIdentifier:@"toDeviceMenuSegue" sender:self];
     

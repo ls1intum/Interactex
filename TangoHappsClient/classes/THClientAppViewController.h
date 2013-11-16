@@ -42,6 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THTransferAgent;
 
+
 @interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, GMPControllerDelegate> {
     
     UIActivityIndicatorView * _activityIndicator;

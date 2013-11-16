@@ -40,19 +40,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THLilyPad.h"
 #import "THBoardPin.h"
-#import "I2CComponent.h"
+#import "THI2CComponent.h"
 #import "THHardwareComponent.h"
 #import "THElementPin.h"
+#import "THI2CProtocol.h"
 
 @implementation THLilyPad
+
 @dynamic minusPin;
 @dynamic plusPin;
 @dynamic sclPin;
 @dynamic sdaPin;
 
 -(void) load{    
-    _numberOfDigitalPins = 14;
-    _numberOfAnalogPins = 6;
+    self.numberOfDigitalPins = 14;
+    self.numberOfAnalogPins = 6;
 }
 
 -(void) setPwmPins{
@@ -64,26 +66,33 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) loadPins{
+    
     for (int i = 0; i <= 4; i++) {
         THBoardPin * pin = [THBoardPin pinWithPinNumber:i andType:kPintypeDigital];
-        [_pins addObject:pin];
+        [self.pins addObject:pin];
     }
     
     THBoardPin * minusPin = [THBoardPin pinWithPinNumber:-1 andType:kPintypeMinus];
-    [_pins addObject:minusPin];
+    [self.pins addObject:minusPin];
     
     THBoardPin * plusPin = [THBoardPin pinWithPinNumber:-1 andType:kPintypePlus];
-    [_pins addObject:plusPin];
+    [self.pins addObject:plusPin];
     
     for (int i = 7; i <= 15; i++) {
         THBoardPin * pin = [THBoardPin pinWithPinNumber:i-2 andType:kPintypeDigital];
-        [_pins addObject:pin];
+        [self.pins addObject:pin];
     }
     
     for (int i = 16; i < kLilypadNumberOfPins; i++) {
         THBoardPin * pin = [THBoardPin pinWithPinNumber:i-16 andType:kPintypeAnalog];
-        [_pins addObject:pin];
+        [self.pins addObject:pin];
     }
+    
+    THBoardPin * analogPin5 =  [self analogPinWithNumber:5];
+    analogPin5.supportsSCL = YES;
+    
+    THBoardPin * analogPin4 =  [self analogPinWithNumber:4];
+    analogPin4.supportsSDA = YES;
     
     [self setPwmPins];
 }
@@ -92,8 +101,8 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        _pins = [NSMutableArray array];
-        _i2cComponents = [NSMutableArray array];
+        self.pins = [NSMutableArray array];
+        self.i2cComponents = [NSMutableArray array];
         
         [self load];
         [self loadPins];
@@ -101,32 +110,21 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
+
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    _pins = [decoder decodeObjectForKey:@"pins"];
-    [self load];
-    
+    if(self){
+        
+        [self load];
+    }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    [coder encodeObject:_pins forKey:@"pins"];
-}
-
--(id)copyWithZone:(NSZone *)zone {
-    THLilyPad * copy = [super copyWithZone:zone];
     
-    NSMutableArray * array = [NSMutableArray arrayWithCapacity:_pins.count];
-    for (THPin * pin in _pins) {
-        THPin * copy = [pin copy];
-        [array addObject:copy];
-    }
-    copy.pins = array;
-    
-    return copy;
 }
 
 #pragma mark - Pins
@@ -150,11 +148,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(THBoardPin*) minusPin{
-    return [_pins objectAtIndex:5];
+    return [self.pins objectAtIndex:5];
 }
 
 -(THBoardPin*) plusPin{
-    return [_pins objectAtIndex:6];
+    return [self.pins objectAtIndex:6];
 }
 
 -(THBoardPin*) sclPin{
@@ -164,15 +162,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(THBoardPin*) sdaPin{
     return [self analogPinWithNumber:4];
 }
-
-/*
--(BOOL) supportsSCL{
-    return (self.type == kPintypeAnalog && self.number == 5);
-}
-
--(BOOL) supportsSDA{
-    return (self.type == kPintypeAnalog && self.number == 4);
-}*/
 
 -(NSInteger) realIdxForPin:(THBoardPin*) pin{
     
@@ -219,7 +208,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(THBoardPin*) digitalPinWithNumber:(NSInteger) number{
     NSInteger idx = [self pinIdxForPin:number ofType:kPintypeDigital];
     if(idx >= 0){
-        return [_pins objectAtIndex:idx];
+        return [self.pins objectAtIndex:idx];
     }
     return nil;
 }
@@ -228,48 +217,28 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSInteger idx = [self pinIdxForPin:number ofType:kPintypeAnalog];
     if(idx >= 0){
-        return [_pins objectAtIndex:idx];
+        return [self.pins objectAtIndex:idx];
     }
     return nil;
 }
 
 -(NSArray*) objectsAtPin:(NSInteger) pinNumber{
-    THBoardPin * pin = _pins[pinNumber];
+    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
     return pin.attachedElementPins;
 }
 
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
-    THBoardPin * pin = [_pins objectAtIndex:pinNumber];
+    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
     [pin attachPin:object];
     
-    if(object.hardware.i2cComponent && (pin.supportsSCL || pin.supportsSDA)){
-        
+    if([object.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (pin.supportsSCL || pin.supportsSDA)){
         if((pin.supportsSCL && [self.sdaPin isClotheObjectAttached:object.hardware]) ||
            (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
             
-            [self addI2CCOmponent:object.hardware.i2cComponent];
+            THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)object.hardware;
+            [self addI2CComponent:i2cObject];
         }
     }
-}
-
-#pragma mark - I2C Components
-
--(void) addI2CCOmponent:(I2CComponent*) component{
-    [self.i2cComponents addObject:component];
-}
-
--(void) removeI2CCOmponent:(I2CComponent*) component{
-    [self.i2cComponents removeObject:component];
-}
-
--(I2CComponent*) I2CComponentWithAddress:(NSInteger) address{
-
-    for (I2CComponent * component in self.i2cComponents) {
-        if(component.address == address){
-            return component;
-        }
-    }
-    return nil;
 }
 
 #pragma mark - Other
@@ -282,7 +251,7 @@ You should have received a copy of the GNU General Public License along with thi
     for (THBoardPin * pin in self.pins) {
         [pin prepareToDie];
     }
-    _pins = nil;
+    self.pins = nil;
     [super prepareToDie];
 }
 

@@ -185,8 +185,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) draw{
     
-    //ccDrawColor4B(255, 0, 0, 255);
-    //ccDrawCircle(ccp(0,0), 3, 0, 15, 0);
+    ccDrawColor4B(255, 0, 0, 255);
+    ccDrawCircle(ccp(0,0), 3, 0, 15, 0);
     
     
     if(self.highlighted){
@@ -235,6 +235,17 @@ You should have received a copy of the GNU General Public License along with thi
     
     [pinEditable dettachFromPin];
 }
+
+-(BOOL) isClotheObjectAttached:(THHardwareComponentEditableObject*) object{
+    for (THElementPinEditable * pin in self.attachedPins) {
+        if(pin.hardware == object){
+            return YES;
+        }
+    }
+    return NO;
+}
+
+#pragma mark - Archiving
 
 -(NSString*) description{
     return self.simulableObject.description;

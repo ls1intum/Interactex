@@ -40,42 +40,11 @@
 
 #import <Foundation/Foundation.h>
 #import "THBoard.h"
+#import "THI2CProtocol.h"
 
-#define kSimpleLilypadNumberOfPins 11
-
-@class THBoardPin;
-@class THElementPin;
-@class I2CComponent;
 
 @interface THSimpleLilypad : THBoard
 {
 }
-
-@property (nonatomic, readonly) NSInteger numberOfDigitalPins;
-@property (nonatomic, readonly) NSInteger numberOfAnalogPins;
-@property (nonatomic) NSMutableArray * pins;
-@property (nonatomic, readonly) NSMutableArray * analogPins;
-@property (nonatomic, readonly) NSMutableArray * digitalPins;
-@property (nonatomic, readonly) NSMutableArray * i2cComponents;
-
-@property (nonatomic, readonly) THBoardPin * minusPin;
-@property (nonatomic, readonly) THBoardPin * plusPin;
-
-@property (nonatomic, readonly) THBoardPin * sclPin;//analog 5
-@property (nonatomic, readonly) THBoardPin * sdaPin;//analog 4
-
--(NSArray*) objectsAtPin:(NSInteger) pin;
--(void) attachPin:(THElementPin*) object atPin:(NSInteger) pin;
-
--(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type;
--(THBoardPin*) digitalPinWithNumber:(NSInteger) number;
--(THBoardPin*) analogPinWithNumber:(NSInteger) number;
-
--(NSInteger) realIdxForPin:(THBoardPin*) pin;
--(THBoardPin*) pinWithRealIdx:(NSInteger) pinNumber;
-
--(void) addI2CCOmponent:(I2CComponent*) component;
--(void) removeI2CCOmponent:(I2CComponent*) component;
--(I2CComponent*) I2CComponentWithAddress:(NSInteger) address;
 
 @end
