@@ -46,11 +46,14 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, GMPControllerDelegate> {
     
     UIActivityIndicatorView * _activityIndicator;
+    
+    NSTimer * scanningTimer;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *startButton;
 @property (weak, nonatomic) THClientProject * currentProject;
 @property (nonatomic) BOOL showingPreset;
+@property (nonatomic) BOOL isRunningProject;
 
 @property (strong, nonatomic) GMP * gmpController;
 

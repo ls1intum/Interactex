@@ -56,6 +56,9 @@ You should have received a copy of the GNU General Public License along with thi
     THDirector * director = [THDirector sharedDirector];
     [director.serverController startServer];
     
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    
     return YES;
 }
 
@@ -67,7 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THDirector * director = [THDirector sharedDirector];
     [director.serverController stopServer];
-
+    //[THDirector sharedDirector] upda
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -85,6 +88,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THDirector * director = [THDirector sharedDirector];
     [director.serverController startServer];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

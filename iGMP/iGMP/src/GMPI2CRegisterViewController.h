@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *sendTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sizeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UITextField *numberTextField;
 
 - (IBAction)startTapped:(id)sender;
 - (IBAction)sendTapped:(id)sender;

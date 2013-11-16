@@ -52,11 +52,11 @@ You should have received a copy of the GNU General Public License along with thi
 @class THEditorToolsDataSource;
 @class TFLayer;
 @class THProject;
-
+/*
 @protocol THEditorToolsDataSource <NSObject>
 -(NSInteger) numberOfToolbarButtonsForState:(TFAppState) state;
 -(UIBarButtonItem*) toolbarButtonAtIdx:(NSInteger) idx forState:(TFAppState) state;
-@end
+@end*/
 
 /*
 typedef enum {

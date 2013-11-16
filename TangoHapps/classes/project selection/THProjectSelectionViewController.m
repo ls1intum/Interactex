@@ -260,19 +260,13 @@ You should have received a copy of the GNU General Public License along with thi
     cell.nameLabel.text = proxy.name;
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
+    dateFormat.dateStyle = NSDateFormatterMediumStyle;
+    
+    //[dateFormat setDateFormat:@"HH:mm:ss zzz"];
     NSString *dateString = [dateFormat stringFromDate:proxy.date];
     
     cell.dateLabel.text = dateString;
-    cell.imageView.image = proxy.image;
     cell.delegate = self;
-    
-    /*
-    cell.delegate = self;
-    cell.title = proxy.name;
-    cell.imageView.image = proxy.image;
-    cell.editing = NO;
-    cell.titleTextField.hidden = NO;*/
     
     return cell;
 }

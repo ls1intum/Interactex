@@ -66,6 +66,9 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) NSArray * allObjects;
 
 +(id)emptyProject;
+
++(BOOL) doesProjectExistWithName:(NSString*) name;
++(NSString*) nextProjectNameForName:(NSString*) name;
 +(THClientProject*) projectSavedWithName:(NSString*) name inDirectory:(NSString*) directory;
 +(THClientProject*) projectSavedWithName:(NSString*) name;
 
@@ -78,6 +81,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event;
 
 -(void) startSimulating;
+-(void) stopSimulating;
+
 -(void) willStartSimulating;
 -(void) didStartSimulating;
 

@@ -41,7 +41,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectViewController.h"
 #import "THProjectViewController.h"
 #import "THEditorToolsViewController.h"
-#import "THEditorToolsDataSource.h"
+//#import "THEditorToolsDataSource.h"
 #import "THTabbarViewController.h"
 #import "THSimulator.h"
 #import "THEditor.h"
@@ -150,7 +150,7 @@ float const kToolsTabMargin = 5;
     THDirector * director = [THDirector sharedDirector];
     NSLog(@"%d",director.serverController.serverIsRunning);
     
-    self.toolsController.pushItem.enabled = director.serverController.serverIsRunning;
+    //self.toolsController.pushItem.enabled = director.serverController.serverIsRunning;
     
     _currentProjectName = [THDirector sharedDirector].currentProject.name;
 }

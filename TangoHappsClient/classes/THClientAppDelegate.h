@@ -40,10 +40,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <UIKit/UIKit.h>
 
+@class THClientConnectionController;
+
 @interface THClientAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow * window;
 @property (strong, nonatomic) NSMutableArray * projectProxies;
+@property (nonatomic, strong) THClientConnectionController * connectionController;
 
 -(void) saveProjectProxies;
 

@@ -42,6 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THCompass.h"
 #import "THElementPinEditable.h"
 #import "THCompassProperties.h"
+#import "THAppDelegate.h"
 
 @implementation THCompassEditableObject
 
@@ -175,7 +176,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) update{
     
-    _compassCircle.rotation = 90 - self.heading;
+    THAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    CMMotionManager * manager = appDelegate.motionManager;
+    CMAccelerometerData * accelerometerData = manager.accelerometerData;
+    
+    self.accelerometerX = accelerometerData.acceleration.y * 300;
+    self.accelerometerY = - accelerometerData.acceleration.x * 300;
+    self.accelerometerZ = accelerometerData.acceleration.z * 300;
+    
+    /*
+    CMMagnetometerData * magnetometer = manager.magnetometerData;
+    NSLog(@"%f",magnetometer.magneticField.x);*/
+    
+    //_compassCircle.rotation = 90 - self.heading;
     
     [self updateBallPosition];
 }
@@ -221,7 +234,7 @@ You should have received a copy of the GNU General Public License along with thi
     THCompass * compass = (THCompass*) self.simulableObject;
     return compass.heading;
 }
-
+/*
 - (void) locationManager:(CLLocationManager *)manager
         didUpdateHeading:(CLHeading *)newHeading{
     
@@ -232,7 +245,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THCompass * compass = (THCompass*) self.simulableObject;
     compass.heading = heading;
-}
+}*/
 
 -(void) willStartSimulation{
     [super willStartSimulation];
@@ -244,12 +257,25 @@ You should have received a copy of the GNU General Public License along with thi
         NSLog(@"Can't report heading");
     }
     
+    THAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    CMMotionManager * manager = appDelegate.motionManager;
+    manager.accelerometerUpdateInterval = 1.0f / 20.0f;
+    //manager.magnetometerUpdateInterval = 1.0f / 20.0f;
+    [manager startAccelerometerUpdates];
+    //[manager startMagnetometerUpdates];
+    
     _accelerometerBall.visible = YES;
     _compassCircle.visible = YES;
     self.sprite.visible = NO;
 }
 
 -(void) willStartEdition{
+    
+    THAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    CMMotionManager * manager = appDelegate.motionManager;
+    [manager stopAccelerometerUpdates];
+    [manager stopMagnetometerUpdates];
+    
     /*
     if(_accelerometerBall){
         [_accelerometerBall removeFromParentAndCleanup:YES];

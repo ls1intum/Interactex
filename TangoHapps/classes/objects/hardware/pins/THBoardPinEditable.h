@@ -56,8 +56,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) NSInteger value;
 @property (nonatomic, readonly) BOOL acceptsManyPins;
 @property (nonatomic) BOOL isPWM;
-@property (nonatomic) BOOL supportsSCL;
-@property (nonatomic) BOOL supportsSDA;
+@property (nonatomic, readonly) BOOL supportsSCL;
+@property (nonatomic, readonly) BOOL supportsSDA;
 
 
 -(id) initWithPin:(THBoardPin*) pin;

@@ -55,6 +55,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientProjectProxy.h"
 #import "THI2CRegister.h"
 #import "THMonitor.h"
+#import "THMusicPlayer.h"
 
 @implementation THClientPresetsGenerator
 
@@ -65,6 +66,7 @@ NSString * const kAnalogOutputProjectName = @"Analog Output";
 NSString * const kAnalogInputProjectName = @"Analog Input";
 NSString * const kMCUCompassProjectName = @"MCU";
 NSString * const kLSMCompassProjectName = @"LSM";
+NSString * const kMusicPlayerProjectName = @"Music Player";
 
 -(id) init{
     
@@ -90,9 +92,10 @@ NSString * const kLSMCompassProjectName = @"LSM";
     [array addObject:[self digitalOutputProject]];
     [array addObject:[self digitalInputProject]];
     [array addObject:[self buzzerProject]];
-    [array addObject:[self analogInputProject]];;
+    [array addObject:[self analogInputProject]];
     [array addObject:[self lsmProject]];
     [array addObject:[self mcuProject]];
+    [array addObject:[self musicPlayerProject]];
     
     
     NSMutableArray * imagesArray = [NSMutableArray array];
@@ -102,6 +105,7 @@ NSString * const kLSMCompassProjectName = @"LSM";
     [imagesArray addObject:[UIImage imageNamed:@"lightSensor.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
     
     for (int i = 0 ; i < array.count ; i++) {
         
@@ -412,87 +416,9 @@ NSString * const kLSMCompassProjectName = @"LSM";
     compass.i2cComponent = [[THI2CComponent alloc] init];
     THI2CRegister * reg = [[THI2CRegister alloc] init];
     
-    compass.type = kI2CComponentTypeMCU;
+    compass.componentType = kI2CComponentTypeMCU;
     compass.i2cComponent.address = 104;
     reg.number = 0x3B;
-    
-    [compass.i2cComponent addRegister:reg];
-    
-    THLilyPad * lilypad = [[THLilyPad alloc] init];
-
-    [lilypad addI2CComponent:compass];
-    
-    project.boards = [NSMutableArray arrayWithObject:lilypad];
-    
-    project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
-    
-    THLabel * label1 = [[THLabel alloc] init];
-    label1.position = CGPointMake(100, 150);
-    
-    THLabel * label2 = [[THLabel alloc] init];
-    label2.position = CGPointMake(200, 150);
-    
-    THLabel * label3 = [[THLabel alloc] init];
-    label3.position = CGPointMake(150, 250);
-    
-    THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect an MCU Compass to the I2C pins";
-    label.position = CGPointMake(150, 50);
-    label.width = 300;
-    
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label1,label2,label3,label,nil];
-    
-    //method x
-    TFEvent * xEvent = [compass.events objectAtIndex:0];
-    TFMethod * setTextMethod = [label1.methods objectAtIndex:0];
-    TFMethodInvokeAction * methodInvoke1 = [TFMethodInvokeAction actionWithTarget:label1 method:setTextMethod];
-    TFProperty * property1 = [compass.properties objectAtIndex:0];
-    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property1 target:compass];
-    methodInvoke1.source = compass;
-    [project registerAction:methodInvoke1 forEvent:xEvent];
-    
-    //method y
-    TFEvent * yEvent = [compass.events objectAtIndex:1];
-    TFMethod * setTextMethod2 = [label2.methods objectAtIndex:0];
-    TFMethodInvokeAction * methodInvoke2 = [TFMethodInvokeAction actionWithTarget:label2 method:setTextMethod2];
-    TFProperty * property2 = [compass.properties objectAtIndex:1];
-    methodInvoke2.firstParam = [TFPropertyInvocation invocationWithProperty:property2 target:compass];
-    methodInvoke2.source = compass;
-    [project registerAction:methodInvoke2 forEvent:yEvent];
-    
-    //heading
-    TFEvent * headingEvent = [compass.events objectAtIndex:1];
-    TFMethod * setTextMethod3 = [label3.methods objectAtIndex:0];
-    TFMethodInvokeAction * methodInvoke3 = [TFMethodInvokeAction actionWithTarget:label3 method:setTextMethod3];
-    TFProperty * property3 = [compass.properties objectAtIndex:3];
-    methodInvoke3.firstParam = [TFPropertyInvocation invocationWithProperty:property3 target:compass];
-    methodInvoke3.source = compass;
-    [project registerAction:methodInvoke3 forEvent:headingEvent];
-    
-    //pins
-    [lilypad.sclPin attachPin:compass.sclPin];
-    [lilypad.sdaPin attachPin:compass.sdaPin];
-    
-    [compass.sclPin attachToPin:lilypad.sclPin];
-    [compass.sdaPin attachToPin:lilypad.sdaPin];
-    
-    return project;
-}
-
--(THClientProject*) lsmProject{
-    
-    THClientProject * project = [self defaultClientProject];
-    
-    project.name = kLSMCompassProjectName;
-    
-    THCompass * compass = [[THCompass alloc] init];
-    
-    compass.i2cComponent = [[THI2CComponent alloc] init];
-    THI2CRegister * reg = [[THI2CRegister alloc] init];
-    
-    compass.type = kI2CComponentTypeLSM;
-    compass.i2cComponent.address = 24;
-    reg.number = 168;
     
     [compass.i2cComponent addRegister:reg];
     
@@ -505,11 +431,13 @@ NSString * const kLSMCompassProjectName = @"LSM";
     project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
     
     THMonitor * monitor = [[THMonitor alloc] init];
-    monitor.position = CGPointMake(100, 150);
+    monitor.position = CGPointMake(160, 250);
+    monitor.maxValue = 5000;
+    monitor.minValue = -5000;
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect an LSM Compass to the I2C pins";
-    label.position = CGPointMake(150, 50);
+    label.text = @"connect an MCU Compass";
+    label.position = CGPointMake(160, 50);
     label.width = 300;
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:monitor,label,nil];
@@ -538,6 +466,124 @@ NSString * const kLSMCompassProjectName = @"LSM";
     
     [compass.sclPin attachToPin:lilypad.sclPin];
     [compass.sdaPin attachToPin:lilypad.sdaPin];
+    
+    return project;
+}
+
+-(THClientProject*) lsmProject{
+    
+    THClientProject * project = [self defaultClientProject];
+    
+    project.name = kLSMCompassProjectName;
+    
+    THCompass * compass = [[THCompass alloc] init];
+    
+    compass.i2cComponent = [[THI2CComponent alloc] init];
+    THI2CRegister * reg = [[THI2CRegister alloc] init];
+    
+    compass.componentType = kI2CComponentTypeLSM;
+    compass.i2cComponent.address = 24;
+    reg.number = 168;
+    
+    [compass.i2cComponent addRegister:reg];
+    
+    THLilyPad * lilypad = [[THLilyPad alloc] init];
+    
+    [lilypad addI2CComponent:compass];
+    
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
+    
+    THMonitor * monitor = [[THMonitor alloc] init];
+    monitor.position = CGPointMake(160, 250);
+    
+    THLabel * label = [[THLabel alloc] init];
+    label.text = @"connect an LSM Compass";
+    label.position = CGPointMake(160, 50);
+    label.width = 300;
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:monitor,label,nil];
+    
+    //method x
+    TFEvent * xEvent = [compass.events objectAtIndex:0];
+    TFMethod * addValue1Method = [monitor.methods objectAtIndex:0];
+    TFMethodInvokeAction * methodInvoke1 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue1Method];
+    TFProperty * property1 = [compass.properties objectAtIndex:0];
+    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property1 target:compass];
+    methodInvoke1.source = compass;
+    [project registerAction:methodInvoke1 forEvent:xEvent];
+    
+    //method y
+    TFEvent * yEvent = [compass.events objectAtIndex:1];
+    TFMethod * addValue2Method = [monitor.methods objectAtIndex:1];
+    TFMethodInvokeAction * methodInvoke2 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue2Method];
+    TFProperty * property2 = [compass.properties objectAtIndex:1];
+    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property2 target:compass];
+    methodInvoke1.source = compass;
+    [project registerAction:methodInvoke2 forEvent:yEvent];
+    
+    //pins
+    [lilypad.sclPin attachPin:compass.sclPin];
+    [lilypad.sdaPin attachPin:compass.sdaPin];
+    
+    [compass.sclPin attachToPin:lilypad.sclPin];
+    [compass.sdaPin attachToPin:lilypad.sdaPin];
+    
+    return project;
+}
+
+-(THClientProject*) musicPlayerProject{
+    
+    THClientProject * project = [self defaultClientProject];
+    
+    project.name = kMusicPlayerProjectName;
+    
+    //board
+    THLilyPad * lilypad = [[THLilyPad alloc] init];
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    //lilypad
+    THButton * lilybutton = [[THButton alloc] init];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:lilybutton,nil];
+    
+    //iphone objects
+    THLabel * label = [[THLabel alloc] init];
+    label.text = @"connect a Button pin 5";
+    label.position = CGPointMake(150, 100);
+    label.width = 200;
+    label.height = 100;
+    label.numLines = 2;
+    
+    THMusicPlayer * musicPlayer = [[THMusicPlayer alloc] init];
+    musicPlayer.position = CGPointMake(180, 400);
+    
+    THiPhoneButton * button = [[THiPhoneButton alloc] init];
+    button.text = @"Stop";
+    button.position = CGPointMake(180, 200);
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,button,musicPlayer, nil];
+    
+    //play action
+    TFMethod * playMethod = [musicPlayer.methods objectAtIndex:0];
+    TFMethodInvokeAction * playAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:playMethod];
+    TFEvent * event = [lilybutton.events objectAtIndex:0];
+    playAction.source = lilybutton;
+    [project registerAction:playAction forEvent:event];
+    
+    //stop playing action
+    TFMethod * stopPlaying = [musicPlayer.methods objectAtIndex:1];
+    TFMethodInvokeAction * stopPlayingAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:stopPlaying];
+    event = [button.events objectAtIndex:0];
+    stopPlayingAction.source = button;
+    [project registerAction:stopPlayingAction forEvent:event];
+    
+    //pins
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:5];
+    lilypinButton.mode = kPinModeDigitalInput;
+    THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
+    [lilypinButton attachPin:buttonpin];
+    [buttonpin attachToPin:lilypinButton];
     
     return project;
 }

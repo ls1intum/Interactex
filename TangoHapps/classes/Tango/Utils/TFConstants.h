@@ -77,6 +77,7 @@ extern float const kPaletteItemImagePadding;
 
 extern float const kPaletteContainerTitleHeight;
 
+extern ccColor4F const kSelectionPopupsDefaultColor;
 extern ccColor3B const kConnectionLineDefaultColor;
 extern ccColor4B const kDefaultObjectHighlightColor;
 extern ccColor4B const kDefaultObjectSelectionColor;

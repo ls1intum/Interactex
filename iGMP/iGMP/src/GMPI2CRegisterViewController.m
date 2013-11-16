@@ -93,18 +93,7 @@
 
 - (IBAction)startTapped:(id)sender {
     
-    [self.reg removeObserver:self forKeyPath:@"notifies"];
     self.reg.notifies = !self.reg.notifies;
-    [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
-    /*
-    if(self.reg.notifies){
-        [self.delegate i2cRegisterStartedNotifying:self.reg];
-    } else {
-        [self.delegate i2cRegisterStoppedNotifying:self.reg];
-    }*/
-    
-    [self updateStartButton];
-    [self updateValueLabel];
 }
 
 - (IBAction)sendTapped:(id)sender {
@@ -160,6 +149,7 @@
     [self.registerTextField resignFirstResponder];
     [self.sendTextField resignFirstResponder];
     [self.sizeTextField resignFirstResponder];
+    [self.numberTextField resignFirstResponder];
     
     [self checkUpdateNumber];
     

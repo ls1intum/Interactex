@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THDirector.h"
 #import "THProjectProxy.h"
 #import "THProjectViewController.h"
-#import "THEditorToolsDataSource.h"
+//#import "THEditorToolsDataSource.h"
 #import "THServerController.h"
 #import "THEditorToolsViewController.h"
 
@@ -136,29 +136,21 @@ static THDirector * _sharedInstance = nil;
 
 -(void) updateServerButtonState{
     
-    THServerController * serverController = self.serverController;
-    BOOL enabled = serverController.peers.count > 0;
-    if(enabled){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"peer_connected.mp3"];
-    } else {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"peer_disconnected.mp3"];
-    }
-    
-    if(self.projectController.toolsController.pushItem.enabled != enabled){
-        self.projectController.toolsController.pushItem.enabled = enabled;
-    }
+    self.projectController.toolsController.pushItem.enabled = (self.serverController.peers.count > 0);
 }
 
 -(void) server:(THServerController*)controller peerConnected:(NSString*)peerName {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"peer_connected.mp3"];
     [self updateServerButtonState];
 }
 
 -(void) server:(THServerController*)controller peerDisconnected:(NSString*)peerName {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"peer_disconnected.mp3"];
     [self updateServerButtonState];
 }
 
 -(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
-    //[self updateServerButtonState];
+    [self updateServerButtonState];
 }
 
 -(void) server:(THServerController*)controller isTransferring:(BOOL)transferring {

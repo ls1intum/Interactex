@@ -64,8 +64,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void)startClient {
-    if(session)
+    if(session){
         [self stopClient];
+    }
     session = [[GKSession alloc] initWithSessionID:kGameKitSessionId displayName:nil sessionMode:GKSessionModeClient];
     [session setDelegate:self];
     [session setDataReceiveHandler:self withContext:nil];
@@ -103,34 +104,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Session Delegate
-/*
--(THClientServer*) serverWithPeerId:(NSString*) peerId{
-
-    for (THClientServer * server in servers) {
-        if([server.peerID isEqualToString:peerId]){
-            return server;
-
-        }
-    }
-    return nil;
-}
-
--(void) removeServerWithPeerId:(NSString*) peerId{
-    THClientServer * toRemove = [self serverWithPeerId:peerId];
-    if(toRemove){
-        [servers removeObject:toRemove];
-    }
-}
-
--(BOOL) isPeerAvailable:(NSString*) peerID{
-    NSArray * availablePeers = [session peersWithConnectionState:GKPeerStateAvailable];
-    for (NSString * aPeerID in availablePeers) {
-        if([aPeerID isEqualToString:peerID]){
-            return YES;
-        }
-    }
-    return NO;
-}*/
 
 -(void)session:(GKSession *)aSession
           peer:(NSString *)peerID
@@ -183,6 +156,7 @@ didChangeState:(GKPeerConnectionState)state {
            fromPeer:(NSString *)peer
           inSession:(GKSession *)session
             context:(void *)context {
+    
     if(transferAgent)
         [transferAgent receiveData:data];
 }
@@ -196,25 +170,6 @@ didChangeState:(GKPeerConnectionState)state {
 
 - (void)agent:(THTransferAgent*)anAgent willBeginAction:(THTransferAgentAction)action {
    
-}
-
--(void) updateLilypadPinsWithPins:(NSMutableArray*) pins{
-    //NSLog(@"received: %d", pins.count);
-    /*
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    if(project != nil){
-        THLilyPad * lilypad = project.lilypad;
-        for (THPinValue * pinvalue in pins) {
-            THBoardPin * pin;
-            if(pinvalue.type == kPintypeDigital) {
-                pin = [lilypad digitalPinWithNumber:pinvalue.number];
-            } else if(pinvalue.type == kPintypeAnalog){
-                pin = [lilypad analogPinWithNumber:pinvalue.number];
-            }
-            
-            pin.currentValue = pinvalue.value;
-        }
-    }*/
 }
 
 - (void)agent:(THTransferAgent*)agent didFinishAction:(THTransferAgentAction)action withObject:(id)object {

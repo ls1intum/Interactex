@@ -179,7 +179,13 @@
     THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"projectCell" forIndexPath:indexPath];
     cell.delegate = self;
     cell.nameTextField.text = proxy.name;
-    cell.imageView.image = proxy.image;
+    
+    if(!self.showingCustomApps){
+        cell.imageView.image = proxy.image;
+    } else {
+        cell.imageView.image = [UIImage imageNamed:@"projectIcon"];
+    }
+    
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     cell.editing = NO;
@@ -468,11 +474,11 @@
 }
 
 -(void) duplicateProjectAtIndex:(NSInteger) index{
-    /*
+    
     THClientProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     
     //project
-    THClientProject * project = [THClientProject projectNamed:proxy.name];
+    THClientProject * project = [THClientProject projectSavedWithName:proxy.name];
     project.name = [THClientProject nextProjectNameForName:project.name];
     [project save];
     
@@ -480,7 +486,7 @@
     //proxy array
     THClientProjectProxy * proxyCopy = [proxy copy];
     proxyCopy.name = project.name;
-    [self.projectProxies insertObject:proxyCopy atIndex:index+1];*/
+    [self.projectProxies insertObject:proxyCopy atIndex:index+1];
 }
 
 -(void) showDuplicateMenuForCell:(THClientCollectionProjectCell*) cell{

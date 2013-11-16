@@ -29,6 +29,11 @@ float const kMonitorPixelsToSeconds = 5;
     return self;
 }
 
+-(void) removeAllPoints{
+    [self.points removeAllObjects];
+    
+    self.view.layer.sublayers = nil;
+}
 -(void) addPoint:(CGPoint) point{
     
     CGRect rect = self.view.bounds;

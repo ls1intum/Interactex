@@ -192,6 +192,8 @@ You should have received a copy of the GNU General Public License along with thi
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     if(editor.isLilypadMode){
         [editor stopLilypadMode];
+
+        [self checkSwitchToState:kEditorStateNormal];
         [self addEditionButtons];
 
     } else {

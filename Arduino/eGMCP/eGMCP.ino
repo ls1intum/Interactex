@@ -42,6 +42,10 @@ Servo servos[MAX_SERVOS];
 
 void outputPin(byte pin, byte value){
   if(previousPINs[pin] != value){
+    
+    Serial.print("outputs pin");
+    Serial.println(value);
+    
     byte buf[3];
     
     buf[0] = DIO_INPUT;
@@ -246,9 +250,9 @@ void analogReportCallback(byte analogPin, int value)
 }
 
 void digitalReadCallback(byte pin, int value) {
-  
+  /*
     Serial.print("digital read ");
-    Serial.println(pin);
+    Serial.println(pin);*/
     
   if(pin < TOTAL_PINS){
     outputPin(pin,value);
@@ -270,7 +274,6 @@ void digitalReportCallback(byte pin, int value) {
     
   if (pin < TOTAL_PINS) {
   
-    
     reportPINs[pin] = (byte)value;
   }
   // do not disable analog reporting on these 8 pins, to allow some

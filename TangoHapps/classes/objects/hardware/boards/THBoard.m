@@ -8,6 +8,8 @@
 
 #import "THBoard.h"
 #import "THPin.h"
+#import "THElementPin.h"
+#import "THHardwareComponent.h"
 
 @implementation THBoard
 
@@ -62,12 +64,18 @@
 
 #pragma mark - Pins
 
--(NSArray*) objectsAtPin:(NSInteger) pin{
-    return nil;
-}
-
--(void) attachPin:(THElementPin*) object atPin:(NSInteger) pin{
+-(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
+    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
+    [pin attachPin:object];
     
+    if([object.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (pin.supportsSCL || pin.supportsSDA)){
+        if((pin.supportsSCL && [self.sdaPin isClotheObjectAttached:object.hardware]) ||
+           (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
+            
+            THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)object.hardware;
+            [self addI2CComponent:i2cObject];
+        }
+    }
 }
 
 -(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type{
@@ -80,6 +88,7 @@
 -(THBoardPin*) analogPinWithNumber:(NSInteger) number{
     return nil;
 }
+
 
 
 #pragma mark - I2C Components

@@ -41,6 +41,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientAppDelegate.h"
 #import "THClientScene.h"
 #import "THClientProjectProxy.h"
+#import "THClientConnectionController.h"
 
 @implementation THClientAppDelegate
 
@@ -56,6 +57,8 @@ You should have received a copy of the GNU General Public License along with thi
         self.projectProxies = [NSMutableArray array];
         
     }
+    
+    self.connectionController = [[THClientConnectionController alloc] init];
     
     //[self generateRandomScenes];
     
@@ -90,6 +93,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     
     [THClientScene persistScenes:self.projectProxies];
+    
+    [self.connectionController stopClient];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -101,6 +106,8 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [self.connectionController startClient];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

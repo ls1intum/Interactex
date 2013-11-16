@@ -121,7 +121,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) drawObjectsConnections {
     
-    [TFHelper drawLines:self.currentObject.connections];
+    //[TFHelper drawLines:self.currentObject.connections];
     
     THProject * project = [THDirector sharedDirector].currentProject;
     
@@ -325,10 +325,10 @@ You should have received a copy of the GNU General Public License along with thi
         if([board testPoint:position]){
             
             THBoardPinEditable * pin = [board pinAtPosition:position];
-            /*XXX Juan
+            
             if(pin != nil){
-                [self.currentConnection.obj1 acceptsConnectionsTo:pin]
-            }*/
+                [self.currentConnection.obj1 acceptsConnectionsTo:pin];
+            }
             
             if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
                 [self highlightPin:pin];
@@ -831,7 +831,9 @@ You should have received a copy of the GNU General Public License along with thi
     NSArray * connections = [project invocationConnectionsForObject:self.currentObject];
     
     for (THInvocationConnectionLine * connection in connections) {
-        connection.visible = YES;
+        if(connection.obj2.visible){
+            connection.visible = YES;
+        }
     }
 }
 
@@ -847,7 +849,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) showConnectionsForAllObjects{
     THProject * project = [THDirector sharedDirector].currentProject;
     for (THInvocationConnectionLine * connection in project.invocationConnections) {
+        if(connection.obj1.visible && connection.obj2.visible){
         connection.visible = YES;
+        }
     }
 }
 
@@ -1123,8 +1127,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
     [self hideAllLilypadWires];
-    
     [self showAllPaletteSections];
+
 }
 
 -(void) removeObjects{
@@ -1176,6 +1180,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) willAppear{
     
     [super willAppear];
+    
+    [self hideBoards];
     
     [self prepareObjectsForEdition];
     [self addObservers];

@@ -195,15 +195,21 @@ float const kMonitorMargin = 5;
     [super willStartSimulating];
 }
 
+-(void) stopSimulating{
+    [self stop];
+    
+    for (THMonitorLine * line in self.lines) {
+        [line removeAllPoints];
+    }
+    
+    [super stopSimulating];
+}
+
 -(void) prepareToDie{
     
     [self stop];
     
     [super prepareToDie];
-}
-
--(void) dealloc{
-    NSLog(@"deallocing THMonitor");
 }
 
 @end

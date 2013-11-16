@@ -364,6 +364,11 @@
 		9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
 		9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
+		9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5110141837D23A00EB25FA /* CoreMotion.framework */; };
+		9A5110181837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
+		9A5110191837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
+		9A51101A1837DD5800EB25FA /* projectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110171837DD5800EB25FA /* projectIcon@2x.png */; };
+		9A51101B1837DD5800EB25FA /* projectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110171837DD5800EB25FA /* projectIcon@2x.png */; };
 		9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
 		9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
 		9A56CD0217D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
@@ -508,6 +513,10 @@
 		9A84271117564A80009495AB /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
 		9A84271217564A80009495AB /* TFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A517564A80009495AB /* TFHelper.m */; };
 		9A84271417564A80009495AB /* TFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A517564A80009495AB /* TFHelper.m */; };
+		9A84C1E41837820500848972 /* musicPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A84C1E21837820500848972 /* musicPlayer.png */; };
+		9A84C1E51837820500848972 /* musicPlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A84C1E21837820500848972 /* musicPlayer.png */; };
+		9A84C1E61837820500848972 /* musicPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A84C1E31837820500848972 /* musicPlayer@2x.png */; };
+		9A84C1E71837820500848972 /* musicPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A84C1E31837820500848972 /* musicPlayer@2x.png */; };
 		9A85721C172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A85721D172804B600510D23 /* THSoundPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A85721B172804B600510D23 /* THSoundPicker.m */; };
 		9A8572B7172AD64C00510D23 /* THAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8572B6172AD64C00510D23 /* THAsset.m */; };
@@ -879,7 +888,6 @@
 		9AF503C3167B84B40020241C /* THSwitchProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CA167B84B40020241C /* THSwitchProperties.m */; };
 		9AF503C4167B84B40020241C /* THTouchpadProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CC167B84B40020241C /* THTouchpadProperties.m */; };
 		9AF503C5167B84B40020241C /* THValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CE167B84B40020241C /* THValueProperties.m */; };
-		9AF503C6167B84B40020241C /* THEditorToolsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502D0167B84B40020241C /* THEditorToolsDataSource.m */; };
 		9AF503CA167B84B40020241C /* THColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502D8167B84B40020241C /* THColorPicker.m */; };
 		9AF503CC167B84B40020241C /* THClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DC167B84B40020241C /* THClientHelper.m */; };
 		9AF503CD167B84B40020241C /* THConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DE167B84B40020241C /* THConstants.m */; };
@@ -1056,7 +1064,6 @@
 		9AF50651167B92840020241C /* THSwitchProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CA167B84B40020241C /* THSwitchProperties.m */; };
 		9AF50652167B92840020241C /* THTouchpadProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CC167B84B40020241C /* THTouchpadProperties.m */; };
 		9AF50653167B92840020241C /* THValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CE167B84B40020241C /* THValueProperties.m */; };
-		9AF50654167B928A0020241C /* THEditorToolsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502D0167B84B40020241C /* THEditorToolsDataSource.m */; };
 		9AF50657167B92980020241C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
 		9AF50658167B92A10020241C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050A167B8DC30020241C /* OpenAL.framework */; };
 		9AF50667167B93770020241C /* PeerCellServer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF502E6167B84B40020241C /* PeerCellServer.xib */; };
@@ -1825,6 +1832,9 @@
 		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
 		9A41472117E255700061EDF8 /* THTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTableProjectCell.m; sourceTree = "<group>"; };
 		9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "../cocos2d-iphone-2.0/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
+		9A5110141837D23A00EB25FA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		9A5110161837DD5800EB25FA /* projectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectIcon.png; sourceTree = "<group>"; };
+		9A5110171837DD5800EB25FA /* projectIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectIcon@2x.png"; sourceTree = "<group>"; };
 		9A56CCFE17D885F9001021B2 /* THBoolValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValue.h; sourceTree = "<group>"; };
 		9A56CCFF17D885F9001021B2 /* THBoolValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValue.m; sourceTree = "<group>"; };
 		9A56CD4517D886A5001021B2 /* THBoolValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValueEditable.h; sourceTree = "<group>"; };
@@ -1943,6 +1953,8 @@
 		9A8426A317564A80009495AB /* TFFileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUtils.m; sourceTree = "<group>"; };
 		9A8426A417564A80009495AB /* TFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHelper.h; sourceTree = "<group>"; };
 		9A8426A517564A80009495AB /* TFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHelper.m; sourceTree = "<group>"; };
+		9A84C1E21837820500848972 /* musicPlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicPlayer.png; sourceTree = "<group>"; };
+		9A84C1E31837820500848972 /* musicPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "musicPlayer@2x.png"; sourceTree = "<group>"; };
 		9A85721A172804B600510D23 /* THSoundPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPicker.h; sourceTree = "<group>"; };
 		9A85721B172804B600510D23 /* THSoundPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPicker.m; sourceTree = "<group>"; };
 		9A8572B5172AD64C00510D23 /* THAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAsset.h; sourceTree = "<group>"; };
@@ -2322,8 +2334,6 @@
 		9AF502CC167B84B40020241C /* THTouchpadProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTouchpadProperties.m; sourceTree = "<group>"; };
 		9AF502CD167B84B40020241C /* THValueProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THValueProperties.h; sourceTree = "<group>"; };
 		9AF502CE167B84B40020241C /* THValueProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THValueProperties.m; sourceTree = "<group>"; };
-		9AF502CF167B84B40020241C /* THEditorToolsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditorToolsDataSource.h; sourceTree = "<group>"; };
-		9AF502D0167B84B40020241C /* THEditorToolsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditorToolsDataSource.m; sourceTree = "<group>"; };
 		9AF502D7167B84B40020241C /* THColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THColorPicker.h; sourceTree = "<group>"; };
 		9AF502D8167B84B40020241C /* THColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THColorPicker.m; sourceTree = "<group>"; };
 		9AF502DB167B84B40020241C /* THClientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientHelper.h; sourceTree = "<group>"; };
@@ -2418,6 +2428,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */,
 				9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */,
 				9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */,
 				9A3165AB1827994100CB3E59 /* GLKit.framework in Frameworks */,
@@ -2534,6 +2545,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A5110141837D23A00EB25FA /* CoreMotion.framework */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A2CAD4A182C4772002AB9E8 /* GMP.xcodeproj */,
 				9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */,
@@ -3217,6 +3229,8 @@
 			children = (
 				9AFB7E291833D89800694CCE /* presets */,
 				9AF50020167B83140020241C /* MainStoryboard.storyboard */,
+				9A5110161837DD5800EB25FA /* projectIcon.png */,
+				9A5110171837DD5800EB25FA /* projectIcon@2x.png */,
 				9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */,
 				9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */,
 				9AF5001E167B83140020241C /* iphoneFrame.png */,
@@ -3242,8 +3256,6 @@
 				9AF50205167B84B40020241C /* objects */,
 				9AF50287167B84B40020241C /* palette items */,
 				9AF502AA167B84B40020241C /* palette properties */,
-				9AF502CF167B84B40020241C /* THEditorToolsDataSource.h */,
-				9AF502D0167B84B40020241C /* THEditorToolsDataSource.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -3796,6 +3808,8 @@
 		9AFB7E291833D89800694CCE /* presets */ = {
 			isa = PBXGroup;
 			children = (
+				9A84C1E21837820500848972 /* musicPlayer.png */,
+				9A84C1E31837820500848972 /* musicPlayer@2x.png */,
 				9A7E4D32183618C200657B72 /* LSMCompass.png */,
 				9A7E4D33183618C200657B72 /* LSMCompass@2x.png */,
 				9AFB7E5A1833DBCC00694CCE /* button.png */,
@@ -4630,6 +4644,7 @@
 				9AF50669167B93800020241C /* THColorPicker.xib in Resources */,
 				9A94F3E916A00EA400AF52AB /* ipadFrame.png in Resources */,
 				9A94F3EB16A00EA400AF52AB /* ipadFrame@2x.png in Resources */,
+				9A51101B1837DD5800EB25FA /* projectIcon@2x.png in Resources */,
 				9A94F3ED16A00EA400AF52AB /* removeButton.png in Resources */,
 				9A94F3EF16A00EA400AF52AB /* removeButton@2x.png in Resources */,
 				9A94F41716A0192700AF52AB /* THButtonProperties.xib in Resources */,
@@ -4643,6 +4658,7 @@
 				9AFB7E591833D89800694CCE /* vibeBoard@2x.png in Resources */,
 				9A94F42516A0192700AF52AB /* THiPhoneProperties.xib in Resources */,
 				9AFB7E5D1833DBCC00694CCE /* button.png in Resources */,
+				9A84C1E51837820500848972 /* musicPlayer.png in Resources */,
 				9A94F42716A0192700AF52AB /* THiPhoneViewProperties.xib in Resources */,
 				9A94F42916A0192700AF52AB /* THiSwitchEditableProperties.xib in Resources */,
 				9ABC27781809985900B39D72 /* palette_lilypadBig@2x.png in Resources */,
@@ -4801,6 +4817,7 @@
 				9A41460017DE7A060061EDF8 /* palette_tshirt.png in Resources */,
 				9A41460217DE7A060061EDF8 /* palette_tshirt@2x.png in Resources */,
 				9A41460417DE7A060061EDF8 /* palette_number.png in Resources */,
+				9A5110191837DD5800EB25FA /* projectIcon.png in Resources */,
 				9A41460617DE7A060061EDF8 /* palette_number@2x.png in Resources */,
 				9A41460817DE7A060061EDF8 /* palette_vibeBoard.png in Resources */,
 				9ABC278F1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */,
@@ -4873,6 +4890,7 @@
 				9AB778A017E6C25700F82424 /* squareFilled.png in Resources */,
 				9AB778A217E6C25700F82424 /* starEmpty.png in Resources */,
 				9AB778A417E6C25700F82424 /* starFilled.png in Resources */,
+				9A84C1E71837820500848972 /* musicPlayer@2x.png in Resources */,
 				9AB778A617E6C25700F82424 /* triangleEmpty.png in Resources */,
 				9AB778A817E6C25700F82424 /* triangleFilled.png in Resources */,
 			);
@@ -4886,13 +4904,16 @@
 				9AFB7E5C1833DBCC00694CCE /* button.png in Resources */,
 				9AFB7E461833D89800694CCE /* lightSensor.png in Resources */,
 				9AFB7E521833D89800694CCE /* threeColorLed.png in Resources */,
+				9A51101A1837DD5800EB25FA /* projectIcon@2x.png in Resources */,
 				9AF50032167B83140020241C /* iphoneFrame.png in Resources */,
 				9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */,
+				9A5110181837DD5800EB25FA /* projectIcon.png in Resources */,
 				9AFB7E481833D89800694CCE /* lightSensor@2x.png in Resources */,
 				9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */,
 				9A7E4D36183618C200657B72 /* LSMCompass@2x.png in Resources */,
 				9AFB7E421833D89800694CCE /* led.png in Resources */,
 				9AF50036167B83140020241C /* removeButton.png in Resources */,
+				9A84C1E61837820500848972 /* musicPlayer@2x.png in Resources */,
 				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
 				9AFB7E561833D89800694CCE /* vibeBoard.png in Resources */,
 				9AF5003A167B83140020241C /* THClientGridItem.xib in Resources */,
@@ -4904,6 +4925,7 @@
 				9AFB7E5E1833DBCC00694CCE /* button@2x.png in Resources */,
 				9AFB7E4A1833D89800694CCE /* potentiometer.png in Resources */,
 				9A7E4D34183618C200657B72 /* LSMCompass.png in Resources */,
+				9A84C1E41837820500848972 /* musicPlayer.png in Resources */,
 				9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */,
 				9AFB7E4C1833D89800694CCE /* potentiometer@2x.png in Resources */,
 				9A2CAD8E182C47FC002AB9E8 /* Images.xcassets in Resources */,
@@ -5031,7 +5053,6 @@
 				9AF503C3167B84B40020241C /* THSwitchProperties.m in Sources */,
 				9AF503C4167B84B40020241C /* THTouchpadProperties.m in Sources */,
 				9AF503C5167B84B40020241C /* THValueProperties.m in Sources */,
-				9AF503C6167B84B40020241C /* THEditorToolsDataSource.m in Sources */,
 				9AF503CA167B84B40020241C /* THColorPicker.m in Sources */,
 				9AF503CC167B84B40020241C /* THClientHelper.m in Sources */,
 				9AF503CD167B84B40020241C /* THConstants.m in Sources */,
@@ -5277,7 +5298,6 @@
 				9AFB7DCD1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */,
 				9AF50652167B92840020241C /* THTouchpadProperties.m in Sources */,
 				9AF50653167B92840020241C /* THValueProperties.m in Sources */,
-				9AF50654167B928A0020241C /* THEditorToolsDataSource.m in Sources */,
 				9A8BB9A3167C815D00FBABFB /* THPinsController.m in Sources */,
 				9AFB7E6C1833DE6400694CCE /* THClientPresetsGenerator.m in Sources */,
 				9ABC276818098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,

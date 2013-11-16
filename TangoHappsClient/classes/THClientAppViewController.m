@@ -56,6 +56,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THLabel.h"
 #import "THBLECommunicationModule.h"
+#import "THYannic.h"
+
+float const kScanningTimeout = 3.0f;
 
 @implementation THClientAppViewController
 /*
@@ -139,8 +142,6 @@ You should have received a copy of the GNU General Public License along with thi
         
         [object addToView:self.view];
     }
-    
-    [self.currentProject startSimulating];
 }
 
 -(void) stopActivityIndicator {
@@ -184,8 +185,11 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(self.currentProject){
         
-        [self updateStartButtonToScanning];
-        [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
+        if([BLEDiscovery sharedInstance].foundPeripherals == 0){
+            [self startScanningDevices];
+        } else {
+            [self updateStartButtonToStart];
+        }
         
         [self setTitle:self.currentProject.name];
         
@@ -197,25 +201,15 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
-    
+    /*
     if(!self.showingPreset){
         UIImage * image = [THUtils screenshot];
         THClientProjectProxy * proxy = [THSimulableWorldController sharedInstance].currentProjectProxy;
         proxy.image = image;
-    }
+    }*/
     
     [self removePinObservers];
     [self disconnectFromBle];
-    
-    /*
-    if(!proxy.image){
-        
-        NSString *screenshotFile = [self.currentProject.name stringByAppendingString:@".png"];
-        NSString *screenshotPath = [TFFileUtils dataFile:screenshotFile inDirectory:kProjectImagesDirectory];
-        proxy.image = image;
-        
-        //[TFFileUtils saveImageToFile:image file:screenshotPath];
-    }*/
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
@@ -288,35 +282,31 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-#pragma mark UI Interaction
+#pragma mark Methods
 
--(IBAction)startButtonTapped:(id)sender {
-    if([BLEDiscovery sharedInstance].connectedService){
-        
-        [self disconnectFromBle];
-        
-    } else {
-        if([BLEDiscovery sharedInstance].foundPeripherals == 0){
-            [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
-            [self updateStartButtonToScanning];
-        } else {
-            [self updateStartButtonToStarting];
-            [self connectToBle];
-        }
-    }
+-(void) scanningTimedOut{
+    [scanningTimer invalidate];
+    scanningTimer = nil;
+    [self updateStartButtonToScan];
+}
+
+-(void) startScanningDevices{
+    
+    [self updateStartButtonToScanning];
+    [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
+    scanningTimer = [NSTimer scheduledTimerWithTimeInterval:kScanningTimeout target:self selector:@selector(scanningTimedOut) userInfo:nil repeats:NO];
 }
 
 #pragma mark Ble Interaction
 
 -(void) connectToBle{
     
-    if(![BLEDiscovery sharedInstance].currentPeripheral && [BLEDiscovery sharedInstance].foundPeripherals.count> 0){
-        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:0];
-        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
-    }
+    CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:0];
+    [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
 }
 
 -(void) disconnectFromBle{
+    
     if([BLEDiscovery sharedInstance].currentPeripheral){
         [[BLEDiscovery sharedInstance].connectedService stop];
         [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
@@ -334,7 +324,12 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral {
-    [self updateStartButtonToNotConnected];
+    NSLog(@"peripheral discovered");
+    
+    [scanningTimer invalidate];
+    scanningTimer = nil;
+    
+    [self updateStartButtonToStart];
     
     //[self updateStartButton];
     
@@ -364,13 +359,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.startButton.enabled = NO;
 }
 
--(void) updateStartButtonToNotConnected{
-    
-    self.startButton.tintColor = nil;
-    self.startButton.title = @"Start";
-    self.startButton.enabled = YES;
-}
-
 -(void) updateStartButtonToStarting{
     
     self.startButton.tintColor = nil;
@@ -395,12 +383,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) bleServiceDidConnect:(BLEService*) service{
     service.delegate = self;
     service.shouldUseCRC = YES;
-    service.shouldUseTurnBasedCommunication = NO;
+    
+    BOOL isYannic = [self.currentProject.currentBoard isKindOfClass:[THYannic class]];
+    service.shouldUseTurnBasedCommunication = !isYannic;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{
-    
-    NSLog(@"disconnected");
     
     service.delegate = nil;
     service.dataDelegate = nil;
@@ -409,7 +397,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) bleServiceIsReady:(BLEService*) service{
-    NSLog(@"is ready");
     
     [self updateStartButtonToStop];
     
@@ -421,11 +408,13 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.gmpController.communicationModule = bleCommunicationModule;
     
+    self.isRunningProject = YES;
+    
+    [self.currentProject startSimulating];
     [self.gmpController sendFirmwareRequest];
 }
 
-- (void) bleServiceDidReset {
-    NSLog(@"ble service reseted");
+-(void) bleServiceDidReset {
     //_bleService = nil;
 }
 
@@ -467,9 +456,9 @@ You should have received a copy of the GNU General Public License along with thi
         
         
         THI2CRegister * reg = [component.i2cComponent.registers objectAtIndex:0];
-        [self.gmpController sendI2CStartReadingAddress:component.i2cComponent.address reg:reg.number size:6];//Kyle accelerometer
+        [self.gmpController sendI2CStartReadingAddress:component.i2cComponent.address reg:reg.number size:6];
         
-        NSLog(@"requesting %d %d",component.i2cComponent.address,reg.number);
+        //NSLog(@"requesting %d %d",component.i2cComponent.address,reg.number);
     }
 }
 
@@ -487,7 +476,7 @@ You should have received a copy of the GNU General Public License along with thi
                 
             } else if(pin.mode == kPinModeAnalogInput && pin.attachedElementPins.count > 0){
                 
-                [self.gmpController sendReportRequestForAnalogPin:pin.number reports:YES];
+                [self.gmpController sendReportRequestForAnalogPin:pin.number + 14 reports:YES];
             }
         }
     }
@@ -517,34 +506,58 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
     
-    //NSLog(@"digital msg for pin: %d",pin);
+    NSLog(@"digital msg for pin: %d",pin);
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    THBoardPin * pinObj = [project.currentBoard digitalPinWithNumber:pin];
     
-    for (THBoardPin * pinObj in project.currentBoard.pins) {
-        if(pinObj.number == pin){
-            
-            [pinObj removeObserver:self forKeyPath:@"value"];
-            pinObj.value = value;
-            [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-            
-            break;
-        }
-    }
+    [pinObj removeObserver:self forKeyPath:@"value"];
+    pinObj.value = value;
+    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
     
     NSLog(@"analog msg for pin: %d",pin);
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    THBoardPin * pinObj = [project.currentBoard analogPinWithNumber:pin];
+    
+    [pinObj removeObserver:self forKeyPath:@"value"];
+    pinObj.value = value;
+    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void) gmpController:(GMP*) gmpController didReceiveI2CReplyForAddress:(NSInteger) address reg:(NSInteger) reg buffer:(uint8_t*) buffer length:(NSInteger) length{
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
-    NSLog(@"project %p, component: %p",project,component);
     [component setValuesFromBuffer:buffer length:length];
 }
 
+#pragma mark UI Interaction
+
+-(IBAction)startButtonTapped:(id)sender {
+    
+    if([BLEDiscovery sharedInstance].connectedService){
+        
+        [self.currentProject stopSimulating];
+        //[self.gmpController sendResetRequest];
+        
+        [self disconnectFromBle];
+        
+    } else {
+        
+        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0){
+            
+            [self startScanningDevices];
+            
+        } else {
+            
+            [self updateStartButtonToStarting];
+            [self connectToBle];
+        }
+    }
+}
 
 @end

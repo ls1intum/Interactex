@@ -165,21 +165,14 @@ NSInteger const kYannicNumberOfPins;
 
 -(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type{
     if(type == kPintypeDigital){
-        if(pinNumber <= 4) {
-            return pinNumber;
-        } else if(pinNumber <= self.numberOfDigitalPins){
-            return pinNumber + 2;
-        }
-        
-        return pinNumber;
     } else if(type == kPintypeAnalog){
-        if(pinNumber >= 0 && pinNumber <= 5){
-            return pinNumber + 16;
+        if(pinNumber >= 0 && pinNumber <= 2){
+            return pinNumber;
         }
     } else if(type == kPintypeMinus){
-        return 5;
+        return 0;
     } else if(type == kPintypePlus){
-        return 6;
+        return 1;
     }
     
     return -1;
@@ -201,26 +194,6 @@ NSInteger const kYannicNumberOfPins;
     }
     return nil;
 }
-
--(NSArray*) objectsAtPin:(NSInteger) pinNumber{
-    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
-    return pin.attachedElementPins;
-}
-
--(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
-    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
-    [pin attachPin:object];
-    
-    if([object.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (pin.supportsSCL || pin.supportsSDA)){
-        if((pin.supportsSCL && [self.sdaPin isClotheObjectAttached:object.hardware]) ||
-           (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
-            
-            THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)object.hardware;
-            [self addI2CComponent:i2cObject];
-        }
-    }
-}
-
 
 #pragma mark - Other
 

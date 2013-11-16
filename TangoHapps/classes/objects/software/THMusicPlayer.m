@@ -416,6 +416,11 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
+-(void) stopSimulating{
+    [self stop];
+    [super stopSimulating];
+}
+
 -(void) prepareToDie{
     
 #if !(TARGET_IPHONE_SIMULATOR)

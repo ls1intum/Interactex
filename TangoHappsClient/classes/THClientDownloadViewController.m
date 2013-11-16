@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THClientDownloadViewController.h"
 #import "THClientScene.h"
-
+#import "THClientAppDelegate.h"
 
 const NSTimeInterval kMinInstallationDuration = 1.0f;
 const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
@@ -59,7 +59,8 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.connectionController = [[THClientConnectionController alloc] init];
+    THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.connectionController = appDelegate.connectionController;
     self.connectionController.delegate = self;
 }
 

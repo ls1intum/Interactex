@@ -97,8 +97,8 @@ You should have received a copy of the GNU General Public License along with thi
            || (pin.type == kPintypeAnalog && self.type == kElementPintypeAnalog)
            || (pin.type == kPintypeMinus && self.type == kElementPintypeMinus)
            || (pin.type == kPintypePlus && self.type == kElementPintypePlus)
-           || (self.type == kElementPintypeScl && pin.type == kPintypeAnalog && pin.number == 5)
-           || (self.type == kElementPintypeSda && pin.type == kPintypeAnalog && pin.number == 4)){
+           || (self.type == kElementPintypeScl && pin.supportsSCL)
+           || (self.type == kElementPintypeSda && pin.supportsSDA)){
             return YES;
         }
     } /*else if([anObject isKindOfClass:[THElementPinEditable class]]){

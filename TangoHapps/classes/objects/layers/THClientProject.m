@@ -44,6 +44,23 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THClientProject
 
+#pragma mark - static methods
+
++(BOOL) doesProjectExistWithName:(NSString*) name{
+    return [TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory];
+}
+
++(NSString*) nextProjectNameForName:(NSString*) name{
+    
+    int i = 2;
+    NSString * finalName = name;
+    while([self doesProjectExistWithName:finalName]){
+        finalName = [NSString stringWithFormat:@"%@ %d",name,i];
+        i++;
+    }
+    return finalName;
+}
+
 +(id)emptyProject {
     return [[THClientProject alloc] init];
 }
@@ -65,17 +82,7 @@ You should have received a copy of the GNU General Public License along with thi
     return [TFFileUtils renameDataFile:name to:newName inDirectory:kProjectsDirectory];
 }
 
--(void) load{
-    
-    _boards = [NSMutableArray array];
-    _hardwareComponents = [NSMutableArray array];
-    _iPhoneObjects = [NSMutableArray array];
-    _conditions = [NSMutableArray array];
-    _values = [NSMutableArray array];
-    _actions = [NSMutableArray array];
-    _actionPairs = [NSMutableArray array];
-    _triggers = [NSMutableArray array];
-}
+#pragma mark - initialization
 
 -(id) init{
     self = [super init];
@@ -92,6 +99,18 @@ You should have received a copy of the GNU General Public License along with thi
         [self load];
     }
     return self;
+}
+
+-(void) load{
+    
+    _boards = [NSMutableArray array];
+    _hardwareComponents = [NSMutableArray array];
+    _iPhoneObjects = [NSMutableArray array];
+    _conditions = [NSMutableArray array];
+    _values = [NSMutableArray array];
+    _actions = [NSMutableArray array];
+    _actionPairs = [NSMutableArray array];
+    _triggers = [NSMutableArray array];
 }
 
 #pragma mark - Archiving
@@ -180,10 +199,14 @@ You should have received a copy of the GNU General Public License along with thi
     [self didStartSimulating];
 }
 
+-(void) stopSimulating {
+    for (TFSimulableObject * object in self.allObjects) {
+        [object stopSimulating];
+    }
+}
+
 -(void) willStartSimulating {
     for (TFSimulableObject * object in self.allObjects) {
-        NSLog(@"starts simulating %p",object);
-        
         [object willStartSimulating];
     }
 }

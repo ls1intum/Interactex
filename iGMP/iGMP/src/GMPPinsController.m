@@ -162,17 +162,23 @@ float const kRequestTimeoutTime = 2.0f;
 
 -(void) resendLastPinModeRequest{
     
+    NSInteger pin;
+    
+    if(self.digitalPins.count == 0){
+        pin = [self nextValidPinStartingFromPin:0];
+    } else {
+        GMPPin * lastDigitalPin = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
+        pin = lastDigitalPin.number;
+    }
+    
     NSInteger lastPin;
-    
-    GMPPin * lastDigitalPin = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
-    
     if(self.analogPins.count > 0){
         
         GMPPin * lastAnalogPin = [self.analogPins objectAtIndex:self.analogPins.count-1];
-        lastPin = lastAnalogPin.number + lastDigitalPin.number + 2;
+        lastPin = lastAnalogPin.number + pin + 2;
         
     } else {
-        lastPin = lastDigitalPin.number + 1;
+        lastPin = pin + 1;
     }
     
     NSLog(@"resending %d",lastPin);
@@ -182,19 +188,33 @@ float const kRequestTimeoutTime = 2.0f;
     //[self sendPinModeQueryStartingFromPin:lastPin.number+1];
 }
 
--(void) sendPinModeQueryStartingFromPin:(NSInteger) pin{
+-(NSInteger) nextValidPinStartingFromPin:(NSInteger) pin{
     
     for (int i = pin; i < GMPMaxNumPins; i++) {
         
         if((pinCapabilities[i] & kGMPCapabilityGPIO) == kGMPCapabilityGPIO || (pinCapabilities[i] & kGMPCapabilityPWM) == kGMPCapabilityPWM || (pinCapabilities[i] & kGMPCapabilityADC) == kGMPCapabilityADC){
-            NSLog(@"sending pin query for: %d",i);
-            [self.gmpController sendPinModeRequestForPin:i];
             
-            timer = [NSTimer scheduledTimerWithTimeInterval:kRequestTimeoutTime target:self selector:@selector(resendLastPinModeRequest) userInfo:nil repeats:YES];
-            
-            return;
+            if(i==20){
+                NSLog(@"wtf");
+            }
+            return i;
         }
     }
+    return -1;
+}
+
+-(void) sendPinModeQueryStartingFromPin:(NSInteger) pin{
+    
+    pin = [self nextValidPinStartingFromPin:pin];
+    
+    if(pin >= 0){
+        
+        [self.gmpController sendPinModeRequestForPin:pin];
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:kRequestTimeoutTime target:self selector:@selector(resendLastPinModeRequest) userInfo:nil repeats:YES];
+    }
+    return;
+    
 }
 
 -(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPins:(uint8_t*) buffer count:(NSInteger) count{
@@ -279,6 +299,7 @@ float const kRequestTimeoutTime = 2.0f;
 -(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
     
     NSLog(@"digital msg for pin: %d",pin);
+    
     for (GMPPin * pinObj in self.digitalPins) {
         if(pinObj.number == pin){
             pinObj.value = value;
@@ -290,8 +311,15 @@ float const kRequestTimeoutTime = 2.0f;
 -(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
     
     NSLog(@"analog msg for pin: %d",pin);
-    GMPPin * pinObj = [self.analogPins objectAtIndex:pin];
-    pinObj.value = value;
+    /*
+    GMPPin * lastDigital = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
+    GMPPin * analogPin =[self.analogPins objectAtIndex:pin - lastDigital.number + 1 reports:pin.updatesValues];
+    */
+    if(pin < self.analogPins.count){
+        
+        GMPPin * pinObj = [self.analogPins objectAtIndex:pin];
+        pinObj.value = value;
+    }
 }
 
 -(void) gmpController:(GMP*) gmpController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length {

@@ -184,11 +184,6 @@
 }
 
 - (IBAction)sendI2CWriteTapped:(id)sender {
-    /*
-    uint8_t buf[2];//Kyle's accelerometer
-    [GMPHelper valueAsTwo7bitBytes:39 buffer:buf];
-    [self.gmpController sendI2CWriteToAddress:0x3B reg:32 values:buf numValues:1];
-    */
     
     uint8_t buf[2];
     [GMPHelper valueAsTwo7bitBytes:39 buffer:buf];
@@ -217,19 +212,14 @@
     self.textField.text = [NSString stringWithFormat:@"firmware name: %@\n",name];
     
     [self.gmpController sendResetRequest];
-    [self.gmpController sendCapabilitiesRequest];
+    //[self.gmpController sendCapabilitiesRequest];
 }
 
--(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPin:(pin_t) pin{
-    NSLog(@"capability: %d %d",pin.index,pin.capability);
+-(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPins:(uint8_t*) buffer count:(NSInteger) count{
+    //NSLog(@"capability: %d %d",pin.index,pin.capability);
     
-    self.textField.text = [NSString stringWithFormat:@"capability received: %d %d\n",pin.index,pin.capability];
+    //self.textField.text = [NSString stringWithFormat:@"capability received: %d %d\n",pin.index,pin.capability];
 }
-/*
--(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin state:(NSInteger) state{
-    
-    self.textField.text = [NSString stringWithFormat:@"state received: %d %d",pin,state];
-}*/
 
 -(void) gmpController:(GMP*) gmpController didReceiveDigitalMessageForPin:(NSInteger) pin value:(BOOL) value{
     

@@ -113,7 +113,7 @@ NSString * const kMethodSetRed = @"setRed";
 NSString * const kMethodSetGreen = @"setGreen";
 NSString * const kMethodSetBlue = @"setBlue";
 
-NSString * const kGameKitSessionId = @"TANGO_SESSION";
+NSString * const kGameKitSessionId = @"tangoSession";
 
 NSString* const kPinTexts[kNumPinTypes] = {@"D", @"A", @"-", @"+"};
 NSString * const kElementPinTexts[kNumElementPinTypes] = {@"D", @"A", @"+", @"-", @"SCL", @"SDA"};

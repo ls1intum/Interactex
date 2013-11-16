@@ -66,7 +66,7 @@ const float kIconInstallationUpdateFrequency;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 
-@property (nonatomic, strong) THClientConnectionController * connectionController;
+@property (nonatomic, weak) THClientConnectionController * connectionController;
 
 @property (weak, nonatomic) id<THClientDownloadViewControllerDelegate> delegate;
 @end

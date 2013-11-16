@@ -25,7 +25,6 @@
 @property (nonatomic, readonly) THBoardPin * sclPin;//analog 5
 @property (nonatomic, readonly) THBoardPin * sdaPin;//analog 4
 
--(NSArray*) objectsAtPin:(NSInteger) pin;
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pin;
 -(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type;
 

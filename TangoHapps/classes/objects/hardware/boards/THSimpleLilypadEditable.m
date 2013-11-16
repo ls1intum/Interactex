@@ -183,7 +183,6 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 }
 
 -(void) willStartSimulation{
-    [self schedule:@selector(updatePins) interval:1.0f];
     [super willStartSimulation];
 }
 

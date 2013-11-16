@@ -115,16 +115,16 @@ You should have received a copy of the GNU General Public License along with thi
     [super setHighlighted:selected];
 }
 
--(NSInteger) currentValue{
+-(NSInteger) value{
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
     return pin.value;
 }
 
--(void) setCurrentValue:(NSInteger)currentValue{
+-(void) setValue:(NSInteger)value{
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;
-    pin.value = currentValue;
+    pin.value = value;
 }
 
 -(BOOL) isPWM{
@@ -184,9 +184,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) draw{
-    
+    /*
     ccDrawColor4B(255, 0, 0, 255);
-    ccDrawCircle(ccp(0,0), 3, 0, 15, 0);
+    ccDrawCircle(ccp(0,0), 3, 0, 15, 0);*/
     
     
     if(self.highlighted){

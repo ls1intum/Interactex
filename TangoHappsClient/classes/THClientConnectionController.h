@@ -63,7 +63,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (copy, nonatomic) NSString * connectedPeerID;
 @property (weak, nonatomic) id<THClientConnectionControllerDelegate> delegate;
 
--(void)startClient;
--(void)stopClient;
+-(void) startClient;
+-(void) stopClient;
 
 @end

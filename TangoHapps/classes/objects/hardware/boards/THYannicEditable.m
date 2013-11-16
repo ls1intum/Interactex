@@ -182,7 +182,6 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 }
 
 -(void) willStartSimulation{
-    [self schedule:@selector(updatePins) interval:1.0f];
     [super willStartSimulation];
 }
 

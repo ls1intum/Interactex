@@ -744,15 +744,15 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - All Objects
 
 -(TFEditableObject*) objectAtLocation:(CGPoint)location{
-    for (TFEditableObject* object in self.allObjects) {
-        if([object testPoint:location]){
-            return object;
-        }
-    }
-    
     for (THInvocationConnectionLine * connection in self.invocationConnections) {
         if([connection testPoint:location]){
             return connection;
+        }
+    }
+    
+    for (TFEditableObject* object in self.allObjects) {
+        if([object testPoint:location]){
+            return object;
         }
     }
     

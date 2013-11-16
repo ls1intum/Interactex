@@ -38,3 +38,5 @@
 #import "THCondition.h"
 #import "THDirector.h"
 #import "TFAction.h"
+
+#import <CoreMotion/CoreMotion.h>

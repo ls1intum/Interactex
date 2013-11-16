@@ -60,9 +60,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(tableView == self.table1){
-        return @"Events";
+        return [NSString stringWithFormat:@"Events (%@)",self.object1];
+        //return @"Events";
     } else {
-        return @"Methods";
+        return [NSString stringWithFormat:@"Methods (%@)",self.object2];
+        //return @"Methods";
     }
 }
 
@@ -102,6 +104,12 @@ You should have received a copy of the GNU General Public License along with thi
     UILabel * label = cell.textLabel;
     label.font = [UIFont fontWithName:@"Arial" size:13];
     NSInteger idx = indexPath.row;
+    
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor colorWithRed:kSelectionPopupsDefaultColor.r green:kSelectionPopupsDefaultColor.g blue:kSelectionPopupsDefaultColor.b alpha:0.5];
+    bgColorView.layer.masksToBounds = YES;
+    bgColorView.layer.cornerRadius = 5;
+    cell.selectedBackgroundView = bgColorView;
     
     NSString * cellText;
     if(tableView == self.table1){
@@ -145,12 +153,14 @@ You should have received a copy of the GNU General Public License along with thi
     self.table1.delegate = self;
     self.table1.dataSource = self;
     self.table1.contentMode = UIViewContentModeLeft;
+    self.table1.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     CGRect frame2 = CGRectMake(200, 0, 200, 200);
     self.table2 = [[UITableView alloc] initWithFrame:frame2 style:UITableViewStylePlain];
     self.table2.delegate = self;
     self.table2.dataSource = self;
     self.table1.contentMode = UIViewContentModeRight;
+    self.table2.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:self.table1];
     [self.view addSubview:self.table2];

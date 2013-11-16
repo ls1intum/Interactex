@@ -58,7 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Table View Delegate
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Properties";
+    
+    return [NSString stringWithFormat:@"Properties (%@)",self.object];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -82,12 +83,20 @@ You should have received a copy of the GNU General Public License along with thi
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell * cell = [[UITableViewCell alloc] init];
+    
+    //background
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor colorWithRed:kSelectionPopupsDefaultColor.r green:kSelectionPopupsDefaultColor.g blue:kSelectionPopupsDefaultColor.b alpha:0.5];
+    bgColorView.layer.masksToBounds = YES;
+    bgColorView.layer.cornerRadius = 5;
+    cell.selectedBackgroundView = bgColorView;
+    
+    
     UILabel * label = cell.textLabel;
     label.font = [UIFont fontWithName:@"Arial" size:13];
-    
     TFProperty * property = [self.object.simulableObject.properties objectAtIndex:indexPath.row];
-    
     label.text = property.name;
+    
     return cell;
 }
 

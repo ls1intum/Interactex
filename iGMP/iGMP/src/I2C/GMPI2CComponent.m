@@ -16,7 +16,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     
     [aCoder encodeObject:self.name forKey:@"name"];
-    //[aCoder encodeInt:self.address forKey:@"address"];
+    [aCoder encodeInt:self.address forKey:@"address"];
     [aCoder encodeObject:self.registers forKey:@"registers"];
 }
 

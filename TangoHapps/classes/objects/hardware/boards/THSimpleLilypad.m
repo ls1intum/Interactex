@@ -178,25 +178,6 @@
     return nil;
 }
 
--(NSArray*) objectsAtPin:(NSInteger) pinNumber{
-    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
-    return pin.attachedElementPins;
-}
-
--(void) attachPin:(THElementPin*) object atPin:(NSInteger) pinNumber{
-    THBoardPin * pin = [self.pins objectAtIndex:pinNumber];
-    [pin attachPin:object];
-    
-    if([object.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (pin.supportsSCL || pin.supportsSDA)){
-        if((pin.supportsSCL && [self.sdaPin isClotheObjectAttached:object.hardware]) ||
-           (pin.supportsSDA && [self.sclPin isClotheObjectAttached:object.hardware])) {
-            
-            THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)object.hardware;
-            [self addI2CComponent:i2cObject];
-        }
-    }
-}
-
 #pragma mark - Other
 
 -(NSString*) description{

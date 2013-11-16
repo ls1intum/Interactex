@@ -131,8 +131,4 @@
     return @"Monitor";
 }
 
--(void) dealloc{
-    NSLog(@"deallocing THMonitorEditable");
-}
-
 @end

@@ -160,21 +160,20 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.i2cComponent = [[THI2CComponent alloc] init];
     
+    THI2CRegister * reg = [[THI2CRegister alloc] init];
+    
+    NSMutableArray * registers = [NSMutableArray arrayWithObject:reg];
+    self.i2cComponent.registers = registers;
+    
     if(self.componentType == kI2CComponentTypeMCU){
         
         self.i2cComponent.address = 104;
-        THI2CRegister * reg = [[THI2CRegister alloc] init];
         reg.number = 0x3B;
-        NSMutableArray * registers = [NSMutableArray arrayWithObject:reg];
-        self.i2cComponent.registers = registers;
         
     } else {
         
         self.i2cComponent.address = 24;
-        THI2CRegister * reg = [[THI2CRegister alloc] init];
         reg.number = 168;
-        NSMutableArray * registers = [NSMutableArray arrayWithObject:reg];
-        self.i2cComponent.registers = registers;
     }
 }
 
@@ -194,13 +193,15 @@ You should have received a copy of the GNU General Public License along with thi
         self.accelerometerY = ((int16_t)(buffer[3] << 8 | buffer[2])) >> 4;
         self.accelerometerZ = ((int16_t)(buffer[5] << 8 | buffer[4])) >> 4;
         
+        //NSLog(@"compass received buffer %d %d %d %d %d",buffer[0], buffer[1],buffer[2],buffer[3], self.accelerometerX);
+        
     } else {
         
         self.accelerometerX = ((int16_t)(buffer[0] << 8 | buffer[1]));
         self.accelerometerY = ((int16_t)(buffer[2] << 8 | buffer[3]));
         self.accelerometerZ = ((int16_t)(buffer[4] << 8 | buffer[5]));
         
-        NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
+        //NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
     }
     
 }

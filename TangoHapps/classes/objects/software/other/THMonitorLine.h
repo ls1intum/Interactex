@@ -25,6 +25,8 @@
 
 -(id) initWithColor:(CGColorRef) aColor;
 -(void) addPoint:(CGPoint) point;
+-(void) removeAllPoints;
+
 -(void) update:(float) dt;
 
 @end
