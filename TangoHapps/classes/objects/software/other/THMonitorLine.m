@@ -129,7 +129,7 @@ float const kMonitorPixelsToSeconds = 5;
 
 -(void) update:(float) dt{
     
-    float dx = 3;
+    float dx = 1;
     
     NSInteger removeUntilIndex = [self moveVerticesLeftBy:dx];
     [self removeVerticesUntilIndex:removeUntilIndex];

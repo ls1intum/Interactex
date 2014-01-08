@@ -12,11 +12,12 @@ NSString * const kBleSupportedServices[kBleNumSupportedServices] = {@"F9266FD7-E
 NSString * const kBleCharacteristics[kBleNumSupportedServices][2] = {
     {@"4585C102-7784-40B4-88E1-3CB5C4FD37A3",@"E788D73B-E793-4D9E-A608-2F2BAFC59A00"}};*/
 
-NSString * const kBleSupportedServices[kBleNumSupportedServices] = {@"F9266FD7-EF07-45D6-8EB6-BD74F13620F9",@"ffe0"};//Kroll's BLE; Kyle's BLE
+NSString * const kBleSupportedServices[kBleNumSupportedServices] = {@"F9266FD7-EF07-45D6-8EB6-BD74F13620F9",@"ffe0",@"713D0000-503E-4C75-BA94-3148F18D941E"};//Dr. Kroll Shield, Jennic Module, RedBearLab Shield
 
 NSString * const kBleCharacteristics[kBleNumSupportedServices][2] = {
     {@"4585C102-7784-40B4-88E1-3CB5C4FD37A3",@"E788D73B-E793-4D9E-A608-2F2BAFC59A00"},
-    {@"ffe1",@"ffe1"}};//RX; TX
+    {@"ffe1",@"ffe1"},
+    {@"713D0002-503E-4C75-BA94-3148F18D941E",@"713d0003-503e-4C75-BA94-3148F18D941E"}};//RX; TX
 
 
 const NSTimeInterval kFlushInterval = 1.0f/20.0f;
@@ -83,20 +84,12 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     [_peripheral discoverServices:supportedServiceUUIDs];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
-    /*
-    if(self.shouldUseTurnBasedCommunication){
-        sendOverTimer = [NSTimer scheduledTimerWithTimeInterval:kBleSendOverCommandInterval target:self selector:@selector(sendOverCommand) userInfo:nil repeats:YES];
-    }*/
 }
 
 - (void) stop {
     
     [timer invalidate];
     timer = nil;
-    /*
-    [sendOverTimer invalidate];
-    sendOverTimer = nil;*/
     
 	if (self.peripheral) {
 		_peripheral = nil;
@@ -127,14 +120,14 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
 	for (CBService *service in services) {
         
-        //NSLog(@"service found is: %@", [BLEHelper UUIDToString:service.UUID]);
+        NSLog(@"service found is: %@", [BLEHelper UUIDToString:service.UUID]);
         
         for (int i = 0; i < supportedServiceUUIDs.count; i++) {
             CBUUID * serviceUUID = [supportedServiceUUIDs objectAtIndex:i];
             
             if([service.UUID isEqual:serviceUUID]){
                 
-                //NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
+                NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
                 
                 self.currentCharacteristicUUIDs = [supportedCharacteristicUUIDs objectAtIndex:i];
                 bleService = service;
@@ -173,15 +166,16 @@ static NSMutableArray * supportedCharacteristicUUIDs;
         
         if ([[characteristic UUID] isEqual:self.currentCharacteristicUUIDs[0]]) {
             
-			_rxCharacteristic = characteristic;
-			[peripheral setNotifyValue:YES forCharacteristic:_rxCharacteristic];
+			self.rxCharacteristic = characteristic;
+			[peripheral setNotifyValue:YES forCharacteristic:self.rxCharacteristic];
 		}
         
         if ([[characteristic UUID] isEqual:self.currentCharacteristicUUIDs[1]]) {
             
-			_txCharacteristic = characteristic;
+			self.txCharacteristic = characteristic;
             
-			//[peripheral setNotifyValue:YES forCharacteristic:_txCharacteristic];
+            timer = [NSTimer scheduledTimerWithTimeInterval:kFlushInterval target:self selector:@selector(flushData) userInfo:nil repeats:YES];
+            
             [self.delegate bleServiceIsReady:self];
 		}
 	}
@@ -237,7 +231,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     if(self.txCharacteristic){
         //without response does not work with BLE Shield
-        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithoutResponse];
         
         printf("Sending:\n");
         for (int i = 0; i < data.length; i++) {
@@ -371,7 +365,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     [self.peripheral readValueForCharacteristic:characteristic];
 }
 
-- (NSString*) tx {
+- (NSString*) txString {
 	if (self.txCharacteristic) {
         
         return [BLEHelper DataToString:self.txCharacteristic.value];
@@ -380,7 +374,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     return nil;
 }
 
-- (NSString*) rx {
+- (NSString*) rxString {
 	if (self.rxCharacteristic) {
                  
         return [BLEHelper DataToString:self.rxCharacteristic.value];
@@ -511,7 +505,8 @@ static NSMutableArray * supportedCharacteristicUUIDs;
         printf("receiving:\n");
         for (int i = 0 ; i < length; i++) {
             int value = debugData[i];
-            printf("%X ",value);
+            //printf("%X ",value);
+            printf("%d ",value);
         }
     
         printf("\n");

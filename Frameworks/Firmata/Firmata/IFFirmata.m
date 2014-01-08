@@ -57,14 +57,23 @@
     //[self.bleService sendData:buf count:3];
 }
 
--(void) sendCapabilitiesAndReportRequest{
+-(void) sendAnalogMappingRequest{
     NSInteger len = 0;
     
-    uint8_t buf[16];
+    uint8_t buf[3];
     
     buf[len++] = START_SYSEX;
     buf[len++] = ANALOG_MAPPING_QUERY;
     buf[len++] = END_SYSEX;
+    
+    [self.communicationModule sendData:buf count:3];
+}
+
+-(void) sendCapabilitiesRequest{
+    
+    NSInteger len = 0;
+    uint8_t buf[9];
+    
     buf[len++] = START_SYSEX;
     buf[len++] = CAPABILITY_QUERY;
     buf[len++] = END_SYSEX;
@@ -74,8 +83,7 @@
         buf[len++] = 1;
     }
     
-    [self.communicationModule sendData:buf count:16];
-//    [self.bleService sendData:buf count:16];
+    [self.communicationModule sendData:buf count:9];
 }
 
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
@@ -297,7 +305,7 @@
             
 		} else if (parseBuf[1] == ANALOG_MAPPING_RESPONSE) {
             
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveAnalogMappingResponse:length::length:)]){
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveAnalogMappingResponse:length:)]){
                 [self.delegate firmataController:self didReceiveAnalogMappingResponse:parseBuf length:parseCommandLength];
             }
             

@@ -14,12 +14,16 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeInt:self.number forKey:@"number"];
+    [aCoder encodeInt:self.numElements forKey:@"numElements"];
+    [aCoder encodeInt:self.sizePerElement forKey:@"sizePerElement"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super init];
     if(self){
         self.number = [aDecoder decodeIntegerForKey:@"number"];
+        self.numElements = [aDecoder decodeIntegerForKey:@"numElements"];
+        self.sizePerElement = [aDecoder decodeIntegerForKey:@"sizePerElement"];
     }
     return self;
 }

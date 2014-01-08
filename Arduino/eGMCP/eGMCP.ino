@@ -34,7 +34,7 @@ unsigned long previousMillisBle = 0;
 unsigned long bleInterval = 40;
 unsigned long reportInterval = 160;
 
-Servo servos[MAX_SERVOS];
+//Servo servos[MAX_SERVOS];
 
 /*==============================================================================
  * FUNCTIONS
@@ -80,9 +80,9 @@ void setPinModeCallback(byte pin, int mode)
     // the following if statements should reconfigure the pins properly
     myeGMCP.disableI2CPins();
   }
-  if (IS_PIN_SERVO(pin) && mode != MODE_SERVO && servos[PIN_TO_SERVO(pin)].attached()) {
-    servos[PIN_TO_SERVO(pin)].detach();
-  }
+  //if (IS_PIN_SERVO(pin) && mode != MODE_SERVO && servos[PIN_TO_SERVO(pin)].attached()) {
+   // servos[PIN_TO_SERVO(pin)].detach();
+  //}
   if (IS_PIN_ANALOG(pin)) {
     analogReportCallback(PIN_TO_ANALOG(pin), mode == MODE_ANALOG ? 1 : 0); // turn on/off reporting
   }
@@ -133,15 +133,15 @@ void setPinModeCallback(byte pin, int mode)
     }
     break;
   case MODE_SERVO:
-      Serial.print("servo enters");
-      
+      //Serial.print("servo enters");
+      /*
     if (IS_PIN_SERVO(pin)) {
       pinConfig[pin] = MODE_SERVO;
       if (!servos[PIN_TO_SERVO(pin)].attached()) {
           servos[PIN_TO_SERVO(pin)].attach(PIN_TO_DIGITAL(pin));
       }
     }
-    break;
+    break;*/
   case MODE_I2C:
     if (IS_PIN_I2C(pin)) {
       Serial.println("marking pin as i2c");
@@ -190,7 +190,7 @@ void analogWriteCallback(byte pin, int value)
       
     case MODE_SERVO:
       if (IS_PIN_SERVO(pin))
-        servos[PIN_TO_SERVO(pin)].write(value);
+        //servos[PIN_TO_SERVO(pin)].write(value);
       //pinState[pin] = value;
       break;
     case MODE_PWM:
@@ -243,6 +243,8 @@ void analogReportCallback(byte analogPin, int value)
     if(value == 0) {
       analogInputsToReport = analogInputsToReport &~ (1 << analogPin);
     } else {
+      //Serial.print("setting report for");
+      //Serial.println(analogPin);
       analogInputsToReport = analogInputsToReport | (1 << analogPin);
     }
   }

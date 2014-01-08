@@ -94,6 +94,7 @@
 - (IBAction)startTapped:(id)sender {
     
     self.reg.notifies = !self.reg.notifies;
+    [self.delegate i2cRegisterChangedNotifying:self.reg notifying:self.reg.notifies];
 }
 
 - (IBAction)sendTapped:(id)sender {

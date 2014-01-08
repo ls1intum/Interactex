@@ -75,7 +75,8 @@ typedef enum{
 -(void) reset;
 -(void) sendFirmwareRequest;
 -(void) sendResetRequest;
--(void) sendCapabilitiesAndReportRequest;
+-(void) sendAnalogMappingRequest;
+-(void) sendCapabilitiesRequest;
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length;
 -(void) sendPinQueryForPinNumber:(NSInteger) pinNumber;
 -(void) sendPinModeForPin:(NSInteger) pin mode:(IFPinMode) mode;

@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TangoHapps/classes/objects/software/THMusicPlayer.m"
-            timestampString = "406315386.896527"
+            filePath = "TangoHapps/classes/objects/layers/THProject.m"
+            timestampString = "406534254.058427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
-            landmarkName = "-stop"
+            startingLineNumber = "943"
+            endingLineNumber = "943"
+            landmarkName = "-cleanBoardPinsFor:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

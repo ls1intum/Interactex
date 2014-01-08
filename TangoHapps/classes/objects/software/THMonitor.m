@@ -44,7 +44,7 @@
 
 @implementation THMonitor
 
-float const kMonitorUpdateFrequency = 0.5f; //monitor updated every 0.5 seconds
+float const kMonitorUpdateFrequency = 0.1f; //monitor updated every 0.5 seconds
 float const kMonitorNewValueX = 75.0f;
 float const kMonitorMargin = 5;
 

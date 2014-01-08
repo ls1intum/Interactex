@@ -384,8 +384,9 @@ float const kScanningTimeout = 3.0f;
     service.delegate = self;
     service.shouldUseCRC = YES;
     
-    BOOL isYannic = [self.currentProject.currentBoard isKindOfClass:[THYannic class]];
-    service.shouldUseTurnBasedCommunication = !isYannic;
+    //BOOL isYannic = [self.currentProject.currentBoard isKindOfClass:[THYannic class]];
+    //service.shouldUseTurnBasedCommunication = !isYannic;
+    service.shouldUseTurnBasedCommunication = YES;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{
@@ -452,13 +453,14 @@ float const kScanningTimeout = 3.0f;
             uint8_t buf[2];
             [THClientHelper valueAsTwo7bitBytes:39 buffer:buf];
             [self.gmpController sendI2CWriteToAddress:24 reg:32 values:buf numValues:1];
+            NSLog(@"sending 24 32");
         }
         
         
         THI2CRegister * reg = [component.i2cComponent.registers objectAtIndex:0];
         [self.gmpController sendI2CStartReadingAddress:component.i2cComponent.address reg:reg.number size:6];
         
-        //NSLog(@"requesting %d %d",component.i2cComponent.address,reg.number);
+        NSLog(@"requesting %d %d",component.i2cComponent.address,reg.number);
     }
 }
 
@@ -506,7 +508,7 @@ float const kScanningTimeout = 3.0f;
 
 -(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
     
-    NSLog(@"digital msg for pin: %d",pin);
+    NSLog(@"digital msg for pin: %d %d",pin, value);
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     THBoardPin * pinObj = [project.currentBoard digitalPinWithNumber:pin];
@@ -518,7 +520,7 @@ float const kScanningTimeout = 3.0f;
 
 -(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
     
-    NSLog(@"analog msg for pin: %d",pin);
+    NSLog(@"analog msg for pin: %d %d",pin,value);
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     THBoardPin * pinObj = [project.currentBoard analogPinWithNumber:pin];

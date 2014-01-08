@@ -58,47 +58,25 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "SoftwareSerial.h"
-
 unsigned long currentMillis;        // store the current value from millis()
 unsigned long previousMillis;       // for comparison with currentMillis
 long interval = 100; 
-int count = 0;
-
-SoftwareSerial ss(2,3);
-
-void setup() 
-{
-  Serial.begin(9600);
-  ss.begin(19200);
     
-  Serial.println("Starting :)");
+void setup()
+{
+  Serial.begin(19200);
+  
 }
 
-/*constantly send data and suddenly receive something, sometimes received data is not what was sent
-*/
-
-void loop() 
-{
+void loop() {
   unsigned long currentMillis = millis();
 
-  while(ss.available()){
-    char val = ss.read();
-    Serial.print(val);
-    Serial.print(" ");
-   
-    if(count++ == 16){//the iOS side sends [100 ... 116]
-      count = 0;
-      Serial.println("");
-    }
-  }
-  
   if(currentMillis - previousMillis > interval) {
     previousMillis = currentMillis; 
     
-    for(int j = 100 ; j < 116 ; j++){
-      ss.write(j);
+    if(Serial.available() > 0){
+      char val = Serial.read();
+      Serial.print(val);
     }
   }
- 
 }

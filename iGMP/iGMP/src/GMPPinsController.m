@@ -44,10 +44,10 @@ float const kRequestTimeoutTime = 2.0f;
         [pin removeObserver:self forKeyPath:@"value"];
         [pin removeObserver:self forKeyPath:@"updatesValues"];
     }
-    
+    /*
     for (GMPI2CComponent * component in self.i2cComponents) {
         [component removeObserver:self forKeyPath:@"notifies"];
-    }
+    }*/
     
     [self.digitalPins removeAllObjects];
     [self.analogPins removeAllObjects];
@@ -310,7 +310,7 @@ float const kRequestTimeoutTime = 2.0f;
 
 -(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
     
-    NSLog(@"analog msg for pin: %d",pin);
+    NSLog(@"analog msg for pin: %d %d",pin, value);
     /*
     GMPPin * lastDigital = [self.digitalPins objectAtIndex:self.digitalPins.count-1];
     GMPPin * analogPin =[self.analogPins objectAtIndex:pin - lastDigital.number + 1 reports:pin.updatesValues];

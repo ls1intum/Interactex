@@ -88,14 +88,12 @@
 -(void) addRegisterObservers{
     for (GMPI2CRegister * reg in self.component.registers) {
         [reg addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-        [reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
 
 -(void) removeRegisterObservers{
     for (GMPI2CRegister * reg in self.component.registers) {
         [reg removeObserver:self forKeyPath:@"value"];
-        [reg removeObserver:self forKeyPath:@"notifies"];
     }
 }
 
@@ -120,13 +118,11 @@
     newRegister.numElements = 3;
     newRegister.sizePerElement = 2;
     
-    
     [self.delegate i2cComponent:self.component addedRegister:newRegister];
     
     //[self.component addRegister:newRegister];
     
     [newRegister addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-    [newRegister addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
 
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.component.registers.count-1 inSection:0];
     [self.table insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
@@ -246,6 +242,17 @@
     self.removingRegister = reg;
 }
 
+-(void) i2cRegisterChangedNotifying:(GMPI2CRegister*) reg notifying:(BOOL) notifying{
+
+    if(reg.notifies){
+        [self.delegate i2cComponent:self.component startedNotifyingRegister:reg];
+        [self handleStartedNotifyingRegister:reg];
+    } else {
+        [self.delegate i2cComponent:self.component stoppedNotifyingRegister:reg];
+        [self handleStoppedNotifyingRegister:reg];
+    }
+}
+
 #pragma mark - Remove ActionSheet
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -275,13 +282,6 @@
         NSInteger idx = [self.component.registers indexOfObject:object];
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
         [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    } else if([keyPath isEqualToString:@"notifies"]){
-        GMPI2CRegister * reg = object;
-        if(reg.notifies){
-            [self handleStartedNotifyingRegister:reg];
-        } else {
-            [self handleStoppedNotifyingRegister:reg];
-        }
     }
     
 }

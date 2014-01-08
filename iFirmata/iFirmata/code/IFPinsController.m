@@ -79,9 +79,10 @@
     
     int port = pin.number / 8;
     int value = 0;
-    for (int i=0; i<8; i++) {
+    for (int i=0; i < 8; i++) {
         int pinIdx = port * 8 + i - firstPinIdx;
-        if(pinIdx >= self.digitalPins.count){
+//        NSLog(@"%d %d",pinIdx,self.digitalPins.count);
+        if(pinIdx >= (int)self.digitalPins.count){
             break;
         }
         if(pinIdx >= 0){
@@ -224,7 +225,7 @@
     _firmataName = [NSString stringWithUTF8String:name];
     [self.delegate firmata:self didUpdateTitle:self.firmataName];
     
-    [self.firmataController sendCapabilitiesAndReportRequest];
+    [self.firmataController sendAnalogMappingRequest];
 }
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
@@ -300,6 +301,8 @@
         pinInfo[pin].analogChannel = buffer[i];
         pin++;
     }
+    
+    [self.firmataController sendCapabilitiesRequest];
 }
 
 -(void) makePinQueryForSubsequentPinsStartingAtPin:(int) pin{

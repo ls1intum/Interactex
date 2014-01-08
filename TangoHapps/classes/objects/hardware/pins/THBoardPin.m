@@ -53,6 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadBoardPin{
     
+    self.mode = kPinModeUndefined;
     _attachedElementPins = [NSMutableArray array];
     [self addPinObserver];
 }
@@ -174,20 +175,20 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self.attachedElementPins removeAllObjects];
     }
-    /*
+    
     if(self.type != kPintypeMinus && self.type != kPintypePlus && self.mode == kPinModeUndefined){
         self.mode = pin.defaultBoardPinMode;
-    }*/
+    }
     
     [self.attachedElementPins addObject:pin];
 }
 
 -(void) deattachPin:(THElementPin*) pin{
     [self.attachedElementPins removeObject:pin];
-    /*
-    if(_attachedPins.count == 0){
+    
+    if(self.attachedElementPins.count == 0){
         self.mode = kPinModeUndefined;
-    }*/
+    }
 }
 
 -(BOOL) isClotheObjectAttached:(THHardwareComponent*) object{

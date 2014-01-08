@@ -69,15 +69,17 @@ MainViewController.m
 
 - (IBAction) sendTapped:(id)sender {
     uint8_t buf[16];
-    for (int i = 0; i < 16; i++) {
-        buf[i] = (uint8_t)i+65;
+    for (int i = 0; i < 15; i++) {
+        buf[i] = (uint8_t)65+i;
         
     }
+    buf[15] = '\n';
+    
     BLEService * service = [BLEDiscovery sharedInstance].connectedService;
     if(!service){
         NSLog(@"no service!");
     }
-    [service writeToTx:[NSData dataWithBytes:buf length:16]];
+    [service writeToTx:[NSData dataWithBytes:buf length:1]];
 }
 
 -(void) updateConnectedLabel{
@@ -98,7 +100,7 @@ MainViewController.m
         text = [text stringByAppendingFormat:@"%d ",value];
     }
     
-    NSLog(@"%@",text);
+    //NSLog(@"%@",text);
     
     self.receivedLabel.text = text;
 }

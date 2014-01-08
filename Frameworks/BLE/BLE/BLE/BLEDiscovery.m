@@ -119,6 +119,7 @@ static BLEDiscovery * sharedInstance;
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     
 	[centralManager scanForPeripheralsWithServices:nil options:options];
+    [self.foundPeripherals removeAllObjects];
 }
 
 -(void) startScanningForSupportedUUIDs{
@@ -127,6 +128,9 @@ static BLEDiscovery * sharedInstance;
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     
 	[centralManager scanForPeripheralsWithServices:uuidArray options:options];
+	//[centralManager scanForPeripheralsWithServices:nil options:options];
+    
+    [self.foundPeripherals removeAllObjects];
 }
 
 -(void) startScanningForUUIDString:(NSString *)uuidString {

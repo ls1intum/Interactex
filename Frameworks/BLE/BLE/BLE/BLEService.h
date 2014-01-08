@@ -7,7 +7,7 @@
 #define TX_BUFFER_SIZE 16
 
 
-#define kBleNumSupportedServices 2
+#define kBleNumSupportedServices 3
 
 extern NSString * const kBleSupportedServices[kBleNumSupportedServices];
 extern NSString * const kBleCharacteristics[kBleNumSupportedServices][2];
@@ -75,13 +75,13 @@ typedef enum{
     
 }
 
-@property (nonatomic, readonly) CBCharacteristic * rxCharacteristic;
-@property (nonatomic, readonly) CBCharacteristic * txCharacteristic;
+@property (nonatomic, strong) CBCharacteristic * rxCharacteristic;
+@property (nonatomic, strong) CBCharacteristic * txCharacteristic;
 
 @property (nonatomic, readonly) CBUUID * uuid;
 
-@property (nonatomic, readonly) NSString * tx;
-@property (nonatomic, readonly) NSString * rx;
+@property (nonatomic, readonly) NSString * txString;
+@property (nonatomic, readonly) NSString * rxString;
 
 @property (nonatomic) NSArray * currentCharacteristicUUIDs;
 

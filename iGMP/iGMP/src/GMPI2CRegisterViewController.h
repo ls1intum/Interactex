@@ -16,6 +16,9 @@
 -(void) i2cRegister:(GMPI2CRegister*) reg changedNumber:(NSInteger) newNumber;
 -(void) i2cRegister:(GMPI2CRegister*) reg wroteData:(NSString*) data;
 -(void) i2cRegisterRemoved:(GMPI2CRegister*) reg;
+
+-(void) i2cRegisterChangedNotifying:(GMPI2CRegister*) reg notifying:(BOOL) notifying;
+
 @end
 
 @interface GMPI2CRegisterViewController : UIViewController <UIActionSheetDelegate>

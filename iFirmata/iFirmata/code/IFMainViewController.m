@@ -58,6 +58,22 @@ const NSInteger IFDiscoveryTime = 3;
     // Dispose of any resources that can be recreated.
 }
 
+-(void) connectToPeripheralAtIndexPath:(NSIndexPath*) indexPath{
+
+    CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:indexPath.row];
+    
+    if(!peripheral.isConnected){
+        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
+        
+        IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:indexPath];
+        [cell.activityIndicator startAnimating];
+        connectingRow = indexPath;
+        isConnecting = YES;
+        
+        NSTimeInterval interval = 7.0f;
+        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(stopConnecting) userInfo:nil repeats:NO];
+    }
+}
 #pragma mark TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -82,37 +98,12 @@ const NSInteger IFDiscoveryTime = 3;
 #pragma mark TableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSInteger row = self.table.indexPathForSelectedRow.row;
-    CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
-    
-    if(!peripheral.isConnected){
-        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
-        
-        IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:indexPath];
-        [cell.activityIndicator startAnimating];
-        connectingRow = indexPath;
-        
-        NSTimeInterval interval = 7.0f;
-        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(stopConnecting) userInfo:nil repeats:NO];
-    }
+
+    [self connectToPeripheralAtIndexPath:self.table.indexPathForSelectedRow];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"toDeviceMenuSegue"]){
-        /*
-        NSInteger row = self.table.indexPathForSelectedRow.row;
-        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];*/
-        
-        /*
-        IFDeviceMenuViewController * deviceViewController = segue.destinationViewController;
-        
-        deviceViewController.currentPeripheral = peripheral;*/
-        
-        /*
-        if(!deviceViewController.currentPeripheral.isConnected){
-            [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
-        }*/
     }
 }
 
@@ -120,28 +111,29 @@ const NSInteger IFDiscoveryTime = 3;
 
 -(void) disconnect{
     
-    isDisconnecting = YES;
     self.table.allowsSelection = NO;
     [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
 }
 
 -(void) stopConnecting{
+    
+    [connectingTimer invalidate];
+    connectingTimer = nil;
+    
     NSLog(@"stopping connection");
+    isConnecting = NO;
+    
     if([BLEDiscovery sharedInstance].currentPeripheral){
         [self disconnect];
-        /*
-         NSInteger row = connectingRow.row;
-         CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:row];
-         [[BLEDiscovery sharedInstance] cancelConnectionToPeripheral:peripheral];*/
-        
-        [connectingTimer invalidate];
-        connectingTimer = nil;
     }
 }
 
 #pragma mark BleDiscoveryDelegate
 
 - (void) discoveryDidRefresh {
+    [self.table reloadData];
+    
+    NSLog(@"refreshed disc");
 }
 
 - (void) peripheralDiscovered:(CBPeripheral*) peripheral {
@@ -156,25 +148,37 @@ const NSInteger IFDiscoveryTime = 3;
 
 -(void) bleServiceDidConnect:(BLEService *)service{
     service.delegate = self;
+    isConnecting = NO;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService *)service{
-
-    self.table.allowsSelection = YES;
-    
-    isDisconnecting = NO;
-    
-    if(connectingRow){
-        [self.table deselectRowAtIndexPath:connectingRow animated:YES];
-        IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
-        [cell.activityIndicator stopAnimating];
-    }
+    NSLog(@"disconnected");
     
     [connectingTimer invalidate];
     connectingTimer = nil;
+    
+    if(isConnecting){
+        
+        [self connectToPeripheralAtIndexPath:connectingRow];
+        
+    } else {
+        
+        self.table.allowsSelection = YES;
+        
+        if(connectingRow){
+            [self.table deselectRowAtIndexPath:connectingRow animated:YES];
+            IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
+            [cell.activityIndicator stopAnimating];
+        }
+    }
+    
+    if(self.navigationController.topViewController != self){
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
 }
 
 -(void) bleServiceIsReady:(BLEService *)service{
+    NSLog(@"ready");
     
     [connectingTimer invalidate];
     connectingTimer = nil;
@@ -211,7 +215,8 @@ const NSInteger IFDiscoveryTime = 3;
     
     isRefreshing = YES;
     [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
-
+    [self.table reloadData];
+    
     // Show the header
     [UIView animateWithDuration:0.3 animations:^{
         self.table.contentInset = UIEdgeInsetsMake(IFRefreshHeaderHeight, 0, 0, 0);
