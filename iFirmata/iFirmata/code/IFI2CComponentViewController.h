@@ -32,7 +32,6 @@
 
 @property (nonatomic, weak) IFI2CComponent * component;
 @property (nonatomic, weak) id<IFI2CComponentDelegate> delegate;
-
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -40,7 +39,6 @@
 @property (strong, nonatomic) IFI2CRegister *removingRegister;
 @property (strong, nonatomic) NSIndexPath *removingRegisterPath;
 
-- (IBAction)removeTapped:(id)sender;
-- (IBAction) addRegisterTapped:(id)sender;
+- (IBAction)editTapped:(id)sender;
 
 @end

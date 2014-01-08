@@ -113,15 +113,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addRegisterTapped:(id)sender {
+-(void) addRegister{
     
     IFI2CRegister * newRegister = [[IFI2CRegister alloc] init];
     newRegister.number = 32;
     newRegister.size = 3;
     
     [self.delegate i2cComponent:self.component addedRegister:newRegister];
-    
-    //[self.component addRegister:newRegister];
     
     [newRegister addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     [newRegister addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
@@ -150,8 +148,23 @@
     return YES;
 }
 
-#pragma mark - Table
+#pragma mark - TableDelegate
 
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        IFI2CRegister * reg = [self.component.registers objectAtIndex:indexPath.row];
+        [reg removeObserver:self forKeyPath:@"value"];
+        [reg removeObserver:self forKeyPath:@"notifies"];
+        
+        [self.delegate i2cComponent:self.component removedRegister:reg];
+        
+        [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+#pragma mark - TableDataAource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView  {
     return 1;
@@ -247,19 +260,31 @@
 #pragma mark - Remove ActionSheet
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
     if(buttonIndex == 0){
-        [self.delegate i2cComponentRemoved:self.component];
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        [self addRegister];
+        
+    } else if(buttonIndex == 1){
+        self.table.editing = YES;
     }
 }
 
-- (IBAction)removeTapped:(id)sender {
+- (IBAction)editTapped:(id)sender {
     
+    NSString * option2;
+    
+    if(self.table.editing){
+        option2 = @"Stop Registers";
+    } else {
+        option2 = @"Edit Registers";
+    }
+        
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:@"Remove Component"
-                                                    otherButtonTitles:nil];
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Add Register", option2, nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     

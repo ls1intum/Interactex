@@ -23,8 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    defaultButtonColor = [self.startButton titleColorForState:UIControlStateNormal];
           
     CGRect frame = self.registerTextField.frame;
     frame.size.height = IFTextFieldHeight;
@@ -76,34 +74,16 @@
     //self.sizeTextField.text = [NSString stringWithFormat:@"%d",self.reg.size];
 }
 
--(void) updateStartButton{
-    if(self.reg.notifies){
-        [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [self.startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    } else{
-        [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
-        [self.startButton setTitleColor:defaultButtonColor forState:UIControlStateNormal];
-    }
-}
-
 -(void) updateValueLabel{
 
     self.valueLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:self.reg];
 }
 
-- (IBAction)startTapped:(id)sender {
-    
+- (IBAction)startSwitchChanged:(id)sender {
     [self.reg removeObserver:self forKeyPath:@"notifies"];
-    self.reg.notifies = !self.reg.notifies;
+    self.reg.notifies = self.startSwitch.on;
     [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
-    /*
-    if(self.reg.notifies){
-        [self.delegate i2cRegisterStartedNotifying:self.reg];
-    } else {
-        [self.delegate i2cRegisterStoppedNotifying:self.reg];
-    }*/
     
-    [self updateStartButton];
     [self updateValueLabel];
 }
 
@@ -128,7 +108,6 @@
     [self updateTitle];
     [self updateRegisterText];
     [self updateSizeText];
-    [self updateStartButton];
     [self updateValueLabel];
 }
 
@@ -174,31 +153,8 @@
     if([keyPath isEqualToString:@"value"]){
         [self updateValueLabel];
     } else if([keyPath isEqualToString:@"notifies"]){
-        [self updateStartButton];
         [self updateValueLabel];
     }
-}
-
-#pragma mark - Remove ActionSheet
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 0){
-        [self.delegate i2cRegisterRemoved:self.reg];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-- (IBAction)removeTapped:(id)sender {
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:@"Remove Register"
-                                                    otherButtonTitles:nil];
-    
-    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-    
-    [actionSheet showInView:[self view]];
 }
 
 @end

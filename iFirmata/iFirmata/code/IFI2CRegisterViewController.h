@@ -15,7 +15,6 @@
 
 -(void) i2cRegister:(IFI2CRegister*) reg changedNumber:(NSInteger) newNumber;
 -(void) i2cRegister:(IFI2CRegister*) reg wroteData:(NSString*) data;
--(void) i2cRegisterRemoved:(IFI2CRegister*) reg;
 @end
 
 @interface IFI2CRegisterViewController : UIViewController <UIActionSheetDelegate>
@@ -27,14 +26,13 @@
 @property (weak, nonatomic) id<IFI2CRegisterDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIView *readView;
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UISwitch *startSwitch;
+
 @property (weak, nonatomic) IBOutlet UITextField *registerTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sendTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sizeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
-- (IBAction)startTapped:(id)sender;
+- (IBAction)startSwitchChanged:(id)sender;
 - (IBAction)sendTapped:(id)sender;
-- (IBAction)removeTapped:(id)sender;
-
 @end

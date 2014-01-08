@@ -16,6 +16,8 @@
 #import "IFFirmataCommunicationModule.h"
 #import "IFFirmataBLECommunicationModule.h"
 #import "IFI2CRegister.h"
+#import "IFCharacteristicDetailsViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @implementation IFViewController
 
@@ -103,27 +105,59 @@
 
 -(void) firmataDidUpdateDigitalPins:(IFPinsController *)firmataController{
     [self.table reloadData];
-    /*
-    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:0];
-    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
+    
+    //NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:0];
+    //[self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void) firmataDidUpdateAnalogPins:(IFPinsController *)firmataController{
-    [self.table reloadData];/*
-    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:1];
-    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];*/
+    [self.table reloadData];
+    
+    //NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:1];
+    //[self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void) firmataDidUpdateI2CComponents:(IFPinsController *)firmataController{
-
-    //[self.table reloadData];
     
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:2];
-    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
+    [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void) firmata:(IFPinsController *)firmataController didUpdateTitle:(NSString *)title{
     self.title = title;
+}
+
+#pragma mark TableViewDelegate
+
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == kTableGroupIdxCharacteristics){
+        [self performSegueWithIdentifier:@"toCharacteristicDetailsSegue" sender:self];
+    }
+}
+
+-(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 2){
+        return YES;
+    }
+    return NO;
+}
+
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:indexPath.row];/*
+        [component removeObserver:self forKeyPath:@"value"];
+        [component removeObserver:self forKeyPath:@"notifies"];*/
+        
+        self.firmataPinsController.delegate = nil;
+        [self.firmataPinsController removeI2CComponent:component];
+        self.firmataPinsController.delegate = self;
+        
+        self.removingComponent = component;
+        
+        [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark TableViewDataSource
@@ -137,9 +171,10 @@
         return @"Digital";
     } else if(section == 1){
         return @"Analog";
-    } else {
+    } else if(section == 2){
         return @"I2C";
     }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -171,20 +206,28 @@
         }
         
         ((IFPinCell*)cell).pin = pin;
-    } else {
+    } else if(indexPath.section == 2){
         
         NSInteger idx = indexPath.row;
         IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:idx];
         
          cell = [self.table dequeueReusableCellWithIdentifier:@"i2cCell"];
         ((IFI2CComponentCell*) cell).component = component;
-    }
+    } /*else {
+        
+        NSInteger idx = indexPath.row;
+        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:idx];
+        
+        cell = [self.table dequeueReusableCellWithIdentifier:@"characteristicsCell"];
+
+    }*/
     
     return cell;
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if( [segue.identifier isEqualToString:@"toI2CDeviceSegue"]){
+    
+    if([segue.identifier isEqualToString:@"toI2CDeviceSegue"]){
         IFI2CComponentViewController * viewController = segue.destinationViewController;
         viewController.delegate = self;
         
@@ -192,8 +235,22 @@
         viewController.component = cell.component;
         
         goingToI2CScene = YES;
+        
+    } else if([segue.identifier isEqualToString:@"toCharacteristicDetailsSegue"]){
+        
+        NSInteger row = self.table.indexPathForSelectedRow.row;
+        CBCharacteristic * characteristic = [self.characteristics objectAtIndex:row];
+        if(characteristic){
+            
+            BLEService * bleService = [BLEDiscovery sharedInstance].connectedService;
+            IFCharacteristicDetailsViewController * viewController = segue.destinationViewController;
+            viewController.title = [bleService characteristicNameFor:characteristic];
+            viewController.currentCharacteristic = characteristic;
+            viewController.bleService = bleService;
+        }
     }
 }
+
 
 #pragma mark - i2cComponent Delegate
 
@@ -224,7 +281,6 @@
 -(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg{
     NSInteger value = data.integerValue;
     [self.firmataPinsController.firmataController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
-    
 }
 
 -(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg{
@@ -253,12 +309,20 @@
         
     } else if(buttonIndex == 1){
         
-        [self.firmataPinsController.firmataController sendResetRequest];
-        [self.firmataPinsController reset];
-        [self.firmataPinsController.firmataController sendFirmwareRequest];
+        self.table.editing = !self.table.editing;
+        
+        if(self.table.editing){
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+            [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }
     }
+}
+
+-(void) resetFirmata{
     
-    NSLog(@"%d",buttonIndex);
+     [self.firmataPinsController.firmataController sendResetRequest];
+     [self.firmataPinsController reset];
+     [self.firmataPinsController.firmataController sendFirmwareRequest];
 }
 
 -(void) addI2CComponent {
@@ -275,16 +339,23 @@
 
 - (IBAction)optionsMenuTapped:(id)sender {
     
+    NSString * option2;
+    
+    if(self.table.editing){
+        option2 = @"Stop Editing I2C Components";
+    } else {
+        option2 = @"Edit I2C Components";
+    }
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Add I2C Component",@"Reset Firmata", nil];
+                                                    otherButtonTitles:@"Add I2C Component",option2, nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     
     [actionSheet showInView:[self view]];
-    
 }
 
 @end

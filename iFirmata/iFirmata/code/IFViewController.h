@@ -13,6 +13,13 @@
 @class IFPinsController;
 @class CBPeripheral;
 
+enum{
+    kTableGroupIdxDigital,
+    kTableGroupIdxAnalog,
+    kTableGroupIdxI2C,
+    kTableGroupIdxCharacteristics
+};
+
 @interface IFViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
 {
     BOOL connected;
@@ -21,6 +28,7 @@
 
 @property (weak, nonatomic) IFPinsController * firmataPinsController;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) NSMutableArray * characteristics;
 
 @property (strong, nonatomic) IFI2CComponent *removingComponent;
 @property (strong, nonatomic) NSIndexPath *removingComponentPath;

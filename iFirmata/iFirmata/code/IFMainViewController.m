@@ -7,7 +7,6 @@
 //
 
 #import "IFMainViewController.h"
-#import "IFDeviceMenuViewController.h"
 #import "IFDeviceCell.h"
 
 @implementation IFMainViewController
@@ -147,8 +146,9 @@ const NSInteger IFDiscoveryTime = 3;
 #pragma mark BleServiceProtocol
 
 -(void) bleServiceDidConnect:(BLEService *)service{
+    NSLog(@"connected");
+    
     service.delegate = self;
-    isConnecting = NO;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService *)service{
@@ -178,7 +178,6 @@ const NSInteger IFDiscoveryTime = 3;
 }
 
 -(void) bleServiceIsReady:(BLEService *)service{
-    NSLog(@"ready");
     
     [connectingTimer invalidate];
     connectingTimer = nil;
@@ -186,9 +185,7 @@ const NSInteger IFDiscoveryTime = 3;
     IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:connectingRow];
     [cell.activityIndicator stopAnimating];
     
-    [self performSegueWithIdentifier:@"toDeviceMenuSegue" sender:self];
-    
-    //[service clearRx];
+    [self performSegueWithIdentifier:@"segueToFirmata" sender:self];
 }
 
 -(void) bleServiceDidReset {
