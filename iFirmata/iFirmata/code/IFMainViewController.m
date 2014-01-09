@@ -109,7 +109,7 @@ const NSInteger IFDiscoveryTime = 3;
 #pragma mark Connection
 
 -(void) disconnect{
-    
+    shouldDisconnect = YES;
     self.table.allowsSelection = NO;
     [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
 }
@@ -147,7 +147,7 @@ const NSInteger IFDiscoveryTime = 3;
 
 -(void) bleServiceDidConnect:(BLEService *)service{
     NSLog(@"connected");
-    
+    shouldDisconnect = NO;
     service.delegate = self;
 }
 
@@ -172,12 +172,13 @@ const NSInteger IFDiscoveryTime = 3;
         }
     }
     
-    if(self.navigationController.topViewController != self){
+    if(!shouldDisconnect && self.navigationController.topViewController != self){
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
 }
 
 -(void) bleServiceIsReady:(BLEService *)service{
+    isConnecting = NO;
     
     [connectingTimer invalidate];
     connectingTimer = nil;

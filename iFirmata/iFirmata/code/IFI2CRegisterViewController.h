@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IFI2CRegister * reg;
 @property (weak, nonatomic) id<IFI2CRegisterDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet UIView *readView;
 @property (weak, nonatomic) IBOutlet UISwitch *startSwitch;
 
 @property (weak, nonatomic) IBOutlet UITextField *registerTextField;

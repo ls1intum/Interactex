@@ -30,7 +30,7 @@
     return self;
 }
 
-- (void)viewDidLoad {
+-(void) viewDidLoad {
     
     [super viewDidLoad];
     
@@ -50,8 +50,10 @@
     commModule.firmataController = self.firmataPinsController.firmataController;
     
     if(self.firmataPinsController.analogPins.count == 0 && self.firmataPinsController.digitalPins.count == 0){
-        
-        [self.firmataPinsController.firmataController sendFirmwareRequest];
+
+        if([BLEDiscovery sharedInstance].currentPeripheral.isConnected){
+            [self.firmataPinsController.firmataController sendFirmwareRequest];
+        }
     }
     
     [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
@@ -65,12 +67,7 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
-    if(!goingToI2CScene){
-        
-        [self.firmataPinsController stopReportingI2CComponents];
-        [self.firmataPinsController stopReportingAnalogPins];
-        [self persistObjects];
-    }
+    [self persistObjects];
     goingToI2CScene = NO;
 }
 

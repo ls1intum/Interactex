@@ -358,7 +358,7 @@
 -(void) firmataController:(IFFirmata*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
     
     uint8_t address = buffer[2] + (buffer[3] << 7);
-    NSInteger registerNumber = buffer[4];
+    NSInteger registerNumber = buffer[4] + 128;
     
     //NSLog(@"addr: %d reg %d ",address,registerNumber);
     if(!self.firmataController.startedI2C){

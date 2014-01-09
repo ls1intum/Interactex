@@ -104,7 +104,7 @@ void readAcc() {
 
 void setup() {
   
-  Serial.begin(9600);
+  Serial.begin(57600);
   /*
   Serial.print(" first: ");
   Serial.print(ACC_ADDRESS_SA0_A_LOW);//addr

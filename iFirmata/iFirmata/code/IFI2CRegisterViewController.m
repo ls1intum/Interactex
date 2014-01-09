@@ -50,9 +50,6 @@
     self.valueLabel.layer.cornerRadius = 5.0f;
     self.valueLabel.layer.borderWidth = 1.0f;
     
-    self.readView.layer.cornerRadius = 5.0f;
-    self.readView.layer.borderWidth = 1.0f;
-    
 }
 
 -(NSString*) titleString{
@@ -104,11 +101,16 @@
     [self.reg removeObserver:self forKeyPath:@"notifies"];
 }
 
+-(void) updateReadContinuouslySwitch{
+    self.startSwitch.on = NO;
+}
+
 -(void) reloadUI{
     [self updateTitle];
     [self updateRegisterText];
     [self updateSizeText];
     [self updateValueLabel];
+    [self updateReadContinuouslySwitch];
 }
 
 -(void) setRegister:(IFI2CRegister *)reg{

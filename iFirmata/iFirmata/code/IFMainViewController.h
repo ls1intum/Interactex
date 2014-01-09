@@ -24,6 +24,7 @@ extern const NSInteger IFDiscoveryTime;
     BOOL shouldRefreshOnRelease;
     BOOL isRefreshing;
     BOOL isConnecting;
+    BOOL shouldDisconnect;
     
     NSIndexPath * connectingRow;
     
