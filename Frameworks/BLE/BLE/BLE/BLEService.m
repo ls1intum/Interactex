@@ -20,7 +20,7 @@ NSString * const kBleCharacteristics[kBleNumSupportedServices][2] = {
     {@"713D0002-503E-4C75-BA94-3148F18D941E",@"713d0003-503e-4C75-BA94-3148F18D941E"}};//RX; TX
 
 
-const NSTimeInterval kFlushInterval = 1.0f/20.0f;
+const NSTimeInterval kFlushInterval = 1.0f/10.0f;
 const NSTimeInterval kBleSendOverCommandInterval = 1.0f/10.0f;
 
 @implementation BLEService

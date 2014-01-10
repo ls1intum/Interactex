@@ -239,10 +239,10 @@ NSString * const kMusicPlayerProjectName = @"Music Player";
     [project registerAction:turnOff2 forEvent:event2];
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a LED to pin 4 and a button to pin 5";
-    label.position = CGPointMake(150, 100);
-    label.width = 200;
-    label.height = 100;
+    label.text = @"LED to pin 4, button to pin 5";
+    label.position = CGPointMake(170, 100);
+    label.width = 240;
+    label.height = 80;
     label.numLines = 2;
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label, nil];
@@ -285,9 +285,9 @@ NSString * const kMusicPlayerProjectName = @"Music Player";
     touchpad.position = CGPointMake(150, 300);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a PWM element to pin 9";
+    label.text = @"connect a Buzzer to pin 10";
     label.position = CGPointMake(150, 50);
-    label.width = 200;
+    label.width = 250;
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button1, button2, touchpad, label, nil];
     
@@ -314,7 +314,7 @@ NSString * const kMusicPlayerProjectName = @"Music Player";
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.boards = [NSMutableArray arrayWithObject:lilypad];
     
-    THBoardPin * lilypinBuzzer = [lilypad digitalPinWithNumber:9];
+    THBoardPin * lilypinBuzzer = [lilypad digitalPinWithNumber:10];
     lilypinBuzzer.mode = kPinModePWM;
     THElementPin * buzzerPin = [buzzer.pins objectAtIndex:0];
     [lilypinBuzzer attachPin:buzzerPin];

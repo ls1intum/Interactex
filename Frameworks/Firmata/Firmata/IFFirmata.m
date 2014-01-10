@@ -104,7 +104,7 @@
 //    [self.bleService sendData:buf count:bufLength];
 }
 
--(void) sendPinQueryForPinNumber:(NSInteger) pinNumber{
+-(void) sendPinModeRequestForPin:(NSInteger) pinNumber{
     
     uint8_t buf[4];
     buf[0] = START_SYSEX;
@@ -140,6 +140,20 @@
     }
 }
 
+-(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value{
+    
+    uint8_t buf[3];
+    buf[0] = 0x90 | port;
+    buf[1] = value & 0x7F;
+    buf[2] = (value >> 7) & 0x7F;
+    
+    [self.communicationModule sendData:buf count:3];
+}
+
+-(void) sendDigitalOutputForPin:(NSInteger) pin value:(NSInteger) value{
+    
+}
+
 -(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value{
     
 	if (pin <= 15 && value <= 16383) {
@@ -172,16 +186,6 @@
      }*/
 }
 
--(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value{
-    
-    uint8_t buf[3];
-    buf[0] = 0x90 | port;
-    buf[1] = value & 0x7F;
-    buf[2] = (value >> 7) & 0x7F;
-    
-    [self.communicationModule sendData:buf count:3];
-}
-
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
     
     uint8_t buf[2];
@@ -191,6 +195,7 @@
     [self.communicationModule sendData:buf count:2];
     //[self.communicationModule sendData:buf count:2];
 }
+
 
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size{
     
@@ -224,22 +229,23 @@
     //[self.communicationModule sendData:buf count:5];
 }
 
--(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg {
+-(void) sendI2CWriteToAddress:(NSInteger) address reg:(NSInteger) reg bytes:(uint8_t*) bytes numBytes:(NSInteger) numBytes{
     
     [self checkStartI2C];
     
-    uint8_t buf[9];
-    buf[0] = START_SYSEX;
-    buf[1] = I2C_REQUEST;
-    buf[2] = address;//compass address = 24
-    buf[3] = I2C_WRITE;
-    buf[4] = reg;//compass register = 40
-    buf[5] = 0;
-    buf[6] = value;
-    buf[7] = 0;
-    buf[8] = END_SYSEX;
+    uint8_t buf[7 + numBytes];
+    NSInteger bufCount = 0;
+    buf[bufCount++] = START_SYSEX;
+    buf[bufCount++] = I2C_REQUEST;
+    buf[bufCount++] = address;//compass address = 24
+    buf[bufCount++] = I2C_WRITE;
+    buf[bufCount++] = reg;//compass register = 40
+    buf[bufCount++] = 0;
+    memcpy(buf + bufCount, bytes, numBytes);
+    bufCount += numBytes;
+    buf[bufCount++] = END_SYSEX;
     
-    [self.communicationModule sendData:buf count:9];
+    [self.communicationModule sendData:buf count:bufCount];
     //[self.communicationModule sendData:buf count:9];
 }
 
@@ -293,14 +299,27 @@
         
 		if (parseBuf[1] == REPORT_FIRMWARE) {
             
-            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveFirmwareReport:length:)]){
-                [self.delegate firmataController:self didReceiveFirmwareReport:parseBuf length:parseCommandLength];
+            char name[140];
+            int len=0;
+            for (int i = 4; i < parseCommandLength-2; i += 2) {
+                name[len++] = (parseBuf[i] & 0x7F)
+                | ((parseBuf[i+1] & 0x7F) << 7);
+            }
+            name[len++] = '-';
+            name[len++] = parseBuf[2] + '0';
+            name[len++] = '.';
+            name[len++] = parseBuf[3] + '0';
+            name[len++] = 0;
+            self.firmwareName = [NSString stringWithUTF8String:name];
+            
+            if([self.delegate respondsToSelector:@selector(firmataController:didReceiveFirmwareName:)]){
+                [self.delegate firmataController:self didReceiveFirmwareName:self.firmwareName];
             }
             
 		} else if (parseBuf[1] == CAPABILITY_RESPONSE) {
             
             if([self.delegate respondsToSelector:@selector(firmataController:didReceiveCapabilityResponse:length:)]){
-            [self.delegate firmataController:self didReceiveCapabilityResponse:parseBuf length:parseCommandLength];
+                [self.delegate firmataController:self didReceiveCapabilityResponse:parseBuf length:parseCommandLength];
             }
             
 		} else if (parseBuf[1] == ANALOG_MAPPING_RESPONSE) {

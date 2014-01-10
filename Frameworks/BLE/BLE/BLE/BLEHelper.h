@@ -20,4 +20,6 @@
 
 +(NSString*) DataToString:(NSData*) data;
 
++(void) valueAsTwo7bitBytes:(NSInteger) value buffer:(uint8_t[2]) buf;
+
 @end

@@ -33,7 +33,7 @@ typedef enum{
 
 @optional
 
--(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareReport:(uint8_t*) buffer length:(NSInteger) length;
+-(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareName:(NSString*) name;
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveCapabilityResponse:(uint8_t*) buffer length:(NSInteger) length;
 
@@ -71,6 +71,7 @@ typedef enum{
 @property (nonatomic, weak) IFFirmataCommunicationModule * communicationModule;
 @property (nonatomic, weak) id<IFFirmataControllerDelegate> delegate;
 @property (nonatomic, readonly) BOOL startedI2C;
+@property (nonatomic, copy) NSString * firmwareName;
 
 -(void) reset;
 -(void) sendFirmwareRequest;
@@ -78,7 +79,7 @@ typedef enum{
 -(void) sendAnalogMappingRequest;
 -(void) sendCapabilitiesRequest;
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length;
--(void) sendPinQueryForPinNumber:(NSInteger) pinNumber;
+-(void) sendPinModeRequestForPin:(NSInteger) pinNumber;
 -(void) sendPinModeForPin:(NSInteger) pin mode:(IFPinMode) mode;
 -(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value;
 -(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value;
@@ -86,7 +87,7 @@ typedef enum{
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size;
 -(void) sendI2CConfigMessage;
 -(void) sendI2CStopReadingAddress:(NSInteger) address;
--(void) sendI2CWriteValue:(NSInteger) value toAddress:(NSInteger) address reg:(NSInteger) reg;
+-(void) sendI2CWriteToAddress:(NSInteger) address reg:(NSInteger) reg bytes:(uint8_t*) bytes numBytes:(NSInteger) numBytes;
 
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength;
 

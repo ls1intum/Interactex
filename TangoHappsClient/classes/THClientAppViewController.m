@@ -57,8 +57,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLabel.h"
 #import "THBLECommunicationModule.h"
 #import "THYannic.h"
+#import "IFFirmata.h"
+#import "THI2CMessage.h"
 
 float const kScanningTimeout = 3.0f;
+float const kConnectingTimeout = 7.0f;
 
 @implementation THClientAppViewController
 /*
@@ -175,8 +178,9 @@ float const kScanningTimeout = 3.0f;
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
     [BLEDiscovery sharedInstance].peripheralDelegate = self;
     
-    self.gmpController = [[GMP alloc] init];
-    self.gmpController.delegate = self;
+    self.firmataController = [[IFFirmata alloc] init];
+    self.firmataController.delegate = self;
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -185,8 +189,8 @@ float const kScanningTimeout = 3.0f;
     
     if(self.currentProject){
         
-        if([BLEDiscovery sharedInstance].foundPeripherals == 0){
-            [self startScanningDevices];
+        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0){
+            [self updateStartButtonToScan];
         } else {
             [self updateStartButtonToStart];
         }
@@ -221,30 +225,6 @@ float const kScanningTimeout = 3.0f;
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
-/*
--(void) updateStartButton{
-    
-    if([BLEDiscovery sharedInstance].connectedService){
-        
-        self.startButton.tintColor = [UIColor redColor];
-        self.startButton.title = @"Stop";
-        self.startButton.enabled = YES;
-        
-    } else {
-        
-        self.startButton.tintColor = nil;
-        self.startButton.title = @"Start";
-        
-        if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
-            
-            self.startButton.enabled = YES;
-            
-        } else {
-            
-            self.startButton.enabled = NO;
-        }
-    }
-}*/
 
 #pragma mark Pins Observing
 
@@ -300,9 +280,30 @@ float const kScanningTimeout = 3.0f;
 #pragma mark Ble Interaction
 
 -(void) connectToBle{
+    if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
+        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:0];
+        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
+        isConnecting = YES;
+        
+        NSTimeInterval interval = kConnectingTimeout;
+        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(connectingTimedOut) userInfo:nil repeats:NO];
+    }
+}
+
+-(void) connectingTimedOut{
     
-    CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:0];
-    [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
+    [connectingTimer invalidate];
+    connectingTimer = nil;
+    
+    NSLog(@"stopping connection");
+    isConnecting = NO;
+    
+    if([BLEDiscovery sharedInstance].currentPeripheral){
+        [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+    }
+    
+    shouldScan = YES;
+    [self updateStartButtonToScan];
 }
 
 -(void) disconnectFromBle{
@@ -381,52 +382,117 @@ float const kScanningTimeout = 3.0f;
 }
 
 -(void) bleServiceDidConnect:(BLEService*) service{
+    NSLog(@"connected");
     service.delegate = self;
-    service.shouldUseCRC = YES;
-    
-    //BOOL isYannic = [self.currentProject.currentBoard isKindOfClass:[THYannic class]];
-    //service.shouldUseTurnBasedCommunication = !isYannic;
-    service.shouldUseTurnBasedCommunication = YES;
+    service.shouldUseCRC = NO;
+    service.shouldUseTurnBasedCommunication = NO;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{
+    NSLog(@"disconnected");
+    
+    //[self startScanningDevices];
+    
+    [connectingTimer invalidate];
+    connectingTimer = nil;
     
     service.delegate = nil;
     service.dataDelegate = nil;
     
-    [self updateStartButtonToStart];
+    if(isConnecting){
+        
+        if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
+            NSLog(@"reconnecting");
+            [self connectToBle];
+        } else {
+            [self updateStartButtonToScan];
+        }
+    } else{
+        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0){
+            [self updateStartButtonToScan];
+        } else {
+            [self updateStartButtonToStart];
+        }
+    }
 }
 
 -(void) bleServiceIsReady:(BLEService*) service{
+    NSLog(@"is ready");
     
     [self updateStartButtonToStop];
     
+    [connectingTimer invalidate];
+    connectingTimer = nil;
+    
+    isConnecting = NO;
+    
     THBLECommunicationModule * bleCommunicationModule = [[THBLECommunicationModule alloc] init];
     bleCommunicationModule.bleService = service;
-    bleCommunicationModule.gmpController = self.gmpController;
+    bleCommunicationModule.firmataController = self.firmataController;
     
     service.dataDelegate = bleCommunicationModule;
     
-    self.gmpController.communicationModule = bleCommunicationModule;
+    self.firmataController.communicationModule = bleCommunicationModule;
     
     self.isRunningProject = YES;
     
     [self.currentProject startSimulating];
-    [self.gmpController sendFirmwareRequest];
+    [self.firmataController sendFirmwareRequest];
 }
 
 -(void) bleServiceDidReset {
     //_bleService = nil;
 }
 
-#pragma mark GMP Sending
+#pragma mark Sending
 
--(void) sendDigitalOutputForPin:(THBoardPin*) pin{
-    [self.gmpController sendDigitalOutputForPin:pin.number value:pin.value];
+-(NSMutableArray*) digitalPinsForBoard:(THBoard*) board{
+    NSMutableArray * array = [NSMutableArray array];
+    for (THBoardPin * pin in board.pins) {
+        if(pin.type == kPintypeDigital){
+            [array addObject:pin];
+        }
+    }
+    return array;
 }
 
+-(void) sendDigitalOutputForPin:(THBoardPin*) pin{
+    
+    THBoard * board = [self.currentProject.boards objectAtIndex:0];
+    NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
+    
+    THBoardPin * firstPin = [digitalPins objectAtIndex:0];
+    NSInteger firstPinIdx = firstPin.number;
+    
+    int port = pin.number / 8;
+    int value = 0;
+    for (int i=0; i < 8; i++) {
+        int pinIdx = port * 8 + i - firstPinIdx;
+
+        if(pinIdx >= (int)digitalPins.count){
+            break;
+        }
+        if(pinIdx >= 0){
+            THBoardPin * pin = [digitalPins objectAtIndex:pinIdx];
+            if (pin.mode == IFPinModeInput || pin.mode == IFPinModeOutput) {
+                if (pin.value) {
+                    value |= (1<<i);
+                }
+            }
+        }
+    }
+    
+    [self.firmataController sendDigitalOutputForPort:port value:value];
+    
+}
+/*
+-(void) sendDigitalOutputForPin:(THBoardPin*) pin{
+
+    [self.firmataController sendDigitalOutputForPin:pin.number value:pin.value];
+}*/
+
 -(void) sendAnalogOutputForPin:(THBoardPin*) pin{
-    [self.gmpController sendAnalogWriteForPin:pin value:pin.value];
+    [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
 }
 
 -(void) sendPinModes{
@@ -437,7 +503,7 @@ float const kScanningTimeout = 3.0f;
         
         if(pin.type == kPintypeDigital && pin.mode != kPinModeUndefined && pin.attachedElementPins.count > 0){
             
-            [self.gmpController sendPinModeForPin:pin.number mode:pin.mode];
+            [self.firmataController sendPinModeForPin:pin.number mode:pin.mode];
         }
     }
 }
@@ -448,19 +514,27 @@ float const kScanningTimeout = 3.0f;
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
     for (id<THI2CProtocol> component in project.currentBoard.i2cComponents) {
+
+        NSMutableArray * i2cMessages = [component startI2CMessages];
         
-        if(component.type == kI2CComponentTypeLSM){
-            uint8_t buf[2];
-            [THClientHelper valueAsTwo7bitBytes:39 buffer:buf];
-            [self.gmpController sendI2CWriteToAddress:24 reg:32 values:buf numValues:1];
-            NSLog(@"sending 24 32");
+        for (THI2CMessage * i2cMessage in i2cMessages) {
+            
+            switch (i2cMessage.type) {
+                    
+                case kI2CComponentMessageTypeWrite:
+
+                    [self.firmataController sendI2CWriteToAddress:component.i2cComponent.address reg:i2cMessage.reg bytes:(uint8_t*)i2cMessage.bytes.bytes numBytes:i2cMessage.bytes.length];
+                    break;
+                    
+                case kI2CComponentMessageTypeStartReading:
+                    
+                    [self.firmataController sendI2CStartReadingAddress:component.i2cComponent.address reg:i2cMessage.reg size:i2cMessage.readSize];
+                    break;
+                    
+                default:
+                    break;
+            }
         }
-        
-        
-        THI2CRegister * reg = [component.i2cComponent.registers objectAtIndex:0];
-        [self.gmpController sendI2CStartReadingAddress:component.i2cComponent.address reg:reg.number size:6];
-        
-        NSLog(@"requesting %d %d",component.i2cComponent.address,reg.number);
     }
 }
 
@@ -474,11 +548,11 @@ float const kScanningTimeout = 3.0f;
             
             if(pin.mode == kPinModeDigitalInput && pin.attachedElementPins.count > 0){
                 
-                [self.gmpController sendReportRequestForDigitalPin:pin.number reports:YES];
+                //[self.firmataController sendReportRequestForDigitalPin:pin.number reports:YES];
                 
             } else if(pin.mode == kPinModeAnalogInput && pin.attachedElementPins.count > 0){
                 
-                [self.gmpController sendReportRequestForAnalogPin:pin.number + 14 reports:YES];
+                [self.firmataController sendReportRequestForAnalogPin:pin.number reports:YES];
             }
         }
     }
@@ -486,55 +560,86 @@ float const kScanningTimeout = 3.0f;
 
 #pragma mark - GMP Message Handles
 
--(void) gmpController:(GMP*) gmpController didReceiveFirmwareName: (NSString*) name{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareName:(NSString*) name{
     
-    if([name isEqualToString:kGMPFirmwareName]){
-        [self.gmpController sendResetRequest];
+    //if([name isEqualToString:kFirmataFirmwareName]){
+        [self.firmataController sendResetRequest];
         
         [self sendPinModes];
         [self sendInputRequests];
         [self sendI2CRequests];
-    }
+    //}
 }
 
--(void) gmpController:(GMP*) gmpController didReceiveCapabilityResponseForPins:(uint8_t*) buffer count:(NSInteger) count{
-    
-}
-
--(void) gmpController:(GMP*) gmpController didReceivePinStateResponseForPin:(NSInteger) pin mode:(GMPPinMode) mode{
+-(void) firmataController:(IFFirmata*) firmataController didReceivePinStateResponseForPin:(NSInteger) pin mode:(IFPinMode) mode{
     
     NSLog(@"received mode %d %d",pin,mode);
 }
 
--(void) gmpController:(GMP *)gmpController didReceiveDigitalMessageForPin:(NSInteger)pin value:(BOOL)value{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) port value:(NSInteger) value{
     
-    NSLog(@"digital msg for pin: %d %d",pin, value);
+    THBoard * board = [self.currentProject.boards objectAtIndex:0];
+    NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
+    
+    THBoardPin * firstPin = [digitalPins objectAtIndex:0];
+    
+    int mask = 1;
+    int pinNumber = port * 8;
+    for (mask <<= firstPin.number; pinNumber < digitalPins.count; mask <<= 1, pinNumber++) {
+        int pinIdx = pinNumber - firstPin.number;
+        if(pinIdx > 0){
+            THBoardPin * pinObj = [digitalPins objectAtIndex:pinIdx];
+            if (pinObj.mode == IFPinModeInput) {
+                uint32_t val = (value & mask) ? 1 : 0;
+                if (pinObj.value != val) {
+                    [pinObj removeObserver:self forKeyPath:@"value"];
+                    pinObj.value = val;
+                    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+                }
+            }
+        }
+    }
+}
+
+-(void) firmataController:(IFFirmata *)firmataController didReceiveAnalogMessageOnChannel:(NSInteger)channel value:(NSInteger)value{
+    
+    NSLog(@"analog msg for pin: %d %d",channel,value);
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    THBoardPin * pinObj = [project.currentBoard digitalPinWithNumber:pin];
+    THBoardPin * pinObj = [project.currentBoard analogPinWithNumber:channel];//TODO do the mapping channel - pin
     
     [pinObj removeObserver:self forKeyPath:@"value"];
     pinObj.value = value;
     [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
--(void) gmpController:(GMP *)gmpController didReceiveAnalogMessageForPin:(NSInteger)pin value:(NSInteger)value{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length{
     
-    NSLog(@"analog msg for pin: %d %d",pin,value);
-    
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    THBoardPin * pinObj = [project.currentBoard analogPinWithNumber:pin];
-    
-    [pinObj removeObserver:self forKeyPath:@"value"];
-    pinObj.value = value;
-    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-}
-
--(void) gmpController:(GMP*) gmpController didReceiveI2CReplyForAddress:(NSInteger) address reg:(NSInteger) reg buffer:(uint8_t*) buffer length:(NSInteger) length{
+    uint8_t address = buffer[2] + (buffer[3] << 7);
+    NSInteger registerNumber = buffer[4] + 128;
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
-    [component setValuesFromBuffer:buffer length:length];
+    
+    if(!self.firmataController.startedI2C){
+        
+        NSLog(@"reporting but i2c did not start");
+        [self.firmataController sendI2CStopReadingAddress:address];
+        
+    } else {
+        
+        id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
+        
+        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber];
+        
+        if(reg){
+            
+            
+            [component setValuesFromBuffer:buffer+6 length:length-6];
+            
+            //NSData * data = [NSData dataWithBytes:values length:size];
+            //reg.value = data;
+        }
+    }
 }
 
 #pragma mark UI Interaction
@@ -544,15 +649,16 @@ float const kScanningTimeout = 3.0f;
     if([BLEDiscovery sharedInstance].connectedService){
         
         [self.currentProject stopSimulating];
-        //[self.gmpController sendResetRequest];
+        //[self.firmataController sendResetRequest];
         
         [self disconnectFromBle];
         
     } else {
         
-        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0){
+        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0 || shouldScan){
             
             [self startScanningDevices];
+            shouldScan = NO;
             
         } else {
             

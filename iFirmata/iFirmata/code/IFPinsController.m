@@ -209,22 +209,10 @@
 
 #pragma mark - Firmata Message Handles
 
--(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareReport:(uint8_t*) buffer length:(NSInteger) length{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareName:(NSString*) name{
     
-    char name[140];
-    int len=0;
-    for (int i=4; i < length-2; i+=2) {
-        name[len++] = (buffer[i] & 0x7F)
-        | ((buffer[i+1] & 0x7F) << 7);
-    }
-    name[len++] = '-';
-    name[len++] = buffer[2] + '0';
-    name[len++] = '.';
-    name[len++] = buffer[3] + '0';
-    name[len++] = 0;
-    _firmataName = [NSString stringWithUTF8String:name];
+    self.firmataName = name;
     [self.delegate firmata:self didUpdateTitle:self.firmataName];
-    
     [self.firmataController sendAnalogMappingRequest];
 }
 
@@ -380,18 +368,14 @@
             uint8_t values[reg.size];
             NSInteger parseBufCount = 6;
             for (int i = 0; i < reg.size; i++) {
+                
                 uint8_t byte1 = buffer[parseBufCount++];
                 uint8_t value = byte1 + (buffer[parseBufCount++] << 7);
                 values[i] = value;
             }
+
             NSData * data = [NSData dataWithBytes:values length:reg.size];
             reg.value = data;
-            
-            /*
-             int x = ((int16_t)(values[1] << 8 | values[0])) >> 4;
-             int y = ((int16_t)(values[3] << 8 | values[2])) >> 4;
-             int z = ((int16_t)(values[5] << 8 | values[4])) >> 4;*/
-            
         }
     }
 }

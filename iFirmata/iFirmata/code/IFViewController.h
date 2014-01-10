@@ -27,7 +27,7 @@ enum{
 }
 
 @property (weak, nonatomic) IFPinsController * firmataPinsController;
-@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UITableView * table;
 @property (strong, nonatomic) NSMutableArray * characteristics;
 
 @property (strong, nonatomic) IFI2CComponent *removingComponent;

@@ -12,6 +12,7 @@
 @protocol THI2CProtocol <NSObject>
 
 -(void) setValuesFromBuffer:(uint8_t*) buffer length:(NSInteger) length;
+-(NSMutableArray*) startI2CMessages;
 
 @property (nonatomic, strong) THI2CComponent * i2cComponent;
 @property (nonatomic) THI2CComponentType type;

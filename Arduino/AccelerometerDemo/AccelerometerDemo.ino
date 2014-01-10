@@ -93,6 +93,14 @@ void readAcc() {
   int y = ((int16_t)(yha << 8 | yla)) >> 4;
   int z = ((int16_t)(zha << 8 | zla)) >> 4;
   
+  Serial.print(xla);
+  Serial.print(" ");
+  Serial.print(xha);
+  Serial.print(" ");
+  Serial.print(yla);
+  Serial.print(" ");
+  Serial.println(yha);
+  
   Serial.print("A ");
   Serial.print("X: ");
   Serial.print((int)x);

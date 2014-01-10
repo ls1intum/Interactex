@@ -46,7 +46,7 @@
 @class THClientProjectProxy;
 @class THClientProjectDraggableCell;
 
-@interface THClientSceneSelectionViewController2 : UIViewController < UIGestureRecognizerDelegate, THClientProjectCellDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, THClientTableProjectCellDelegate, THClientDownloadViewControllerDelegate>
+@interface THClientSceneSelectionViewController : UIViewController < UIGestureRecognizerDelegate, THClientProjectCellDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, THClientTableProjectCellDelegate, THClientDownloadViewControllerDelegate>
 {
     UILabel * titleLabel;
     

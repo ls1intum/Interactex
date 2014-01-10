@@ -42,6 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPin.h"
 #import "THI2CComponent.h"
 #import "THI2CRegister.h"
+#import "THI2CMessage.h"
 
 @implementation THCompass
 
@@ -187,23 +188,52 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setValuesFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
     
+    NSInteger size = 6;
+    NSInteger bufCount = 0;
+    uint8_t values[size];
+
+    for (int i = 0; i < size; i++) {
+        uint8_t byte1 = buffer[bufCount++];
+        uint8_t value = byte1 + (buffer[bufCount++] << 7);
+        values[i] = value;
+    }
+    
     if(self.componentType == kI2CComponentTypeLSM){
         
-        self.accelerometerX = ((int16_t)(buffer[1] << 8 | buffer[0])) >> 4;
-        self.accelerometerY = ((int16_t)(buffer[3] << 8 | buffer[2])) >> 4;
-        self.accelerometerZ = ((int16_t)(buffer[5] << 8 | buffer[4])) >> 4;
+        self.accelerometerX = ((int16_t)(values[1] << 8 | values[0])) >> 4;
+        self.accelerometerY = ((int16_t)(values[3] << 8 | values[2])) >> 4;
+        self.accelerometerZ = ((int16_t)(values[5] << 8 | values[4])) >> 4;
         
-        //NSLog(@"compass received buffer %d %d %d %d %d",buffer[0], buffer[1],buffer[2],buffer[3], self.accelerometerX);
+        //NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
         
     } else {
         
-        self.accelerometerX = ((int16_t)(buffer[0] << 8 | buffer[1]));
-        self.accelerometerY = ((int16_t)(buffer[2] << 8 | buffer[3]));
-        self.accelerometerZ = ((int16_t)(buffer[4] << 8 | buffer[5]));
+        self.accelerometerX = ((int16_t)(values[0] << 8 | values[1]));
+        self.accelerometerY = ((int16_t)(values[2] << 8 | values[3]));
+        self.accelerometerZ = ((int16_t)(values[4] << 8 | values[5]));
         
         //NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
     }
     
+}
+
+-(NSMutableArray*) startI2CMessages{
+    THI2CMessage * message1 = [[THI2CMessage alloc] init];
+    message1.type = kI2CComponentMessageTypeWrite;
+    message1.reg = 32;
+    
+    uint8_t buf[2];
+    [THClientHelper valueAsTwo7bitBytes:39 buffer:buf];
+    
+    message1.bytes = [NSData dataWithBytes:buf length:2];
+    
+    THI2CMessage * message2 = [[THI2CMessage alloc] init];
+    message2.type = kI2CComponentMessageTypeStartReading;
+    message2.reg = 40;
+    message2.readSize = 6;
+    
+    NSMutableArray * array = [NSMutableArray arrayWithObjects:message1,message2,nil];
+    return array;
 }
 
 -(void) setAccelerometerX:(NSInteger)accelerometerX{

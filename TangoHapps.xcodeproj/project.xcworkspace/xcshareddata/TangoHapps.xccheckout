@@ -21,6 +21,8 @@
 		<string>../../Frameworks/BLE</string>
 		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
 		<string>../..</string>
+		<key>7F97075A-A169-4026-97C6-F9CFEB23825D</key>
+		<string>../../Frameworks/Firmata</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
@@ -34,9 +36,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>44F1A242-84DF-450C-A579-29A977C09B27</string>
+			<string>7F97075A-A169-4026-97C6-F9CFEB23825D</string>
 			<key>IDESourceControlWCCName</key>
-			<string>BLE</string>
+			<string>Firmata</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

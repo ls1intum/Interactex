@@ -38,14 +38,14 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GMPCommunicationModule.h"
+#import "IFFirmataCommunicationModule.h"
 
-@class GMP;
+@class IFFirmata;
 
-@interface THBLECommunicationModule : GMPCommunicationModule <BLEServiceDataDelegate>
+@interface THBLECommunicationModule : IFFirmataCommunicationModule <BLEServiceDataDelegate>
 
 @property (nonatomic, weak) BLEService * bleService;
-@property (nonatomic, weak) GMP * gmpController;
+@property (nonatomic, weak) IFFirmata * firmataController;
 
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
 

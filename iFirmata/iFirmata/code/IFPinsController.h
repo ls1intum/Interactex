@@ -50,7 +50,7 @@ typedef struct{
 @property (nonatomic, strong) IFFirmata * firmataController;
 @property (nonatomic, weak) id<IFFirmataControllerPinsDelegate> delegate;
 
-@property (nonatomic, strong) NSString* firmataName;
+@property (nonatomic, copy) NSString* firmataName;
 
 -(void) reset;
 

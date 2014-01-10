@@ -38,7 +38,7 @@
  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "THClientSceneSelectionViewController2.h"
+#import "THClientSceneSelectionViewController.h"
 #import "THClientCollectionProjectCell.h"
 #import "THClientProjectDraggableCell.h"
 #import "THClientProject.h"
@@ -50,7 +50,7 @@
 #import "THClientPresetsGenerator.h"
 #import "THClientScene.h"
 
-@implementation THClientSceneSelectionViewController2
+@implementation THClientSceneSelectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -39,7 +39,6 @@
  */
 
 #import "THBLECommunicationModule.h"
-#import "GMP.h"
 
 @implementation THBLECommunicationModule
 
@@ -48,7 +47,7 @@
 }
 
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)length{
-    [self.gmpController didReceiveData:buffer lenght:length];
+    [self.firmataController didReceiveData:buffer lenght:length];
 }
 
 @end

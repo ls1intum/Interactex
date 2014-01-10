@@ -43,11 +43,15 @@ You should have received a copy of the GNU General Public License along with thi
 @class THTransferAgent;
 
 
-@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, GMPControllerDelegate> {
+@interface THClientAppViewController : UIViewController <BLEDiscoveryDelegate, BLEServiceDelegate, IFFirmataControllerDelegate> {
     
     UIActivityIndicatorView * _activityIndicator;
     
     NSTimer * scanningTimer;
+    NSTimer * connectingTimer;
+    
+    BOOL isConnecting;
+    BOOL shouldScan;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *startButton;
@@ -55,7 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL showingPreset;
 @property (nonatomic) BOOL isRunningProject;
 
-@property (strong, nonatomic) GMP * gmpController;
+@property (strong, nonatomic) IFFirmata * firmataController;
 
 - (IBAction)startButtonTapped:(id)sender;
 

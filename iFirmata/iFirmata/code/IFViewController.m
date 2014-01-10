@@ -277,7 +277,11 @@
 
 -(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg{
     NSInteger value = data.integerValue;
-    [self.firmataPinsController.firmataController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
+    
+    uint8_t buf[2];
+    [BLEHelper valueAsTwo7bitBytes:value buffer:buf];
+    [self.firmataPinsController.firmataController sendI2CWriteToAddress:component.address reg:reg.number bytes:buf numBytes:2];
+    //[self.firmataPinsController.firmataController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
 }
 
 -(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg{
