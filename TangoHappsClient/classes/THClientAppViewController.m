@@ -548,7 +548,7 @@ float const kConnectingTimeout = 7.0f;
             
             if(pin.mode == kPinModeDigitalInput && pin.attachedElementPins.count > 0){
                 
-                //[self.firmataController sendReportRequestForDigitalPin:pin.number reports:YES];
+                [self.firmataController sendReportRequestsForDigitalPins];
                 
             } else if(pin.mode == kPinModeAnalogInput && pin.attachedElementPins.count > 0){
                 

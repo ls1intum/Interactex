@@ -72,18 +72,26 @@
 -(void) sendCapabilitiesRequest{
     
     NSInteger len = 0;
-    uint8_t buf[9];
+    uint8_t buf[3];
     
     buf[len++] = START_SYSEX;
     buf[len++] = CAPABILITY_QUERY;
     buf[len++] = END_SYSEX;
+    
+    [self.communicationModule sendData:buf count:3];
+}
+
+-(void) sendReportRequestsForDigitalPins{
+    
+    NSInteger len = 0;
+    uint8_t buf[6];
     
     for (int i=0; i<3; i++) {
         buf[len++] = 0xD0 | i;
         buf[len++] = 1;
     }
     
-    [self.communicationModule sendData:buf count:9];
+    [self.communicationModule sendData:buf count:3];
 }
 
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
@@ -373,6 +381,13 @@
 }
 
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
+    
+    printf("before:\n");
+    for (int i = 0 ; i < originalLength; i++) {
+        int value = buffer[i];
+        printf("%d ",value);
+    }
+    printf("\n");
     
     if(self.communicationModule.usesFillBytes){
         [self cleanAddedBytes:buffer lenght:&originalLength];

@@ -50,4 +50,11 @@
     [self.firmataController didReceiveData:buffer lenght:length];
 }
 
+-(void) setBleService:(BLEService *)bleService{
+    if(bleService != self.bleService){
+        _bleService = bleService;
+        self.usesFillBytes = (self.bleService.deviceType == kBleDeviceTypeKroll);
+    }
+}
+
 @end

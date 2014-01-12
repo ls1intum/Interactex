@@ -133,7 +133,7 @@ unsigned long previousMillis;       // for comparison with currentMillis
 int samplingInterval = 300;          // how often to report analog and servo data
 
 unsigned long previousMillisBle = 0;
-unsigned long bleInterval = 50;
+unsigned long bleInterval = 80;
 
 /* i2c data */
 struct i2c_device_info {
@@ -194,12 +194,6 @@ void readAndReportData(byte address, int theRegister, byte numBytes) {
       #endif
     }
   }
-  else {
-    Serial.print("requested: ");
-    Serial.print(numBytes);
-    Serial.print(" but got: ");
-    Serial.println(bytesAvailable);
-  }
     
   // send slave address, register and received bytes
   iFirmata.sendSysex(SYSEX_I2C_REPLY, numBytes + 2, i2cRxData);
@@ -208,6 +202,8 @@ void readAndReportData(byte address, int theRegister, byte numBytes) {
 
 void outputPort(byte portNumber, byte portValue, byte forceSend)
 {
+  Serial.println(portValue);
+  
   // pins not configured as INPUT are cleared to zeros
   portValue = portValue & portConfigInputs[portNumber];
   // only send if the value is different than previously sent
@@ -273,6 +269,8 @@ void setPinModeCallback(byte pin, int mode)
   case INPUT:
   
     if (IS_PIN_DIGITAL(pin)) {
+      Serial.print("input ");
+  Serial.println(PIN_TO_DIGITAL(pin));
   
       pinMode(PIN_TO_DIGITAL(pin), INPUT); // disable output driver
       digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
@@ -378,6 +376,7 @@ void reportAnalogCallback(byte analogPin, int value)
 void reportDigitalCallback(byte port, int value) {
      
   if (port < TOTAL_PORTS) {
+  Serial.println("report digital");
   
     reportPINs[port] = (byte)value;
   }
