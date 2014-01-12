@@ -231,9 +231,12 @@ static NSMutableArray * supportedCharacteristicUUIDs;
 -(void) writeToTx:(NSData*) data{
     
     if(self.txCharacteristic){
-        //without response does not work with BLE Shield
-        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
-        //[_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithoutResponse];
+        if(self.deviceType == kBleDeviceTypeKroll){
+            //Kroll shield needs to write with response
+            [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        } else {
+            [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithoutResponse];
+        }
         
         printf("Sending:\n");
         for (int i = 0; i < data.length; i++) {
