@@ -343,9 +343,9 @@
 	}
 }
 
--(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
+-(void) cleanAddedBytes:(uint8_t *)buffer lenght:(NSInteger*)originalLength{
     
-    NSInteger length = originalLength;
+    int length = *originalLength;
     
     //remove all END_SYSEX messages at the end of the buffer
     for (int i = 15; i >= 0; i--) {
@@ -365,21 +365,27 @@
     }
     
     //restore the wrongly removed sysex at the end
-    if(length < originalLength && startedSysex){
+    if(length < *originalLength && startedSysex){
         buffer[length++] = END_SYSEX;
         startedSysex = NO;
     }
+    *originalLength = length;
+}
+
+-(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
     
-    /*
-     printf("\n ");
-     NSLog(@"**Data received, length: %d**",length);
-     
-     for (int i = 0 ; i < length; i++) {
-     int value = buffer[i];
-     printf("%d ",value);
-     }
-     printf("\n ");*/
+    if(self.communicationModule.usesFillBytes){
+        [self cleanAddedBytes:buffer lenght:&originalLength];
+    }
     
+    NSInteger length = originalLength;
+    
+    printf("receiving:\n");
+    for (int i = 0 ; i < length; i++) {
+        int value = buffer[i];
+        printf("%d ",value);
+    }
+    printf("\n");
     
     for (int i = 0 ; i < length; i++) {
         uint8_t value = buffer[i];

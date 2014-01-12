@@ -653,7 +653,7 @@ void disableI2CPins() {
 void systemResetCallback()
 {
   Serial.println("resets");
-  /*
+  
   // initialize a defalt state
   // TODO: option to load config from EEPROM instead of default
   if (isI2CEnabled) {
@@ -680,13 +680,13 @@ void systemResetCallback()
   
   // by default, do not report any analog inputs
   analogInputsToReport = 0;
-*/
+
   //iFirmata.bleBufferReset();
 }
 
 void setup() 
 {
-  Serial.begin(9600);
+  Serial.begin(57600);
 
   iFirmata.setFirmwareVersion(FIRMATA_MAJOR_VERSION, FIRMATA_MINOR_VERSION);
 
@@ -703,13 +703,6 @@ void setup()
   systemResetCallback();  // reset to default config */ 
   
   Serial.println("starting");
-  /*
-  Serial.print("Nun Pins: ");
-  Serial.println(5);
-  //Serial.println(TOTAL_PINS);
-  
-  Serial.println("Nun Ports: ");
-  Serial.println(TOTAL_PORTS);*/
 }
 
 
@@ -720,18 +713,7 @@ void loop()
 {
   byte pin, analogPin;
   
-  /* DIGITALREAD - as fast as possible, check for changes and output them to the
-   * FTDI buffer using Serial.print()  */
-  //checkDigitalInputs();
-  
-/*
-  currentMillis = millis();
-  unsigned long difference = currentMillis - previousMillisTest;
-  if(difference > biggestDifference){
-    biggestDifference = difference;
-    //Serial.println(biggestDifference);
-  }
-  previousMillisTest = currentMillis;*/
+  checkDigitalInputs();
     
   /* SERIALREAD - processing incoming messagse as soon as possible, while still
    * checking digital inputs.  */
@@ -744,7 +726,7 @@ void loop()
   /* SEND FTDI WRITE BUFFER - make sure that the FTDI buffer doesn't go over
    * 60 bytes. use a timer to sending an event character every 4 ms to
    * trigger the buffer to dump. */
-/*
+
   currentMillis = millis();
   if (currentMillis - previousMillis > samplingInterval) {
     previousMillis += samplingInterval;
@@ -763,14 +745,13 @@ void loop()
         readAndReportData(query[i].addr, query[i].reg, query[i].bytes);
       }
     }
-  }*/
+  }
   
   //flushing data
   currentMillis = millis();
   if(currentMillis - previousMillisBle > bleInterval) {
     previousMillisBle = currentMillis;
 
-      iFirmata.bleSend(127);
     iFirmata.bleFlush();
     
   }

@@ -5847,6 +5847,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

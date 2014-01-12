@@ -253,9 +253,12 @@ NSString * const kCallImageName = @"call.png";
         contact.name = [NSString stringWithFormat:@"%@ %@",name1,name2];
         
         if(ABMultiValueGetCount(multi) > 0){
-            NSString * phone =  (__bridge NSString *)(ABMultiValueCopyValueAtIndex(multi, 0));
-            contact.number = phone;
+            NSString * phoneRef = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(multi, 0));
+            contact.number = phoneRef;
+            CFRelease((__bridge CFTypeRef)(phoneRef));
         }
+        
+        CFRelease(multi);
         
         return contact;
     } else {
@@ -281,7 +284,6 @@ NSString * const kCallImageName = @"call.png";
 -(void) willStartSimulating{
     CFErrorRef error;
     _addressBook = ABAddressBookCreateWithOptions(NULL, &error);
-    //ABAddressBookRequestAccessWithCompletion();
     
     // Request authorization to Address Book
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
@@ -290,14 +292,14 @@ NSString * const kCallImageName = @"call.png";
         ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
             [self addContacts];
         });
-    }
-    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
         [self addContacts];
     }
     else {
         NSLog(@"access not granted!");
     }
     
+    CFRelease(addressBookRef);
    
 }
 

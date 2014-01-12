@@ -188,7 +188,7 @@ You should have received a copy of the GNU General Public License along with thi
         currentView.width = frame.size.width;
         currentView.height = frame.size.height;
         
-        [self centerView:currentView];
+        //[self centerView:currentView];//XXX commented
         [self addChild:currentView];
     }
     
@@ -198,7 +198,7 @@ You should have received a copy of the GNU General Public License along with thi
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.currentView = (THView*) currentView.simulableObject;
 }
-
+/*
 -(void) centerView:(THViewEditableObject*) view{
     
     CGRect frame = kiPhoneFrames[self.type];
@@ -208,7 +208,7 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint viewtopleft = ccpAdd(topleft, ccp(frame.origin.x,-frame.origin.y));
     CGPoint viewcenter = ccpAdd(viewtopleft, ccp(frame.size.width/2,-frame.size.height/2));
     viewcenter = [TFHelper ConvertToCocos2dView:viewcenter];
-}
+}*/
 
 -(void) setPosition:(CGPoint)position{
     

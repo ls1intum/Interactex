@@ -82,6 +82,8 @@
     for (int i = 0 ; i < length; i++) {
         string = [string stringByAppendingFormat:@" %d",array[i]];
     }
+    free(array);
+    
     return string;
 }
 

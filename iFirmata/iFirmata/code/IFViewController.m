@@ -59,13 +59,6 @@
     [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
 }
 
--(void) viewDidAppear:(BOOL)animated{
-    
-    if(self.removingComponent){
-        [self removeComponentAnimated];
-    }
-}
-
 -(void) viewWillDisappear:(BOOL)animated{
     [self persistObjects];
     goingToI2CScene = NO;
@@ -143,15 +136,16 @@
     
     if(editingStyle == UITableViewCellEditingStyleDelete){
         
-        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:indexPath.row];/*
-        [component removeObserver:self forKeyPath:@"value"];
-        [component removeObserver:self forKeyPath:@"notifies"];*/
+        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:indexPath.row];
+        //[component removeObserver:self forKeyPath:@"value"];
+        //[component removeObserver:self forKeyPath:@"notifies"];
+        
+        IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:indexPath];
+        [cell removeComponentObservers];
         
         self.firmataPinsController.delegate = nil;
         [self.firmataPinsController removeI2CComponent:component];
         self.firmataPinsController.delegate = self;
-        
-        self.removingComponent = component;
         
         [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -251,37 +245,12 @@
 
 #pragma mark - i2cComponent Delegate
 
-//called after view did appear when there is a component to remove
--(void) removeComponentAnimated{
-    
-    IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.removingComponentPath];
-    [cell removeComponentObservers];
-    
-    [self.table scrollToRowAtIndexPath:self.removingComponentPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    
-    [self.table deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.removingComponentPath] withRowAnimation:UITableViewRowAnimationFade];
-    
-    self.removingComponent = nil;
-}
-
--(void) i2cComponentRemoved:(IFI2CComponent*) component{
-    NSInteger row = [self.firmataPinsController.i2cComponents indexOfObject:component];
-    self.removingComponentPath = [NSIndexPath indexPathForRow:row inSection:2];
-    
-    self.firmataPinsController.delegate = nil;
-    [self.firmataPinsController removeI2CComponent:component];
-    self.firmataPinsController.delegate = self;
-    
-    self.removingComponent = component;
-}
-
 -(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg{
     NSInteger value = data.integerValue;
     
     uint8_t buf[2];
     [BLEHelper valueAsTwo7bitBytes:value buffer:buf];
     [self.firmataPinsController.firmataController sendI2CWriteToAddress:component.address reg:reg.number bytes:buf numBytes:2];
-    //[self.firmataPinsController.firmataController sendI2CWriteValue:value toAddress:component.address reg:reg.number];
 }
 
 -(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg{
@@ -330,7 +299,7 @@
     
     IFI2CComponent * component = [[IFI2CComponent alloc] init];
     component.name = @"New I2C Component";
-    component.address = 24;
+    component.address = 0;
     
     [self.firmataPinsController addI2CComponent:component];
     

@@ -12,4 +12,6 @@
 
 -(void) sendData:(uint8_t*) bytes count:(NSInteger) count;
 
+@property (nonatomic) BOOL usesFillBytes;
+
 @end

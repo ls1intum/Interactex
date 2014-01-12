@@ -30,9 +30,6 @@ enum{
 @property (weak, nonatomic) IBOutlet UITableView * table;
 @property (strong, nonatomic) NSMutableArray * characteristics;
 
-@property (strong, nonatomic) IFI2CComponent *removingComponent;
-@property (strong, nonatomic) NSIndexPath *removingComponentPath;
-
 - (IBAction) optionsMenuTapped:(id)sender;
 
 @end

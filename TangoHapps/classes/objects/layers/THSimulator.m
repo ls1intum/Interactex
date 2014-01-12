@@ -183,8 +183,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)scale:(UIPinchGestureRecognizer*)sender{
     
-    CGPoint location = [sender locationInView:sender.view];
-    location = [self toLayerCoords:location];
+    //CGPoint location = [sender locationInView:sender.view];
+    //location = [self toLayerCoords:location];
     
     float newScale = self.zoomableLayer.scale * sender.scale;
     if(newScale > kLayerMinScale && newScale < kLayerMaxScale)

@@ -146,33 +146,5 @@ existsInDirectory:(NSString*)subfolder
     [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
 }
 
-CGImageRef UIGetScreenImage(void);
-
-+(UIImage*)screenshot
-{
-    CGImageRef screen = UIGetScreenImage();
-    UIImage * image = [UIImage imageWithCGImage:screen];
-    CGImageRelease(screen);
-    return image;
-}
-
-+(void)screenshotToFile:(NSString*)filePath{
-    UIImage *img = [self screenshot];
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    
-    UIGraphicsBeginImageContext(CGSizeMake(screenHeight, screenWidth));
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextRotateCTM (context, M_PI/2);
-    [img drawInRect:CGRectMake(0, -screenHeight, screenWidth, screenHeight)];
-    
-    UIImage *ret = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    [self saveImageToFile:ret file:filePath];
-}
 
 @end

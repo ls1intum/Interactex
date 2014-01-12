@@ -44,7 +44,8 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THTabbarView
 
 -(id)initWithFrame:(CGRect)frame {
-    if([super initWithFrame:frame]){
+    self = [super initWithFrame:frame];
+    if(self){
         [self setBackgroundColor:[UIColor clearColor]];
         [self setClipsToBounds:YES];
         [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth)];

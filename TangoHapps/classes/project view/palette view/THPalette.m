@@ -79,8 +79,8 @@ You should have received a copy of the GNU General Public License along with thi
     float x = kPaletteItemsPadding;
     float y = kPaletteItemsPadding;
     for(THPaletteItem * paletteItem in _paletteItems){
-        CGSize paletteItemSize = [self clampSizeToConstraints:paletteItem.frame.size];
-        paletteItemSize = CGSizeMake(kPaletteItemSize, kPaletteItemSize);
+        //CGSize paletteItemSize = [self clampSizeToConstraints:paletteItem.frame.size];
+        CGSize paletteItemSize = CGSizeMake(kPaletteItemSize, kPaletteItemSize);
         [paletteItem setFrame:CGRectMake(x, y, paletteItemSize.width, paletteItemSize.height)];
         x += kPaletteItemSize + kPaletteItemsPadding;
         BOOL last = [_paletteItems indexOfObject:paletteItem] == [_paletteItems count] - 1;

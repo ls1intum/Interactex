@@ -46,7 +46,11 @@ typedef enum{
     BLEReceiveBufferStateParsingCrc2
 } BLEReceiveBufferState;
 
-
+typedef enum{
+    kBleDeviceTypeKroll,
+    kBleDeviceTypeJennic,
+    kBleDeviceTypeRedBearLab,
+} BLEDeviceType;
 
 @interface BLEService : NSObject <CBPeripheralDelegate> {
     CBService			*bleService;
@@ -91,6 +95,8 @@ typedef enum{
 
 @property (nonatomic) BOOL shouldUseCRC;
 @property (nonatomic) BOOL shouldUseTurnBasedCommunication;
+
+@property (nonatomic) BLEDeviceType deviceType;
 
 +(NSMutableArray*) supportedServiceUUIDs;
 +(NSMutableArray*) supportedCharacteristicUUIDs;

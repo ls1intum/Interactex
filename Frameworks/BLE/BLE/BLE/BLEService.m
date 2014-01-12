@@ -128,6 +128,7 @@ static NSMutableArray * supportedCharacteristicUUIDs;
             if([service.UUID isEqual:serviceUUID]){
                 
                 NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
+                self.deviceType = i;
                 
                 self.currentCharacteristicUUIDs = [supportedCharacteristicUUIDs objectAtIndex:i];
                 bleService = service;
@@ -231,7 +232,8 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     if(self.txCharacteristic){
         //without response does not work with BLE Shield
-        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithoutResponse];
+        [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        //[_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithoutResponse];
         
         printf("Sending:\n");
         for (int i = 0; i < data.length; i++) {
@@ -499,28 +501,16 @@ static NSMutableArray * supportedCharacteristicUUIDs;
     
     if(characteristic == self.rxCharacteristic){
         
-        
-        uint8_t * debugData;
-        NSInteger length = [BLEHelper Data:characteristic.value toArray:&debugData];
-        printf("receiving:\n");
-        for (int i = 0 ; i < length; i++) {
-            int value = debugData[i];
-            //printf("%X ",value);
-            printf("%d ",value);
-        }
-    
-        printf("\n");
-            
-        
         if(self.shouldUseCRC){
             
             [self checkCRCAndNotify:characteristic.value];
             
-        } else{
+        } else {
             
             uint8_t * data;
             NSInteger length = [BLEHelper Data:characteristic.value toArray:&data];
             [self.dataDelegate didReceiveData:data lenght:length];
+            free(data);
         }
 
     } else {

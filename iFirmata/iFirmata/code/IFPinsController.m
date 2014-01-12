@@ -227,16 +227,17 @@
 }
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
-    
-    IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
-    int mask = 1;
-    
-    for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
-        IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
-        if (pinObj.mode == IFPinModeInput) {
-            uint32_t val = (value & mask) ? 1 : 0;
-            if (pinObj.value != val) {
-                pinObj.value = val;
+    if(self.digitalPins.count > 0){
+        IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
+        int mask = 1;
+        
+        for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
+            IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
+            if (pinObj.mode == IFPinModeInput) {
+                uint32_t val = (value & mask) ? 1 : 0;
+                if (pinObj.value != val) {
+                    pinObj.value = val;
+                }
             }
         }
     }
@@ -360,6 +361,7 @@
         for (IFI2CComponent * aComponent in self.i2cComponents) {
             if(aComponent.address == address){
                 component = aComponent;
+                break;
             }
         }
         

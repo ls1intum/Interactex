@@ -16,7 +16,6 @@
 
 @protocol IFI2CComponentDelegate <NSObject>
 
--(void) i2cComponentRemoved:(IFI2CComponent*) component;
 -(void) i2cComponent:(IFI2CComponent*) component wroteData:(NSString*) data toRegister:(IFI2CRegister*) reg;
 -(void) i2cComponent:(IFI2CComponent*) component startedNotifyingRegister:(IFI2CRegister*) reg;
 -(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg;

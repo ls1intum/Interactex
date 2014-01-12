@@ -58,8 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
 +(BOOL) isProjectNameOccupied:(NSString*) name;
 +(NSString*) resolveProjectNameConflictFor:(NSString*) originalName;
 
-+(void)screenshotToFile:(NSString*)filePath;
-+(UIImage*)screenshot;
 +(void) saveImageToFile:(UIImage*) image file:(NSString*) filePath;
 
 @end
