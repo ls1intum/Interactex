@@ -76,6 +76,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THWire.h"
 #import "THInvocationConnectionLine.h"
 #import "THBoard.h"
+#import "THElementPinEditable.h"
 
 @implementation THProject
 
@@ -337,6 +338,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) removeBoard:(THBoardEditable*) board{
+    [self removeAllWiresTo:board notify:YES];
     [self.boards removeObject:board];
     [self notifyObjectRemoved:board];
 }
@@ -399,6 +401,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeiPhone{
     
     [self notifyObjectRemoved:_iPhone];
+    
+    for (THViewEditableObject * object in self.iPhoneObjects) {
+        [object removeFromWorld];
+    }
 
     _iPhone = nil;
 }
@@ -412,6 +418,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) removeHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
+    [self removeAllWiresFrom:clotheObject notify:YES];
     [self.hardwareComponents removeObject:clotheObject];
 
     [self deregisterActionsForObject:clotheObject];
@@ -523,10 +530,8 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
-#pragma mark - Actions
 
-
-#pragma mark - Actions
+#pragma mark - EventAcionPairs
 
 -(NSMutableArray*) actionsForTarget:(TFEditableObject*) target{
     NSMutableArray * array = [NSMutableArray array];
@@ -560,9 +565,13 @@ You should have received a copy of the GNU General Public License along with thi
         [self deregisterAction:pair.action];
     }
     
+    [self removeAllInvocationConnectionsFrom:object];
+    [self removeAllInvocationConnectionsTo:object];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:object];
 }
 
+/*
 -(void) removeConnectionsBetween:(TFEditableObject*) obj1 and:(TFEditableObject*) obj2{
     
     TFConnectionLine * connectionToRemove = nil;
@@ -575,7 +584,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(connectionToRemove != nil){
         [obj1.connections removeObject:connectionToRemove];
     }
-}
+}*/
 
 -(void) deregisterAction:(TFAction*) action{
     TFEventActionPair * toRemove;
@@ -588,6 +597,8 @@ You should have received a copy of the GNU General Public License along with thi
         idx++;
     }
     [_eventActionPairs removeObject:toRemove];
+    
+    
     //Juan check
     //[toRemove.action.source removeConnectionTo:toRemove.action.target];
     
@@ -664,19 +675,41 @@ You should have received a copy of the GNU General Public License along with thi
     [self addWire:wire];
 }
 
--(void) removeAllWiresTo:(id) object{
+-(void) removeAllWiresFrom:(id) object notify:(BOOL) notify{
     NSMutableArray * toRemove = [NSMutableArray array];
     for (THWire * wire in self.wires) {
-        if(wire.obj2 == object){
+        if(wire.obj1.hardware == object){
             [toRemove addObject:wire];
         }
     }
     
-    for (id object in toRemove) {
-        [self.wires removeObject:object];
+    for (THWire * wire in toRemove) {
+        [wire prepareToDie];
+        [self.wires removeObject:wire];
+        if(notify){
+            [self notifyObjectRemoved:wire];
+        }
     }
 }
 
+
+-(void) removeAllWiresTo:(THBoardEditable*) board notify:(BOOL) notify{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (THWire * wire in self.wires) {
+        
+        if([board.pins containsObject:wire.obj2]){
+            [toRemove addObject:wire];
+        }
+    }
+    
+    for (THWire * wire in toRemove) {
+        [wire prepareToDie];
+        [self.wires removeObject:wire];
+        if(notify){
+            [self notifyObjectRemoved:wire];
+        }
+    }
+}
 
 #pragma mark - Invocation Connections
 
@@ -717,6 +750,20 @@ You should have received a copy of the GNU General Public License along with thi
     [self notifyObjectRemoved:invocationConnection];
 }
 
+-(void) removeAllInvocationConnectionsFrom:(id) object{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (THInvocationConnectionLine * invocationConnection in self.invocationConnections) {
+        if(invocationConnection.obj1 == object){
+            [toRemove addObject:invocationConnection];
+        }
+    }
+    
+    for (id objectToRemove in toRemove) {
+        [self.invocationConnections removeObject:objectToRemove];
+        [self notifyObjectRemoved:objectToRemove];
+    }
+}
+
 -(void) removeAllInvocationConnectionsTo:(id) object{
     NSMutableArray * toRemove = [NSMutableArray array];
     for (THInvocationConnectionLine * invocationConnection in self.invocationConnections) {
@@ -725,20 +772,20 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     
-    for (id object in toRemove) {
-        [self.invocationConnections removeObject:object];
+    for (id objectToRemove in toRemove) {
+        [self.invocationConnections removeObject:objectToRemove];
+        [self notifyObjectRemoved:objectToRemove];
     }
 }
 
 -(void) removeAllConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2{
     NSArray * toRemove = [self invocationConnectionsFrom:obj1 to:obj2];
     
-    for (TFConnectionLine * connection in toRemove) {
+    for (THInvocationConnectionLine * connection in toRemove) {
         [self.invocationConnections removeObject:connection];
-        [connection.obj1 reloadProperties];//juan check if properties work
+        [self notifyObjectRemoved:connection];
+        //[connection.obj1 reloadProperties];//juan check if properties work
     }
-    
-    //[self handleConnectionsRemoved];
 }
 
 #pragma mark - All Objects

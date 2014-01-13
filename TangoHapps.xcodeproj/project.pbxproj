@@ -573,14 +573,14 @@
 		9A89429F1836213100B8CA0E /* THYannicProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A89429C1836213100B8CA0E /* THYannicProperties.m */; };
 		9A8942A31836215300B8CA0E /* THYannicProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A21836215300B8CA0E /* THYannicProperties.xib */; };
 		9A8942A41836215300B8CA0E /* THYannicProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A21836215300B8CA0E /* THYannicProperties.xib */; };
-		9A8942A91836241C00B8CA0E /* palette_yannic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A51836241C00B8CA0E /* palette_yannic.png */; };
-		9A8942AA1836241C00B8CA0E /* palette_yannic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A51836241C00B8CA0E /* palette_yannic.png */; };
-		9A8942AB1836241C00B8CA0E /* palette_yannic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A61836241C00B8CA0E /* palette_yannic@2x.png */; };
-		9A8942AC1836241C00B8CA0E /* palette_yannic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A61836241C00B8CA0E /* palette_yannic@2x.png */; };
-		9A8942AD1836241C00B8CA0E /* yannic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A71836241C00B8CA0E /* yannic.png */; };
-		9A8942AE1836241C00B8CA0E /* yannic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A71836241C00B8CA0E /* yannic.png */; };
-		9A8942AF1836241C00B8CA0E /* yannic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A81836241C00B8CA0E /* yannic@2x.png */; };
-		9A8942B01836241C00B8CA0E /* yannic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A81836241C00B8CA0E /* yannic@2x.png */; };
+		9A8942A91836241C00B8CA0E /* palette_jennic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A51836241C00B8CA0E /* palette_jennic.png */; };
+		9A8942AA1836241C00B8CA0E /* palette_jennic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A51836241C00B8CA0E /* palette_jennic.png */; };
+		9A8942AB1836241C00B8CA0E /* palette_jennic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A61836241C00B8CA0E /* palette_jennic@2x.png */; };
+		9A8942AC1836241C00B8CA0E /* palette_jennic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A61836241C00B8CA0E /* palette_jennic@2x.png */; };
+		9A8942AD1836241C00B8CA0E /* jennic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A71836241C00B8CA0E /* jennic.png */; };
+		9A8942AE1836241C00B8CA0E /* jennic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A71836241C00B8CA0E /* jennic.png */; };
+		9A8942AF1836241C00B8CA0E /* jennic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A81836241C00B8CA0E /* jennic@2x.png */; };
+		9A8942B01836241C00B8CA0E /* jennic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8942A81836241C00B8CA0E /* jennic@2x.png */; };
 		9A8BB907167BA60000FBABFB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF506D0167B97760020241C /* MediaPlayer.framework */; };
 		9A8BB908167BA62000FBABFB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF506D0167B97760020241C /* MediaPlayer.framework */; };
 		9A8BB90E167C7D6400FBABFB /* buzzerPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8BB90A167C7D6400FBABFB /* buzzerPlay.png */; };
@@ -2017,10 +2017,10 @@
 		9A89429B1836213100B8CA0E /* THYannicProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THYannicProperties.h; sourceTree = "<group>"; };
 		9A89429C1836213100B8CA0E /* THYannicProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THYannicProperties.m; sourceTree = "<group>"; };
 		9A8942A21836215300B8CA0E /* THYannicProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THYannicProperties.xib; sourceTree = "<group>"; };
-		9A8942A51836241C00B8CA0E /* palette_yannic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_yannic.png; sourceTree = "<group>"; };
-		9A8942A61836241C00B8CA0E /* palette_yannic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_yannic@2x.png"; sourceTree = "<group>"; };
-		9A8942A71836241C00B8CA0E /* yannic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yannic.png; sourceTree = "<group>"; };
-		9A8942A81836241C00B8CA0E /* yannic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yannic@2x.png"; sourceTree = "<group>"; };
+		9A8942A51836241C00B8CA0E /* palette_jennic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_jennic.png; sourceTree = "<group>"; };
+		9A8942A61836241C00B8CA0E /* palette_jennic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_jennic@2x.png"; sourceTree = "<group>"; };
+		9A8942A71836241C00B8CA0E /* jennic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jennic.png; sourceTree = "<group>"; };
+		9A8942A81836241C00B8CA0E /* jennic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jennic@2x.png"; sourceTree = "<group>"; };
 		9A8BB90A167C7D6400FBABFB /* buzzerPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzerPlay.png; sourceTree = "<group>"; };
 		9A8BB90C167C7D6400FBABFB /* buzzerStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzerStop.png; sourceTree = "<group>"; };
 		9A8BB90D167C7D6400FBABFB /* buzzerStop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzerStop@2x.png"; sourceTree = "<group>"; };
@@ -2686,10 +2686,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
-				9A8942A51836241C00B8CA0E /* palette_yannic.png */,
-				9A8942A61836241C00B8CA0E /* palette_yannic@2x.png */,
-				9A8942A71836241C00B8CA0E /* yannic.png */,
-				9A8942A81836241C00B8CA0E /* yannic@2x.png */,
+				9A8942A51836241C00B8CA0E /* palette_jennic.png */,
+				9A8942A61836241C00B8CA0E /* palette_jennic@2x.png */,
+				9A8942A71836241C00B8CA0E /* jennic.png */,
+				9A8942A81836241C00B8CA0E /* jennic@2x.png */,
 				9A3165A61827989D00CB3E59 /* palette_monitor.png */,
 				9A3165A71827989D00CB3E59 /* palette_monitor@2x.png */,
 				9ABC27981809B46C00B39D72 /* accelerometer.png */,
@@ -4490,7 +4490,7 @@
 				9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */,
 				9A94F42A16A0192700AF52AB /* THLabelProperties.xib in Resources */,
 				9A94F42C16A0192700AF52AB /* THLedProperties.xib in Resources */,
-				9A8942AD1836241C00B8CA0E /* yannic.png in Resources */,
+				9A8942AD1836241C00B8CA0E /* jennic.png in Resources */,
 				9A94F42E16A0192700AF52AB /* THLilypadProperties.xib in Resources */,
 				9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */,
 				9A94F43016A0192700AF52AB /* THMapperProperties.xib in Resources */,
@@ -4525,7 +4525,7 @@
 				9A41453F17DE7A060061EDF8 /* backwards.png in Resources */,
 				9A41454117DE7A060061EDF8 /* backwards@2x.png in Resources */,
 				9A41454317DE7A060061EDF8 /* forward.png in Resources */,
-				9A8942AF1836241C00B8CA0E /* yannic@2x.png in Resources */,
+				9A8942AF1836241C00B8CA0E /* jennic@2x.png in Resources */,
 				9A41454517DE7A060061EDF8 /* forward@2x.png in Resources */,
 				9A41454717DE7A060061EDF8 /* musicPlay.png in Resources */,
 				9A41454917DE7A060061EDF8 /* musicPlay@2x.png in Resources */,
@@ -4602,7 +4602,7 @@
 				9A5BD7471860C52E00842833 /* squareFilled@2x.png in Resources */,
 				9A4145CF17DE7A060061EDF8 /* palette_led.png in Resources */,
 				9A4145D117DE7A060061EDF8 /* palette_led@2x.png in Resources */,
-				9A8942A91836241C00B8CA0E /* palette_yannic.png in Resources */,
+				9A8942A91836241C00B8CA0E /* palette_jennic.png in Resources */,
 				9A4145D317DE7A060061EDF8 /* palette_lightSensor.png in Resources */,
 				9A4145D517DE7A060061EDF8 /* palette_lightSensor@2x.png in Resources */,
 				9A4145D717DE7A060061EDF8 /* palette_mapper.png in Resources */,
@@ -4669,7 +4669,7 @@
 				9A41463F17DE7A060061EDF8 /* duplicate.png in Resources */,
 				9A41464117DE7A060061EDF8 /* duplicate@2x.png in Resources */,
 				9A41464317DE7A060061EDF8 /* editormode.png in Resources */,
-				9A8942AB1836241C00B8CA0E /* palette_yannic@2x.png in Resources */,
+				9A8942AB1836241C00B8CA0E /* palette_jennic@2x.png in Resources */,
 				9A41464517DE7A060061EDF8 /* editormode@2x.png in Resources */,
 				9A41464717DE7A060061EDF8 /* hideiphone.png in Resources */,
 				9A41464917DE7A060061EDF8 /* hideiphone@2x.png in Resources */,
@@ -4754,12 +4754,12 @@
 				9AF60BC016A04BDB00178439 /* connectionMade.mp3 in Resources */,
 				9AF60BC716A04D9F00178439 /* THTabbar.xib in Resources */,
 				9AF60BC916A04D9F00178439 /* THTabbarViewSection.xib in Resources */,
-				9A8942AE1836241C00B8CA0E /* yannic.png in Resources */,
+				9A8942AE1836241C00B8CA0E /* jennic.png in Resources */,
 				9A5F8D8E16A2C524000DF472 /* THContactBookProperties.xib in Resources */,
 				9A87C06216A4140C0059CC2E /* THGridItem.xib in Resources */,
 				9A8FAA5416BFFBAE004D7793 /* song1.mp3 in Resources */,
 				9A8FAA5516BFFBAE004D7793 /* song2.mp3 in Resources */,
-				9A8942B01836241C00B8CA0E /* yannic@2x.png in Resources */,
+				9A8942B01836241C00B8CA0E /* jennic@2x.png in Resources */,
 				9A8FAA5616BFFBAE004D7793 /* song3.mp3 in Resources */,
 				9A1384DC16D27EA300F5EEAA /* THClotheProperties.xib in Resources */,
 				9A93849016D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
@@ -4818,7 +4818,7 @@
 				9A41457A17DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457C17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
 				9A41457E17DE7A060061EDF8 /* iphone5.png in Resources */,
-				9A8942AC1836241C00B8CA0E /* palette_yannic@2x.png in Resources */,
+				9A8942AC1836241C00B8CA0E /* palette_jennic@2x.png in Resources */,
 				9A41458017DE7A060061EDF8 /* iphone5@2x.png in Resources */,
 				9A41458217DE7A060061EDF8 /* iphoneFrameSimulator.xcf in Resources */,
 				9A41458417DE7A060061EDF8 /* led.png in Resources */,
@@ -4952,7 +4952,7 @@
 				9A41464E17DE7A060061EDF8 /* lilypadmode@2x.png in Resources */,
 				9A41465017DE7A060061EDF8 /* pinsmode.png in Resources */,
 				9A41465217DE7A060061EDF8 /* pinsmode@2x.png in Resources */,
-				9A8942AA1836241C00B8CA0E /* palette_yannic.png in Resources */,
+				9A8942AA1836241C00B8CA0E /* palette_jennic.png in Resources */,
 				9A41465417DE7A060061EDF8 /* push.png in Resources */,
 				9A41465617DE7A060061EDF8 /* push@2x.png in Resources */,
 				9AFB7E451833D89800694CCE /* led@2x.png in Resources */,

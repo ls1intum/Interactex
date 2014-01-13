@@ -42,6 +42,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFConnectionLine.h"
 #import "TFEditableObject.h"
 #import "THWire.h"
+#import "THElementPinEditable.h"
+#import "THBoardPinEditable.h"
 
 @implementation TFHelper
 

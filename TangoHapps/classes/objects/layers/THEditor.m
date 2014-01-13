@@ -111,7 +111,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)handleEditableObjectRemoved:(NSNotification *)notification{
     TFEditableObject * object = notification.object;
     [object removeFromLayer:self];
-    
+
     if(object == self.currentObject){
         [self unselectCurrentObject];
     }
@@ -401,7 +401,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     [project addInvocationConnection:invocationConnection animated:YES];
-    
 }
 
 -(void)startNewConnectionForObject:(TFEditableObject*) object {
@@ -602,14 +601,6 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    
-    THProject * myProject = [THDirector sharedDirector].currentProject;
-    THBoardEditable * board = [myProject boardAtLocation:location];
-    if(board){
-        CGPoint newPos = ccpSub(location, board.position);
-        NSLog(@"%d %d",(int)newPos.x, (int)newPos.y);
-    }
-    
     if(self.removeConnections){
         
         THProject * project = [THDirector sharedDirector].currentProject;
@@ -630,7 +621,6 @@ You should have received a copy of the GNU General Public License along with thi
         }
         
         [project removeAllConnectionsFrom:self.currentObject to:object];
-        //[self.currentObject removeAllConnectionsTo:object];
         
         object.highlighted = NO;
         

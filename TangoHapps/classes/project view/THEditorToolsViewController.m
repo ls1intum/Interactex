@@ -63,19 +63,23 @@ You should have received a copy of the GNU General Public License along with thi
     _lilypadTools = [NSArray arrayWithObjects:self.connectButton, self.duplicateButton, self.removeButton, self.lilypadItem, nil];
     _simulatingTools = [NSArray arrayWithObjects:self.pinsModeItem,nil];
     
-    //self.highlightedItemTintColor = [UIColor colorWithRed:0.2f green:0.2f blue:1.0f alpha:0.6f];
     self.highlightedItemTintColor = nil;
     self.hideiPhoneItem.tintColor = self.highlightedItemTintColor;
     self.unselectedTintColor = [UIColor grayColor];
     
     [self addEditionButtons];
     
-    //self.pushItem.tintColor = self.unselectedTintColor;
+    id c = [NSNotificationCenter defaultCenter];
+    [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) handleEditableObjectAdded:(NSNotification*) notification{
+    TFEditableObject * object = notification.object;
+    
+    if([object isKindOfClass:[THiPhoneEditableObject class]]){
+        
+        [self updateHideIphoneButtonTint];
+    }
 }
 
 -(void) unselectAllButtons{

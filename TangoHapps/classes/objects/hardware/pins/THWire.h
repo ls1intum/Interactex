@@ -41,9 +41,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import <Foundation/Foundation.h>
 
 @class THWire;
+@class THElementPinEditable;
+@class THBoardPinEditable;
 
 @interface THWireNode : TFEditableObject
-    //@property (nonatomic) CGPoint point;
+
     @property (nonatomic, weak) THWire * wire;
 
 @end
@@ -51,15 +53,15 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THWire : TFEditableObject {
 }
 
-@property(nonatomic, weak) TFEditableObject * obj1;
-@property(nonatomic, weak) TFEditableObject * obj2;
+@property(nonatomic, weak) THElementPinEditable * obj1;
+@property(nonatomic, weak) THBoardPinEditable * obj2;
 @property(nonatomic) CGPoint p1;
 @property(nonatomic) CGPoint p2;
 @property(nonatomic) BOOL selected;
 @property(nonatomic) ccColor3B color;
 @property(nonatomic, strong) NSMutableArray * nodes;
 
--(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2;
+-(id)initWithObj1:(THElementPinEditable*) obj1 obj2:(THBoardPinEditable*) obj2;
 -(void) insertNode:(THWireNode*) node atIndex:(NSUInteger) index;
 -(void) addNodeInLongestEdge;
 -(void) removeNode:(THWireNode*) node;

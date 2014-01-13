@@ -153,13 +153,16 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addWire:(THWire*) wire;
 -(void) removeWire:(THWire*) wire;
 -(void) addWireFrom:(THElementPinEditable*) elementPin to:(THBoardPinEditable*) boardPin;
--(void) removeAllWiresTo:(id) object;
+-(void) removeAllWiresFrom:(id) object notify:(BOOL) notify;
+//-(void) removeAllWiresTo:(id) object notify:(BOOL) notify;
 
-//invocation conncetions
+//invocation connections
 -(NSArray*) invocationConnectionsForObject:(TFEditableObject*) object;
 -(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
 -(void) addInvocationConnection:(THInvocationConnectionLine*) connection animated:(BOOL) animated;
 -(void) removeInvocationConnection:(THInvocationConnectionLine*) connection;
+
+-(void) removeAllInvocationConnectionsFrom:(id) object;
 -(void) removeAllInvocationConnectionsTo:(id) object;
 -(void) removeAllConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
 

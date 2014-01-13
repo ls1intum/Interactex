@@ -238,6 +238,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
     return connections;
 }
+
 /*
 -(void) handleEditableObjectRemoved:(NSNotification*) notification{
     
@@ -255,7 +256,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) registerNotificationsFor:(TFEditableObject*) object{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:object];
 }
-
 
 -(void) addConnectionTo:(TFEditableObject*) object animated:(BOOL) animated{
     

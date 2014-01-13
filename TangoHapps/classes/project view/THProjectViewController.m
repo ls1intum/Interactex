@@ -41,7 +41,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectViewController.h"
 #import "THProjectViewController.h"
 #import "THEditorToolsViewController.h"
-//#import "THEditorToolsDataSource.h"
 #import "THTabbarViewController.h"
 #import "THSimulator.h"
 #import "THEditor.h"
@@ -74,8 +73,7 @@ float const kToolsTabMargin = 5;
     [THDirector sharedDirector].projectController = self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     
@@ -147,15 +145,12 @@ float const kToolsTabMargin = 5;
     [self addPalettePull];
     [self updatePalettePullVisibility];
     
-    THDirector * director = [THDirector sharedDirector];
-    NSLog(@"%d",director.serverController.serverIsRunning);
-    
     //self.toolsController.pushItem.enabled = director.serverController.serverIsRunning;
     
     _currentProjectName = [THDirector sharedDirector].currentProject.name;
 }
 
--(void) viewWillDisappear:(BOOL)animated{
+-(void) viewWillDisappear:(BOOL)animated {
     
     [self saveCurrentProjectAndPalette];
     
@@ -167,8 +162,7 @@ float const kToolsTabMargin = 5;
     [center removeObserver:self];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
@@ -191,21 +185,17 @@ float const kToolsTabMargin = 5;
     [THDirector sharedDirector].currentProxy = nil;   
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     
     [[CCDirector sharedDirector] setDelegate:nil];
 }
 
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
     [[CCDirector sharedDirector] purgeCachedData];
 }
-
 
 #pragma mark - Saving and restoring projects
 
@@ -593,6 +583,7 @@ float const kToolsTabMargin = 5;
         [self addPlayButton];
         [self updatePalettePullVisibility];
         [self removePalettePullRecognizer];
+        [self.toolsController updateHideIphoneButtonTint];
     }
 }
 

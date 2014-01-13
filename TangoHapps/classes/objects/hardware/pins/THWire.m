@@ -41,6 +41,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THWire.h"
 #import "THWireProperties.h"
 #import "THEditor.h"
+#import "THElementPinEditable.h"
+#import "THBoardPinEditable.h"
 
 @implementation THWireNode
 
@@ -68,7 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.canBeScaled = YES;
 }
 
--(id)initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2 {
+-(id)initWithObj1:(THElementPinEditable*) obj1 obj2:(THBoardPinEditable*) obj2 {
     self = [super init];
     if (self) {
         
@@ -366,7 +368,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Other
 
+-(NSString*) description{
+    return @"Wire";
+}
+
 -(void) prepareToDie{
+
     [self removeAllNodes];
     [super prepareToDie];
     

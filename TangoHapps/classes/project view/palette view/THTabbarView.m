@@ -91,6 +91,9 @@ You should have received a copy of the GNU General Public License along with thi
         
         THPalette * palette = [self emptyPalette];
         NSInteger numItems = [self.dataSource numPaletteItemsForSection:i palette:self];
+        
+        NSLog(@"items: %d",numItems);
+        
         for (int j = 0; j < numItems; j++) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForItem:j inSection:i];
             

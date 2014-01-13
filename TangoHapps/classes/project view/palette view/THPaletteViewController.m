@@ -95,11 +95,29 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Populate
 
+-(NSInteger) indexOfSectionNamed:(NSString*) name{
+    NSInteger idx = 0;
+    
+    for (NSString* sectionName in self.sectionNames) {
+        if([sectionName isEqualToString:name]){
+            return idx;
+        }
+        idx++;
+    }
+    return -1;
+}
+
 -(void) addCustomPaletteItems{
     
     for (THCustomPaletteItem * paletteItem in _customPaletteItems) {
-        THTabbarSection * section = [((THTabbarView*) self.view) sectionNamed:paletteItem.paletteName];
-        [section.palette addDragablePaletteItem:paletteItem];
+        //THTabbarSection * section = [((THTabbarView*) self.view) sectionNamed:paletteItem.paletteName];
+        //[section.palette addDragablePaletteItem:paletteItem];
+        
+        NSInteger idx = [self indexOfSectionNamed:paletteItem.paletteName];
+        if(idx >= 0){
+            NSMutableArray * array = [self.sections objectAtIndex:idx];
+            [array addObject:paletteItem];
+        }
     }
 }
 
@@ -343,11 +361,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) prepareToDie{
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 #pragma  mark - Palette Data Source
 
 -(NSInteger) numPaletteSectionsForPalette:(THTabbarView*) tabBar{
@@ -368,6 +381,9 @@ You should have received a copy of the GNU General Public License along with thi
     return [items objectAtIndex:indexPath.row];
 }
 
+
+#pragma  mark - Other
+
 -(void) useDefaultPaletteSections{
     
     self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, nil];
@@ -376,9 +392,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadPaletteData {
     
-    self.clothesSectionArray  = [NSArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
+    self.clothesSectionArray  = [NSMutableArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
     
-    self.uiSectionArray = [NSArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
+    self.uiSectionArray = [NSMutableArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
                            [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
                            [[THLabelPaletteItem alloc] initWithName:@"label"],
                            [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
@@ -391,12 +407,12 @@ You should have received a copy of the GNU General Public License along with thi
                            nil];
     
     
-    self.boardsSectionArray  = [NSArray arrayWithObjects:
+    self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
                                 [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
                                 [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
-                                [[THYannicPaletteItem alloc] initWithName:@"yannic"],nil];
+                                [[THYannicPaletteItem alloc] initWithName:@"jennic"],nil];
     
-    self.hardwareSectionArray = [NSArray arrayWithObjects:
+    self.hardwareSectionArray = [NSMutableArray arrayWithObjects:
                                  [[THLedPaletteItem alloc] initWithName:@"led"],
                                  [[THButtonPaletteItem alloc] initWithName:@"button"],
                                  [[THSwitchPaletteItem alloc] initWithName:@"switch"],
@@ -411,7 +427,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  nil];
     
     
-    self.programmingSectionArray  = [NSArray arrayWithObjects:
+    self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
                                      [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
                                      [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
@@ -433,4 +449,11 @@ You should have received a copy of the GNU General Public License along with thi
     section.palette.dragDelegate = self;
     section.palette.editionDelegate = self;
 }
+
+-(void) prepareToDie{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 @end

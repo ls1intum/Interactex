@@ -78,7 +78,7 @@ You should have received a copy of the GNU General Public License along with thi
     view.opacity = kUiViewOpacityEditor;
     view.canBeResized = NO;
     iPhone.currentView = view;
-    iPhone.currentView.opacity = 1.0f;
+    //iPhone.currentView.opacity = 1.0f;
     return iPhone;
 }
 
