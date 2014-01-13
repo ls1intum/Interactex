@@ -44,12 +44,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (weak, nonatomic) IBOutlet UITextField *minText;
 @property (weak, nonatomic) IBOutlet UITextField *maxText;
-@property (weak, nonatomic) IBOutlet UITextField *aText;
-@property (weak, nonatomic) IBOutlet UITextField *bText;
+
+@property (weak, nonatomic) IBOutlet UITextField *outputMinText;
+@property (weak, nonatomic) IBOutlet UITextField *outputMaxText;
 
 - (IBAction)minChanged:(id)sender;
 - (IBAction)maxChanged:(id)sender;
-- (IBAction)aChanged:(id)sender;
-- (IBAction)bChanged:(id)sender;
+- (IBAction)minOutputChanged:(id)sender;
+- (IBAction)maxOutputChanged:(id)sender;
+
 
 @end

@@ -43,10 +43,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMapperProperties.h"
 
 @implementation THMapperEditable
-@dynamic min;
-@dynamic max;
+@dynamic min1;
+@dynamic max1;
+@dynamic min2;
+@dynamic max2;
 @dynamic value;
-@dynamic function;
 
 -(void) load{
     self.sprite = [CCSprite spriteWithFile:@"mapper.png"];
@@ -102,25 +103,47 @@ You should have received a copy of the GNU General Public License along with thi
     
 }
 
--(float) min{
+-(float) min1{
     THMapper * mapper = (THMapper*) self.simulableObject;
-    return mapper.min;
+    return mapper.min1;
 }
 
--(void) setMin:(float)min{
+-(void) setMin1:(float)min1{
     THMapper * mapper = (THMapper*) self.simulableObject;
-    mapper.min = min;
+    mapper.min1 = min1;
 }
 
--(float) max{
+-(float) max1{
     THMapper * mapper = (THMapper*) self.simulableObject;
-    return mapper.max;
+    return mapper.max1;
 }
 
--(void) setMax:(float)max{
+-(void) setMax1:(float)max1{
     THMapper * mapper = (THMapper*) self.simulableObject;
-    mapper.max = max;
+    mapper.max1 = max1;
 }
+
+
+-(float) min2{
+    THMapper * mapper = (THMapper*) self.simulableObject;
+    return mapper.min2;
+}
+
+-(void) setMin2:(float)min2{
+    THMapper * mapper = (THMapper*) self.simulableObject;
+    mapper.min2 = min2;
+}
+
+-(float) max2{
+    THMapper * mapper = (THMapper*) self.simulableObject;
+    return mapper.max2;
+}
+
+-(void) setMax2:(float)max2{
+    THMapper * mapper = (THMapper*) self.simulableObject;
+    mapper.max2 = max2;
+}
+
 
 -(float) value{
     THMapper * mapper = (THMapper*) self.simulableObject;
@@ -132,18 +155,8 @@ You should have received a copy of the GNU General Public License along with thi
     mapper.value = v;
 }
 
--(THLinearFunction*) function{
-    THMapper * mapper = (THMapper*) self.simulableObject;
-    return mapper.function;
-}
-
--(void) setFunction:(THLinearFunction*) function{
-    THMapper * mapper = (THMapper*) self.simulableObject;
-    mapper.function = function;
-}
-
 -(NSString*) description{
-    return @"Value";
+    return @"Mapper";
 }
 
 @end

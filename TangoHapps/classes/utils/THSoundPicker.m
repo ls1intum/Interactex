@@ -67,7 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _sounds = [TFFileUtils filesInDirectory:@"sounds"];
+    _sounds = [NSArray arrayWithObjects:@"peer_connected.mp3",@"peer_disconnected.mp3", nil];
 }
 
 - (void)didReceiveMemoryWarning {

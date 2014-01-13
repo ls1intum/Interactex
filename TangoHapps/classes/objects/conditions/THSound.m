@@ -39,6 +39,7 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THSound.h"
+#import "THSoundEffect.h"
 
 @implementation THSound
 
@@ -86,8 +87,9 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(void) play{
-    if(_fileName){
-        //[[SimpleAudioEngine sharedEngine] playEffect:_fileName];
+    if(self.fileName){
+        THSoundEffect * sound = [[THSoundEffect alloc] initWithSoundNamed:self.fileName];
+        [sound play];
     }
 }
 

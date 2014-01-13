@@ -482,6 +482,11 @@
 		9A5BD74E1860C52E00842833 /* triangleEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5BD73F1860C52E00842833 /* triangleEmpty@2x.png */; };
 		9A5BD74F1860C52E00842833 /* triangleFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5BD7401860C52E00842833 /* triangleFilled@2x.png */; };
 		9A5BD7501860C52E00842833 /* triangleFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5BD7401860C52E00842833 /* triangleFilled@2x.png */; };
+		9A5D046D18844ADC006E9348 /* peer_connected.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035A167B84B40020241C /* peer_connected.mp3 */; };
+		9A5D046E18844ADC006E9348 /* peer_disconnected.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035B167B84B40020241C /* peer_disconnected.mp3 */; };
+		9A5D047118844B50006E9348 /* THSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D047018844B50006E9348 /* THSoundEffect.m */; };
+		9A5D047218844B50006E9348 /* THSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D047018844B50006E9348 /* THSoundEffect.m */; };
+		9A5D047318844B50006E9348 /* THSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D047018844B50006E9348 /* THSoundEffect.m */; };
 		9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8416A2C46E000DF472 /* THContactBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8016A2C46E000DF472 /* THContactBook.m */; };
 		9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8216A2C46E000DF472 /* THContactBookEditable.m */; };
@@ -626,7 +631,6 @@
 		9A94F1E6169ED5E300AF52AB /* THImageViewEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B45167F4DF800F5AF62 /* THImageViewEditable.m */; };
 		9A94F1E7169ED5E600AF52AB /* THImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B42167F4CF300F5AF62 /* THImageView.m */; };
 		9A94F1E8169ED5E600AF52AB /* THImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B42167F4CF300F5AF62 /* THImageView.m */; };
-		9A94F1EA169ED60000AF52AB /* THLinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B61167F828F00F5AF62 /* THLinearFunction.m */; };
 		9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050A167B8DC30020241C /* OpenAL.framework */; };
 		9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */; };
 		9A94F1F0169ED6A200AF52AB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */; };
@@ -705,11 +709,9 @@
 		9AB29B59167F78C300F5AF62 /* THHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B58167F78C300F5AF62 /* THHelper.m */; };
 		9AB29B5E167F824300F5AF62 /* THMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B5B167F824300F5AF62 /* THMapper.m */; };
 		9AB29B5F167F824300F5AF62 /* THMapperEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B5D167F824300F5AF62 /* THMapperEditable.m */; };
-		9AB29B62167F828F00F5AF62 /* THLinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B61167F828F00F5AF62 /* THLinearFunction.m */; };
 		9AB29B65167F82AA00F5AF62 /* THMapperProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B64167F82AA00F5AF62 /* THMapperProperties.m */; };
 		9AB29B66167F82B500F5AF62 /* THMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B5B167F824300F5AF62 /* THMapper.m */; };
 		9AB29B67167F82B500F5AF62 /* THMapperEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B5D167F824300F5AF62 /* THMapperEditable.m */; };
-		9AB29B68167F82B500F5AF62 /* THLinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B61167F828F00F5AF62 /* THLinearFunction.m */; };
 		9AB29B69167F82B500F5AF62 /* THMapperProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B64167F82AA00F5AF62 /* THMapperProperties.m */; };
 		9AB29B6C167F82E900F5AF62 /* THMapperPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B6B167F82E900F5AF62 /* THMapperPaletteItem.m */; };
 		9AB29C00167F898B00F5AF62 /* THProgrammingElementEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */; };
@@ -1947,6 +1949,8 @@
 		9A5BD73E1860C52E00842833 /* starFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starFilled@2x.png"; sourceTree = "<group>"; };
 		9A5BD73F1860C52E00842833 /* triangleEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangleEmpty@2x.png"; sourceTree = "<group>"; };
 		9A5BD7401860C52E00842833 /* triangleFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangleFilled@2x.png"; sourceTree = "<group>"; };
+		9A5D046F18844B50006E9348 /* THSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundEffect.h; sourceTree = "<group>"; };
+		9A5D047018844B50006E9348 /* THSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundEffect.m; sourceTree = "<group>"; };
 		9A5F8D7F16A2C46E000DF472 /* THContactBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBook.h; sourceTree = "<group>"; };
 		9A5F8D8016A2C46E000DF472 /* THContactBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBook.m; sourceTree = "<group>"; };
 		9A5F8D8116A2C46E000DF472 /* THContactBookEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookEditable.h; sourceTree = "<group>"; };
@@ -2098,8 +2102,6 @@
 		9AB29B5B167F824300F5AF62 /* THMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMapper.m; sourceTree = "<group>"; };
 		9AB29B5C167F824300F5AF62 /* THMapperEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMapperEditable.h; sourceTree = "<group>"; };
 		9AB29B5D167F824300F5AF62 /* THMapperEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMapperEditable.m; sourceTree = "<group>"; };
-		9AB29B60167F828F00F5AF62 /* THLinearFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLinearFunction.h; sourceTree = "<group>"; };
-		9AB29B61167F828F00F5AF62 /* THLinearFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLinearFunction.m; sourceTree = "<group>"; };
 		9AB29B63167F82AA00F5AF62 /* THMapperProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMapperProperties.h; sourceTree = "<group>"; };
 		9AB29B64167F82AA00F5AF62 /* THMapperProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMapperProperties.m; sourceTree = "<group>"; };
 		9AB29B6A167F82E900F5AF62 /* THMapperPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMapperPaletteItem.h; sourceTree = "<group>"; };
@@ -3375,8 +3377,6 @@
 				9AB29B5B167F824300F5AF62 /* THMapper.m */,
 				9AB29B5C167F824300F5AF62 /* THMapperEditable.h */,
 				9AB29B5D167F824300F5AF62 /* THMapperEditable.m */,
-				9AB29B60167F828F00F5AF62 /* THLinearFunction.h */,
-				9AB29B61167F828F00F5AF62 /* THLinearFunction.m */,
 				9AB29BFE167F898A00F5AF62 /* THProgrammingElementEditable.h */,
 				9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */,
 				9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */,
@@ -3741,6 +3741,8 @@
 				9AB29B58167F78C300F5AF62 /* THHelper.m */,
 				9A85721A172804B600510D23 /* THSoundPicker.h */,
 				9A85721B172804B600510D23 /* THSoundPicker.m */,
+				9A5D046F18844B50006E9348 /* THSoundEffect.h */,
+				9A5D047018844B50006E9348 /* THSoundEffect.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -5001,6 +5003,7 @@
 				9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */,
 				9A7E4D36183618C200657B72 /* LSMCompass@2x.png in Resources */,
 				9AFB7E421833D89800694CCE /* led.png in Resources */,
+				9A5D046E18844ADC006E9348 /* peer_disconnected.mp3 in Resources */,
 				9A51102D1839384200EB25FA /* backwards.png in Resources */,
 				9A5110371839384200EB25FA /* musicPlay@2x.png in Resources */,
 				9AF50036167B83140020241C /* removeButton.png in Resources */,
@@ -5012,6 +5015,7 @@
 				9A5110311839384200EB25FA /* forward.png in Resources */,
 				9A51103B1839384200EB25FA /* pause@2x.png in Resources */,
 				9AFB7E541833D89800694CCE /* threeColorLed@2x.png in Resources */,
+				9A5D046D18844ADC006E9348 /* peer_connected.mp3 in Resources */,
 				9AF5003B167B83140020241C /* virtualmode.png in Resources */,
 				9AFB7E3A1833D89800694CCE /* accelerometer.png in Resources */,
 				9AFB7E401833D89800694CCE /* buzzer@2x.png in Resources */,
@@ -5167,7 +5171,6 @@
 				9A3165A1182795D000CB3E59 /* THMonitor.m in Sources */,
 				9AB29B5E167F824300F5AF62 /* THMapper.m in Sources */,
 				9AB29B5F167F824300F5AF62 /* THMapperEditable.m in Sources */,
-				9AB29B62167F828F00F5AF62 /* THLinearFunction.m in Sources */,
 				9AB29B65167F82AA00F5AF62 /* THMapperProperties.m in Sources */,
 				9AB29B6C167F82E900F5AF62 /* THMapperPaletteItem.m in Sources */,
 				9AB29C00167F898B00F5AF62 /* THProgrammingElementEditable.m in Sources */,
@@ -5206,6 +5209,7 @@
 				9ABC27881809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */,
 				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
+				9A5D047118844B50006E9348 /* THSoundEffect.m in Sources */,
 				9A85721C172804B600510D23 /* THSoundPicker.m in Sources */,
 				9A8572B7172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BC172AD6D900510D23 /* THSoundAsset.m in Sources */,
@@ -5311,6 +5315,7 @@
 				9AF50603167B91FE0020241C /* THiSwitchEditableObject.m in Sources */,
 				9AF50604167B91FE0020241C /* THLabel.m in Sources */,
 				9AF50605167B92020020241C /* THLabelEditableObject.m in Sources */,
+				9A5D047318844B50006E9348 /* THSoundEffect.m in Sources */,
 				9AF50606167B92020020241C /* THMusicPlayer.m in Sources */,
 				9AFB7DCF1832AAD100694CCE /* THClientProjectDraggableCell.m in Sources */,
 				9AF50607167B92020020241C /* THMusicPlayerEditableObject.m in Sources */,
@@ -5403,7 +5408,6 @@
 				9AFB7DD31832AE2600694CCE /* THClientTableProjectCell.m in Sources */,
 				9AB29B66167F82B500F5AF62 /* THMapper.m in Sources */,
 				9AB29B67167F82B500F5AF62 /* THMapperEditable.m in Sources */,
-				9AB29B68167F82B500F5AF62 /* THLinearFunction.m in Sources */,
 				9AB29B69167F82B500F5AF62 /* THMapperProperties.m in Sources */,
 				9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */,
 				9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */,
@@ -5572,7 +5576,6 @@
 				9A06EE96169AD8B600B88519 /* THSlider.m in Sources */,
 				9A94F1E3169ED5CB00AF52AB /* THMapper.m in Sources */,
 				9A94F1E8169ED5E600AF52AB /* THImageView.m in Sources */,
-				9A94F1EA169ED60000AF52AB /* THLinearFunction.m in Sources */,
 				9A5F8D8716A2C473000DF472 /* THContactBook.m in Sources */,
 				9AFB7E271833D60300694CCE /* THI2CRegister.m in Sources */,
 				9ABC275818098F2400B39D72 /* THBoard.m in Sources */,
@@ -5591,6 +5594,7 @@
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
 				9AAF2846182B8B1C00531E3A /* THMonitorLine.m in Sources */,
+				9A5D047218844B50006E9348 /* THSoundEffect.m in Sources */,
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,
 				9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */,
 				9AFB7E241833D60300694CCE /* THI2CComponent.m in Sources */,
@@ -5671,7 +5675,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5703,7 +5706,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -5725,11 +5728,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
@@ -5746,6 +5751,7 @@
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
@@ -5761,7 +5767,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -5784,12 +5790,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** Frameworks/BLEFirmata/BLEFirmata/**";
 				WRAPPER_EXTENSION = app;
@@ -5809,7 +5815,6 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "01E0AD0F-8FCF-40A6-9252-6B9870CE1426";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5847,7 +5852,6 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "01E0AD0F-8FCF-40A6-9252-6B9870CE1426";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
@@ -5867,7 +5871,6 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "01E0AD0F-8FCF-40A6-9252-6B9870CE1426";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};

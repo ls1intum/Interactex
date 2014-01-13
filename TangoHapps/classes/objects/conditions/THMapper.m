@@ -39,7 +39,6 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THMapper.h"
-#import "THLinearFunction.h"
 
 @implementation THMapper
 
@@ -64,43 +63,46 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         [self load];
         
-        _max = 300;
-        _function = [THLinearFunction functionWithA:1.0f b:0.0f];
+        _min1 = 0;
+        _max1 = 1;
+        
+        _min2 = 0;
+        _max2 = 255;
     }
     return self;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-        _min = [decoder decodeFloatForKey:@"min"];
-        _max = [decoder decodeFloatForKey:@"max"];
-        _function = [decoder decodeObjectForKey:@"function"];
+        _min1 = [decoder decodeFloatForKey:@"min1"];
+        _max1 = [decoder decodeFloatForKey:@"max1"];
+        _min2 = [decoder decodeFloatForKey:@"min2"];
+        _max2 = [decoder decodeFloatForKey:@"max2"];
         
         [self load];
     }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeFloat:_min forKey:@"min"];
-    [coder encodeFloat:_max forKey:@"max"];
-    [coder encodeObject:_function forKey:@"function"];
+    [coder encodeFloat:_min1 forKey:@"min1"];
+    [coder encodeFloat:_max1 forKey:@"max1"];
+    [coder encodeFloat:_min2 forKey:@"min2"];
+    [coder encodeFloat:_max2 forKey:@"max2"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THMapper * copy = [super copyWithZone:zone];
     
-    copy.min = self.min;
-    copy.max = self.max;
-    copy.function = self.function;
+    copy.min1 = self.min1;
+    copy.max1 = self.max1;
+    copy.min2 = self.min2;
+    copy.max2 = self.max2;
     
     return copy;
 }
@@ -108,8 +110,9 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(float) mapAndConstrain:(float) value{
-    value = [self.function evaluate:value];
-    return [THClientHelper Constrain: value min: self.min max:self.max];
+    
+    return [THClientHelper LinearMapping:value min:self.min1 max:self.max1 retMin:self.min2 retMax:self.max2];
+    
 }
 
 -(void) setValue:(float)value{

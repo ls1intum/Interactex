@@ -40,7 +40,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THMapperProperties.h"
 #import "THMapperEditable.h"
-#import "THLinearFunction.h"
 
 
 @implementation THMapperProperties
@@ -52,79 +51,65 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateMinText{
     
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    self.minText.text = [NSString stringWithFormat:@"%.2f",mapper.min];
+    self.minText.text = [NSString stringWithFormat:@"%.2f",mapper.min1];
 }
 
 -(void) updateMaxText{
     
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    self.maxText.text = [NSString stringWithFormat:@"%.2f",mapper.max];
+    self.maxText.text = [NSString stringWithFormat:@"%.2f",mapper.max1];
 }
 
--(void) updateAText{
+-(void) updateOutputMinText{
     
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    THLinearFunction * function = mapper.function;
-    self.aText.text = [NSString stringWithFormat:@"%.2f", function.a];
+    self.outputMinText.text = [NSString stringWithFormat:@"%.2f", mapper.min2];
 }
 
--(void) updateBText{
+-(void) updateOutputMaxText{
     
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    THLinearFunction * function = mapper.function;
-    self.bText.text = [NSString stringWithFormat:@"%.2f", function.b];
+    self.outputMaxText.text = [NSString stringWithFormat:@"%.2f", mapper.max2];
 }
 
 -(void) reloadState{
     
     [self updateMinText];
     [self updateMaxText];
-    [self updateAText];
-    [self updateBText];
+    [self updateOutputMinText];
+    [self updateOutputMaxText];
 }
+
 
 - (IBAction)minChanged:(id)sender {
    THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    mapper.min = [self.minText.text floatValue];
+    mapper.min1 = [self.minText.text floatValue];
 }
 
 - (IBAction)maxChanged:(id)sender {
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    mapper.max = [self.maxText.text floatValue];
+    mapper.max1 = [self.maxText.text floatValue];
 }
 
-- (IBAction)aChanged:(id)sender {
+- (IBAction)minOutputChanged:(id)sender {
     
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    THLinearFunction * function = mapper.function;
-    function.a = [self.aText.text floatValue];
+    mapper.min2 = [self.outputMinText.text floatValue];
 }
 
-- (IBAction)bChanged:(id)sender {
-    
+- (IBAction)maxOutputChanged:(id)sender {
     THMapperEditable * mapper = (THMapperEditable*) self.editableObject;
-    THLinearFunction * function = mapper.function;
-    function.b = [self.bText.text floatValue];
+
+    mapper.max2 = [self.outputMaxText.text floatValue];
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)viewDidUnload {
     [self setMinText:nil];
     [self setMaxText:nil];
-    [self setAText:nil];
-    [self setBText:nil];
+    [self setOutputMinText:nil];
+    [self setOutputMaxText:nil];
     [super viewDidUnload];
 }
 

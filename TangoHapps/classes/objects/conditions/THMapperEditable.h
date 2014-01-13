@@ -44,9 +44,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THMapperEditable : THProgrammingElementEditable
 
-@property (nonatomic) float min;
-@property (nonatomic) float max;
+@property (nonatomic) float min1;
+@property (nonatomic) float max1;
+@property (nonatomic) float min2;
+@property (nonatomic) float max2;
+
 @property (nonatomic) float value;
-@property (nonatomic) THLinearFunction * function;
 
 @end
