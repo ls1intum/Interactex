@@ -51,6 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THPinsController.h"
 #import "THPinsControllerContainer.h"
+#import "THHardwareComponentEditableObject.h"
 
 @implementation THSimulator
 
@@ -242,8 +243,16 @@ You should have received a copy of the GNU General Public License along with thi
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }
+    
     for (TFEditableObject * object in project.allObjects) {
-        [object addToLayer:self];
+        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+            THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+            if(!hardwareComponent.attachedToClothe){
+                [object addToLayer:self];
+            }
+        } else {
+            [object addToLayer:self];
+        }
     }
 }
 

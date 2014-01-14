@@ -52,6 +52,9 @@ You should have received a copy of the GNU General Public License along with thi
     UIBarButtonItem * _stopButton;
     
     NSString * _currentProjectName;
+    
+    CGPoint lastEditorZoomableLayerPosition;
+    float lastEditorZoom;
 }
 
 @property (nonatomic, readonly) TFLayer * currentLayer;

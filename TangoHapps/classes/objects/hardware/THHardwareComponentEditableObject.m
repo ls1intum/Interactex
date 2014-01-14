@@ -97,7 +97,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     [self addPinChilds];
-    [self loadSewedSprite];
 }
 
 -(id) init{
@@ -107,6 +106,7 @@ You should have received a copy of the GNU General Public License along with thi
         _pins = [NSMutableArray array];
 
         [self loadObject];
+        [self loadSewedSprite];
     }
     return self;
 }
@@ -123,7 +123,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self loadObject];
     [self addPinChilds];
     [self loadSewedSprite];
-    _attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
+    
+    self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
 
     return self;
 }

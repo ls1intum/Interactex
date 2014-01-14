@@ -421,7 +421,12 @@ float const kToolsTabMargin = 5;
         THSimulator * simulator = [THSimulator node];
         
         [self switchToLayer:simulator];
+        
+        lastEditorZoomableLayerPosition = editor.zoomableLayer.position;
+        lastEditorZoom = editor.zoomLevel;
+        
         simulator.zoomLevel = editor.zoomLevel;
+        simulator.zoomableLayer.position = editor.zoomableLayer.position;
         
         [self hideTabBar];
         
@@ -444,12 +449,14 @@ float const kToolsTabMargin = 5;
         
         [self restoreCurrentProject];
         
-        THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
         THEditor * editor = [THEditor node];
         
         editor.dragDelegate = self.tabController.paletteController;
         [self switchToLayer:editor];
-        editor.zoomLevel = simulator.zoomLevel;
+        
+        editor.zoomableLayer.position = lastEditorZoomableLayerPosition;
+        editor.zoomLevel = lastEditorZoom;
+        //editor.zoomLevel = simulator.zoomLevel;
 
         /*
         if(wasEditorInLilypadMode){

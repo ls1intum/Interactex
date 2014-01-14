@@ -182,6 +182,7 @@ You should have received a copy of the GNU General Public License along with thi
     return paletteItem;
 }
 
+/*
 -(void) setPosition:(CGPoint)position{
     
     for (THHardwareComponentEditableObject * object in _attachments) {
@@ -190,7 +191,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     [super setPosition:position];
-}
+}*/
 
 -(void) objectRemoved:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
@@ -200,6 +201,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) attachClotheObject:(THHardwareComponentEditableObject*) object{
     
     [_attachments addObject:object];
+    [self addChild:object z:1];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
     object.attachedToClothe = self;
 }
@@ -207,6 +210,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) deattachClotheObject:(THHardwareComponentEditableObject*) object{
     
     [_attachments removeObject:object];
+    [object removeFromParentAndCleanup:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
     
     object.attachedToClothe = nil;

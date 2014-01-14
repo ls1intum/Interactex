@@ -163,10 +163,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Connections
-/*
--(void) handleConnectionsRemoved{
-    [_triggerableProperties reloadState];
-}*/
 
 -(void) removeConnectionTo:(TFEditableObject*) object{
     
@@ -180,25 +176,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(toRemove){
         [_connections removeObject:toRemove];
     }
-    
-    //[self handleConnectionsRemoved];
 }
-
-/*
--(void) removeAllConnectionsTo:(TFEditableObject*) object{
-    NSMutableArray * toRemove = [NSMutableArray array];
-    for (TFConnectionLine * connection in _connections) {
-        if(connection.obj2 == object){
-            [toRemove addObject:connection];
-        }
-    }
-    
-    for (id object in toRemove) {
-        [_connections removeObject:object];
-    }
-    
-    [self handleConnectionsRemoved];
-}*/
 
 -(BOOL) acceptsConnectionsTo:(TFEditableObject*)object{
     
@@ -219,15 +197,6 @@ You should have received a copy of the GNU General Public License along with thi
     return NO;
 }
 
-/*
--(NSArray*) allConnections{
-    NSMutableArray * array = [NSMutableArray arrayWithArray:self.connections];
-    for (THExtension * extension in self.extensions) {
-        [array addObjectsFromArray:extension.allConnections];
-    }
-    return array;
-}*/
-
 -(NSArray*) connectionsWithTarget:(TFEditableObject*) target{
     NSMutableArray * connections = [NSMutableArray array];
     
@@ -238,53 +207,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
     return connections;
 }
-
-/*
--(void) handleEditableObjectRemoved:(NSNotification*) notification{
-    
-    TFEditableObject * object = notification.object;
-    [self removeAllConnectionsTo:object];
-}
-
--(void) registerNotificationsForConnections{
-    for (TFConnectionLine * connection in _connections) {
-        TFEditableObject * editable = connection.obj2;
-        [self registerNotificationsFor:editable];
-    }
-}
-
--(void) registerNotificationsFor:(TFEditableObject*) object{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:object];
-}
-
--(void) addConnectionTo:(TFEditableObject*) object animated:(BOOL) animated{
-    
-    
-    THInvocationConnectionLine * connection = [[THInvocationConnectionLine alloc] init];
-    connection.obj1 = self;
-    connection.obj2 = object;
-    connection.shouldAnimate = animated;
-    [_connections addObject:connection];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionMade object:connection];
-    
-    [self.triggerableProperties reloadState];
-    
-    [self registerNotificationsFor:object];
-    
-}
-*/
-/*
--(NSArray*) connectionsToObject:(TFEditableObject*) target{
-    NSMutableArray * connections = [NSMutableArray array];
-    
-    for (TFConnectionLine * connection in self.connections) {
-        if(connection.obj2 == target){
-            [connections addObject:connection];
-        }
-    }
-    return connections;
-}*/
 
 #pragma mark - Actions
 
@@ -319,12 +241,6 @@ You should have received a copy of the GNU General Public License along with thi
     simulable.visible = visible;
     [super setVisible:visible];
 }
-/*
--(BOOL) visible{
-    return super 
-    TFSimulableObject * simulable = (TFSimulableObject*) self.simulableObject;
-    return simulable.visible;
-}*/
 
 -(THPaletteItem*) paletteItem{
     THPaletteItem * paletteItem = [[THPaletteItem alloc] initWithName:@"customPaletteItem"];
@@ -390,6 +306,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) setPosition:(CGPoint)position{
+    
     [super setPosition:position];
     //NSLog(@"%f %f",position.x,position.y);
 }
@@ -418,9 +335,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     CGSize spriteSize;
     if(_sprite){
-        //NSLog(@"%f - %f ",_sprite.contentSize.width,_sprite.contentSizeInPixels.width);
         
         spriteSize = CGSizeMake(_sprite.contentSize.width * _sprite.scaleX,_sprite.contentSize.height * _sprite.scaleY);
+        
     } else {
         spriteSize = CGSizeMake(_size.width,_size.height);
     }
@@ -429,27 +346,6 @@ You should have received a copy of the GNU General Public License along with thi
     pos = ccpSub(pos, halfSize);
     CGRect spriteRect = CGRectMake(pos.x, pos.y, spriteSize.width, spriteSize.height);
     return spriteRect;
-    
-    /*
-    float maxX = box.origin.x + box.size.width;
-    float maxY = box.origin.y + box.size.height;
-    
-    for (TFExtension * extension in self.extensions) {
-        CGRect rect = extension.boundingBox;
-        if(rect.origin.x < box.origin.x){
-            box.origin.x = rect.origin.x;
-        }
-        if(rect.origin.y < box.origin.y){
-            box.origin.y = rect.origin.y;
-        }
-        if(rect.origin.x + rect.size.width > maxX){
-            maxX = rect.origin.x + rect.size.width;
-        }
-        if(rect.origin.y + rect.size.height > maxY){
-            maxY = rect.origin.y + rect.size.height;
-        }
-    }
-    return CGRectMake(box.origin.x, box.origin.y, maxX - box.origin.x, maxY - box.origin.y);*/
 }
 
 -(CGPoint) absolutePosition{
@@ -496,91 +392,15 @@ You should have received a copy of the GNU General Public License along with thi
         ccDrawRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height));
     }
 }
-/*
--(void) addHighlightRect{
-    _highlightNode = [[RoundedRectNode alloc] init];
-    _highlightNode.borderWidth = 2;
-    
-    _highlightNode.fillColor = self.highlightColor;
-    _highlightNode.borderColor = self.highlightColor;
-    NSInteger alpha = _highlightNode.borderColor.a + 50;
-    if(alpha > 255) alpha = 255;
-    _highlightNode.borderColor = ccc4(self.highlightColor.r,self.highlightColor.g,self.highlightColor.b, alpha);
-    _highlightNode.radius = 10;
-    _highlightNode.cornerSegments = 12;
-    [self updateBoxes];
-    
-    [self addChild:_highlightNode z: -2];
-}
-
--(void) addSelectionRect{
-    
-    _selectionNode = [[RoundedRectNode alloc] init];
-    _selectionNode.borderWidth = 2;
-    _selectionNode.fillColor = ccc4(100, 100, 100, 100);
-    _selectionNode.borderColor = ccc4(200, 200, 200, 200);
-    _selectionNode.radius = 10;
-    _selectionNode.cornerSegments = 12;
-    [self updateBoxes];
-    
-    [self addChild:_selectionNode z: -1];
-}*/
 
 -(void) addSelectionLabel{
     
     _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
     
-   // _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:NSTextAlignmentCenter];
-    
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];
 }
-/*
--(void) updateBoxes{
-    
-    float kSelectionPadding = 10;
-    
-    CGRect box = self.boundingBox;
-     CGSize rectSize = CGSizeMake(self.contentSize.width + kSelectionPadding * 2, self.contentSize.height + kSelectionPadding * 2);
-    
-    CGPoint point = ccpAdd(box.origin,ccp(0,box.size.height));
-    point = [self convertToNodeSpace:point];
-    point = ccpAdd(point, ccp(-kSelectionPadding,kSelectionPadding));
 
-    _selectionNode.position = point;
-    _selectionNode.size = rectSize;
-    
-    _highlightNode.position = point;
-    _highlightNode.size = rectSize;
-}
-
--(void) setSelected:(BOOL)selected{
-    if(self.selected != selected){
-        _selected = selected;
-        if(_selected){
-            [self addSelectionRect];
-            [self addSelectionLabel];
-        } else {
-            [_selectionNode removeFromParentAndCleanup:YES];
-            _selectionNode = nil;
-            [_selectionLabel removeFromParentAndCleanup:YES];
-            _selectionLabel = nil;
-        }
-    }
-}
-
--(void) setHighlighted:(BOOL)highlighted{
-    if(self.highlighted != highlighted){
-        _highlighted = highlighted;
-        if(_highlighted){
-            [self addHighlightRect];
-        } else {
-            [_highlightNode removeFromParentAndCleanup:YES];
-            _highlightNode = nil;
-        }
-    }
-}
-*/
 -(void) willStartSimulation {
     self.selected = NO;
         

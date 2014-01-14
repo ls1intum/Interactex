@@ -414,7 +414,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
     [self.hardwareComponents addObject:clotheObject];
     [self notifyObjectAdded:clotheObject];
-    [self tryAttachClotheObject:clotheObject];
+    //[self tryAttachClotheObject:clotheObject];
 }
 
 -(void) removeHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
@@ -438,7 +438,9 @@ You should have received a copy of the GNU General Public License along with thi
     if(!clotheObject.attachedToClothe){
         THClothe * clothe = [self clotheAtLocation:clotheObject.position];
         if(clothe){
+            [clotheObject removeFromParentAndCleanup:YES];
             [self pinClotheObject:clotheObject toClothe:clothe];
+            
         }
     }
 }

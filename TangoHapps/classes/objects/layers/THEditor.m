@@ -676,12 +676,17 @@ You should have received a copy of the GNU General Public License along with thi
     sender.scale = 1.0f;
 }
 
--(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
+-(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject atLocation:(CGPoint) location{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THClothe * clothe = [project clotheAtLocation:clotheObject.position];
+    THClothe * clothe = [project clotheAtLocation:location];
     if(clothe != nil){
+        CGPoint pos = [clothe convertToNodeSpace:clotheObject.position];
+        pos = ccpAdd(pos, self.zoomableLayer.position);
+        
+        [clotheObject removeFromParentAndCleanup:YES];
         [project pinClotheObject:clotheObject toClothe:clothe];
+        clotheObject.position = pos;
         [[SimpleAudioEngine sharedEngine] playEffect:@"sewed.mp3"];
     }
 }
@@ -689,9 +694,16 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) checkUnPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THClothe * clothe = [project clotheAtLocation:clotheObject.position];
+    
+    CGPoint position = [clotheObject convertToWorldSpace:ccp(0,0)];
+    THClothe * clothe = [project clotheAtLocation:position];
+    
     if(clothe != nil){
         [project unpinClotheObject:clotheObject];
+        
+        clotheObject.position = [clothe convertToWorldSpace:clotheObject.position];
+        [clotheObject addToLayer:self];
+        
         [[SimpleAudioEngine sharedEngine] playEffect:@"sewed.mp3"];
     }
 }
@@ -707,7 +719,7 @@ You should have received a copy of the GNU General Public License along with thi
         if(clotheObject.attachedToClothe){
             [self checkUnPinClotheObject:clotheObject];
         } else {
-            [self checkPinClotheObject:clotheObject];
+            [self checkPinClotheObject:clotheObject atLocation:location];
         }
     } else {
         _zoomableLayer.scale = 1.0f;
@@ -879,7 +891,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
     if(editableObject.canBeScaled){
+
+        CGPoint position = ccpSub(editableObject.position,self.zoomableLayer.position);
+        editableObject.position = position;
         [self.zoomableLayer addChild:editableObject z:editableObject.z];
+        
     } else{
         [super addEditableObject:editableObject];
     }
@@ -1135,7 +1151,14 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        [object removeFromLayer:self];
+        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+            THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+            if(!hardwareComponent.attachedToClothe){
+                [object removeFromLayer:self];
+            }
+        } else {
+            [object removeFromLayer:self];
+        }
     }
 }
 
@@ -1155,7 +1178,14 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        [object addToLayer:self];
+        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+            THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+            if(!hardwareComponent.attachedToClothe){
+                [object addToLayer:self];
+            }
+        } else {
+            [object addToLayer:self];
+        }
     }
 }
 
