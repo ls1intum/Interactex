@@ -5675,6 +5675,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5690,7 +5691,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "01E0AD0F-8FCF-40A6-9252-6B9870CE1426";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALID_ARCHS = armv7;
@@ -5715,7 +5715,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "01E0AD0F-8FCF-40A6-9252-6B9870CE1426";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALIDATE_PRODUCT = YES;
@@ -5777,7 +5776,6 @@
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "01E0AD0F-8FCF-40A6-9252-6B9870CE1426";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALIDATE_PRODUCT = YES;
@@ -5815,6 +5813,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5844,6 +5843,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -5852,6 +5852,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
@@ -5871,6 +5872,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};

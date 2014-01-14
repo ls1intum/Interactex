@@ -51,7 +51,6 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.navigationController.navigationBar.translucent = NO;
     
     self.projectProxies = [THDirector sharedDirector].projectProxies;
@@ -684,15 +683,6 @@ You should have received a copy of the GNU General Public License along with thi
         [self removeGestureRecognizers];
     }
     
-}
-
-- (IBAction)filterControlChanged:(id)sender {
-}
-
-- (IBAction)orderControlChanged:(id)sender {
-}
-
-- (IBAction)textEditingFinished:(id)sender {
 }
 
 - (void) editButtonTapped:(id)sender {

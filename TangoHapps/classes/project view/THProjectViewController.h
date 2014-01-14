@@ -48,9 +48,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THProjectViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate, CCDirectorDelegate> {
     
-    UILabel * _titleLabel;
-    UITextField * _titleTextField;
-    
     UIBarButtonItem * _playButton;
     UIBarButtonItem * _stopButton;
     

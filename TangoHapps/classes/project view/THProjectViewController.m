@@ -97,7 +97,6 @@ float const kToolsTabMargin = 5;
     
     [self addTools];
     [self addPlayButton];
-    [self addTapRecognizer];
     
     // Observe some notifications so we can properly instruct the director.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -138,14 +137,15 @@ float const kToolsTabMargin = 5;
     [self showTabBar];
     [self showTools];
     
-    [self addTitleLabel];
     [self reloadContent];
     [self startWithEditor];
     
     [self addPalettePull];
     [self updatePalettePullVisibility];
     
-    //self.toolsController.pushItem.enabled = director.serverController.serverIsRunning;
+    THProject * project = [THDirector sharedDirector].currentProject;
+    self.navigationItem.title = project.name;
+    self.title = project.name;
     
     _currentProjectName = [THDirector sharedDirector].currentProject.name;
 }
@@ -207,13 +207,6 @@ float const kToolsTabMargin = 5;
     }
     [self.tabController.paletteController save];
 }
-/*
--(void) storeImageForCurrentProject:(UIImage*) image{
-    NSString * imageFileName = [[THDirector sharedDirector].currentProject.name stringByAppendingString:@".png"];
-    NSString * imageFilePath = [TFFileUtils dataFile:imageFileName
-                                         inDirectory:kProjectImagesDirectory];
-    [TFFileUtils saveImageToFile:image file:imageFilePath];
-}*/
 
 -(void) saveCurrentProject{
     THDirector * director = [THDirector sharedDirector];
@@ -264,12 +257,10 @@ float const kToolsTabMargin = 5;
     [[CCDirector sharedDirector] resume];
 }
 
-
 - (void)applicationDidEnterBackground:(NSNotification *)notification
 {
     [[CCDirector sharedDirector] stopAnimation];
 }
-
 
 - (void)applicationWillEnterForeground:(NSNotification *)notification
 {
@@ -282,117 +273,9 @@ float const kToolsTabMargin = 5;
     [[CCDirector sharedDirector] end];
 }
 
-
 - (void)applicationSignificantTimeChange:(NSNotification *)notification
 {
     [[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
-}
-
-#pragma mark - Title
-
--(void) addTapRecognizer{
-
-    UITapGestureRecognizer *tapRecognizer =
-    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
-	[tapRecognizer setNumberOfTapsRequired:1];
-    tapRecognizer.cancelsTouchesInView = NO;
-	[self.view addGestureRecognizer:tapRecognizer];
-}
-
--(void) tapped{
-    if(self.editingSceneName){
-        [_titleTextField resignFirstResponder];
-    }
-}
-
--(NSString*) title{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    return project.name;
-}
-
--(void) removeTitleLabel{
-    self.navigationItem.titleView = nil;
-}
-
--(void) addTitleLabel{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    if(!_titleLabel){
-        _titleLabel = [TFHelper navBarTitleLabelNamed:project.name];
-        _titleLabel.userInteractionEnabled = YES;
-        
-        UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startEditingSceneName)];
-        [_titleLabel addGestureRecognizer:tapRecognizer];
-        
-    } else {
-        _titleLabel.text = project.name;
-    }
-    self.navigationItem.titleView = _titleLabel;
-}
-
--(void) addTitleTextField{
-    if(!_titleTextField){
-        _titleTextField =  [[UITextField alloc] init];
-        _titleTextField.frame = _titleLabel.frame;
-        _titleTextField.font = _titleLabel.font;
-        _titleTextField.textAlignment = _titleLabel.textAlignment;
-        _titleTextField.textColor = _titleLabel.textColor;
-        _titleTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        _titleTextField.layer.borderWidth = 1.0f;
-        _titleTextField.layer.borderColor = [UIColor grayColor].CGColor;
-        _titleTextField.delegate = self;
-    }
-    
-    THProject * project = [THDirector sharedDirector].currentProject;
-    _titleTextField.text = project.name;
-    self.navigationItem.titleView = _titleTextField;
-    [_titleTextField becomeFirstResponder];
-}
-
--(BOOL) keyboardHidden{
-    if(self.editingSceneName){
-        [self stopEditingSceneName];
-    }
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [_titleTextField resignFirstResponder];
-    return NO;
-}
-
-
--(BOOL) canRenameProjectFile:(NSString*) name toName:(NSString*) newName{
-    
-    BOOL renamed = [TFFileUtils renameDataFile:name to:newName inDirectory:kProjectsDirectory];
-    if(!renamed){
-        return NO;
-    }
-    
-    NSString * imageName = [name stringByAppendingString:@".png"];
-    NSString * newImageName = [newName stringByAppendingString:@".png"];
-    [TFFileUtils renameDataFile:imageName to:newImageName inDirectory:kProjectImagesDirectory];
-    
-    return YES;
-}
-
--(void) renameCurrentProjectToName:(NSString*) newName{
-    if([self canRenameProjectFile:_currentProjectName toName:newName]){
-        [THDirector sharedDirector].currentProject.name = newName;
-        [THDirector sharedDirector].currentProxy.name = newName;
-        _currentProjectName = newName;
-    }
-}
-
--(void) stopEditingSceneName{
-    [self renameCurrentProjectToName:_titleTextField.text];
-    
-    [self addTitleLabel];
-    _editingSceneName = NO;
-}
-
--(void) startEditingSceneName{
-    [self addTitleTextField];
-    _editingSceneName = YES;
 }
 
 #pragma mark - PalettePull

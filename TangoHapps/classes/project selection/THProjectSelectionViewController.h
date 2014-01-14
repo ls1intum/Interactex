@@ -59,7 +59,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *orderControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) BOOL editingScenes;
@@ -71,7 +70,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(IBAction)addButtonTapped:(id)sender;
 -(IBAction)viewControlChanged:(id)sender;
--(IBAction)orderControlChanged:(id)sender;
 
 
 @end
