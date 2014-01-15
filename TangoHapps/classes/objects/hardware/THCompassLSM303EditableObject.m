@@ -38,13 +38,16 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "THCompassEditableObject.h"
-#import "THCompass.h"
+#import "THCompassLSM303EditableObject.h"
+#import "THCompassLSM303.h"
 #import "THElementPinEditable.h"
 #import "THCompassProperties.h"
 #import "THAppDelegate.h"
+#import "THAutorouteProperties.h"
+#import "THBoardEditable.h"
+#import "THBoardPinEditable.h"
 
-@implementation THCompassEditableObject
+@implementation THCompassLSM303EditableObject
 
 -(void) loadCompass{
     self.sprite = [CCSprite spriteWithFile:@"LSMCompass.png"];
@@ -72,9 +75,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        self.simulableObject = [[THCompass alloc] init];
+        self.simulableObject = [[THCompassLSM303 alloc] init];
         
-        self.type = kHardwareTypeCompass;
+        self.type = kHardwareTypeLSMCompass;
         
         [self loadCompass];
         [self loadPins];
@@ -97,7 +100,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    THCompassEditableObject * copy = [super copyWithZone:zone];
+    THCompassLSM303EditableObject * copy = [super copyWithZone:zone];
     
     return copy;
 }
@@ -113,6 +116,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
+
 /*
 -(void) handleAccelerated:(UIAcceleration*) acceleration{
     
@@ -123,32 +127,13 @@ You should have received a copy of the GNU General Public License along with thi
     //NSLog(@"accel: %d %d",self.x,self.y);
 }*/
 
--(void) setComponentType:(THI2CComponentType)componentType{
-    THCompass * compass = (THCompass*)self.simulableObject;
-    compass.componentType = componentType;
+-(THElementPinEditable*) sclPin{
+    return [self.pins objectAtIndex:2];
 }
 
--(THI2CComponentType) componentType{
-    
-    THCompass * compass = (THCompass*)self.simulableObject;
-    return compass.componentType;
+-(THElementPinEditable*) sdaPin{
+    return [self.pins objectAtIndex:3];
 }
-
--(THElementPinEditable*) pin5Pin{
-    return [self.pins objectAtIndex:0];
-}
-
--(THElementPinEditable*) pin4Pin{
-    return [self.pins objectAtIndex:1];
-}
-
-/*
--(void) updatePinValue{
-    THElementPinEditable * analogPin = self.pin5Pin;
-    THBoardPinEditable * boardPin = analogPin.attachedToPin;
-    THCompass * compass = (THCompass*) self.object;
-    boardPin.currentValue = compass.light;
-}*/
 
 -(void) updateBallPosition{
     float dt = 1.0f/30.0f;
@@ -198,40 +183,40 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(NSInteger) accelerometerX{
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     return compass.accelerometerX;
 }
 
 -(void) setAccelerometerX:(NSInteger)accelerometerX{
     
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     compass.accelerometerX = accelerometerX;
 }
 
 -(NSInteger) accelerometerY{
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     return compass.accelerometerY;
 }
 
 -(void) setAccelerometerY:(NSInteger)accelerometerY{
     
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     compass.accelerometerY = accelerometerY;
 }
 
 -(NSInteger) accelerometerZ{
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     return compass.accelerometerZ;
 }
 
 -(void) setAccelerometerZ:(NSInteger)accelerometerZ{
     
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     compass.accelerometerZ = accelerometerZ;
 }
 
 -(float) heading{
-    THCompass * compass = (THCompass*) self.simulableObject;
+    THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     return compass.heading;
 }
 /*
@@ -247,6 +232,13 @@ You should have received a copy of the GNU General Public License along with thi
     compass.heading = heading;
 }*/
 
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    [self autoroute];
+}
+
 -(void) willStartSimulation{
     [super willStartSimulation];
     
@@ -260,9 +252,7 @@ You should have received a copy of the GNU General Public License along with thi
     THAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     CMMotionManager * manager = appDelegate.motionManager;
     manager.accelerometerUpdateInterval = 1.0f / 20.0f;
-    //manager.magnetometerUpdateInterval = 1.0f / 20.0f;
     [manager startAccelerometerUpdates];
-    //[manager startMagnetometerUpdates];
     
     _accelerometerBall.visible = YES;
     _compassCircle.visible = YES;
@@ -276,14 +266,8 @@ You should have received a copy of the GNU General Public License along with thi
     [manager stopAccelerometerUpdates];
     [manager stopMagnetometerUpdates];
     
-    /*
-    if(_accelerometerBall){
-        [_accelerometerBall removeFromParentAndCleanup:YES];
-    }
-    if(_compassCircle){
-        [_compassCircle removeFromParentAndCleanup:YES];
-    }*/
-    
+    _accelerometerBall.visible = NO;
+    _compassCircle.visible = NO;
     self.sprite.visible = YES;
 }
 

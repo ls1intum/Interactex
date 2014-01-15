@@ -129,9 +129,6 @@ float const kToolsTabMargin = 5;
                                                  name:UIApplicationSignificantTimeChangeNotification
                                                object:nil];
     
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(keyboardHidden) name:UIKeyboardWillHideNotification object:nil];
-    
     _state = kAppStateEditor;
     
     [self showTabBar];
@@ -139,6 +136,7 @@ float const kToolsTabMargin = 5;
     
     [self reloadContent];
     [self startWithEditor];
+    
     
     [self addPalettePull];
     [self updatePalettePullVisibility];
@@ -489,7 +487,6 @@ float const kToolsTabMargin = 5;
 
 -(void) reloadContent{
     [self.tabController.paletteController reloadPalettes];
-    //[self.toolsController reloadBarButtonItems];
 }
 
 -(void) addBarButtonWithImageName:(NSString*) imageName{

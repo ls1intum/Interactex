@@ -47,12 +47,10 @@ NSString * const kNotificationSimulationEnded = @"notificationSimulationEnded";
 
 NSString * const kNotificationPropertiesChanged = @"notificationPropertiesChanged";
 
-
 float const kWifiCellHeightCollapsed = 44;
 float const kWifiCellHeightExtended = 64;
 
 CGPoint const kiPhoneImageDistanceViewTopLeftToCenter = {20,30};
-
 
 float const kLilypadPinRadius = 21;
 
@@ -63,7 +61,7 @@ NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";
 
-NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2,3,5};
+NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2,3,5,4};
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
@@ -72,13 +70,13 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,-18},{25,-18},{0,18}},//switch
     {{-23,-12},{0,26},{25,-12}},//potentiometer
     {{-23,-12},{0,26},{25,-12}},//light sensor
-    {{-20,20},{20,20},{20,-20},{-20,-20}},//compass
+    {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
     {{0,25},{-26,-11},{0,-25},{26,-11}},//three color led
     {{-24,15},{24,15}},//vibeBoard
     {{-23,-12},{0,26},{25,-12}},//temperature sensor
-    {{1,-29},{-24,10},{1,25},{25,11},{25,-15}}//accelerometer
+    {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
+    {{32,-4},{32,-13},{-32,13},{-32,4}}//lsm compass
 };
-
 
 float const kUiViewOpacityEditor = 0.5f;
 
@@ -125,7 +123,6 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//temperature sensor
     {70,65}//accelerometer
 };
-
 
 float const kLayerMinScale = 0.5f;
 float const kLayerMaxScale = 2.5f;

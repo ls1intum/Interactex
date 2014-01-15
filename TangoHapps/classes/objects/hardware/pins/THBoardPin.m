@@ -88,7 +88,6 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         _attachedElementPins = [decoder decodeObjectForKey:@"attachedPins"];
-        self.isPWM = [decoder decodeBoolForKey:@"isPWM"];
         self.number = [decoder decodeIntegerForKey:@"number"];
         self.mode = [decoder decodeIntegerForKey:@"mode"];
         self.type = [decoder decodeIntegerForKey:@"type"];
@@ -101,7 +100,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)encodeWithCoder:(NSCoder *)coder {
 
     [coder encodeObject:self.attachedElementPins forKey:@"attachedPins"];
-    [coder encodeBool:self.isPWM forKey:@"isPWM"];
     [coder encodeInteger:self.number forKey:@"number"];
     [coder encodeInteger:self.mode forKey:@"mode"];
     [coder encodeInteger:self.type forKey:@"type"];
@@ -165,7 +163,7 @@ You should have received a copy of the GNU General Public License along with thi
 }*/
 
 -(BOOL) acceptsManyPins{
-    return (self.type == kPintypeMinus || self.type == kPintypePlus);
+    return (self.type == kPintypeMinus || self.type == kPintypePlus || self.supportsSDA || self.supportsSCL);
 }
 
 -(void) attachPin:(THElementPin*) pin{

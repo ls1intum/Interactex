@@ -331,14 +331,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Lilypad
 
-
 -(void) addBoard:(THBoardEditable*)board{
     [self.boards addObject:board];
     [self notifyObjectAdded:board];
 }
 
 -(void) removeBoard:(THBoardEditable*) board{
+    
     [self removeAllWiresTo:board notify:YES];
+    
+    for (THHardwareComponentEditableObject * hardwareComponent in self.hardwareComponents) {
+        [hardwareComponent handleBoardRemoved:board];
+    }
+    
     [self.boards removeObject:board];
     [self notifyObjectRemoved:board];
 }
@@ -711,6 +716,17 @@ You should have received a copy of the GNU General Public License along with thi
             [self notifyObjectRemoved:wire];
         }
     }
+}
+
+-(TFEditableObject*) wireAtLocation:(CGPoint) location{
+    for (THWire * wire in self.wires) {
+        for (THWireNode * node in wire.nodes) {
+            if([node testPoint:location]){
+                return wire;
+            }
+        }
+    }
+    return nil;
 }
 
 #pragma mark - Invocation Connections

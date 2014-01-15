@@ -55,6 +55,14 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) load{    
     self.numberOfDigitalPins = 14;
     self.numberOfAnalogPins = 6;
+    
+    THBoardPin * analogPin5 =  [self analogPinWithNumber:5];
+    analogPin5.supportsSCL = YES;
+    
+    THBoardPin * analogPin4 =  [self analogPinWithNumber:4];
+    analogPin4.supportsSDA = YES;
+    
+    [self setPwmPins];
 }
 
 -(void) setPwmPins{
@@ -87,14 +95,6 @@ You should have received a copy of the GNU General Public License along with thi
         THBoardPin * pin = [THBoardPin pinWithPinNumber:i-16 andType:kPintypeAnalog];
         [self.pins addObject:pin];
     }
-    
-    THBoardPin * analogPin5 =  [self analogPinWithNumber:5];
-    analogPin5.supportsSCL = YES;
-    
-    THBoardPin * analogPin4 =  [self analogPinWithNumber:4];
-    analogPin4.supportsSDA = YES;
-    
-    [self setPwmPins];
 }
 
 -(id) init{
@@ -104,8 +104,8 @@ You should have received a copy of the GNU General Public License along with thi
         self.pins = [NSMutableArray array];
         self.i2cComponents = [NSMutableArray array];
         
-        [self load];
         [self loadPins];
+        [self load];
     }
     return self;
 }

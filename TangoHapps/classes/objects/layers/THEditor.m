@@ -175,6 +175,13 @@ You should have received a copy of the GNU General Public License along with thi
     [object removeFromParentAndCleanup:YES];
 }
 
+-(void) unselectAndDeleteEditableObject:(TFEditableObject*) editableObject{
+    if(self.currentObject == editableObject){
+        [self unselectCurrentObject];
+    }
+    [editableObject removeFromWorld];
+}
+
 -(THWireNode*) wireNodeAtPosition:(CGPoint) position{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -630,10 +637,14 @@ You should have received a copy of the GNU General Public License along with thi
         THProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
         if(object){
-            if(self.currentObject == object){
-                [self unselectCurrentObject];
+            [self unselectAndDeleteEditableObject:object];
+        
+        } else {
+            TFEditableObject * wire = (TFEditableObject*) [project wireAtLocation:location];
+            [self removeEditableObject:wire];
+            if(wire){
+                [self unselectAndDeleteEditableObject:wire];
             }
-            [object removeFromWorld];
         }
     } else {
         [self selectObjectAtPosition:location];
@@ -1165,6 +1176,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addObjects{
     
     THProject * project = [THDirector sharedDirector].currentProject;
+    
     if(project.iPhone != nil){
         [project.iPhone addToLayer:self];
     }

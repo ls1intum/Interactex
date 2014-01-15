@@ -38,13 +38,13 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "THCompass.h"
+#import "THCompassLSM303.h"
 #import "THElementPin.h"
 #import "THI2CComponent.h"
 #import "THI2CRegister.h"
 #import "THI2CMessage.h"
 
-@implementation THCompass
+@implementation THCompassLSM303
 
 @synthesize i2cComponent;
 @synthesize type;
@@ -57,10 +57,35 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self loadMethods];
         [self loadPins];
-        self.componentType = kI2CComponentTypeMCU;
     }
     return self;
 }
+
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder{
+    
+    self = [super initWithCoder:decoder];
+    if(self){
+        [self loadMethods];
+        [self loadI2CComponent];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder{
+    [super encodeWithCoder:coder];
+    
+}
+
+-(id)copyWithZone:(NSZone *)zone{
+    
+    THCompassLSM303 * copy = [super copyWithZone:zone];
+    
+    return copy;
+}
+
+#pragma mark - Loading
 
 -(void) loadMethods{
     
@@ -87,20 +112,19 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadPins{
     
     THElementPin * minusPin = [THElementPin pinWithType:kElementPintypeMinus];
+    THElementPin * plusPin = [THElementPin pinWithType:kElementPintypePlus];
+    
     minusPin.hardware = self;
     THElementPin * sclPin = [THElementPin pinWithType:kElementPintypeScl];
     sclPin.hardware = self;
-    //sclPin.defaultBoardPinMode = kPinModeCompass;
     THElementPin * sdaPin = [THElementPin pinWithType:kElementPintypeSda];
     sdaPin.hardware = self;
-    //sdaPin.defaultBoardPinMode = kPinModeCompass;
     
-    THElementPin * plusPin = [THElementPin pinWithType:kElementPintypePlus];
     
     [self.pins addObject:minusPin];
+    [self.pins addObject:plusPin];
     [self.pins addObject:sclPin];
     [self.pins addObject:sdaPin];
-    [self.pins addObject:plusPin];
 }
 
 -(THI2CComponent*) loadI2CComponent{
@@ -117,73 +141,18 @@ You should have received a copy of the GNU General Public License along with thi
     [self.i2cComponent addRegister:reg1];
     [self.i2cComponent addRegister:reg2];
     
-    self.componentType = kI2CComponentTypeLSM;
-    
     return self.i2cComponent;
 }
 
-#pragma mark - Archiving
-
--(id)initWithCoder:(NSCoder *)decoder{
-    
-    self = [super initWithCoder:decoder];
-    if(self){
-        [self loadMethods];
-        
-        self.componentType = [decoder decodeIntegerForKey:@"componentType"];
-        //self.i2cComponent = [decoder decodeObjectForKey:@"i2cComponent"];
-    }
-    return self;
-}
-
--(void)encodeWithCoder:(NSCoder *)coder{
-    [super encodeWithCoder:coder];
-    
-    [coder encodeInteger:self.componentType forKey:@"componentType"];
-    //[coder encodeObject:self.i2cComponent forKey:@"i2cComponent"];
-}
-
--(id)copyWithZone:(NSZone *)zone{
-    
-    THCompass * copy = [super copyWithZone:zone];
-    
-    copy.componentType = self.componentType;
-    //copy.i2cComponent = [self.i2cComponent copy];
-    
-    return copy;
-}
 
 #pragma mark - Methods
 
--(void) setComponentType:(THI2CComponentType)componentType{
-    
-    _componentType = componentType;
-    
-    self.i2cComponent = [[THI2CComponent alloc] init];
-    
-    THI2CRegister * reg = [[THI2CRegister alloc] init];
-    
-    NSMutableArray * registers = [NSMutableArray arrayWithObject:reg];
-    self.i2cComponent.registers = registers;
-    
-    if(self.componentType == kI2CComponentTypeMCU){
-        
-        self.i2cComponent.address = 104;
-        reg.number = 0x3B;
-        
-    } else {
-        
-        self.i2cComponent.address = 24;
-        reg.number = 168;
-    }
-}
-
 -(THElementPin*) sclPin{
-    return [self.pins objectAtIndex:1];
+    return [self.pins objectAtIndex:2];
 }
 
 -(THElementPin*) sdaPin{
-    return [self.pins objectAtIndex:2];
+    return [self.pins objectAtIndex:3];
 }
 
 -(void) setValuesFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
@@ -198,23 +167,9 @@ You should have received a copy of the GNU General Public License along with thi
         values[i] = value;
     }
     
-    if(self.componentType == kI2CComponentTypeLSM){
-        
-        self.accelerometerX = ((int16_t)(values[1] << 8 | values[0])) >> 4;
-        self.accelerometerY = ((int16_t)(values[3] << 8 | values[2])) >> 4;
-        self.accelerometerZ = ((int16_t)(values[5] << 8 | values[4])) >> 4;
-        
-        //NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
-        
-    } else {
-        
-        self.accelerometerX = ((int16_t)(values[0] << 8 | values[1]));
-        self.accelerometerY = ((int16_t)(values[2] << 8 | values[3]));
-        self.accelerometerZ = ((int16_t)(values[4] << 8 | values[5]));
-        
-        //NSLog(@"compass received buffer %d %d %d",buffer[0], buffer[1], self.accelerometerX);
-    }
-    
+    self.accelerometerX = ((int16_t)(values[1] << 8 | values[0])) >> 4;
+    self.accelerometerY = ((int16_t)(values[3] << 8 | values[2])) >> 4;
+    self.accelerometerZ = ((int16_t)(values[5] << 8 | values[4])) >> 4;
 }
 
 -(NSMutableArray*) startI2CMessages{
@@ -239,7 +194,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setAccelerometerX:(NSInteger)accelerometerX{
     if(accelerometerX != _accelerometerX){
         _accelerometerX = accelerometerX;
-        //NSLog(@"new x: %d",_x);
         
         [self triggerEventNamed:kEventXChanged];
     }
@@ -248,7 +202,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setAccelerometerY:(NSInteger)accelerometerY{
     if(accelerometerY != _accelerometerY){
         _accelerometerY = accelerometerY;
-        //NSLog(@"new y: %d",_y);
         
         [self triggerEventNamed:kEventYChanged];
     }
@@ -257,7 +210,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setAccelerometerZ:(NSInteger)accelerometerZ{
     if(accelerometerZ != _accelerometerZ){
         _accelerometerZ = accelerometerZ;
-        //NSLog(@"new z: %d",_z);
         
         [self triggerEventNamed:kEventZChanged];
     }
@@ -282,7 +234,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 -(NSString*) description{
-    return @"compass";
+    return @"compass LSM303";
 }
 
 -(void) prepareToDie{

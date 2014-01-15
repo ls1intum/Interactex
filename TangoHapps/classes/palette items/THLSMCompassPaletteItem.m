@@ -38,13 +38,13 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "THCompassPaletteItem.h"
-#import "THCompassEditableObject.h"
+#import "THLSMCompassPaletteItem.h"
+#import "THCompassLSM303EditableObject.h"
 
-@implementation THCompassPaletteItem
+@implementation THLSMCompassPaletteItem
 
 - (void)dropAt:(CGPoint)location {
-    THCompassEditableObject * compass = [[THCompassEditableObject alloc] init];
+    THCompassLSM303EditableObject * compass = [[THCompassLSM303EditableObject alloc] init];
     compass.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;

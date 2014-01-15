@@ -78,7 +78,7 @@ You should have received a copy of the GNU General Public License along with thi
     view.opacity = kUiViewOpacityEditor;
     view.canBeResized = NO;
     iPhone.currentView = view;
-    //iPhone.currentView.opacity = 1.0f;
+
     return iPhone;
 }
 
@@ -98,7 +98,6 @@ You should have received a copy of the GNU General Public License along with thi
 {
     self = [super initWithCoder:decoder];
     if(self){
-        
         
         _currentView = [decoder decodeObjectForKey:@"currentView"];
         _currentView.canBeDuplicated = NO;
@@ -188,7 +187,6 @@ You should have received a copy of the GNU General Public License along with thi
         currentView.width = frame.size.width;
         currentView.height = frame.size.height;
         
-        //[self centerView:currentView];//XXX commented
         [self addChild:currentView];
     }
     
@@ -198,17 +196,6 @@ You should have received a copy of the GNU General Public License along with thi
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.currentView = (THView*) currentView.simulableObject;
 }
-/*
--(void) centerView:(THViewEditableObject*) view{
-    
-    CGRect frame = kiPhoneFrames[self.type];
-    CGRect box = self.boundingBox;
-    CGPoint topleft = box.origin;
-    topleft.y += box.size.height;
-    CGPoint viewtopleft = ccpAdd(topleft, ccp(frame.origin.x,-frame.origin.y));
-    CGPoint viewcenter = ccpAdd(viewtopleft, ccp(frame.size.width/2,-frame.size.height/2));
-    viewcenter = [TFHelper ConvertToCocos2dView:viewcenter];
-}*/
 
 -(void) setPosition:(CGPoint)position{
     

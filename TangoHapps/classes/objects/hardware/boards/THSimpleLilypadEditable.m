@@ -174,6 +174,8 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     return nil;
 }
 
+#pragma mark - Pins
+
 -(THPinEditable*) minusPin{
     return [_pins objectAtIndex:5];
 }
@@ -181,6 +183,16 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 -(THPinEditable*) plusPin{
     return [_pins objectAtIndex:6];
 }
+
+-(THPinEditable*) sclPin{
+    return [self analogPinWithNumber:5];
+}
+
+-(THPinEditable*) sdaPin{
+    return [self analogPinWithNumber:4];
+}
+
+#pragma mark - Lifecycle
 
 -(void) willStartSimulation{
     [super willStartSimulation];

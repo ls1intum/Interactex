@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TangoHapps/classes/objects/hardware/boards/THYannicEditable.m"
-            timestampString = "406285091.058105"
+            filePath = "TangoHapps/classes/objects/hardware/boards/THLilyPad.m"
+            timestampString = "411499842.338451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-loadPins"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-load"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

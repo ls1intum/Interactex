@@ -49,6 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPinEditable.h"
 #import "THWire.h"
 #import "THEditor.h"
+#import "THAutorouteProperties.h"
 
 @implementation THHardwareComponentEditableObject
 
@@ -61,7 +62,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.z = kClotheObjectZ;
     self.acceptsConnections = YES;
-    
 }
 
 -(void) addPinChilds{
@@ -162,11 +162,20 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THClotheObjectProperties properties]];
+    [controllers addObject:[THAutorouteProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
 
 #pragma mark - Methods
+
+-(void)handleBoardRemoved:(THBoardEditable *)board{
+    for (THElementPinEditable * pin in self.pins) {
+        if([board.pins containsObject:pin.attachedToPin]){
+            [pin dettachFromPin];
+        }
+    }
+}
 
 -(void) setAttachedToClothe:(THClothe *)attachedToClothe{
     if(_attachedToClothe != attachedToClothe){
@@ -244,31 +253,64 @@ You should have received a copy of the GNU General Public License along with thi
     [super removeFromWorld];
 }
 
--(void) addToLayer:(TFLayer*) layer{
-    [layer addEditableObject:self];
+-(void) addConnectionFromElementPin:(THElementPinEditable*) elementPin toBoardPin:(THBoardPinEditable*) boardPin{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    
+    [boardPin attachPin:elementPin];
+    [elementPin attachToPin:boardPin animated:NO];
+    [project addWireFrom:elementPin to:boardPin];
+}
+
+-(void) autoroutePlusAndMinusPins{
+    
+    THElementPinEditable * plusPin = [self plusPin];
+    if(!plusPin.attachedToPin){
+        [self autoroutePin:plusPin];
+    }
+    
+    THElementPinEditable * minusPin = [self minusPin];
+    if(!minusPin.attachedToPin){
+        [self autoroutePin:minusPin];
+    }
+}
+
+-(void) autoroutePin:(THElementPinEditable*) pin{
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.boards.count == 1){
+        
         THBoardEditable * board = [project.boards objectAtIndex:0];
         
-        THElementPinEditable * plusPin = [self plusPin];
-        if(plusPin && !plusPin.attachedToPin){
-            [board.plusPin attachPin:plusPin];
-            [plusPin attachToPin:board.plusPin animated:NO];
-            [project addWireFrom:plusPin to:board.plusPin];
-        }
-        
-        THElementPinEditable * minusPin = [self minusPin];
-        if(minusPin && !minusPin.attachedToPin){
-            [board.minusPin attachPin:minusPin];
-            [minusPin attachToPin:board.minusPin animated:NO];
-            [project addWireFrom:minusPin to:board.minusPin];
+        for (THBoardPinEditable * boardPin in board.pins) {
+            if([pin acceptsConnectionsTo:boardPin]){
+                [self addConnectionFromElementPin:pin toBoardPin:boardPin];
+                return;
+            }
         }
     }
 }
 
+-(void) autoroute{
+
+    for (THElementPinEditable * pin in self.pins) {
+        if(!pin.attachedToPin){
+            [self autoroutePin:pin];
+        }
+    }
+}
+
+-(void) addToLayer:(TFLayer*) layer{
+    [layer addEditableObject:self];
+    
+    [self autoroutePlusAndMinusPins];
+}
+
 -(void) removeFromLayer:(TFLayer*) layer{
     [layer removeEditableObject:self];
+}
+
+-(THElementPinEditable*) mainPin{
+    return nil;
 }
 
 -(void) prepareToDie{

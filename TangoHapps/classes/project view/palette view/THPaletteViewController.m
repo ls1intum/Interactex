@@ -51,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLedPaletteItem.h"
 #import "THButtonPaletteItem.h"
 #import "THBuzzerPaletteItem.h"
-#import "THCompassPaletteItem.h"
+#import "THLSMCompassPaletteItem.h"
 #import "THLightSensorPaletteItem.h"
 #import "THPotentiometerPaletteItem.h"
 #import "THSwitchPaletteItem.h"
@@ -417,7 +417,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  [[THButtonPaletteItem alloc] initWithName:@"button"],
                                  [[THSwitchPaletteItem alloc] initWithName:@"switch"],
                                  [[THBuzzerPaletteItem alloc] initWithName:@"buzzer"],
-                                 [[THCompassPaletteItem alloc] initWithName:@"compass"],
+                                 [[THLSMCompassPaletteItem alloc] initWithName:@"LSMCompass"],
                                  [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
                                  [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
                                  [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],

@@ -55,6 +55,22 @@
 -(void) load{
     self.numberOfDigitalPins = 5;
     self.numberOfAnalogPins = 4;
+    
+    THBoardPin * sclPin =  self.sclPin;
+    sclPin.supportsSCL = YES;
+    
+    THBoardPin * sdaPin =  self.sdaPin;
+    sdaPin.supportsSDA = YES;
+    
+    [self setPwmPins];
+}
+
+-(void) setPwmPins{
+    for (THBoardPin * pin in self.pins) {
+        if(pin.type == kPintypeDigital){
+            pin.isPWM = YES;
+        }
+    }
 }
 
 -(void) loadPins{
@@ -64,12 +80,6 @@
     THBoardPin * pin9 = [THBoardPin pinWithPinNumber:9 andType:kPintypeDigital];
     THBoardPin * pin10 = [THBoardPin pinWithPinNumber:10 andType:kPintypeDigital];
     THBoardPin * pin11 = [THBoardPin pinWithPinNumber:11 andType:kPintypeDigital];
-    
-    pin2.isPWM = YES;
-    pin3.isPWM = YES;
-    pin9.isPWM = YES;
-    pin10.isPWM = YES;
-    pin11.isPWM = YES;
     
     [self.pins addObject:pin2];
     [self.pins addObject:pin3];
@@ -87,13 +97,6 @@
         THBoardPin * pin = [THBoardPin pinWithPinNumber:i andType:kPintypeAnalog];
         [self.pins addObject:pin];
     }
-    
-    THBoardPin * sclPin =  self.sclPin;
-    sclPin.supportsSCL = YES;
-    
-    THBoardPin * sdaPin =  self.sdaPin;
-    sdaPin.supportsSDA = YES;
-    
 }
 
 -(id) init{
@@ -103,8 +106,8 @@
         self.pins = [NSMutableArray array];
         self.i2cComponents = [NSMutableArray array];
         
-        [self load];
         [self loadPins];
+        [self load];
     }
     return self;
 }

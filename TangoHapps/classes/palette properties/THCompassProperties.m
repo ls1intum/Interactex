@@ -7,7 +7,7 @@
 //
 
 #import "THCompassProperties.h"
-#import "THCompassEditableObject.h"
+#import "THCompassLSM303EditableObject.h"
 
 @implementation THCompassProperties
 
@@ -17,7 +17,7 @@
 
 -(void) updateTypeControl{
     
-    THCompassEditableObject * compass = (THCompassEditableObject*) self.editableObject;
+    THCompassLSM303EditableObject * compass = (THCompassLSM303EditableObject*) self.editableObject;
     self.typeControl.selectedSegmentIndex = compass.componentType;
 }
 
@@ -34,7 +34,7 @@
 
 - (IBAction)typeControlChanged:(id)sender {
     
-    THCompassEditableObject * compass = (THCompassEditableObject*) self.editableObject;
+    THCompassLSM303EditableObject * compass = (THCompassLSM303EditableObject*) self.editableObject;
     compass.componentType = self.typeControl.selectedSegmentIndex;
 }
 

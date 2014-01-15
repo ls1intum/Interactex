@@ -50,7 +50,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBuzzer.h"
 #import "THTouchpad.h"
 #import "THLightSensor.h"
-#import "THCompass.h"
+#import "THCompassLSM303.h"
 #import "THClientProject.h"
 #import "THClientProjectProxy.h"
 #import "THI2CRegister.h"
@@ -411,12 +411,11 @@ NSString * const kMusicPlayerProjectName = @"Music Player";
     
     project.name = kMCUCompassProjectName;
     
-    THCompass * compass = [[THCompass alloc] init];
+    THCompassLSM303 * compass = [[THCompassLSM303 alloc] init];
     
     compass.i2cComponent = [[THI2CComponent alloc] init];
     THI2CRegister * reg = [[THI2CRegister alloc] init];
     
-    compass.componentType = kI2CComponentTypeMCU;
     compass.i2cComponent.address = 104;
     reg.number = 0x3B;
     
@@ -476,12 +475,11 @@ NSString * const kMusicPlayerProjectName = @"Music Player";
     
     project.name = kLSMCompassProjectName;
     
-    THCompass * compass = [[THCompass alloc] init];
+    THCompassLSM303 * compass = [[THCompassLSM303 alloc] init];
     
     compass.i2cComponent = [[THI2CComponent alloc] init];
     THI2CRegister * reg = [[THI2CRegister alloc] init];
     
-    compass.componentType = kI2CComponentTypeLSM;
     compass.i2cComponent.address = 24;
     reg.number = 168;
     

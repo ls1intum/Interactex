@@ -50,7 +50,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPin.h"
 #import "THPinValue.h"
 #import "THElementPin.h"
-#import "THCompass.h"
+#import "THCompassLSM303.h"
 #import "THI2CComponent.h"
 #import "THI2CRegister.h"
 

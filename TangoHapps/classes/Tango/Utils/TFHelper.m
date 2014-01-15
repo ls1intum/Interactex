@@ -81,31 +81,16 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 +(void) drawRect:(CGRect) rect{
-    
-    /*CGPoint points[4];
-    points[0] = rect.origin;
-    points[1] = ccpAdd(rect.origin,ccp(rect.size.width,0));
-    points[2] = ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height));
-    points[3] = ccpAdd(rect.origin,ccp(0,rect.size.height));
-    ccDrawSolidPoly(points, 4, YES);
-    */
+
     ccDrawSolidRect(rect.origin, ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height)), ccc4f(1, 0, 0, 1));
 }
 
-+(void) drawEmptyRect:(CGRect) rect{/*
-    CGPoint points[4];
-    points[0] = rect.origin;
-    points[1] = ccpAdd(rect.origin,ccp(rect.size.width,0));
-    points[2] = ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height));
-    points[3] = ccpAdd(rect.origin,ccp(0,rect.size.height));
-    ccDrawPoly(points, 4, YES);*/
++(void) drawEmptyRect:(CGRect) rect{
     
     ccDrawSolidRect(rect.origin, ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height)), ccc4f(1, 0, 0, 1));
 }
 
 +(void) drawLines:(NSArray *) connections{
-    
-    //glEnable(GL_LINE_SMOOTH);
     
     for (TFConnectionLine * line in connections) {
         if(line.obj1.visible && line.obj2.visible){
@@ -118,8 +103,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 +(void) drawWires:(NSArray *) wires{
     
-    //glEnable(GL_LINE_SMOOTH);
-    
     for (THWire * wire in wires) {
         if(wire.obj1.visible && wire.obj2.visible){
             [wire draw];
@@ -129,7 +112,7 @@ You should have received a copy of the GNU General Public License along with thi
     [TFHelper restoreDrawingState];
 }
 
-+(void)drawLinesForObjects:(NSArray*)objects{
++(void)drawLinesForObjects:(NSArray*)objects {
     for (TFEditableObject * object in objects) {
         if(object.visible){
             NSArray * connections = object.connections;
@@ -138,25 +121,12 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-+(void) restoreDrawingState{
++(void) restoreDrawingState {
 
     glLineWidth(1.0f);
     ccDrawColor4B(255,255,255,255);
-//    glDisable(GL_LINE_SMOOTH);
 }
 
-/*
-+(NSBundle*) frameworkBundle {
-    static NSBundle* frameworkBundle = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        NSString* mainBundlePath = [[NSBundle mainBundle] resourcePath];
-        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"Tango.bundle"];
-        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
-    });
-    return frameworkBundle;
-}
-*/
 +(UILabel*) navBarTitleLabelNamed:(NSString*) name{
     
     UILabel * label = [[UILabel alloc] init];
@@ -186,19 +156,6 @@ You should have received a copy of the GNU General Public License along with thi
     return ccp(point.x, 768 - point.y);
 }
 
-/*
-+(float) Constrain:(float) value min:(float) minValue max:(float) maxValue{
-    value = MAX(value,minValue);
-    value = MIN(value,maxValue);
-    return value;
-}
-
-+(float) LinearMapping:(float)value min:(float) min max:(float) max retMin:(float) retMin retMax:(float) retMax{
-    float a = (retMax - retMin) / (max - min);
-    float b = retMin - (a * min);
-    return a * value + b;
-}
-*/
 +(BOOL) canConvertParam:(TFDataType) type1 toType:(TFDataType) type2{
     return (type1 == kDataTypeAny || type2 == kDataTypeAny || type1 == type2 || (type1 == kDataTypeFloat && type2 == kDataTypeInteger) || (type2 == kDataTypeFloat && type1 == kDataTypeInteger));
     
@@ -212,52 +169,9 @@ CGImageRef UIGetScreenImage(void);
 {
     CGImageRef screen = UIGetScreenImage();
     UIImage * image = [UIImage imageWithCGImage:screen];
-    //CGImageRelease(screen);
+    CGImageRelease(screen);
     return image;
 }
-
-/*
-+(UIImage*) screenshot{
-    
-    UIWindow * window = [UIApplication sharedApplication].keyWindow;
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, [UIScreen mainScreen].scale);
-    else
-        UIGraphicsBeginImageContext(window.bounds.size);
-    
-    UIGraphicsBeginImageContext(window.bounds.size);
-    [window.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    //NSData * data = UIImagePNGRepresentation(image);
-    //[data writeToFile:@"foo.png" atomically:YES];
-    return image;
-}*/
-
-/*
-static inline double radians (double degrees) {return degrees * M_PI/180;}
-
-+(UIImage *) screenshot
-{
-    CGImageRef UIGetScreenImage(void);
-    CGImageRef imagecg = UIGetScreenImage();
-    //UIImage * image = [UIImage imageWithCGImage:imagecg];
-    
-    //UIGraphicsBeginImageContext(image.size);
-    //CGContextRef context = UIGraphicsGetCurrentContext();
-    //CGContextRotateCTM (context, radians(90));
-    //[image drawAtPoint:CGPointMake(0, 0)];
-    
-    UIImage * image = [[UIImage alloc] initWithCGImage: imagecg scale: 1.0 orientation: UIImageOrientationUp];
-    image = [UIImage imageWithCGImage:image.CGImage scale:0.5f orientation:UIImageOrientationLeft];
-    cgaffinetransformro
-    //image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    CGImageRelease(imagecg);
-    
-    return image;
-}*/
 
 
 +(UIImage*) screenshot{

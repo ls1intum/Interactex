@@ -41,7 +41,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponentEditableObject.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface THCompassEditableObject : THHardwareComponentEditableObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
+@interface THCompassLSM303EditableObject : THHardwareComponentEditableObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
     CCSprite * _accelerometerBall;
     CCSprite * _compassCircle;
     CLLocationManager * _locationManager;
@@ -55,8 +55,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, readonly) float heading;
 
-@property (nonatomic, readonly) THElementPinEditable * pin5Pin;
-@property (nonatomic, readonly) THElementPinEditable * pin4Pin;
+@property (nonatomic, readonly) THElementPinEditable * sclPin;
+@property (nonatomic, readonly) THElementPinEditable * sdaPin;
 
 @property (nonatomic) THI2CComponentType componentType;
 

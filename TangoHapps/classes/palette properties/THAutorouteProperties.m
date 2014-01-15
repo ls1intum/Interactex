@@ -7,32 +7,21 @@
 //
 
 #import "THAutorouteProperties.h"
-
-@interface THAutorouteProperties ()
-
-@end
+#import "THHardwareComponentEditableObject.h"
 
 @implementation THAutorouteProperties
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(NSString*) title{
+    return @"Wiring";
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+-(void) reloadState{
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)autorouteTapped:(id)sender {
+    THHardwareComponentEditableObject * object = (THHardwareComponentEditableObject*) self.editableObject;
+    [object autoroute];
 }
 
 @end

@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THI2CComponent;
 
-@interface THCompass : THHardwareComponent <THI2CProtocol>
+@interface THCompassLSM303 : THHardwareComponent <THI2CProtocol>
 
 @property (nonatomic) NSInteger accelerometerX;
 @property (nonatomic) NSInteger accelerometerY;
@@ -52,7 +52,5 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic) THElementPin * sclPin;
 @property (nonatomic) THElementPin * sdaPin;
-
-@property (nonatomic) THI2CComponentType componentType;
 
 @end

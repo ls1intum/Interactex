@@ -100,6 +100,7 @@
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project removeBoard:self];
+    
     [super removeFromWorld];
 }
 

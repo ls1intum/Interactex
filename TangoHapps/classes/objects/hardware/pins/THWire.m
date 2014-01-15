@@ -357,6 +357,17 @@ You should have received a copy of the GNU General Public License along with thi
     [layer removeEditableObject:self];
 }
 
+-(void) addToWorld{
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project addWire:self];
+}
+
+-(void) removeFromWorld{
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project removeWire:self];
+    [super removeFromWorld];
+}
+
 #pragma mark - Node Observer
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

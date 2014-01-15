@@ -155,6 +155,24 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
     return nil;
 }
 
+#pragma mark - Methods
+
+-(THBoardPinEditable*) minusPin{
+    return [self.pins objectAtIndex:5];
+}
+
+-(THBoardPinEditable*) plusPin{
+    return [self.pins objectAtIndex:6];
+}
+
+-(THBoardPinEditable*) sclPin{
+    return [self analogPinWithNumber:5];
+}
+
+-(THBoardPinEditable*) sdaPin{
+    return [self analogPinWithNumber:4];
+}
+
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number{
     THLilyPad * lilypad = (THLilyPad*) self.simulableObject;
     NSInteger idx = [lilypad pinIdxForPin:number ofType:kPintypeAnalog];
@@ -164,13 +182,7 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
     return nil;
 }
 
--(THPinEditable*) minusPin{
-    return [_pins objectAtIndex:5];
-}
-
--(THPinEditable*) plusPin{
-    return [_pins objectAtIndex:6];
-}
+#pragma mark - Lifecycle
 
 -(void) willStartSimulation{
     [super willStartSimulation];

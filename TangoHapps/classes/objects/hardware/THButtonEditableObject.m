@@ -94,6 +94,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
+-(THElementPinEditable*) mainPin{
+    return [self.pins objectAtIndex:2];
+}
+
+#pragma mark - Methods
+
 -(void) updatePinValue{
     THElementPinEditable * digitalPin = self.digitalPin;
     THBoardPinEditable * boardPin = digitalPin.attachedToPin;

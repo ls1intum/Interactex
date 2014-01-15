@@ -155,6 +155,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addWireFrom:(THElementPinEditable*) elementPin to:(THBoardPinEditable*) boardPin;
 -(void) removeAllWiresFrom:(id) object notify:(BOOL) notify;
 //-(void) removeAllWiresTo:(id) object notify:(BOOL) notify;
+-(TFEditableObject*) wireAtLocation:(CGPoint) location;
 
 //invocation connections
 -(NSArray*) invocationConnectionsForObject:(TFEditableObject*) object;
