@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
             endingLineNumber = "198"
-            landmarkName = "-nextValidPinStartingFromPin:"
+            landmarkName = "-resendLastPinModeRequest"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
