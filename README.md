@@ -92,22 +92,24 @@ The Pins Controller displays pin values and allows users to change them in order
   <img src="Documentation/images/12 - Demo8.png" alt="controlling pins 2"/>
 </p>
 
+
 In order to transfer the application to the iPhone (or iPod):
-1.	Both devices (iPad and iPhone) need to either be connected to the same network, or have Bluetooth activated. 
-2.	In the Interactex Client, choose a + icon to go to the Download mode: 
 
-<p align="center">
-  <img src="Documentation/images/13 - Client.png" height=650 alt="Interactex Client download screen"/>
-</p>
+1.  Both devices (iPad and iPhone) need to either be connected to the same network, or have Bluetooth activated. 
  
+2.  In the Interactex Client, tap the + button to proceed to the Download mode: 
 
-3.	The push button (the last icon in the Designer’s toolbar – an arrow pointing up) becomes enabled in the Designer. After pressing it, the application is transferred to the Client Application.
+    <p align="center">
+    <img src="Documentation/images/13 - Client.png" height=650 alt="Interactex Client download screen"/>
+    </p>
 
-<p align="center">
-  <img src="Documentation/images/14 - editorTools.png" alt="editor tools"/>
-</p>
+3.  The push button (the last icon in the Designer’s toolbar – an arrow pointing up) becomes enabled in the Designer. After pressing it, the application is transferred to the Client Application.
 
-4.	By tapping the Scan button at the top-right side of the screen, the Client Application will scan for nearby Bluetooth 4.0 devices. Once a device is found which implements one of the supported Services (see section Supported Devices), the text “Start” will replace the previous “Scan” text. By pressing the “Start” Button on the top-right side of the screen a connection with the hardware is established and the application starts running. After that, the “Stop” text will replace the “Start” text. When the “Stop” button is pressed, the device disconnects from the hardware. By going back to the projects screen at any time, the device disconnects from the hardware.
+    <p align="center">
+    <img src="Documentation/images/14 - editorTools.png" alt="editor tools"/>
+    </p>
+
+4. By tapping the Scan button at the top-right side of the screen, the Client Application will scan for nearby Bluetooth 4.0 devices. Once a device is found which implements one of the supported Services (see section Supported Devices), the text “Start” will replace the previous “Scan” text. By pressing the “Start” Button on the top-right side of the screen a connection with the hardware is established and the application starts running. After that, the “Stop” text will replace the “Start” text. When the “Stop” button is pressed, the device disconnects from the hardware. By going back to the projects screen at any time, the device disconnects from the hardware.
  
 <p align="center">
   <img src="Documentation/images/15 - Client.png" height=650 alt="controlling pins 2"/>
@@ -129,4 +131,48 @@ An event such as the valueChanged event of the slider delivers the value propert
 <p align="center">
   <img src="Documentation/images/17 - Events.png" alt="events"/>
 </p>
+
+# Interactex Objects
+
+The Interactex Applications are constructed by drag and dropping objects. Here is a list of the objects available:
+
+
+| UI Elements   | Description |
+| ------------- |:-------------|
+| Button        | A button that can be pressed. Generates events when pressed and when released.
+| Label         | Displays text and numbers.
+| Switch        | Generates events when switched on or off.
+| Slider        | Delivers a value which can be used as input for other objects (ex. Frequency of a buzzer).
+| Touchpad      | Generates events when user performs following gestures on it: tap, double tap, pinch, pan, long press.
+| Music Player  | Accesses user’s music library and offers methods such as: play, stop, next and previous.
+| Image View    | Displays an image.
+| Contact Book  | Accesses user’s contact book and offers functionality to iterate through contacts and make calls.
+| Monitor       | Displays sensor readings over time. At the moment it offers two methods: setValue1 and setValue2. Value1 will be displayed as a blue line and Value2 red.
+
+
+
+| Hardware Elements   | Description |
+| ------------------- |:-------------|
+| LED                 | Can be turned on or off and its intensity can be set (be sure to set the corresponding pin to PWM mode)
+| Button              | A Lilypad button that can be pressed. Generates events when pressed and when released.
+| Switch              | A Lilypad switch. Generates events when switched on or off.
+| Buzzer              | Represents a Lilypad Buzzer. It can be turned on, turned off , and its frequency can be set.
+| Compass             | Accelerometer and Magnetometer. Should be connected to the SCL and SDA pins for I2C communication.
+| Light Sensor        | Represents a Lilypad Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.
+| Temperature Sensor  | Represents a Lilypad Temperature Sensor. It works similar to the Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.
+| Potentiometer       | Generates events according to three modes: always, InRange and Once. The Always mode will trigger an event whenever the hardware value changed. The InRange mode generates an event when the hardware value changed and this value lies within a certain range, which can be configured in the object’s properties. The Once mode will trigger an event once when the value lies within a certain range.
+| Three-Color LED     | Not supported yet on the hardware side.
+| Vibe Board          | Represents a vibration board. It works similar  to the Buzzer, It can be turned on, turned off , and its frequency can be set.
+| Accelerometer       | It offers methods for reading x, y and z. Should be connected to three analog input pins.
+
+| Programming Elements  | Description |
+| -------------------   |:-------------|
+| Comparator            | Compares two numbers A and B and generates an event depending on its configuration. If A is bigger than B and the Comparator is in ‘bigger’ mode, then the ‘conditionIsTrue’ even gets triggered. This event can, like any other event, be connected to other object’s methods. In order to set the values A and B that should be compared, connect an event that delivers a number value (such as the intensityChanged event of the Light Sensor) to the setValue1 method of the Comparator. To do this, a line should be drawn starting at the Light Sensor and ending on the Comparator. 
+| Grouper               | Compares two Boolean values (values that can be either true or false) and generates an event depending on whether both of them are true or only one of them is true. It is connected in a similar way to the Comparator.
+| Number Value          | Represents a number (equivalent to a variable in programming). Can be used for example together with the comparator in order to detect when a specific object’s property (such as the buzzer’s frequency or the LED’s intensity) reaches a specific value. Generates an event when its value changes. This is the event that can be connected to the comparator.
+| Boolean Value         | Represents a Boolean value (equivalent to a variable in programming).  It can be used for example together with a grouper condition.
+| String Value          | Represents a constant String (equivalent to a constant variable in programming). It can be used to set the text of a label. In the future, it will be formateable such that users can mix text and numbers, while these numbers could be sensor values.
+| Mapper                | Scales and constrains a value. Can be used to make numbers fit within a certain range. For example, the slider produces by default values between 0 and 255 and the buzzer produces frequencies between 0 and 20000. The mapper can be used to make such range conversions. Its current implementation offers a linear function y = ax + b which means that incoming values x get multiplied by a and added b. Values are clamped to the range [min max]. Generates an event whenever the value changes.
+|  Timer                | Generates an event after x time.
+|  Sound                | Represents a sound. It offers a single method to play it.
 
