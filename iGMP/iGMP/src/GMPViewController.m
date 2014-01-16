@@ -12,7 +12,6 @@ Copyright (C) 2013 TU Munich, Munich, Germany; DRLab, University of the Arts Ber
 	
 Contacts:
 juan.haladjian@cs.tum.edu
-k.zhang@utwente.nl
 katharina.bredies@udk-berlin.de
 opensource@telekom.de
 

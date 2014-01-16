@@ -1,4 +1,4 @@
-BLEFirmata is a library used to control an Arduino board over Bluetooth 4.0. BLEFirmata uses the Firmata protocol: www.firmata.org
+IFFirmata is a library used to control an Arduino board over Bluetooth 4.0. IFFirmata uses the Firmata protocol: www.firmata.org
 
 www.interactex.org
 

@@ -1,5 +1,5 @@
 /*
- BLE.h
+ BLEDiscovery.m
  BLE
  
  Created by Juan Haladjian on 11/06/2013.

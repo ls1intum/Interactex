@@ -1,4 +1,4 @@
-BLE is a library used to send and receive data from/to a device over Bluetooth 4.0.
+GMP is a library used to remotely control a microcontroller. GMP is based on Firmata: www.firmata.org
 
 www.interactex.org
 
