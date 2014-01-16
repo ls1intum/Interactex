@@ -140,13 +140,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(void) move:(UIPanGestureRecognizer*)sender{}
 -(void) tapped:(UITapGestureRecognizer*)sender{}
 -(void) doubleTapped:(UITapGestureRecognizer*)sender{}
--(void) pressedLong:(UILongPressGestureRecognizer*)sender{}
-//-(void) accelerated:(UIAcceleration*) acceleration{}
-/*
-- (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    [self accelerated:acceleration];
-}
-*/
+-(void) pressedLong:(UILongPressGestureRecognizer*)sender{NSLog(@"pressed long");}
+
 #pragma mark - Methods
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{

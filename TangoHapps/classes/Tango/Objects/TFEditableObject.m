@@ -375,7 +375,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) draw {
     
     if(self.selected){
-        /*
+        
         glLineWidth(1);
         
         ccDrawColor4B(kDefaultObjectSelectionColor.r, kDefaultObjectSelectionColor.g, kDefaultObjectSelectionColor.b, kDefaultObjectSelectionColor.a);
@@ -389,7 +389,7 @@ You should have received a copy of the GNU General Public License along with thi
         point = [self convertToNodeSpace:point];
         point = ccpSub(point, ccp(kSelectionPadding, kSelectionPadding));
                 
-        ccDrawRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height));*/
+        ccDrawRect(point, ccp(point.x + rectSize.width, point.y + rectSize.height));
     }
 }
 

@@ -380,6 +380,7 @@
 }
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    NSLog(@"should recognize together");
     
     if((self.editingScenes || self.editingOneScene) && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
         
@@ -501,7 +502,7 @@
 }
 
 -(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
-    
+    NSLog(@"pressed long selection")
     if(recognizer.state == UIGestureRecognizerStateBegan){
         if(self.showingIcons &&  !(self.editingScenes || self.editingOneScene)){
             

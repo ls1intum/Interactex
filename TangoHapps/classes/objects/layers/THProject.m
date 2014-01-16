@@ -153,14 +153,11 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) initCustomProject{
     
     [self loadCustomProject];
-    /*
-    THLilyPadEditable * lilypad = [[THLilyPadEditable alloc] init];
-    lilypad.position = kLilypadDefaultPosition;
-    [self addBoard:lilypad];*/
     
+    /*
     THiPhoneEditableObject * iPhone = [THiPhoneEditableObject iPhoneWithDefaultView];
     iPhone.position = kDefaultiPhonePosition;
-    [self addiPhone:iPhone];
+    [self addiPhone:iPhone];*/
 }
 
 -(id) init{

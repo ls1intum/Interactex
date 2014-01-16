@@ -137,7 +137,6 @@ float const kToolsTabMargin = 5;
     [self reloadContent];
     [self startWithEditor];
     
-    
     [self addPalettePull];
     [self updatePalettePullVisibility];
     

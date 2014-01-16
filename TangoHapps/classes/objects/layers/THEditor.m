@@ -640,8 +640,11 @@ You should have received a copy of the GNU General Public License along with thi
             [self unselectAndDeleteEditableObject:object];
         
         } else {
-            TFEditableObject * wire = (TFEditableObject*) [project wireAtLocation:location];
+            THWire * wire = (THWire*) [project wireAtLocation:location];
             [self removeEditableObject:wire];
+            
+            [wire.obj2 deattachPin:wire.obj1];
+            
             if(wire){
                 [self unselectAndDeleteEditableObject:wire];
             }
@@ -901,14 +904,17 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Adding, Removing, Showing, Hiding
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
-    if(editableObject.canBeScaled){
 
-        CGPoint position = ccpSub(editableObject.position,self.zoomableLayer.position);
-        editableObject.position = position;
-        [self.zoomableLayer addChild:editableObject z:editableObject.z];
-        
-    } else{
-        [super addEditableObject:editableObject];
+    if(!editableObject.parent){
+        if(editableObject.canBeScaled){
+            
+            CGPoint position = ccpSub(editableObject.position,self.zoomableLayer.position);
+            editableObject.position = position;
+            [self.zoomableLayer addChild:editableObject z:editableObject.z];
+            
+        } else{
+            [super addEditableObject:editableObject];
+        }
     }
 }
 

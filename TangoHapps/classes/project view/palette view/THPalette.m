@@ -125,8 +125,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) handleLongPress:(UILongPressGestureRecognizer*) sender{
-    THPaletteItem * paletteItem = (THPaletteItem*)[sender view];
-    if(sender.state == UIGestureRecognizerStateBegan){
+    
+     if(sender.state == UIGestureRecognizerStateBegan){
+     THPaletteItem * paletteItem = (THPaletteItem*)[sender view];
         [self.dragDelegate palette:self didLongPressItem:paletteItem withRecognizer:sender];
     }
 }
