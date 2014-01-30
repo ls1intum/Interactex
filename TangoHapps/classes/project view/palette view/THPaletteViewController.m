@@ -45,46 +45,24 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPalette.h"
 #import "THDraggedPaletteItem.h"
 #import "THCustomPaletteItem.h"
+#import "THTabbarViewController.h"
 
 #import "THLilypadPaletteItem.h"
 #import "THSimpleLilypadPaletteItem.h"
-#import "THYannicPaletteItem.h"
 
-#import "THLedPaletteItem.h"
-#import "THButtonPaletteItem.h"
-#import "THBuzzerPaletteItem.h"
-#import "THLSMCompassPaletteItem.h"
 #import "THLightSensorPaletteItem.h"
-#import "THPotentiometerPaletteItem.h"
-#import "THSwitchPaletteItem.h"
-#import "THThreeColorLedPaletteItem.h"
-#import "THVibrationBoardPaletteItem.h"
-#import "THTemperatureSensorPaletteItem.h"
-#import "THAccelerometerPaletteItem.h"
+
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
-#import "THLabelPaletteItem.h"
-#import "THiSwitchPaletteItem.h"
-#import "THMusicPlayerPaletteItem.h"
-#import "THTouchpadPaletteItem.h"
-#import "THImageViewPaletteItem.h"
-#import "THSliderPaletteItem.h"
-#import "THContactBookPaletteItem.h"
-#import "THMonitorPaletteItem.h"
 
 #import "THClothePaletteItem.h"
 
 #import "THComparatorPaletteItem.h"
 #import "THGrouperPaletteItem.h"
 #import "THValuePaletteItem.h"
-#import "THMapperPaletteItem.h"
 #import "THProjectViewController.h"
-#import "THTimerPaletteItem.h"
-#import "THSoundPaletteItem.h"
-#import "THTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
-#import "THStringValuePaletteItem.h"
 
 @implementation THPaletteViewController
 
@@ -398,46 +376,22 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.uiSectionArray = [NSMutableArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
                            [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
-                           [[THLabelPaletteItem alloc] initWithName:@"label"],
-                           [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
-                           [[THSliderPaletteItem alloc] initWithName:@"slider"],
-                           [[THTouchpadPaletteItem alloc] initWithName:@"touchpad"],
-                           [[THMusicPlayerPaletteItem alloc] initWithName:@"musicplayer"],
-                           [[THImageViewPaletteItem alloc] initWithName:@"imageview"],
-                           [[THContactBookPaletteItem alloc] initWithName:@"contactBook"],
-                           [[THMonitorPaletteItem alloc] initWithName:@"monitor"],
                            nil];
     
     
     self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
                                 [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
-                                [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
-                                [[THYannicPaletteItem alloc] initWithName:@"jennic"],nil];
+                                [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],nil];
     
     self.hardwareSectionArray = [NSMutableArray arrayWithObjects:
-                                 [[THLedPaletteItem alloc] initWithName:@"led"],
-                                 [[THButtonPaletteItem alloc] initWithName:@"button"],
-                                 [[THSwitchPaletteItem alloc] initWithName:@"switch"],
-                                 [[THBuzzerPaletteItem alloc] initWithName:@"buzzer"],
-                                 [[THLSMCompassPaletteItem alloc] initWithName:@"LSMCompass"],
                                  [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
-                                 [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
-                                 [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
-                                 [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
-                                 [[THTemperatureSensorPaletteItem alloc] initWithName:@"temperatureSensor"],
-                                 [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                  nil];
     
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
                                      [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
-                                     [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
-                                     [[THMapperPaletteItem alloc] initWithName:@"mapper"],
-                                     [[THTimerPaletteItem alloc] initWithName:@"timer"],
-                                     [[THSoundPaletteItem alloc] initWithName:@"sound"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
-                                     [[THStringValuePaletteItem alloc] initWithName:@"string"],
                                      nil];
     
     self.clothesSectionName = @"Textiles";
