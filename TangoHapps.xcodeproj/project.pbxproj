@@ -2420,7 +2420,7 @@
 		9AF50466167B855C0020241C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9AF50468167B855F0020241C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		9AF50472167B860E0020241C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TangoHappsClient/main.m; sourceTree = SOURCE_ROOT; };
-		9AF50474167B86490020241C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9AF50474167B86490020241C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		9AF5050A167B8DC30020241C /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		9AF5050C167B8DCE0020241C /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		9AF5050E167B8DE20020241C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2586,7 +2586,6 @@
 		9A35117E167B7A6800C7484B = {
 			isa = PBXGroup;
 			children = (
-				9AF50474167B86490020241C /* Default-568h@2x.png */,
 				9A351193167B7A6800C7484B /* TangoHapps */,
 				9AF5FFF6167B82F70020241C /* TangoHappsClient */,
 				9AF505A9167B90780020241C /* TangoHappsTests */,
@@ -2639,6 +2638,7 @@
 		9A351193167B7A6800C7484B /* TangoHapps */ = {
 			isa = PBXGroup;
 			children = (
+				9AF50474167B86490020241C /* Default-568h@2x.png */,
 				9A35119C167B7A6800C7484B /* THAppDelegate.h */,
 				9A35119D167B7A6800C7484B /* THAppDelegate.m */,
 				9AF501F4167B84B40020241C /* classes */,
