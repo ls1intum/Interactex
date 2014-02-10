@@ -368,8 +368,6 @@
 		9A41465B17DE86E60061EDF8 /* palettePull.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A41465917DE86E60061EDF8 /* palettePull.png */; };
 		9A41469517DE93F30061EDF8 /* palettePull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A41469417DE93F30061EDF8 /* palettePull@2x.png */; };
 		9A41469617DE93F30061EDF8 /* palettePull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A41469417DE93F30061EDF8 /* palettePull@2x.png */; };
-		9A41471617E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471117E1D3A10061EDF8 /* THEditorToolsViewController.m */; };
-		9A41471717E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471117E1D3A10061EDF8 /* THEditorToolsViewController.m */; };
 		9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
@@ -1872,8 +1870,6 @@
 		9A41453A17DE7A060061EDF8 /* push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push@2x.png"; sourceTree = "<group>"; };
 		9A41465917DE86E60061EDF8 /* palettePull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palettePull.png; sourceTree = "<group>"; };
 		9A41469417DE93F30061EDF8 /* palettePull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palettePull@2x.png"; sourceTree = "<group>"; };
-		9A41471017E1D3A10061EDF8 /* THEditorToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditorToolsViewController.h; sourceTree = "<group>"; };
-		9A41471117E1D3A10061EDF8 /* THEditorToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditorToolsViewController.m; sourceTree = "<group>"; };
 		9A41471417E1D3A10061EDF8 /* THProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProjectViewController.h; sourceTree = "<group>"; };
 		9A41471517E1D3A10061EDF8 /* THProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectViewController.m; sourceTree = "<group>"; };
 		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
@@ -2873,8 +2869,6 @@
 				9A59321617E5D58300B20D99 /* palette view */,
 				9A41471417E1D3A10061EDF8 /* THProjectViewController.h */,
 				9A41471517E1D3A10061EDF8 /* THProjectViewController.m */,
-				9A41471017E1D3A10061EDF8 /* THEditorToolsViewController.h */,
-				9A41471117E1D3A10061EDF8 /* THEditorToolsViewController.m */,
 			);
 			path = "project view";
 			sourceTree = "<group>";
@@ -5274,7 +5268,6 @@
 				9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */,
 				9A41443317DE63A70061EDF8 /* THClientConstants.m in Sources */,
-				9A41471617E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */,
 				9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */,
 				9A59314317E50DA200B20D99 /* THWire.m in Sources */,
@@ -5526,7 +5519,6 @@
 				9A56D05C17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19717DBDAA9001021B2 /* THDirector.m in Sources */,
 				9A41446D17DE64420061EDF8 /* THClientConstants.m in Sources */,
-				9A41471717E1D3A10061EDF8 /* THEditorToolsViewController.m in Sources */,
 				9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */,
 				9A59314417E50DA200B20D99 /* THWire.m in Sources */,
