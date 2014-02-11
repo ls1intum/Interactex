@@ -52,7 +52,7 @@
 @end
 
 
-@interface PdBase {
+@interface PdBase : NSObject{
   // Not meant to be instantiated. No member variables.
 }
 

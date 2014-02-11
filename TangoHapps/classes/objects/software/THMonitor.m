@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMonitor.h"
 #import "THMonitorLine.h"
 #import "THMonitorLine.h"
+#import "GraphView.h"
 
 @implementation THMonitor
 
@@ -52,8 +53,12 @@ float const kMonitorMargin = 5;
 
 -(void) loadMonitor{
     
-    UIView * view = [[UIView alloc] init];
-    view.frame = CGRectMake(0, 0, self.width, self.height);
+    CGRect frame = CGRectMake(0, 0, self.width, self.height);
+    NSLog(@"%f",frame.size.width);
+    
+    GraphView * view = [[GraphView alloc] initWithFrame:frame maxAxisY:self.maxValue minAxisY:self.minValue];
+    
+    //UIView * view = [[UIView alloc] init];
     view.layer.borderWidth = 1.0f;
     view.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -158,8 +163,13 @@ float const kMonitorMargin = 5;
 
 -(void) addValue1:(float) value{
     //NSLog(@"adding value: %f",value);
+    /*
     THMonitorLine * line = [self.lines objectAtIndex:0];
-    [line addPoint: [self transformedPointForValue:value]];
+    [line addPoint: [self transformedPointForValue:value]];*/
+    
+    GraphView * view = (GraphView*)self.view;
+    [view addX:value y:value z:value];
+    
 }
 
 -(void) addValue2:(float) value{
@@ -169,10 +179,10 @@ float const kMonitorMargin = 5;
 }
 
 -(void) update{
-    
+    /*
     for (THMonitorLine * line in self.lines) {
         [line update:kMonitorUpdateFrequency];
-    }
+    }*/
 }
 
 -(void) start{

@@ -530,8 +530,11 @@
 		9A6B285518AA08A0009AAE31 /* synthesis.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284E18AA08A0009AAE31 /* synthesis.pd */; };
 		9A6B285618AA08A0009AAE31 /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284F18AA08A0009AAE31 /* test.pd */; };
 		9A6B285718AA08A0009AAE31 /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284F18AA08A0009AAE31 /* test.pd */; };
-		9A6B28A118AA3CED009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */; };
-		9A6B28A218AA3CF5009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */; };
+		9A6B28AD18AA701A009AAE31 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* GraphView.m */; };
+		9A6B28AE18AA701A009AAE31 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* GraphView.m */; };
+		9A6B28AF18AA701A009AAE31 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* GraphView.m */; };
+		9A6B28F218AA709A009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
+		9A6B28F518AA70A2009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
 		9A7B65131834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65141834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B65171834D830009D0103 /* THCompassProperties.xib */; };
@@ -1631,30 +1634,30 @@
 			remoteGlobalIDString = E0EA56A5134B9CA800F212C8;
 			remoteInfo = Bug1159;
 		};
-		9A6B289918AA3CB9009AAE31 /* PBXContainerItemProxy */ = {
+		9A6B28EC18AA7090009AAE31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			containerPortal = 9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = "libpd-ios";
 		};
-		9A6B289B18AA3CB9009AAE31 /* PBXContainerItemProxy */ = {
+		9A6B28EE18AA7090009AAE31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			containerPortal = 9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 119013AB1486450C00086F19;
 			remoteInfo = "libpd-osx";
 		};
-		9A6B289D18AA3CC5009AAE31 /* PBXContainerItemProxy */ = {
+		9A6B28F018AA7097009AAE31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			containerPortal = 9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = "libpd-ios";
 		};
-		9A6B289F18AA3CCD009AAE31 /* PBXContainerItemProxy */ = {
+		9A6B28F318AA709F009AAE31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			containerPortal = 9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = "libpd-ios";
@@ -2045,7 +2048,9 @@
 		9A6B284D18AA08A0009AAE31 /* musinum_generator1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = musinum_generator1.pd; sourceTree = "<group>"; };
 		9A6B284E18AA08A0009AAE31 /* synthesis.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = synthesis.pd; sourceTree = "<group>"; };
 		9A6B284F18AA08A0009AAE31 /* test.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.pd; sourceTree = "<group>"; };
-		9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../wearablesm2mCopy.git/Frameworks/libpd/libpd.xcodeproj; sourceTree = "<group>"; };
+		9A6B28AB18AA701A009AAE31 /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
+		9A6B28AC18AA701A009AAE31 /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
+		9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = Frameworks/libpd/libpd.xcodeproj; sourceTree = "<group>"; };
 		9A7B64D71834BE0E009D0103 /* THI2CProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THI2CProtocol.h; sourceTree = "<group>"; };
 		9A7B65101834D809009D0103 /* THCompassProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCompassProperties.h; sourceTree = "<group>"; };
 		9A7B65111834D809009D0103 /* THCompassProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCompassProperties.m; sourceTree = "<group>"; };
@@ -2563,7 +2568,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6B28A118AA3CED009AAE31 /* libpd-ios.a in Frameworks */,
+				9A6B28F518AA70A2009AAE31 /* libpd-ios.a in Frameworks */,
 				9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */,
 				9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */,
 				9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */,
@@ -2614,7 +2619,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6B28A218AA3CF5009AAE31 /* libpd-ios.a in Frameworks */,
+				9A6B28F218AA709A009AAE31 /* libpd-ios.a in Frameworks */,
 				9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */,
 				9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */,
 				9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */,
@@ -2680,7 +2685,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */,
+				9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */,
 				9A5110141837D23A00EB25FA /* CoreMotion.framework */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */,
@@ -3114,11 +3119,11 @@
 			path = pd;
 			sourceTree = "<group>";
 		};
-		9A6B289518AA3CB8009AAE31 /* Products */ = {
+		9A6B28E818AA708F009AAE31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */,
-				9A6B289C18AA3CB9009AAE31 /* libpd-osx.a */,
+				9A6B28ED18AA7090009AAE31 /* libpd-ios.a */,
+				9A6B28EF18AA7090009AAE31 /* libpd-osx.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3853,6 +3858,8 @@
 		9AF502D6167B84B40020241C /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B28AB18AA701A009AAE31 /* GraphView.h */,
+				9A6B28AC18AA701A009AAE31 /* GraphView.m */,
 				9A1FBE06187F208400699B61 /* THI2CMessage.h */,
 				9A1FBE07187F208400699B61 /* THI2CMessage.m */,
 				9AF502D7167B84B40020241C /* THColorPicker.h */,
@@ -4061,7 +4068,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6B28A018AA3CCD009AAE31 /* PBXTargetDependency */,
+				9A6B28F418AA709F009AAE31 /* PBXTargetDependency */,
 				9AFA65EA18296E000082990F /* PBXTargetDependency */,
 				9AFA65EC18296E000082990F /* PBXTargetDependency */,
 			);
@@ -4101,7 +4108,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6B289E18AA3CC5009AAE31 /* PBXTargetDependency */,
+				9A6B28F118AA7097009AAE31 /* PBXTargetDependency */,
 				9A1FBD74187ED74600699B61 /* PBXTargetDependency */,
 				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
 			);
@@ -4153,8 +4160,8 @@
 					ProjectRef = 9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A6B289518AA3CB8009AAE31 /* Products */;
-					ProjectRef = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+					ProductGroup = 9A6B28E818AA708F009AAE31 /* Products */;
+					ProjectRef = 9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -4573,18 +4580,18 @@
 			remoteRef = 9A50D98218296D3700335926 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */ = {
+		9A6B28ED18AA7090009AAE31 /* libpd-ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libpd-ios.a";
-			remoteRef = 9A6B289918AA3CB9009AAE31 /* PBXContainerItemProxy */;
+			remoteRef = 9A6B28EC18AA7090009AAE31 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6B289C18AA3CB9009AAE31 /* libpd-osx.a */ = {
+		9A6B28EF18AA7090009AAE31 /* libpd-osx.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libpd-osx.a";
-			remoteRef = 9A6B289B18AA3CB9009AAE31 /* PBXContainerItemProxy */;
+			remoteRef = 9A6B28EE18AA7090009AAE31 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AAF283F182B88F000531E3A /* libBLE.a */ = {
@@ -5293,6 +5300,7 @@
 				9AF503A6167B84B40020241C /* THComparatorPaletteItem.m in Sources */,
 				9AF503A7167B84B40020241C /* THLSMCompassPaletteItem.m in Sources */,
 				9AF503A8167B84B40020241C /* THGrouperPaletteItem.m in Sources */,
+				9A6B28AD18AA701A009AAE31 /* GraphView.m in Sources */,
 				9AF503A9167B84B40020241C /* THiPhoneButtonPaletteItem.m in Sources */,
 				9AF503AA167B84B40020241C /* THiPhonePaletteItem.m in Sources */,
 				9AF503AB167B84B40020241C /* THiSwitchPaletteItem.m in Sources */,
@@ -5596,6 +5604,7 @@
 				9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */,
 				9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */,
 				9A06EE87169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */,
+				9A6B28AF18AA701A009AAE31 /* GraphView.m in Sources */,
 				9A06EE93169AD8B200B88519 /* THSlider.m in Sources */,
 				9A06EE95169AD8B200B88519 /* THSliderEditableObject.m in Sources */,
 				9A06EE9D169AD99B00B88519 /* THSliderProperties.m in Sources */,
@@ -5773,6 +5782,7 @@
 				9A8426B317564A80009495AB /* TFAction.m in Sources */,
 				9A8426B617564A80009495AB /* TFEvent.m in Sources */,
 				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,
+				9A6B28AE18AA701A009AAE31 /* GraphView.m in Sources */,
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
 				9A0F687C1886B9AC00B589DC /* THCompassMPU6050.m in Sources */,
@@ -5802,15 +5812,15 @@
 			name = Firmata;
 			targetProxy = 9A1FBD73187ED74600699B61 /* PBXContainerItemProxy */;
 		};
-		9A6B289E18AA3CC5009AAE31 /* PBXTargetDependency */ = {
+		9A6B28F118AA7097009AAE31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libpd-ios";
-			targetProxy = 9A6B289D18AA3CC5009AAE31 /* PBXContainerItemProxy */;
+			targetProxy = 9A6B28F018AA7097009AAE31 /* PBXContainerItemProxy */;
 		};
-		9A6B28A018AA3CCD009AAE31 /* PBXTargetDependency */ = {
+		9A6B28F418AA709F009AAE31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libpd-ios";
-			targetProxy = 9A6B289F18AA3CCD009AAE31 /* PBXContainerItemProxy */;
+			targetProxy = 9A6B28F318AA709F009AAE31 /* PBXContainerItemProxy */;
 		};
 		9AAF2844182B8AFE00531E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
