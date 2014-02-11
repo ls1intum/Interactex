@@ -49,35 +49,34 @@ You should have received a copy of the GNU General Public License along with thi
     return @"Monitor";
 }
 
--(void) updateMinLabel{
-    
-    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
-    self.minLabel.text = [NSString stringWithFormat:@"%d", monitor.minValue];
-}
-
--(void) updateMaxLabel {
-    
-    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
-    self.maxLabel.text = [NSString stringWithFormat:@"%d", monitor.maxValue];
-}
-
 -(void) updateMinSlider {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     self.minSlider.value = monitor.minValue;
 }
 
--(void) updateMaxSlider {
+-(void) updateMaxSlider{
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     self.maxSlider.value = monitor.maxValue;
 }
 
+-(void) updateMinText {
+    
+    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
+    self.minText.text = [NSString stringWithFormat:@"%d", monitor.minValue];
+}
+
+-(void) updateMaxText {
+    
+    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
+    self.maxText.text = [NSString stringWithFormat:@"%d", monitor.maxValue];
+}
+
 -(void) reloadState {
     
-    [self updateMinLabel];
-    [self updateMaxLabel];
-    
+    [self updateMinText];
+    [self updateMaxText];
     [self updateMinSlider];
     [self updateMaxSlider];
 }
@@ -95,16 +94,36 @@ You should have received a copy of the GNU General Public License along with thi
 - (IBAction)minChanged:(id)sender {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
-    monitor.minValue = self.minSlider.value;
+    monitor.minValue = [self.minText.text floatValue];
     
-    [self updateMinLabel];
+    [self updateMinSlider];
 }
 
 - (IBAction)maxChanged:(id)sender {
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
+    monitor.maxValue = [self.maxText.text floatValue];
+    
+    [self updateMaxSlider];
+}
+
+- (IBAction)minSliderChanged:(id)sender {
+    
+    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
+    monitor.minValue = self.minSlider.value;
+    
+    [self updateMinText];
+}
+
+- (IBAction)maxSliderChanged:(id)sender {
+    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     monitor.maxValue = self.maxSlider.value;
     
-    [self updateMaxLabel];
+    [self updateMaxText];
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end
