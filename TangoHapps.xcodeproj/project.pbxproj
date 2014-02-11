@@ -503,6 +503,35 @@
 		9A5F8D8E16A2C524000DF472 /* THContactBookProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */; };
 		9A5F8E2A16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
 		9A5F8E2B16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
+		9A6B27F818AA075F009AAE31 /* THPureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B27F518AA075F009AAE31 /* THPureData.m */; };
+		9A6B27F918AA075F009AAE31 /* THPureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B27F518AA075F009AAE31 /* THPureData.m */; };
+		9A6B27FA18AA075F009AAE31 /* THPureDataEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B27F718AA075F009AAE31 /* THPureDataEditable.m */; };
+		9A6B27FB18AA075F009AAE31 /* THPureDataEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B27F718AA075F009AAE31 /* THPureDataEditable.m */; };
+		9A6B283318AA0768009AAE31 /* THPureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B27F518AA075F009AAE31 /* THPureData.m */; };
+		9A6B283618AA079E009AAE31 /* THPureDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B283518AA079E009AAE31 /* THPureDataProperties.m */; };
+		9A6B283718AA079E009AAE31 /* THPureDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B283518AA079E009AAE31 /* THPureDataProperties.m */; };
+		9A6B283A18AA07BD009AAE31 /* THPureDataPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B283918AA07BD009AAE31 /* THPureDataPaletteItem.m */; };
+		9A6B283B18AA07BD009AAE31 /* THPureDataPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B283918AA07BD009AAE31 /* THPureDataPaletteItem.m */; };
+		9A6B283D18AA080D009AAE31 /* THPureDataProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B283C18AA080D009AAE31 /* THPureDataProperties.xib */; };
+		9A6B283E18AA080D009AAE31 /* THPureDataProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B283C18AA080D009AAE31 /* THPureDataProperties.xib */; };
+		9A6B284318AA0874009AAE31 /* palette_puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B283F18AA0874009AAE31 /* palette_puredata.png */; };
+		9A6B284418AA0874009AAE31 /* palette_puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B283F18AA0874009AAE31 /* palette_puredata.png */; };
+		9A6B284518AA0874009AAE31 /* palette_puredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284018AA0874009AAE31 /* palette_puredata@2x.png */; };
+		9A6B284618AA0874009AAE31 /* palette_puredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284018AA0874009AAE31 /* palette_puredata@2x.png */; };
+		9A6B284718AA0874009AAE31 /* puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284118AA0874009AAE31 /* puredata.png */; };
+		9A6B284818AA0874009AAE31 /* puredata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284118AA0874009AAE31 /* puredata.png */; };
+		9A6B284918AA0874009AAE31 /* puredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284218AA0874009AAE31 /* puredata@2x.png */; };
+		9A6B284A18AA0874009AAE31 /* puredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284218AA0874009AAE31 /* puredata@2x.png */; };
+		9A6B285018AA08A0009AAE31 /* martijn_test_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284C18AA08A0009AAE31 /* martijn_test_1.pd */; };
+		9A6B285118AA08A0009AAE31 /* martijn_test_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284C18AA08A0009AAE31 /* martijn_test_1.pd */; };
+		9A6B285218AA08A0009AAE31 /* musinum_generator1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284D18AA08A0009AAE31 /* musinum_generator1.pd */; };
+		9A6B285318AA08A0009AAE31 /* musinum_generator1.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284D18AA08A0009AAE31 /* musinum_generator1.pd */; };
+		9A6B285418AA08A0009AAE31 /* synthesis.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284E18AA08A0009AAE31 /* synthesis.pd */; };
+		9A6B285518AA08A0009AAE31 /* synthesis.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284E18AA08A0009AAE31 /* synthesis.pd */; };
+		9A6B285618AA08A0009AAE31 /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284F18AA08A0009AAE31 /* test.pd */; };
+		9A6B285718AA08A0009AAE31 /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284F18AA08A0009AAE31 /* test.pd */; };
+		9A6B28A118AA3CED009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */; };
+		9A6B28A218AA3CF5009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */; };
 		9A7B65131834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65141834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B65171834D830009D0103 /* THCompassProperties.xib */; };
@@ -1602,6 +1631,34 @@
 			remoteGlobalIDString = E0EA56A5134B9CA800F212C8;
 			remoteInfo = Bug1159;
 		};
+		9A6B289918AA3CB9009AAE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		9A6B289B18AA3CB9009AAE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 119013AB1486450C00086F19;
+			remoteInfo = "libpd-osx";
+		};
+		9A6B289D18AA3CC5009AAE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		9A6B289F18AA3CCD009AAE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
 		9AAF283E182B88F000531E3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AAF283A182B88EF00531E3A /* BLE.xcodeproj */;
@@ -1971,6 +2028,24 @@
 		9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THContactBookProperties.xib; sourceTree = "<group>"; };
 		9A5F8E2816A2C6EE000DF472 /* THContactBookPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookPaletteItem.h; sourceTree = "<group>"; };
 		9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBookPaletteItem.m; sourceTree = "<group>"; };
+		9A6B27F418AA075F009AAE31 /* THPureData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureData.h; sourceTree = "<group>"; };
+		9A6B27F518AA075F009AAE31 /* THPureData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureData.m; sourceTree = "<group>"; };
+		9A6B27F618AA075F009AAE31 /* THPureDataEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureDataEditable.h; sourceTree = "<group>"; };
+		9A6B27F718AA075F009AAE31 /* THPureDataEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureDataEditable.m; sourceTree = "<group>"; };
+		9A6B283418AA079E009AAE31 /* THPureDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureDataProperties.h; sourceTree = "<group>"; };
+		9A6B283518AA079E009AAE31 /* THPureDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureDataProperties.m; sourceTree = "<group>"; };
+		9A6B283818AA07BD009AAE31 /* THPureDataPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPureDataPaletteItem.h; sourceTree = "<group>"; };
+		9A6B283918AA07BD009AAE31 /* THPureDataPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPureDataPaletteItem.m; sourceTree = "<group>"; };
+		9A6B283C18AA080D009AAE31 /* THPureDataProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THPureDataProperties.xib; sourceTree = "<group>"; };
+		9A6B283F18AA0874009AAE31 /* palette_puredata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_puredata.png; sourceTree = "<group>"; };
+		9A6B284018AA0874009AAE31 /* palette_puredata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_puredata@2x.png"; sourceTree = "<group>"; };
+		9A6B284118AA0874009AAE31 /* puredata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puredata.png; sourceTree = "<group>"; };
+		9A6B284218AA0874009AAE31 /* puredata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "puredata@2x.png"; sourceTree = "<group>"; };
+		9A6B284C18AA08A0009AAE31 /* martijn_test_1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = martijn_test_1.pd; sourceTree = "<group>"; };
+		9A6B284D18AA08A0009AAE31 /* musinum_generator1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = musinum_generator1.pd; sourceTree = "<group>"; };
+		9A6B284E18AA08A0009AAE31 /* synthesis.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = synthesis.pd; sourceTree = "<group>"; };
+		9A6B284F18AA08A0009AAE31 /* test.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.pd; sourceTree = "<group>"; };
+		9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../wearablesm2mCopy.git/Frameworks/libpd/libpd.xcodeproj; sourceTree = "<group>"; };
 		9A7B64D71834BE0E009D0103 /* THI2CProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THI2CProtocol.h; sourceTree = "<group>"; };
 		9A7B65101834D809009D0103 /* THCompassProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCompassProperties.h; sourceTree = "<group>"; };
 		9A7B65111834D809009D0103 /* THCompassProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCompassProperties.m; sourceTree = "<group>"; };
@@ -2488,6 +2563,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6B28A118AA3CED009AAE31 /* libpd-ios.a in Frameworks */,
 				9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */,
 				9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */,
 				9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */,
@@ -2538,6 +2614,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6B28A218AA3CF5009AAE31 /* libpd-ios.a in Frameworks */,
 				9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */,
 				9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */,
 				9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */,
@@ -2603,6 +2680,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */,
 				9A5110141837D23A00EB25FA /* CoreMotion.framework */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */,
@@ -2700,6 +2778,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B283F18AA0874009AAE31 /* palette_puredata.png */,
+				9A6B284018AA0874009AAE31 /* palette_puredata@2x.png */,
+				9A6B284118AA0874009AAE31 /* puredata.png */,
+				9A6B284218AA0874009AAE31 /* puredata@2x.png */,
 				9A1C3ABC1886DDAE007C5E94 /* palette_LSMCompass.png */,
 				9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */,
 				9A8942A51836241C00B8CA0E /* palette_jennic.png */,
@@ -3021,6 +3103,26 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		9A6B284B18AA08A0009AAE31 /* pd */ = {
+			isa = PBXGroup;
+			children = (
+				9A6B284C18AA08A0009AAE31 /* martijn_test_1.pd */,
+				9A6B284D18AA08A0009AAE31 /* musinum_generator1.pd */,
+				9A6B284E18AA08A0009AAE31 /* synthesis.pd */,
+				9A6B284F18AA08A0009AAE31 /* test.pd */,
+			);
+			path = pd;
+			sourceTree = "<group>";
+		};
+		9A6B289518AA3CB8009AAE31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */,
+				9A6B289C18AA3CB9009AAE31 /* libpd-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A84265017564A80009495AB /* Tango */ = {
 			isa = PBXGroup;
 			children = (
@@ -3181,6 +3283,7 @@
 		9A94F3FF16A0192700AF52AB /* properties */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B283C18AA080D009AAE31 /* THPureDataProperties.xib */,
 				9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */,
 				9AB7784717E66B3300F82424 /* THInvocationConnectionProperties.xib */,
 				9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */,
@@ -3404,6 +3507,10 @@
 				9A56CDAB17D8EDA2001021B2 /* THStringValue.m */,
 				9A56CDAF17D8EE0E001021B2 /* THStringValueEditable.h */,
 				9A56CDB017D8EE0F001021B2 /* THStringValueEditable.m */,
+				9A6B27F418AA075F009AAE31 /* THPureData.h */,
+				9A6B27F518AA075F009AAE31 /* THPureData.m */,
+				9A6B27F618AA075F009AAE31 /* THPureDataEditable.h */,
+				9A6B27F718AA075F009AAE31 /* THPureDataEditable.m */,
 			);
 			name = programming;
 			path = conditions;
@@ -3592,6 +3699,8 @@
 		9AF50287167B84B40020241C /* palette items */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B283818AA07BD009AAE31 /* THPureDataPaletteItem.h */,
+				9A6B283918AA07BD009AAE31 /* THPureDataPaletteItem.m */,
 				9AB29B6A167F82E900F5AF62 /* THMapperPaletteItem.h */,
 				9AB29B6B167F82E900F5AF62 /* THMapperPaletteItem.m */,
 				9AF50288167B84B40020241C /* THButtonPaletteItem.h */,
@@ -3665,6 +3774,8 @@
 		9AF502AA167B84B40020241C /* palette properties */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B283418AA079E009AAE31 /* THPureDataProperties.h */,
+				9A6B283518AA079E009AAE31 /* THPureDataProperties.m */,
 				9AB29B63167F82AA00F5AF62 /* THMapperProperties.h */,
 				9AB29B64167F82AA00F5AF62 /* THMapperProperties.m */,
 				9AF502AB167B84B40020241C /* THButtonProperties.h */,
@@ -3767,6 +3878,7 @@
 		9AF502E3167B84B40020241C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B284B18AA08A0009AAE31 /* pd */,
 				9AF502E4167B84B40020241C /* gui */,
 				9AF502F7167B84B40020241C /* images */,
 				9AF50358167B84B40020241C /* sound */,
@@ -3949,6 +4061,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A6B28A018AA3CCD009AAE31 /* PBXTargetDependency */,
 				9AFA65EA18296E000082990F /* PBXTargetDependency */,
 				9AFA65EC18296E000082990F /* PBXTargetDependency */,
 			);
@@ -3988,6 +4101,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A6B289E18AA3CC5009AAE31 /* PBXTargetDependency */,
 				9A1FBD74187ED74600699B61 /* PBXTargetDependency */,
 				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
 			);
@@ -4037,6 +4151,10 @@
 				{
 					ProductGroup = 9A1FBD6B187ED71900699B61 /* Products */;
 					ProjectRef = 9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A6B289518AA3CB8009AAE31 /* Products */;
+					ProjectRef = 9A6B289418AA3CB8009AAE31 /* libpd.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -4455,6 +4573,20 @@
 			remoteRef = 9A50D98218296D3700335926 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9A6B289A18AA3CB9009AAE31 /* libpd-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-ios.a";
+			remoteRef = 9A6B289918AA3CB9009AAE31 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A6B289C18AA3CB9009AAE31 /* libpd-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-osx.a";
+			remoteRef = 9A6B289B18AA3CB9009AAE31 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AAF283F182B88F000531E3A /* libBLE.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4471,6 +4603,7 @@
 			files = (
 				9A351198167B7A6800C7484B /* InfoPlist.strings in Resources */,
 				9A3511A0167B7A6800C7484B /* Default.png in Resources */,
+				9A6B285018AA08A0009AAE31 /* martijn_test_1.pd in Resources */,
 				9A3511A2167B7A6800C7484B /* Default@2x.png in Resources */,
 				9A3511A4167B7A6800C7484B /* Default-568h@2x.png in Resources */,
 				9AF503D0167B84B40020241C /* PeerCellServer.xib in Resources */,
@@ -4538,6 +4671,7 @@
 				9A56CD5217D88888001021B2 /* THBoolValueProperties.xib in Resources */,
 				9A56CDBC17D8EF61001021B2 /* THStringValueProperties.xib in Resources */,
 				9ABC272F1809526C00B39D72 /* lilypadSimple@2x.png in Resources */,
+				9A6B284718AA0874009AAE31 /* puredata.png in Resources */,
 				9A56D03B17D946FF001021B2 /* Storyboard.storyboard in Resources */,
 				9A41453B17DE7A060061EDF8 /* add.png in Resources */,
 				9A41453D17DE7A060061EDF8 /* add@2x.png in Resources */,
@@ -4591,6 +4725,7 @@
 				9A41459B17DE7A060061EDF8 /* palette_boolean.png in Resources */,
 				9A41459D17DE7A060061EDF8 /* palette_boolean@2x.png in Resources */,
 				9A41459F17DE7A060061EDF8 /* palette_button.png in Resources */,
+				9A6B285218AA08A0009AAE31 /* musinum_generator1.pd in Resources */,
 				9A5BD7431860C52E00842833 /* circleFilled@2x.png in Resources */,
 				9A4145A117DE7A060061EDF8 /* palette_button@2x.png in Resources */,
 				9A4145A317DE7A060061EDF8 /* palette_buzzer.png in Resources */,
@@ -4609,6 +4744,7 @@
 				9A4145BB17DE7A060061EDF8 /* palette_ibutton.png in Resources */,
 				9A4145BD17DE7A060061EDF8 /* palette_ibutton@2x.png in Resources */,
 				9A4145BF17DE7A060061EDF8 /* palette_imageview.png in Resources */,
+				9A6B283D18AA080D009AAE31 /* THPureDataProperties.xib in Resources */,
 				9A4145C117DE7A060061EDF8 /* palette_imageview@2x.png in Resources */,
 				9A4145C317DE7A060061EDF8 /* palette_iphone.png in Resources */,
 				9A4145C517DE7A060061EDF8 /* palette_iphone@2x.png in Resources */,
@@ -4624,6 +4760,8 @@
 				9A4145D517DE7A060061EDF8 /* palette_lightSensor@2x.png in Resources */,
 				9A4145D717DE7A060061EDF8 /* palette_mapper.png in Resources */,
 				9A4145D917DE7A060061EDF8 /* palette_mapper@2x.png in Resources */,
+				9A6B284518AA0874009AAE31 /* palette_puredata@2x.png in Resources */,
+				9A6B285418AA08A0009AAE31 /* synthesis.pd in Resources */,
 				9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */,
 				9ABC27A21809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */,
 				9A4145DB17DE7A060061EDF8 /* palette_musicplayer.png in Resources */,
@@ -4660,6 +4798,8 @@
 				9A41461117DE7A060061EDF8 /* sewed@2x.png in Resources */,
 				9A41461317DE7A060061EDF8 /* sound.png in Resources */,
 				9A41461517DE7A060061EDF8 /* sound@2x.png in Resources */,
+				9A6B284918AA0874009AAE31 /* puredata@2x.png in Resources */,
+				9A6B284318AA0874009AAE31 /* palette_puredata.png in Resources */,
 				9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */,
 				9A5BD74B1860C52E00842833 /* starFilled@2x.png in Resources */,
 				9A41461717DE7A060061EDF8 /* switch.png in Resources */,
@@ -4714,6 +4854,7 @@
 				9AB7789917E6C25700F82424 /* circleEmpty.png in Resources */,
 				9AB7789B17E6C25700F82424 /* circleFilled.png in Resources */,
 				9AB7789D17E6C25700F82424 /* squareEmpty.png in Resources */,
+				9A6B285618AA08A0009AAE31 /* test.pd in Resources */,
 				9AB7789F17E6C25700F82424 /* squareFilled.png in Resources */,
 				9AB778A117E6C25700F82424 /* starEmpty.png in Resources */,
 				9ABC278E1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */,
@@ -4737,6 +4878,7 @@
 				9AF50669167B93800020241C /* THColorPicker.xib in Resources */,
 				9A94F3E916A00EA400AF52AB /* ipadFrame.png in Resources */,
 				9A94F3EB16A00EA400AF52AB /* ipadFrame@2x.png in Resources */,
+				9A6B285318AA08A0009AAE31 /* musinum_generator1.pd in Resources */,
 				9A51101B1837DD5800EB25FA /* projectIcon@2x.png in Resources */,
 				9A94F3ED16A00EA400AF52AB /* removeButton.png in Resources */,
 				9A94F3EF16A00EA400AF52AB /* removeButton@2x.png in Resources */,
@@ -4822,6 +4964,7 @@
 				9A41455C17DE7A060061EDF8 /* buzzer@2x.png in Resources */,
 				9A41455E17DE7A060061EDF8 /* call.png in Resources */,
 				9A41456017DE7A060061EDF8 /* call@2x.png in Resources */,
+				9A6B285518AA08A0009AAE31 /* synthesis.pd in Resources */,
 				9A41456217DE7A060061EDF8 /* comparator.png in Resources */,
 				9A41456417DE7A060061EDF8 /* comparator@2x.png in Resources */,
 				9A41456617DE7A060061EDF8 /* LSMCompass.png in Resources */,
@@ -4831,6 +4974,7 @@
 				9ABC27951809B2A500B39D72 /* temperatureSensor@2x.png in Resources */,
 				9AFB7E4D1833D89800694CCE /* potentiometer@2x.png in Resources */,
 				9A41456E17DE7A060061EDF8 /* condition.png in Resources */,
+				9A6B284618AA0874009AAE31 /* palette_puredata@2x.png in Resources */,
 				9AFB7E571833D89800694CCE /* vibeBoard.png in Resources */,
 				9A41457017DE7A060061EDF8 /* condition@2x.png in Resources */,
 				9A41457217DE7A060061EDF8 /* contactBook.png in Resources */,
@@ -4888,6 +5032,7 @@
 				9A4145D417DE7A060061EDF8 /* palette_lightSensor.png in Resources */,
 				9AFB7E491833D89800694CCE /* lightSensor@2x.png in Resources */,
 				9A5110381839384200EB25FA /* musicPlay@2x.png in Resources */,
+				9A6B284A18AA0874009AAE31 /* puredata@2x.png in Resources */,
 				9A4145D617DE7A060061EDF8 /* palette_lightSensor@2x.png in Resources */,
 				9A4145D817DE7A060061EDF8 /* palette_mapper.png in Resources */,
 				9A4145DA17DE7A060061EDF8 /* palette_mapper@2x.png in Resources */,
@@ -4909,12 +5054,15 @@
 				9A7E4D35183618C200657B72 /* LSMCompass.png in Resources */,
 				9A4145F617DE7A060061EDF8 /* palette_threeColorLed@2x.png in Resources */,
 				9A4145F817DE7A060061EDF8 /* palette_timer.png in Resources */,
+				9A6B285118AA08A0009AAE31 /* martijn_test_1.pd in Resources */,
+				9A6B284418AA0874009AAE31 /* palette_puredata.png in Resources */,
 				9AFB7E3F1833D89800694CCE /* buzzer.png in Resources */,
 				9A4145FA17DE7A060061EDF8 /* palette_timer@2x.png in Resources */,
 				9A4145FC17DE7A060061EDF8 /* palette_touchpad.png in Resources */,
 				9AFB7E431833D89800694CCE /* led.png in Resources */,
 				9A4145FE17DE7A060061EDF8 /* palette_touchpad@2x.png in Resources */,
 				9A41460017DE7A060061EDF8 /* palette_tshirt.png in Resources */,
+				9A6B283E18AA080D009AAE31 /* THPureDataProperties.xib in Resources */,
 				9A41460217DE7A060061EDF8 /* palette_tshirt@2x.png in Resources */,
 				9A41460417DE7A060061EDF8 /* palette_number.png in Resources */,
 				9A5110191837DD5800EB25FA /* projectIcon.png in Resources */,
@@ -4925,6 +5073,7 @@
 				9A41460C17DE7A060061EDF8 /* potentiometer.png in Resources */,
 				9A41460E17DE7A060061EDF8 /* potentiometer@2x.png in Resources */,
 				9ABC27A31809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */,
+				9A6B285718AA08A0009AAE31 /* test.pd in Resources */,
 				9AFB7E3D1833D89800694CCE /* accelerometer@2x.png in Resources */,
 				9A41461017DE7A060061EDF8 /* sewed.png in Resources */,
 				9A41461217DE7A060061EDF8 /* sewed@2x.png in Resources */,
@@ -4973,6 +5122,7 @@
 				9A41464E17DE7A060061EDF8 /* lilypadmode@2x.png in Resources */,
 				9A41465017DE7A060061EDF8 /* pinsmode.png in Resources */,
 				9A41465217DE7A060061EDF8 /* pinsmode@2x.png in Resources */,
+				9A6B284818AA0874009AAE31 /* puredata.png in Resources */,
 				9A8942AA1836241C00B8CA0E /* palette_jennic.png in Resources */,
 				9A41465417DE7A060061EDF8 /* push.png in Resources */,
 				9A41465617DE7A060061EDF8 /* push@2x.png in Resources */,
@@ -5067,6 +5217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A35119A167B7A6800C7484B /* main.m in Sources */,
+				9A6B27F818AA075F009AAE31 /* THPureData.m in Sources */,
 				9A35119E167B7A6800C7484B /* THAppDelegate.m in Sources */,
 				9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */,
 				9AF50364167B84B40020241C /* THServerController.m in Sources */,
@@ -5128,6 +5279,7 @@
 				9AF50399167B84B40020241C /* THiSwitchEditableObject.m in Sources */,
 				9AF5039A167B84B40020241C /* THLabel.m in Sources */,
 				9AF5039B167B84B40020241C /* THLabelEditableObject.m in Sources */,
+				9A6B283618AA079E009AAE31 /* THPureDataProperties.m in Sources */,
 				9AF5039C167B84B40020241C /* THMusicPlayer.m in Sources */,
 				9AF5039D167B84B40020241C /* THMusicPlayerEditableObject.m in Sources */,
 				9AF5039E167B84B40020241C /* THTouchpad.m in Sources */,
@@ -5178,6 +5330,7 @@
 				9AF503CA167B84B40020241C /* THColorPicker.m in Sources */,
 				9AF503CC167B84B40020241C /* THClientHelper.m in Sources */,
 				9AF503CD167B84B40020241C /* THConstants.m in Sources */,
+				9A6B283A18AA07BD009AAE31 /* THPureDataPaletteItem.m in Sources */,
 				9AF503CE167B84B40020241C /* THToneGenerator.m in Sources */,
 				9AF503CF167B84B40020241C /* THUtils.m in Sources */,
 				9A8BB9A2167C815D00FBABFB /* THPinsController.m in Sources */,
@@ -5194,6 +5347,7 @@
 				9AB29B5F167F824300F5AF62 /* THMapperEditable.m in Sources */,
 				9AB29B65167F82AA00F5AF62 /* THMapperProperties.m in Sources */,
 				9AB29B6C167F82E900F5AF62 /* THMapperPaletteItem.m in Sources */,
+				9A6B27FA18AA075F009AAE31 /* THPureDataEditable.m in Sources */,
 				9AB29C00167F898B00F5AF62 /* THProgrammingElementEditable.m in Sources */,
 				9AB29C03167F89B900F5AF62 /* THProgrammingElement.m in Sources */,
 				9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */,
@@ -5330,6 +5484,7 @@
 				9AF505FD167B91FA0020241C /* THiPhoneEditableObject.m in Sources */,
 				9AF505FE167B91FA0020241C /* THiPhoneButton.m in Sources */,
 				9AF505FF167B91FA0020241C /* THiPhoneButtonEditableObject.m in Sources */,
+				9A6B283B18AA07BD009AAE31 /* THPureDataPaletteItem.m in Sources */,
 				9AF50600167B91FA0020241C /* THiPhoneControl.m in Sources */,
 				9ABC27B51809B57900B39D72 /* THAccelerometerEditable.m in Sources */,
 				9AF50601167B91FE0020241C /* THiPhoneControlEditableObject.m in Sources */,
@@ -5421,8 +5576,10 @@
 				9AF5064F167B92840020241C /* THLilypadPropertiesPinView.m in Sources */,
 				9A0F68811886BB2B00B589DC /* THCompassMPU6050Editable.m in Sources */,
 				9AF50650167B92840020241C /* THMusicPlayerProperties.m in Sources */,
+				9A6B283718AA079E009AAE31 /* THPureDataProperties.m in Sources */,
 				9AF50651167B92840020241C /* THSwitchProperties.m in Sources */,
 				9AFB7DCD1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */,
+				9A6B27FB18AA075F009AAE31 /* THPureDataEditable.m in Sources */,
 				9AF50652167B92840020241C /* THTouchpadProperties.m in Sources */,
 				9AF50653167B92840020241C /* THValueProperties.m in Sources */,
 				9A8BB9A3167C815D00FBABFB /* THPinsController.m in Sources */,
@@ -5534,6 +5691,7 @@
 				9A59324917E5D58300B20D99 /* THPalette.m in Sources */,
 				9A59324B17E5D58300B20D99 /* THPaletteItem.m in Sources */,
 				9A59324D17E5D58300B20D99 /* THPaletteViewController.m in Sources */,
+				9A6B27F918AA075F009AAE31 /* THPureData.m in Sources */,
 				9A59324F17E5D58300B20D99 /* THPropertiesViewController.m in Sources */,
 				9A59325117E5D58300B20D99 /* THTabbarSection.m in Sources */,
 				9A59325317E5D58300B20D99 /* THTabbarView.m in Sources */,
@@ -5574,6 +5732,7 @@
 				9AFB7DD61832B0B100694CCE /* THClientProjectProxy.m in Sources */,
 				9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */,
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
+				9A6B283318AA0768009AAE31 /* THPureData.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
 				9ABC276418098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
@@ -5642,6 +5801,16 @@
 			isa = PBXTargetDependency;
 			name = Firmata;
 			targetProxy = 9A1FBD73187ED74600699B61 /* PBXContainerItemProxy */;
+		};
+		9A6B289E18AA3CC5009AAE31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libpd-ios";
+			targetProxy = 9A6B289D18AA3CC5009AAE31 /* PBXContainerItemProxy */;
+		};
+		9A6B28A018AA3CCD009AAE31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libpd-ios";
+			targetProxy = 9A6B289F18AA3CCD009AAE31 /* PBXContainerItemProxy */;
 		};
 		9AAF2844182B8AFE00531E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5717,7 +5886,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -5742,7 +5910,6 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -5761,7 +5928,7 @@
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
-				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** Frameworks/BLEFirmata/BLEFirmata/**";
+				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5778,7 +5945,7 @@
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
-				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** Frameworks/BLEFirmata/BLEFirmata/**";
+				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -5804,7 +5971,6 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Frameworks/cocos2d-ios6/cocos2d/** Frameworks/cocos2d-ios6/CocosDenshion/** Frameworks/BLEFirmata/BLEFirmata/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -5822,7 +5988,7 @@
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
-				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** Frameworks/BLEFirmata/BLEFirmata/**";
+				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -5841,7 +6007,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -5880,7 +6046,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -5900,7 +6066,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

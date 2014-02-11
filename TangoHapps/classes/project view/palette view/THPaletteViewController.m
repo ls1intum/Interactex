@@ -85,6 +85,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
+#import "THPureDataPaletteItem.h"
 
 @implementation THPaletteViewController
 
@@ -438,6 +439,8 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
+                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
+                                     
                                      nil];
     
     self.clothesSectionName = @"Textiles";
