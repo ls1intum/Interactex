@@ -92,7 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
 {
     CCDirector *director = [CCDirector sharedDirector];
     
-    [director setAnimationInterval:1.0f/60.0f];
+    [director setAnimationInterval:1.0f/30.0f];
     [director enableRetinaDisplay:YES];
 }
 

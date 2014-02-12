@@ -4,27 +4,6 @@
 #import "THGraphViewHelper.h"
 #import "THGraphViewSegment.h"
 
-@interface THGraphView()
-
-// Internal accessors
-@property (nonatomic, strong) NSMutableArray *segments;
-@property (nonatomic, unsafe_unretained) THGraphViewSegment *current;
-@property (nonatomic) THGraphTextView *text;
-
-// A common init routine for use with -initWithFrame: and -initWithCoder:
-- (void)commonInit;
-
-// Creates a new segment, adds it to 'segments', and returns a weak reference to that segment
-// Typically a graph will have around a dozen segments, but this depends on the width of the graph view and segments
-- (THGraphViewSegment *)addSegment;
-
-// Recycles a segment from 'segments' into  'current'
-- (void)recycleSegment;
-
-@end
-
-#pragma mark -
-
 @implementation THGraphView
 
 float const kGraphViewOffsetX = 10.0f;
@@ -47,32 +26,21 @@ float const kGraphViewLeftAxisWidth = 42.0;
 // Designated initializer
 - (id)initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	if (self != nil)
-	{
+	if (self != nil) {
 		[self commonInit];
 	}
 	return self;
 }
 
 - (void)commonInit {
-	// Create the text view and add it as a subview. We keep a weak reference
-	// to that view afterwards for laying out the segment layers.
-    //NSLog(@"height here: %f",self.frame.size.height);
     
     CGRect frame = CGRectMake(0.0, 0.0, kGraphViewLeftAxisWidth, self.frame.size.height);
     
 	_text = [[THGraphTextView alloc] initWithFrame:frame maxAxisY: self.maxAxisY minAxisY:self.minAxisY];
 	[self addSubview:self.text];
-	
-    //_text.layer.borderWidth = 1.0f;
-    //_text.layer.borderColor = [UIColor blackColor].CGColor;
     
-	// Create a mutable array to store segments, which is required by -addSegment
 	_segments = [[NSMutableArray alloc] init];
-
-	// Create a new current segment, which is required by -addX:y:z and other methods.
-	// This is also a weak reference (we assume that the 'segments' array will keep the strong reference).
-	self.current = [self addSegment];
+	self.currentSegment = [self addSegment];
     
     self.speed = 1.0f;
 }
@@ -86,31 +54,17 @@ float const kGraphViewLeftAxisWidth = 42.0;
 }
 
 - (void)addX:(float)x{
-
-    [self.current addX:x];
-}
-
--(void) displaceRight{
-
-    self.current.index--;
     
-    for (THGraphViewSegment *s in self.segments) {
-		CGPoint position = s.layer.position;
-		position.x += self.speed;
-		s.layer.position = position;
+	if ([self.currentSegment addX:x]) {
+		[self recycleSegment];
+		[self.currentSegment addX:x];
 	}
     
-    if(self.current.index <= 0){
-        NSLog(@"gonna check");
-        
-        THGraphViewSegment * previousSegment = self.current;
-        [self recycleSegment];
-        
-        if([previousSegment hasFirstValue]){
-            float value = [previousSegment leftmostValue];
-            [self.current addX:value];
-        }
-    }
+	for (THGraphViewSegment *s in self.segments) {
+		CGPoint position = s.layer.position;
+		position.x += 1.0;
+		s.layer.position = position;
+	}
 }
 
 - (THGraphViewSegment*) addSegment{
@@ -130,7 +84,7 @@ float const kGraphViewLeftAxisWidth = 42.0;
     
 	if ([last isVisibleInRect:self.layer.bounds]) {
 
-		self.current = [self addSegment];
+		self.currentSegment = [self addSegment];
         
 	} else {
 
@@ -139,10 +93,9 @@ float const kGraphViewLeftAxisWidth = 42.0;
         last.layer.position = CGPointMake(kGraphViewLeftAxisWidth - last.layer.frame.size.width/2, self.frame.size.height/2);
 		[self.segments insertObject:last atIndex:0];
 		[self.segments removeLastObject];
-		self.current = last;
+		self.currentSegment = last;
 	}
 }
-
 
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -151,9 +104,6 @@ float const kGraphViewLeftAxisWidth = 42.0;
 	CGContextFillRect(context, self.bounds);
 
     StrokeAllLinesForFrameWithHeight(context, self.bounds.size.height,self.bounds.size.width);
-}
-
--(void) update:(float) dt{
 }
 
 // Return an up-to-date value for the graph.

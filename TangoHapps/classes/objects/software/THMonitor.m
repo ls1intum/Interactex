@@ -47,7 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THMonitor
 
-float const kMonitorUpdateFrequency = 1/30.0f; //monitor updated every 0.5 seconds
+//float const kMonitorUpdateFrequency = 1/20.0f; //monitor updated every 0.5 seconds
 float const kMonitorNewValueX = 75.0f;
 float const kMonitorMargin = 5;
 
@@ -188,24 +188,18 @@ float const kMonitorMargin = 5;
 }
 
 -(void) update{
-    /*
-    for (THMonitorLine * line in self.lines) {
-        [line update:kMonitorUpdateFrequency];
-    }*/
     
-    THGraphView * view = (THGraphView*)self.view;
-    [view displaceRight];
 }
 
 -(void) start{
-    currentTimer = [NSTimer scheduledTimerWithTimeInterval:kMonitorUpdateFrequency target:self selector:@selector(update) userInfo:nil repeats:YES];
-    _running = YES;
+    //currentTimer = [NSTimer scheduledTimerWithTimeInterval:kMonitorUpdateFrequency target:self selector:@selector(update) userInfo:nil repeats:YES];
+    //_running = YES;
 }
 
 -(void) stop{
-    [currentTimer invalidate];
-    currentTimer = nil;
-    _running = NO;
+    //[currentTimer invalidate];
+    //currentTimer = nil;
+    //_running = NO;
 }
 
 -(NSString*) description{

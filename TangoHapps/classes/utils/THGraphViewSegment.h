@@ -10,23 +10,19 @@
 
 #define kGraphSegmentSize 33
 
-@interface THGraphViewSegment : NSObject
-{
-	// Need 33 values to fill 32 pixel width.
+@interface THGraphViewSegment : NSObject {
 	float xhistory[kGraphSegmentSize];
-	float yhistory[kGraphSegmentSize];
     
-    BOOL isFilled[kGraphSegmentSize][2];
+    BOOL isFilled[kGraphSegmentSize];
     CGPoint lines[(kGraphSegmentSize-1)*2];
 }
 
-- (id)initWithHeight:(float) height;
-- (void)addX:(float)x;
-- (void)reset;
-- (BOOL)isFull;
-- (BOOL)isVisibleInRect:(CGRect)r;
-- (float) leftmostValue;
--(BOOL) hasFirstValue;
+- (id) initWithHeight:(float) height;
+- (BOOL) addX:(float)x;
+- (void) reset;
+- (BOOL) isFull;
+- (BOOL) isVisibleInRect:(CGRect)r;
+- (void) repeatLast;
 
 @property(nonatomic, readonly) CALayer *layer;
 @property(nonatomic) float height;

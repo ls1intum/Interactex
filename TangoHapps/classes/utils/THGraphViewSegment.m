@@ -25,7 +25,7 @@
         layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize, height);
 
 		layer.opaque = YES;
-		self.index = kGraphSegmentSize - 2;
+		self.index = kGraphSegmentSize;
         
 	}
 	return self;
@@ -33,41 +33,41 @@
 
 - (void)reset {
 	memset(xhistory, 0, sizeof(xhistory));
-	memset(yhistory, 0, sizeof(yhistory));
     
     for(int i = 0 ; i < kGraphSegmentSize ; i++){
-        isFilled[i][0] = 0;
-        isFilled[i][1] = 0;
+        isFilled[i] = 0;
     }
     
-	self.index = kGraphSegmentSize -1;
+	self.index = kGraphSegmentSize;
 	[layer setNeedsDisplay];
-}
-
--(BOOL) hasFirstValue{
-    return isFilled[0][0];
-}
-
--(float) leftmostValue{
-    return xhistory[0];
 }
                     
 -(BOOL) isFull {
-	return index == 0;
+	return self.index == 0;
+}
+
+-(void) repeatLast{
+    if(isFilled[1]){
+        xhistory[0] = xhistory[1];
+        isFilled[0] = YES;
+        [layer setNeedsDisplay];
+    }
 }
 
 -(BOOL) isVisibleInRect:(CGRect)r {
-   // NSLog(@"%f %f",layer.frame.origin.x + layer.frame.size.width, r.origin.x + r.size.width);
+
     return (layer.frame.origin.x + layer.frame.size.width) < (r.origin.x + r.size.width) ;
 }
 
--(void) addX:(float)x {
-    if(self.index >= 0){
-        NSLog(@"filling %d",self.index);
-        xhistory[self.index] = x;
-        isFilled[self.index][0] = YES;
-        [layer setNeedsDisplay];
-    }
+-(BOOL) addX:(float)x {
+ 	if (self.index > 0) 	{
+		--self.index;
+		xhistory[self.index] = x;
+        isFilled[self.index] = YES;
+
+		[layer setNeedsDisplay];
+	}
+	return self.index == 0;
 }
 
 -(void) drawPoints:(float*) array inContext:(CGContextRef)context {
@@ -77,7 +77,7 @@
     
 	for (int i = 0; i < kGraphSegmentSize-1; ++i) {
         
-        if(isFilled[i][0] && isFilled[i+1][0]){
+        if(isFilled[i] && isFilled[i+1]){
             
             lines[pointsCount*2].x = i;
             lines[pointsCount*2+1].x = i+1;
@@ -119,15 +119,6 @@
     StrokeLines(context);
 
     [self drawPoints:xhistory inContext:context];
-    
-/*
-	// Y
-	for (i = 0; i < kGraphSegmentSize-1; ++i) {
-		lines[i*2].y = -yhistory[i];
-		lines[i*2+1].y = -yhistory[i+1];
-	}
-	CGContextSetStrokeColorWithColor(context, graphYColor());
-	CGContextStrokeLineSegments(context, lines, (kGraphSegmentSize-1)*2);*/
 }
 
 - (id)actionForLayer:(CALayer *)layer forKey :(NSString *)key {
@@ -137,7 +128,7 @@
 
 // The accessibilityValue of this segment should be the x,y,z values last added.
 - (NSString *)accessibilityValue {
-	return [NSString stringWithFormat:NSLocalizedString(@"graphSegmentFormat", @""), xhistory[self.index], yhistory[self.index]];
+	return [NSString stringWithFormat:NSLocalizedString(@"graphSegmentFormat", @""), xhistory[self.index]];
 }
 
 @end
