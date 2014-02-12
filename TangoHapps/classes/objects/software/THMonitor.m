@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMonitor.h"
 #import "THMonitorLine.h"
 #import "THMonitorLine.h"
-#import "GraphView.h"
+#import "THGraphView.h"
 
 @implementation THMonitor
 
@@ -56,7 +56,7 @@ float const kMonitorMargin = 5;
     CGRect frame = CGRectMake(0, 0, self.width, self.height);
     NSLog(@"%f",frame.size.width);
     
-    GraphView * view = [[GraphView alloc] initWithFrame:frame maxAxisY:self.maxValue minAxisY:self.minValue];
+    THGraphView * view = [[THGraphView alloc] initWithFrame:frame maxAxisY:self.maxValue minAxisY:self.minValue];
     
     //UIView * view = [[UIView alloc] init];
     view.layer.borderWidth = 1.0f;
@@ -151,6 +151,13 @@ float const kMonitorMargin = 5;
 
 #pragma mark - Methods
 
+-(float) mapValueToGraphRange:(float) value{
+    float range = (self.maxValue - self.minValue);
+    value = (value / range) * (self.view.frame.size.height - 2 * kMonitorMargin);
+    
+    return self.view.frame.size.height/2 + value;
+}
+/*
 -(CGPoint) transformedPointForValue:(float) value{
     float range = (self.maxValue - self.minValue);
     value = (value / range) * (self.view.frame.size.height - 2 * kMonitorMargin);
@@ -159,7 +166,7 @@ float const kMonitorMargin = 5;
     
     return CGPointMake(self.view.frame.size.width - kMonitorMargin, self.view.frame.size.height/2 - value);
     //return CGPointMake(100, self.view.frame.size.height/2 - value);
-}
+}*/
 
 -(void) addValue1:(float) value{
     //NSLog(@"adding value: %f",value);
@@ -167,15 +174,17 @@ float const kMonitorMargin = 5;
     THMonitorLine * line = [self.lines objectAtIndex:0];
     [line addPoint: [self transformedPointForValue:value]];*/
     
-    GraphView * view = (GraphView*)self.view;
-    [view addX:value y:value z:value];
+    value = [self mapValueToGraphRange:value];
+    
+    THGraphView * view = (THGraphView*)self.view;
+    [view addX:value];
     
 }
 
 -(void) addValue2:(float) value{
-    
+    /*
     THMonitorLine * line = [self.lines objectAtIndex:1];
-    [line addPoint: [self transformedPointForValue:value]];
+    [line addPoint: [self transformedPointForValue:value]];*/
 }
 
 -(void) update{
@@ -183,6 +192,9 @@ float const kMonitorMargin = 5;
     for (THMonitorLine * line in self.lines) {
         [line update:kMonitorUpdateFrequency];
     }*/
+    
+    THGraphView * view = (THGraphView*)self.view;
+    [view displaceRight];
 }
 
 -(void) start{

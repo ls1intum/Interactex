@@ -48,19 +48,15 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface GraphView : UIView
+@interface THGraphView : UIView
 
 - (id)initWithFrame:(CGRect)frame maxAxisY:(float) maxAxisY minAxisY:(float) minAxisY ;
-- (void)addX:(UIAccelerationValue)x y:(UIAccelerationValue)y z:(UIAccelerationValue)z;
+- (void)addX:(float)x;
+
+-(void) displaceRight;
 
 @property (nonatomic) float maxAxisY;
 @property (nonatomic) float minAxisY;
 
 @end
 
-@interface GraphTextView : UIView
-
-@property (nonatomic) float maxAxisY;
-@property (nonatomic) float minAxisY;
-
-@end

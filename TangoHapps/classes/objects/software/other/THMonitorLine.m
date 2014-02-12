@@ -125,11 +125,6 @@ float const kMonitorPixelsToSeconds = 5;
         Point2D * point = [self.points objectAtIndex:i];
         
         point.x -= dx;
-        /*
-        if(i == 0){
-            NSLog(@"%f",point.x);
-        }
-        */
         if(point.x < 100){
             firstIdx = i;
         }
