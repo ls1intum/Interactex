@@ -104,31 +104,6 @@ You should have received a copy of the GNU General Public License along with thi
     [_transferTimer invalidate];
     _transferTimer = nil;*/
 }
-/*
--(void) pushLilypadStateToAllClients{
-    THCustomProject * project = (THCustomProject*) [TFDirector sharedDirector].currentProject;
-    THLilyPadEditable * lilypadEditable = project.lilypad;
-    THLilyPad * lilypad = (THLilyPad*) lilypadEditable.simulableObject;
-    
-    NSArray * lilypins = lilypad.pins;
-    NSMutableArray * pins = [NSMutableArray array];
-    
-    for (THBoardPin * pin in lilypins) {
-        if(pin.mode == kPinModeDigitalInput && pin.hasChanged){
-            THPinValue * pinValue = [[THPinValue alloc] init];
-            pinValue.type = pin.type;
-            pinValue.value = pin.currentValue;
-            pinValue.number = pin.number;
-            [pins addObject:pinValue];
-            
-            pin.hasChanged = NO;
-        }
-    }
- 
-    //NSLog(@"transferring: %d pins",pins.count);
-    
-    [self queueTransferAgentActionOnAllClients:kTransferActionInputPinState withObject:pins];
-}*/
 
 -(void) pushProjectToAllClients:(THProject*)project {
     

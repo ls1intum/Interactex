@@ -52,17 +52,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THLightSensorPaletteItem.h"
 
-
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
 
 #import "THClothePaletteItem.h"
-
-#import "THComparatorPaletteItem.h"
-#import "THGrouperPaletteItem.h"
-#import "THValuePaletteItem.h"
 #import "THProjectViewController.h"
-#import "THBoolValuePaletteItem.h"
 
 @implementation THPaletteViewController
 
@@ -388,11 +382,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  nil];
     
     
-    self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
-                                     [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
-                                     [[THValuePaletteItem alloc] initWithName:@"number"],
-                                     [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
-                                     nil];
+    self.programmingSectionArray  = nil;
     
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";

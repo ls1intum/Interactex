@@ -53,10 +53,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponent.h"
 #import "THView.h"
 #import "THConditionObject.h"
-#import "THNumberValue.h"
-#import "THNumberValueEditable.h"
-#import "THBoolValueEditable.h"
-#import "THBoolValue.h"
 
 #import "THTriggerEditable.h"
 #import "THTrigger.h"
@@ -886,9 +882,6 @@ enum zPositions{
     } else if ([editable isKindOfClass:[THConditionEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.conditions];
         return [project.conditions objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THNumberValueEditable class]] || [editable isKindOfClass:[THBoolValueEditable class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.values];
-        return [project.values objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
         return (TFSimulableObject*) project.iPhone;
     } else if ([editable isKindOfClass:[THTriggerEditable class]]){
@@ -913,9 +906,6 @@ enum zPositions{
     } else if ([simulable isKindOfClass:[THConditionObject class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.conditions];
         return [project.conditions objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THNumberValue class]] || [simulable isKindOfClass:[THBoolValue class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.values];
-        return [project.values objectAtIndex:idx];
     } else if ([simulable isKindOfClass:[THTrigger class]]){
         NSInteger idx = [self idxOfSimulable:simulable inArray:self.triggers];
         return [project.triggers objectAtIndex:idx];

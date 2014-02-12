@@ -52,7 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiPhone.h"
 #import "THConditionEditableObject.h"
 #import "THLilypadEditable.h"
-#import "THNumberValueEditable.h"
 #import "THActionEditable.h"
 #import "THWire.h"
 #import "THTabbarViewController.h"
@@ -947,20 +946,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) showValues{
-    THProject * project =  [THDirector sharedDirector].currentProject;
-    for (THNumberValueEditable * object in project.values) {
-        object.visible = YES;
-    }
-}
-
--(void) hideValues{
-    THProject * project =  [THDirector sharedDirector].currentProject;
-    for (THNumberValueEditable * object in project.values) {
-        object.visible = NO;
-    }
-}
-
 -(void) showActions{
     THProject * project = [THDirector sharedDirector].currentProject;
     for (THActionEditable * object in project.actions) {
@@ -1067,7 +1052,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) hideNonLilypadObjects{
     [self hideClothes];
     [self hideConditions];
-    [self hideValues];
     [self hideActions];
     [self hideiPhone];
 }
@@ -1075,7 +1059,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) showNonLilypadObjects{
     [self showClothes];
     [self showConditions];
-    [self showValues];
     [self showActions];
     [self showiPhone];
 }

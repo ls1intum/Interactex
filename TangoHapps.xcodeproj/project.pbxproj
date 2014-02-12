@@ -353,17 +353,8 @@
 		9A51103A1839384200EB25FA /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A51102B1839384200EB25FA /* pause.png */; };
 		9A51103B1839384200EB25FA /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A51102C1839384200EB25FA /* pause@2x.png */; };
 		9A51103C1839384200EB25FA /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A51102C1839384200EB25FA /* pause@2x.png */; };
-		9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
-		9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
-		9A56CD0217D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
-		9A56CD4717D886A6001021B2 /* THBoolValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD4617D886A6001021B2 /* THBoolValueEditable.m */; };
-		9A56CD4917D886A6001021B2 /* THBoolValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD4617D886A6001021B2 /* THBoolValueEditable.m */; };
-		9A56CD4D17D88790001021B2 /* THBoolValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD4B17D88790001021B2 /* THBoolValueProperties.m */; };
-		9A56CD4E17D88790001021B2 /* THBoolValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD4B17D88790001021B2 /* THBoolValueProperties.m */; };
 		9A56CD5217D88888001021B2 /* THBoolValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5117D88888001021B2 /* THBoolValueProperties.xib */; };
 		9A56CD5317D88888001021B2 /* THBoolValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CD5117D88888001021B2 /* THBoolValueProperties.xib */; };
-		9A56CD5617D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */; };
-		9A56CD5717D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */; };
 		9A56CDBC17D8EF61001021B2 /* THStringValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */; };
 		9A56CDBD17D8EF61001021B2 /* THStringValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */; };
 		9A56D03B17D946FF001021B2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D03A17D946FF001021B2 /* Storyboard.storyboard */; };
@@ -618,11 +609,6 @@
 		9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF283F182B88F000531E3A /* libBLE.a */; };
 		9AB29B56167F68F600F5AF62 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */; };
 		9AB29B59167F78C300F5AF62 /* THHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B58167F78C300F5AF62 /* THHelper.m */; };
-		9AB29C00167F898B00F5AF62 /* THProgrammingElementEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */; };
-		9AB29C03167F89B900F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
-		9AB29C04167F89C100F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
-		9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */; };
-		9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
 		9AB490391886E54500BCB1C6 /* THAutorouteProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */; };
 		9AB4903A1886E54500BCB1C6 /* THAutorouteProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */; };
 		9AB777F417E5FF4100F82424 /* THInvocationConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB777F317E5FF4100F82424 /* THInvocationConnectionLine.m */; };
@@ -727,14 +713,8 @@
 		9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
 		9AF50364167B84B40020241C /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* THServerController.m */; };
 		9AF50365167B84B40020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
-		9AF50366167B84B40020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
-		9AF50367167B84B40020241C /* THComparisonConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */; };
 		9AF50368167B84B40020241C /* THConditionEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020D167B84B40020241C /* THConditionEditableObject.m */; };
 		9AF50369167B84B40020241C /* THConditionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020F167B84B40020241C /* THConditionObject.m */; };
-		9AF5036A167B84B40020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
-		9AF5036B167B84B40020241C /* THGrouperConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50213167B84B40020241C /* THGrouperConditionEditable.m */; };
-		9AF5036C167B84B40020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
-		9AF5036D167B84B40020241C /* THNumberValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50217167B84B40020241C /* THNumberValueEditable.m */; };
 		9AF5036E167B84B40020241C /* THHardwareProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5021B167B84B40020241C /* THHardwareProblem.m */; };
 		9AF50370167B84B40020241C /* THBoardPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50220167B84B40020241C /* THBoardPin.m */; };
 		9AF50371167B84B40020241C /* THBoardPinEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50222167B84B40020241C /* THBoardPinEditable.m */; };
@@ -759,22 +739,16 @@
 		9AF503A0167B84B40020241C /* THView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50282167B84B40020241C /* THView.m */; };
 		9AF503A1167B84B40020241C /* THViewEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50284167B84B40020241C /* THViewEditableObject.m */; };
 		9AF503A5167B84B40020241C /* THClothePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5028D167B84B40020241C /* THClothePaletteItem.m */; };
-		9AF503A6167B84B40020241C /* THComparatorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5028F167B84B40020241C /* THComparatorPaletteItem.m */; };
-		9AF503A8167B84B40020241C /* THGrouperPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50293167B84B40020241C /* THGrouperPaletteItem.m */; };
 		9AF503A9167B84B40020241C /* THiPhoneButtonPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50295167B84B40020241C /* THiPhoneButtonPaletteItem.m */; };
 		9AF503AA167B84B40020241C /* THiPhonePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50297167B84B40020241C /* THiPhonePaletteItem.m */; };
 		9AF503AE167B84B40020241C /* THLightSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5029F167B84B40020241C /* THLightSensorPaletteItem.m */; };
-		9AF503B3167B84B40020241C /* THValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502A9167B84B40020241C /* THValuePaletteItem.m */; };
 		9AF503B6167B84B40020241C /* THClotheObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B0167B84B40020241C /* THClotheObjectProperties.m */; };
 		9AF503B7167B84B40020241C /* THClotheProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B2167B84B40020241C /* THClotheProperties.m */; };
-		9AF503B8167B84B40020241C /* THComparatorEditableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B4167B84B40020241C /* THComparatorEditableProperties.m */; };
-		9AF503B9167B84B40020241C /* THGrouperEditableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B6167B84B40020241C /* THGrouperEditableProperties.m */; };
 		9AF503BA167B84B40020241C /* THiPhoneButtonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B8167B84B40020241C /* THiPhoneButtonProperties.m */; };
 		9AF503BB167B84B40020241C /* THiPhoneProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502BA167B84B40020241C /* THiPhoneProperties.m */; };
 		9AF503BC167B84B40020241C /* THiPhoneViewProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502BC167B84B40020241C /* THiPhoneViewProperties.m */; };
 		9AF503C0167B84B40020241C /* THLilypadProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502C4167B84B40020241C /* THLilypadProperties.m */; };
 		9AF503C1167B84B40020241C /* THLilypadPropertiesPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502C6167B84B40020241C /* THLilypadPropertiesPinView.m */; };
-		9AF503C5167B84B40020241C /* THValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CE167B84B40020241C /* THValueProperties.m */; };
 		9AF503CA167B84B40020241C /* THColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502D8167B84B40020241C /* THColorPicker.m */; };
 		9AF503CC167B84B40020241C /* THClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DC167B84B40020241C /* THClientHelper.m */; };
 		9AF503CD167B84B40020241C /* THConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DE167B84B40020241C /* THConstants.m */; };
@@ -791,9 +765,6 @@
 		9AF50442167B84B40020241C /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
 		9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
 		9AF50448167B84C30020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
-		9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
-		9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
-		9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
 		9AF5044E167B84D90020241C /* THBoardPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50220167B84B40020241C /* THBoardPin.m */; };
 		9AF5044F167B84D90020241C /* THElementPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50224167B84B40020241C /* THElementPin.m */; };
 		9AF50450167B84D90020241C /* THPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50228167B84B40020241C /* THPin.m */; };
@@ -849,14 +820,8 @@
 		9AF505F1167B91E70020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
 		9AF505F2167B91E70020241C /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* THServerController.m */; };
 		9AF505F3167B91E70020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
-		9AF505F4167B91F10020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
-		9AF505F5167B91F10020241C /* THComparisonConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */; };
 		9AF505F6167B91F10020241C /* THConditionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020F167B84B40020241C /* THConditionObject.m */; };
 		9AF505F7167B91F10020241C /* THConditionEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020D167B84B40020241C /* THConditionEditableObject.m */; };
-		9AF505F8167B91F10020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
-		9AF505F9167B91F10020241C /* THGrouperConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50213167B84B40020241C /* THGrouperConditionEditable.m */; };
-		9AF505FA167B91F10020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
-		9AF505FB167B91F30020241C /* THNumberValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50217167B84B40020241C /* THNumberValueEditable.m */; };
 		9AF505FC167B91FA0020241C /* THiPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50266167B84B40020241C /* THiPhone.m */; };
 		9AF505FD167B91FA0020241C /* THiPhoneEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50270167B84B40020241C /* THiPhoneEditableObject.m */; };
 		9AF505FE167B91FA0020241C /* THiPhoneButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50268167B84B40020241C /* THiPhoneButton.m */; };
@@ -881,22 +846,16 @@
 		9AF5062E167B923A0020241C /* THProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50261167B84B40020241C /* THProject.m */; };
 		9AF5062F167B923A0020241C /* THSimulableWorldController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50263167B84B40020241C /* THSimulableWorldController.m */; };
 		9AF50633167B92550020241C /* THClothePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5028D167B84B40020241C /* THClothePaletteItem.m */; };
-		9AF50634167B92550020241C /* THComparatorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5028F167B84B40020241C /* THComparatorPaletteItem.m */; };
-		9AF50636167B92550020241C /* THGrouperPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50293167B84B40020241C /* THGrouperPaletteItem.m */; };
 		9AF50637167B92550020241C /* THiPhoneButtonPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50295167B84B40020241C /* THiPhoneButtonPaletteItem.m */; };
 		9AF50638167B925A0020241C /* THiPhonePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50297167B84B40020241C /* THiPhonePaletteItem.m */; };
 		9AF5063C167B925A0020241C /* THLightSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5029F167B84B40020241C /* THLightSensorPaletteItem.m */; };
-		9AF50641167B92670020241C /* THValuePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502A9167B84B40020241C /* THValuePaletteItem.m */; };
 		9AF50644167B92770020241C /* THClotheObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B0167B84B40020241C /* THClotheObjectProperties.m */; };
 		9AF50645167B927B0020241C /* THClotheProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B2167B84B40020241C /* THClotheProperties.m */; };
-		9AF50646167B927B0020241C /* THComparatorEditableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B4167B84B40020241C /* THComparatorEditableProperties.m */; };
-		9AF50647167B927B0020241C /* THGrouperEditableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B6167B84B40020241C /* THGrouperEditableProperties.m */; };
 		9AF50648167B927B0020241C /* THiPhoneButtonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502B8167B84B40020241C /* THiPhoneButtonProperties.m */; };
 		9AF50649167B927B0020241C /* THiPhoneProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502BA167B84B40020241C /* THiPhoneProperties.m */; };
 		9AF5064A167B92800020241C /* THiPhoneViewProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502BC167B84B40020241C /* THiPhoneViewProperties.m */; };
 		9AF5064E167B92800020241C /* THLilypadProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502C4167B84B40020241C /* THLilypadProperties.m */; };
 		9AF5064F167B92840020241C /* THLilypadPropertiesPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502C6167B84B40020241C /* THLilypadPropertiesPinView.m */; };
-		9AF50653167B92840020241C /* THValueProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502CE167B84B40020241C /* THValueProperties.m */; };
 		9AF50657167B92980020241C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
 		9AF50658167B92A10020241C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050A167B8DC30020241C /* OpenAL.framework */; };
 		9AF50667167B93770020241C /* PeerCellServer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF502E6167B84B40020241C /* PeerCellServer.xib */; };
@@ -1634,15 +1593,7 @@
 		9A51102A1839384200EB25FA /* musicPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "musicPlay@2x.png"; sourceTree = "<group>"; };
 		9A51102B1839384200EB25FA /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		9A51102C1839384200EB25FA /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
-		9A56CCFE17D885F9001021B2 /* THBoolValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValue.h; sourceTree = "<group>"; };
-		9A56CCFF17D885F9001021B2 /* THBoolValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValue.m; sourceTree = "<group>"; };
-		9A56CD4517D886A5001021B2 /* THBoolValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValueEditable.h; sourceTree = "<group>"; };
-		9A56CD4617D886A6001021B2 /* THBoolValueEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValueEditable.m; sourceTree = "<group>"; };
-		9A56CD4A17D88790001021B2 /* THBoolValueProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValueProperties.h; sourceTree = "<group>"; };
-		9A56CD4B17D88790001021B2 /* THBoolValueProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValueProperties.m; sourceTree = "<group>"; };
 		9A56CD5117D88888001021B2 /* THBoolValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THBoolValueProperties.xib; sourceTree = "<group>"; };
-		9A56CD5417D88A2C001021B2 /* THBoolValuePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValuePaletteItem.h; sourceTree = "<group>"; };
-		9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValuePaletteItem.m; sourceTree = "<group>"; };
 		9A56CDBB17D8EF61001021B2 /* THStringValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THStringValueProperties.xib; sourceTree = "<group>"; };
 		9A56D03A17D946FF001021B2 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = gui/Storyboard.storyboard; sourceTree = "<group>"; };
 		9A56D05117D9C4DA001021B2 /* THCollectionProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCollectionProjectCell.h; sourceTree = "<group>"; };
@@ -1815,10 +1766,6 @@
 		9AB29B55167F68F600F5AF62 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		9AB29B57167F78C300F5AF62 /* THHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHelper.h; sourceTree = "<group>"; };
 		9AB29B58167F78C300F5AF62 /* THHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHelper.m; sourceTree = "<group>"; };
-		9AB29BFE167F898A00F5AF62 /* THProgrammingElementEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgrammingElementEditable.h; sourceTree = "<group>"; };
-		9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgrammingElementEditable.m; sourceTree = "<group>"; };
-		9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgrammingElement.h; sourceTree = "<group>"; };
-		9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgrammingElement.m; sourceTree = "<group>"; };
 		9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THAutorouteProperties.xib; sourceTree = "<group>"; };
 		9AB777F217E5FF4100F82424 /* THInvocationConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THInvocationConnectionLine.h; sourceTree = "<group>"; };
 		9AB777F317E5FF4100F82424 /* THInvocationConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THInvocationConnectionLine.m; sourceTree = "<group>"; };
@@ -1899,23 +1846,11 @@
 		9AF50202167B84B40020241C /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
 		9AF50203167B84B40020241C /* THTransferAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransferAgent.h; sourceTree = "<group>"; };
 		9AF50204167B84B40020241C /* THTransferAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransferAgent.m; sourceTree = "<group>"; };
-		9AF50207167B84B40020241C /* THComparisonCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparisonCondition.h; sourceTree = "<group>"; };
-		9AF50208167B84B40020241C /* THComparisonCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THComparisonCondition.m; sourceTree = "<group>"; };
-		9AF50209167B84B40020241C /* THComparisonConditionEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparisonConditionEditable.h; sourceTree = "<group>"; };
-		9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THComparisonConditionEditable.m; sourceTree = "<group>"; };
 		9AF5020B167B84B40020241C /* THCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCondition.h; sourceTree = "<group>"; };
 		9AF5020C167B84B40020241C /* THConditionEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THConditionEditableObject.h; sourceTree = "<group>"; };
 		9AF5020D167B84B40020241C /* THConditionEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THConditionEditableObject.m; sourceTree = "<group>"; };
 		9AF5020E167B84B40020241C /* THConditionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THConditionObject.h; sourceTree = "<group>"; };
 		9AF5020F167B84B40020241C /* THConditionObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THConditionObject.m; sourceTree = "<group>"; };
-		9AF50210167B84B40020241C /* THGrouperCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGrouperCondition.h; sourceTree = "<group>"; };
-		9AF50211167B84B40020241C /* THGrouperCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGrouperCondition.m; sourceTree = "<group>"; };
-		9AF50212167B84B40020241C /* THGrouperConditionEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGrouperConditionEditable.h; sourceTree = "<group>"; };
-		9AF50213167B84B40020241C /* THGrouperConditionEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGrouperConditionEditable.m; sourceTree = "<group>"; };
-		9AF50214167B84B40020241C /* THNumberValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNumberValue.h; sourceTree = "<group>"; };
-		9AF50215167B84B40020241C /* THNumberValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNumberValue.m; sourceTree = "<group>"; };
-		9AF50216167B84B40020241C /* THNumberValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNumberValueEditable.h; sourceTree = "<group>"; };
-		9AF50217167B84B40020241C /* THNumberValueEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNumberValueEditable.m; sourceTree = "<group>"; };
 		9AF5021A167B84B40020241C /* THHardwareProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHardwareProblem.h; sourceTree = "<group>"; };
 		9AF5021B167B84B40020241C /* THHardwareProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHardwareProblem.m; sourceTree = "<group>"; };
 		9AF5021F167B84B40020241C /* THBoardPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardPin.h; sourceTree = "<group>"; };
@@ -1964,26 +1899,16 @@
 		9AF50284167B84B40020241C /* THViewEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THViewEditableObject.m; sourceTree = "<group>"; };
 		9AF5028C167B84B40020241C /* THClothePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClothePaletteItem.h; sourceTree = "<group>"; };
 		9AF5028D167B84B40020241C /* THClothePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClothePaletteItem.m; sourceTree = "<group>"; };
-		9AF5028E167B84B40020241C /* THComparatorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparatorPaletteItem.h; sourceTree = "<group>"; };
-		9AF5028F167B84B40020241C /* THComparatorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THComparatorPaletteItem.m; sourceTree = "<group>"; };
-		9AF50292167B84B40020241C /* THGrouperPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGrouperPaletteItem.h; sourceTree = "<group>"; };
-		9AF50293167B84B40020241C /* THGrouperPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGrouperPaletteItem.m; sourceTree = "<group>"; };
 		9AF50294167B84B40020241C /* THiPhoneButtonPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiPhoneButtonPaletteItem.h; sourceTree = "<group>"; };
 		9AF50295167B84B40020241C /* THiPhoneButtonPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiPhoneButtonPaletteItem.m; sourceTree = "<group>"; };
 		9AF50296167B84B40020241C /* THiPhonePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiPhonePaletteItem.h; sourceTree = "<group>"; };
 		9AF50297167B84B40020241C /* THiPhonePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiPhonePaletteItem.m; sourceTree = "<group>"; };
 		9AF5029E167B84B40020241C /* THLightSensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLightSensorPaletteItem.h; sourceTree = "<group>"; };
 		9AF5029F167B84B40020241C /* THLightSensorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLightSensorPaletteItem.m; sourceTree = "<group>"; };
-		9AF502A8167B84B40020241C /* THValuePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THValuePaletteItem.h; sourceTree = "<group>"; };
-		9AF502A9167B84B40020241C /* THValuePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THValuePaletteItem.m; sourceTree = "<group>"; };
 		9AF502AF167B84B40020241C /* THClotheObjectProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClotheObjectProperties.h; sourceTree = "<group>"; };
 		9AF502B0167B84B40020241C /* THClotheObjectProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClotheObjectProperties.m; sourceTree = "<group>"; };
 		9AF502B1167B84B40020241C /* THClotheProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClotheProperties.h; sourceTree = "<group>"; };
 		9AF502B2167B84B40020241C /* THClotheProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClotheProperties.m; sourceTree = "<group>"; };
-		9AF502B3167B84B40020241C /* THComparatorEditableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparatorEditableProperties.h; sourceTree = "<group>"; };
-		9AF502B4167B84B40020241C /* THComparatorEditableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THComparatorEditableProperties.m; sourceTree = "<group>"; };
-		9AF502B5167B84B40020241C /* THGrouperEditableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGrouperEditableProperties.h; sourceTree = "<group>"; };
-		9AF502B6167B84B40020241C /* THGrouperEditableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGrouperEditableProperties.m; sourceTree = "<group>"; };
 		9AF502B7167B84B40020241C /* THiPhoneButtonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiPhoneButtonProperties.h; sourceTree = "<group>"; };
 		9AF502B8167B84B40020241C /* THiPhoneButtonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiPhoneButtonProperties.m; sourceTree = "<group>"; };
 		9AF502B9167B84B40020241C /* THiPhoneProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiPhoneProperties.h; sourceTree = "<group>"; };
@@ -1994,8 +1919,6 @@
 		9AF502C4167B84B40020241C /* THLilypadProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilypadProperties.m; sourceTree = "<group>"; };
 		9AF502C5167B84B40020241C /* THLilypadPropertiesPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLilypadPropertiesPinView.h; sourceTree = "<group>"; };
 		9AF502C6167B84B40020241C /* THLilypadPropertiesPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLilypadPropertiesPinView.m; sourceTree = "<group>"; };
-		9AF502CD167B84B40020241C /* THValueProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THValueProperties.h; sourceTree = "<group>"; };
-		9AF502CE167B84B40020241C /* THValueProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THValueProperties.m; sourceTree = "<group>"; };
 		9AF502D7167B84B40020241C /* THColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THColorPicker.h; sourceTree = "<group>"; };
 		9AF502D8167B84B40020241C /* THColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THColorPicker.m; sourceTree = "<group>"; };
 		9AF502DB167B84B40020241C /* THClientHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientHelper.h; sourceTree = "<group>"; };
@@ -2955,26 +2878,6 @@
 				9AF5020F167B84B40020241C /* THConditionObject.m */,
 				9AF5020C167B84B40020241C /* THConditionEditableObject.h */,
 				9AF5020D167B84B40020241C /* THConditionEditableObject.m */,
-				9AF50207167B84B40020241C /* THComparisonCondition.h */,
-				9AF50208167B84B40020241C /* THComparisonCondition.m */,
-				9AF50209167B84B40020241C /* THComparisonConditionEditable.h */,
-				9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */,
-				9AF50210167B84B40020241C /* THGrouperCondition.h */,
-				9AF50211167B84B40020241C /* THGrouperCondition.m */,
-				9AF50212167B84B40020241C /* THGrouperConditionEditable.h */,
-				9AF50213167B84B40020241C /* THGrouperConditionEditable.m */,
-				9AB29BFE167F898A00F5AF62 /* THProgrammingElementEditable.h */,
-				9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */,
-				9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */,
-				9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */,
-				9AF50214167B84B40020241C /* THNumberValue.h */,
-				9AF50215167B84B40020241C /* THNumberValue.m */,
-				9AF50216167B84B40020241C /* THNumberValueEditable.h */,
-				9AF50217167B84B40020241C /* THNumberValueEditable.m */,
-				9A56CCFE17D885F9001021B2 /* THBoolValue.h */,
-				9A56CCFF17D885F9001021B2 /* THBoolValue.m */,
-				9A56CD4517D886A5001021B2 /* THBoolValueEditable.h */,
-				9A56CD4617D886A6001021B2 /* THBoolValueEditable.m */,
 			);
 			name = programming;
 			path = conditions;
@@ -3084,20 +2987,12 @@
 			children = (
 				9AF5028C167B84B40020241C /* THClothePaletteItem.h */,
 				9AF5028D167B84B40020241C /* THClothePaletteItem.m */,
-				9AF5028E167B84B40020241C /* THComparatorPaletteItem.h */,
-				9AF5028F167B84B40020241C /* THComparatorPaletteItem.m */,
-				9AF50292167B84B40020241C /* THGrouperPaletteItem.h */,
-				9AF50293167B84B40020241C /* THGrouperPaletteItem.m */,
 				9AF50294167B84B40020241C /* THiPhoneButtonPaletteItem.h */,
 				9AF50295167B84B40020241C /* THiPhoneButtonPaletteItem.m */,
 				9AF50296167B84B40020241C /* THiPhonePaletteItem.h */,
 				9AF50297167B84B40020241C /* THiPhonePaletteItem.m */,
 				9AF5029E167B84B40020241C /* THLightSensorPaletteItem.h */,
 				9AF5029F167B84B40020241C /* THLightSensorPaletteItem.m */,
-				9AF502A8167B84B40020241C /* THValuePaletteItem.h */,
-				9AF502A9167B84B40020241C /* THValuePaletteItem.m */,
-				9A56CD5417D88A2C001021B2 /* THBoolValuePaletteItem.h */,
-				9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */,
 				9ABC27691809960D00B39D72 /* THSimpleLilypadPaletteItem.h */,
 				9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */,
 				9ABC276D180996C200B39D72 /* THLilypadPaletteItem.h */,
@@ -3113,10 +3008,6 @@
 				9AF502B0167B84B40020241C /* THClotheObjectProperties.m */,
 				9AF502B1167B84B40020241C /* THClotheProperties.h */,
 				9AF502B2167B84B40020241C /* THClotheProperties.m */,
-				9AF502B3167B84B40020241C /* THComparatorEditableProperties.h */,
-				9AF502B4167B84B40020241C /* THComparatorEditableProperties.m */,
-				9AF502B5167B84B40020241C /* THGrouperEditableProperties.h */,
-				9AF502B6167B84B40020241C /* THGrouperEditableProperties.m */,
 				9AF502B7167B84B40020241C /* THiPhoneButtonProperties.h */,
 				9AF502B8167B84B40020241C /* THiPhoneButtonProperties.m */,
 				9AF502B9167B84B40020241C /* THiPhoneProperties.h */,
@@ -3127,12 +3018,8 @@
 				9AF502C4167B84B40020241C /* THLilypadProperties.m */,
 				9AF502C5167B84B40020241C /* THLilypadPropertiesPinView.h */,
 				9AF502C6167B84B40020241C /* THLilypadPropertiesPinView.m */,
-				9AF502CD167B84B40020241C /* THValueProperties.h */,
-				9AF502CE167B84B40020241C /* THValueProperties.m */,
 				9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */,
 				9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */,
-				9A56CD4A17D88790001021B2 /* THBoolValueProperties.h */,
-				9A56CD4B17D88790001021B2 /* THBoolValueProperties.m */,
 				9AB7784017E66A2300F82424 /* THInvocationConnectionProperties.h */,
 				9AB7784117E66A2300F82424 /* THInvocationConnectionProperties.m */,
 				9A1C3AFD1886E4D8007C5E94 /* THAutorouteProperties.h */,
@@ -4473,14 +4360,8 @@
 				9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */,
 				9AF50364167B84B40020241C /* THServerController.m in Sources */,
 				9AF50365167B84B40020241C /* THTransferAgent.m in Sources */,
-				9AF50366167B84B40020241C /* THComparisonCondition.m in Sources */,
-				9AF50367167B84B40020241C /* THComparisonConditionEditable.m in Sources */,
 				9AF50368167B84B40020241C /* THConditionEditableObject.m in Sources */,
 				9AF50369167B84B40020241C /* THConditionObject.m in Sources */,
-				9AF5036A167B84B40020241C /* THGrouperCondition.m in Sources */,
-				9AF5036B167B84B40020241C /* THGrouperConditionEditable.m in Sources */,
-				9AF5036C167B84B40020241C /* THNumberValue.m in Sources */,
-				9AF5036D167B84B40020241C /* THNumberValueEditable.m in Sources */,
 				9AF5036E167B84B40020241C /* THHardwareProblem.m in Sources */,
 				9AF50370167B84B40020241C /* THBoardPin.m in Sources */,
 				9AF50371167B84B40020241C /* THBoardPinEditable.m in Sources */,
@@ -4506,18 +4387,13 @@
 				9AF503A0167B84B40020241C /* THView.m in Sources */,
 				9AF503A1167B84B40020241C /* THViewEditableObject.m in Sources */,
 				9AF503A5167B84B40020241C /* THClothePaletteItem.m in Sources */,
-				9AF503A6167B84B40020241C /* THComparatorPaletteItem.m in Sources */,
-				9AF503A8167B84B40020241C /* THGrouperPaletteItem.m in Sources */,
 				9AF503A9167B84B40020241C /* THiPhoneButtonPaletteItem.m in Sources */,
 				9AF503AA167B84B40020241C /* THiPhonePaletteItem.m in Sources */,
 				9AF503AE167B84B40020241C /* THLightSensorPaletteItem.m in Sources */,
 				9ABC275A18098F2400B39D72 /* THBoardEditable.m in Sources */,
-				9AF503B3167B84B40020241C /* THValuePaletteItem.m in Sources */,
 				9AF503B6167B84B40020241C /* THClotheObjectProperties.m in Sources */,
 				9AF503B7167B84B40020241C /* THClotheProperties.m in Sources */,
-				9AF503B8167B84B40020241C /* THComparatorEditableProperties.m in Sources */,
 				9A78A91C189A9C14005A383C /* THiPhoneControlEditableObject.m in Sources */,
-				9AF503B9167B84B40020241C /* THGrouperEditableProperties.m in Sources */,
 				9AF503BA167B84B40020241C /* THiPhoneButtonProperties.m in Sources */,
 				9A1C3B001886E4D8007C5E94 /* THAutorouteProperties.m in Sources */,
 				9AF503BB167B84B40020241C /* THiPhoneProperties.m in Sources */,
@@ -4525,7 +4401,6 @@
 				9A1FBE08187F208400699B61 /* THI2CMessage.m in Sources */,
 				9AF503C0167B84B40020241C /* THLilypadProperties.m in Sources */,
 				9AF503C1167B84B40020241C /* THLilypadPropertiesPinView.m in Sources */,
-				9AF503C5167B84B40020241C /* THValueProperties.m in Sources */,
 				9AF503CA167B84B40020241C /* THColorPicker.m in Sources */,
 				9AF503CC167B84B40020241C /* THClientHelper.m in Sources */,
 				9AF503CD167B84B40020241C /* THConstants.m in Sources */,
@@ -4534,8 +4409,6 @@
 				9A8BB9A2167C815D00FBABFB /* THPinsController.m in Sources */,
 				9A8BB9A4167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
 				9AB29B59167F78C300F5AF62 /* THHelper.m in Sources */,
-				9AB29C00167F898B00F5AF62 /* THProgrammingElementEditable.m in Sources */,
-				9AB29C03167F89B900F5AF62 /* THProgrammingElement.m in Sources */,
 				9A94F3F116A010BB00AF52AB /* THProjectSelectionViewController.m in Sources */,
 				9A94F3F916A014BB00AF52AB /* THProjectProxy.m in Sources */,
 				9ABC276018098F2400B39D72 /* THLilypadEditable.m in Sources */,
@@ -4567,10 +4440,6 @@
 				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
 				9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */,
-				9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */,
-				9A56CD4717D886A6001021B2 /* THBoolValueEditable.m in Sources */,
-				9A56CD4D17D88790001021B2 /* THBoolValueProperties.m in Sources */,
-				9A56CD5617D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */,
 				9A56D05317D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
 				9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */,
@@ -4623,15 +4492,9 @@
 				9AF505F1167B91E70020241C /* THProtocolSocket.m in Sources */,
 				9AF505F2167B91E70020241C /* THServerController.m in Sources */,
 				9AF505F3167B91E70020241C /* THTransferAgent.m in Sources */,
-				9AF505F4167B91F10020241C /* THComparisonCondition.m in Sources */,
-				9AF505F5167B91F10020241C /* THComparisonConditionEditable.m in Sources */,
 				9AF505F6167B91F10020241C /* THConditionObject.m in Sources */,
 				9AF505F7167B91F10020241C /* THConditionEditableObject.m in Sources */,
-				9AF505F8167B91F10020241C /* THGrouperCondition.m in Sources */,
-				9AF505F9167B91F10020241C /* THGrouperConditionEditable.m in Sources */,
-				9AF505FA167B91F10020241C /* THNumberValue.m in Sources */,
 				9ABC275F18098F2400B39D72 /* THLilyPad.m in Sources */,
-				9AF505FB167B91F30020241C /* THNumberValueEditable.m in Sources */,
 				9AF505FC167B91FA0020241C /* THiPhone.m in Sources */,
 				9AF505FD167B91FA0020241C /* THiPhoneEditableObject.m in Sources */,
 				9AF505FE167B91FA0020241C /* THiPhoneButton.m in Sources */,
@@ -4662,19 +4525,14 @@
 				9AF5062F167B923A0020241C /* THSimulableWorldController.m in Sources */,
 				9A1C3B011886E4D8007C5E94 /* THAutorouteProperties.m in Sources */,
 				9AF50633167B92550020241C /* THClothePaletteItem.m in Sources */,
-				9AF50634167B92550020241C /* THComparatorPaletteItem.m in Sources */,
-				9AF50636167B92550020241C /* THGrouperPaletteItem.m in Sources */,
 				9AF50637167B92550020241C /* THiPhoneButtonPaletteItem.m in Sources */,
 				9AF50638167B925A0020241C /* THiPhonePaletteItem.m in Sources */,
 				9ABC276518098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9AFB7E6A1833DE6400694CCE /* THBLECommunicationModule.m in Sources */,
 				9AF5063C167B925A0020241C /* THLightSensorPaletteItem.m in Sources */,
 				9A1FBE0A187F208800699B61 /* THI2CMessage.m in Sources */,
-				9AF50641167B92670020241C /* THValuePaletteItem.m in Sources */,
 				9AF50644167B92770020241C /* THClotheObjectProperties.m in Sources */,
 				9AF50645167B927B0020241C /* THClotheProperties.m in Sources */,
-				9AF50646167B927B0020241C /* THComparatorEditableProperties.m in Sources */,
-				9AF50647167B927B0020241C /* THGrouperEditableProperties.m in Sources */,
 				9AF50648167B927B0020241C /* THiPhoneButtonProperties.m in Sources */,
 				9AF50649167B927B0020241C /* THiPhoneProperties.m in Sources */,
 				9ABC2770180996C200B39D72 /* THLilypadPaletteItem.m in Sources */,
@@ -4682,14 +4540,11 @@
 				9AF5064E167B92800020241C /* THLilypadProperties.m in Sources */,
 				9AF5064F167B92840020241C /* THLilypadPropertiesPinView.m in Sources */,
 				9AFB7DCD1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */,
-				9AF50653167B92840020241C /* THValueProperties.m in Sources */,
 				9A8BB9A3167C815D00FBABFB /* THPinsController.m in Sources */,
 				9AFB7E6C1833DE6400694CCE /* THClientPresetsGenerator.m in Sources */,
 				9ABC276818098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
 				9A8BB9A5167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
 				9AFB7DD31832AE2600694CCE /* THClientTableProjectCell.m in Sources */,
-				9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */,
-				9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */,
 				9ABC276218098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9A94F3F216A010BB00AF52AB /* THProjectSelectionViewController.m in Sources */,
 				9A94F3FA16A014BB00AF52AB /* THProjectProxy.m in Sources */,
@@ -4724,10 +4579,6 @@
 				9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 				9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 				9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
-				9A56CD0217D885F9001021B2 /* THBoolValue.m in Sources */,
-				9A56CD4917D886A6001021B2 /* THBoolValueEditable.m in Sources */,
-				9A56CD4E17D88790001021B2 /* THBoolValueProperties.m in Sources */,
-				9A56CD5717D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */,
 				9A56D05417D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
 				9A56D05C17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9A56D19717DBDAA9001021B2 /* THDirector.m in Sources */,
@@ -4769,10 +4620,7 @@
 				9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */,
 				9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */,
 				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
-				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
 				9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */,
-				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
-				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
 				9AF5044E167B84D90020241C /* THBoardPin.m in Sources */,
 				9A78A919189A9BC8005A383C /* THiPhoneControl.m in Sources */,
 				9AFB7E691833DE6400694CCE /* THBLECommunicationModule.m in Sources */,
@@ -4794,7 +4642,6 @@
 				9AF5046E167B85A00020241C /* THHardwareComponent.m in Sources */,
 				9AF5046F167B85C30020241C /* THConditionObject.m in Sources */,
 				9AF50473167B860E0020241C /* main.m in Sources */,
-				9AB29C04167F89C100F5AF62 /* THProgrammingElement.m in Sources */,
 				9AFB7E271833D60300694CCE /* THI2CRegister.m in Sources */,
 				9ABC275818098F2400B39D72 /* THBoard.m in Sources */,
 				9A93847616D6746200A41BD2 /* THTrigger.m in Sources */,
@@ -4817,7 +4664,6 @@
 				9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
 				9AFB7DCC1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */,
 				9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */,
-				9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */,
 				9A41446C17DE64410061EDF8 /* THClientConstants.m in Sources */,
 				9AFB7DD21832AE2600694CCE /* THClientTableProjectCell.m in Sources */,
 			);
