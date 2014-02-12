@@ -22,16 +22,11 @@
 		layer = [[CALayer alloc] init];
 		layer.delegate = self;
         
-        layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize-1, height);
+        layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize, height);
 
 		layer.opaque = YES;
-		index = kGraphSegmentSize;
+		self.index = kGraphSegmentSize - 2;
         
-        /*
-        for (int i = 0; i < kGraphSegmentSize-1; ++i) {
-            lines[i*2].x = i;
-            lines[i*2+1].x = i + 1;
-        }*/
 	}
 	return self;
 }
@@ -45,27 +40,34 @@
         isFilled[i][1] = 0;
     }
     
-	index = kGraphSegmentSize;
+	self.index = kGraphSegmentSize -1;
 	[layer setNeedsDisplay];
 }
 
-- (BOOL)isFull {
+-(BOOL) hasFirstValue{
+    return isFilled[0][0];
+}
+
+-(float) leftmostValue{
+    return xhistory[0];
+}
+                    
+-(BOOL) isFull {
 	return index == 0;
 }
 
-- (BOOL)isVisibleInRect:(CGRect)r {
-    return (layer.frame.origin.x + layer.frame.size.width) < (r.origin.x + r.size.width -2)  ;
+-(BOOL) isVisibleInRect:(CGRect)r {
+   // NSLog(@"%f %f",layer.frame.origin.x + layer.frame.size.width, r.origin.x + r.size.width);
+    return (layer.frame.origin.x + layer.frame.size.width) < (r.origin.x + r.size.width) ;
 }
 
-- (BOOL)addX:(float)x{
-	if (index > 0) {
-		--index;
-		xhistory[index] = x;
-        isFilled[index][0] = YES;
-		[layer setNeedsDisplay];
-	}
-
-	return index == 0;
+-(void) addX:(float)x {
+    if(self.index >= 0){
+        NSLog(@"filling %d",self.index);
+        xhistory[self.index] = x;
+        isFilled[self.index][0] = YES;
+        [layer setNeedsDisplay];
+    }
 }
 
 -(void) drawPoints:(float*) array inContext:(CGContextRef)context {
@@ -76,7 +78,6 @@
 	for (int i = 0; i < kGraphSegmentSize-1; ++i) {
         
         if(isFilled[i][0] && isFilled[i+1][0]){
-            
             
             lines[pointsCount*2].x = i;
             lines[pointsCount*2+1].x = i+1;
@@ -136,7 +137,7 @@
 
 // The accessibilityValue of this segment should be the x,y,z values last added.
 - (NSString *)accessibilityValue {
-	return [NSString stringWithFormat:NSLocalizedString(@"graphSegmentFormat", @""), xhistory[index], yhistory[index]];
+	return [NSString stringWithFormat:NSLocalizedString(@"graphSegmentFormat", @""), xhistory[self.index], yhistory[self.index]];
 }
 
 @end

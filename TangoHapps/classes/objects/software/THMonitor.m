@@ -47,7 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THMonitor
 
-float const kMonitorUpdateFrequency = 0.1f; //monitor updated every 0.5 seconds
+float const kMonitorUpdateFrequency = 1/30.0f; //monitor updated every 0.5 seconds
 float const kMonitorNewValueX = 75.0f;
 float const kMonitorMargin = 5;
 
@@ -57,7 +57,7 @@ float const kMonitorMargin = 5;
     NSLog(@"%f",frame.size.width);
     
     THGraphView * view = [[THGraphView alloc] initWithFrame:frame maxAxisY:self.maxValue minAxisY:self.minValue];
-    
+    //view.speed = 2.0f;
     //UIView * view = [[UIView alloc] init];
     view.layer.borderWidth = 1.0f;
     view.contentMode = UIViewContentModeScaleAspectFit;

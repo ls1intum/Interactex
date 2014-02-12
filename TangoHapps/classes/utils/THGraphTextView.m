@@ -9,15 +9,6 @@
 #import "THGraphTextView.h"
 #import "THGraphViewHelper.h"
 
-#pragma mark -
-
-// We use a seperate view to draw the text for the graph so that we can layer the segment layers below it
-// which gives the illusion that the numbers are draw over the graph, and hides the fact that the graph drawing
-// for each segment is incomplete until the segment is filled.
-
-
-#pragma mark -
-
 @implementation THGraphTextView
 
 - (id)initWithFrame:(CGRect)frame maxAxisY:(float) maxAxisY minAxisY:(float) minAxisY {
@@ -40,8 +31,6 @@
 	// Draw the grid lines
     float height = self.frame.size.height;
     StrokeAllLinesForFrameWithHeight(context,height,kGraphViewAxisLineWidth);
-    
-    NSLog(@"height in text %f",height);
     
 	// Draw the text
 	UIFont *systemFont = [UIFont systemFontOfSize:12.0];
