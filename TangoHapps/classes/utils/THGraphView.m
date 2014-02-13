@@ -61,10 +61,12 @@ float const kGraphViewLeftAxisWidth = 42.0;
 
 -(void) setMaxAxisY:(float)maxAxisY{
     self.textView.maxAxisY = maxAxisY;
+    [self.textView setNeedsDisplay];
 }
 
 -(void) setMinAxisY:(float)minAxisY{
     self.textView.minAxisY = minAxisY;
+        [self.textView setNeedsDisplay];
 }
 
 - (void)addX:(float)value{

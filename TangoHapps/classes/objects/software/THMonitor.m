@@ -153,16 +153,20 @@ float const kMonitorNewValueX = 75.0f;
     [view addY:value];
 }
 
--(void) setMaxValue:(NSInteger)minValue{
+-(void) setMaxValue:(NSInteger)maxValue{
     
     THGraphView * view = (THGraphView*)self.view;
-    view.maxAxisY = minValue;
+    view.maxAxisY = maxValue;
+    
+    _maxValue = maxValue;
 }
 
 -(void) setMinValue:(NSInteger)minValue{
     
     THGraphView * view = (THGraphView*)self.view;
     view.minAxisY = minValue;
+    
+    _minValue = minValue;
 }
 
 #pragma mark - Lifecycle

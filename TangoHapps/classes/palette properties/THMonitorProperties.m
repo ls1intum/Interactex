@@ -81,17 +81,17 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateMaxSlider];
 }
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)minChanged:(id)sender {
+-(IBAction)minChanged:(id)sender {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     monitor.minValue = [self.minText.text floatValue];
@@ -99,14 +99,14 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateMinSlider];
 }
 
-- (IBAction)maxChanged:(id)sender {
+-(IBAction)maxChanged:(id)sender {
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     monitor.maxValue = [self.maxText.text floatValue];
     
     [self updateMaxSlider];
 }
 
-- (IBAction)minSliderChanged:(id)sender {
+-(IBAction)minSliderChanged:(id)sender {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     monitor.minValue = self.minSlider.value;
@@ -114,7 +114,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateMinText];
 }
 
-- (IBAction)maxSliderChanged:(id)sender {
+-(IBAction)maxSliderChanged:(id)sender {
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     monitor.maxValue = self.maxSlider.value;
     

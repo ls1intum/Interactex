@@ -83,44 +83,48 @@ CGSize const kImagePickerImageSize = {60,60};
 -(id) init{
     self = [super init];
     if(self){
+        self.thumbnails = [[NSMutableArray alloc] init];
+        self.imageAssets = [[NSMutableArray alloc] init];
+        self.library = [[ALAssetsLibrary alloc] init];
+        
         [self loadGui];
     }
     return self;
 }
 
--(void)okButtonTapped:(UIButton *)sender
-{
-    [self.delegate imagePicker:self didSelectImage:self.currentImageView.image imageName:self.imageName];
+-(void)okButtonTapped:(UIButton *)sender {
+    
+    ALAssetRepresentation * representation = [self.selectedAsset defaultRepresentation];
+    NSString * name = [representation filename];
+    UIImage * image = [UIImage imageWithCGImage:[representation fullResolutionImage]];
+    [self.delegate imagePicker:self didSelectImage:image imageName:name];
 }
 
--(void)addPhoto:(ALAssetRepresentation *)asset
-{
-    UIImage * image = [UIImage imageWithCGImage:[asset fullResolutionImage]];
-    [_images addObject:image];
-    NSString * name = [asset filename];
-    NSLog(@"%@",name);
-    [_imageNames addObject:name];
+-(void) buttonTapped:(UIButton*) button{
+    self.currentImageView.image = [self.thumbnails objectAtIndex:button.tag];
+    self.selectedAsset = [self.imageAssets objectAtIndex:button.tag];
+}
+
+-(void)addPhotForAsset:(ALAsset *)asset {
+    
+    UIImage * image = [UIImage imageWithCGImage:[asset thumbnail]];
+    [self.thumbnails addObject:image];
+    [self.imageAssets addObject:asset];
 }
 
 -(void)loadImages {
-    _images = [[NSMutableArray alloc] init];
-    _imageNames = [[NSMutableArray alloc] init];
-    ALAssetsLibrary * library = [[ALAssetsLibrary alloc] init];
     
     [_activityIndicator startAnimating];
     
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-    {
-        [library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop)
-         {
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self.library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop)          {
              // Within the group enumeration block, filter if necessary
              [group setAssetsFilter:[ALAssetsFilter allPhotos]];
              [group enumerateAssetsUsingBlock:^(ALAsset *alAsset, NSUInteger index, BOOL *innerStop) {
                  if (alAsset) {
-                     ALAssetRepresentation *representation = [alAsset defaultRepresentation];
-                     [self addPhoto:representation];
-                 }
-                 else {
+
+                     [self addPhotForAsset:alAsset];
+                 } else {
                      [_activityIndicator stopAnimating];
                      [self layoutImages];
                  }
@@ -132,21 +136,13 @@ CGSize const kImagePickerImageSize = {60,60};
     }
 }
 
--(void) buttonTapped:(UIButton*) button{
-    self.currentImageView.image = [_images objectAtIndex:button.tag];
-    self.imageName = [_imageNames objectAtIndex:button.tag];
-}
-
--(void) layoutImages {/*
-    UIImage * button = [UIImage imageNamed:@"button.png"];
-    UIImage * led = [UIImage imageNamed:@"led.png"];
-    NSArray * images = [NSArray arrayWithObjects:button,led, nil];*/
+-(void) layoutImages {
     
     NSInteger idx = 0;
-    _currentPos = CGPointMake(kImagePickerPadding,kImagePickerPadding);
-    for (UIImage * image in _images) {
+    CGPoint currentPos = CGPointMake(kImagePickerPadding,kImagePickerPadding);
+    for (UIImage * image in self.thumbnails) {
         
-        CGRect frame = CGRectMake(_currentPos.x, _currentPos.y, kImagePickerImageSize.width, kImagePickerImageSize.height);
+        CGRect frame = CGRectMake(currentPos.x, currentPos.y, kImagePickerImageSize.width, kImagePickerImageSize.height);
         UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
         imageView.image = image;
         imageView.frame = frame;
@@ -154,29 +150,21 @@ CGSize const kImagePickerImageSize = {60,60};
         
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = frame;
-        //button.layer.borderWidth = 1.0f;
-        //button.layer.cornerRadius = 3.0f;
         button.tag = idx;
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchDown];
         
         [self.imagesContainer addSubview:button];
         [self.imagesContainer addSubview:imageView];
         
-        _currentPos.x += frame.size.width + kImagePickerPadding;
-        if(_currentPos.x + kImagePickerImageSize.width >= self.imagesContainer.frame.size.width){
-            _currentPos.x = kImagePickerPadding;
-            _currentPos.y += frame.size.height + kImagePickerPadding;
+        currentPos.x += frame.size.width + kImagePickerPadding;
+        if(currentPos.x + kImagePickerImageSize.width >= self.imagesContainer.frame.size.width){
+            currentPos.x = kImagePickerPadding;
+            currentPos.y += frame.size.height + kImagePickerPadding;
         }
         idx++;
         
-        self.imagesContainer.contentSize = CGSizeMake(self.imagesContainer.contentSize.width, _currentPos.y - 10);
+        self.imagesContainer.contentSize = CGSizeMake(self.imagesContainer.contentSize.width, currentPos.y - 10);
     }
-}
-
--(void)tap:(UIPanGestureRecognizer*)sender
-{
-    //ImagePaletteItem * item = [imagesScrollView objectAtIndex:sender.view.tag];
-    //self.currentImageName = item.fileName;
 }
 
 #pragma mark - View lifecycle
