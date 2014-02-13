@@ -47,36 +47,6 @@ CGColorRef graphLineColor()
 	return c;
 }
 
-CGColorRef graphXColor()
-{
-	static CGColorRef c = NULL;
-	if (c == NULL)
-	{
-		c = CreateDeviceRGBColor(1.0, 0.0, 0.0, 1.0);
-	}
-	return c;
-}
-
-CGColorRef graphYColor()
-{
-	static CGColorRef c = NULL;
-	if (c == NULL)
-	{
-		c = CreateDeviceRGBColor(0.0, 0.0, 1.0, 1.0);
-	}
-	return c;
-}
-
-CGColorRef graphZColor()
-{
-	static CGColorRef c = NULL;
-	if (c == NULL)
-	{
-		c = CreateDeviceRGBColor(0.0, 0.0, 1.0, 1.0);
-	}
-	return c;
-}
-
 //must call strokeLinez afterwards
 void DrawHorizontalLine(CGContextRef context, CGFloat x, CGFloat y, CGFloat width){
     

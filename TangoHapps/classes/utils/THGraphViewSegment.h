@@ -11,21 +11,21 @@
 #define kGraphSegmentSize 33
 
 @interface THGraphViewSegment : NSObject {
-	float xhistory[kGraphSegmentSize];
+	float points[kGraphSegmentSize];
     
     BOOL isFilled[kGraphSegmentSize];
     CGPoint lines[(kGraphSegmentSize-1)*2];
 }
 
 - (id) initWithHeight:(float) height;
-- (BOOL) addX:(float)x;
+- (BOOL) addValue:(float)value;
 - (void) reset;
 - (BOOL) isFull;
 - (BOOL) isVisibleInRect:(CGRect)r;
-- (void) repeatLast;
 
 @property(nonatomic, readonly) CALayer *layer;
 @property(nonatomic) float height;
 @property(nonatomic) NSInteger index;
 
+@property (nonatomic, strong) UIColor * color;
 @end

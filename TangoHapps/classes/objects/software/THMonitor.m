@@ -182,9 +182,10 @@ float const kMonitorMargin = 5;
 }
 
 -(void) addValue2:(float) value{
-    /*
-    THMonitorLine * line = [self.lines objectAtIndex:1];
-    [line addPoint: [self transformedPointForValue:value]];*/
+    value = [self mapValueToGraphRange:value];
+    
+    THGraphView * view = (THGraphView*)self.view;
+    [view addY:value];
 }
 
 -(void) update{

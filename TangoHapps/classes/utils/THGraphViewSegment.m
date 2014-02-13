@@ -24,7 +24,7 @@
         
         layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize, height);
 
-		layer.opaque = YES;
+		//layer.opaque = YES;
 		self.index = kGraphSegmentSize;
         
 	}
@@ -32,7 +32,7 @@
 }
 
 - (void)reset {
-	memset(xhistory, 0, sizeof(xhistory));
+	memset(points, 0, sizeof(points));
     
     for(int i = 0 ; i < kGraphSegmentSize ; i++){
         isFilled[i] = 0;
@@ -46,23 +46,15 @@
 	return self.index == 0;
 }
 
--(void) repeatLast{
-    if(isFilled[1]){
-        xhistory[0] = xhistory[1];
-        isFilled[0] = YES;
-        [layer setNeedsDisplay];
-    }
-}
-
 -(BOOL) isVisibleInRect:(CGRect)r {
 
     return (layer.frame.origin.x + layer.frame.size.width) < (r.origin.x + r.size.width) ;
 }
 
--(BOOL) addX:(float)x {
+-(BOOL) addValue:(float)value {
  	if (self.index > 0) 	{
 		--self.index;
-		xhistory[self.index] = x;
+		points[self.index] = value;
         isFilled[self.index] = YES;
 
 		[layer setNeedsDisplay];
@@ -70,7 +62,13 @@
 	return self.index == 0;
 }
 
--(void) drawPoints:(float*) array inContext:(CGContextRef)context {
+- (void)drawLayer:(CALayer*)l inContext:(CGContextRef)context{
+    
+    //CGColorRef color = CreateDeviceGrayColor(0.0f, 0.0f);
+    CGColorRef color = CreateDeviceRGBColor(1, 1, 1, 0);
+    
+	CGContextSetFillColorWithColor(context, color);
+	CGContextFillRect(context, layer.bounds);
     
     int pointsCount = 0;
     BOOL previousFilled = false;
@@ -82,15 +80,15 @@
             lines[pointsCount*2].x = i;
             lines[pointsCount*2+1].x = i+1;
             
-            lines[pointsCount*2].y = -xhistory[i];
-            lines[pointsCount*2+1].y = -xhistory[i+1];
+            lines[pointsCount*2].y = -points[i];
+            lines[pointsCount*2+1].y = -points[i+1];
             
             previousFilled = YES;
             pointsCount++;
             
         } else {
             if(previousFilled){
-                CGContextSetStrokeColorWithColor(context, graphXColor());
+                CGContextSetStrokeColorWithColor(context, self.color.CGColor);
                 CGContextStrokeLineSegments(context, lines, pointsCount*2);
                 previousFilled = NO;
                 pointsCount = 0;
@@ -100,26 +98,11 @@
     
     if(previousFilled){
         
-        CGContextSetStrokeColorWithColor(context, graphXColor());
+        CGContextSetStrokeColorWithColor(context, self.color.CGColor);
         CGContextStrokeLineSegments(context, lines, pointsCount*2);
     }
 }
 
-- (void)drawLayer:(CALayer*)l inContext:(CGContextRef)context {
-
-	CGContextSetFillColorWithColor(context, graphBackgroundColor());
-	CGContextFillRect(context, layer.bounds);
-	
-    float height = l.frame.size.height;
-    float width = l.frame.size.width;
-    
-    DrawHorizontalLine(context, 0 , kGraphViewAxisLabelSize.height/2 - height, width);
-    DrawHorizontalLine(context, 0 , kGraphViewAxisLabelSize.height/2 - height/2 - kGraphViewGraphOffsetY, width);
-    DrawHorizontalLine(context, 0 , -kGraphViewAxisLabelSize.height/2 - 2 * kGraphViewGraphOffsetY, width);
-    StrokeLines(context);
-
-    [self drawPoints:xhistory inContext:context];
-}
 
 - (id)actionForLayer:(CALayer *)layer forKey :(NSString *)key {
 	// We disable all actions for the layer, so no content cross fades, no implicit animation on moves, etc.
@@ -128,7 +111,7 @@
 
 // The accessibilityValue of this segment should be the x,y,z values last added.
 - (NSString *)accessibilityValue {
-	return [NSString stringWithFormat:NSLocalizedString(@"graphSegmentFormat", @""), xhistory[self.index]];
+	return [NSString stringWithFormat:NSLocalizedString(@"graphSegmentFormat", @""), points[self.index]];
 }
 
 @end

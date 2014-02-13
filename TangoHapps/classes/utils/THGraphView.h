@@ -4,6 +4,7 @@
 
 @class THGraphViewSegment;
 @class THGraphTextView;
+@class THGraphViewSegmentGroup;
 
 @interface THGraphView : UIView
 {
@@ -11,16 +12,16 @@
 }
 
 - (id)initWithFrame:(CGRect)frame maxAxisY:(float) maxAxisY minAxisY:(float) minAxisY ;
+
 - (void)addX:(float)x;
+- (void)addY:(float)y;
 
 @property (nonatomic) float maxAxisY;
 @property (nonatomic) float minAxisY;
-@property (nonatomic) float speed;//in pixels
-@property (nonatomic) BOOL should;
 
-@property (nonatomic, strong) NSMutableArray *segments;
+@property (nonatomic, strong) THGraphViewSegmentGroup * groupX;
+@property (nonatomic, strong) THGraphViewSegmentGroup * groupY;
 
-@property (nonatomic, unsafe_unretained) THGraphViewSegment * currentSegment;
 @property (nonatomic) THGraphTextView *text;
 
 @end

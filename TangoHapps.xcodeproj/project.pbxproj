@@ -856,6 +856,7 @@
 		9AD704AC18AA9AF70080CD2E /* THGraphViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AA18AA9AF70080CD2E /* THGraphViewHelper.m */; };
 		9AD704AF18AA9E220080CD2E /* THGraphViewSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AE18AA9E220080CD2E /* THGraphViewSegment.m */; };
 		9AD704B018AA9E220080CD2E /* THGraphViewSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AE18AA9E220080CD2E /* THGraphViewSegment.m */; };
+		9AD7050318AC1EF40080CD2E /* THGraphViewSegmentGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7050218AC1EF40080CD2E /* THGraphViewSegmentGroup.m */; };
 		9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
 		9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */; };
 		9AF3E6D816FA20090013DE13 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */; };
@@ -2276,6 +2277,8 @@
 		9AD704AA18AA9AF70080CD2E /* THGraphViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGraphViewHelper.m; sourceTree = "<group>"; };
 		9AD704AD18AA9E220080CD2E /* THGraphViewSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGraphViewSegment.h; sourceTree = "<group>"; };
 		9AD704AE18AA9E220080CD2E /* THGraphViewSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGraphViewSegment.m; sourceTree = "<group>"; };
+		9AD7050118AC1EF40080CD2E /* THGraphViewSegmentGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGraphViewSegmentGroup.h; sourceTree = "<group>"; };
+		9AD7050218AC1EF40080CD2E /* THGraphViewSegmentGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGraphViewSegmentGroup.m; sourceTree = "<group>"; };
 		9AF3E6CE16F868790013DE13 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeSceneImage.png; sourceTree = "<group>"; };
 		9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fakeSceneImage@2x.png"; sourceTree = "<group>"; };
@@ -3876,6 +3879,8 @@
 				9AD7046B18AA98F00080CD2E /* THGraphTextView.m */,
 				9AD704AD18AA9E220080CD2E /* THGraphViewSegment.h */,
 				9AD704AE18AA9E220080CD2E /* THGraphViewSegment.m */,
+				9AD7050118AC1EF40080CD2E /* THGraphViewSegmentGroup.h */,
+				9AD7050218AC1EF40080CD2E /* THGraphViewSegmentGroup.m */,
 				9A6B28AB18AA701A009AAE31 /* THGraphView.h */,
 				9A6B28AC18AA701A009AAE31 /* THGraphView.m */,
 				9A1FBE06187F208400699B61 /* THI2CMessage.h */,
@@ -5411,6 +5416,7 @@
 				9A09772E17267CFC0028A6B4 /* THSound.m in Sources */,
 				9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */,
 				9ABC27881809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */,
+				9AD7050318AC1EF40080CD2E /* THGraphViewSegmentGroup.m in Sources */,
 				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
 				9A5D047118844B50006E9348 /* THSoundEffect.m in Sources */,
