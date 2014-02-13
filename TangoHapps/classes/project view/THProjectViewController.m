@@ -196,26 +196,23 @@ float const kToolsTabMargin = 5;
     THDirector * director = [THDirector sharedDirector];
     THProject * currentProject = director.currentProject;
     
-    //_projectName = [THDirector sharedDirector].currentProject.name;
-    
     UIImage * image = [TFHelper screenshot];
     
-    if(![THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
+    if([THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
         
+        director.currentProxy.image = image;
+
+    } else {
         THProjectProxy * proxy = [THProjectProxy proxyWithName:director.currentProject.name];
         proxy.image = image;
         if(![director.projectProxies containsObject:proxy]){
             [director.projectProxies addObject:proxy];
             [director saveProjectProxies];
         }
-    } else { //if it already existed, its name may have changed
-        director.currentProxy.name = director.currentProject.name;
-        director.currentProxy.image = image;
     }
     
     [director.currentProject save];
-    
-    //[self storeImageForCurrentProject:image];
+
 }
 
 -(void) restoreCurrentProject{
@@ -514,13 +511,14 @@ float const kToolsTabMargin = 5;
 -(void) loadTools{
     
     self.divider = [self createDivider];
+    self.divider2 = [self createDivider];
     self.emptyItem1 = [self createEmptyItem];
     self.emptyItem2 = [self createEmptyItem];
     
     self.connectButton = [self createItemWithImageName:@"connect.png" action:@selector(connectPressed:)];
     self.duplicateButton = [self createItemWithImageName:@"duplicate.png" action:@selector(duplicatePressed:)];
     self.removeButton = [self createItemWithImageName:@"delete.png" action:@selector(removePressed:)];
-    self.pushButton = [self createItemWithImageName:@"pushButton.png" action:@selector(pushPressed:)];
+    self.pushButton = [self createItemWithImageName:@"push.png" action:@selector(pushPressed:)];
     self.lilypadButton = [self createItemWithImageName:@"lilypadmode.png" action:@selector(lilypadPressed:)];
     self.pinsModeButton = [self createItemWithImageName:@"pinsmode.png" action:@selector(pinsModePressed:)];
     self.hideiPhoneButton = [self createItemWithImageName:@"hideiphone.png" action:@selector(hideiPhonePressed:)];
@@ -535,11 +533,11 @@ float const kToolsTabMargin = 5;
                        target:self
                        action:@selector(endSimulation)];
     
-    self.editingTools = [NSArray arrayWithObjects:self.playButton, self.emptyItem1, self.hideiPhoneButton, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.editingTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.hideiPhoneButton, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
+    self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.divider2, self.pinsModeButton, nil];
     
-    self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.emptyItem1, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
     self.highlightedItemTintColor = nil;
     self.hideiPhoneButton.tintColor = self.highlightedItemTintColor;
@@ -653,17 +651,6 @@ float const kToolsTabMargin = 5;
 - (void)removePressed:(id)sender {
     [self checkSwitchToState:kEditorStateDelete];
 }
-/*
--(void) setHidden:(BOOL)hidden{
-    if(!hidden){
-        [self unselectAllButtons];
-    }
-    self.view.hidden = hidden;
-}
-
--(BOOL) hidden{
-    return self.view.hidden;
-}*/
 
 - (void) lilypadPressed:(id)sender {
     

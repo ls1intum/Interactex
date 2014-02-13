@@ -139,6 +139,7 @@ You should have received a copy of the GNU General Public License along with thi
     _clothes = [NSMutableArray array];
     _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
+    _otherHardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
     _actions = [NSMutableArray array];
@@ -196,6 +197,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         NSArray * boards = [decoder decodeObjectForKey:@"boards"];
         NSArray * hardwareComponents = [decoder decodeObjectForKey:@"hardwareComponents"];
+        NSArray * otherHardwareComponents = [decoder decodeObjectForKey:@"otherHardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
         NSArray * iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         NSArray * conditions = [decoder decodeObjectForKey:@"conditions"];
@@ -224,6 +226,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         for(THHardwareComponentEditableObject* hardwareComponent in hardwareComponents){
             [self addHardwareComponent:hardwareComponent];
+        }
+        
+        for(THHardwareComponentEditableObject* hardwareComponent in otherHardwareComponents){
+            [self addOtherHardwareComponent:hardwareComponent];
         }
         
         for(THViewEditableObject* iphoneObject in iPhoneObjects){
@@ -269,6 +275,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
+    [coder encodeObject:self.otherHardwareComponents forKey:@"otherHardwareComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -448,6 +455,32 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
 }
+
+#pragma mark - Other Hardware Components
+
+-(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
+    [self.otherHardwareComponents addObject:clotheObject];
+    [self notifyObjectAdded:clotheObject];
+    //[self tryAttachClotheObject:clotheObject];
+}
+
+-(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
+    [self removeAllWiresFrom:clotheObject notify:YES];
+    [self.otherHardwareComponents removeObject:clotheObject];
+    
+    [self deregisterActionsForObject:clotheObject];
+    [self notifyObjectRemoved:clotheObject];
+}
+
+-(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location{
+    for (THHardwareComponentEditableObject * object in self.otherHardwareComponents) {
+        if([object testPoint:location]){
+            return object;
+        }
+    }
+    return nil;
+}
+
 
 #pragma mark - Clothes
 
@@ -850,6 +883,7 @@ enum zPositions{
     [allObjects addObjectsFromArray:self.values];
     [allObjects addObjectsFromArray:self.boards];
     [allObjects addObjectsFromArray:self.hardwareComponents];
+    [allObjects addObjectsFromArray:self.otherHardwareComponents];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.clothes];
     return allObjects;

@@ -44,7 +44,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPinEditable.h"
 #import "THSimpleLilypad.h"
 #import "THBoardPinEditable.h"
-#import "THLilypadProperties.h"
+#import "THSimpleLilypadProperties.h"
+#import "THBoardProperties.h"
 
 @implementation THSimpleLilypadEditable
 
@@ -59,14 +60,6 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     {-52, -94}, {2.0, -110.0},//- +
     {-52,91},{-92,51},{-105, -3},{-91, -55}//A2 - A5
 };
-
-/*
-CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
-    {0, 0}, {0, 0},{0, 0},{0, 0},{0, 0},//D2,3,9,10,11
-    {-52, -94}, {-2, -110.0},//- +
-    {0,0},{0,0},{0, 0},{0, 0}//A2 - A5
-};*/
-
 
 -(void) loadLilypad{
     self.z = kLilypadZ;
@@ -140,7 +133,8 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObject:[THLilypadProperties properties]];
+    [controllers addObject:[THSimpleLilypadProperties properties]];
+    [controllers addObject:[THBoardProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
@@ -174,6 +168,10 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
         return _pins[idx];
     }
     return nil;
+}
+
+-(NSString*) boardInformation{
+    return @"Requires external BLE connectivity.";
 }
 
 #pragma mark - Pins

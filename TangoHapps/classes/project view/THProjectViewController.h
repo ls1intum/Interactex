@@ -92,6 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 //other tools
 @property (strong, nonatomic) UIBarButtonItem * divider;
+@property (strong, nonatomic) UIBarButtonItem * divider2;
 @property (strong, nonatomic) UIBarButtonItem * emptyItem1;
 @property (strong, nonatomic) UIBarButtonItem * emptyItem2;
 

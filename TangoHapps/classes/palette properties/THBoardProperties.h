@@ -43,11 +43,13 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THEditableObjectProperties.h"
 
 
-@interface THLilypadProperties : THEditableObjectProperties
+@interface THBoardProperties : THEditableObjectProperties
 {
     NSMutableArray * _pinViews;
     float _currentY;
 }
+
+@property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *containerView;
 

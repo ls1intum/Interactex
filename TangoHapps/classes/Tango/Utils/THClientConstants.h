@@ -73,7 +73,8 @@ typedef enum{
     kHardwareTypeVibeBoard,
     kHardwareTypeTemperatureSensor,//10
     kHardwareTypeAccelerometer,
-    kHardwareTypeMPUCompass
+    kHardwareTypeMPUCompass,
+    kHardwareTypeLipoBattery
 }THHardwareType;
 
 #define kNumPinTypes 4
