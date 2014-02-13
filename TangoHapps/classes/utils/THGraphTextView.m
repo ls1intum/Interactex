@@ -30,7 +30,9 @@
     
 	// Draw the grid lines
     float height = self.frame.size.height;
-    StrokeAllLinesForFrameWithHeight(context,height,kGraphViewAxisLineWidth);
+    DrawHorizontalLine(context, kGraphViewAxisLabelSize.width, kGraphViewGraphOffsetY + kGraphViewAxisLabelSize.height / 2.0f , kGraphViewAxisLineWidth);
+	DrawHorizontalLine(context, kGraphViewAxisLabelSize.width, height - kGraphViewGraphOffsetY - kGraphViewAxisLabelSize.height / 2.0f, kGraphViewAxisLineWidth);
+    StrokeLines(context);
     
 	// Draw the text
 	UIFont *systemFont = [UIFont systemFontOfSize:12.0];
@@ -40,8 +42,6 @@
     NSString * bottomValue = [NSString stringWithFormat:@"%.1f",self.minAxisY];
     
 	[topValue drawInRect:CGRectMake(0.0, kGraphViewGraphOffsetY, kGraphViewAxisLabelSize.width, kGraphViewAxisLabelSize.height) withFont:systemFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentRight];
-    
-	[@" 0.0" drawInRect:CGRectMake(0.0, height/2, kGraphViewAxisLabelSize.width, kGraphViewAxisLabelSize.height) withFont:systemFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentRight];
     
 	[bottomValue drawInRect:CGRectMake(0.0, height - kGraphViewGraphOffsetY - kGraphViewAxisLabelSize.height, kGraphViewAxisLabelSize.width, kGraphViewAxisLabelSize.height) withFont:systemFont lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentRight];
 }

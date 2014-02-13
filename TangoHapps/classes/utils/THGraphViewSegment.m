@@ -22,11 +22,11 @@
 		layer = [[CALayer alloc] init];
 		layer.delegate = self;
         
-        layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize, height);
-
+        //layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize, height);
+layer.bounds = CGRectMake(0.0, - self.height, kGraphSegmentSize, height);
+        
 		//layer.opaque = YES;
 		self.index = kGraphSegmentSize;
-        
 	}
 	return self;
 }
@@ -64,7 +64,6 @@
 
 - (void)drawLayer:(CALayer*)l inContext:(CGContextRef)context{
     
-    //CGColorRef color = CreateDeviceGrayColor(0.0f, 0.0f);
     CGColorRef color = CreateDeviceRGBColor(1, 1, 1, 0);
     
 	CGContextSetFillColorWithColor(context, color);

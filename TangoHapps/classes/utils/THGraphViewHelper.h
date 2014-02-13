@@ -30,6 +30,4 @@ extern void DrawHorizontalLine(CGContextRef context, CGFloat x, CGFloat y, CGFlo
 
 extern void StrokeLines(CGContextRef context);
 
-extern void StrokeAllLinesForFrameWithHeight(CGContextRef context, float frameHeight, float lineWidth);
-
 #endif

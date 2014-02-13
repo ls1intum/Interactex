@@ -59,11 +59,3 @@ void StrokeLines(CGContextRef context) {
 	CGContextSetStrokeColorWithColor(context, graphLineColor());
 	CGContextStrokePath(context);
 }
-
-void StrokeAllLinesForFrameWithHeight(CGContextRef context, float frameHeight, float lineWidth){
-    
-	DrawHorizontalLine(context, kGraphViewAxisLabelSize.width, kGraphViewGraphOffsetY + kGraphViewAxisLabelSize.height / 2.0f , lineWidth);
-	DrawHorizontalLine(context, kGraphViewAxisLabelSize.width, frameHeight / 2.0f + kGraphViewAxisLabelSize.height / 2.0f, lineWidth);
-	DrawHorizontalLine(context, kGraphViewAxisLabelSize.width, frameHeight - kGraphViewGraphOffsetY - kGraphViewAxisLabelSize.height / 2.0f, lineWidth);
-    StrokeLines(context);
-}

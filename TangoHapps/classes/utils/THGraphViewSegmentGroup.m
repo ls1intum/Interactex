@@ -24,7 +24,7 @@ float const kGraphViewOffsetX = 10.0f;
     return self;
 }
 
-- (void)addValue:(float)value{
+-(void)addValue:(float)value{
     
 	if ([self.currentSegment addValue:value]) {
 		[self recycleSegment];
@@ -38,7 +38,11 @@ float const kGraphViewOffsetX = 10.0f;
 	}
 }
 
-- (THGraphViewSegment*) addSegment{
+-(void) setFrame:(CGRect)frame{
+    [super setFrame:frame];
+}
+
+-(THGraphViewSegment*) addSegment{
     
 	THGraphViewSegment * segment = [[THGraphViewSegment alloc] initWithHeight:self.frame.size.height];
     segment.color = self.color;
@@ -53,7 +57,7 @@ float const kGraphViewOffsetX = 10.0f;
 	return segment;
 }
 
-- (void) recycleSegment{
+-(void) recycleSegment{
 	THGraphViewSegment * last = [self.segments lastObject];
     
 	if ([last isVisibleInRect:self.layer.bounds]) {
@@ -72,7 +76,7 @@ float const kGraphViewOffsetX = 10.0f;
 }
 
 // Return an up-to-date value for the graph.
-- (NSString *)accessibilityValue {
+-(NSString *)accessibilityValue {
 	if (self.segments.count == 0) {
 		return nil;
 	}

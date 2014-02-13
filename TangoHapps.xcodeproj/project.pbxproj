@@ -735,9 +735,7 @@
 		9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
 		9AAF2840182B8AB200531E3A /* THMonitorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A31659C1827955200CB3E59 /* THMonitorEditable.m */; };
 		9AAF2841182B8AB500531E3A /* THMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3165A0182795D000CB3E59 /* THMonitor.m */; };
-		9AAF2842182B8ABF00531E3A /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
 		9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF283F182B88F000531E3A /* libBLE.a */; };
-		9AAF2846182B8B1C00531E3A /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
 		9AB29B40167F4B5D00F5AF62 /* THImageViewPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */; };
 		9AB29B43167F4CF300F5AF62 /* THImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B42167F4CF300F5AF62 /* THImageView.m */; };
 		9AB29B46167F4DF800F5AF62 /* THImageViewEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29B45167F4DF800F5AF62 /* THImageViewEditable.m */; };
@@ -1164,7 +1162,6 @@
 		9AF60BC916A04D9F00178439 /* THTabbarViewSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */; };
 		9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A50D91918296D3700335926 /* libcocos2d.a */; };
 		9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A50D91D18296D3700335926 /* libCocosDenshion.a */; };
-		9AFA65F3182A81790082990F /* THMonitorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA65F2182A81790082990F /* THMonitorLine.m */; };
 		9AFB7DC61832A91500694CCE /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */; };
 		9AFB7DC71832A91500694CCE /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */; };
 		9AFB7DCC1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC91832AAD100694CCE /* THClientCollectionProjectCell.m */; };
@@ -2535,8 +2532,6 @@
 		9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = connectionMade.mp3; sourceTree = "<group>"; };
 		9AF60BC416A04D9F00178439 /* THTabbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbar.xib; sourceTree = "<group>"; };
 		9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbarViewSection.xib; sourceTree = "<group>"; };
-		9AFA65F1182A81790082990F /* THMonitorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMonitorLine.h; sourceTree = "<group>"; };
-		9AFA65F2182A81790082990F /* THMonitorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMonitorLine.m; sourceTree = "<group>"; };
 		9AFB7DC41832A91500694CCE /* THClientSceneSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneSelectionViewController.h; sourceTree = "<group>"; };
 		9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneSelectionViewController.m; sourceTree = "<group>"; };
 		9AFB7DC81832AAD100694CCE /* THClientCollectionProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientCollectionProjectCell.h; sourceTree = "<group>"; };
@@ -2665,15 +2660,6 @@
 				9A1FBD6F187ED71900699B61 /* libFirmata.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9A3165F718292AB300CB3E59 /* other */ = {
-			isa = PBXGroup;
-			children = (
-				9AFA65F1182A81790082990F /* THMonitorLine.h */,
-				9AFA65F2182A81790082990F /* THMonitorLine.m */,
-			);
-			path = other;
 			sourceTree = "<group>";
 		};
 		9A35117E167B7A6800C7484B = {
@@ -3663,7 +3649,6 @@
 		9AF50264167B84B40020241C /* software */ = {
 			isa = PBXGroup;
 			children = (
-				9A3165F718292AB300CB3E59 /* other */,
 				9AF50265167B84B40020241C /* THiPhone.h */,
 				9AF50266167B84B40020241C /* THiPhone.m */,
 				9AF5026F167B84B40020241C /* THiPhoneEditableObject.h */,
@@ -5276,7 +5261,6 @@
 				9AF5037A167B84B40020241C /* THBuzzerEditableObject.m in Sources */,
 				9AF5037B167B84B40020241C /* THClothe.m in Sources */,
 				9AF5037C167B84B40020241C /* THHardwareComponent.m in Sources */,
-				9AFA65F3182A81790082990F /* THMonitorLine.m in Sources */,
 				9AF5037D167B84B40020241C /* THHardwareComponentEditableObject.m in Sources */,
 				9AF50380167B84B40020241C /* THCompassLSM303.m in Sources */,
 				9A89429E1836213100B8CA0E /* THYannicProperties.m in Sources */,
@@ -5718,7 +5702,6 @@
 				9A59323917E5D58300B20D99 /* THEditableObjectProperties.m in Sources */,
 				9A59323B17E5D58300B20D99 /* THInvokableProperties.m in Sources */,
 				9A59323D17E5D58300B20D99 /* THPaletteItemProperties.m in Sources */,
-				9AAF2842182B8ABF00531E3A /* THMonitorLine.m in Sources */,
 				9A59323F17E5D58300B20D99 /* THTriggerableProperties.m in Sources */,
 				9A59324117E5D58300B20D99 /* THViewableProperties.m in Sources */,
 				9A59324317E5D58300B20D99 /* THImagePickerController.m in Sources */,
@@ -5813,7 +5796,6 @@
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
 				9A0F687C1886B9AC00B589DC /* THCompassMPU6050.m in Sources */,
-				9AAF2846182B8B1C00531E3A /* THMonitorLine.m in Sources */,
 				9AD704AC18AA9AF70080CD2E /* THGraphViewHelper.m in Sources */,
 				9A5D047218844B50006E9348 /* THSoundEffect.m in Sources */,
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,

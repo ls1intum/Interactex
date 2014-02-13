@@ -34,24 +34,37 @@ float const kGraphViewLeftAxisWidth = 42.0;
     
     CGRect frame = CGRectMake(kGraphViewLeftAxisWidth, 0.0, self.frame.size.width - kGraphViewLeftAxisWidth, self.frame.size.height);
     self.groupX = [[THGraphViewSegmentGroup alloc] initWithFrame:frame color:[UIColor blueColor]];
+    self.groupX.hidden = YES;
     [self addSubview:self.groupX];
     
     self.groupY = [[THGraphViewSegmentGroup alloc] initWithFrame:frame color:[UIColor redColor]];
+    self.groupY.hidden = YES;
     [self addSubview:self.groupY];
     
+    //self.groupX.layer.borderWidth = 1.0f;
     
     frame = CGRectMake(0.0, 0.0, kGraphViewLeftAxisWidth, self.frame.size.height);
-	_text = [[THGraphTextView alloc] initWithFrame:frame maxAxisY: self.maxAxisY minAxisY:self.minAxisY];
-	[self addSubview:self.text];
+	_textView = [[THGraphTextView alloc] initWithFrame:frame maxAxisY: self.maxAxisY minAxisY:self.minAxisY];
+	[self addSubview:self.textView];
+}
+
+-(void) setFrame:(CGRect)frame{
+    [super setFrame:frame];
     
+    frame = CGRectMake(0.0, 0.0, kGraphViewLeftAxisWidth, self.frame.size.height);
+    self.textView.frame = frame;
+    
+    frame = CGRectMake(kGraphViewLeftAxisWidth, 0.0, self.frame.size.width - kGraphViewLeftAxisWidth, self.frame.size.height);
+    self.groupX.frame = frame;
+    self.groupY.frame = frame;
 }
 
 -(void) setMaxAxisY:(float)maxAxisY{
-    self.text.maxAxisY = maxAxisY;
+    self.textView.maxAxisY = maxAxisY;
 }
 
 -(void) setMinAxisY:(float)minAxisY{
-    self.text.minAxisY = minAxisY;
+    self.textView.minAxisY = minAxisY;
 }
 
 - (void)addX:(float)value{
@@ -64,7 +77,6 @@ float const kGraphViewLeftAxisWidth = 42.0;
 	[self.groupY addValue:value];
 }
 
-
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	// Fill in the background
@@ -72,11 +84,22 @@ float const kGraphViewLeftAxisWidth = 42.0;
 	CGContextFillRect(context, self.bounds);
     
     DrawHorizontalLine(context, 0.0, kGraphViewGraphOffsetY + kGraphViewAxisLabelSize.height / 2.0f , self.bounds.size.width);
-	DrawHorizontalLine(context, 0.0, self.bounds.size.height / 2.0f + kGraphViewAxisLabelSize.height / 2.0f, self.bounds.size.width);
+	//DrawHorizontalLine(context, 0.0, self.bounds.size.height / 2.0f + kGraphViewAxisLabelSize.height / 2.0f, self.bounds.size.width);
 	DrawHorizontalLine(context, 0.0, self.bounds.size.height - kGraphViewGraphOffsetY - kGraphViewAxisLabelSize.height / 2.0f, self.bounds.size.width);
     StrokeLines(context);
-    
 }
 
+-(void) stop{
+    
+    self.groupX.hidden = YES;
+    self.groupY.hidden = YES;
+}
+
+-(void) start{
+    
+    self.groupX.hidden = NO;
+    self.groupY.hidden = NO;
+
+}
 
 @end
