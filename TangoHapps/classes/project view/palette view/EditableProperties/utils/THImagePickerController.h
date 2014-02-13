@@ -53,7 +53,7 @@ extern float const kImagePickerPadding;
 @end
 
 @interface THImagePickerController : UIViewController {
-    
+    CGPoint _currentPos;
     UIActivityIndicatorView * _activityIndicator;
 }
 
