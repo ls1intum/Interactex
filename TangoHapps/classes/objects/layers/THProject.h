@@ -127,8 +127,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject;
 
 //other hardware components
--(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) clotheObject;
--(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) clotheObject;
+-(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
+-(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location;
 
 //clothes

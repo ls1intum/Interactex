@@ -45,6 +45,7 @@
 #import "THLilyPad.h"
 #import "THBoardPinEditable.h"
 #import "THBoardProperties.h"
+#import "THBLELilyPadProperties.h"
 
 @implementation THBLELilyPadEditable
 
@@ -64,7 +65,7 @@ CGPoint kBLELilypadPinPositions[kBLELilypadNumberOfPins] = {{1,110},{-29,104},{-
 -(void) loadLilypad{
     self.z = kLilypadZ;
     
-    self.sprite = [CCSprite spriteWithFile:@"bleLilyPad.png"];
+    self.sprite = [CCSprite spriteWithFile:@"BLE-LilyPad.png"];
     [self addChild:self.sprite];
     
     self.canBeDuplicated = NO;
@@ -132,6 +133,7 @@ CGPoint kBLELilypadPinPositions[kBLELilypadNumberOfPins] = {{1,110},{-29,104},{-
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
+    [controllers addObject:[THBLELilyPadProperties properties]];
     [controllers addObject:[THBoardProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;

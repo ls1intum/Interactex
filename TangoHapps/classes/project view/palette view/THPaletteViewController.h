@@ -58,8 +58,7 @@ typedef enum {
 } TFDraggingState;
 
 @interface THPaletteViewController : UIViewController
-<THPaletteDragDelegate, THPaletteEditionDelegate, THEditorDragDelegate, TFTabbarViewDataSource, TFTabBarViewDelegate>
-{
+<THPaletteDragDelegate, THPaletteEditionDelegate, THEditorDragDelegate, TFTabbarViewDataSource, TFTabBarViewDelegate> {
     THDraggedPaletteItem * _dragView;
     THDraggedPaletteItem * _editorDragView;
     
@@ -76,15 +75,15 @@ typedef enum {
 @property (nonatomic, strong) NSArray * uiSectionArray;
 @property (nonatomic, strong) NSArray * boardsSectionArray;
 @property (nonatomic, strong) NSArray * hardwareSectionArray;
-@property (nonatomic, strong) NSArray * powerSectionArray;
 @property (nonatomic, strong) NSArray * programmingSectionArray;
+@property (nonatomic, strong) NSArray * otherHardwareSectionArray;
 
 @property (nonatomic, copy) NSString * clothesSectionName;
 @property (nonatomic, copy) NSString * uiSectionArrayName;
 @property (nonatomic, copy) NSString * boardsSectionName;
 @property (nonatomic, copy) NSString * hardwareSectionName;
-@property (nonatomic, copy) NSString * powerSectionName;
 @property (nonatomic, copy) NSString * programmingSectionName;
+@property (nonatomic, copy) NSString * otherHardwareSectionName;
 
 @property (nonatomic, strong) NSMutableArray * sections;
 @property (nonatomic, strong) NSMutableArray * sectionNames;

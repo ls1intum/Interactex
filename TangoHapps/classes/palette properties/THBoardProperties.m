@@ -56,7 +56,7 @@ float const kBoardPropertiesMinHeight = 300;
 
 
 -(NSString *)title {
-    return @"Lilypad";
+    return @"Board";
 }
 
 -(void) addPinViews{
@@ -90,6 +90,7 @@ float const kBoardPropertiesMinHeight = 300;
     }
     [_pinViews removeAllObjects];
 }
+
 
 -(void) reloadState{
     [self removePinViews];

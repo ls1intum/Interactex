@@ -67,7 +67,6 @@ NSString * const kNotificationPaletteItemDeselected = @"notificationPaletteItemD
 
 NSString * const kNotificationConnectionMade = @"notificationConnectionMade";
 
-
 NSString * const kConnectionMadeEffect = @"connectionMade.mp3";
 
 float kPaletteItemsPadding = 8;

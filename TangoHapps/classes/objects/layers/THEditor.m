@@ -1031,20 +1031,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) showOtherHardwareComponents{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (TFEditableObject * object in project.otherHardwareComponents) {
-        object.visible = YES;
-    }
-}
-
--(void) hideOtherHardwareComponents{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (TFEditableObject * object in project.otherHardwareComponents) {
-        object.visible = NO;
-    }
-}
-
 -(void) addEditableObjects{
     
     THProject * project = [THDirector sharedDirector].currentProject;
@@ -1077,7 +1063,37 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) showOtherHardware{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    for (THHardwareComponentEditableObject * board in project.otherHardwareComponents) {
+        board.visible = YES;
+    }
+}
+
+-(void) hideOtherHardware{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    for (THHardwareComponentEditableObject * board in project.otherHardwareComponents) {
+        board.visible = NO;
+    }
+}
+
 #pragma mark - Lilypad Mode
+/*
+-(void) addLilypadObjects{
+    THProject * project = [THDirector sharedDirector].currentProject;
+    
+    [self addEditableObject:project.lilypad];
+}
+
+-(void) removeLilypadObjects{
+    THProject * project = [THDirector sharedDirector].currentProject;
+    
+    if(project.lilypad != nil){
+        [project.lilypad removeFromParentAndCleanup:YES];
+    }
+}*/
 
 -(void) hideNonLilypadObjects{
     [self hideClothes];
@@ -1126,8 +1142,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     THPaletteViewController * paletteController = [THDirector sharedDirector].projectController.tabController.paletteController;
     
-    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.boardsSectionArray, paletteController.hardwareSectionArray,paletteController.powerSectionArray, nil];
-    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.clothesSectionName, paletteController.boardsSectionName, paletteController.hardwareSectionName, paletteController.powerSectionName, nil];
+    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.boardsSectionArray, paletteController.hardwareSectionArray, paletteController.otherHardwareSectionArray, nil];
+    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.clothesSectionName, paletteController.boardsSectionName, paletteController.hardwareSectionName, paletteController.otherHardwareSectionName, nil];
     
     [paletteController reloadPalettes];
 }
@@ -1138,9 +1154,10 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self unselectCurrentObject];
     [self hideConnectionsForAllObjects];
-    [self showOtherHardwareComponents];
+    
     [self hideNonLilypadObjects];
     [self showBoards];
+    [self showOtherHardware];
     [self showAllLilypadWires];
     [self hideNonLilypadPaletteSections];
 }
@@ -1149,7 +1166,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     _isLilypadMode = NO;
     [self hideBoards];
-    [self hideOtherHardwareComponents];
+    [self hideOtherHardware];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
     [self hideAllLilypadWires];

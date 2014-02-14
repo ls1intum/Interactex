@@ -275,7 +275,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
-    [coder encodeObject:self.otherHardwareComponents forKey:@"otherHardwareComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -458,18 +457,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Other Hardware Components
 
--(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
-    [self.otherHardwareComponents addObject:clotheObject];
-    [self notifyObjectAdded:clotheObject];
-    //[self tryAttachClotheObject:clotheObject];
+-(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) otherHardwareComponent{
+    [self.hardwareComponents addObject:otherHardwareComponent];
+    [self notifyObjectAdded:otherHardwareComponent];
 }
 
--(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) clotheObject{
-    [self removeAllWiresFrom:clotheObject notify:YES];
-    [self.otherHardwareComponents removeObject:clotheObject];
+-(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) otherHardwareComponent{
+    [self removeAllWiresFrom:otherHardwareComponent notify:YES];
+    [self.otherHardwareComponents removeObject:otherHardwareComponent];
     
-    [self deregisterActionsForObject:clotheObject];
-    [self notifyObjectRemoved:clotheObject];
+    [self deregisterActionsForObject:otherHardwareComponent];
+    [self notifyObjectRemoved:otherHardwareComponent];
 }
 
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location{

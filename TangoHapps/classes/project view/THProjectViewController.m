@@ -196,23 +196,26 @@ float const kToolsTabMargin = 5;
     THDirector * director = [THDirector sharedDirector];
     THProject * currentProject = director.currentProject;
     
+    //_projectName = [THDirector sharedDirector].currentProject.name;
+    
     UIImage * image = [TFHelper screenshot];
     
-    if([THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
+    if(![THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
         
-        director.currentProxy.image = image;
-
-    } else {
         THProjectProxy * proxy = [THProjectProxy proxyWithName:director.currentProject.name];
         proxy.image = image;
         if(![director.projectProxies containsObject:proxy]){
             [director.projectProxies addObject:proxy];
             [director saveProjectProxies];
         }
+    } else { //if it already existed, its name may have changed
+        director.currentProxy.name = director.currentProject.name;
+        director.currentProxy.image = image;
     }
     
     [director.currentProject save];
-
+    
+    //[self storeImageForCurrentProject:image];
 }
 
 -(void) restoreCurrentProject{
@@ -535,7 +538,7 @@ float const kToolsTabMargin = 5;
     
     self.editingTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.hideiPhoneButton, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.divider2, self.pinsModeButton, nil];
+    self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
     
     self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
@@ -651,6 +654,17 @@ float const kToolsTabMargin = 5;
 - (void)removePressed:(id)sender {
     [self checkSwitchToState:kEditorStateDelete];
 }
+/*
+-(void) setHidden:(BOOL)hidden{
+    if(!hidden){
+        [self unselectAllButtons];
+    }
+    self.view.hidden = hidden;
+}
+
+-(BOOL) hidden{
+    return self.view.hidden;
+}*/
 
 - (void) lilypadPressed:(id)sender {
     

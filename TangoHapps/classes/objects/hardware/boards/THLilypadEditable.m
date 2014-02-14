@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPinEditable.h"
 #import "THLilyPad.h"
 #import "THBoardPinEditable.h"
+#import "THLilypadProperties.h"
 #import "THBoardProperties.h"
 
 @implementation THLilyPadEditable
@@ -130,6 +131,7 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
+    [controllers addObject:[THLilypadProperties properties]];
     [controllers addObject:[THBoardProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
@@ -182,10 +184,6 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
         return _pins[idx];
     }
     return nil;
-}
-
--(NSString*) boardInformation{
-    return @"Requires additional power source and BLE connetivity.";
 }
 
 #pragma mark - Lifecycle
