@@ -90,6 +90,9 @@
 		9A39649618AE5A090061E44B /* THGraphViewSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AE18AA9E220080CD2E /* THGraphViewSegment.m */; };
 		9A39649718AE5A090061E44B /* THGraphViewSegmentGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7050218AC1EF40080CD2E /* THGraphViewSegmentGroup.m */; };
 		9A39649818AE61FE0061E44B /* THLipoBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4D73318AE171D00A43433 /* THLipoBattery.m */; };
+		9A3964A118AE6ABA0061E44B /* pureData.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A39649F18AE6ABA0061E44B /* pureData.png */; };
+		9A3964A218AE6ABA0061E44B /* pureData@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3964A018AE6ABA0061E44B /* pureData@2x.png */; };
+		9A3964DB18AE76180061E44B /* synthesis.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284E18AA08A0009AAE31 /* synthesis.pd */; };
 		9A41443317DE63A70061EDF8 /* THClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41443217DE63A70061EDF8 /* THClientConstants.m */; };
 		9A41446C17DE64410061EDF8 /* THClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41443217DE63A70061EDF8 /* THClientConstants.m */; };
 		9A41446D17DE64420061EDF8 /* THClientConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41443217DE63A70061EDF8 /* THClientConstants.m */; };
@@ -1829,6 +1832,8 @@
 		9A35119F167B7A6800C7484B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9A3511A1167B7A6800C7484B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9A3511A3167B7A6800C7484B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9A39649F18AE6ABA0061E44B /* pureData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pureData.png; sourceTree = "<group>"; };
+		9A3964A018AE6ABA0061E44B /* pureData@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pureData@2x.png"; sourceTree = "<group>"; };
 		9A41442E17DD18590061EDF8 /* TangoHapps-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TangoHapps-Prefix.pch"; sourceTree = "<group>"; };
 		9A41443117DE63A70061EDF8 /* THClientConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConstants.h; sourceTree = "<group>"; };
 		9A41443217DE63A70061EDF8 /* THClientConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConstants.m; sourceTree = "<group>"; };
@@ -4121,6 +4126,8 @@
 		9AFB7E291833D89800694CCE /* presets */ = {
 			isa = PBXGroup;
 			children = (
+				9A39649F18AE6ABA0061E44B /* pureData.png */,
+				9A3964A018AE6ABA0061E44B /* pureData@2x.png */,
 				9A84C1E21837820500848972 /* musicPlayer.png */,
 				9A84C1E31837820500848972 /* musicPlayer@2x.png */,
 				9A7E4D32183618C200657B72 /* LSMCompass.png */,
@@ -5305,6 +5312,7 @@
 				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
 				9AFB7E561833D89800694CCE /* vibeBoard.png in Resources */,
 				9A51102F1839384200EB25FA /* backwards@2x.png in Resources */,
+				9A3964A118AE6ABA0061E44B /* pureData.png in Resources */,
 				9AF5003A167B83140020241C /* THClientGridItem.xib in Resources */,
 				9A5110311839384200EB25FA /* forward.png in Resources */,
 				9A51103B1839384200EB25FA /* pause@2x.png in Resources */,
@@ -5315,10 +5323,12 @@
 				9AFB7E401833D89800694CCE /* buzzer@2x.png in Resources */,
 				9A5110391839384200EB25FA /* pause.png in Resources */,
 				9AFB7E441833D89800694CCE /* led@2x.png in Resources */,
+				9A3964DB18AE76180061E44B /* synthesis.pd in Resources */,
 				9AFB7E5E1833DBCC00694CCE /* button@2x.png in Resources */,
 				9AFB7E4A1833D89800694CCE /* potentiometer.png in Resources */,
 				9A7E4D34183618C200657B72 /* LSMCompass.png in Resources */,
 				9A84C1E41837820500848972 /* musicPlayer.png in Resources */,
+				9A3964A218AE6ABA0061E44B /* pureData@2x.png in Resources */,
 				9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */,
 				9AFB7E4C1833D89800694CCE /* potentiometer@2x.png in Resources */,
 				9A5110331839384200EB25FA /* forward@2x.png in Resources */,

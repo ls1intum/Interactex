@@ -65,7 +65,6 @@
 
 #pragma mark - Methods
 
-
 -(BOOL) on{
     THPureData * puredata = (THPureData*)self.simulableObject;
     return puredata.on;
@@ -81,18 +80,26 @@
     [puredata turnOff];
 }
 
-//Functions by Martijn
--(void) setVariable1:(NSInteger)var1{
-    NSLog(@"Editable - var1 - %ld",(long)var1);
-    THPureData * PureData = (THPureData*)self.simulableObject;
-    PureData.variable1 = var1;
+-(NSInteger) variable1{
+    THPureData * pureData = (THPureData*)self.simulableObject;
+    return pureData.variable1;
 }
 
-//Functions by Martijn
+-(NSInteger) variable2{
+    THPureData * pureData = (THPureData*)self.simulableObject;
+    return pureData.variable2;
+}
+
+-(void) setVariable1:(NSInteger)var1{
+
+    THPureData * pureData = (THPureData*)self.simulableObject;
+    pureData.variable1 = var1;
+}
+
 -(void) setVariable2:(NSInteger)var2{
-    NSLog(@"Editable - var2 - %ld",(long)var2);
-    THPureData * PureData = (THPureData*)self.simulableObject;
-    PureData.variable2 = var2;
+
+    THPureData * pureData = (THPureData*)self.simulableObject;
+    pureData.variable2 = var2;
 }
 
 -(NSString*) description{

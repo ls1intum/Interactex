@@ -16,7 +16,11 @@
 
 -(id) init {
     self = [super init];
-    if(self){        
+    if(self){
+        
+        self.variable1 = 255;
+        self.variable2 = 255;
+        
         [self loadPureData];
     }
     return self;
@@ -44,16 +48,15 @@
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,method3,method4,nil];
 
     //start pure data library
-    //self.audioController = [[PdAudioController alloc] init];
     //[self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 mixingEnabled:YES];
     audioController_ = [[PdAudioController alloc] init];
     if ([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:NO mixingEnabled:NO] != PdAudioOK) {
-        NSLog(@"failed to initialize audio components");
+        NSLog(@"failed to initialize pureData audio components");
     }
     self.dispatcher = [[PdDispatcher alloc] init];
 	[PdBase openFile:@"synthesis.pd" path:[[NSBundle mainBundle] resourcePath]];
    
-	[self.audioController print];
+	//[self.audioController print];
 
     /*
     TFEvent * event0 = [TFEvent eventNamed:kEventOnChanged];
@@ -101,14 +104,12 @@
     
     _variable1 = var1;
     [PdBase sendFloat:_variable1 toReceiver: @"left" ];
-    NSLog(@"Non-editable - var1 - %ld",(long)_variable1);
 }
 
 -(void) setVariable2:(NSInteger)var2 {
     
     _variable2 = var2;
     [PdBase sendFloat:_variable2 toReceiver: @"right" ];
-    NSLog(@"Non-editable - var2 - %ld",(long)_variable2);
 }
 
 - (void)turnOn {
