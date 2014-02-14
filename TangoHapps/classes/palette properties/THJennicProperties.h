@@ -1,5 +1,5 @@
 /*
-THYannicProperties.m
+THYannicProperties.h
 Interactex Designer
 
 Created by Juan Haladjian on 15/11/2013.
@@ -40,29 +40,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THYannicProperties.h"
-#import "THYannicEditable.h"
+#import "THEditableObjectProperties.h"
 
-@implementation THYannicProperties
-
--(NSString*) title{
-    return @"Yannic";
-}
-
-
--(void) reloadState {
+@interface THJennicProperties : THEditableObjectProperties {
     
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 @end
+

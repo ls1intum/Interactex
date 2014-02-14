@@ -194,7 +194,3 @@ extern CGPoint const kSewedPositions[kNumHardwareTypes];
 
 extern float const kLayerMinScale;
 extern float const kLayerMaxScale;
-
-extern float const kGraphViewGraphOffsetY;
-extern CGSize const kGraphViewAxisLabelSize;
-extern float const kGraphViewAxisLineWidth;

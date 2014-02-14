@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THYannic.h"
+#import "THJennic.h"
 #import "THBoardPin.h"
 #import "THI2CComponent.h"
 #import "THHardwareComponent.h"
@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 NSInteger const kYannicNumberOfPins;
 
-@implementation THYannic
+@implementation THJennic
 
 @dynamic minusPin;
 @dynamic plusPin;

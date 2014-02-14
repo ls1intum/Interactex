@@ -242,3 +242,7 @@ extern float const kBuzzerMinFrequency;
 #define kLilypadNumPwmPins 6
 
 extern NSInteger const kLilypadPwmPins[kLilypadNumPwmPins];
+
+extern float const kGraphViewGraphOffsetY;
+extern CGSize const kGraphViewAxisLabelSize;
+extern float const kGraphViewAxisLineWidth;

@@ -51,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBLELilyPadPaletteItem.h"
 #import "THLilypadPaletteItem.h"
 #import "THSimpleLilypadPaletteItem.h"
-#import "THYannicPaletteItem.h"
+#import "THJennicPaletteItem.h"
 
 #import "THLedPaletteItem.h"
 #import "THButtonPaletteItem.h"
@@ -417,7 +417,7 @@ You should have received a copy of the GNU General Public License along with thi
                                 [[THBLELilyPadPaletteItem alloc] initWithName:@"BLE-LilyPad"],
                                 [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
                                 [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
-                                [[THYannicPaletteItem alloc] initWithName:@"jennic"],nil];
+                                [[THJennicPaletteItem alloc] initWithName:@"jennic"],nil];
     
     self.hardwareSectionArray = [NSMutableArray arrayWithObjects:
                                  [[THLedPaletteItem alloc] initWithName:@"led"],

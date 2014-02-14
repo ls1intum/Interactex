@@ -1,5 +1,5 @@
 /*
-THYannicProperties.h
+THYannicPaletteItem.m
 Interactex Designer
 
 Created by Juan Haladjian on 15/11/2013.
@@ -40,12 +40,18 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THEditableObjectProperties.h"
+#import "THJennicPaletteItem.h"
+#import "THJennicEditable.h"
 
-@interface THYannicProperties : THEditableObjectProperties {
+@implementation THJennicPaletteItem
+
+- (void)dropAt:(CGPoint)location {
+    THJennicEditable * yannic = [[THJennicEditable alloc] init];
+    yannic.position = location;
     
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project addBoard:yannic];
 }
-
 
 @end
 

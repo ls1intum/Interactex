@@ -580,7 +580,6 @@ float const kToolsTabMargin = 5;
     self.connectButton.tintColor = self.unselectedTintColor;
     self.duplicateButton.tintColor = self.unselectedTintColor;
     self.removeButton.tintColor = self.unselectedTintColor;
-    self.pushButton.tintColor = self.unselectedTintColor;
     self.hideiPhoneButton.tintColor = self.unselectedTintColor;
     self.lilypadButton.tintColor = self.unselectedTintColor;
 }

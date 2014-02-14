@@ -1,5 +1,5 @@
 /*
-THYannicEditable.h
+THYannic.h
 Interactex Designer
 
 Created by Juan Haladjian on 15/11/2013.
@@ -41,14 +41,11 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
-#import "THBoardEditable.h"
+#import "THBoard.h"
+#import "THI2CProtocol.h"
 
-
-@class THBoardPinEditable;
-@class THElementPinEditable;
-
-@interface THYannicEditable : THBoardEditable {
-    THBoardPinEditable * _highlightedPin;
+@interface THJennic : THBoard {
 }
+
 
 @end

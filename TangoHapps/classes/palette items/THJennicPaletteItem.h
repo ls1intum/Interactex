@@ -1,5 +1,5 @@
 /*
-THYannic.h
+THYannicPaletteItem.h
 Interactex Designer
 
 Created by Juan Haladjian on 15/11/2013.
@@ -40,12 +40,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import <Foundation/Foundation.h>
-#import "THBoard.h"
-#import "THI2CProtocol.h"
+#import "THPaletteItem.h"
 
-@interface THYannic : THBoard {
-}
-
+@interface THJennicPaletteItem : THPaletteItem
 
 @end

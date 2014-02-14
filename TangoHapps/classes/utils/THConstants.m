@@ -129,7 +129,3 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
 float const kLayerMinScale = 0.5f;
 float const kLayerMaxScale = 2.5f;
 
-
-float const kGraphViewGraphOffsetY = 5.0f;
-CGSize const kGraphViewAxisLabelSize = {36.0f, 16.0f};
-float const kGraphViewAxisLineWidth = 6.0f;

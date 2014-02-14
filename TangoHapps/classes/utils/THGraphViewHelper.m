@@ -7,7 +7,7 @@
 //
 
 #include "THGraphViewHelper.h"
-#import "THConstants.h"
+#import "THClientConstants.h"
 
 CGColorRef CreateDeviceGrayColor(CGFloat w, CGFloat a)
 {

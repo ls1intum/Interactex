@@ -40,13 +40,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THYannicEditable.h"
+#import "THJennicEditable.h"
 #import "THPinEditable.h"
-#import "THYannic.h"
+#import "THJennic.h"
 #import "THBoardPinEditable.h"
-#import "THYannicProperties.h"
+#import "THJennicProperties.h"
 
-@implementation THYannicEditable
+@implementation THJennicEditable
 
 @synthesize pins = _pins;
 @dynamic numberOfDigitalPins;
@@ -62,7 +62,7 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 -(void) loadYannic{
     self.z = kYannicZ;
     
-    self.sprite = [CCSprite spriteWithFile:@"yannic.png"];
+    self.sprite = [CCSprite spriteWithFile:@"jennic.png"];
     [self addChild:self.sprite];
     
     self.canBeDuplicated = NO;
@@ -77,7 +77,7 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 -(void) loadPins{
     int i = 0;
     
-    THYannic * yannic = (THYannic*) self.simulableObject;
+    THJennic * yannic = (THJennic*) self.simulableObject;
     for (THPin * pin in yannic.pins) {
         THBoardPinEditable * pinEditable = [[THBoardPinEditable alloc] init];
         pinEditable.simulableObject = pin;
@@ -96,7 +96,7 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
     if(self){
         _pins = [NSMutableArray array];
         
-        THYannic * yannic = [[THYannic alloc] init];
+        THJennic * yannic = [[THJennic alloc] init];
         self.simulableObject = yannic;
         
         [self loadYannic];
@@ -130,7 +130,7 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObject:[THYannicProperties properties]];
+    [controllers addObject:[THJennicProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
@@ -138,18 +138,18 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 #pragma mark - Methods
 
 -(NSInteger) numberOfDigitalPins{
-    THYannic * yannic = (THYannic*) self.simulableObject;
+    THJennic * yannic = (THJennic*) self.simulableObject;
     return yannic.numberOfDigitalPins;
 }
 
 -(NSInteger) numberOfAnalogPins{
-    THYannic * yannic = (THYannic*) self.simulableObject;
+    THJennic * yannic = (THJennic*) self.simulableObject;
     return yannic.numberOfAnalogPins;
 }
 
 -(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number{
     
-    THYannic * yannic = (THYannic*) self.simulableObject;
+    THJennic * yannic = (THJennic*) self.simulableObject;
     NSInteger idx = [yannic pinIdxForPin:number ofType:kPintypeDigital];
     if(idx >= 0){
         return _pins[idx];
@@ -158,7 +158,7 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 }
 
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number{
-    THYannic * yannic = (THYannic*) self.simulableObject;
+    THJennic * yannic = (THJennic*) self.simulableObject;
     NSInteger idx = [yannic pinIdxForPin:number ofType:kPintypeAnalog];
     if(idx >= 0){
         return _pins[idx];
