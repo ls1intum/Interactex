@@ -74,6 +74,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     self = [super init];
     if(self){
+        self.additionalConnections = [NSMutableArray array];
+        
         self.shouldRecognizePanGestures = YES;
         _zoomableLayer = [CCLayer node];
         [self addChild:_zoomableLayer z:-10];
@@ -159,7 +161,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) draw{
-    
+    [TFHelper drawLines:self.additionalConnections];
     [self drawTemporaryLine];
 }
 
@@ -217,19 +219,19 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Pin highlighting
 
 -(void) highlightPin:(THPinEditable*) pin{
-    if(pin != _currentHighlightedPin){
-        if(_currentHighlightedPin != nil){
-            _currentHighlightedPin.highlighted = NO;
+    if(pin != self.currentHighlightedPin){
+        if(self.currentHighlightedPin != nil){
+            self.currentHighlightedPin.highlighted = NO;
         }
-        _currentHighlightedPin = pin;
-        _currentHighlightedPin.highlighted = YES;
+        self.currentHighlightedPin = pin;
+        self.currentHighlightedPin.highlighted = YES;
     }
 }
 
 -(void) dehighlightCurrentPin{
     
-    _currentHighlightedPin.highlighted = NO;
-    _currentHighlightedPin = nil;
+    self.currentHighlightedPin.highlighted = NO;
+    self.currentHighlightedPin = nil;
 }
 
 #pragma mark - Object Selection
@@ -287,6 +289,14 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Connection
+
+-(void) addConnectionLine:(TFConnectionLine*) connection{
+    [self.additionalConnections addObject:connection];
+}
+
+-(void) removeConnectionLine:(TFConnectionLine*) connection{
+    [self.additionalConnections removeObject:connection];
+}
 
 -(void) connectElementPin:(THElementPinEditable*) objectPin toBoardAtPosition:(CGPoint) position{
     
@@ -370,9 +380,11 @@ You should have received a copy of the GNU General Public License along with thi
     popup.connection.state = THInvocationConnectionLineStateComplete;
     popup.connection.action.firstParam = [TFPropertyInvocation invocationWithProperty:property target:popup.object];
     [popup.connection reloadSprite];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInvocationCompleted object:popup.connection.action.firstParam];
 }
 
--(void) attachObject:(TFEditableObject*) object toInvocationParameter:(THInvocationConnectionLine*) connectionLine{
+-(void) showPropertySelectionPopupFor:(TFEditableObject*) object invocationParameter:(THInvocationConnectionLine*) connectionLine{
     if(object != nil){
         
         _propertySelectionPopup = [[THPropertySelectionPopup alloc] init];
@@ -382,7 +394,6 @@ You should have received a copy of the GNU General Public License along with thi
         [_propertySelectionPopup present];
     }
 }
-
 
 #pragma mark - Method Selection Popup
 
@@ -457,7 +468,7 @@ You should have received a copy of the GNU General Public License along with thi
         
     } else if([object2 isKindOfClass:[THInvocationConnectionLine class]]){
         
-        [self attachObject:object1 toInvocationParameter:(THInvocationConnectionLine*) object2];
+        [self showPropertySelectionPopupFor:object1 invocationParameter:(THInvocationConnectionLine*) object2];
         
     } else {
         [self showMethodSelectionPopupFor:object1 and:object2];
@@ -585,11 +596,11 @@ You should have received a copy of the GNU General Public License along with thi
     if(!self.shouldRecognizePanGestures) return;
     
     if(sender.numberOfTouches == 1){
-        if(gestureState == kEditorGestureNone){
+        if(self.gestureState == kEditorGestureNone){
             [self handleSingleTouchMove:sender];
         }
     } else if(sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled){
-        gestureState = kEditorGestureNone;
+        self.gestureState = kEditorGestureNone;
         if(self.state == kEditorStateConnect){
             if(_currentConnection != nil && _currentConnection.state == kConnectionStateDrawing){
                 CGPoint location = [sender locationInView:sender.view];

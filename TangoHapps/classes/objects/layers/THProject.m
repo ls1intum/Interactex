@@ -635,7 +635,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
     [_eventActionPairs removeObject:toRemove];
     
-    
     //Juan check
     //[toRemove.action.source removeConnectionTo:toRemove.action.target];
     

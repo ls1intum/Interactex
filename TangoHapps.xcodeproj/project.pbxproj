@@ -731,8 +731,6 @@
 		9A94F43D16A0192700AF52AB /* THTouchpadProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */; };
 		9A94F43E16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
 		9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
-		9A94F44016A0192700AF52AB /* THEditorTools.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41516A0192700AF52AB /* THEditorTools.xib */; };
-		9A94F44116A0192700AF52AB /* THEditorTools.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41516A0192700AF52AB /* THEditorTools.xib */; };
 		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
@@ -2217,7 +2215,6 @@
 		9A94F41216A0192700AF52AB /* THThreeColorLedProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THThreeColorLedProperties.xib; sourceTree = "<group>"; };
 		9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTouchpadProperties.xib; sourceTree = "<group>"; };
 		9A94F41416A0192700AF52AB /* THValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THValueProperties.xib; sourceTree = "<group>"; };
-		9A94F41516A0192700AF52AB /* THEditorTools.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THEditorTools.xib; sourceTree = "<group>"; };
 		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
 		9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWireProperties.m; sourceTree = "<group>"; };
 		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
@@ -4007,7 +4004,6 @@
 			isa = PBXGroup;
 			children = (
 				9A94F3FF16A0192700AF52AB /* properties */,
-				9A94F41516A0192700AF52AB /* THEditorTools.xib */,
 				9AF60BC416A04D9F00178439 /* THTabbar.xib */,
 				9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */,
 				9A87C06016A4140C0059CC2E /* THGridItem.xib */,
@@ -4774,7 +4770,6 @@
 				9ABC27A01809B46C00B39D72 /* palette_accelerometer.png in Resources */,
 				9A94F43C16A0192700AF52AB /* THTouchpadProperties.xib in Resources */,
 				9A94F43E16A0192700AF52AB /* THValueProperties.xib in Resources */,
-				9A94F44016A0192700AF52AB /* THEditorTools.xib in Resources */,
 				9AF60BBF16A04BDB00178439 /* connectionMade.mp3 in Resources */,
 				9AF60BC616A04D9F00178439 /* THTabbar.xib in Resources */,
 				9AF60BC816A04D9F00178439 /* THTabbarViewSection.xib in Resources */,
@@ -5041,7 +5036,6 @@
 				9ABC277A1809985900B39D72 /* palette_lilypadSmall.png in Resources */,
 				9A94F43D16A0192700AF52AB /* THTouchpadProperties.xib in Resources */,
 				9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */,
-				9A94F44116A0192700AF52AB /* THEditorTools.xib in Resources */,
 				9A5BD74A1860C52E00842833 /* starEmpty@2x.png in Resources */,
 				9AF60BC016A04BDB00178439 /* connectionMade.mp3 in Resources */,
 				9AF60BC716A04D9F00178439 /* THTabbar.xib in Resources */,

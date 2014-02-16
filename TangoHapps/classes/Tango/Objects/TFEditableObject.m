@@ -376,11 +376,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) draw {
     
-    if(self.selected){
+    if(self.selected || self.highlighted){
         
         glLineWidth(1);
         
-        ccDrawColor4B(kDefaultObjectSelectionColor.r, kDefaultObjectSelectionColor.g, kDefaultObjectSelectionColor.b, kDefaultObjectSelectionColor.a);
+        if(self.highlighted){
+            
+            ccDrawColor4B(self.highlightColor.r, self.highlightColor.g, self.highlightColor.b, self.highlightColor.a);
+            
+        } else {
+            ccDrawColor4B(kDefaultObjectSelectionColor.r, kDefaultObjectSelectionColor.g, kDefaultObjectSelectionColor.b, kDefaultObjectSelectionColor.a);
+        }
         
         float kSelectionPadding = 5;
         
