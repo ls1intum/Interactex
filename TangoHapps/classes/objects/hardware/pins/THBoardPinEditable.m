@@ -147,6 +147,12 @@ You should have received a copy of the GNU General Public License along with thi
     return pin.acceptsManyPins;
 }
 
+-(void) setMode:(THPinMode)mode{
+    
+    THBoardPin * pin = (THBoardPin*) self.simulableObject;
+    pin.mode = mode;
+}
+
 -(THPinMode) mode{
     
     THBoardPin * pin = (THBoardPin*) self.simulableObject;

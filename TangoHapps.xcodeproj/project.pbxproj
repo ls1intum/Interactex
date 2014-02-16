@@ -731,6 +731,8 @@
 		9A94F43D16A0192700AF52AB /* THTouchpadProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */; };
 		9A94F43E16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
 		9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
+		9A9C419218B13EDD002C2BC9 /* THPinViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THPinViewCell.m */; };
+		9A9C419318B13EDD002C2BC9 /* THPinViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THPinViewCell.m */; };
 		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
@@ -2215,6 +2217,8 @@
 		9A94F41216A0192700AF52AB /* THThreeColorLedProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THThreeColorLedProperties.xib; sourceTree = "<group>"; };
 		9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTouchpadProperties.xib; sourceTree = "<group>"; };
 		9A94F41416A0192700AF52AB /* THValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THValueProperties.xib; sourceTree = "<group>"; };
+		9A9C419018B13EDD002C2BC9 /* THPinViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPinViewCell.h; sourceTree = "<group>"; };
+		9A9C419118B13EDD002C2BC9 /* THPinViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPinViewCell.m; sourceTree = "<group>"; };
 		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
 		9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWireProperties.m; sourceTree = "<group>"; };
 		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
@@ -3873,6 +3877,8 @@
 			children = (
 				9AA4D74218AE17A400A43433 /* THBoardProperties.h */,
 				9AA4D74318AE17A400A43433 /* THBoardProperties.m */,
+				9A9C419018B13EDD002C2BC9 /* THPinViewCell.h */,
+				9A9C419118B13EDD002C2BC9 /* THPinViewCell.m */,
 				9AA4D74418AE17A400A43433 /* THSimpleLilypadProperties.h */,
 				9AA4D74518AE17A400A43433 /* THSimpleLilypadProperties.m */,
 				9AA4D75018AE1C4B00A43433 /* THLilypadProperties.h */,
@@ -5437,6 +5443,7 @@
 				9AF503B1167B84B40020241C /* THSwitchPaletteItem.m in Sources */,
 				9AF503B2167B84B40020241C /* THTouchpadPaletteItem.m in Sources */,
 				9AF503B3167B84B40020241C /* THValuePaletteItem.m in Sources */,
+				9A9C419218B13EDD002C2BC9 /* THPinViewCell.m in Sources */,
 				9AF503B4167B84B40020241C /* THButtonProperties.m in Sources */,
 				9AF503B5167B84B40020241C /* THBuzzerProperties.m in Sources */,
 				9AF503B6167B84B40020241C /* THClotheObjectProperties.m in Sources */,
@@ -5689,6 +5696,7 @@
 				9AF50632167B92550020241C /* THBuzzerPaletteItem.m in Sources */,
 				9AF50633167B92550020241C /* THClothePaletteItem.m in Sources */,
 				9AF50634167B92550020241C /* THComparatorPaletteItem.m in Sources */,
+				9A9C419318B13EDD002C2BC9 /* THPinViewCell.m in Sources */,
 				9AF50635167B92550020241C /* THLSMCompassPaletteItem.m in Sources */,
 				9AF50636167B92550020241C /* THGrouperPaletteItem.m in Sources */,
 				9AF50637167B92550020241C /* THiPhoneButtonPaletteItem.m in Sources */,

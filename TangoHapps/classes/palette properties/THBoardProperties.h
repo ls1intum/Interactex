@@ -41,12 +41,12 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THEditableObjectProperties.h"
+#import "THPinViewCell.h"
 
-@interface THBoardProperties : THEditableObjectProperties {
-    NSMutableArray * _pinViews;
+@interface THBoardProperties : THEditableObjectProperties <UITableViewDataSource, UITableViewDelegate, THPinViewCellDelegate> {
     float _currentY;
 }
-
-@property (weak, nonatomic) IBOutlet UIScrollView *containerView;
+@property (weak, nonatomic) IBOutlet UITableView * pinsTable;
+@property (strong, nonatomic) NSMutableArray * pinsArray;
 
 @end

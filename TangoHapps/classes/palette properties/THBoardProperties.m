@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLilypadPropertiesPinView.h"
 #import "THEditor.h"
 #import "THProject.h"
+#import "THPinViewCell.h"
 
 @implementation THBoardProperties
 
@@ -59,6 +60,25 @@ float const kBoardPropertiesMinHeight = 300;
     return @"Board";
 }
 
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.pinsArray.count;
+}
+
+-(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //THBoardEditable * board = (THBoardEditable*) self.editableObject;
+    //THPinViewCell * cell = [self.pinsTable dequeueReusableCellWithIdentifier:@"pinCell"];
+    THPinViewCell * cell = [[THPinViewCell alloc] init];
+    
+    cell.delegate = self;
+    cell.boardPin = [self.pinsArray  objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+/*
 -(void) addPinViews{
     _currentY = kBoardPropertiesPadding;
     
@@ -90,11 +110,23 @@ float const kBoardPropertiesMinHeight = 300;
     }
     [_pinViews removeAllObjects];
 }
+*/
 
+-(void) generatePinsArray{
+    
+    self.pinsArray = [NSMutableArray array];
+    
+    THBoardEditable * board = (THBoardEditable*) self.editableObject;
+    
+    for (THBoardPinEditable * pin in board.pins) {
+        if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){
+            [self.pinsArray addObject:pin];
+        }
+    }
+}
 
 -(void) reloadState{
-    [self removePinViews];
-    [self addPinViews];
+    [self generatePinsArray];
 }
 
 -(void) handleConnectionChanged{
@@ -118,22 +150,19 @@ float const kBoardPropertiesMinHeight = 300;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    //self.containerView.backgroundColor = [UIColor whiteColor];
-    self.containerView.layer.cornerRadius = 10;
-    _pinViews = [NSMutableArray array];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) pinViewCell:(THPinViewCell*) pinViewCell didChangePwmStateTo:(BOOL) pwm{
+    
+    //THBoardEditable * board = (THBoardEditable*) self.editableObject;
+    //board.
+    if(pwm){
+        pinViewCell.boardPin.mode = kPinModePWM;
+    } else {
+        pinViewCell.boardPin.mode = kPinModeDigitalOutput;
+    }
 }
 
 - (void)viewDidUnload {
-    self.containerView = nil;
     [super viewDidUnload];
 }
 @end

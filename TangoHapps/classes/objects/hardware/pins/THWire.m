@@ -230,6 +230,14 @@ You should have received a copy of the GNU General Public License along with thi
     _p2 = pos;
 }
 
+-(BOOL) canColorBeChanged{
+    if(self.obj2.type == kPintypeMinus || self.obj2.type == kPintypePlus){
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 #pragma mark - Nodes
 
 -(void) removeNodeObservers{
