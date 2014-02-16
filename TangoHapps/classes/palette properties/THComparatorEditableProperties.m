@@ -55,6 +55,20 @@ You should have received a copy of the GNU General Public License along with thi
     return @"Comparator";
 }
 
+-(void) updateInfoLabel{
+    
+    THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
+    NSString * text = @"";
+    
+    if(condition.obj1 == nil){
+        text = @"Wont do anything because value 1 is not set";
+    } else {
+        
+    }
+    
+    self.label.text == text;
+}
+
 -(NSArray*) selectedConnections{
     NSMutableArray * selectedConnections = [NSMutableArray array];
     if(button1Down){

@@ -55,6 +55,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) IBOutlet UIButton *object1Button;
 @property (weak, nonatomic) IBOutlet UIButton *object2Button;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *operatorTypeControl;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 - (IBAction)button1Up:(id)sender;
 - (IBAction)button1Down:(id)sender;
