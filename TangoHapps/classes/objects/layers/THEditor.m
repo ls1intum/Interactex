@@ -259,7 +259,11 @@ You should have received a copy of the GNU General Public License along with thi
     editableObject.selected = YES;
     self.currentObject = editableObject;
     
-    [self showConnectionsForCurrentObject];
+    if(self.isLilypadMode){
+        //[self showWiresForCurrentObject];
+    } else {
+        [self showConnectionsForCurrentObject];
+    }
     
     if([editableObject isKindOfClass:[THWireNode class]]){
         
@@ -521,7 +525,7 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    if(_state == kEditorStateConnect){
+    if(self.state == kEditorStateConnect){
         
         if(sender.state == UIGestureRecognizerStateBegan){
             
@@ -841,6 +845,12 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) showWiresForCurrentObject{
+    if([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+        
+    }
+}
+
 -(void) showConnectionsForCurrentObject{
     THProject * project = [THDirector sharedDirector].currentProject;
     NSArray * connections = [project invocationConnectionsForObject:self.currentObject];
@@ -888,14 +898,20 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setState:(TFEditorState)state{
     if(_state != state){
+        
         if(_state == kEditorStateConnect){
-            [self hideConnectionsForAllObjectsButCurrent];
+            if(!self.isLilypadMode){
+                [self hideConnectionsForAllObjectsButCurrent];
+            }
         }
         
         _state = state;
         
         if(self.state == kEditorStateConnect){
-            [self showConnectionsForAllObjects];
+            
+            if(!self.isLilypadMode){
+                [self showConnectionsForAllObjects];
+            }
         }
     }
 }
@@ -1110,6 +1126,31 @@ You should have received a copy of the GNU General Public License along with thi
     [self showiPhone];
 }
 
+-(void) updateWiresVisibility{
+    if(self.isLilypadMode){
+        THProject * project = [THDirector sharedDirector].currentProject;
+        for (THBoardEditable * board in project.boards) {
+            
+            
+            for (THWire * wire in project.wires) {
+                THBoardPinEditable * boardPin = wire.obj2;
+                if([board.pins containsObject:boardPin]){
+                    if(board.showsWires){
+                        wire.visible = YES;
+                    } else {
+                        
+                        THElementPinEditable * elementPin = wire.obj1;
+                        wire.visible = elementPin.selected;
+                    }
+                }
+            }
+        }
+    } else {
+        [self hideAllLilypadWires];
+    }
+    
+}
+
 -(void) hideAllLilypadWires{
     
     THProject * project = [THDirector sharedDirector].currentProject;
@@ -1155,7 +1196,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self hideNonLilypadObjects];
     [self showBoards];
     [self showOtherHardware];
-    [self showAllLilypadWires];
+    [self updateWiresVisibility];
+    //[self showAllLilypadWires];
     [self hideNonLilypadPaletteSections];
 }
 
@@ -1166,7 +1208,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self hideOtherHardware];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
-    [self hideAllLilypadWires];
+    [self updateWiresVisibility];
+    //[self hideAllLilypadWires];
     [self showAllPaletteSections];
 
 }

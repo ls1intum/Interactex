@@ -41,12 +41,17 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THEditableObjectProperties.h"
-#import "THPinViewCell.h"
+#import "THBoardPropertiesPinCell.h"
 
 @interface THBoardProperties : THEditableObjectProperties <UITableViewDataSource, UITableViewDelegate, THPinViewCellDelegate> {
     float _currentY;
 }
 @property (weak, nonatomic) IBOutlet UITableView * pinsTable;
 @property (strong, nonatomic) NSMutableArray * pinsArray;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UISwitch *showWiresSwitch;
+
+- (IBAction)editTapped:(id)sender;
+- (IBAction)showWiresChanged:(id)sender;
 
 @end

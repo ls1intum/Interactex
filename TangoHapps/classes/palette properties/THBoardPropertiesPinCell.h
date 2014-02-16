@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class THBoardPinEditable;
-@class THPinViewCell;
+@class THBoardPropertiesPinCell;
 
 @protocol THPinViewCellDelegate <NSObject>
 
--(void) pinViewCell:(THPinViewCell*) pinViewCell didChangePwmStateTo:(BOOL) pwm;
+-(void) pinViewCell:(THBoardPropertiesPinCell*) pinViewCell didChangePwmStateTo:(BOOL) pwm;
 
 @end
 
-@interface THPinViewCell : UITableViewCell
+@interface THBoardPropertiesPinCell : UITableViewCell
 
 @property (strong, nonatomic) UILabel *pinLabel;
 @property (strong, nonatomic) UILabel *pinInfoLabel;

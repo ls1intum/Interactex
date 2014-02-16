@@ -44,15 +44,25 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFLayer.h"
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
+#import "THWire.h"
 
 @implementation THBoardEditable
 
 #pragma mark - Archiving
 
+-(id) init{
+    self = [super init];
+    if (self) {
+        self.showsWires = YES;
+    }
+    return self;
+}
+
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
         self.pins = [decoder decodeObjectForKey:@"pins"];
+        self.showsWires = [decoder decodeBoolForKey:@"showsWires"];
     }
     return self;
 }
@@ -61,6 +71,7 @@ You should have received a copy of the GNU General Public License along with thi
     [super encodeWithCoder:coder];
     
     [coder encodeObject:self.pins forKey:@"pins"];
+    [coder encodeBool:self.showsWires forKey:@"showsWires"];
 }
 
 #pragma mark - Methods
@@ -114,7 +125,13 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
-
+/*
+-(void) setShowsWires:(BOOL)showsWires{
+    THProject * project = [THDirector sharedDirector].currentProject;
+    for (THWire * wire in project.wires) {
+        wire.visible = showsWires;
+    }
+}*/
 
 #pragma mark - Object's Lifecycle
 

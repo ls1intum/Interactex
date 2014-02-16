@@ -113,4 +113,7 @@ typedef enum {
 -(void) addConnectionLine:(TFConnectionLine*) connection;
 -(void) removeConnectionLine:(TFConnectionLine*) connection;
 
+//wires lilypad mode
+-(void) updateWiresVisibility;
+
 @end

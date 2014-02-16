@@ -244,6 +244,18 @@ You should have received a copy of the GNU General Public License along with thi
     [pinEditable dettachFromPin];
 }
 
+-(void) deattachAllPins{
+    
+    for (THElementPinEditable * pinEditable in self.attachedPins) {
+        
+        THBoardPin * pin = (THBoardPin*) self.simulableObject;
+        [pin deattachPin:(THElementPin*)pinEditable.simulableObject];
+        [pinEditable dettachFromPin];
+    }
+    
+    [_attachedPins removeAllObjects];
+}
+
 -(BOOL) isClotheObjectAttached:(THHardwareComponentEditableObject*) object{
     for (THElementPinEditable * pin in self.attachedPins) {
         if(pin.hardware == object){

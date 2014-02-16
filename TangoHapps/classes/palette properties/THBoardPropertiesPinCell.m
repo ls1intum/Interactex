@@ -6,15 +6,18 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import "THPinViewCell.h"
+#import "THBoardPropertiesPinCell.h"
 #import "THBoardPinEditable.h"
 
-@implementation THPinViewCell
+@implementation THBoardPropertiesPinCell
 
 #pragma mark - properties
 
 CGSize const frameSize = {215,44};
 CGSize const segmentSize = {105,29};
+CGSize const pinLabelSize = {54,21};
+CGSize const infoLabelSize = {105,21};
+CGPoint const offset = {40,10};
 
 -(id) init {
     self = [super init];
@@ -22,22 +25,19 @@ CGSize const segmentSize = {105,29};
         
         self.frame = CGRectMake(0, 0, frameSize.width, frameSize.height);
         
-        float offsetY = 10;
-        float offsetX = 5;
-        
         UIFont * font = [UIFont systemFontOfSize:14];
         
-        CGRect frame = CGRectMake(offsetX, offsetY, 54, 21);
+        CGRect frame = CGRectMake(offset.x, (frameSize.height - pinLabelSize.height) / 2, pinLabelSize.width, pinLabelSize.height);
         self.pinLabel = [[UILabel alloc] initWithFrame:frame];
         self.pinLabel.font = font;
         [self addSubview:self.pinLabel];
         
-        frame = CGRectMake(self.pinLabel.frame.origin.x + self.pinLabel.frame.size.width + offsetX, offsetY, 105, 21);
+        frame = CGRectMake(self.pinLabel.frame.origin.x + self.pinLabel.frame.size.width + 5, (frameSize.height - infoLabelSize.height ) / 2, infoLabelSize.width, infoLabelSize.height);
         self.pinInfoLabel = [[UILabel alloc] initWithFrame:frame];
         self.pinInfoLabel.font = font;
         [self addSubview:self.pinInfoLabel];
         
-        frame = CGRectMake(self.pinLabel.frame.origin.x + self.pinLabel.frame.size.width + offsetX, (frameSize.height - segmentSize.height) / 2, segmentSize.width, segmentSize.height);
+        frame = CGRectMake(self.pinLabel.frame.origin.x + self.pinLabel.frame.size.width + 5, (frameSize.height - segmentSize.height) / 2, segmentSize.width, segmentSize.height);
         self.pwmControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Digital", @"PWM", nil]];
         self.pwmControl.frame = frame;
         [self.pwmControl addTarget:self action:@selector(pwmControlChanged:) forControlEvents:UIControlEventValueChanged];

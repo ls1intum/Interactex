@@ -46,7 +46,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLilypadPropertiesPinView.h"
 #import "THEditor.h"
 #import "THProject.h"
-#import "THPinViewCell.h"
+#import "THBoardPropertiesPinCell.h"
+#import "THElementPinEditable.h"
+#import "THWire.h"
 
 @implementation THBoardProperties
 
@@ -61,6 +63,8 @@ float const kBoardPropertiesMinHeight = 300;
 }
 
 
+#pragma  mark - Table Data Source
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.pinsArray.count;
@@ -68,9 +72,7 @@ float const kBoardPropertiesMinHeight = 300;
 
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //THBoardEditable * board = (THBoardEditable*) self.editableObject;
-    //THPinViewCell * cell = [self.pinsTable dequeueReusableCellWithIdentifier:@"pinCell"];
-    THPinViewCell * cell = [[THPinViewCell alloc] init];
+    THBoardPropertiesPinCell * cell = [[THBoardPropertiesPinCell alloc] init];
     
     cell.delegate = self;
     cell.boardPin = [self.pinsArray  objectAtIndex:indexPath.row];
@@ -78,39 +80,18 @@ float const kBoardPropertiesMinHeight = 300;
     return cell;
 }
 
-/*
--(void) addPinViews{
-    _currentY = kBoardPropertiesPadding;
-    
-    THLilyPadEditable * lilypad = (THLilyPadEditable*) self.editableObject;
-    
-    for (THBoardPinEditable * pin in lilypad.pins) {
-        if(pin.attachedPins.count > 0 && pin.type != kPintypeMinus && pin.type != kPintypePlus){
-            CGRect frame = CGRectMake(kBoardPropertiesPadding, _currentY, self.containerView.frame.size.width - 20, kBoardPropertiesContainerHeight);
-            
-            THLilypadPropertiesPinView * pinView = [[THLilypadPropertiesPinView alloc] initWithFrame:frame];
-            pinView.pin = pin;
-            [self.containerView addSubview:pinView];
-            [_pinViews addObject:pinView];
-            
-            _currentY += kBoardPropertiesContainerHeight + kLilypadPropertyInnerPadding;
-            
-            CGRect currentFrame = self.containerView.frame;
-            if(_currentY > currentFrame.origin.y + currentFrame.size.height){
-                
-                self.containerView.frame = CGRectMake(currentFrame.origin.x, currentFrame.origin.y, currentFrame.size.width, _currentY);
-            }
-        }
-    }
-}
+#pragma  mark - Table Delegate
 
--(void) removePinViews{
-    for (THLilypadPropertiesPinView * pinView in _pinViews) {
-        [pinView removeFromSuperview];
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        THBoardPinEditable * boardPin = [self.pinsArray objectAtIndex:indexPath.row];
+        [boardPin deattachAllPins];
+        [self.pinsArray removeObjectAtIndex:indexPath.row];
+        
+        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.pinsTable deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }
-    [_pinViews removeAllObjects];
 }
-*/
 
 -(void) generatePinsArray{
     
@@ -125,8 +106,15 @@ float const kBoardPropertiesMinHeight = 300;
     }
 }
 
+-(void) updateShowsWires{
+    
+    THBoardEditable * board = (THBoardEditable*) self.editableObject;
+    self.showWiresSwitch.on = board.showsWires;
+}
+
 -(void) reloadState{
     [self generatePinsArray];
+    [self updateShowsWires];
 }
 
 -(void) handleConnectionChanged{
@@ -138,12 +126,23 @@ float const kBoardPropertiesMinHeight = 300;
     }
 }
 
+-(void) handleObjectRemoved:(NSNotification*) notification{
+    TFEditableObject * object = notification.object;
+    if([object isKindOfClass:[THWire class]]){
+        [self reloadState];
+        [self.pinsTable reloadData];
+    }
+}
+
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleConnectionChanged) name:kNotificationConnectionMade object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleConnectionChanged) name:kNotificationObjectRemoved object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleObjectRemoved:) name:kNotificationObjectRemoved object:nil];
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
@@ -151,10 +150,8 @@ float const kBoardPropertiesMinHeight = 300;
 }
 
 
--(void) pinViewCell:(THPinViewCell*) pinViewCell didChangePwmStateTo:(BOOL) pwm{
+-(void) pinViewCell:(THBoardPropertiesPinCell*) pinViewCell didChangePwmStateTo:(BOOL) pwm{
     
-    //THBoardEditable * board = (THBoardEditable*) self.editableObject;
-    //board.
     if(pwm){
         pinViewCell.boardPin.mode = kPinModePWM;
     } else {
@@ -162,7 +159,25 @@ float const kBoardPropertiesMinHeight = 300;
     }
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (IBAction)editTapped:(id)sender {
+    
+    if(self.pinsTable.editing){
+        
+        [self.pinsTable setEditing:NO animated:YES];
+        [self.editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        
+    } else {
+        [self.pinsTable setEditing:YES animated:YES];
+        [self.editButton setTitle:@"Done" forState:UIControlStateNormal];
+    }
 }
+
+- (IBAction)showWiresChanged:(id)sender {
+    
+    THBoardEditable * board = (THBoardEditable*) self.editableObject;
+    board.showsWires = self.showWiresSwitch.on;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    [editor updateWiresVisibility];
+}
+
 @end
