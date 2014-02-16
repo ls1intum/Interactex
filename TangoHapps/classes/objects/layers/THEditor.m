@@ -606,6 +606,15 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(THWireNode*) wireNodeAtLocation:(CGPoint) location wire:(THWire*) wire{
+    for (THWireNode * node in wire.nodes) {
+        if([node testPoint:location]){
+            return node;
+        }
+    }
+    return nil;
+}
+
 -(void)tapped:(UITapGestureRecognizer*)sender {
     
     CGPoint location = [sender locationInView:sender.view];
@@ -643,14 +652,21 @@ You should have received a copy of the GNU General Public License along with thi
             [self unselectAndDeleteEditableObject:object];
         
         } else {
+            
             THWire * wire = (THWire*) [project wireAtLocation:location];
-            [self removeEditableObject:wire];
-            
-            [wire.obj2 deattachPin:wire.obj1];
-            
-            if(wire){
-                [self unselectAndDeleteEditableObject:wire];
+            if(wire.nodes.count == 1){
+                [self removeEditableObject:wire];
+                [wire.obj2 deattachPin:wire.obj1];
+                
+                if(wire){
+                    [self unselectAndDeleteEditableObject:wire];
+                }
+            } else {
+                THWireNode * node = [self wireNodeAtLocation:location wire:wire];
+                [wire removeNode:node];
             }
+            
+            
         }
     } else {
         [self selectObjectAtPosition:location];

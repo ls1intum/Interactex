@@ -40,6 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
+
 #import "THWire.h"
 #import "THWireProperties.h"
 #import "THEditor.h"
@@ -335,6 +336,7 @@ You should have received a copy of the GNU General Public License along with thi
     [node removeObserver:self forKeyPath:@"selected"];
     node.wire = nil;
     [self.nodes removeObject:node];
+    [node removeFromParentAndCleanup:YES];
 }
 
 -(void) removeAllNodes{
