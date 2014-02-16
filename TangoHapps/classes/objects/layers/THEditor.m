@@ -98,14 +98,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Event handling
 
--(void) startRemovingConnections{
-    self.removeConnections = YES;
-}
-
--(void) stopRemovingConnections{
-    self.removeConnections = NO;
-}
-
 -(void) handleEditableObjectAdded:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
     [object addToLayer:self];
@@ -122,17 +114,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Drawing
-
--(void) drawObjectsConnections {
-    
-    //[TFHelper drawLines:self.currentObject.connections];
-    
-    THProject * project = [THDirector sharedDirector].currentProject;
-    
-    if(self.state == kEditorStateConnect){
-        [TFHelper drawLinesForObjects:project.allObjects];
-    }
-}
 
 -(void) drawBoundingBoxes{
     THProject * project = [THDirector sharedDirector].currentProject;
@@ -621,7 +602,7 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
     
-    if(self.removeConnections){
+    if(self.removingConnections){
         
         THProject * project = [THDirector sharedDirector].currentProject;
         

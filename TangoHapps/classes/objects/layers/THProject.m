@@ -493,7 +493,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(THClothe*) clotheAtLocation:(CGPoint) location{
-    for (THClothe * clothe in _clothes) {
+    for (THClothe * clothe in self.clothes) {
         if([clothe testPoint:location]){
             return clothe;
         }
@@ -515,7 +515,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(TFEditableObject*) conditionAtLocation:(CGPoint) location{
-    for (TFEditableObject* condition in _conditions) {
+    for (TFEditableObject* condition in self.conditions) {
         if([condition testPoint:location]){
             return condition;
         }
@@ -537,7 +537,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(TFEditableObject*) valueAtLocation:(CGPoint) location{
-    for (TFEditableObject* value in _values) {
+    for (TFEditableObject* value in self.values) {
         if([value testPoint:location]){
             return value;
         }
@@ -559,7 +559,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(TFEditableObject*) triggerAtLocation:(CGPoint) location{
-    for (TFEditableObject* trigger in _triggers) {
+    for (TFEditableObject* trigger in self.triggers) {
         if([trigger testPoint:location]){
             return trigger;
         }
@@ -572,7 +572,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(NSMutableArray*) actionsForTarget:(TFEditableObject*) target{
     NSMutableArray * array = [NSMutableArray array];
-    for (TFEventActionPair * pair in _eventActionPairs) {
+    for (TFEventActionPair * pair in self.eventActionPairs) {
         if(pair.action.target == target){
             [array addObject:pair];
         }
@@ -582,7 +582,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(NSMutableArray*) actionsForSource:(TFEditableObject*) source{
     NSMutableArray * array = [NSMutableArray array];
-    for (TFEventActionPair * pair in _eventActionPairs) {
+    for (TFEventActionPair * pair in self.eventActionPairs) {
         if(pair.action.source == source){
             [array addObject:pair];
         }
@@ -592,7 +592,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) deregisterActionsForObject:(TFEditableObject*) object{
     NSMutableArray * toRemove = [NSMutableArray array];
-    for (TFEventActionPair * pair in _eventActionPairs) {
+    for (TFEventActionPair * pair in self.eventActionPairs) {
         if(pair.action.target == object || pair.action.source == object){
             [toRemove addObject:pair];
         }
@@ -626,7 +626,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) deregisterAction:(TFAction*) action{
     TFEventActionPair * toRemove;
     NSInteger idx = 0;
-    for (TFEventActionPair * pair in _eventActionPairs) {
+    for (TFEventActionPair * pair in self.eventActionPairs) {
         if(pair.action == action){
             toRemove = pair;
             break;

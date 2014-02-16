@@ -95,7 +95,7 @@ typedef enum {
 @property(nonatomic, weak) TFEditableObject * currentObject;
 @property(nonatomic) TFEditorState state;
 @property(nonatomic, weak) id<THEditorDragDelegate> dragDelegate;
-@property(nonatomic) BOOL removeConnections;
+@property(nonatomic) BOOL removingConnections;
 @property(nonatomic, strong) NSMutableArray * additionalConnections;
 
 //lilypad mode
