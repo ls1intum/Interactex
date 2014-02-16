@@ -711,15 +711,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self addWire:wire];
 }
 
--(void) removeAllWiresFrom:(id) object notify:(BOOL) notify{
-    NSMutableArray * toRemove = [NSMutableArray array];
-    for (THWire * wire in self.wires) {
-        if(wire.obj1.hardware == object){
-            [toRemove addObject:wire];
-        }
-    }
-    
-    for (THWire * wire in toRemove) {
+-(void) removeWires:(NSArray*) wires notify:(BOOL) notify{
+    for (THWire * wire in wires) {
         [wire prepareToDie];
         [self.wires removeObject:wire];
         if(notify){
@@ -728,6 +721,26 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) removeAllWiresFromElementPin:(THElementPinEditable*) elementPin notify:(BOOL) notify{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (THWire * wire in self.wires) {
+        if(wire.obj1 == elementPin){
+            [toRemove addObject:wire];
+        }
+    }
+    [self removeWires:toRemove notify:notify];
+}
+
+-(void) removeAllWiresFrom:(id) object notify:(BOOL) notify{
+    NSMutableArray * toRemove = [NSMutableArray array];
+    for (THWire * wire in self.wires) {
+        if(wire.obj1.hardware == object){
+            [toRemove addObject:wire];
+        }
+    }
+    
+    [self removeWires:toRemove notify:notify];
+}
 
 -(void) removeAllWiresTo:(THBoardEditable*) board notify:(BOOL) notify{
     NSMutableArray * toRemove = [NSMutableArray array];

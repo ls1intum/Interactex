@@ -93,6 +93,9 @@ You should have received a copy of the GNU General Public License along with thi
     [c addObserver:self selector:@selector(startRemovingConnections) name:kNotificationStartRemovingConnections object:nil];
     [c addObserver:self selector:@selector(stopRemovingConnections) name:kNotificationStopRemovingConnections object:nil];
     
+    [c addObserver:self selector:@selector(handlePinDeattached:) name:kNotificationPinDeattached object:nil];
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSelectionLost) name:kNotificationPaletteItemSelected object:nil];
 }
 
@@ -279,8 +282,13 @@ You should have received a copy of the GNU General Public License along with thi
     [self.additionalConnections removeObject:connection];
 }
 
+-(void) handlePinDeattached:(NSNotification*) notification{
+    THElementPinEditable * elementPin = notification.object;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project removeAllWiresFromElementPin:elementPin notify:YES];
+}
+
 -(void) connectElementPin:(THElementPinEditable*) objectPin toBoardAtPosition:(CGPoint) position{
-    
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THBoardEditable * board = [project boardAtLocation:position];
@@ -300,7 +308,6 @@ You should have received a copy of the GNU General Public License along with thi
             THBoardPin * sdaPinNonEditable = boardNonEditable.sdaPin;
             THBoardPin * sclPinNonEditable = boardNonEditable.sclPin;
             
-            //NSLog(@"supports scl %d supports sda %d",lilypadPin.supportsSCL, lilypadPin.supportsSDA);
             
             if((lilypadPin.supportsSCL && [sdaPinNonEditable isClotheObjectAttached:elementPin.hardware]) ||
                (lilypadPin.supportsSDA && [sclPinNonEditable isClotheObjectAttached:elementPin.hardware])) {
@@ -309,8 +316,6 @@ You should have received a copy of the GNU General Public License along with thi
                 [(THBoard*)board.simulableObject addI2CComponent:i2cObject];
             }
         }
-        
-        //if(lilypadPin.)
     }
 }
 
