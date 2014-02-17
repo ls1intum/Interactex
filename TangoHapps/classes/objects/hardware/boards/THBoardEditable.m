@@ -45,6 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 #import "THWire.h"
+#import "THHardwareComponentEditableObject.h"
 
 @implementation THBoardEditable
 
@@ -133,10 +134,23 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }*/
 
+-(void) autoroutePlusAndMinusPins{
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    for (THHardwareComponentEditableObject * hardwareComponent in project.hardwareComponents) {
+        [hardwareComponent autoroutePlusAndMinusPins];
+    }
+}
+
 #pragma mark - Object's Lifecycle
 
 -(void) addToLayer:(TFLayer *)layer{
     [layer addEditableObject:self];
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    if(project.boards.count == 1){
+        [self autoroutePlusAndMinusPins];
+    }
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{

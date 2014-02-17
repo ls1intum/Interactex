@@ -542,7 +542,6 @@
 		9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A6B28AF18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A6B28F218AA709A009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
-		9A6B28F518AA70A2009AAE31 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
 		9A7B65131834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65141834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B65171834D830009D0103 /* THCompassProperties.xib */; };
@@ -733,6 +732,7 @@
 		9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
 		9A9C419218B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
 		9A9C419318B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
+		9A9C425118B1F2BF002C2BC9 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
 		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
@@ -1700,7 +1700,7 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = "libpd-ios";
 		};
-		9A6B28F318AA709F009AAE31 /* PBXContainerItemProxy */ = {
+		9A9C424F18B1F2B9002C2BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */;
 			proxyType = 1;
@@ -2651,7 +2651,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6B28F518AA70A2009AAE31 /* libpd-ios.a in Frameworks */,
+				9A9C425118B1F2BF002C2BC9 /* libpd-ios.a in Frameworks */,
 				9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */,
 				9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */,
 				9AFA65EE18296E070082990F /* libCocosDenshion.a in Frameworks */,
@@ -2760,10 +2760,10 @@
 			isa = PBXGroup;
 			children = (
 				9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */,
-				9A5110141837D23A00EB25FA /* CoreMotion.framework */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */,
 				9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */,
+				9A5110141837D23A00EB25FA /* CoreMotion.framework */,
 				9A3165AA1827994100CB3E59 /* GLKit.framework */,
 				9AC3CD221800255400363CD2 /* CoreText.framework */,
 				9AF3E6CE16F868790013DE13 /* CoreAudio.framework */,
@@ -4181,7 +4181,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6B28F418AA709F009AAE31 /* PBXTargetDependency */,
+				9A9C425018B1F2B9002C2BC9 /* PBXTargetDependency */,
 				9AFA65EA18296E000082990F /* PBXTargetDependency */,
 				9AFA65EC18296E000082990F /* PBXTargetDependency */,
 			);
@@ -5975,10 +5975,10 @@
 			name = "libpd-ios";
 			targetProxy = 9A6B28F018AA7097009AAE31 /* PBXContainerItemProxy */;
 		};
-		9A6B28F418AA709F009AAE31 /* PBXTargetDependency */ = {
+		9A9C425018B1F2B9002C2BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libpd-ios";
-			targetProxy = 9A6B28F318AA709F009AAE31 /* PBXContainerItemProxy */;
+			targetProxy = 9A9C424F18B1F2B9002C2BC9 /* PBXContainerItemProxy */;
 		};
 		9AAF2844182B8AFE00531E3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6054,6 +6054,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -6078,6 +6079,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -6086,8 +6088,8 @@
 		9A3511A8167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
@@ -6095,6 +6097,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
 				WRAPPER_EXTENSION = app;
@@ -6104,14 +6107,15 @@
 		9A3511A9167B7A6800C7484B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
 				WRAPPER_EXTENSION = app;
@@ -6139,6 +6143,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -6147,14 +6152,15 @@
 		9A94F279169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
 				WRAPPER_EXTENSION = app;
@@ -6175,6 +6181,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6195,6 +6202,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -6214,6 +6222,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
@@ -6234,6 +6243,7 @@
 				);
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6254,6 +6264,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6273,6 +6284,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

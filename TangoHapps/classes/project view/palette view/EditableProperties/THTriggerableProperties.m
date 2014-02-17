@@ -189,18 +189,23 @@ You should have received a copy of the GNU General Public License along with thi
     return cell;
 }
 
--(void)updateConnectionLabel {
+-(void) updateConnectionLabel {
     THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
     NSMutableArray * actions = [project actionsForSource:editable];
     self.connectionCountLabel.text = [NSString stringWithFormat:@"%d connections",actions.count];
+    
+    if(actions.count == 0){
+        self.removeButton.enabled = NO;
+    } else {
+        self.removeButton.enabled = YES;
+    }
 }
 
 -(void) reloadState{
     
     [self.tableView reloadData];
     [self updateConnectionLabel];
-    
     
     CGRect tableFrame = self.tableView.frame;
     self.tableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y, tableFrame.size.width, self.tableView.contentSize.height);
@@ -255,13 +260,20 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) connectionMade:(NSNotification*) notification{
     TFConnectionLine * connection = notification.object;
-    if(connection.obj2 == self.editableObject){
+    if(connection.obj1 == self.editableObject){
         [self.tableView reloadData];
     }
 }
 
+-(void) objectRemoved:(NSNotification*) notification{
+    [self.tableView reloadData];
+    [self updateConnectionLabel];
+}
+
 -(void) viewWillAppear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionMade:) name:kNotificationConnectionMade object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:nil];
+    
     [super viewWillAppear:animated];
 }
 
