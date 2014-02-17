@@ -470,19 +470,28 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleConnectionStartedAt:(CGPoint) location{
     THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
-    if(self.isLilypadMode){
-        THHardwareComponentEditableObject * obj = (THHardwareComponentEditableObject*) object;
-        
-        if([obj isKindOfClass:[THHardwareComponentEditableObject class]]){
-            THElementPinEditable * object1 = [obj pinAtPosition:location];
+    if(object){
+        if(self.isLilypadMode){
             
-            if(object1 != nil){
-                [self startNewConnectionForObject:object1];
+            if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+                THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+                THElementPinEditable * elementPin = [hardwareComponent pinAtPosition:location];
+                
+                if(elementPin){
+                    [self startNewConnectionForObject:elementPin];
+                }
+            }
+            
+        } else {
+            if(object.acceptsConnections){
+                [self startNewConnectionForObject:object];
             }
         }
-    } else {
-        if(object != nil && object.acceptsConnections){
-            [self startNewConnectionForObject:object];
+    } else if(self.isLilypadMode){
+        THWireNode * wireNode = [self wireNodeAtPosition:location];
+        
+        if(wireNode){
+            [self selectObject:wireNode];
         }
     }
 }
@@ -535,6 +544,16 @@ You should have received a copy of the GNU General Public License along with thi
             
             [self moveCurrentConnection:location];
             
+        } else if(self.isLilypadMode && sender.state == UIGestureRecognizerStateChanged){
+            
+            CGPoint d = [sender translationInView:sender.view];
+            d.y = - d.y;
+            
+            if(self.currentObject){
+                
+                [self moveCurrentObject:d];
+            }
+            [sender setTranslation:ccp(0,0) inView:sender.view];
         }
         
     } else if(_state == kEditorStateDuplicate) {
