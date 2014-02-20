@@ -532,7 +532,7 @@ float const kToolsTabMargin = 5;
                        action:@selector(startSimulation)];
     
     self.stopButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+                       initWithBarButtonSystemItem:UIBarButtonSystemItemPause   
                        target:self
                        action:@selector(endSimulation)];
     

@@ -406,7 +406,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
-    if((self.editingScenes || self.editingOneScene) && currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
+    if((self.editingScenes || self.editingOneScene) && self.currentProject && (gestureRecognizer == panRecognizer || otherGestureRecognizer == panRecognizer)) {
         
         return NO;
     }
@@ -424,50 +424,102 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(indexPath){
         
-        currentProjectCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
-        currentProject = [self.projectProxies objectAtIndex:indexPath.row];
+        self.currentProjectCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        self.currentProject = [self.projectProxies objectAtIndex:indexPath.row];
         
-        if(currentProjectCell.editing){
+        if(self.currentProjectCell.editing){
             
-            currentDraggableCell = [[THProjectDraggableCell alloc] initWithFrame:currentProjectCell.frame];
-            currentDraggableCell.imageView.image = currentProjectCell.imageView.image;
-            currentDraggableCell.imageView.frame = currentProjectCell.imageView.frame;
+            self.currentDraggableCell = [[THProjectDraggableCell alloc] initWithFrame:self.currentProjectCell.frame];
+            self.currentDraggableCell.imageView.image = self.currentProjectCell.imageView.image;
+            self.currentDraggableCell.imageView.frame = self.currentProjectCell.imageView.frame;
             
-            [self.projectProxies removeObject:currentProject];
+            [self.projectProxies removeObject:self.currentProject];
             NSArray * indexPaths = [NSArray arrayWithObjects:indexPath, nil];
             [self.collectionView deleteItemsAtIndexPaths:indexPaths];
             
-            [self.view addSubview:currentDraggableCell];
+            [self.view addSubview:self.currentDraggableCell];
             
         }
     }
 }
 
--(void) handleStoppedMoving{
+-(NSInteger) indexForPoint:(CGPoint) point{
+    NSInteger totalWidth = self.collectionView.frame.size.width;
+    NSInteger cellWidth = self.currentProjectCell.frame.size.width;
+    NSInteger cellHeight = self.currentProjectCell.frame.size.height;
     
-    if(currentDraggableCell){
+
+    float spacingX = 10;
+    float spacingY = 10;
+    
+    NSInteger fullCellWidth = spacingX * 2 + cellWidth;
+    NSInteger fullCellHeight = spacingY * 2 + cellHeight;
+    
+    NSInteger maxCols = totalWidth / cellWidth;
+    NSInteger row = (NSInteger) (point.y) / fullCellHeight;
+    NSInteger col = (NSInteger) (point.x) / fullCellWidth;
+
+    //NSLog(@"%.2f %.2f %d %d",point.x,point.y, row,col);
+    
+    NSInteger index = row * maxCols + col;
+    
+    if(index > self.projectProxies.count){
+        index = self.projectProxies.count;
+    }
+    
+    return index;
+}
+
+-(void) temporaryInsertDragCellAtIndex:(NSInteger) index{
+    
+        [self.projectProxies insertObject:self.currentProject atIndex:index];
         
-        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:currentDraggableCell.center];
-        
-        if(!indexPath){
-            indexPath = [NSIndexPath indexPathForRow:self.projectProxies.count inSection:0];
-        }
-        
-        [self.projectProxies insertObject:currentProject atIndex:indexPath.row];
-        [currentDraggableCell removeFromSuperview];
-        
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
         [self.collectionView insertItemsAtIndexPaths:indexPaths];
         
-        currentProject = nil;
-        currentProjectCell = nil;
-        currentDraggableCell = nil;
-        
         THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         cell.editing = YES;
-        //[cell startShaking];
+}
+
+-(void) handleStoppedMoving{
+    
+    if(self.currentDraggableCell){
         
-        //[self stopEditingScenes];
+        [self.currentDraggableCell removeFromSuperview];
+        
+        //NSInteger index = [self indexForPoint:self.currentDraggableCell.center];
+        //[self temporaryInsertDragCellAtIndex:index];
+        
+        self.currentProject = nil;
+        self.currentProjectCell = nil;
+        self.currentDraggableCell = nil;
+    }
+}
+
+-(void) handleMovedToPosition:(CGPoint) position{
+    
+    if(self.currentDraggableCell){
+        
+        self.currentDraggableCell.center = position;
+        
+        NSInteger index = [self indexForPoint:self.currentDraggableCell.center];
+        
+        if(index != self.currentDraggableCellIndex && index < self.projectProxies.count){
+            
+            if(insertedTemporaryProject){
+                [self.projectProxies removeObjectAtIndex:self.currentDraggableCellIndex];
+                
+                NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.currentDraggableCellIndex inSection:0];
+                NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+                [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+            }
+            
+            [self temporaryInsertDragCellAtIndex:index];
+            insertedTemporaryProject = YES;
+            
+            self.currentDraggableCellIndex = index;
+        }
     }
 }
 
@@ -478,13 +530,15 @@ You should have received a copy of the GNU General Public License along with thi
         CGPoint position = [recognizer locationInView:self.collectionView];
         
         if(recognizer.state == UIGestureRecognizerStateBegan){
+            self.currentDraggableCellIndex = -1;
+            insertedTemporaryProject = NO;
             
             [self handleStartedMoving:position];
             
         } else if(recognizer.state == UIGestureRecognizerStateChanged){
             
-            currentDraggableCell.center = position;
-            
+            [self handleMovedToPosition:position];
+                
         } else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded){
             
             [self handleStoppedMoving];
@@ -495,7 +549,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) startEditingScene{
     
     self.editingOneScene = YES;
-    currentProjectCell.editing = YES;
+    self.currentProjectCell.editing = YES;
 }
 
 -(void) duplicateProjectAtIndex:(NSInteger) index{
@@ -542,7 +596,7 @@ You should have received a copy of the GNU General Public License along with thi
             
             if(cell){
                 [cell scaleEffect];
-                currentProjectCell = cell;
+                self.currentProjectCell = cell;
                 [NSTimer scheduledTimerWithTimeInterval:kProjectCellScaleEffectDuration target:self selector:@selector(startEditingScene) userInfo:nil repeats:NO];
                 
                 //[self showDuplicateMenuForCell:cell];

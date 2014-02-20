@@ -173,7 +173,7 @@ CGSize const kImagePickerImageSize = {60,60};
     [super viewDidLoad];
     
     [self loadImages];
-    self.contentSizeForViewInPopover = self.view.frame.size;
+    self.preferredContentSize = self.view.frame.size;
 }
 
 -(void)viewDidUnload

@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        self.contentSizeForViewInPopover = CGSizeMake(320, 480);
+        self.preferredContentSize = CGSizeMake(320, 480);
         
         // Custom initialization
         CGRect tableFrame = CGRectMake(10, 10, 300, 400);

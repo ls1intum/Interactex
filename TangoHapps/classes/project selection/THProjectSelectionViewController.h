@@ -54,10 +54,7 @@ You should have received a copy of the GNU General Public License along with thi
     UITapGestureRecognizer * tapRecognizer;
     UIPanGestureRecognizer * panRecognizer;
     UILongPressGestureRecognizer * longpressRecognizer;
-    
-    THProjectProxy * currentProject;
-    THCollectionProjectCell * currentProjectCell;
-    THProjectDraggableCell * currentDraggableCell;
+    BOOL insertedTemporaryProject;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
@@ -69,6 +66,11 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) UIBarButtonItem * editButton;
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
 @property (weak, nonatomic) NSMutableArray * projectProxies;
+@property (strong, nonatomic) THCollectionProjectCell * currentProjectCell;
+@property (strong, nonatomic) THProjectDraggableCell * currentDraggableCell;
+@property (strong, nonatomic) THProjectProxy * currentProject;
+
+@property (nonatomic) NSInteger currentDraggableCellIndex;
 
 -(IBAction)addButtonTapped:(id)sender;
 -(IBAction)viewControlChanged:(id)sender;

@@ -49,10 +49,28 @@ You should have received a copy of the GNU General Public License along with thi
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
     self.properties = [NSMutableArray arrayWithObject:property];
     
-    TFMethod * method = [TFMethod methodWithName:@"setValue"];
-    method.numParams = 1;
-    method.firstParamType = kDataTypeFloat;
-    self.methods = [NSMutableArray arrayWithObject:method];
+    
+    TFMethod * method1 = [TFMethod methodWithName:@"setMin1"];
+    method1.numParams = 1;
+    method1.firstParamType = kDataTypeFloat;
+    
+    TFMethod * method2 = [TFMethod methodWithName:@"setMax1"];
+    method2.numParams = 1;
+    method2.firstParamType = kDataTypeFloat;
+    
+    TFMethod * method3 = [TFMethod methodWithName:@"setMin2"];
+    method3.numParams = 1;
+    method3.firstParamType = kDataTypeFloat;
+    
+    TFMethod * method4 = [TFMethod methodWithName:@"setMax2"];
+    method4.numParams = 1;
+    method4.firstParamType = kDataTypeFloat;
+    
+    TFMethod * method5 = [TFMethod methodWithName:@"setValue"];
+    method5.numParams = 1;
+    method5.firstParamType = kDataTypeFloat;
+    
+    self.methods = [NSMutableArray arrayWithObjects:method1,method2,method3,method4,method5,nil];
     
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];

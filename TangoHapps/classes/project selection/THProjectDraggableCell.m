@@ -52,10 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.imageView = [[UIImageView alloc] init];
         [self addSubview:self.imageView];
-        
-        /*
-        CGRect textFieldFrame = CGRectMake(0, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-        self.textField = [[UITextField alloc] initWithFrame:textFieldFrame];*/
     }
     return self;
 }

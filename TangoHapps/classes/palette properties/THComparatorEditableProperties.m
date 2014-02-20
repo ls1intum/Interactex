@@ -63,21 +63,21 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(condition.action1 == nil && condition.action2 == nil){
 
-        text = @"Set comparator values for comparator to work. You can do this by dragging connections from other objects to the comparator";
+        text = @"Set comparator values for comparator to work. You can do this by dragging connections from other objects to the comparator.";
         
     } else if(condition.action1 == nil){
         
-        text = @"Set first value for comparator to work";
+        text = @"Set first value for comparator to work.";
         
     } else if(condition.action2 == nil){
         
-        text = @"Set second value for comparator to work";
+        text = @"Set second value for comparator to work.";
         
     } else {
         
         if(condition.action1.firstParam == nil || condition.action2.firstParam == nil){
             
-            text = @"The comparator requires numeric input values. Either connect an object's event which has a numeric parameter (such as LED's intensity changed event), or connect a property to the connection between the input objet and the comparator";
+            text = @"The comparator requires numeric input values. Connect a numeric property to the connection between the input objet and the comparator.";
             
         } else {
             
@@ -94,7 +94,7 @@ You should have received a copy of the GNU General Public License along with thi
             }
             
             NSString * conditionStr = condition.conditionTypeString;
-            text = [NSString stringWithFormat:@"When the %@'s %@ property is %@ than the %@'s %@ property, the comparator will trigger the conditionIsTrue event. Otherwise it will trigger the conditionIsFalse event", object1, condition.action1.firstParam.property.name, conditionStr, object2, condition.action2.firstParam.property.name];
+            text = [NSString stringWithFormat:@"When the %@'s %@ property is %@ than the %@'s %@ property, the comparator will trigger the conditionIsTrue event. Otherwise it will trigger the conditionIsFalse event.", object1, condition.action1.firstParam.property.name, conditionStr, object2, condition.action2.firstParam.property.name];
         }
     }
     

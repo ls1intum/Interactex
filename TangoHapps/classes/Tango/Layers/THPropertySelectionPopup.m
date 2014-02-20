@@ -158,7 +158,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSInteger itemCount = self.object.simulableObject.properties.count;
     float contentHeight = itemCount * kMethodSelectionPopupRowHeight + kPopupHeaderHeight;
-    self.contentSizeForViewInPopover = CGSizeMake(200, contentHeight);
+    self.preferredContentSize = CGSizeMake(200, contentHeight);
 }
 
 @end

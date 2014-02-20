@@ -185,7 +185,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSInteger maxItemCount = MAX(_acceptedEvents.count,_acceptedMethods.count);
     float contentHeight = maxItemCount * kMethodSelectionPopupRowHeight + kPopupHeaderHeight;
-    self.contentSizeForViewInPopover = CGSizeMake(400, contentHeight);
+    self.preferredContentSize = CGSizeMake(400, contentHeight);
 }
 
 @end

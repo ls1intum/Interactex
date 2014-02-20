@@ -54,7 +54,7 @@ const float kProjectCellScaleEffectDuration = 0.5;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-
+        
         
     }
     return self;
