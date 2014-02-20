@@ -49,6 +49,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THProjectSelectionViewController
 
+CGSize const kProjectSelectionActivityIndicatorViewSize = {200,100};
+CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,6 +71,38 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.navigationItem.leftBarButtonItem = self.editButton;
     
+    [self addActivityView];
+}
+
+-(void) addActivityView{
+    
+    CGSize viewSize = self.view.frame.size;
+    
+    CGRect rect = CGRectMake(viewSize.height/2 - kProjectSelectionActivityIndicatorViewSize.width/2, viewSize.width/2 - kProjectSelectionActivityIndicatorViewSize.height/2,kProjectSelectionActivityIndicatorViewSize.width,kProjectSelectionActivityIndicatorViewSize.height);
+                                                                                                                         
+    self.activityIndicatorView = [[UIView alloc] initWithFrame:rect];
+    self.activityIndicatorView.backgroundColor = [UIColor grayColor];
+    self.activityIndicatorView.hidden = YES;
+    [self.view addSubview:self.activityIndicatorView];
+    
+    rect = CGRectMake(rect.size.width/2 - kProjectSelectionActivityIndicatorLabelSize.width/2, rect.size.height/2 - kProjectSelectionActivityIndicatorLabelSize.height/2 - 30,kProjectSelectionActivityIndicatorLabelSize.width,kProjectSelectionActivityIndicatorLabelSize.height);
+    UILabel * label = [[UILabel alloc] initWithFrame:rect];
+    label.font = [UIFont systemFontOfSize:13.0f];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = @"Loading project...";
+    [self.activityIndicatorView addSubview:label];
+    
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    CGRect frame = self.activityIndicator.frame;
+                             
+    viewSize = self.activityIndicatorView.frame.size;
+    frame.origin = CGPointMake(viewSize.width/2 - frame.size.width/2, viewSize.height/2 - frame.size.height/2 +10);
+    self.activityIndicator.frame = frame;
+    [self.activityIndicatorView addSubview: self.activityIndicator];
+    
+    self.activityIndicatorView.layer.borderWidth = 1.0f;
+    self.activityIndicatorView.layer.cornerRadius = 5.0f;
+    self.activityIndicatorView.layer.masksToBounds = YES;
 }
 
 #pragma  mark - init cocos2d
@@ -151,13 +185,27 @@ You should have received a copy of the GNU General Public License along with thi
     
     [[THDirector sharedDirector] saveProjectProxies];
     
+    [self stopActivityIndicator];
+    
     //[[CCDirector sharedDirector] popScene];
     
 }
 
 #pragma mark - Private
 
+-(void) startActivityIndicator{
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicator startAnimating];
+}
+
+-(void) stopActivityIndicator{
+    self.activityIndicatorView.hidden = YES;
+    [self.activityIndicator stopAnimating];
+}
+
 - (void)proceedToProjectAtIndex:(NSInteger) index{
+    
+    [self startActivityIndicator];
     
     THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
@@ -172,6 +220,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)proceedToNewProject{
+    
+    [self startActivityIndicator];
     
     THProject * project = [THProject newProject];
     

@@ -70,6 +70,9 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) THProjectDraggableCell * currentDraggableCell;
 @property (strong, nonatomic) THProjectProxy * currentProject;
 
+@property (strong, nonatomic) UIActivityIndicatorView * activityIndicator;
+@property (strong, nonatomic) UIView * activityIndicatorView;
+
 @property (nonatomic) NSInteger currentDraggableCellIndex;
 
 -(IBAction)addButtonTapped:(id)sender;
