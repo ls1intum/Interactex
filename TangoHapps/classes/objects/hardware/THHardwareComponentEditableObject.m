@@ -118,16 +118,16 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
-    
-    _pins = [decoder decodeObjectForKey:@"pins"];
-    _type = [decoder decodeIntegerForKey:@"type"];
-    
-    [self loadObject];
-    [self addPinChilds];
-    [self loadSewedSprite];
-    
-    self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
-
+    if(self){
+        _pins = [decoder decodeObjectForKey:@"pins"];
+        _type = [decoder decodeIntegerForKey:@"type"];
+        
+        [self loadObject];
+        [self addPinChilds];
+        [self loadSewedSprite];
+        
+        self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
+    }
     return self;
 }
 
@@ -305,10 +305,14 @@ You should have received a copy of the GNU General Public License along with thi
     [layer addEditableObject:self];
     
     [self autoroutePlusAndMinusPins];
+    
+    [super addToLayer:layer];
 }
 
 -(void) removeFromLayer:(TFLayer*) layer{
     [layer removeEditableObject:self];
+    
+    [super removeFromLayer:layer];
 }
 
 -(THElementPinEditable*) mainPin{

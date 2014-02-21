@@ -241,6 +241,9 @@ You should have received a copy of the GNU General Public License along with thi
         _dragView = [[THDraggedPaletteItem alloc] initWithPaletteItem:paletteItem];
         location = [TFHelper ConvertFromCocosToUI:location];
         
+        CGFloat navigationBarHeight = 44;
+        location.y -= navigationBarHeight;
+        
         UIScrollView * scrollView = (UIScrollView*) self.view;
         location = [self.view.superview convertPoint:location fromView:self.view];
         location = ccpSub(location,scrollView.contentOffset);
@@ -270,6 +273,9 @@ You should have received a copy of the GNU General Public License along with thi
         UIScrollView * scrollView = (UIScrollView*) self.view;
         location = [TFHelper ConvertFromCocosToUI:location];
         location = ccpAdd(location,scrollView.contentOffset);
+        
+        CGFloat navigationBarHeight = 44;
+        location.y -= navigationBarHeight;
         
         _dragView.center = location;
         

@@ -45,6 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THSoundEditable : THActionEditable
 
 -(void) play;
+
 @property (nonatomic) NSString * fileName;
 
 @end

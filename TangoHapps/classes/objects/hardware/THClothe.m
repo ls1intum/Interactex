@@ -175,10 +175,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) setName:(NSString *)name{
-    _name = name;
-}
-
 -(THPaletteItem*) paletteItem{
     THClothePaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithName:self.name object:self];
     return paletteItem;

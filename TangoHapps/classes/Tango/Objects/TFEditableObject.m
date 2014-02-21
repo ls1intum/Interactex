@@ -54,10 +54,14 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THInvokableProperties.h"
 #import "THTriggerableProperties.h"
 #import "THPaletteItem.h"
+#import "THEditableObjectCommonProperties.h"
 
 @implementation TFEditableObject
 
 @dynamic paletteItem;
+
+
+static NSInteger objectCount = 1;
 
 -(void) loadEditableObject{
     
@@ -68,42 +72,53 @@ You should have received a copy of the GNU General Public License along with thi
     self.canBeDuplicated = YES;
     self.canBeAddedToPalette = NO;
     self.canBeMoved = YES;
+    objectCount++;
 }
 
 -(id) init{
-    if((self=[super init])) {
+    
+    self = [super init];
+    
+    if(self){
+        
         self.scale = 1.0f;
         self.rotation = 0.0f;
         self.active = YES;
         
         self.z = kDefaultZ;
         [self loadEditableObject];
+        
+        _objectName = [NSString stringWithFormat:@"object %d",objectCount];
     }
+    
     return self;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
+    
     self = [super init];
     
-    [self loadEditableObject];
-    
-    self.active = [decoder decodeBoolForKey:@"active"];
-    self.scale = [decoder decodeFloatForKey:@"scale"];
-    self.rotation = [decoder decodeFloatForKey:@"rotation"];
-    self.position = [decoder decodeCGPointForKey:@"position"];
-    self.size = [decoder decodeCGSizeForKey:@"size"];
-    self.z = [decoder decodeIntForKey:@"z"];
-    self.simulableObject = [decoder decodeObjectForKey:@"object"];
-    self.acceptsConnections = [decoder decodeBoolForKey:@"acceptsConnections"];
-    
+    if(self){
+        
+        [self loadEditableObject];
+        
+        self.active = [decoder decodeBoolForKey:@"active"];
+        self.scale = [decoder decodeFloatForKey:@"scale"];
+        self.rotation = [decoder decodeFloatForKey:@"rotation"];
+        self.position = [decoder decodeCGPointForKey:@"position"];
+        self.size = [decoder decodeCGSizeForKey:@"size"];
+        self.z = [decoder decodeIntForKey:@"z"];
+        self.simulableObject = [decoder decodeObjectForKey:@"object"];
+        self.acceptsConnections = [decoder decodeBoolForKey:@"acceptsConnections"];
+        _objectName = [decoder decodeObjectForKey:@"objectName"];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
+    
     [coder encodeBool:self.active forKey:@"active"];
     [coder encodeFloat:self.scale forKey:@"scale"];
     [coder encodeFloat:self.rotation forKey:@"rotation"];
@@ -112,6 +127,7 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeInt:self.z forKey:@"z"];
     [coder encodeObject:self.simulableObject forKey:@"object"];
     [coder encodeBool:self.acceptsConnections forKey:@"acceptsConnections"];
+    [coder encodeObject:_objectName forKey:@"objectName"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -144,10 +160,30 @@ You should have received a copy of the GNU General Public License along with thi
         [array addObject:_triggerableProperties];
     }
     
+    [array addObject:[THEditableObjectCommonProperties properties]];
+    
     return array;
 }
 
 #pragma mark - Methods
+
+-(void) updateNameLabel{
+    CGSize const kEditableObjectNameLabelSize = {100,20};
+    if(self.nameLabel){
+        [self.nameLabel removeFromParentAndCleanup:YES];
+    }
+    self.nameLabel = [CCLabelTTF labelWithString:self.objectName dimensions:kEditableObjectNameLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    self.nameLabel.position = ccp(self.contentSize.width/2,-20);
+    [self addChild:self.nameLabel];
+}
+
+-(void) setObjectName:(NSString *)objectName{
+    if(![self.objectName isEqualToString:objectName]){
+        _objectName = objectName;
+        
+        [self updateNameLabel];
+    }
+}
 
 -(void) update{
     
@@ -235,12 +271,16 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
+    [self updateNameLabel];
 }
 
 -(void) removeFromLayer:(TFLayer*) layer{
+
 }
 
+
 -(void) addToWorld{
+    
 }
 
 -(void) removeFromWorld {
@@ -412,17 +452,16 @@ You should have received a copy of the GNU General Public License along with thi
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 -(NSString*) shortDescription{
     return @"";
 }
-
 
 -(NSString*) description{
     return @"Editable Object";
 }
 
 -(void) dealloc{
+    objectCount--;
     if ([@"YES" isEqualToString: [[[NSProcessInfo processInfo] environment] objectForKey:@"printDeallocsEditableObjects"]]) {
         NSLog(@"deallocing %@",self);
     }

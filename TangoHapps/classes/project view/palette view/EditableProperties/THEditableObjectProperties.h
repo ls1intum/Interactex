@@ -51,7 +51,6 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THEditableObjectProperties : UIViewController {
 }
 
-
 @property (nonatomic, weak) id<THPropertiesSizeDelegate> sizeDelegate;
 @property (nonatomic, weak) UIScrollView * scrollView;
 @property (nonatomic, strong) id<TFEditable> editableObject;

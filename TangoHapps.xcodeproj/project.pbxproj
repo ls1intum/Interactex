@@ -891,6 +891,10 @@
 		9ABC27B81809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
 		9ABC27B91809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
 		9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD221800255400363CD2 /* CoreText.framework */; };
+		9ACBC5EC18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
+		9ACBC5ED18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
+		9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */; };
+		9ACBC62A18B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */; };
 		9AD7046C18AA98F00080CD2E /* THGraphTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7046B18AA98F00080CD2E /* THGraphTextView.m */; };
 		9AD7046D18AA98F00080CD2E /* THGraphTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7046B18AA98F00080CD2E /* THGraphTextView.m */; };
 		9AD704AB18AA9AF70080CD2E /* THGraphViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AA18AA9AF70080CD2E /* THGraphViewHelper.m */; };
@@ -2343,6 +2347,9 @@
 		9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAccelerometerPaletteItem.h; sourceTree = "<group>"; };
 		9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerPaletteItem.m; sourceTree = "<group>"; };
 		9AC3CD221800255400363CD2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditableObjectCommonProperties.h; sourceTree = "<group>"; };
+		9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditableObjectCommonProperties.m; sourceTree = "<group>"; };
+		9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THEditableObjectCommonProperties.xib; sourceTree = "<group>"; };
 		9AD7046A18AA98F00080CD2E /* THGraphTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGraphTextView.h; sourceTree = "<group>"; };
 		9AD7046B18AA98F00080CD2E /* THGraphTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGraphTextView.m; sourceTree = "<group>"; };
 		9AD704A618AA99900080CD2E /* THGraphViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGraphViewHelper.h; sourceTree = "<group>"; };
@@ -3408,6 +3415,7 @@
 				9AFB7E1A1833BBDD00694CCE /* THMonitorProperties.xib */,
 				9A7B65171834D830009D0103 /* THCompassProperties.xib */,
 				9A8942A21836215300B8CA0E /* THJennicProperties.xib */,
+				9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -3955,6 +3963,8 @@
 				9A89429C1836213100B8CA0E /* THJennicProperties.m */,
 				9A1C3AFD1886E4D8007C5E94 /* THAutorouteProperties.h */,
 				9A1C3AFE1886E4D8007C5E94 /* THAutorouteProperties.m */,
+				9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */,
+				9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -4731,6 +4741,7 @@
 				9AF503DF167B84B40020241C /* THColorPicker.xib in Resources */,
 				9ABC279C1809B46C00B39D72 /* accelerometer.png in Resources */,
 				9AF5043D167B84B40020241C /* data_pushed.mp3 in Resources */,
+				9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */,
 				9AF5043E167B84B40020241C /* peer_connected.mp3 in Resources */,
 				9AF5043F167B84B40020241C /* peer_disconnected.mp3 in Resources */,
 				9AF50440167B84B40020241C /* song1.mp3 in Resources */,
@@ -5283,6 +5294,7 @@
 				9AB778A617E6C25700F82424 /* triangleEmpty.png in Resources */,
 				9AB778A817E6C25700F82424 /* triangleFilled.png in Resources */,
 				9A51103C1839384200EB25FA /* pause@2x.png in Resources */,
+				9ACBC62A18B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */,
 				9AA4D75918AE1C8500A43433 /* THLilypadProperties.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5421,6 +5433,7 @@
 				9AF5039E167B84B40020241C /* THTouchpad.m in Sources */,
 				9AF5039F167B84B40020241C /* THTouchPadEditableObject.m in Sources */,
 				9AF503A0167B84B40020241C /* THView.m in Sources */,
+				9ACBC5EC18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */,
 				9AF503A1167B84B40020241C /* THViewEditableObject.m in Sources */,
 				9AA4D74618AE17A400A43433 /* THBoardProperties.m in Sources */,
 				9ABC27B41809B57900B39D72 /* THAccelerometerEditable.m in Sources */,
@@ -5716,6 +5729,7 @@
 				9AF50640167B92670020241C /* THTouchpadPaletteItem.m in Sources */,
 				9AF50641167B92670020241C /* THValuePaletteItem.m in Sources */,
 				9AF50642167B92770020241C /* THButtonProperties.m in Sources */,
+				9ACBC5ED18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */,
 				9AF50643167B92770020241C /* THBuzzerProperties.m in Sources */,
 				9AF50644167B92770020241C /* THClotheObjectProperties.m in Sources */,
 				9AF50645167B927B0020241C /* THClotheProperties.m in Sources */,
