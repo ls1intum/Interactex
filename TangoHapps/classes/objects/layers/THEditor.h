@@ -81,6 +81,9 @@ typedef enum {
     TFMethodSelectionPopup * _methodSelectionPopup;
     CCSprite * dragSprite;
     CGPoint _draggedObjectPreviousPosition;
+    
+    NSMutableArray * attachedClotheObjects;
+    NSMutableArray * attachedClotheObjectsPositions;
 }
 
 @property (nonatomic, readonly) BOOL isLilypadMode;
@@ -90,13 +93,13 @@ typedef enum {
 @property (nonatomic) float zoomLevel;
 @property (nonatomic) CGPoint displacement;
 @property (nonatomic) CCLayer * zoomableLayer;
-@property(nonatomic, weak) THEditorToolsViewController * editorToolsController;
-@property(nonatomic, strong) TFConnectionLine * currentConnection;
-@property(nonatomic, weak) TFEditableObject * currentObject;
-@property(nonatomic) TFEditorState state;
-@property(nonatomic, weak) id<THEditorDragDelegate> dragDelegate;
-@property(nonatomic) BOOL removingConnections;
-@property(nonatomic, strong) NSMutableArray * additionalConnections;
+@property (nonatomic, weak) THEditorToolsViewController * editorToolsController;
+@property (nonatomic, strong) TFConnectionLine * currentConnection;
+@property (nonatomic, weak) TFEditableObject * currentObject;
+@property (nonatomic) TFEditorState state;
+@property (nonatomic, weak) id<THEditorDragDelegate> dragDelegate;
+@property (nonatomic) BOOL removingConnections;
+@property (nonatomic, strong) NSMutableArray * additionalConnections;
 
 //lilypad mode
 -(void) startLilypadMode;

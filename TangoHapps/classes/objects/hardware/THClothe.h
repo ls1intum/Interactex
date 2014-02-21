@@ -44,9 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THHardwareComponentEditableObject;
 
-@interface THClothe : TFEditableObject
-{
-    NSMutableArray * _attachments;
+@interface THClothe : TFEditableObject {
     BOOL _imageFromName;
 }
 
@@ -56,6 +54,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) UIImage * image;
+@property (nonatomic, strong) NSMutableArray * attachments;
 @property (nonatomic) BOOL imageFromName;
 
 @end

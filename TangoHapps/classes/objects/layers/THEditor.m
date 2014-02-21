@@ -1270,19 +1270,68 @@ You should have received a copy of the GNU General Public License along with thi
     [paletteController reloadPalettes];
 }
 
+-(void) deAttachClotheItems{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    attachedClotheObjects = [NSMutableArray arrayWithCapacity:project.clothes.count];
+    attachedClotheObjectsPositions = [NSMutableArray arrayWithCapacity:project.clothes.count];
+    
+    for (THClothe * clothe in project.clothes) {
+        NSMutableArray * positionsArray = [NSMutableArray arrayWithCapacity:clothe.attachments];
+        for (THHardwareComponentEditableObject * hardwareComponent in clothe.attachments) {
+            
+            NSValue * value = [NSValue valueWithCGPoint:hardwareComponent.position];
+            [positionsArray addObject:value];
+            
+            CGPoint position = [hardwareComponent convertToWorldSpace:ccp(0,0)];
+            position = ccpAdd(position, ccp(hardwareComponent.contentSize.width/2,hardwareComponent.contentSize.height/2));
+            [hardwareComponent removeFromParentAndCleanup:YES];
+            hardwareComponent.attachedToClothe = nil;
+            
+            hardwareComponent.position = position;
+            [hardwareComponent addToLayer:self];
+        }
+        [attachedClotheObjects addObject:clothe.attachments];
+        [attachedClotheObjectsPositions addObject:positionsArray];
+    }
+}
+
+-(void) reAttachClotheItems{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    NSInteger count = 0;
+    for (NSArray * array in attachedClotheObjects) {
+        THClothe * clothe = [project.clothes objectAtIndex:count];
+        NSArray * positionsArray = [attachedClotheObjectsPositions objectAtIndex:count++];
+        NSInteger count2 = 0;
+        for (THHardwareComponentEditableObject * hardwareComponent in array) {
+            [hardwareComponent removeFromLayer:self];
+            NSValue * value = [positionsArray objectAtIndex:count2++];
+            [clothe addChild:hardwareComponent z:1];
+            
+            CGPoint position = value.CGPointValue;
+            hardwareComponent.position = position;
+            //hardwareComponent.position = [clothe convertToNodeSpace:position];
+            hardwareComponent.attachedToClothe = clothe;
+        }
+    }
+    
+    attachedClotheObjects = nil;
+    attachedClotheObjectsPositions = nil;
+}
+
 -(void) startLilypadMode{
     
     _isLilypadMode = YES;
     
     [self unselectCurrentObject];
     [self hideConnectionsForAllObjects];
-    
     [self hideNonLilypadObjects];
     [self showBoards];
     [self showOtherHardware];
     [self updateWiresVisibility];
-    //[self showAllLilypadWires];
     [self hideNonLilypadPaletteSections];
+    [self deAttachClotheItems];
 }
 
 -(void) stopLilypadMode{
@@ -1293,9 +1342,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
     [self updateWiresVisibility];
-    //[self hideAllLilypadWires];
     [self showAllPaletteSections];
-
+    [self reAttachClotheItems];
 }
 
 -(void) removeObjects{
