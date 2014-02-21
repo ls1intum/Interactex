@@ -262,6 +262,8 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.isLilypadMode){
         //[self showWiresForCurrentObject];
     } else {
+        
+        [self reLayoutConnectionLinesForObject:self.currentObject];
         [self showConnectionsForCurrentObject];
     }
     
@@ -387,6 +389,28 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Method Selection Popup
 
+-(void) checkDistributeInvocationConnectionsBetweenObj1:(TFEditableObject*) object1 obj2:(TFEditableObject*) object2{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    NSArray * invocationConnections = [project invocationConnectionsFrom:object1 to:object2];
+    
+    CGPoint p1 = object1.center;
+    CGPoint p2 = object2.center;
+    CGPoint diff = ccpSub(p1,p2);
+    CGPoint orthog = ccpNormalize(ccpRPerp(diff));
+    float const kEditorInvocationLinesDistance = 26;
+    float multiplier = - (float)(invocationConnections.count+1) * kEditorInvocationLinesDistance / 2.0f;
+    CGPoint offset = ccpMult(orthog, multiplier);
+    CGPoint currentPos = ccpAdd(ccpMult(ccpAdd(p1, p2),0.5f),offset);
+    CGPoint addition = ccpMult(orthog,kEditorInvocationLinesDistance);
+    
+    //NSLog(@"%f %f",currentPos.x,currentPos.y);
+    for (THInvocationConnectionLine * connectionLine in invocationConnections) {
+        currentPos = ccpAdd(currentPos, addition);
+        connectionLine.lineCenter = currentPos;
+    }
+}
+
 -(void) methodSelectionPopup:(TFMethodSelectionPopup*) popup didSelectAction:(TFMethodInvokeAction*) action forEvent:(TFEvent*) event{
     
     [[SimpleAudioEngine sharedEngine] playEffect:kConnectionMadeEffect];
@@ -406,11 +430,14 @@ You should have received a copy of the GNU General Public License along with thi
             invocationConnection.action.firstParam = event.param1;
         }
         
+        
         invocationConnection.parameterType = action.method.firstParamType;
         [invocationConnection reloadSprite];
     }
     
     [project addInvocationConnection:invocationConnection animated:YES];
+    
+    [self checkDistributeInvocationConnectionsBetweenObj1:popup.object1 obj2:popup.object2];
 }
 
 -(void)startNewConnectionForObject:(TFEditableObject*) object {
@@ -446,13 +473,7 @@ You should have received a copy of the GNU General Public License along with thi
             if([object2 isKindOfClass:[THBoardEditable class]]){
                 [self connectElementPin:objectPin toBoardAtPosition:location];
             }
-        } /*else if([object1 isKindOfClass:[THResistorExtension class]]){
-            THResistorExtension * extension = (THResistorExtension*) object1;
-            if([object2 isKindOfClass:[THLilyPadEditable class]]){
-                THElementPinEditable * objectPin = extension.pin;
-                [self connectElementPinToLilypad:objectPin at:location];
-            }
-        }*/
+        }
         
         [self dehighlightCurrentPin];
         
@@ -470,6 +491,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleConnectionStartedAt:(CGPoint) location{
     THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
+    
+    [self unselectCurrentObject];
+    
     if(object){
         if(self.isLilypadMode){
             
@@ -513,6 +537,30 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Moving
 
+-(void) reLayoutConnectionLinesForAllObjects{
+    THProject * project = [THDirector sharedDirector].currentProject;
+    for (TFEditableObject * object in project.allObjects) {
+        
+        NSArray * connections = [project invocationConnectionsForObject:object];
+        for (THInvocationConnectionLine * line in connections) {
+            [self checkDistributeInvocationConnectionsBetweenObj1:object obj2:line.obj2];
+        }
+    }
+}
+
+-(void) reLayoutConnectionLinesForObject:(TFEditableObject*) object{
+    THProject * project = [THDirector sharedDirector].currentProject;
+    NSArray * connections = [project invocationConnectionsForObject:object];
+    for (THInvocationConnectionLine * line in connections) {
+        [self checkDistributeInvocationConnectionsBetweenObj1:object obj2:line.obj2];
+    }
+    
+    connections = [project invocationConnectionsToObject:object];
+    for (THInvocationConnectionLine * line in connections) {
+        [self checkDistributeInvocationConnectionsBetweenObj1:line.obj1 obj2:object];
+    }
+}
+
 -(void) moveCurrentObject:(CGPoint) d{
     if(self.currentObject.canBeMoved){
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
@@ -520,12 +568,13 @@ You should have received a copy of the GNU General Public License along with thi
         }
         
         [self.currentObject displaceBy:d];
+        
+        [self reLayoutConnectionLinesForObject:self.currentObject];
     }
 }
 
 -(void) moveLayer:(CGPoint) d{
     self.zoomableLayer.position = ccpAdd(self.zoomableLayer.position, d);
-    //self.position = ccpAdd(self.position, d);
 }
 
 
@@ -548,7 +597,6 @@ You should have received a copy of the GNU General Public License along with thi
             
             CGPoint d = [sender translationInView:sender.view];
             d.y = - d.y;
-            
             if(self.currentObject){
                 
                 [self moveCurrentObject:d];
@@ -661,7 +709,6 @@ You should have received a copy of the GNU General Public License along with thi
         [project removeAllConnectionsFrom:self.currentObject to:object];
         
         object.highlighted = NO;
-        
         
     } else if(_state == kEditorStateDelete){
         
@@ -945,6 +992,8 @@ You should have received a copy of the GNU General Public License along with thi
         if(self.state == kEditorStateConnect){
             
             if(!self.isLilypadMode){
+                
+                [self reLayoutConnectionLinesForAllObjects];
                 [self showConnectionsForAllObjects];
             }
         }

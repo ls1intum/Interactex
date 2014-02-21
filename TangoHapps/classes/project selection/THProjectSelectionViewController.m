@@ -607,7 +607,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     
     //project
-    THProject * project = [THProject projectNamed:proxy.name];
+    THProject * project = [THProject projectSavedWithName:proxy.name];
     project.name = [THProject nextProjectNameForName:project.name];
     [project save];
     

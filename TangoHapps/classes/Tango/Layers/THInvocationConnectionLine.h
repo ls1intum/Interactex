@@ -63,13 +63,13 @@ typedef enum  {
 
 @property(nonatomic) BOOL shouldAnimate;
 
-@property (nonatomic, strong) TFConnectionLine * connectionLine;
+//@property (nonatomic, strong) TFConnectionLine * connectionLine;
 @property (nonatomic) NSInteger numParameters;
 @property (nonatomic) THInvocationConnectionLineState state;
 @property (nonatomic) TFDataType parameterType;
+@property (nonatomic) CGPoint lineCenter;
 
 -(id) initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2;
 -(void) reloadSprite;
--(void) startShining;
 
 @end

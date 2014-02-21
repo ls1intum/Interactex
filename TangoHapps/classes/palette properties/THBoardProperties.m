@@ -90,6 +90,8 @@ float const kBoardPropertiesMinHeight = 300;
         
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
         [self.pinsTable deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self updateEditButton];
     }
 }
 
@@ -112,9 +114,15 @@ float const kBoardPropertiesMinHeight = 300;
     self.showWiresSwitch.on = board.showsWires;
 }
 
+-(void) updateEditButton{
+    
+    self.editButton.enabled = (self.pinsArray.count > 0);
+}
+
 -(void) reloadState{
     [self generatePinsArray];
     [self updateShowsWires];
+    [self updateEditButton];
 }
 
 -(void) handleConnectionChanged{

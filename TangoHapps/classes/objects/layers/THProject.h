@@ -166,6 +166,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 //invocation connections
 -(NSArray*) invocationConnectionsForObject:(TFEditableObject*) object;
+-(NSArray*) invocationConnectionsToObject:(TFEditableObject*) object;
+
 -(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
 -(void) addInvocationConnection:(THInvocationConnectionLine*) connection animated:(BOOL) animated;
 -(void) removeInvocationConnection:(THInvocationConnectionLine*) connection;

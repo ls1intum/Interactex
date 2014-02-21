@@ -198,7 +198,7 @@ CGImageRef UIGetScreenImage(void);
 }
 
 
-#pragma mark - Animations
+
 
 
 @end

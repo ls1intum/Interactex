@@ -785,6 +785,18 @@ You should have received a copy of the GNU General Public License along with thi
     return connections;
 }
 
+-(NSArray*) invocationConnectionsToObject:(TFEditableObject*) object{
+    NSMutableArray * connections = [NSMutableArray array];
+    
+    for (THInvocationConnectionLine * connection in self.invocationConnections) {
+        if(connection.obj2 == object){
+            [connections addObject:connection];
+        }
+    }
+    
+    return connections;
+}
+
 -(NSArray*) invocationConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2{
     NSMutableArray * connections = [NSMutableArray array];
     

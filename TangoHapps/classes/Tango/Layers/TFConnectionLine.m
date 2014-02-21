@@ -128,7 +128,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) draw90DegreesLineBetween:(CGPoint) p1 and:(CGPoint) p2{
-    //float middleX = (p1.x + p2.x) / 2.0f;
     CGPoint intermediatePoint = ccp(p1.x,p2.y);
     ccDrawLine(p1, intermediatePoint);
     ccDrawLine(intermediatePoint, p2);

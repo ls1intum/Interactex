@@ -57,8 +57,10 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(id) initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2{
     self = [super init];
     if(self){
-        self.connectionLine = [[TFConnectionLine alloc] initWithObj1:obj1 obj2:obj2];
-
+        //self.connectionLine = [[TFConnectionLine alloc] initWithObj1:obj1 obj2:obj2];
+        self.obj1 = obj1;
+        self.obj2 = obj2;
+        
         [self loadConnectionLine];
 
     }
@@ -68,7 +70,7 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(id) init{
     self = [super init];
     if(self){
-        self.connectionLine = [[TFConnectionLine alloc] init];
+        //self.connectionLine = [[TFConnectionLine alloc] init];
         
         [self loadConnectionLine];
     }
@@ -87,11 +89,14 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self) {
-        self.connectionLine = [decoder decodeObjectForKey:@"connectionLine"];
+        //self.connectionLine = [decoder decodeObjectForKey:@"connectionLine"];
         self.numParameters = [decoder decodeIntegerForKey:@"numParameters"];
         self.state = [decoder decodeIntegerForKey:@"state"];
         self.parameterType = [decoder decodeIntegerForKey:@"parameterType"];
         self.action = [decoder decodeObjectForKey:@"action"];
+        self.obj1 = [decoder decodeObjectForKey:@"obj1"];
+        self.obj2 = [decoder decodeObjectForKey:@"obj2"];
+        self.lineCenter = [decoder decodeCGPointForKey:@"lineCenter"];
         
         [self loadConnectionLine];
     }
@@ -99,11 +104,14 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.connectionLine forKey:@"connectionLine"];
+    //[coder encodeObject:self.connectionLine forKey:@"connectionLine"];
     [coder encodeInteger:self.numParameters forKey:@"numParameters"];
     [coder encodeInteger:self.state forKey:@"state"];
     [coder encodeInteger:self.parameterType forKey:@"parameterType"];
     [coder encodeObject:self.action forKey:@"action"];
+    [coder encodeObject:self.obj1 forKey:@"obj1"];
+    [coder encodeObject:self.obj2 forKey:@"obj2"];
+    [coder encodeCGPoint:self.lineCenter forKey:@"lineCenter"];
 }
 
 #pragma mark - Property Controller
@@ -116,12 +124,12 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 #pragma mark - Methods
-
+/*
 -(CGPoint) calculateLineCenter{
     CGPoint pos1 = self.obj1.center;
     CGPoint pos2 = self.obj2.center;
     return ccpMult(ccpAdd(pos1,pos2),0.5f);
-}
+}*/
 
 -(void) reloadSprite{
     if(self.numParameters == 1){
@@ -130,11 +138,14 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
         NSString * spriteName = invocationConnectionLineSpriteNames[self.state][self.parameterType];
         spriteName = [spriteName stringByAppendingString:@".png"];
         _invocationStateSprite = [CCSprite spriteWithFile:spriteName];
-        _invocationStateSprite.position = [self calculateLineCenter];
+        //_invocationStateSprite.position = [self calculateLineCenter];
+        _invocationStateSprite.position = self.lineCenter;
+        
         [self addChild:_invocationStateSprite];
     }
 }
 
+/*
 -(void) setObj1:(TFEditableObject *)obj1{
         
     self.connectionLine.obj1 = obj1;
@@ -158,6 +169,7 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     self.connectionLine.shouldAnimate = shouldAnimate;
 }
 
+
 -(BOOL) shouldAnimate{
     return self.connectionLine.shouldAnimate;
 }
@@ -172,12 +184,49 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 
 -(void) setSelected:(BOOL)selected{
     self.connectionLine.selected = selected;
+}*/
+
+-(void) setLineCenter:(CGPoint)lineCenter{
+    _invocationStateSprite.position = lineCenter;
+    _lineCenter = lineCenter;
+}
+
+-(void) startDrawingSelectedLines{
+    
+    ccDrawColor4F(1.0, 0.5, 0.5, 1.0);
+    glLineWidth(kLineWidthSelected);
+}
+
+-(void) startDrawingNormalLines{
+    
+    ccDrawColor4F(kConnectionLineDefaultColor.r, kConnectionLineDefaultColor.g, kConnectionLineDefaultColor.b, 255);
+    glLineWidth(kLineWidthNormal);
+}
+
+
+-(void) drawLines{
+    if(self.selected){
+        [self startDrawingSelectedLines];
+    } else {
+        [self startDrawingNormalLines];
+    }
+    
+    
+    CGPoint p1 = self.obj1.center;
+    CGPoint p2 = self.obj2.center;
+    
+    ccDrawLine(p1, self.lineCenter);
+    ccDrawLine(self.lineCenter,p2);
+    
+    ccDrawCircle(p1, 3, 0, 5, NO);
+    ccDrawCircle(p2, 3, 0, 5, NO);
 }
 
 -(void) draw{
-    _invocationStateSprite.position = [self calculateLineCenter];
+    //_invocationStateSprite.position = [self calculateLineCenter];
+    _invocationStateSprite.position = self.lineCenter;
     
-    [self.connectionLine draw];
+    [self drawLines];
     
     if(self.selected){
         float kSelectionPadding = 5;
