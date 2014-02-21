@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadView {
 
     self.canChangeBackgroundColor = YES;
-    
+    self.canBeScaled = NO;
     self.canBeRootView = YES;
     _subviews = [NSMutableArray array];
     self.minSize = kDefaultViewMinSize;
