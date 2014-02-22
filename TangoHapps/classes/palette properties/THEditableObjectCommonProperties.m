@@ -67,8 +67,10 @@
     }
 }
 
-
 -(void)moveScrollView:(BOOL)movedUp {
+
+    CGPoint contentOffset = self.scrollView.contentOffset;
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     
@@ -82,6 +84,8 @@
         rect.size.height -= keyboardHeight;
     }
     self.scrollView.frame = rect;
+
+    self.scrollView.contentOffset = contentOffset;
     
     [UIView commitAnimations];
 }
