@@ -271,7 +271,9 @@ const NSInteger IFDiscoveryTime = 3;
     [refreshingTimer invalidate];
     refreshingTimer = nil;
     
-    AudioServicesPlaySystemSound(pullUpSound);
+    if(self.navigationController.topViewController == self){
+        AudioServicesPlaySystemSound(pullUpSound);
+    }
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{

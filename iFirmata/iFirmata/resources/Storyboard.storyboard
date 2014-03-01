@@ -398,16 +398,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khu-wq-lXV">
-                                <rect key="frame" x="13" y="1" width="82" height="56"/>
+                                <rect key="frame" x="5" y="9" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQ7-L6-EBQ">
-                                <rect key="frame" x="13" y="51" width="67" height="56"/>
+                                <rect key="frame" x="5" y="64" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -482,8 +482,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ber-2T-ZAm" firstAttribute="leading" secondItem="WQ7-L6-EBQ" secondAttribute="trailing" constant="16" id="Bkn-kK-DvN"/>
-                            <constraint firstItem="HUn-LT-5yQ" firstAttribute="leading" secondItem="Khu-wq-lXV" secondAttribute="trailing" constant="1" id="Cwb-Ti-6Xa"/>
+                            <constraint firstItem="ber-2T-ZAm" firstAttribute="leading" secondItem="WQ7-L6-EBQ" secondAttribute="trailing" constant="34" id="Bkn-kK-DvN"/>
+                            <constraint firstItem="HUn-LT-5yQ" firstAttribute="leading" secondItem="Khu-wq-lXV" secondAttribute="trailing" constant="19" id="Cwb-Ti-6Xa"/>
                             <constraint firstItem="Gxz-Fe-NYh" firstAttribute="top" secondItem="ber-2T-ZAm" secondAttribute="bottom" constant="13" id="FOb-UY-bgp"/>
                             <constraint firstItem="Gxz-Fe-NYh" firstAttribute="leading" secondItem="3PH-Xr-GuI" secondAttribute="leading" id="Gj8-s1-Z3N"/>
                             <constraint firstItem="ber-2T-ZAm" firstAttribute="top" secondItem="3PH-Xr-GuI" secondAttribute="top" constant="64" id="IIm-jC-fX8"/>
@@ -495,11 +495,11 @@
                             <constraint firstAttribute="centerX" secondItem="Gxz-Fe-NYh" secondAttribute="centerX" id="W5j-TV-Q5Q"/>
                             <constraint firstItem="WQ7-L6-EBQ" firstAttribute="centerY" secondItem="ber-2T-ZAm" secondAttribute="centerY" id="e9K-Rv-F7Z"/>
                             <constraint firstItem="ber-2T-ZAm" firstAttribute="leading" secondItem="3PH-Xr-GuI" secondAttribute="leading" constant="96" id="f41-pc-qFt"/>
-                            <constraint firstItem="Gxz-Fe-NYh" firstAttribute="top" secondItem="Khu-wq-lXV" secondAttribute="bottom" constant="50" id="iLB-rj-Hcn"/>
-                            <constraint firstItem="Khu-wq-lXV" firstAttribute="top" secondItem="uR6-8S-jce" secondAttribute="bottom" constant="1" id="iPC-PZ-y59"/>
+                            <constraint firstItem="Gxz-Fe-NYh" firstAttribute="top" secondItem="Khu-wq-lXV" secondAttribute="bottom" constant="68" id="iLB-rj-Hcn"/>
+                            <constraint firstItem="Khu-wq-lXV" firstAttribute="top" secondItem="uR6-8S-jce" secondAttribute="bottom" constant="9" id="iPC-PZ-y59"/>
                             <constraint firstItem="Gxz-Fe-NYh" firstAttribute="leading" secondItem="tmr-1n-NoL" secondAttribute="leading" id="ifV-5D-tN2"/>
                             <constraint firstItem="Gxz-Fe-NYh" firstAttribute="trailing" secondItem="tmr-1n-NoL" secondAttribute="trailing" id="irv-g6-9iJ"/>
-                            <constraint firstItem="WQ7-L6-EBQ" firstAttribute="bottom" secondItem="Gxz-Fe-NYh" secondAttribute="top" id="xXi-VF-fNf"/>
+                            <constraint firstItem="WQ7-L6-EBQ" firstAttribute="bottom" secondItem="Gxz-Fe-NYh" secondAttribute="top" constant="-13" id="xXi-VF-fNf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="I2C Component" id="P7r-ZE-f03">
@@ -527,7 +527,7 @@
                         <viewControllerLayoutGuide type="top" id="KDj-tH-vzi"/>
                         <viewControllerLayoutGuide type="bottom" id="3Eu-ay-AXs"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wl8-DS-V5V">
+                    <view key="view" contentMode="scaleToFill" id="wl8-DS-V5V" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -541,14 +541,14 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Read Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arK-Jy-gz3">
                                 <rect key="frame" x="5" y="153" width="91" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Write Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNg-EC-h34">
                                 <rect key="frame" x="5" y="58" width="91" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -559,7 +559,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmP-J9-hgh">
-                                <rect key="frame" x="20" y="109" width="280" height="49"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Write Register Value">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -572,7 +572,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Register" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m96-tT-iIT">
                                 <rect key="frame" x="5" y="7" width="120" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -583,34 +583,34 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Read Continuously Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV1-kZ-a1m">
-                                <rect key="frame" x="5" y="260" width="192" height="33"/>
+                                <rect key="frame" x="5" y="325" width="192" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rtR-TV-n0H">
-                                <rect key="frame" x="248" y="263" width="52" height="30"/>
+                                <rect key="frame" x="220" y="328" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Read Continuously" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Jt-xG-o69">
-                                <rect key="frame" x="5" y="301" width="153" height="56"/>
+                                <rect key="frame" x="5" y="261" width="153" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="add-3J-HHY">
-                                <rect key="frame" x="251" y="313" width="51" height="31"/>
+                                <rect key="frame" x="251" y="273" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="startSwitchChanged:" destination="RcM-3t-PxH" eventType="valueChanged" id="g38-cH-I2G"/>
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7Z-nW-4eI">
-                                <rect key="frame" x="20" y="204" width="274" height="49"/>
+                                <rect key="frame" x="0.0" y="204" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Read Register Value">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

@@ -69,7 +69,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.valueLabel.layer.cornerRadius = 5.0f;
     self.valueLabel.layer.borderWidth = 1.0f;
-    
 }
 
 -(NSString*) titleString{
@@ -113,12 +112,33 @@ You should have received a copy of the GNU General Public License along with thi
     [self.reg addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
     [self reloadUI];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self.reg removeObserver:self forKeyPath:@"value"];
     [self.reg removeObserver:self forKeyPath:@"notifies"];
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 -(void) updateReadContinuouslySwitch{
@@ -177,6 +197,56 @@ You should have received a copy of the GNU General Public License along with thi
     } else if([keyPath isEqualToString:@"notifies"]){
         [self updateValueLabel];
     }
+}
+
+#pragma mark - Scrolling up when textFild appears
+
+-(void)keyboardWillShow:(NSNotification*) notification {
+    
+    if(self.sizeTextField.editing){
+        NSDictionary* userInfo = [notification userInfo];
+        
+        CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        float diff = self.sizeTextField.frame.origin.y + self.sizeTextField.frame.size.height - keyboardSize.height;
+        keyboardHeight = diff + 40;
+        
+        [self moveScrollView:YES];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification*) notification {
+    
+    if(self.sizeTextField.editing){
+        
+        [self moveScrollView:NO];
+    }
+}
+
+-(void)moveScrollView:(BOOL)movedUp {
+    
+    CGPoint contentOffset = ((UIScrollView*) self.view).contentOffset;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    
+    CGRect rect = self.view.frame;
+    
+    if (movedUp) {
+        
+        rect.origin.y -= keyboardHeight;
+        rect.size.height += keyboardHeight;
+        
+    } else {
+        
+        rect.origin.y += keyboardHeight;
+        rect.size.height -= keyboardHeight;
+    }
+    
+    self.view.frame = rect;
+    
+    ((UIScrollView*) self.view).contentOffset = contentOffset;
+    
+    [UIView commitAnimations];
 }
 
 @end
