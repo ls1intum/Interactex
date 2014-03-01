@@ -31,7 +31,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation IFMainViewController
 
-const NSInteger IFRefreshHeaderHeight = 120;
+const NSInteger IFRefreshHeaderHeight = 60;
 const NSInteger IFDiscoveryTime = 3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
