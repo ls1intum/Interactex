@@ -605,7 +605,6 @@ void setup()
   BleFirmata.attach(START_SYSEX, sysexCallback);
   BleFirmata.attach(SYSTEM_RESET, systemResetCallback);
 
- // BleFirmata.begin(57600);
   systemResetCallback();  // reset to default config
 
   BLEMini_begin(57600);
