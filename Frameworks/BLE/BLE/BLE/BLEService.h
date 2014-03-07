@@ -67,14 +67,6 @@ extern const NSTimeInterval kFlushInterval;
 @end
 
 typedef enum{
-    BLEReceiveBufferStateNormal,
-    BLEReceiveBufferStateParsingLength,
-    BLEReceiveBufferStateParsingData,
-    BLEReceiveBufferStateParsingCrc1,
-    BLEReceiveBufferStateParsingCrc2
-} BLEReceiveBufferState;
-
-typedef enum{
     kBleDeviceTypeKroll,
     kBleDeviceTypeJennic,
     kBleDeviceTypeRedBearLab,
@@ -99,10 +91,6 @@ typedef enum{
     int receiveDataCount;
     int receiveDataLength;
     
-    uint8_t firstCrcByte;
-    uint8_t secondCrcByte;
-    BLEReceiveBufferState parsingState;
-    
     BOOL overBit;
     
 }
@@ -121,16 +109,9 @@ typedef enum{
 @property (nonatomic) id<BLEServiceDelegate> delegate;
 @property (nonatomic) id<BLEServiceDataDelegate> dataDelegate;
 
-@property (nonatomic) BOOL shouldUseCRC;
-@property (nonatomic) BOOL shouldUseTurnBasedCommunication;
-
 @property (nonatomic) BLEDeviceType deviceType;
 
-+(NSMutableArray*) supportedServiceUUIDs;
-+(NSMutableArray*) supportedCharacteristicUUIDs;
-
 -(NSString*) characteristicNameFor:(CBCharacteristic*) characteristic;
-
 -(id) initWithPeripheral:(CBPeripheral *)peripheral;
 
 -(void) start;

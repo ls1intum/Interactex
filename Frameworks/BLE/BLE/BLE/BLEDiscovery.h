@@ -54,6 +54,10 @@
 -(void) connectPeripheral:(CBPeripheral*)peripheral;
 -(void) disconnectCurrentPeripheral;
 
+
+@property (nonatomic, readonly) NSMutableArray * supportedServiceUUIDs;
+@property (nonatomic, readonly) NSMutableArray * supportedCharacteristicUUIDs;
+
 @property (nonatomic, weak) id<BLEDiscoveryDelegate>  discoveryDelegate;
 @property (nonatomic, weak) id<BLEServiceDelegate> peripheralDelegate;
 

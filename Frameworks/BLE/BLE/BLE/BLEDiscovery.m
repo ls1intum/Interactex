@@ -30,7 +30,41 @@
 
 @implementation BLEDiscovery
 
+@synthesize supportedCharacteristicUUIDs = _supportedCharacteristicUUIDs;
+@synthesize supportedServiceUUIDs = _supportedServiceUUIDs;
+
 #pragma mark Init
+
+-(NSMutableArray*) supportedServiceUUIDs{
+    
+    if(!_supportedServiceUUIDs){
+        
+        _supportedServiceUUIDs =  [NSMutableArray array];
+        for (int i = 0; i < kBleNumSupportedServices; i++) {
+            
+            CBUUID * service = [CBUUID UUIDWithString:kBleSupportedServices[i]];
+            [_supportedServiceUUIDs addObject:service];
+        }
+    }
+    
+    return _supportedServiceUUIDs;
+}
+
+-(NSMutableArray*) supportedCharacteristicUUIDs{
+    if(!_supportedCharacteristicUUIDs){
+        
+        _supportedCharacteristicUUIDs = [NSMutableArray array];
+        for (int i = 0; i < kBleNumSupportedServices; i++) {
+            CBUUID * rxCharacteristic = [CBUUID UUIDWithString:kBleCharacteristics[i][0]];
+            CBUUID * txCharacteristic = [CBUUID UUIDWithString:kBleCharacteristics[i][1]];
+            NSArray * characteristics = [NSArray arrayWithObjects:rxCharacteristic,txCharacteristic, nil];
+            [_supportedCharacteristicUUIDs addObject:characteristics];
+            
+        }
+    }
+    
+    return _supportedCharacteristicUUIDs;
+}
 
 static BLEDiscovery * sharedInstance;
 
@@ -151,11 +185,10 @@ static BLEDiscovery * sharedInstance;
 
 -(void) startScanningForSupportedUUIDs{
     
-	NSArray			*uuidArray	= [BLEService supportedServiceUUIDs];
+	NSArray			*uuidArray	= [self supportedServiceUUIDs];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     
 	[centralManager scanForPeripheralsWithServices:uuidArray options:options];
-	//[centralManager scanForPeripheralsWithServices:nil options:options];
     
     [self.foundPeripherals removeAllObjects];
 }

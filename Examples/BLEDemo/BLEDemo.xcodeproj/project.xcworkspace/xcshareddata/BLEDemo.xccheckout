@@ -17,6 +17,8 @@
 	<string>BLEDemo/BLEDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>65065B57-76E9-41DA-A218-A6A59E9D5DC1</key>
+		<string>../../../../Frameworks/BLE</string>
 		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
 		<string>../../..</string>
 		<key>EC3D748B-B117-45AA-8D74-25CE72CD2CA0</key>
@@ -34,7 +36,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EC3D748B-B117-45AA-8D74-25CE72CD2CA0</string>
+			<string>65065B57-76E9-41DA-A218-A6A59E9D5DC1</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BLE</string>
 		</dict>
