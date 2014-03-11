@@ -252,6 +252,14 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     [layer removeEditableObject:self];
 }
 
+-(void) removeFromWorld{
+    THProject * project = [THDirector sharedDirector].currentProject;
+    [project removeInvocationConnection:self];
+    [project deregisterAction:self.action];
+    [super removeFromWorld];
+    
+}
+
 -(BOOL) testPoint:(CGPoint)point{
     if(self.visible && CGRectContainsPoint(_invocationStateSprite.boundingBox, point)){
     //if(self.visible && ccpDistance(_invocationStateSprite.position, point) < 40){

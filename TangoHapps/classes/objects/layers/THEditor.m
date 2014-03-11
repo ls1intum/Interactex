@@ -430,7 +430,6 @@ You should have received a copy of the GNU General Public License along with thi
             invocationConnection.action.firstParam = event.param1;
         }
         
-        
         invocationConnection.parameterType = action.method.firstParamType;
         [invocationConnection reloadSprite];
     }
