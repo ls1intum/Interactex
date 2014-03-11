@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THCustomPaletteItem.h"
 
 #import "THLipoBatteryPaletteItem.h"
+#import "THPowerSupplyPaletteItem.h"
 
 #import "THBLELilyPadPaletteItem.h"
 #import "THLilypadPaletteItem.h"
@@ -454,7 +455,8 @@ You should have received a copy of the GNU General Public License along with thi
                                      nil];
     
     self.otherHardwareSectionArray  = [NSMutableArray arrayWithObjects:
-                                       [[THLipoBatteryPaletteItem alloc] initWithName:@"lipoBattery"],
+                                       [[THPowerSupplyPaletteItem alloc] initWithName:@"powerSupply"],
+                                       //[[THLipoBatteryPaletteItem alloc] initWithName:@"lipoBattery"],
                                        nil
                                        ];
                                      

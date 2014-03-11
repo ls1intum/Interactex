@@ -730,6 +730,20 @@
 		9A94F43D16A0192700AF52AB /* THTouchpadProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */; };
 		9A94F43E16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
 		9A94F43F16A0192700AF52AB /* THValueProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94F41416A0192700AF52AB /* THValueProperties.xib */; };
+		9A95FB7018CF593A009A724F /* palette_powerSupply.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6C18CF593A009A724F /* palette_powerSupply.png */; };
+		9A95FB7118CF593A009A724F /* palette_powerSupply.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6C18CF593A009A724F /* palette_powerSupply.png */; };
+		9A95FB7218CF593A009A724F /* palette_powerSupply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6D18CF593A009A724F /* palette_powerSupply@2x.png */; };
+		9A95FB7318CF593A009A724F /* palette_powerSupply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6D18CF593A009A724F /* palette_powerSupply@2x.png */; };
+		9A95FB7418CF593A009A724F /* powerSupply.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6E18CF593A009A724F /* powerSupply.png */; };
+		9A95FB7518CF593A009A724F /* powerSupply.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6E18CF593A009A724F /* powerSupply.png */; };
+		9A95FB7618CF593A009A724F /* powerSupply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6F18CF593A009A724F /* powerSupply@2x.png */; };
+		9A95FB7718CF593A009A724F /* powerSupply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FB6F18CF593A009A724F /* powerSupply@2x.png */; };
+		9A95FB7A18CF59DF009A724F /* THPowerSupplyPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB7918CF59DF009A724F /* THPowerSupplyPaletteItem.m */; };
+		9A95FB7B18CF59DF009A724F /* THPowerSupplyPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB7918CF59DF009A724F /* THPowerSupplyPaletteItem.m */; };
+		9A95FB7E18CF5A52009A724F /* THPowerSupply.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB7D18CF5A52009A724F /* THPowerSupply.m */; };
+		9A95FB7F18CF5A52009A724F /* THPowerSupply.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB7D18CF5A52009A724F /* THPowerSupply.m */; };
+		9A95FB8218CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */; };
+		9A95FB8318CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */; };
 		9A9C419218B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
 		9A9C419318B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
 		9A9C425118B1F2BF002C2BC9 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
@@ -2221,6 +2235,16 @@
 		9A94F41216A0192700AF52AB /* THThreeColorLedProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THThreeColorLedProperties.xib; sourceTree = "<group>"; };
 		9A94F41316A0192700AF52AB /* THTouchpadProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTouchpadProperties.xib; sourceTree = "<group>"; };
 		9A94F41416A0192700AF52AB /* THValueProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THValueProperties.xib; sourceTree = "<group>"; };
+		9A95FB6C18CF593A009A724F /* palette_powerSupply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_powerSupply.png; sourceTree = "<group>"; };
+		9A95FB6D18CF593A009A724F /* palette_powerSupply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_powerSupply@2x.png"; sourceTree = "<group>"; };
+		9A95FB6E18CF593A009A724F /* powerSupply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerSupply.png; sourceTree = "<group>"; };
+		9A95FB6F18CF593A009A724F /* powerSupply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "powerSupply@2x.png"; sourceTree = "<group>"; };
+		9A95FB7818CF59DF009A724F /* THPowerSupplyPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPowerSupplyPaletteItem.h; sourceTree = "<group>"; };
+		9A95FB7918CF59DF009A724F /* THPowerSupplyPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPowerSupplyPaletteItem.m; sourceTree = "<group>"; };
+		9A95FB7C18CF5A52009A724F /* THPowerSupply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPowerSupply.h; sourceTree = "<group>"; };
+		9A95FB7D18CF5A52009A724F /* THPowerSupply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPowerSupply.m; sourceTree = "<group>"; };
+		9A95FB8018CF5B5D009A724F /* THPowerSupplyEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPowerSupplyEditable.h; sourceTree = "<group>"; };
+		9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPowerSupplyEditable.m; sourceTree = "<group>"; };
 		9A9C419018B13EDD002C2BC9 /* THBoardPropertiesPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardPropertiesPinCell.h; sourceTree = "<group>"; };
 		9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardPropertiesPinCell.m; sourceTree = "<group>"; };
 		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
@@ -2864,6 +2888,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9A95FB6C18CF593A009A724F /* palette_powerSupply.png */,
+				9A95FB6D18CF593A009A724F /* palette_powerSupply@2x.png */,
+				9A95FB6E18CF593A009A724F /* powerSupply.png */,
+				9A95FB6F18CF593A009A724F /* powerSupply@2x.png */,
 				9AA4D6E118AE169100A43433 /* BLE-LilyPad.png */,
 				9AA4D6E218AE169100A43433 /* BLE-LilyPad@2x.png */,
 				9AA4D6E318AE169100A43433 /* lipoBattery.png */,
@@ -3693,6 +3721,10 @@
 				9AA4D73318AE171D00A43433 /* THLipoBattery.m */,
 				9AA4D73418AE171D00A43433 /* THLipoBatteryEditable.h */,
 				9AA4D73518AE171D00A43433 /* THLipoBatteryEditable.m */,
+				9A95FB7C18CF5A52009A724F /* THPowerSupply.h */,
+				9A95FB7D18CF5A52009A724F /* THPowerSupply.m */,
+				9A95FB8018CF5B5D009A724F /* THPowerSupplyEditable.h */,
+				9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */,
 				9AFB7E1F1833D60300694CCE /* THI2CComponent.h */,
 				9AFB7E201833D60300694CCE /* THI2CComponent.m */,
 				9AFB7E211833D60300694CCE /* THI2CRegister.h */,
@@ -3876,6 +3908,8 @@
 				9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */,
 				9A894297183620BD00B8CA0E /* THJennicPaletteItem.h */,
 				9A894298183620BD00B8CA0E /* THJennicPaletteItem.m */,
+				9A95FB7818CF59DF009A724F /* THPowerSupplyPaletteItem.h */,
+				9A95FB7918CF59DF009A724F /* THPowerSupplyPaletteItem.m */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -4751,6 +4785,7 @@
 				9A8BB90E167C7D6400FBABFB /* buzzerPlay.png in Resources */,
 				9A8BB910167C7D6400FBABFB /* buzzerStop.png in Resources */,
 				9A8BB911167C7D6400FBABFB /* buzzerStop@2x.png in Resources */,
+				9A95FB7618CF593A009A724F /* powerSupply@2x.png in Resources */,
 				9A8BB913167C7D8A00FBABFB /* buzzerPlay@2x.png in Resources */,
 				9A8BBA45167F2FAD00FBABFB /* compassHit.mp3 in Resources */,
 				9A94F3E816A00EA400AF52AB /* ipadFrame.png in Resources */,
@@ -4946,6 +4981,7 @@
 				9A41461F17DE7A060061EDF8 /* threeColorLed.png in Resources */,
 				9A41462117DE7A060061EDF8 /* threeColorLed@2x.png in Resources */,
 				9A5BD7491860C52E00842833 /* starEmpty@2x.png in Resources */,
+				9A95FB7418CF593A009A724F /* powerSupply.png in Resources */,
 				9A41462317DE7A060061EDF8 /* timer.png in Resources */,
 				9A41462517DE7A060061EDF8 /* timer@2x.png in Resources */,
 				9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */,
@@ -4953,9 +4989,11 @@
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
+				9A95FB7218CF593A009A724F /* palette_powerSupply@2x.png in Resources */,
 				9A41462F17DE7A060061EDF8 /* vibeBoard.png in Resources */,
 				9A41463117DE7A060061EDF8 /* vibeBoard@2x.png in Resources */,
 				9A41463317DE7A060061EDF8 /* yellowLight.png in Resources */,
+				9A95FB7018CF593A009A724F /* palette_powerSupply.png in Resources */,
 				9A41463517DE7A060061EDF8 /* yellowLight@2x.png in Resources */,
 				9A41463717DE7A060061EDF8 /* connect.png in Resources */,
 				9A41463917DE7A060061EDF8 /* connect@2x.png in Resources */,
@@ -5062,6 +5100,7 @@
 				9A87C06216A4140C0059CC2E /* THGridItem.xib in Resources */,
 				9A8FAA5416BFFBAE004D7793 /* song1.mp3 in Resources */,
 				9A8FAA5516BFFBAE004D7793 /* song2.mp3 in Resources */,
+				9A95FB7518CF593A009A724F /* powerSupply.png in Resources */,
 				9A8942B01836241C00B8CA0E /* jennic@2x.png in Resources */,
 				9A8FAA5616BFFBAE004D7793 /* song3.mp3 in Resources */,
 				9A1384DC16D27EA300F5EEAA /* THClotheProperties.xib in Resources */,
@@ -5106,6 +5145,7 @@
 				9A41456017DE7A060061EDF8 /* call@2x.png in Resources */,
 				9A6B285518AA08A0009AAE31 /* synthesis.pd in Resources */,
 				9A41456217DE7A060061EDF8 /* comparator.png in Resources */,
+				9A95FB7118CF593A009A724F /* palette_powerSupply.png in Resources */,
 				9A41456417DE7A060061EDF8 /* comparator@2x.png in Resources */,
 				9A41456617DE7A060061EDF8 /* LSMCompass.png in Resources */,
 				9A41456817DE7A060061EDF8 /* LSMCompass@2x.png in Resources */,
@@ -5144,6 +5184,7 @@
 				9A4145A017DE7A060061EDF8 /* palette_button.png in Resources */,
 				9A4145A217DE7A060061EDF8 /* palette_button@2x.png in Resources */,
 				9A4145A417DE7A060061EDF8 /* palette_buzzer.png in Resources */,
+				9A95FB7718CF593A009A724F /* powerSupply@2x.png in Resources */,
 				9A4145A617DE7A060061EDF8 /* palette_buzzer@2x.png in Resources */,
 				9A7E4D37183618C200657B72 /* LSMCompass@2x.png in Resources */,
 				9A4145A817DE7A060061EDF8 /* palette_comparator.png in Resources */,
@@ -5160,6 +5201,7 @@
 				9A4145BC17DE7A060061EDF8 /* palette_ibutton.png in Resources */,
 				9A4145BE17DE7A060061EDF8 /* palette_ibutton@2x.png in Resources */,
 				9A4145C017DE7A060061EDF8 /* palette_imageview.png in Resources */,
+				9A95FB7318CF593A009A724F /* palette_powerSupply@2x.png in Resources */,
 				9A4145C217DE7A060061EDF8 /* palette_imageview@2x.png in Resources */,
 				9A4145C417DE7A060061EDF8 /* palette_iphone.png in Resources */,
 				9A4145C617DE7A060061EDF8 /* palette_iphone@2x.png in Resources */,
@@ -5472,6 +5514,7 @@
 				9AF503BE167B84B40020241C /* THLabelProperties.m in Sources */,
 				9A1FBE08187F208400699B61 /* THI2CMessage.m in Sources */,
 				9AF503BF167B84B40020241C /* THLedProperties.m in Sources */,
+				9A95FB7E18CF5A52009A724F /* THPowerSupply.m in Sources */,
 				9A31659D1827955200CB3E59 /* THMonitorEditable.m in Sources */,
 				9AF503C1167B84B40020241C /* THLilypadPropertiesPinView.m in Sources */,
 				9AF503C2167B84B40020241C /* THMusicPlayerProperties.m in Sources */,
@@ -5486,6 +5529,7 @@
 				9A6B283A18AA07BD009AAE31 /* THPureDataPaletteItem.m in Sources */,
 				9AA4D73618AE171D00A43433 /* THLipoBattery.m in Sources */,
 				9AF503CE167B84B40020241C /* THToneGenerator.m in Sources */,
+				9A95FB8218CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */,
 				9AF503CF167B84B40020241C /* THUtils.m in Sources */,
 				9A8BB9A2167C815D00FBABFB /* THPinsController.m in Sources */,
 				9A8BB9A4167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
@@ -5508,6 +5552,7 @@
 				9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */,
 				9A7DBF6E169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */,
 				9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */,
+				9A95FB7A18CF59DF009A724F /* THPowerSupplyPaletteItem.m in Sources */,
 				9A06EE92169AD8B200B88519 /* THSlider.m in Sources */,
 				9A06EE94169AD8B200B88519 /* THSliderEditableObject.m in Sources */,
 				9A06EE9C169AD99B00B88519 /* THSliderProperties.m in Sources */,
@@ -5718,6 +5763,7 @@
 				9ABC276518098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9AF5063A167B925A0020241C /* THLabelPaletteItem.m in Sources */,
 				9AF5063B167B925A0020241C /* THLedPaletteItem.m in Sources */,
+				9A95FB7B18CF59DF009A724F /* THPowerSupplyPaletteItem.m in Sources */,
 				9ABC27811809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
 				9AFB7E6A1833DE6400694CCE /* THBLECommunicationModule.m in Sources */,
 				9AF5063C167B925A0020241C /* THLightSensorPaletteItem.m in Sources */,
@@ -5836,6 +5882,7 @@
 				9A84271117564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271417564A80009495AB /* TFHelper.m in Sources */,
 				9A89429A183620BD00B8CA0E /* THJennicPaletteItem.m in Sources */,
+				9A95FB7F18CF5A52009A724F /* THPowerSupply.m in Sources */,
 				9A9FEB1E17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 				9A89429F1836213100B8CA0E /* THJennicProperties.m in Sources */,
 				9A9FEB7217BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */,
@@ -5855,6 +5902,7 @@
 				9A41446D17DE64420061EDF8 /* THClientConstants.m in Sources */,
 				9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */,
+				9A95FB8318CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */,
 				9A59314417E50DA200B20D99 /* THWire.m in Sources */,
 				9A59323917E5D58300B20D99 /* THEditableObjectProperties.m in Sources */,
 				9A59323B17E5D58300B20D99 /* THInvokableProperties.m in Sources */,
