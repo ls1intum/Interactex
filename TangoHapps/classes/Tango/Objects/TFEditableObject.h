@@ -60,7 +60,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface TFEditableObject : CCNode <NSCoding, NSCopying, TFEditable> {
     CCLabelTTF * _selectionLabel;
-
 }
 
 @property (nonatomic, copy) NSString * objectName;
@@ -132,15 +131,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) prepareToDie;
 
 -(BOOL) acceptsConnectionsTo:(TFEditableObject*) object;
-/*
-//connections
--(void) addConnectionTo:(TFEditableObject*) object animated:(BOOL) animated;
--(NSArray*) connectionsToObject:(TFEditableObject*) target;
--(void) removeConnectionTo:(TFEditableObject*) object;
--(void) removeAllConnectionsTo:(TFEditableObject*) object;
--(void) registerNotificationsFor:(TFEditableObject*) object;
--(void) handleEditableObjectRemoved:(NSNotification*) notification;
-*/
 
 //actions
 -(void) handleRegisteredAsSourceForAction:(TFAction*) action;

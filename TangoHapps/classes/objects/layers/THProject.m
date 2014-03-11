@@ -151,6 +151,8 @@ You should have received a copy of the GNU General Public License along with thi
     _assetCollection = [[THAssetCollection alloc] initWithLocalFiles];
     
     _eventActionPairs = [NSMutableArray array];
+    
+    _objectCountPerClass = [NSMutableDictionary dictionary];
 }
 
 -(void) initCustomProject{
@@ -263,6 +265,8 @@ You should have received a copy of the GNU General Public License along with thi
         if(lilypad != nil){
             [self addBoard:lilypad];
         }
+        
+        [self countObjects];
     }
     return self;
 }
@@ -291,11 +295,13 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Notifications
 
 -(void) notifyObjectAdded:(TFEditableObject*) object{
+    [self checkAddNameToObject:object];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectAdded object:object];
 }
 
 -(void) notifyObjectRemoved:(TFEditableObject*) object{
+    [self removeCountForObject:object];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectRemoved object:object];
 }
@@ -318,6 +324,55 @@ You should have received a copy of the GNU General Public License along with thi
     return YES;
 }
 
+#pragma mark - Objects name
+
+-(void) checkAddNameToObject:(TFEditableObject*) object{
+    if(object.objectName == nil || [object.objectName isEqualToString:@""]){
+        [self addCountForObject:object];
+        NSString * className = @"className";
+        NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
+        NSLog(@"%d",classCount.integerValue);
+        
+        object.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
+    }
+}
+
+-(void) countObjects{
+    [self resetObjectsCount];
+    
+    for (TFEditableObject * object in self.allObjects) {
+        [self addCountForObject:object];
+    }
+}
+
+-(void) addCountForObject:(TFEditableObject*) object add:(NSInteger) addValue {
+    
+    NSString * className = @"className";
+    if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+        className = @"className";
+    }
+    
+    NSNumber * number = [self.objectCountPerClass valueForKey:className];
+    if(!number){
+        number = [NSNumber numberWithInt:0];
+    }
+    number = [NSNumber numberWithInt:number.integerValue + addValue];
+    [self.objectCountPerClass setValue:number forKey:className];
+}
+
+
+-(void) addCountForObject:(TFEditableObject*) object{
+    [self addCountForObject:object add:+1];
+}
+
+-(void) removeCountForObject:(TFEditableObject*) object{
+    [self addCountForObject:object add:-1];
+}
+
+-(void) resetObjectsCount{
+    [self.objectCountPerClass removeAllObjects];
+}
+
 #pragma mark - Pins
 
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe{
@@ -330,7 +385,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     if(clotheObject.attachedToClothe){
         [clotheObject.attachedToClothe deattachClotheObject:clotheObject];
-
     }
 }
 

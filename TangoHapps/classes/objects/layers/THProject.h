@@ -196,7 +196,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) NSMutableArray * eventActionPairs;
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, readonly) BOOL isEmpty;
-
 @property (nonatomic,readonly) THAssetCollection * assetCollection;
 
+@property (nonatomic, strong) NSMutableDictionary * objectCountPerClass;
 @end

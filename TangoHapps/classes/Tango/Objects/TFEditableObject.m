@@ -60,8 +60,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @dynamic paletteItem;
 
-
 static NSInteger objectCount = 1;
+
 
 -(void) loadEditableObject{
     
@@ -87,8 +87,6 @@ static NSInteger objectCount = 1;
         
         self.z = kDefaultZ;
         [self loadEditableObject];
-        
-        _objectName = [NSString stringWithFormat:@"object %d",objectCount];
     }
     
     return self;
