@@ -376,6 +376,18 @@ static NSInteger objectCount = 1;
 -(void) handleAccelerated:(UIAcceleration*) acceleration{
 }*/
 
+-(void) handleObjectOverlapping:(TFEditableObject*) object{
+    
+}
+
+-(void) handleObjectStoppedOverlapping{
+    
+}
+
+-(void) handleDroppedObject:(TFEditableObject*) object position:(CGPoint) position{
+    
+}
+
 -(BOOL)testPoint:(CGPoint)point {
     return (self.visible && CGRectContainsPoint(self.boundingBox, point));
 }

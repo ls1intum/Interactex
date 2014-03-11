@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPinEditable.h"
 #import "THLilypadProperties.h"
 #import "THBoardProperties.h"
+#import "THPowerSupplyEditable.h"
 
 @implementation THLilyPadEditable
 @synthesize pins = _pins;
@@ -60,11 +61,20 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
     {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
 };
 
+CGPoint const kLilypadPowerSupplyPosition = {189,131};
+float const kLilypadPowerSupplyOverlapRadius = 40;
+
 -(void) loadLilypad{
     self.z = kLilypadZ;
     
     self.sprite = [CCSprite spriteWithFile:@"lilypadComplex.png"];
-    [self addChild:self.sprite];
+    [self addChild:self.sprite z:1];
+    
+    _powerSupplyProxySprite = [CCSprite spriteWithFile:@"powerSupply.png"];
+    _powerSupplyProxySprite.position = kLilypadPowerSupplyPosition;
+    _powerSupplyProxySprite.rotation = CC_DEGREES_TO_RADIANS(90);
+    _powerSupplyProxySprite.visible = NO;
+    [self addChild:_powerSupplyProxySprite z:2];
     
     self.canBeDuplicated = NO;
 }
@@ -118,6 +128,8 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
         
         [self loadLilypad];
         [self addPins];
+        
+        self.powerSupply = [decoder decodeObjectForKey:@"powerSupply"];
     }
     return self;
 }
@@ -125,6 +137,7 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
+    [coder encodeObject:self.powerSupply forKey:@"powerSupply"];
 }
 
 #pragma mark - Property Controller
@@ -159,7 +172,28 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
     return nil;
 }
 
-#pragma mark - Methods
+-(void) setPowerSupply:(THPowerSupplyEditable*) powerSupply{
+    
+    if(powerSupply != _powerSupply){
+        if(powerSupply){
+            
+            [_powerSupply removeFromParentAndCleanup:YES];
+            _powerSupply = powerSupply;
+            self.powerSupply.position = kLilypadPowerSupplyPosition;
+            //self.powerSupply.rotation = CC_DEGREES_TO_RADIANS(90);
+            _powerSupply.canBeMoved = NO;
+            
+            [self addChild:_powerSupply z:2];
+            
+        } else {
+            
+            [_powerSupply removeFromParentAndCleanup:YES];
+            _powerSupply = nil;
+        }
+    }
+}
+
+#pragma mark - Pins
 
 -(THBoardPinEditable*) minusPin{
     return [self.pins objectAtIndex:5];
@@ -188,6 +222,37 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 
 #pragma mark - Lifecycle
 
+-(void) handleObjectOverlapping:(TFEditableObject*) object{
+    if([object isKindOfClass:[THPowerSupplyEditable class]]){
+        CGPoint position = [self convertToNodeSpace:object.position];
+        //NSLog(@"%f %f",position.x,position.y);
+        
+        if(ccpDistance(position, kLilypadPowerSupplyPosition) < kLilypadPowerSupplyOverlapRadius){
+            self.powerSupplyProxySprite.visible = YES;
+        } else {
+            self.powerSupplyProxySprite.visible = NO;
+        }
+    }
+}
+
+-(void) handleObjectStoppedOverlapping{
+    self.powerSupplyProxySprite.visible = NO;
+}
+
+-(void) handleDroppedObject:(TFEditableObject*) object position:(CGPoint) position{
+    
+    if([object isKindOfClass:[THPowerSupplyEditable class]]){
+        self.powerSupplyProxySprite.visible = NO;
+        
+        CGPoint position = [self convertToNodeSpace:object.position];
+        
+        if(ccpDistance(position, kLilypadPowerSupplyPosition) < kLilypadPowerSupplyOverlapRadius){
+            [object removeFromParentAndCleanup:YES];
+            self.powerSupply = (THPowerSupplyEditable*)object;
+        }
+    }
+}
+
 -(void) willStartSimulation{
     [super willStartSimulation];
 }
@@ -195,4 +260,5 @@ CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 
 -(NSString*) description{
     return @"Lilypad";
 }
+
 @end

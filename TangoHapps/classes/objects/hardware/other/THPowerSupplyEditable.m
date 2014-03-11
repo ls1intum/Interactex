@@ -89,7 +89,6 @@
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     
-    //[controllers addObject:[THCompassProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }

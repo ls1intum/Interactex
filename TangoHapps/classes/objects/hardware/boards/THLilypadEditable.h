@@ -45,11 +45,16 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define kLilypadNumberOfPins 22
 
+@class THPowerSupplyEditable;
 @class THBoardPinEditable;
 @class THElementPinEditable;
 
 @interface THLilyPadEditable : THBoardEditable {
     THBoardPinEditable * _highlightedPin;
+    
 }
+
+@property (nonatomic, readonly) CCSprite * powerSupplyProxySprite;
+@property (nonatomic, strong) THPowerSupplyEditable * powerSupply;
 
 @end

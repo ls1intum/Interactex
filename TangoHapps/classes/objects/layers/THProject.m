@@ -903,10 +903,10 @@ enum zPositions{
     [allObjects addObjectsFromArray:self.actions];
     [allObjects addObjectsFromArray:self.triggers];
     [allObjects addObjectsFromArray:self.values];
-    [allObjects addObjectsFromArray:self.boards];
     [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.otherHardwareComponents];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
+    [allObjects addObjectsFromArray:self.boards];
     [allObjects addObjectsFromArray:self.clothes];
     return allObjects;
 }
