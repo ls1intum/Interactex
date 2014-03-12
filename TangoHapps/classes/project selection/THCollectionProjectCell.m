@@ -86,6 +86,11 @@ const float kProjectCellScaleEffectDuration = 0.5;
 
 #pragma mark - UI Interaction
 
+- (IBAction)textEditingWillBegin:(id)sender {
+    
+    [self.delegate willStartEditingCellName:self];
+}
+
 - (IBAction)deleteTapped:(id)sender {
     
     [self.delegate didDeleteProjectCell:self];

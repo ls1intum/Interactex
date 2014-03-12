@@ -744,6 +744,8 @@
 		9A95FB7F18CF5A52009A724F /* THPowerSupply.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB7D18CF5A52009A724F /* THPowerSupply.m */; };
 		9A95FB8218CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */; };
 		9A95FB8318CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */; };
+		9A95FB9718D0FDEF009A724F /* THHardwareComponentProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */; };
+		9A95FBD218D10030009A724F /* THHardwareComponentProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */; };
 		9A9C419218B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
 		9A9C419318B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
 		9A9C425118B1F2BF002C2BC9 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B28ED18AA7090009AAE31 /* libpd-ios.a */; };
@@ -2245,6 +2247,9 @@
 		9A95FB7D18CF5A52009A724F /* THPowerSupply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPowerSupply.m; sourceTree = "<group>"; };
 		9A95FB8018CF5B5D009A724F /* THPowerSupplyEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPowerSupplyEditable.h; sourceTree = "<group>"; };
 		9A95FB8118CF5B5D009A724F /* THPowerSupplyEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPowerSupplyEditable.m; sourceTree = "<group>"; };
+		9A95FB9418D0FDEF009A724F /* THHardwareComponentProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHardwareComponentProperties.h; sourceTree = "<group>"; };
+		9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHardwareComponentProperties.m; sourceTree = "<group>"; };
+		9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THHardwareComponentProperties.xib; sourceTree = "<group>"; };
 		9A9C419018B13EDD002C2BC9 /* THBoardPropertiesPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardPropertiesPinCell.h; sourceTree = "<group>"; };
 		9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardPropertiesPinCell.m; sourceTree = "<group>"; };
 		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
@@ -3444,6 +3449,7 @@
 				9A7B65171834D830009D0103 /* THCompassProperties.xib */,
 				9A8942A21836215300B8CA0E /* THJennicProperties.xib */,
 				9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */,
+				9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -3999,6 +4005,8 @@
 				9A1C3AFE1886E4D8007C5E94 /* THAutorouteProperties.m */,
 				9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */,
 				9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */,
+				9A95FB9418D0FDEF009A724F /* THHardwareComponentProperties.h */,
+				9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -4785,6 +4793,7 @@
 				9A8BB90E167C7D6400FBABFB /* buzzerPlay.png in Resources */,
 				9A8BB910167C7D6400FBABFB /* buzzerStop.png in Resources */,
 				9A8BB911167C7D6400FBABFB /* buzzerStop@2x.png in Resources */,
+				9A95FBD218D10030009A724F /* THHardwareComponentProperties.xib in Resources */,
 				9A95FB7618CF593A009A724F /* powerSupply@2x.png in Resources */,
 				9A8BB913167C7D8A00FBABFB /* buzzerPlay@2x.png in Resources */,
 				9A8BBA45167F2FAD00FBABFB /* compassHit.mp3 in Resources */,
@@ -5562,6 +5571,7 @@
 				9A94F3F116A010BB00AF52AB /* THProjectSelectionViewController.m in Sources */,
 				9A94F3F916A014BB00AF52AB /* THProjectProxy.m in Sources */,
 				9AFB7DDE1833BB5300694CCE /* THMonitorProperties.m in Sources */,
+				9A95FB9718D0FDEF009A724F /* THHardwareComponentProperties.m in Sources */,
 				9ABC276018098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */,
 				9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */,

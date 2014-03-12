@@ -52,6 +52,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) updateToPinValue;
 
+@property (nonatomic, copy) NSString * objectName;
 @property (nonatomic) THHardwareType type;
 @property (nonatomic, readonly) NSMutableArray * pins;
 @property (nonatomic) BOOL isInputObject;
@@ -66,5 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) autoroutePlusAndMinusPins;
 -(void) autoroute;
 -(void) handleBoardRemoved:(THBoardEditable *)board;
+
+@property (nonatomic, strong) CCLabelTTF * nameLabel;
 
 @end

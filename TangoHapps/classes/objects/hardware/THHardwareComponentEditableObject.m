@@ -52,6 +52,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THWire.h"
 #import "THEditor.h"
 #import "THAutorouteProperties.h"
+#import "THHardwareComponentProperties.h"
 
 @implementation THHardwareComponentEditableObject
 
@@ -127,6 +128,7 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadSewedSprite];
         
         self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
+        _objectName = [decoder decodeObjectForKey:@"objectName"];
     }
     return self;
 }
@@ -138,6 +140,7 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:_pins forKey:@"pins"];
     [coder encodeInteger:_type forKey:@"type"];
     [coder encodeObject:self.attachedToClothe forKey:@"attachedToClothe"];
+    [coder encodeObject:_objectName forKey:@"objectName"];
 }
 
 -(id)copyWithZone:(NSZone *)zone
@@ -164,12 +167,30 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THClotheObjectProperties properties]];
-    [controllers addObject:[THAutorouteProperties properties]];
+    [controllers addObject:[THHardwareComponentProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
 
 #pragma mark - Methods
+
+-(void) updateNameLabel{
+    CGSize const kEditableObjectNameLabelSize = {100,20};
+    if(self.nameLabel){
+        [self.nameLabel removeFromParentAndCleanup:YES];
+    }
+    self.nameLabel = [CCLabelTTF labelWithString:self.objectName dimensions:kEditableObjectNameLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    self.nameLabel.position = ccp(self.contentSize.width/2,-20);
+    [self addChild:self.nameLabel];
+}
+
+-(void) setObjectName:(NSString *)objectName{
+    if(![self.objectName isEqualToString:objectName]){
+        _objectName = objectName;
+        
+        [self updateNameLabel];
+    }
+}
 
 -(void)handleBoardRemoved:(THBoardEditable *)board{
     for (THElementPinEditable * pin in self.pins) {
@@ -302,6 +323,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
+    [self updateNameLabel];
+    
     [layer addEditableObject:self];
     
     [self autoroutePlusAndMinusPins];

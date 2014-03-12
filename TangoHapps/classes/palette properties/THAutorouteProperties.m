@@ -53,9 +53,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) reloadState{
 }
 
-- (IBAction)autorouteTapped:(id)sender {
-    THHardwareComponentEditableObject * object = (THHardwareComponentEditableObject*) self.editableObject;
-    [object autoroute];
-}
+
 
 @end

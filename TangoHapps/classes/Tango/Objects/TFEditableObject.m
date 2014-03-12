@@ -110,7 +110,6 @@ static NSInteger objectCount = 1;
         self.z = [decoder decodeIntForKey:@"z"];
         self.simulableObject = [decoder decodeObjectForKey:@"object"];
         self.acceptsConnections = [decoder decodeBoolForKey:@"acceptsConnections"];
-        _objectName = [decoder decodeObjectForKey:@"objectName"];
     }
     return self;
 }
@@ -125,7 +124,6 @@ static NSInteger objectCount = 1;
     [coder encodeInt:self.z forKey:@"z"];
     [coder encodeObject:self.simulableObject forKey:@"object"];
     [coder encodeBool:self.acceptsConnections forKey:@"acceptsConnections"];
-    [coder encodeObject:_objectName forKey:@"objectName"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -158,30 +156,12 @@ static NSInteger objectCount = 1;
         [array addObject:_triggerableProperties];
     }
     
-    [array addObject:[THEditableObjectCommonProperties properties]];
+    //[array addObject:[THEditableObjectCommonProperties properties]];
     
     return array;
 }
 
 #pragma mark - Methods
-
--(void) updateNameLabel{
-    CGSize const kEditableObjectNameLabelSize = {100,20};
-    if(self.nameLabel){
-        [self.nameLabel removeFromParentAndCleanup:YES];
-    }
-    self.nameLabel = [CCLabelTTF labelWithString:self.objectName dimensions:kEditableObjectNameLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
-    self.nameLabel.position = ccp(self.contentSize.width/2,-20);
-    [self addChild:self.nameLabel];
-}
-
--(void) setObjectName:(NSString *)objectName{
-    if(![self.objectName isEqualToString:objectName]){
-        _objectName = objectName;
-        
-        [self updateNameLabel];
-    }
-}
 
 -(void) update{
     
@@ -269,13 +249,12 @@ static NSInteger objectCount = 1;
 }
 
 -(void) addToLayer:(TFLayer*) layer{
-    [self updateNameLabel];
+
 }
 
 -(void) removeFromLayer:(TFLayer*) layer{
 
 }
-
 
 -(void) addToWorld{
     

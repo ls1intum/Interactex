@@ -62,7 +62,6 @@ You should have received a copy of the GNU General Public License along with thi
     CCLabelTTF * _selectionLabel;
 }
 
-@property (nonatomic, copy) NSString * objectName;
 @property (nonatomic) BOOL active;
 @property (nonatomic) BOOL canBeDuplicated;
 @property (nonatomic) BOOL canBeAddedToPalette;
@@ -93,7 +92,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic) BOOL isAccelerometerEnabled;
 
-@property (nonatomic, strong) CCLabelTTF * nameLabel;
 
 @property (nonatomic, readonly) THPaletteItem * paletteItem;
 

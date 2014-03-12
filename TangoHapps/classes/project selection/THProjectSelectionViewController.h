@@ -55,6 +55,9 @@ You should have received a copy of the GNU General Public License along with thi
     UIPanGestureRecognizer * panRecognizer;
     UILongPressGestureRecognizer * longpressRecognizer;
     BOOL insertedTemporaryProject;
+    
+    float keyboardHeight;
+    BOOL didMoveViewUp;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
@@ -68,6 +71,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) NSMutableArray * projectProxies;
 @property (strong, nonatomic) THCollectionProjectCell * currentProjectCell;
 @property (strong, nonatomic) THProjectDraggableCell * currentDraggableCell;
+@property (strong, nonatomic) THCollectionProjectCell * currentRenamingCell;
 @property (strong, nonatomic) THProjectProxy * currentProject;
 
 @property (strong, nonatomic) UIActivityIndicatorView * activityIndicator;

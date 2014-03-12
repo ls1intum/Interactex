@@ -327,13 +327,17 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Objects name
 
 -(void) checkAddNameToObject:(TFEditableObject*) object{
-    if(object.objectName == nil || [object.objectName isEqualToString:@""]){
-        [self addCountForObject:object];
-        NSString * className = @"className";
-        NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
-        NSLog(@"%d",classCount.integerValue);
-        
-        object.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
+    if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+        THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+        if(hardwareComponent.objectName == nil || [hardwareComponent.objectName isEqualToString:@""]){
+            [self addCountForObject:object];
+            //NSString * className = NSStringFromClass([object class]);
+            NSString * className = object.description;
+            NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
+            NSLog(@"%d",classCount.integerValue);
+            
+            hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
+        }
     }
 }
 
@@ -347,10 +351,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addCountForObject:(TFEditableObject*) object add:(NSInteger) addValue {
     
-    NSString * className = @"className";
-    if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
-        className = @"className";
-    }
+    //NSString * className = NSStringFromClass([object class]);
+    NSString * className = object.description;
     
     NSNumber * number = [self.objectCountPerClass valueForKey:className];
     if(!number){

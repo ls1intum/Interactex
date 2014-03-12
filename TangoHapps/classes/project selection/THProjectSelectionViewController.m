@@ -139,6 +139,17 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.tableView reloadData];
     
     [self updateEditButtonEnabledState];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -187,8 +198,14 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     [self stopActivityIndicator];
     
-    //[[CCDirector sharedDirector] popScene];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 #pragma mark - Private
@@ -746,6 +763,11 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     }
 }
 
+-(void) willStartEditingCellName:(THCollectionProjectCell *)cell{
+
+    self.currentRenamingCell = cell;
+}
+
 #pragma mark - UI Interaction
 
 -(BOOL) showingIcons{
@@ -800,5 +822,58 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self stopEditingScenes];
 }
 
+
+#pragma mark - Scrolling up when textFild
+
+-(void)keyboardWillShow:(NSNotification*) notification {
+    
+    CGRect currentCellFrame = self.currentRenamingCell.frame;
+    
+    NSDictionary* userInfo = [notification userInfo];
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    keyboardHeight = keyboardSize.width;
+    
+    if(currentCellFrame.origin.y + currentCellFrame.size.height > self.view.frame.size.height - keyboardHeight){
+        
+        [self moveScrollViewUp:YES];
+        didMoveViewUp = YES;
+    } else {
+        didMoveViewUp = NO;
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification*) notification {
+    
+    if(didMoveViewUp){
+        NSDictionary* userInfo = [notification userInfo];
+        CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        keyboardHeight = keyboardSize.width;
+        
+        [self moveScrollViewUp:NO];
+    }
+}
+
+-(void)moveScrollViewUp:(BOOL)movedUp {
+    
+    //CGPoint contentOffset = self.view.contentOffset;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    
+    CGRect rect = self.view.frame;
+    if (movedUp) {
+        rect.origin.y -= keyboardHeight;
+        rect.size.height += keyboardHeight;
+    } else {
+        
+        rect.origin.y += keyboardHeight;
+        rect.size.height -= keyboardHeight;
+    }
+    self.view.frame = rect;
+    
+    //self.scrollView.contentOffset = contentOffset;
+    
+    [UIView commitAnimations];
+}
 
 @end

@@ -8,12 +8,9 @@
 
 #import "THEditableObjectProperties.h"
 
-@interface THEditableObjectCommonProperties : THEditableObjectProperties <UITextFieldDelegate>
+@interface THEditableObjectCommonProperties : THEditableObjectProperties
 {
     float keyboardHeight;
 }
-
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-- (IBAction)finishedEditing:(id)sender;
 
 @end

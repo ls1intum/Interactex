@@ -53,6 +53,7 @@ extern const float kProjectCellScaleEffectDuration;
 -(void) didDeleteProjectCell:(THCollectionProjectCell*)cell;
 -(void) didRenameProjectCell:(THCollectionProjectCell*)cell toName:(NSString*) name;
 -(void) didDuplicateProjectCell:(THCollectionProjectCell*)cell;
+-(void) willStartEditingCellName:(THCollectionProjectCell*) cell;
 
 @end
 
@@ -65,6 +66,7 @@ extern const float kProjectCellScaleEffectDuration;
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) id<THProjectCellDelegate> delegate;
+- (IBAction)textEditingWillBegin:(id)sender;
 
 - (IBAction)deleteTapped:(id)sender;
 - (IBAction)textChanged:(id)sender;
