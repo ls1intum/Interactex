@@ -142,7 +142,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 -(void) move:(UIPanGestureRecognizer*)sender{}
 -(void) tapped:(UITapGestureRecognizer*)sender{}
 -(void) doubleTapped:(UITapGestureRecognizer*)sender{}
--(void) pressedLong:(UILongPressGestureRecognizer*)sender{NSLog(@"pressed long");}
+-(void) pressedLong:(UILongPressGestureRecognizer*)sender{}
 
 #pragma mark - Methods
 

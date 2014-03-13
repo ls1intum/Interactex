@@ -374,6 +374,9 @@ You should have received a copy of the GNU General Public License along with thi
     [popup.connection reloadSprite];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInvocationCompleted object:popup.connection.action.firstParam];
+    
+    
+    //THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
 }
 
 -(void) showPropertySelectionPopupFor:(TFEditableObject*) object invocationParameter:(THInvocationConnectionLine*) connectionLine{
@@ -989,7 +992,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     for (THInvocationConnectionLine * connection in project.invocationConnections) {
         if(connection.obj1.visible && connection.obj2.visible){
-        connection.visible = YES;
+            connection.visible = YES;
         }
     }
 }

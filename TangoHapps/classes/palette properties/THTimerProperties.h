@@ -44,13 +44,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THTimerProperties : THEditableObjectProperties
 
-@property (weak, nonatomic) IBOutlet UILabel *secondsLabel;
 @property (weak, nonatomic) IBOutlet UISlider *secondsSlider;
 @property (weak, nonatomic) IBOutlet UISwitch *alwaysSwitch;
-@property (weak, nonatomic) IBOutlet UITextField *milisecondsText;
+@property (weak, nonatomic) IBOutlet UITextField *secondsText;
+- (IBAction)secondsTextChanged:(id)sender;
 
 - (IBAction)secondsChanged:(id)sender;
 - (IBAction)typeChanged:(id)sender;
-- (IBAction)milisecondsChanged:(id)sender;
 
 @end

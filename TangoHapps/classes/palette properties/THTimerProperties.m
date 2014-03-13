@@ -49,11 +49,11 @@ You should have received a copy of the GNU General Public License along with thi
     return @"Timer";
 }
 
--(void) updateFrequencyLabel{
+-(void) updateFrequencyText{
     
     THTimerEditable * timer = (THTimerEditable*) self.editableObject;
     
-    self.secondsLabel.text = [NSString stringWithFormat:@"%.3fs",timer.frequency];
+    self.secondsText.text = [NSString stringWithFormat:@"%.3f",timer.frequency];
 }
 
 -(void) updateFrequencySlider{
@@ -62,10 +62,17 @@ You should have received a copy of the GNU General Public License along with thi
     self.secondsSlider.value = timer.frequency;
 }
 
+-(void) updateRepeatsSwitch{
+    
+    THTimerEditable * timer = (THTimerEditable*) self.editableObject;
+    self.alwaysSwitch.on = timer.type;
+}
+
 -(void) reloadState{
     
-    [self updateFrequencyLabel];
+    [self updateFrequencyText];
     [self updateFrequencySlider];
+    [self updateRepeatsSwitch];
 }
 
 - (void)viewDidLoad
@@ -80,27 +87,24 @@ You should have received a copy of the GNU General Public License along with thi
     // Dispose of any resources that can be recreated.
 }
 
--(void) updateTime{
-    
+- (IBAction)secondsTextChanged:(id)sender {
+
     THTimerEditable * timer = (THTimerEditable*) self.editableObject;
-    double miliseconds = [self.milisecondsText.text doubleValue];
-    timer.frequency = self.secondsSlider.value + miliseconds / 1000.0f;
+    timer.frequency = self.secondsText.text.floatValue;
+    [self updateFrequencySlider];
 }
 
 - (IBAction)secondsChanged:(id)sender {
-    [self updateTime];
-    [self updateFrequencyLabel];
+    
+    THTimerEditable * timer = (THTimerEditable*) self.editableObject;
+    timer.frequency = self.secondsSlider.value;
+    [self updateFrequencyText];
 }
 
 - (IBAction)typeChanged:(id)sender {
     
     THTimerEditable * timer = (THTimerEditable*) self.editableObject;
     timer.type = self.alwaysSwitch.on;
-}
-
-- (IBAction)milisecondsChanged:(id)sender {
-    [self updateTime];
-    [self updateFrequencyLabel];
 }
 
 @end

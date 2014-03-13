@@ -145,46 +145,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     }
 }
 
-/*
--(void) setObj1:(TFEditableObject *)obj1{
-        
-    self.connectionLine.obj1 = obj1;
-}
-
--(void) setObj2:(TFEditableObject *)obj2{
-    
-    self.connectionLine.obj2 = obj2;
-}
-
--(TFEditableObject*) obj1{
-    return self.connectionLine.obj1;
-}
-
--(TFEditableObject*) obj2{
-    return self.connectionLine.obj2;
-}
-
--(void) setShouldAnimate:(BOOL)shouldAnimate{
-    
-    self.connectionLine.shouldAnimate = shouldAnimate;
-}
-
-
--(BOOL) shouldAnimate{
-    return self.connectionLine.shouldAnimate;
-}
-
--(void) startShining{
-    [self.connectionLine startShining];
-}
-
--(BOOL) selected{
-    return self.connectionLine.selected;
-}
-
--(void) setSelected:(BOOL)selected{
-    self.connectionLine.selected = selected;
-}*/
 
 -(void) setLineCenter:(CGPoint)lineCenter{
     _invocationStateSprite.position = lineCenter;
@@ -220,6 +180,13 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     
     ccDrawCircle(p1, 3, 0, 5, NO);
     ccDrawCircle(p2, 3, 0, 5, NO);
+    
+    
+    TFEditableObject * invocationParameter = (TFEditableObject*)self.action.firstParam.target;
+    if(invocationParameter){
+        CGPoint p3 = invocationParameter.center;
+        ccDrawLine(p3, self.lineCenter);
+    }
 }
 
 -(void) draw{

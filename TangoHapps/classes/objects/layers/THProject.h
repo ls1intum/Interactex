@@ -54,6 +54,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THElementPinEditable;
 @class THBoardPinEditable;
 @class THInvocationConnectionLine;
+
 @class THBoardEditable;
 
 @class TFEditableObject;
