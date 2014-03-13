@@ -120,6 +120,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addBoard:(THBoardEditable *) board;
 -(void) removeBoard:(THBoardEditable*) board;
 -(THBoardEditable*) boardAtLocation:(CGPoint) location;
+-(NSArray*) boardsAtLocation:(CGPoint) location;
 
 //clotheObjects
 -(void) addHardwareComponent:(THHardwareComponentEditableObject*) clotheObject;

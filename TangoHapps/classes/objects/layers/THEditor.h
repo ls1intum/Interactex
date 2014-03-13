@@ -84,8 +84,6 @@ typedef enum {
     
     NSMutableArray * attachedClotheObjects;
     NSMutableArray * attachedClotheObjectsPositions;
-    
-    TFEditableObject * currentlyOverlappingObject;
 }
 
 @property (nonatomic, readonly) BOOL isLilypadMode;

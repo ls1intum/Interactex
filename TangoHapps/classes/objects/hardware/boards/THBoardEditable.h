@@ -66,4 +66,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
 
+-(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location;
+
 @end

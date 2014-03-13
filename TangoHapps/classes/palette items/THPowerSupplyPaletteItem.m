@@ -42,15 +42,44 @@
 
 #import "THPowerSupplyPaletteItem.h"
 #import "THPowerSupplyEditable.h"
+#import "THBoardEditable.h"
+#import "THLilypadEditable.h"
 
 @implementation THPowerSupplyPaletteItem
 
-- (void)dropAt:(CGPoint)location {
-    THPowerSupplyEditable * powerSupply = [[THPowerSupplyEditable alloc] init];
-    powerSupply.position = location;
+-(BOOL) canBeDroppedAt:(CGPoint)location{
+    
+    location = [TFHelper ConvertToCocos2dView:location];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addOtherHardwareComponent:powerSupply];
+    NSArray * boards = [project boardsAtLocation:location];
+    for (THBoardEditable * board in boards) {
+        if([board acceptsPowerSupplyAtLocation:location]){
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)dropAt:(CGPoint)location {
+    
+    
+    location = [TFHelper ConvertToCocos2dView:location];
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    
+    NSArray * boards = [project boardsAtLocation:location];
+    for (THBoardEditable * board in boards) {
+        if([board acceptsPowerSupplyAtLocation:location]){
+            
+            THPowerSupplyEditable * powerSupply = [[THPowerSupplyEditable alloc] init];
+            powerSupply.position = location;
+            
+            THLilyPadEditable * lilypad = (THLilyPadEditable*) board;
+            lilypad.powerSupply = powerSupply;
+            [project addOtherHardwareComponent:powerSupply];
+        }
+    }
 }
 
 @end

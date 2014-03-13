@@ -636,7 +636,6 @@ You should have received a copy of the GNU General Public License along with thi
                 
                 [self moveCurrentObject:d];
                 [self checkCurrentObjectInsideOutsidePalette:location];
-                [self checkHandleCurrentObjectInsideOtherObject];
                 
             } else if(_currentPaletteItem){
                 
@@ -832,37 +831,6 @@ You should have received a copy of the GNU General Public License along with thi
     [super doubleTapped:sender];
 }
 
-#pragma mark - Drags into other objects
-
--(void) checkHandleCurrentObjectInsideOtherObject{
-    if(self.isLilypadMode){
-        THProject * project = [THDirector sharedDirector].currentProject;
-        THBoardEditable * board = [project boardAtLocation:self.currentObject.position];
-        if(self.currentObject != board){
-            [board handleObjectOverlapping:self.currentObject];
-            currentlyOverlappingObject = board;
-        } else if(currentlyOverlappingObject){
-            [currentlyOverlappingObject handleObjectStoppedOverlapping];
-            currentlyOverlappingObject = nil;
-        }
-    }
-}
-
--(void) checkHandleCurrentObjectDroppedAtPosition:(CGPoint) position{
-    if(self.isLilypadMode){
-        THProject * project = [THDirector sharedDirector].currentProject;
-        THBoardEditable * board = [project boardAtLocation:self.currentObject.position];
-
-        if(self.currentObject != board){
-            [board handleDroppedObject:self.currentObject position:position];
-            
-        } else if(currentlyOverlappingObject){
-            [currentlyOverlappingObject handleObjectStoppedOverlapping];
-            currentlyOverlappingObject = nil;
-        }
-    }
-}
-
 #pragma mark - Drags from palette
 
 -(void)paletteItem:(THDraggedPaletteItem*)item beganDragAt:(CGPoint) location {
@@ -912,8 +880,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(location.x < paletteRightX){
         [self handleItemDroppedInPaletteAt:location];
     }
-    
-    [self checkHandleCurrentObjectDroppedAtPosition:location];
 }
 
 -(void) handleItemEnteredPaletteAt:(CGPoint) location{

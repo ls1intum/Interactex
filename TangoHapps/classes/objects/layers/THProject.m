@@ -418,6 +418,17 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+-(NSArray*) boardsAtLocation:(CGPoint) location{
+    NSMutableArray * boards = [NSMutableArray array];
+    
+    for (THBoardEditable* board in _boards) {
+        if([board testPoint:location]){
+            [boards addObject:board];
+        }
+    }
+    return boards;
+}
+
 #pragma mark - iPhoneObjects
 
 -(void) addiPhoneObject:(THViewEditableObject*) object{

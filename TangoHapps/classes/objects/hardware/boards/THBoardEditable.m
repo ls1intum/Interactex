@@ -142,6 +142,10 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location{
+    return NO;
+}
+
 #pragma mark - Object's Lifecycle
 
 -(void) addToLayer:(TFLayer *)layer{

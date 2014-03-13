@@ -70,12 +70,6 @@ float const kLilypadPowerSupplyOverlapRadius = 40;
     self.sprite = [CCSprite spriteWithFile:@"lilypadComplex.png"];
     [self addChild:self.sprite z:1];
     
-    _powerSupplyProxySprite = [CCSprite spriteWithFile:@"powerSupply.png"];
-    _powerSupplyProxySprite.position = kLilypadPowerSupplyPosition;
-    _powerSupplyProxySprite.rotation = CC_DEGREES_TO_RADIANS(90);
-    _powerSupplyProxySprite.visible = NO;
-    [self addChild:_powerSupplyProxySprite z:2];
-    
     self.canBeDuplicated = NO;
 }
 
@@ -220,38 +214,19 @@ float const kLilypadPowerSupplyOverlapRadius = 40;
     return nil;
 }
 
-#pragma mark - Lifecycle
-
--(void) handleObjectOverlapping:(TFEditableObject*) object{
-    if([object isKindOfClass:[THPowerSupplyEditable class]]){
-        CGPoint position = [self convertToNodeSpace:object.position];
-        //NSLog(@"%f %f",position.x,position.y);
-        
-        if(ccpDistance(position, kLilypadPowerSupplyPosition) < kLilypadPowerSupplyOverlapRadius){
-            self.powerSupplyProxySprite.visible = YES;
-        } else {
-            self.powerSupplyProxySprite.visible = NO;
-        }
-    }
-}
-
--(void) handleObjectStoppedOverlapping{
-    self.powerSupplyProxySprite.visible = NO;
-}
-
--(void) handleDroppedObject:(TFEditableObject*) object position:(CGPoint) position{
+-(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location{
     
-    if([object isKindOfClass:[THPowerSupplyEditable class]]){
-        self.powerSupplyProxySprite.visible = NO;
-        
-        CGPoint position = [self convertToNodeSpace:object.position];
-        
-        if(ccpDistance(position, kLilypadPowerSupplyPosition) < kLilypadPowerSupplyOverlapRadius){
-            [object removeFromParentAndCleanup:YES];
-            self.powerSupply = (THPowerSupplyEditable*)object;
-        }
+    //    CGPoint position = [self convertToNodeSpace:object.position];
+    
+    location = [self convertToNodeSpace:location];
+    if(ccpDistance(location, kLilypadPowerSupplyPosition) < kLilypadPowerSupplyOverlapRadius){
+        return YES;
     }
+    
+    return NO;
 }
+
+#pragma mark - Lifecycle
 
 -(void) willStartSimulation{
     [super willStartSimulation];
