@@ -46,7 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 @interface TFPropertyInvocation : NSObject
 
 @property (nonatomic, strong) TFProperty * property;
-@property (nonatomic, strong) id target;
+@property (nonatomic, weak) id target;
 
 +(id) invocationWithProperty:(TFProperty*) property target:(id) target;
 -(id) initWithProperty:(TFProperty*) property target:(id) target;

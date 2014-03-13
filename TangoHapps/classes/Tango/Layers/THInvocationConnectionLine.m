@@ -57,7 +57,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(id) initWithObj1:(TFEditableObject*) obj1 obj2:(TFEditableObject*) obj2{
     self = [super init];
     if(self){
-        //self.connectionLine = [[TFConnectionLine alloc] initWithObj1:obj1 obj2:obj2];
         self.obj1 = obj1;
         self.obj2 = obj2;
         
@@ -70,7 +69,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(id) init{
     self = [super init];
     if(self){
-        //self.connectionLine = [[TFConnectionLine alloc] init];
         
         [self loadConnectionLine];
     }
@@ -82,6 +80,9 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     self.canBeMoved = NO;
     
     [self reloadSprite];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:nil];
 }
 
 #pragma mark - Archiving
@@ -89,7 +90,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if(self) {
-        //self.connectionLine = [decoder decodeObjectForKey:@"connectionLine"];
         self.numParameters = [decoder decodeIntegerForKey:@"numParameters"];
         self.state = [decoder decodeIntegerForKey:@"state"];
         self.parameterType = [decoder decodeIntegerForKey:@"parameterType"];
@@ -104,7 +104,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
-    //[coder encodeObject:self.connectionLine forKey:@"connectionLine"];
     [coder encodeInteger:self.numParameters forKey:@"numParameters"];
     [coder encodeInteger:self.state forKey:@"state"];
     [coder encodeInteger:self.parameterType forKey:@"parameterType"];
@@ -116,6 +115,7 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 
 #pragma mark - Property Controller
 
+
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THInvocationConnectionProperties properties]];
@@ -124,12 +124,14 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 #pragma mark - Methods
-/*
--(CGPoint) calculateLineCenter{
-    CGPoint pos1 = self.obj1.center;
-    CGPoint pos2 = self.obj2.center;
-    return ccpMult(ccpAdd(pos1,pos2),0.5f);
-}*/
+
+-(void)handleEditableObjectRemoved:(NSNotification *)notification{
+    TFEditableObject * object = notification.object;
+    if(object == self.action.firstParam.target){
+        self.state = THInvocationConnectionLineStateIncomplete;
+        [self reloadSprite];
+    }
+}
 
 -(void) reloadSprite{
     if(self.numParameters == 1){
@@ -138,7 +140,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
         NSString * spriteName = invocationConnectionLineSpriteNames[self.state][self.parameterType];
         spriteName = [spriteName stringByAppendingString:@".png"];
         _invocationStateSprite = [CCSprite spriteWithFile:spriteName];
-        //_invocationStateSprite.position = [self calculateLineCenter];
         _invocationStateSprite.position = self.lineCenter;
         
         [self addChild:_invocationStateSprite];
