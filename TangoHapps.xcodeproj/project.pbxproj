@@ -1755,20 +1755,6 @@
 			remoteGlobalIDString = 9AF5FFF0167B82F70020241C;
 			remoteInfo = TangoHappsClient;
 		};
-		9AFA65E918296E000082990F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5018F24C0DFDEAC400C013A5;
-			remoteInfo = cocos2d;
-		};
-		9AFA65EB18296E000082990F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 50CB2FC91004C8B100B7A750;
-			remoteInfo = CocosDenshion;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -4234,8 +4220,6 @@
 			);
 			dependencies = (
 				9A9C425018B1F2B9002C2BC9 /* PBXTargetDependency */,
-				9AFA65EA18296E000082990F /* PBXTargetDependency */,
-				9AFA65EC18296E000082990F /* PBXTargetDependency */,
 			);
 			name = TangoHapps;
 			productName = TangoHapps;
@@ -6067,16 +6051,6 @@
 			target = 9AF5FFF0167B82F70020241C /* TangoHappsClient */;
 			targetProxy = 9AF505D3167B91020020241C /* PBXContainerItemProxy */;
 		};
-		9AFA65EA18296E000082990F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = cocos2d;
-			targetProxy = 9AFA65E918296E000082990F /* PBXContainerItemProxy */;
-		};
-		9AFA65EC18296E000082990F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CocosDenshion;
-			targetProxy = 9AFA65EB18296E000082990F /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -6160,6 +6134,7 @@
 		9A3511A8167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
@@ -6179,12 +6154,14 @@
 		9A3511A9167B7A6800C7484B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
@@ -6224,6 +6201,7 @@
 		9A94F279169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
