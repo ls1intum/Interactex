@@ -83,7 +83,7 @@ You should have received a copy of the GNU General Public License along with thi
         action.firstParam = event.param1;
         action.source = self.object1;
         [self.delegate methodSelectionPopup:self didSelectAction:action forEvent:event];
-                
+
         [popOverController dismissPopoverAnimated:YES];
     }
 }

@@ -36,14 +36,6 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>7F97075A-A169-4026-97C6-F9CFEB23825D</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Firmata</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>720A638E-E4F5-413C-9006-7AAEE8B91024</string>
 			<key>IDESourceControlWCCName</key>
 			<string>wearablesm2m</string>

@@ -77,6 +77,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.additionalConnections = [NSMutableArray array];
         
         self.shouldRecognizePanGestures = YES;
+        
         _zoomableLayer = [CCLayer node];
         [self addChild:_zoomableLayer z:-10];
         
@@ -431,6 +432,11 @@ You should have received a copy of the GNU General Public License along with thi
             
             invocationConnection.state = THInvocationConnectionLineStateComplete;
             invocationConnection.action.firstParam = event.param1;
+            
+            if([invocationConnection.action.firstParam.target isKindOfClass:[TFSimulableObject class]]){
+                //NSLog(@"%@",invocationConnection.action.firstParam.target);
+                invocationConnection.action.firstParam.target = [project editableForSimulable:event.param1.target];
+            }
         }
         
         invocationConnection.parameterType = action.method.firstParamType;

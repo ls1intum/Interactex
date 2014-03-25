@@ -60,6 +60,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class TFEditableObject;
 @class TFAction;
 @class TFEvent;
+@class TFSimulableObject;
 
 @interface THProject : NSObject
 {
@@ -180,6 +181,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 //non editable project
 -(THClientProject*) nonEditableProject;
+
+-(TFEditableObject*) editableForSimulable:(TFSimulableObject*) object;
 
 @property (nonatomic,readonly) THiPhoneEditableObject * iPhone;
 @property (nonatomic,readonly) NSMutableArray * boards;
