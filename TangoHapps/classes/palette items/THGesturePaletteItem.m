@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-//#import "THGesturePaletteItem.h"
+#import "THGesturePaletteItem.h"
 //#import "THGestureEditable.h"
 
 @implementation THGesturePaletteItem
