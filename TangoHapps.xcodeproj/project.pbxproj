@@ -15,6 +15,7 @@
 		67B3130318EC8063006A9A31 /* palette_flexSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B312FF18EC8063006A9A31 /* palette_flexSensor.png */; };
 		67B3130418EC8063006A9A31 /* palette_flexSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B3130018EC8063006A9A31 /* palette_flexSensor@2x.png */; };
 		67B3130718EC8FB4006A9A31 /* THGesturePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B3130618EC8FB4006A9A31 /* THGesturePaletteItem.m */; };
+		67CDCC2A18EDA9C500E5B140 /* THGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CDCC2918EDA9C500E5B140 /* THGesture.m */; };
 		9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
@@ -1790,6 +1791,8 @@
 		67B3130018EC8063006A9A31 /* palette_flexSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_flexSensor@2x.png"; sourceTree = "<group>"; };
 		67B3130518EC8FB4006A9A31 /* THGesturePaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGesturePaletteItem.h; sourceTree = "<group>"; };
 		67B3130618EC8FB4006A9A31 /* THGesturePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGesturePaletteItem.m; sourceTree = "<group>"; };
+		67CDCC2818EDA9C500E5B140 /* THGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THGesture.h; path = gestures/THGesture.h; sourceTree = "<group>"; };
+		67CDCC2918EDA9C500E5B140 /* THGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THGesture.m; path = gestures/THGesture.m; sourceTree = "<group>"; };
 		9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneDraggableCell.h; sourceTree = "<group>"; };
 		9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneDraggableCell.m; sourceTree = "<group>"; };
 		9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedPaletteItem.h; sourceTree = "<group>"; };
@@ -2769,6 +2772,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67CDCBED18EDA96400E5B140 /* gestures */ = {
+			isa = PBXGroup;
+			children = (
+				67CDCC2818EDA9C500E5B140 /* THGesture.h */,
+				67CDCC2918EDA9C500E5B140 /* THGesture.m */,
+			);
+			name = gestures;
+			sourceTree = "<group>";
+		};
 		9A1FBD6B187ED71900699B61 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -3611,6 +3623,7 @@
 				9AF50264167B84B40020241C /* software */,
 				9AF50218167B84B40020241C /* hardware */,
 				9AF5025B167B84B40020241C /* layers */,
+				67CDCBED18EDA96400E5B140 /* gestures */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -5583,6 +5596,7 @@
 				9AD704AF18AA9E220080CD2E /* THGraphViewSegment.m in Sources */,
 				9AB29C03167F89B900F5AF62 /* THProgrammingElement.m in Sources */,
 				9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */,
+				67CDCC2A18EDA9C500E5B140 /* THGesture.m in Sources */,
 				9A7DBF6E169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */,
 				9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */,
 				9A95FB7A18CF59DF009A724F /* THPowerSupplyPaletteItem.m in Sources */,
