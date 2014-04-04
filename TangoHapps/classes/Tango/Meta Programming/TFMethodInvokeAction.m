@@ -47,6 +47,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation TFMethodInvokeAction
 
++(id) actionWithAction:(TFMethodInvokeAction*) action{
+    return [action copy];
+}
+
 +(id) actionWithTarget:(id) target method:(TFMethod*) method{
     return [[TFMethodInvokeAction alloc] initWithTarget:target method:method];
 }

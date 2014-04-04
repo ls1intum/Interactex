@@ -246,6 +246,15 @@ You should have received a copy of the GNU General Public License along with thi
     [super willStartSimulation];
 }
 
+-(void) addToLayer:(TFLayer *)layer{
+    CCLayer * myLayer = [CCLayer node];
+    myLayer.contentSize = CGSizeMake(200, 300);
+    
+    
+    [super addToLayer:layer];
+    
+}
+
 -(void) prepareToDie{
     toneGenerator = nil;
     [super prepareToDie];

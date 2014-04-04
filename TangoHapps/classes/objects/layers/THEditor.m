@@ -423,7 +423,7 @@ You should have received a copy of the GNU General Public License along with thi
     [project registerAction:(TFAction*)action forEvent:event];
     
     THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
-    invocationConnection.action = action;
+    invocationConnection.action = [TFMethodInvokeAction actionWithAction:action];
     invocationConnection.numParameters = action.method.numParams;
     
     if(action.method.numParams > 0){
@@ -441,6 +441,9 @@ You should have received a copy of the GNU General Public License along with thi
         
         invocationConnection.parameterType = action.method.firstParamType;
         [invocationConnection reloadSprite];
+        
+    } else {
+        invocationConnection.action.firstParam = nil;
     }
     
     [project addInvocationConnection:invocationConnection animated:YES];
@@ -829,6 +832,7 @@ You should have received a copy of the GNU General Public License along with thi
             [self checkPinClotheObject:clotheObject atLocation:location];
         }
     } else {
+
         _zoomableLayer.scale = 1.0f;
         //self.position = ccp(0,0);
         _zoomableLayer.position = ccp(0,0);

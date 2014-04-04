@@ -331,10 +331,10 @@ You should have received a copy of the GNU General Public License along with thi
         THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
         if(hardwareComponent.objectName == nil || [hardwareComponent.objectName isEqualToString:@""]){
             [self addCountForObject:object];
-            //NSString * className = NSStringFromClass([object class]);
+
             NSString * className = object.description;
             NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
-            NSLog(@"%d",classCount.integerValue);
+           // NSLog(@"%d",classCount.integerValue);
             
             hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
         }
@@ -1202,6 +1202,10 @@ enum zPositions{
     
     for (TFEventActionPair * pair in _eventActionPairs) {
         [pair.action prepareToDie];
+    }
+    
+    for (THInvocationConnectionLine * connection in _invocationConnections) {
+        [connection prepareToDie];
     }
     
     [self.iPhone prepareToDie];

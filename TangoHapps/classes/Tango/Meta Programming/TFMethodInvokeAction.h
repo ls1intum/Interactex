@@ -47,10 +47,11 @@ You should have received a copy of the GNU General Public License along with thi
 @class TFProperty;
 @class TFPropertyInvocation;
 
-@interface TFMethodInvokeAction : TFAction <NSCoding>
-{
+@interface TFMethodInvokeAction : TFAction <NSCoding> {
     
 }
+
++(id) actionWithAction:(TFMethodInvokeAction*) action;
 +(id) actionWithTarget:(id) target method:(TFMethod*) method;
 -(id) initWithTarget:(id) target method:(TFMethod*) method;
 
