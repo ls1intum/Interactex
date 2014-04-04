@@ -58,7 +58,7 @@ typedef enum {
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
 
-#define kNumHardwareTypes 12
+#define kNumHardwareTypes 13
 #define kMaxNumPinsPerElement 5
 
 typedef enum{
@@ -75,7 +75,8 @@ typedef enum{
     kHardwareTypeAccelerometer,
     kHardwareTypeMPUCompass,
     kHardwareTypeLipoBattery,
-    kHardwareTypePowerSupply
+    kHardwareTypePowerSupply,
+    kHardwareTypeFlexSensor//15
 }THHardwareType;
 
 #define kNumPinTypes 4

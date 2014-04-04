@@ -63,7 +63,7 @@ NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";
 
-NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2,3,5,4};
+NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2,3,5,4,2};
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
@@ -77,7 +77,8 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-24,15},{24,15}},//vibeBoard
     {{-23,-12},{0,26},{25,-12}},//temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
-    {{32,-4},{32,-13},{-32,13},{-32,4}}//lsm compass
+    {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
+    {{-24,14},{24,-14}}//flex sensor
 };
 
 float const kUiViewOpacityEditor = 0.5f;
@@ -123,7 +124,8 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//tricolor
     {70,65},//vibeBoard
     {70,65},//temperature sensor
-    {70,65}//accelerometer
+    {70,65},//accelerometer
+    {70,65}//flex sensor
 };
 
 float const kLayerMinScale = 0.5f;

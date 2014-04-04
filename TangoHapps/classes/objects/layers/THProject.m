@@ -545,6 +545,17 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+#pragma mark - Gesture Objects
+
+-(TFEditableObject*) gestureComponentAtLocation:(CGPoint) location{
+    for (TFEditableObject* object in self.gestureComponents) {
+        if([object testPoint:location] /*&& ist gesture object*/){
+            return object;
+        }
+    }
+    return nil;
+}
+
 
 #pragma mark - Clothes
 
