@@ -8,19 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class THView;
+@class THHardwareComponentEditableObject;
 
-@interface THGesture : TFSimulableObject {
+@interface THGesture : TFEditableObject {
     
 }
 
-@property (nonatomic) CGPoint position;
-@property (nonatomic, strong) THView * currentView;
+-(id) initWithName:(NSString*) name;
+-(void) attachGestureObject:(THHardwareComponentEditableObject*) object;
+-(void) deattachGestureObject:(THHardwareComponentEditableObject*) object;
 
--(void) saveGesture;
-
--(void) removeFromSuperview;
--(void) addToView:(UIView*) aView;
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, strong) NSMutableArray * attachments;
 
 @end
-

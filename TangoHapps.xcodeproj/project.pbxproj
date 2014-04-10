@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6778EA0518F6AC980080B1C9 /* gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0118F6AC980080B1C9 /* gesture.png */; };
+		6778EA0618F6AC980080B1C9 /* gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0218F6AC980080B1C9 /* gesture@2x.png */; };
+		6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0318F6AC980080B1C9 /* palette_gesture.png */; };
+		6778EA0818F6AC980080B1C9 /* palette_gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */; };
 		679857A718EC61CC0037B366 /* THFlexSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */; };
 		679857E418EC64510037B366 /* THFlexSensorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857E318EC64510037B366 /* THFlexSensorEditable.m */; };
 		679857E718EC66310037B366 /* THFlexSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857E618EC66310037B366 /* THFlexSensor.m */; };
@@ -1779,6 +1783,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6778EA0118F6AC980080B1C9 /* gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture.png; sourceTree = "<group>"; };
+		6778EA0218F6AC980080B1C9 /* gesture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture@2x.png"; sourceTree = "<group>"; };
+		6778EA0318F6AC980080B1C9 /* palette_gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_gesture.png; sourceTree = "<group>"; };
+		6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_gesture@2x.png"; sourceTree = "<group>"; };
 		679857A518EC61CC0037B366 /* THFlexSensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THFlexSensorPaletteItem.h; sourceTree = "<group>"; };
 		679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THFlexSensorPaletteItem.m; sourceTree = "<group>"; };
 		679857E218EC64510037B366 /* THFlexSensorEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THFlexSensorEditable.h; sourceTree = "<group>"; };
@@ -2911,6 +2919,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				6778EA0118F6AC980080B1C9 /* gesture.png */,
+				6778EA0218F6AC980080B1C9 /* gesture@2x.png */,
+				6778EA0318F6AC980080B1C9 /* palette_gesture.png */,
+				6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */,
 				9A95FB6C18CF593A009A724F /* palette_powerSupply.png */,
 				9A95FB6D18CF593A009A724F /* palette_powerSupply@2x.png */,
 				9A95FB6E18CF593A009A724F /* powerSupply.png */,
@@ -4322,7 +4334,7 @@
 				ORGANIZATIONNAME = "Technische Universität München";
 				TargetAttributes = {
 					9A351188167B7A6800C7484B = {
-						DevelopmentTeam = WCM2L8RG39;
+						DevelopmentTeam = 7PLLZ436SG;
 					};
 					9AF5FFF0167B82F70020241C = {
 						DevelopmentTeam = WCM2L8RG39;
@@ -4861,6 +4873,7 @@
 				9ABC27A01809B46C00B39D72 /* palette_accelerometer.png in Resources */,
 				9A94F43C16A0192700AF52AB /* THTouchpadProperties.xib in Resources */,
 				9A94F43E16A0192700AF52AB /* THValueProperties.xib in Resources */,
+				6778EA0518F6AC980080B1C9 /* gesture.png in Resources */,
 				9AF60BBF16A04BDB00178439 /* connectionMade.mp3 in Resources */,
 				9AF60BC616A04D9F00178439 /* THTabbar.xib in Resources */,
 				9AF60BC816A04D9F00178439 /* THTabbarViewSection.xib in Resources */,
@@ -5019,6 +5032,7 @@
 				9A41461B17DE7A060061EDF8 /* switchOn.png in Resources */,
 				9A41461D17DE7A060061EDF8 /* switchOn@2x.png in Resources */,
 				9A41461F17DE7A060061EDF8 /* threeColorLed.png in Resources */,
+				6778EA0618F6AC980080B1C9 /* gesture@2x.png in Resources */,
 				9A41462117DE7A060061EDF8 /* threeColorLed@2x.png in Resources */,
 				9A5BD7491860C52E00842833 /* starEmpty@2x.png in Resources */,
 				9A95FB7418CF593A009A724F /* powerSupply.png in Resources */,
@@ -5052,6 +5066,7 @@
 				9A41464B17DE7A060061EDF8 /* lilypadmode.png in Resources */,
 				9A41464D17DE7A060061EDF8 /* lilypadmode@2x.png in Resources */,
 				9A41464F17DE7A060061EDF8 /* pinsmode.png in Resources */,
+				6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */,
 				9A1C3AC21886DDAE007C5E94 /* palette_LSMCompass.png in Resources */,
 				9A41465117DE7A060061EDF8 /* pinsmode@2x.png in Resources */,
 				9A41465317DE7A060061EDF8 /* push.png in Resources */,
@@ -5059,6 +5074,7 @@
 				9A41465A17DE86E60061EDF8 /* palettePull.png in Resources */,
 				9A41469517DE93F30061EDF8 /* palettePull@2x.png in Resources */,
 				9A1C3AC41886DDAE007C5E94 /* palette_LSMCompass@2x.png in Resources */,
+				6778EA0818F6AC980080B1C9 /* palette_gesture@2x.png in Resources */,
 				9A5931CA17E5CD4500B20D99 /* paletteIcon.png in Resources */,
 				9A5931CC17E5CD4500B20D99 /* paletteIcon@2x.png in Resources */,
 				9AA4D6F018AE169100A43433 /* palette_lipoBattery@2x.png in Resources */,
@@ -6190,7 +6206,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
