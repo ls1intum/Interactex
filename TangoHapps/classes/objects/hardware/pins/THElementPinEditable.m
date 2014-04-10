@@ -53,14 +53,14 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic type;
 @dynamic connected;
 
--(void) load{
+-(void) loadElementPin{
     self.acceptsConnections = YES;
 }
 
 -(id) init{
     self = [super init];
     if(self){
-        [self load];
+        [self loadElementPin];
     }
     return self;
 }
@@ -68,19 +68,18 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    _attachedToPin = [decoder decodeObjectForKey:@"attachedToPin"];
-    
-    [self load];
-    
+    if(self){
+        _attachedToPin = [decoder decodeObjectForKey:@"attachedToPin"];
+        
+        [self loadElementPin];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     [coder encodeObject:_attachedToPin forKey:@"attachedToPin"];
 }
