@@ -83,9 +83,9 @@
     return [self.pins objectAtIndex:1];
 }
 
-/*-(THElementPinEditable*) analogPin{
+-(THElementPinEditable*) analogPin{
     return [self.pins objectAtIndex:2];
-}*/
+}
 
 -(THElementPinEditable*) plusPin{
     return [self.pins objectAtIndex:0];

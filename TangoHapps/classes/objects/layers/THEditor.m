@@ -825,14 +825,14 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:location];
-    TFSimulableObject * gestureObject = [project gestureComponentAtLocation:location];
+    //TFEditableObject * gestureObject = [project gestureAtLocation:location];
     if(clotheObject){
         if(clotheObject.attachedToClothe){
             [self checkUnPinClotheObject:clotheObject];
         } else {
             [self checkPinClotheObject:clotheObject atLocation:location];
         }
-    } else if (gestureObject) {
+    //} else if (gestureObject) {
     
     } else {
 

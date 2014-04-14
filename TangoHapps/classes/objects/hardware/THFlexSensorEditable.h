@@ -24,7 +24,7 @@
 @property (nonatomic) THSensorNotifyBehavior notifyBehavior;
 
 @property (nonatomic, readonly) THElementPinEditable * minusPin;
-//@property (nonatomic, readonly) THElementPinEditable * analogPin;
+@property (nonatomic, readonly) THElementPinEditable * analogPin;
 @property (nonatomic, readonly) THElementPinEditable * plusPin;
 
 @end

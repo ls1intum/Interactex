@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THiPhoneEditableObject;
 @class THViewEditableObject;
 @class THClothe;
+@class THGesture;
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
 @class THClientProject;
@@ -134,8 +135,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location;
 
-//gesture components
--(TFSimulableObject*) gestureComponentAtLocation:(CGPoint) location;
+//gestures
+-(void) addGesture:(THGesture*) object;
+-(void) removeGesture:(THGesture*) object;
+-(THGesture*) gestureAtLocation:(CGPoint) location;
 
 //clothes
 -(void) addClothe:(THClothe*) object;
@@ -191,7 +194,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic,readonly) NSMutableArray * boards;
 @property (nonatomic,readonly) NSMutableArray * hardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * otherHardwareComponents;
-@property (nonatomic, readonly) NSMutableArray * gestureComponents;
+@property (nonatomic,readonly) NSMutableArray * gestures;
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;
 @property (nonatomic,readonly) NSMutableArray * conditions;

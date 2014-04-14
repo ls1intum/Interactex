@@ -45,6 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponentEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
+#import "THGesture.h"
 #import "THLilypadEditable.h"
 
 #import "THClientProject.h"
@@ -545,12 +546,22 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
-#pragma mark - Gesture Objects
+#pragma mark - Gestures
 
--(TFEditableObject*) gestureComponentAtLocation:(CGPoint) location{
-    for (TFEditableObject* object in self.gestureComponents) {
-        if([object testPoint:location] /*&& ist gesture object*/){
-            return object;
+-(void) addGesture:(THGesture*) gesture{
+    [_gestures addObject:gesture];
+    [self notifyObjectAdded:gesture];
+}
+
+-(void) removeGesture:(THGesture*) gesture{
+    [_clothes removeObject:gesture];
+    [self notifyObjectRemoved:gesture];
+}
+
+-(THGesture*) gestureAtLocation:(CGPoint) location{
+    for (THGesture * gesture in self.gestures) {
+        if([gesture testPoint:location]){
+            return gesture;
         }
     }
     return nil;

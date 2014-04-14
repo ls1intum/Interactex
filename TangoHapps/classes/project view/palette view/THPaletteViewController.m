@@ -80,6 +80,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THClothePaletteItem.h"
 
+#import "THGesturePaletteItem.h"
+
 #import "THComparatorPaletteItem.h"
 #import "THGrouperPaletteItem.h"
 #import "THValuePaletteItem.h"
@@ -463,7 +465,7 @@ You should have received a copy of the GNU General Public License along with thi
                                        ];
     /*
     self.gesturesSectionArray = [NSMutableArray arrayWithObjects:
-                                  //[[THGesturePaletteItem alloc] initWithName:@"gesture"],
+                                  [[THGesturePaletteItem alloc] initWithName:@"gesture"],
                                   nil
                                  ];*/
                                      
