@@ -91,7 +91,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [array addObject:[self buzzerProject]];
     [array addObject:[self analogInputProject]];
     [array addObject:[self lsmProject]];
-    [array addObject:[self mcuProject]];
+    //[array addObject:[self mpuProject]];
     [array addObject:[self musicPlayerProject]];
     [array addObject:[self pureDataProject]];
     
@@ -102,7 +102,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [imagesArray addObject:[UIImage imageNamed:@"buzzer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"lightSensor.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
-    [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
+    //[imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
     
@@ -361,7 +361,7 @@ NSString * const kPureDataProjectName = @"PureData";
     
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect a Light Sensor to analog pin 0";
-    label.position = CGPointMake(170, 50);
+    label.position = CGPointMake(160, 50);
     label.width = 300;
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,sensorLabel,nil];
@@ -385,13 +385,14 @@ NSString * const kPureDataProjectName = @"PureData";
     return project;
 }
 
--(THClientProject*) mcuProject{
+/*
+-(THClientProject*) mpuProject{
     
     THClientProject * project = [self defaultClientProject];
     
     project.name = kMCUCompassProjectName;
     
-    THCompassLSM303 * compass = [[THCompassLSM303 alloc] init];
+    THCompassMPU6050 * compass = [[THCompassMPU6050 alloc] init];
     
     compass.i2cComponent = [[THI2CComponent alloc] init];
     THI2CRegister * reg = [[THI2CRegister alloc] init];
@@ -447,7 +448,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [compass.sdaPin attachToPin:lilypad.sdaPin];
     
     return project;
-}
+}*/
 
 -(THClientProject*) lsmProject{
     
@@ -477,7 +478,7 @@ NSString * const kPureDataProjectName = @"PureData";
     monitor.position = CGPointMake(160, 250);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect an LSM Compass";
+    label.text = @"connect a LSM303 Compass";
     label.position = CGPointMake(160, 50);
     label.width = 300;
     
@@ -527,20 +528,15 @@ NSString * const kPureDataProjectName = @"PureData";
     
     //iphone objects
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a Button pin 5";
+    label.text = @"connect a Button pin to 5";
     label.position = CGPointMake(150, 100);
     label.width = 200;
-    label.height = 100;
     label.numLines = 2;
     
     THMusicPlayer * musicPlayer = [[THMusicPlayer alloc] init];
-    musicPlayer.position = CGPointMake(180, 400);
+    musicPlayer.position = CGPointMake(160, 400);
     
-    THiPhoneButton * button = [[THiPhoneButton alloc] init];
-    button.text = @"Stop";
-    button.position = CGPointMake(180, 200);
-    
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,button,musicPlayer, nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,musicPlayer, nil];
     
     //play action
     TFMethod * playMethod = [musicPlayer.methods objectAtIndex:0];
@@ -548,13 +544,6 @@ NSString * const kPureDataProjectName = @"PureData";
     TFEvent * event = [lilybutton.events objectAtIndex:0];
     playAction.source = lilybutton;
     [project registerAction:playAction forEvent:event];
-    
-    //stop playing action
-    TFMethod * stopPlaying = [musicPlayer.methods objectAtIndex:1];
-    TFMethodInvokeAction * stopPlayingAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:stopPlaying];
-    event = [button.events objectAtIndex:0];
-    stopPlayingAction.source = button;
-    [project registerAction:stopPlayingAction forEvent:event];
     
     //pins
     THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:5];
@@ -579,14 +568,14 @@ NSString * const kPureDataProjectName = @"PureData";
     
     //iphone objects
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"press the button";
-    label.position = CGPointMake(150, 100);
-    label.width = 200;
-    label.height = 100;
+    label.text = @"Press the button to start PureData";
+    label.position = CGPointMake(160, 100);
+    label.width = 300;
     label.numLines = 2;
     
     THiPhoneButton * button = [[THiPhoneButton alloc] init];
     button.text = @"Start Pure Data";
+    button.width = 200;
     button.position = CGPointMake(250, 200);
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,button, nil];

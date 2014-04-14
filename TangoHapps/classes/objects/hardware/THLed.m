@@ -174,7 +174,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOn {
     if(!self.on){
-        NSLog(@"led on");
         self.on = YES;
         
         [self triggerEventNamed:kEventTurnedOn];
@@ -183,7 +182,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOff {
     if(self.on){
-        NSLog(@"led off");
         self.on = NO;
         
         [self triggerEventNamed:kEventTurnedOff];
