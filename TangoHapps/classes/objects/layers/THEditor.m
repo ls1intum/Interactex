@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 #import "THClothe.h"
+#import "THGesture.h"
 #import "THViewEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THiPhone.h"
@@ -825,15 +826,15 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:location];
-    //TFEditableObject * gestureObject = [project gestureAtLocation:location];
+    THGesture * gestureObject = [project gestureAtLocation:location];
     if(clotheObject){
         if(clotheObject.attachedToClothe){
             [self checkUnPinClotheObject:clotheObject];
         } else {
             [self checkPinClotheObject:clotheObject atLocation:location];
         }
-    //} else if (gestureObject) {
-    
+    } else if (gestureObject) {
+        [gestureObject open];
     } else {
 
         _zoomableLayer.scale = 1.0f;

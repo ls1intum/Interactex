@@ -9,16 +9,20 @@
 #import <Foundation/Foundation.h>
 
 @class THHardwareComponentEditableObject;
+@class TFLayer;
 
 @interface THGesture : TFEditableObject {
     
 }
 
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, strong) NSMutableArray * attachments;
+@property (nonatomic, strong) TFLayer* layer;
+
 -(id) initWithName:(NSString*) name;
 -(void) attachGestureObject:(THHardwareComponentEditableObject*) object;
 -(void) deattachGestureObject:(THHardwareComponentEditableObject*) object;
+-(void) open;
 
-@property (nonatomic, copy) NSString * name;
-@property (nonatomic, strong) NSMutableArray * attachments;
 
 @end

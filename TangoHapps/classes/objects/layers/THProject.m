@@ -138,6 +138,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadCustomProject{
     
     _clothes = [NSMutableArray array];
+    _gestures = [NSMutableArray array];
     _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
     _otherHardwareComponents = [NSMutableArray array];
@@ -202,6 +203,7 @@ You should have received a copy of the GNU General Public License along with thi
         NSArray * hardwareComponents = [decoder decodeObjectForKey:@"hardwareComponents"];
         NSArray * otherHardwareComponents = [decoder decodeObjectForKey:@"otherHardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
+        NSArray * gestures = [decoder decodeObjectForKey:@"gestures"];
         NSArray * iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         NSArray * conditions = [decoder decodeObjectForKey:@"conditions"];
         NSArray * values = [decoder decodeObjectForKey:@"values"];
@@ -221,6 +223,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         for(THClothe* clothe in clothes){
             [self addClothe:clothe];
+        }
+        
+        for(THGesture* gesture in gestures) {
+            [self addGesture:gesture];
         }
         
         for(THBoardEditable * board in boards){
@@ -281,6 +287,7 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
+    [coder encodeObject:self.gestures forKey:@"gestures"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
@@ -996,6 +1003,7 @@ enum zPositions{
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.boards];
     [allObjects addObjectsFromArray:self.clothes];
+    [allObjects addObjectsFromArray:self.gestures];
     return allObjects;
 }
 

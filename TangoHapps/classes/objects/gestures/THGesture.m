@@ -10,6 +10,7 @@
 #import "THHardwareComponentEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
+#import "THEditor.h"
 
 @implementation THGesture
 
@@ -23,6 +24,12 @@
     self.canBeAddedToPalette = YES;
     
     _attachments = [NSMutableArray array];
+    
+    _layer = [CCLayer node];
+    [self addChild:_layer z:-9];
+    
+    _layer.visible = false;
+    //_layer.contentSize = CGSizeMake(, <#CGFloat height#>)
 }
 
 -(id) initWithName:(NSString*) name{
@@ -138,8 +145,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 
+-(void) open {
+    _layer.visible = true;
+}
+
 -(NSString*) description{
-    return @"Clothe";
+    return @"Gesture";
 }
 
 -(void) prepareToDie{
