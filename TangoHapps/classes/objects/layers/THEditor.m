@@ -48,7 +48,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPinEditable.h"
 #import "THClothe.h"
 #import "THGesture.h"
-#import "THGestureLayer.h"
 #import "THViewEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THiPhone.h"
@@ -836,12 +835,7 @@ You should have received a copy of the GNU General Public License along with thi
             [self checkPinClotheObject:clotheObject atLocation:location];
         }
     } else if (gestureObject) {
-        [gestureObject open];
-    } else if (project.gestureLayer) {
-        NSLog(@"layer is there");
-        THGestureLayer * layer = (THGestureLayer*)[project.gestureLayers lastObject];
-        [layer hide];
-        [project removeGestureLayer];
+        [gestureObject openClose];
     } else {
 
         _zoomableLayer.scale = 1.0f;

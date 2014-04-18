@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6745755E19013FE4007BC2FA /* THGestureLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6745755D19013FE4007BC2FA /* THGestureLayer.m */; };
+		6751DB9519017B0100214C40 /* THGestureProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6751DB9419017B0100214C40 /* THGestureProperties.m */; };
+		6751DB9919017DBB00214C40 /* THGestureProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751DB9819017DBB00214C40 /* THGestureProperties.xib */; };
 		6778EA0518F6AC980080B1C9 /* gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0118F6AC980080B1C9 /* gesture.png */; };
 		6778EA0618F6AC980080B1C9 /* gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0218F6AC980080B1C9 /* gesture@2x.png */; };
 		6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0318F6AC980080B1C9 /* palette_gesture.png */; };
@@ -1784,8 +1785,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6745755C19013FE4007BC2FA /* THGestureLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGestureLayer.h; sourceTree = "<group>"; };
-		6745755D19013FE4007BC2FA /* THGestureLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGestureLayer.m; sourceTree = "<group>"; };
+		6751DB9319017B0100214C40 /* THGestureProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGestureProperties.h; sourceTree = "<group>"; };
+		6751DB9419017B0100214C40 /* THGestureProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGestureProperties.m; sourceTree = "<group>"; };
+		6751DB9819017DBB00214C40 /* THGestureProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THGestureProperties.xib; sourceTree = "<group>"; };
 		6778EA0118F6AC980080B1C9 /* gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture.png; sourceTree = "<group>"; };
 		6778EA0218F6AC980080B1C9 /* gesture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture@2x.png"; sourceTree = "<group>"; };
 		6778EA0318F6AC980080B1C9 /* palette_gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_gesture.png; sourceTree = "<group>"; };
@@ -3487,6 +3489,7 @@
 				9A8942A21836215300B8CA0E /* THJennicProperties.xib */,
 				9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */,
 				9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */,
+				6751DB9819017DBB00214C40 /* THGestureProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -3822,8 +3825,6 @@
 				9A8BB99F167C815D00FBABFB /* THPinsController.m */,
 				9A8BB9A0167C815D00FBABFB /* THPinsControllerContainer.h */,
 				9A8BB9A1167C815D00FBABFB /* THPinsControllerContainer.m */,
-				6745755C19013FE4007BC2FA /* THGestureLayer.h */,
-				6745755D19013FE4007BC2FA /* THGestureLayer.m */,
 			);
 			path = layers;
 			sourceTree = "<group>";
@@ -4055,6 +4056,8 @@
 				9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */,
 				9A95FB9418D0FDEF009A724F /* THHardwareComponentProperties.h */,
 				9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */,
+				6751DB9319017B0100214C40 /* THGestureProperties.h */,
+				6751DB9419017B0100214C40 /* THGestureProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -4903,6 +4906,7 @@
 				9A41454117DE7A060061EDF8 /* backwards@2x.png in Resources */,
 				9A41454317DE7A060061EDF8 /* forward.png in Resources */,
 				9A8942AF1836241C00B8CA0E /* jennic@2x.png in Resources */,
+				6751DB9919017DBB00214C40 /* THGestureProperties.xib in Resources */,
 				9A41454517DE7A060061EDF8 /* forward@2x.png in Resources */,
 				9A41454717DE7A060061EDF8 /* musicPlay.png in Resources */,
 				9A41454917DE7A060061EDF8 /* musicPlay@2x.png in Resources */,
@@ -5643,6 +5647,7 @@
 				9A93846F16D6723600A41BD2 /* THTimerPaletteItem.m in Sources */,
 				9A93847516D6746200A41BD2 /* THTrigger.m in Sources */,
 				9A93847A16D6748700A41BD2 /* THTriggerEditable.m in Sources */,
+				6751DB9519017B0100214C40 /* THGestureProperties.m in Sources */,
 				9A9384AE16D69CCA00A41BD2 /* THActionEditable.m in Sources */,
 				9A09767C171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
 				9A097681171866020028A6B4 /* THVibrationBoardEditable.m in Sources */,
@@ -5690,7 +5695,6 @@
 				9A56CDB717D8EF31001021B2 /* THStringValueProperties.m in Sources */,
 				9A56CDC617D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
 				9A56D05317D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
-				6745755E19013FE4007BC2FA /* THGestureLayer.m in Sources */,
 				9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9AA4D74818AE17A400A43433 /* THSimpleLilypadProperties.m in Sources */,
 				9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */,

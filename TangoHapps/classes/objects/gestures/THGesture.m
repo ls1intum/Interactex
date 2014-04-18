@@ -10,7 +10,7 @@
 #import "THHardwareComponentEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
-#import "THGestureLayer.h"
+#import "THGestureProperties.h"
 
 @implementation THGesture
 
@@ -25,7 +25,17 @@
     
     _attachments = [NSMutableArray array];
     
-    _layer = [[THGestureLayer alloc] init];
+    _zoomableLayer = [CCLayerColor node];
+    _zoomableLayer.color = ccc3(255, 255, 255);
+    _zoomableLayer.opacity = 255;
+    _zoomableLayer.contentSize = self.sprite.boundingBox.size;
+    _zoomableLayer.visible = false;
+    [self addChild:_zoomableLayer];
+    
+    _closeButton = [CCSprite spriteWithFile:@"delete.png"];
+    _closeButton.position = CGPointMake(140, 140);
+    _closeButton.visible = false;
+    [self addChild:_closeButton];
 
 }
 
@@ -79,11 +89,11 @@
 
 #pragma mark - Property Controllers
 
-/*-(NSArray*)propertyControllers {
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObject:[THClotheProperties properties]];
+    [controllers addObject:[THGestureProperties properties]];
     return controllers;
-}*/
+}
 
 #pragma mark - World and Layer
 
@@ -142,9 +152,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 
--(void) open {
-    NSLog(@"Opened Layer");
-    [_layer show];
+-(void) openClose {
+    _isOpen = !_isOpen;
+    if (_isOpen) {
+        NSLog(@"Opened Layer");
+        _zoomableLayer.visible = true;
+        _closeButton.visible = true;
+        self.scale = 10;
+    } else {
+        NSLog(@"Closed Layer");
+        _zoomableLayer.visible = false;
+        _closeButton.visible = false;
+        self.scale = 1;
+    }
 }
 
 -(NSString*) description{
