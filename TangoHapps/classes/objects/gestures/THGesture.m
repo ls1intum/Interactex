@@ -19,23 +19,23 @@
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite];
     
-    self.z = kClotheZ;
+    self.z = kGestureZ;
     
     self.canBeAddedToPalette = YES;
     
     _attachments = [NSMutableArray array];
     
-    _zoomableLayer = [CCLayerColor node];
-    _zoomableLayer.color = ccc3(255, 255, 255);
-    _zoomableLayer.opacity = 255;
-    _zoomableLayer.contentSize = self.sprite.boundingBox.size;
-    _zoomableLayer.visible = false;
-    [self addChild:_zoomableLayer];
+    _layer = [CCLayerColor node];
+    _layer.color = ccc3(255, 255, 255);
+    _layer.opacity = 255;
+    _layer.contentSize = self.sprite.boundingBox.size;
+    _layer.visible = false;
+    [self addChild:_layer];
     
-    _closeButton = [CCSprite spriteWithFile:@"delete.png"];
-    _closeButton.position = CGPointMake(140, 140);
-    _closeButton.visible = false;
-    [self addChild:_closeButton];
+    /*_closeButton = [CCSprite spriteWithFile:@"delete.png"];
+    _closeButton.scale = 0.2f;
+    _closeButton.position = CGPointMake(_layer.boundingBox.size.height - _closeButton.boundingBox.size.height/2, _layer.boundingBox.size.width - _closeButton.boundingBox.size.width/2);
+    [_layer addChild:_closeButton];*/
 
 }
 
@@ -91,7 +91,7 @@
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObject:[THGestureProperties properties]];
+    if (_isOpen)[controllers addObject:[THGestureProperties properties]];
     return controllers;
 }
 
@@ -137,7 +137,7 @@
     [_attachments removeObject:object];
 }
 
--(void) attachGestureObject:(THHardwareComponentEditableObject*) object{
+-(void) attachGestureObject:(TFEditableObject*) object{
     
     [_attachments addObject:object];
     [self addChild:object z:1];
@@ -145,7 +145,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
 }
 
--(void) deattachGestureObject:(THHardwareComponentEditableObject*) object{
+-(void) deattachGestureObject:(TFEditableObject*) object{
     
     [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
@@ -156,13 +156,11 @@
     _isOpen = !_isOpen;
     if (_isOpen) {
         NSLog(@"Opened Layer");
-        _zoomableLayer.visible = true;
-        _closeButton.visible = true;
+        _layer.visible = true;
         self.scale = 10;
     } else {
         NSLog(@"Closed Layer");
-        _zoomableLayer.visible = false;
-        _closeButton.visible = false;
+        _layer.visible = false;
         self.scale = 1;
     }
 }

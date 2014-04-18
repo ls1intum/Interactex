@@ -646,6 +646,7 @@ You should have received a copy of the GNU General Public License along with thi
                 
                 [self moveCurrentObject:d];
                 [self checkCurrentObjectInsideOutsidePalette:location];
+                //[self checkGestureObject:location];
                 
             } else if(_currentPaletteItem){
                 
@@ -658,6 +659,15 @@ You should have received a copy of the GNU General Public License along with thi
             
             [sender setTranslation:ccp(0,0) inView:sender.view];
         }
+    }
+}
+
+-(void) checkGestureObject:(CGPoint) location {
+    THProject * project = [THDirector sharedDirector].currentProject;
+    THGesture * gesture = [project gestureAtLocation:location];
+    if (gesture && ![gesture.attachments containsObject:_currentObject]) {
+        [self removeChild:_currentObject cleanup:YES];
+        [gesture attachGestureObject:_currentObject];
     }
 }
 
@@ -778,7 +788,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(object && [object isKindOfClass:[THClothe class]]){
         [object scaleBy:sender.scale];
-    } else {
+    } else if (object && [object isKindOfClass:[THGesture class]]) {
+        [object scaleBy:sender.scale];
+    }else {
         float newScale = self.zoomableLayer.scale * sender.scale;
         if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
             self.zoomableLayer.scale = newScale;

@@ -17,13 +17,13 @@
 
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) NSMutableArray * attachments;
-@property (nonatomic, strong) CCLayerColor * zoomableLayer;
+@property (nonatomic, strong) CCLayerColor * layer;
 @property (nonatomic, strong) CCSprite * closeButton;
 @property (nonatomic, readwrite) BOOL isOpen;
 
 -(id) initWithName:(NSString*) name;
--(void) attachGestureObject:(THHardwareComponentEditableObject*) object;
--(void) deattachGestureObject:(THHardwareComponentEditableObject*) object;
+-(void) attachGestureObject:(TFEditableObject*) object;
+-(void) deattachGestureObject:(TFEditableObject*) object;
 -(void) openClose;
 
 
