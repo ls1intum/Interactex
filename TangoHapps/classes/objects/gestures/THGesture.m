@@ -10,7 +10,7 @@
 #import "THHardwareComponentEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
-#import "THEditor.h"
+#import "THGestureLayer.h"
 
 @implementation THGesture
 
@@ -25,11 +25,8 @@
     
     _attachments = [NSMutableArray array];
     
-    _layer = [CCLayer node];
-    [self addChild:_layer z:-9];
-    
-    _layer.visible = false;
-    //_layer.contentSize = CGSizeMake(, <#CGFloat height#>)
+    _layer = [[THGestureLayer alloc] init];
+
 }
 
 -(id) initWithName:(NSString*) name{
@@ -146,7 +143,8 @@
 }
 
 -(void) open {
-    _layer.visible = true;
+    NSLog(@"Opened Layer");
+    [_layer show];
 }
 
 -(NSString*) description{

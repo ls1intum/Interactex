@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6745755E19013FE4007BC2FA /* THGestureLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6745755D19013FE4007BC2FA /* THGestureLayer.m */; };
 		6778EA0518F6AC980080B1C9 /* gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0118F6AC980080B1C9 /* gesture.png */; };
 		6778EA0618F6AC980080B1C9 /* gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0218F6AC980080B1C9 /* gesture@2x.png */; };
 		6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0318F6AC980080B1C9 /* palette_gesture.png */; };
@@ -1783,6 +1784,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6745755C19013FE4007BC2FA /* THGestureLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGestureLayer.h; sourceTree = "<group>"; };
+		6745755D19013FE4007BC2FA /* THGestureLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGestureLayer.m; sourceTree = "<group>"; };
 		6778EA0118F6AC980080B1C9 /* gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture.png; sourceTree = "<group>"; };
 		6778EA0218F6AC980080B1C9 /* gesture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture@2x.png"; sourceTree = "<group>"; };
 		6778EA0318F6AC980080B1C9 /* palette_gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_gesture.png; sourceTree = "<group>"; };
@@ -3819,6 +3822,8 @@
 				9A8BB99F167C815D00FBABFB /* THPinsController.m */,
 				9A8BB9A0167C815D00FBABFB /* THPinsControllerContainer.h */,
 				9A8BB9A1167C815D00FBABFB /* THPinsControllerContainer.m */,
+				6745755C19013FE4007BC2FA /* THGestureLayer.h */,
+				6745755D19013FE4007BC2FA /* THGestureLayer.m */,
 			);
 			path = layers;
 			sourceTree = "<group>";
@@ -5685,6 +5690,7 @@
 				9A56CDB717D8EF31001021B2 /* THStringValueProperties.m in Sources */,
 				9A56CDC617D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
 				9A56D05317D9C4DB001021B2 /* THCollectionProjectCell.m in Sources */,
+				6745755E19013FE4007BC2FA /* THGestureLayer.m in Sources */,
 				9A56D05B17D9CD39001021B2 /* THProjectDraggableCell.m in Sources */,
 				9AA4D74818AE17A400A43433 /* THSimpleLilypadProperties.m in Sources */,
 				9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */,

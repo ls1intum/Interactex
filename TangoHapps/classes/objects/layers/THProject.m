@@ -574,6 +574,18 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+-(void) addGestureLayer:(THGestureLayer*) layer{
+    [self.gestureLayers addObject:layer];
+    self.gestureLayer = TRUE;
+    NSLog(@"added Gesture layer");
+}
+
+-(void) removeGestureLayer {
+    [self.gestureLayers removeLastObject];
+    if ([self.gestureLayers count] == 0) {
+        self.gestureLayer = FALSE;
+    }
+}
 
 #pragma mark - Clothes
 
