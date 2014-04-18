@@ -386,8 +386,6 @@ float const kConnectingTimeout = 7.0f;
 -(void) bleServiceDidConnect:(BLEService*) service{
     NSLog(@"connected");
     service.delegate = self;
-    service.shouldUseCRC = NO;
-    service.shouldUseTurnBasedCommunication = NO;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{

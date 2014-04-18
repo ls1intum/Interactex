@@ -81,9 +81,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     
     [self reloadSprite];
     
-    
-    NSLog(@"registers!");
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:nil];
 }
 
@@ -239,12 +236,16 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 }
 
 -(void) prepareToDie{
-    NSLog(@"deregisters!");
     
     [super prepareToDie];
 }
 -(NSString*) description{
     return @"invocation connection line";
+}
+
+-(void) dealloc{
+    [self prepareToDie];
+    
 }
 
 @end

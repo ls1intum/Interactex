@@ -463,11 +463,11 @@ You should have received a copy of the GNU General Public License along with thi
                                        //[[THLipoBatteryPaletteItem alloc] initWithName:@"lipoBattery"],
                                        nil
                                        ];
-    
+    /*
     self.gesturesSectionArray = [NSMutableArray arrayWithObjects:
                                   [[THGesturePaletteItem alloc] initWithName:@"gesture"],
                                   nil
-                                 ];
+                                 ];*/
                                      
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";
@@ -475,7 +475,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Visual Programming";
     self.otherHardwareSectionName = @"Other Hardware";
-    self.gesturesSectionName = @"Gestures";
+    //self.gesturesSectionName = @"Gestures";
 }
 
 -(void) tabBar:(THTabbarView*) tabBar didAddSection:(THTabbarSection*) section{
