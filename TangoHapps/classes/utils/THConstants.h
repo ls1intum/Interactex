@@ -122,7 +122,7 @@ enum zPositions{
     kWireObjectZ = -5,
     kSelectedObjectZ = -4,
     kSelectionSpriteZ = 2,
-    kGestureZ = -2
+    kGestureZ = -6
 };
 
 //#define ARC4RANDOM_MAX      0x10000000

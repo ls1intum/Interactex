@@ -140,7 +140,8 @@
 -(void) attachGestureObject:(TFEditableObject*) object{
     
     [_attachments addObject:object];
-    [self addChild:object z:1];
+    [_layer addChild:object z:1];
+    object.scale /= self.scale;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
 }
@@ -149,6 +150,7 @@
     
     [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 

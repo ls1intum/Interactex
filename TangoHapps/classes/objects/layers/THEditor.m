@@ -646,7 +646,6 @@ You should have received a copy of the GNU General Public License along with thi
                 
                 [self moveCurrentObject:d];
                 [self checkCurrentObjectInsideOutsidePalette:location];
-                //[self checkGestureObject:location];
                 
             } else if(_currentPaletteItem){
                 
@@ -665,8 +664,15 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) checkGestureObject:(CGPoint) location {
     THProject * project = [THDirector sharedDirector].currentProject;
     THGesture * gesture = [project gestureAtLocation:location];
-    if (gesture && ![gesture.attachments containsObject:_currentObject]) {
-        [self removeChild:_currentObject cleanup:YES];
+    
+    if (gesture && gesture != (THGesture*)_currentObject && gesture.isOpen && ![gesture.attachments containsObject:_currentObject]) {
+        if (_currentObject.canBeScaled) {
+            [self.zoomableLayer removeChild:_currentObject cleanup:NO];
+        }
+        else {
+            [self removeChild:_currentObject cleanup:NO];
+        }
+        _currentObject.position = [gesture.layer convertToNodeSpace:_currentObject.position];
         [gesture attachGestureObject:_currentObject];
     }
 }
@@ -903,6 +909,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleMoveFinishedAt:(CGPoint) location{
     CGRect paletteFrame = [THHelper paletteFrame];
     float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
+    
+    [self checkGestureObject:location];
     
     if(location.x < paletteRightX){
         [self handleItemDroppedInPaletteAt:location];
