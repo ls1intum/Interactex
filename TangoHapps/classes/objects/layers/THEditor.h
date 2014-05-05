@@ -84,6 +84,8 @@ typedef enum {
     
     NSMutableArray * attachedClotheObjects;
     NSMutableArray * attachedClotheObjectsPositions;
+    
+    CCLayerColor * myLayer;
 }
 
 @property (nonatomic, readonly) BOOL isLilypadMode;
