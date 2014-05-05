@@ -10,6 +10,7 @@
 #import "THHardwareComponentEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
+#import "THGestureProperties.h"
 
 @implementation THGesture
 
@@ -18,11 +19,24 @@
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite];
     
-    self.z = kClotheZ;
+    self.z = kGestureZ;
     
     self.canBeAddedToPalette = YES;
     
     _attachments = [NSMutableArray array];
+    
+    _layer = [CCLayerColor node];
+    _layer.color = ccc3(255, 255, 255);
+    _layer.opacity = 255;
+    _layer.contentSize = self.sprite.boundingBox.size;
+    _layer.visible = false;
+    [self addChild:_layer];
+    
+    /*_closeButton = [CCSprite spriteWithFile:@"delete.png"];
+    _closeButton.scale = 0.2f;
+    _closeButton.position = CGPointMake(_layer.boundingBox.size.height - _closeButton.boundingBox.size.height/2, _layer.boundingBox.size.width - _closeButton.boundingBox.size.width/2);
+    [_layer addChild:_closeButton];*/
+
 }
 
 -(id) initWithName:(NSString*) name{
@@ -75,11 +89,11 @@
 
 #pragma mark - Property Controllers
 
-/*-(NSArray*)propertyControllers {
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObject:[THClotheProperties properties]];
+    if (_isOpen)[controllers addObject:[THGestureProperties properties]];
     return controllers;
-}*/
+}
 
 #pragma mark - World and Layer
 
@@ -123,23 +137,38 @@
     [_attachments removeObject:object];
 }
 
--(void) attachGestureObject:(THHardwareComponentEditableObject*) object{
+-(void) attachGestureObject:(TFEditableObject*) object{
     
     [_attachments addObject:object];
-    [self addChild:object z:1];
+    [_layer addChild:object z:1];
+    object.scale /= self.scale;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
 }
 
--(void) deattachGestureObject:(THHardwareComponentEditableObject*) object{
+-(void) deattachGestureObject:(TFEditableObject*) object{
     
     [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 
+-(void) openClose {
+    _isOpen = !_isOpen;
+    if (_isOpen) {
+        NSLog(@"Opened Layer");
+        _layer.visible = true;
+        self.scale = 10;
+    } else {
+        NSLog(@"Closed Layer");
+        _layer.visible = false;
+        self.scale = 1;
+    }
+}
+
 -(NSString*) description{
-    return @"Clothe";
+    return @"Gesture";
 }
 
 -(void) prepareToDie{

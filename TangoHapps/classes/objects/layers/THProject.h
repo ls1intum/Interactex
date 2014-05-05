@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THViewEditableObject;
 @class THClothe;
 @class THGesture;
+@class THGestureLayer;
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
 @class THClientProject;

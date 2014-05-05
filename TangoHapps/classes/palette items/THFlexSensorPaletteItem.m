@@ -1,5 +1,5 @@
 //
-//  THGestureFingerPaletteItem.m
+//  THFlexSensorPaletteItem.m
 //  TangoHapps
 //
 //  Created by Timm Beckmann on 02/04/14.

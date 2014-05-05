@@ -1,5 +1,5 @@
 //
-//  THGestureFinger.h
+//  THFlexSensor.h
 //  TangoHapps
 //
 //  Created by Timm Beckmann on 02/04/14.

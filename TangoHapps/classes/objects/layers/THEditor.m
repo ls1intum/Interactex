@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 #import "THClothe.h"
+#import "THGesture.h"
 #import "THViewEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THiPhone.h"
@@ -660,6 +661,22 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) checkGestureObject:(CGPoint) location {
+    THProject * project = [THDirector sharedDirector].currentProject;
+    THGesture * gesture = [project gestureAtLocation:location];
+    
+    if (gesture && gesture != (THGesture*)_currentObject && gesture.isOpen && ![gesture.attachments containsObject:_currentObject]) {
+        if (_currentObject.canBeScaled) {
+            [self.zoomableLayer removeChild:_currentObject cleanup:NO];
+        }
+        else {
+            [self removeChild:_currentObject cleanup:NO];
+        }
+        _currentObject.position = [gesture.layer convertToNodeSpace:_currentObject.position];
+        [gesture attachGestureObject:_currentObject];
+    }
+}
+
 -(void) move:(UIPanGestureRecognizer*)sender{
     if(!self.shouldRecognizePanGestures) return;
     
@@ -779,7 +796,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(object && [object isKindOfClass:[THClothe class]]){
         [object scaleBy:sender.scale];
-    } else {
+    } else if (object && [object isKindOfClass:[THGesture class]]) {
+        [object scaleBy:sender.scale];
+    }else {
         float newScale = self.zoomableLayer.scale * sender.scale;
         if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
             self.zoomableLayer.scale = newScale;
@@ -827,15 +846,16 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:location];
-    //TFEditableObject * gestureObject = [project gestureAtLocation:location];
+    THGesture * gestureObject = [project gestureAtLocation:location];
+
     if(clotheObject){
         if(clotheObject.attachedToClothe){
             [self checkUnPinClotheObject:clotheObject];
         } else {
             [self checkPinClotheObject:clotheObject atLocation:location];
         }
-    //} else if (gestureObject) {
-    
+    } else if (gestureObject) {
+        [gestureObject openClose];
     } else {
 
         _zoomableLayer.scale = 1.0f;
@@ -891,6 +911,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleMoveFinishedAt:(CGPoint) location{
     CGRect paletteFrame = [THHelper paletteFrame];
     float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
+    
+    [self checkGestureObject:location];
     
     if(location.x < paletteRightX){
         [self handleItemDroppedInPaletteAt:location];
