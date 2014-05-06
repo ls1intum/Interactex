@@ -744,6 +744,8 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+#import <QuartzCore/QuartzCore.h>
+
 -(void)tapped:(UITapGestureRecognizer*)sender {
     
     CGPoint location = [sender locationInView:sender.view];
