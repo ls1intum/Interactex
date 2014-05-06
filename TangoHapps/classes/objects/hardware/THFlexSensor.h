@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import "THHardwareComponent.h"
+#import "THGestureComponent.h"
 
 extern float const kMaxFlexSensorValue;
 
-@interface THFlexSensor : THHardwareComponent
+@interface THFlexSensor : THGestureComponent
 {
     BOOL _insideRange;
 }

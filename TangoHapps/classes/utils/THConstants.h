@@ -115,14 +115,15 @@ enum zPositions{
     kDefaultZ = -20,
     kClotheZ = -20,
     kClotheObjectZ = -10,
+    kGestureZ = -18,
+    kGestureObjectZ = -9,
     kValueZ = -9,
     kConditionZ = -8,
     kNormalObjectZ = -7,
     kiPhoneZ = -6,
     kWireObjectZ = -5,
     kSelectedObjectZ = -4,
-    kSelectionSpriteZ = 2,
-    kGestureZ = -6
+    kSelectionSpriteZ = 2
 };
 
 //#define ARC4RANDOM_MAX      0x10000000

@@ -17,7 +17,7 @@
     flexSensor.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:flexSensor];
+    [project addGestureComponent:flexSensor];
 }
 
 @end

@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "THGestureComponentEditableObject.h"
 
-@class THHardwareComponentEditableObject;
 @class THGestureLayer;
 
-@interface THGesture : TFEditableObject {
+@interface THGesture : THGestureComponentEditableObject {
     
 }
 
@@ -22,8 +22,8 @@
 @property (nonatomic, readwrite) BOOL isOpen;
 
 -(id) initWithName:(NSString*) name;
--(void) attachGestureObject:(TFEditableObject*) object;
--(void) deattachGestureObject:(TFEditableObject*) object;
+-(void) attachGestureObject:(THGestureComponentEditableObject*) object;
+-(void) deattachGestureObject:(THGestureComponentEditableObject*) object;
 -(void) openClose;
 
 

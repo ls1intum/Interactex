@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProject.h"
 #import "THViewEditableObject.h"
 #import "THHardwareComponentEditableObject.h"
+#import "THGestureComponentEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
 #import "THGesture.h"
@@ -141,6 +142,7 @@ You should have received a copy of the GNU General Public License along with thi
     _gestures = [NSMutableArray array];
     _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
+    _gestureComponents = [NSMutableArray array];
     _otherHardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
     _conditions = [NSMutableArray array];
@@ -201,6 +203,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         NSArray * boards = [decoder decodeObjectForKey:@"boards"];
         NSArray * hardwareComponents = [decoder decodeObjectForKey:@"hardwareComponents"];
+        NSArray * gestureComponents = [decoder decodeObjectForKey:@"gestureComponents"];
         NSArray * otherHardwareComponents = [decoder decodeObjectForKey:@"otherHardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
         NSArray * gestures = [decoder decodeObjectForKey:@"gestures"];
@@ -239,6 +242,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         for(THHardwareComponentEditableObject* hardwareComponent in otherHardwareComponents){
             [self addOtherHardwareComponent:hardwareComponent];
+        }
+        
+        for(THGestureComponentEditableObject* gestureComponent in gestureComponents) {
+            [self addGestureComponent:gestureComponent];
         }
         
         for(THViewEditableObject* iphoneObject in iPhoneObjects){
@@ -286,6 +293,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
+    [coder encodeObject:self.gestureComponents forKey:@"gestureComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
     [coder encodeObject:self.gestures forKey:@"gestures"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
@@ -347,6 +355,19 @@ You should have received a copy of the GNU General Public License along with thi
             hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
         }
     }
+    if([object isKindOfClass:[THGestureComponentEditableObject class]]){
+        THGestureComponentEditableObject * gestureComponent = (THGestureComponentEditableObject*) object;
+        if(gestureComponent.objectName == nil || [gestureComponent.objectName isEqualToString:@""]){
+            [self addCountForObject:object];
+            
+            NSString * className = object.description;
+            NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
+            // NSLog(@"%d",classCount.integerValue);
+            
+            gestureComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
+        }
+    }
+
 }
 
 -(void) countObjects{
@@ -397,6 +418,19 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) pinGestureObject:(THGestureComponentEditableObject*) gestureObject toGesture:(THGesture*) gesture{
+    
+    if(!gestureObject.attachedToGesture){
+        [gesture attachGestureObject:gestureObject];
+    }
+}
+
+-(void) unpinGestureObject:(THGestureComponentEditableObject*) gestureObject{
+    if(gestureObject.attachedToGesture){
+        [gestureObject.attachedToGesture deattachGestureObject:gestureObject];
+    }
+}
+
 #pragma mark - Lilypad
 
 -(void) addBoard:(THBoardEditable*)board{
@@ -410,6 +444,10 @@ You should have received a copy of the GNU General Public License along with thi
     
     for (THHardwareComponentEditableObject * hardwareComponent in self.hardwareComponents) {
         [hardwareComponent handleBoardRemoved:board];
+    }
+    
+    for (THGestureComponentEditableObject * gestureComponent in self.gestureComponents) {
+        [gestureComponent handleBoardRemoved:board];
     }
     
     [self.boards removeObject:board];
@@ -524,6 +562,42 @@ You should have received a copy of the GNU General Public License along with thi
         if(clothe){
             [clotheObject removeFromParentAndCleanup:YES];
             [self pinClotheObject:clotheObject toClothe:clothe];
+            
+        }
+    }
+}
+
+#pragma mark - Gesture Objects
+
+-(void) addGestureComponent:(THGestureComponentEditableObject*) gestureObject{
+    [self.gestureComponents addObject:gestureObject];
+    [self notifyObjectAdded:gestureObject];
+    //[self tryAttachClotheObject:clotheObject];
+}
+
+-(void) removeGestureComponent:(THGestureComponentEditableObject*) gestureObject{
+    [self removeAllWiresFrom:gestureObject notify:YES];
+    [self.gestureComponents removeObject:gestureObject];
+    
+    [self deregisterActionsForObject:gestureObject];
+    [self notifyObjectRemoved:gestureObject];
+}
+
+-(THGestureComponentEditableObject*) gestureComponentAtLocation:(CGPoint) location{
+    for (THGestureComponentEditableObject * object in self.gestureComponents) {
+        if([object testPoint:location]){
+            return object;
+        }
+    }
+    return nil;
+}
+
+-(void) tryAttachGestureObject: (THGestureComponentEditableObject*) gestureObject{
+    if(!gestureObject.attachedToGesture){
+        THGesture * gesture = [self gestureAtLocation:gestureObject.position];
+        if(gesture){
+            [gestureObject removeFromParentAndCleanup:YES];
+            [self pinGestureObject:gestureObject toGesture:gesture];
             
         }
     }
@@ -999,6 +1073,7 @@ enum zPositions{
     [allObjects addObjectsFromArray:self.values];
     [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.otherHardwareComponents];
+    [allObjects addObjectsFromArray:self.gestureComponents];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.boards];
     [allObjects addObjectsFromArray:self.clothes];
@@ -1035,7 +1110,10 @@ enum zPositions{
     if([editable isKindOfClass:[THHardwareComponentEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.hardwareComponents];
         return [project.hardwareComponents objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THViewEditableObject class]]){
+    } else if ([editable isKindOfClass:[THGestureComponentEditableObject class]]) {
+        NSInteger idx = [self idxOfEditable:editable inArray:self.gestureComponents];
+        return [project.gestureComponents objectAtIndex:idx];
+    }else if ([editable isKindOfClass:[THViewEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.iPhoneObjects];
         return [project.iPhoneObjects objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THConditionEditableObject class]]){
@@ -1184,6 +1262,7 @@ enum zPositions{
     
     project.boards = [self nonEditableElementsForArray:self.boards forProject:project];
     project.hardwareComponents = [self nonEditableElementsForArray:self.hardwareComponents forProject:project];
+    project.gestureComponents = [self nonEditableElementsForArray:self.gestureComponents forProject:project];
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
     project.conditions = [self nonEditableElementsForArray:self.conditions forProject:project];
     project.actions = [self nonEditableElementsForArray:self.actions forProject:project];

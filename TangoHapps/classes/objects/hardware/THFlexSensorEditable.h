@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import "THHardwareComponentEditableObject.h"
+#import "THGestureComponentEditableObject.h"
 
 @class CCLabelTTF;
 
-@interface THFlexSensorEditable : THHardwareComponentEditableObject {
+@interface THFlexSensorEditable : THGestureComponentEditableObject {
     float _value;
     float _touchDownIntensity;
     CCLabelTTF * _valueLabel;

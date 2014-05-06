@@ -40,11 +40,11 @@ float const kMaxFlexSensorValue = 1023;
 -(void) loadPins{
     
     THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
-    pin1.hardware = self;
+    //pin1.hardware = self;
     THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
-    pin2.hardware = self;
+    //pin2.hardware = self;
     THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeAnalog];
-    pin3.hardware = self;
+    //pin3.hardware = self;
     pin3.defaultBoardPinMode = kPinModeAnalogInput;
     
     [self.pins addObject:pin1];

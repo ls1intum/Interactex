@@ -7,7 +7,7 @@
 //
 
 #import "THGesture.h"
-#import "THHardwareComponentEditableObject.h"
+#import "THGestureComponentEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
 #import "THGestureProperties.h"
@@ -18,15 +18,15 @@
     
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite];
-    
-    self.z = kGestureZ;
-    
+        
     self.canBeAddedToPalette = YES;
+    
+    self.scale = 1;
     
     _attachments = [NSMutableArray array];
     
     _layer = [CCLayerColor node];
-    _layer.color = ccc3(255, 255, 255);
+    _layer.color = ccc3(200, 200, 200);
     _layer.opacity = 255;
     _layer.contentSize = self.sprite.boundingBox.size;
     _layer.visible = false;
@@ -59,7 +59,7 @@
         [self load];
         
         NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
-        for (THHardwareComponentEditableObject * attachment in attachments) {
+        for (THGestureComponentEditableObject * attachment in attachments) {
             [self attachGestureObject:attachment];
         }
     }
@@ -137,19 +137,22 @@
     [_attachments removeObject:object];
 }
 
--(void) attachGestureObject:(TFEditableObject*) object{
+-(void) attachGestureObject:(THGestureComponentEditableObject*) object{
     
     [_attachments addObject:object];
-    [_layer addChild:object z:1];
-    object.scale /= self.scale;
+    [self addChild:object z:1];
+    object.scale /= 15;
+    object.attachedToGesture = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
 }
 
--(void) deattachGestureObject:(TFEditableObject*) object{
+-(void) deattachGestureObject:(THGestureComponentEditableObject*) object{
     
     [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
+    object.scale = 1;
+    object.attachedToGesture = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
@@ -157,13 +160,13 @@
 -(void) openClose {
     _isOpen = !_isOpen;
     if (_isOpen) {
-        NSLog(@"Opened Layer");
         _layer.visible = true;
         self.scale = 10;
+        self.z = kGestureZ;
     } else {
-        NSLog(@"Closed Layer");
         _layer.visible = false;
         self.scale = 1;
+        self.z = kGestureObjectZ;
     }
 }
 

@@ -84,6 +84,9 @@ typedef enum {
     
     NSMutableArray * attachedClotheObjects;
     NSMutableArray * attachedClotheObjectsPositions;
+    
+    NSMutableArray * attachedGestureObjects;
+    NSMutableArray * attachedGestureObjectsPositions;
 }
 
 @property (nonatomic, readonly) BOOL isLilypadMode;
@@ -105,6 +108,7 @@ typedef enum {
 -(void) startLilypadMode;
 -(void) stopLilypadMode;
 -(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject atLocation:(CGPoint) location;
+-(void) checkPinGestureObject:(THGestureComponentEditableObject*) gestureObject atLocation:(CGPoint) location;
 
 //object selection
 -(void) unselectCurrentObject;
