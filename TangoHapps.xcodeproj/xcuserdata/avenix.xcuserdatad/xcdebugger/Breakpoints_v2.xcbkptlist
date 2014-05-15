@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
             endingLineNumber = "241"
-            landmarkName = "-unselectCurrentObject"
-            landmarkType = "5">
+            landmarkName = "@implementation THEditor"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,8 +41,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "930"
             endingLineNumber = "930"
-            landmarkName = "-handleIphoneVisibilityChangedTo:"
-            landmarkType = "5">
+            landmarkName = "@implementation THEditor"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
