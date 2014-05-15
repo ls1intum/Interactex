@@ -556,7 +556,8 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Gestures
 
 -(void) addGesture:(THGesture*) gesture{
-    [_gestures addObject:gesture];
+    [_gestures insertObject:gesture atIndex:0];
+//    [_gestures addObject:gesture];
     [self notifyObjectAdded:gesture];
 }
 
