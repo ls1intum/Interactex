@@ -990,11 +990,16 @@ You should have received a copy of the GNU General Public License along with thi
             return connection;
         }
     }
+    NSMutableArray * arr = [NSMutableArray array];
     for (TFEditableObject* object in self.allObjects) {
         if([object testPoint:location]){
-            return object;
+            [arr addObject:object];
+            //return object;
         }
     }
+    
+    if([arr count] != 0) return arr.lastObject;
+    
     if(self.iPhone){
         if([self.iPhone.currentView testPoint:location]){
             return self.iPhone.currentView;
@@ -1033,16 +1038,17 @@ enum zPositions{
 };*/
 
 -(NSMutableArray*) allObjects{
-    NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.conditions];
+    NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.boards];
+    [allObjects addObjectsFromArray:self.clothes];
+    [allObjects addObjectsFromArray:self.gestures];
     [allObjects addObjectsFromArray:self.actions];
     [allObjects addObjectsFromArray:self.triggers];
     [allObjects addObjectsFromArray:self.values];
+    [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.otherHardwareComponents];
-    [allObjects addObjectsFromArray:self.iPhoneObjects];
-    [allObjects addObjectsFromArray:self.boards];
-    [allObjects addObjectsFromArray:self.clothes];
-    [allObjects addObjectsFromArray:self.gestures];
+    [allObjects addObjectsFromArray:self.conditions];
+
     return allObjects;
 }
 

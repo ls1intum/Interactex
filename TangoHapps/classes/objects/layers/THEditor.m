@@ -678,7 +678,7 @@ You should have received a copy of the GNU General Public License along with thi
         THGesture* gesture = gest.attachedToGesture;
         if (gest.attachedToGesture){
             [gesture deattachGestureObject:gest];
-            _currentObject.position = [gesture convertToWorldSpace:_currentObject.position];
+            _currentObject.position = [_zoomableLayer convertToNodeSpace:[gesture convertToWorldSpace:_currentObject.position]];
             if (_currentObject.canBeScaled) {
                 [self.zoomableLayer addChild:_currentObject];
             }
@@ -701,7 +701,7 @@ You should have received a copy of the GNU General Public License along with thi
             else {
                 [self removeChild:_currentObject cleanup:NO];
             }
-            _currentObject.position = [gesture.layer convertToNodeSpace:_currentObject.position];
+            _currentObject.position = [gesture convertToNodeSpace:[_zoomableLayer convertToWorldSpace:_currentObject.position]];
 
             [gesture attachGestureObject:(THHardwareComponentEditableObject*)_currentObject];
             break;

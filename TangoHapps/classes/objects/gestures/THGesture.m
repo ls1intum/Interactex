@@ -141,7 +141,8 @@
     
     [_attachments addObject:object];
     [self addChild:object z:1];
-    object.scale /= 15;
+    if (object.scale ==1) object.scale /= 15;
+    if (!_layer.visible) object.visible = false;
     object.attachedToGesture = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
@@ -163,10 +164,16 @@
         _layer.visible = true;
         self.scale = 10;
         self.z = kGestureZ;
+        for (THHardwareComponentEditableObject* obj in _attachments) {
+            obj.visible = true;
+        }
     } else {
         _layer.visible = false;
         self.scale = 1;
         self.z = kGestureObjectZ;
+        for (THHardwareComponentEditableObject* obj in _attachments) {
+            obj.visible = false;
+        }
     }
 }
 
