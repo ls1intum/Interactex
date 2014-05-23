@@ -108,7 +108,7 @@ typedef enum {
 -(void) startLilypadMode;
 -(void) stopLilypadMode;
 -(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject atLocation:(CGPoint) location;
--(void) checkPinGestureObject:(THGestureComponentEditableObject*) gestureObject atLocation:(CGPoint) location;
+-(void) checkPinGestureObject:(THHardwareComponentEditableObject*) gestureObject atLocation:(CGPoint) location;
 
 //object selection
 -(void) unselectCurrentObject;

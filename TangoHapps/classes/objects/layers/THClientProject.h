@@ -57,7 +57,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, strong) NSMutableArray * boards;
 @property (nonatomic, strong) NSMutableArray * hardwareComponents;
-@property (nonatomic, strong) NSMutableArray * gestureComponents;
 @property (nonatomic, strong) NSMutableArray * iPhoneObjects;
 @property (nonatomic, strong) NSMutableArray * conditions;
 @property (nonatomic, strong) NSMutableArray * values;

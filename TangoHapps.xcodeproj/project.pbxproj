@@ -22,8 +22,6 @@
 		67B3130418EC8063006A9A31 /* palette_flexSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B3130018EC8063006A9A31 /* palette_flexSensor@2x.png */; };
 		67B3130718EC8FB4006A9A31 /* THGesturePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B3130618EC8FB4006A9A31 /* THGesturePaletteItem.m */; };
 		67CDCC2A18EDA9C500E5B140 /* THGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CDCC2918EDA9C500E5B140 /* THGesture.m */; };
-		67D3C8E019189FAE00A81BB5 /* THGestureComponentEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D3C8DF19189FAE00A81BB5 /* THGestureComponentEditableObject.m */; };
-		67D3C91D1918B84900A81BB5 /* THGestureComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D3C91C1918B84900A81BB5 /* THGestureComponent.m */; };
 		9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
@@ -1808,10 +1806,6 @@
 		67B3130618EC8FB4006A9A31 /* THGesturePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGesturePaletteItem.m; sourceTree = "<group>"; };
 		67CDCC2818EDA9C500E5B140 /* THGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THGesture.h; path = gestures/THGesture.h; sourceTree = "<group>"; };
 		67CDCC2918EDA9C500E5B140 /* THGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THGesture.m; path = gestures/THGesture.m; sourceTree = "<group>"; };
-		67D3C8DE19189FAE00A81BB5 /* THGestureComponentEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THGestureComponentEditableObject.h; path = gestures/THGestureComponentEditableObject.h; sourceTree = "<group>"; };
-		67D3C8DF19189FAE00A81BB5 /* THGestureComponentEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THGestureComponentEditableObject.m; path = gestures/THGestureComponentEditableObject.m; sourceTree = "<group>"; };
-		67D3C91B1918B84900A81BB5 /* THGestureComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THGestureComponent.h; path = gestures/THGestureComponent.h; sourceTree = "<group>"; };
-		67D3C91C1918B84900A81BB5 /* THGestureComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THGestureComponent.m; path = gestures/THGestureComponent.m; sourceTree = "<group>"; };
 		9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneDraggableCell.h; sourceTree = "<group>"; };
 		9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneDraggableCell.m; sourceTree = "<group>"; };
 		9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedPaletteItem.h; sourceTree = "<group>"; };
@@ -2796,10 +2790,6 @@
 			children = (
 				67CDCC2818EDA9C500E5B140 /* THGesture.h */,
 				67CDCC2918EDA9C500E5B140 /* THGesture.m */,
-				67D3C8DE19189FAE00A81BB5 /* THGestureComponentEditableObject.h */,
-				67D3C8DF19189FAE00A81BB5 /* THGestureComponentEditableObject.m */,
-				67D3C91B1918B84900A81BB5 /* THGestureComponent.h */,
-				67D3C91C1918B84900A81BB5 /* THGestureComponent.m */,
 			);
 			name = gestures;
 			sourceTree = "<group>";
@@ -5482,7 +5472,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D3C91D1918B84900A81BB5 /* THGestureComponent.m in Sources */,
 				9A35119A167B7A6800C7484B /* main.m in Sources */,
 				9A6B27F818AA075F009AAE31 /* THPureData.m in Sources */,
 				679857E418EC64510037B366 /* THFlexSensorEditable.m in Sources */,
@@ -5587,7 +5576,6 @@
 				9AF503B7167B84B40020241C /* THClotheProperties.m in Sources */,
 				9AF503B8167B84B40020241C /* THComparatorEditableProperties.m in Sources */,
 				9AF503B9167B84B40020241C /* THGrouperEditableProperties.m in Sources */,
-				67D3C8E019189FAE00A81BB5 /* THGestureComponentEditableObject.m in Sources */,
 				9AF503BA167B84B40020241C /* THiPhoneButtonProperties.m in Sources */,
 				9ABC27841809B01600B39D72 /* THTemperatureSensorEditable.m in Sources */,
 				9A1C3B001886E4D8007C5E94 /* THAutorouteProperties.m in Sources */,

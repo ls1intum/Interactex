@@ -7,7 +7,7 @@
 //
 
 #import "THGesture.h"
-#import "THGestureComponentEditableObject.h"
+#import "THHardwareComponentEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
 #import "THGestureProperties.h"
@@ -59,7 +59,7 @@
         [self load];
         
         NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
-        for (THGestureComponentEditableObject * attachment in attachments) {
+        for (THHardwareComponentEditableObject * attachment in attachments) {
             [self attachGestureObject:attachment];
         }
     }
@@ -137,7 +137,7 @@
     [_attachments removeObject:object];
 }
 
--(void) attachGestureObject:(THGestureComponentEditableObject*) object{
+-(void) attachGestureObject:(THHardwareComponentEditableObject*) object{
     
     [_attachments addObject:object];
     [self addChild:object z:1];
@@ -147,7 +147,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
 }
 
--(void) deattachGestureObject:(THGestureComponentEditableObject*) object{
+-(void) deattachGestureObject:(THHardwareComponentEditableObject*) object{
     
     [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
