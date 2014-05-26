@@ -7,7 +7,7 @@
 //
 
 #import "THGestureProperties.h"
-#import "THGesture.h"
+#import "THGestureEditableObject.h"
 
 @implementation THGestureProperties
 
@@ -22,13 +22,13 @@
 }
 
 -(void) updateLabel{
-    THGesture * gesture = (THGesture*) self.editableObject;
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     self.scaleLabel.text = [NSString stringWithFormat:@"%.2f",gesture.scale];
 }
 
 -(void) updateSlider{
     
-    THGesture * gesture = (THGesture*) self.editableObject;
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     self.scaleSlider.value = gesture.scale;
 }
 
@@ -53,7 +53,7 @@
 
 - (IBAction)scaleChanged:(id)sender {
     
-    THGesture * gesture = (THGesture*) self.editableObject;
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     gesture.scale = self.scaleSlider.value;
     
     [self updateLabel];

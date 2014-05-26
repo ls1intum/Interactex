@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
 #import "THGesture.h"
+#import "THGestureEditableObject.h"
 #import "THLilypadEditable.h"
 
 #import "THClientProject.h"
@@ -225,7 +226,7 @@ You should have received a copy of the GNU General Public License along with thi
             [self addClothe:clothe];
         }
         
-        for(THGesture* gesture in gestures) {
+        for(THGestureEditableObject* gesture in gestures) {
             [self addGesture:gesture];
         }
         
@@ -398,14 +399,14 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) pinGestureObject:(THHardwareComponentEditableObject*) gestureObject toGesture:(THGesture*) gesture{
+-(void) pinGestureObject:(TFEditableObject*) gestureObject toGesture:(THGestureEditableObject*) gesture{
     
     if(!gestureObject.attachedToGesture){
         [gesture attachGestureObject:gestureObject];
     }
 }
 
--(void) unpinGestureObject:(THHardwareComponentEditableObject*) gestureObject{
+-(void) unpinGestureObject:(TFEditableObject*) gestureObject{
     if(gestureObject.attachedToGesture){
         [gestureObject.attachedToGesture deattachGestureObject:gestureObject];
     }
@@ -545,9 +546,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Gesture Objects
 
--(void) tryAttachGestureObject: (THHardwareComponentEditableObject*) gestureObject{
+-(void) tryAttachGestureObject: (TFEditableObject*) gestureObject{
     if(!gestureObject.attachedToGesture){
-        THGesture * gesture = [self gestureAtLocation:gestureObject.position].firstObject;
+        THGestureEditableObject * gesture = [self gestureAtLocation:gestureObject.position].firstObject;
         if(gesture){
             [gestureObject removeFromParentAndCleanup:YES];
             [self pinGestureObject:gestureObject toGesture:gesture];
@@ -582,19 +583,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Gestures
 
--(void) addGesture:(THGesture*) gesture{
+-(void) addGesture:(THGestureEditableObject*) gesture{
     [_gestures addObject:gesture];
     [self notifyObjectAdded:gesture];
 }
 
--(void) removeGesture:(THGesture*) gesture{
+-(void) removeGesture:(THGestureEditableObject*) gesture{
     [_clothes removeObject:gesture];
     [self notifyObjectRemoved:gesture];
 }
 
 -(NSMutableArray*) gestureAtLocation:(CGPoint) location{
     NSMutableArray * arr = [NSMutableArray array];
-    for (THGesture * gesture in self.gestures) {
+    for (THGestureEditableObject * gesture in self.gestures) {
         if([gesture testPoint:location]){
             [arr addObject: gesture];
         }

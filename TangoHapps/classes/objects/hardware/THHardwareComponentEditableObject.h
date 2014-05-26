@@ -58,7 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL isInputObject;
 @property (nonatomic, readonly) NSArray * hardwareProblems;
 @property (nonatomic, weak) THClothe * attachedToClothe;
-@property (nonatomic, weak) THGesture * attachedToGesture;
 @property (nonatomic, readonly) THElementPinEditable * mainPin;
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;

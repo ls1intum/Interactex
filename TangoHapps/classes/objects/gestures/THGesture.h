@@ -1,30 +1,23 @@
 //
-//  THGestures.h
+//  THGesture.h
 //  TangoHapps
 //
-//  Created by Timm Beckmann on 03/04/14.
+//  Created by Timm Beckmann on 26.05.14.
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "THHardwareComponentEditableObject.h"
+#import "THHardwareComponent.h"
 
-@class THGestureLayer;
+@interface THGesture : THHardwareComponent
 
-@interface THGesture : THHardwareComponentEditableObject{
-    
-}
-
-@property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) NSMutableArray * attachments;
-@property (nonatomic, strong) CCLayerColor * layer;
-@property (nonatomic, strong) CCSprite * closeButton;
 @property (nonatomic, readwrite) BOOL isOpen;
 
--(id) initWithName:(NSString*) name;
--(void) attachGestureObject:(THHardwareComponentEditableObject*) object;
--(void) deattachGestureObject:(THHardwareComponentEditableObject*) object;
--(void) openClose;
-
+-(void) attachGestureObject:(TFEditableObject*) object;
+-(void) deattachGestureObject:(TFEditableObject*) object;
+-(void) visible;
+-(void) invisible;
+-(void) emptyAttachments;
+-(void) handleEvents;
 
 @end
