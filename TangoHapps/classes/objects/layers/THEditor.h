@@ -91,7 +91,7 @@ typedef enum {
 
 @property (nonatomic, readonly) BOOL isLilypadMode;
 @property (nonatomic, weak) THPinEditable * currentHighlightedPin;
-@property (nonatomic, weak) THPaletteItem * currentPaletteItem;
+@property (nonatomic, strong) THPaletteItem * currentPaletteItem;
 @property (nonatomic) TFGestureState gestureState;
 @property (nonatomic) float zoomLevel;
 @property (nonatomic) CGPoint displacement;

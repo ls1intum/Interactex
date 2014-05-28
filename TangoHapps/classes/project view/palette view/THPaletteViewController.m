@@ -301,7 +301,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) paletteItem:(THCustomPaletteItem*) paletteItem didDropAtLocation:(CGPoint) location{
     if(!self.isEditing){
+        UIScrollView * scrollView = (UIScrollView*) self.view;
         location = [TFHelper ConvertFromCocosToUI:location];
+        location = ccpAdd(location,scrollView.contentOffset);
+        
+        CGFloat navigationBarHeight = 44;
+        location.y -= navigationBarHeight;
         
         [self removeCurrentDragView];
         

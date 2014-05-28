@@ -98,7 +98,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     //delete button
     _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage * deleteImage = [UIImage imageNamed:@"removeButton"];
+    UIImage * deleteImage = [UIImage imageNamed:@"removeButton.png"];
     [_deleteButton setBackgroundImage:deleteImage forState:UIControlStateNormal];
     _deleteButton.frame = CGRectMake(-7, -7, 25, 25);
     _deleteButton.hidden = YES;
