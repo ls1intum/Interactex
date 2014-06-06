@@ -14,4 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *scaleSlider;
 - (IBAction)scaleChanged:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIStepper *outputStepper;
+- (IBAction)outputChanged:(id)sender;
+
 @end

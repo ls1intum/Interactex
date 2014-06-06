@@ -24,6 +24,7 @@
 -(void) deattachGestureObject:(TFEditableObject*) object;
 -(void) openClose;
 -(NSMutableArray*) getAttachments;
+-(void) outputAmountChanged;
 
 
 @end

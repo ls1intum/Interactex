@@ -59,5 +59,10 @@
     [self updateLabel];
 }
 
+- (IBAction)outputChanged:(id)sender {
+    
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    [gesture outputAmountChanged];
+}
 
 @end
