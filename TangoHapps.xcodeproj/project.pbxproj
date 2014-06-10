@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671B35AC1946F9470019E348 /* THOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 671B35AB1946F9470019E348 /* THOutput.m */; };
+		671B35E91946FC600019E348 /* THOutputEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 671B35E81946FC600019E348 /* THOutputEditable.m */; };
 		6751DB9519017B0100214C40 /* THGestureProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6751DB9419017B0100214C40 /* THGestureProperties.m */; };
 		6751DB9919017DBB00214C40 /* THGestureProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751DB9819017DBB00214C40 /* THGestureProperties.xib */; };
 		6753699519336045007A88A1 /* THGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753699419336045007A88A1 /* THGesture.m */; };
@@ -1786,6 +1788,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		671B35AA1946F9470019E348 /* THOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THOutput.h; path = gestures/THOutput.h; sourceTree = "<group>"; };
+		671B35AB1946F9470019E348 /* THOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THOutput.m; path = gestures/THOutput.m; sourceTree = "<group>"; };
+		671B35E71946FC600019E348 /* THOutputEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THOutputEditable.h; path = gestures/THOutputEditable.h; sourceTree = "<group>"; };
+		671B35E81946FC600019E348 /* THOutputEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THOutputEditable.m; path = gestures/THOutputEditable.m; sourceTree = "<group>"; };
 		6751DB9319017B0100214C40 /* THGestureProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGestureProperties.h; sourceTree = "<group>"; };
 		6751DB9419017B0100214C40 /* THGestureProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGestureProperties.m; sourceTree = "<group>"; };
 		6751DB9819017DBB00214C40 /* THGestureProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THGestureProperties.xib; sourceTree = "<group>"; };
@@ -2795,6 +2801,10 @@
 				67CDCC2918EDA9C500E5B140 /* THGestureEditableObject.m */,
 				6753699319336045007A88A1 /* THGesture.h */,
 				6753699419336045007A88A1 /* THGesture.m */,
+				671B35AA1946F9470019E348 /* THOutput.h */,
+				671B35AB1946F9470019E348 /* THOutput.m */,
+				671B35E71946FC600019E348 /* THOutputEditable.h */,
+				671B35E81946FC600019E348 /* THOutputEditable.m */,
 			);
 			name = gestures;
 			sourceTree = "<group>";
@@ -5542,6 +5552,7 @@
 				9AF50396167B84B40020241C /* THiPhoneControlEditableObject.m in Sources */,
 				9AF50397167B84B40020241C /* THiPhoneEditableObject.m in Sources */,
 				9AF50398167B84B40020241C /* THiSwitch.m in Sources */,
+				671B35AC1946F9470019E348 /* THOutput.m in Sources */,
 				9AF50399167B84B40020241C /* THiSwitchEditableObject.m in Sources */,
 				9AF5039A167B84B40020241C /* THLabel.m in Sources */,
 				9AF5039B167B84B40020241C /* THLabelEditableObject.m in Sources */,
@@ -5572,6 +5583,7 @@
 				9AF503B0167B84B40020241C /* THPotentiometerPaletteItem.m in Sources */,
 				9ABC275A18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9AF503B1167B84B40020241C /* THSwitchPaletteItem.m in Sources */,
+				671B35E91946FC600019E348 /* THOutputEditable.m in Sources */,
 				9AF503B2167B84B40020241C /* THTouchpadPaletteItem.m in Sources */,
 				9AF503B3167B84B40020241C /* THValuePaletteItem.m in Sources */,
 				9A9C419218B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */,

@@ -59,10 +59,11 @@
     [self updateLabel];
 }
 
-- (IBAction)outputChanged:(id)sender {
+- (IBAction)outputChanged:(UIStepper*)sender {
     
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
-    [gesture outputAmountChanged];
+    int count = [sender value];
+    [gesture outputAmountChanged:count];
 }
 
 @end

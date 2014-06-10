@@ -18,6 +18,6 @@
 -(void) visible;
 -(void) invisible;
 -(void) emptyAttachments;
--(void) handleEvents;
+
 
 @end

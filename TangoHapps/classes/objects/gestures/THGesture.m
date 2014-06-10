@@ -14,14 +14,14 @@
     
     _attachments = [NSMutableArray array];
     
-    TFProperty * property1 = [TFProperty propertyWithName:@"value1" andType:kDataTypeAny];
-    self.properties = [NSMutableArray arrayWithObjects:property1,nil];
+    //TFProperty * property1 = [TFProperty propertyWithName:@"value1" andType:kDataTypeAny];
+    self.properties = [NSMutableArray arrayWithObjects:nil];
     
-    TFMethod * method1 =  [TFMethod methodWithName:@"method1"];
-    self.methods = [NSMutableArray arrayWithObjects:method1, nil];
+    //TFMethod * method1 =  [TFMethod methodWithName:@"setValue1"];
+    self.methods = [NSMutableArray arrayWithObjects: nil];
     
-    TFEvent * event1 = [TFEvent eventNamed:kEventTriggered];
-    self.events = [NSMutableArray arrayWithObjects:event1, nil];
+    //TFEvent * event1 = [TFEvent eventNamed:kEventValueChanged];
+    self.events = [NSMutableArray arrayWithObjects:nil];
 }
 
 -(id) init{
@@ -77,10 +77,5 @@
 -(void) emptyAttachments {
     _attachments = nil;
 }
-
--(void) handleEvents {
-    
-}
-
 
 @end

@@ -28,6 +28,10 @@
     
     self.scale = 1;
     
+    self.count = 1;
+    
+    [self addOutput];
+    
     //_attachments = [NSMutableArray array];
     
     _layer = [CCLayerColor node];
@@ -69,6 +73,12 @@
         for (TFEditableObject * attachment in attachments) {
             [self attachGestureObject:attachment];
         }
+        
+        NSArray * outputs = [decoder decodeObjectForKey:@"outputs"];
+        for (THOutputEditable * obj in outputs) {
+            [self attachOutput:obj];
+        }
+        
     }
     return self;
 }
@@ -79,6 +89,8 @@
     [coder encodeObject:self.name forKey:@"name"];
     
     [coder encodeObject:[self getAttachments] forKey:@"attachments"];
+    
+    [coder encodeObject:[self outputs] forKey:@"outputs"];
 
 }
 
@@ -91,6 +103,10 @@
     
     for (TFEditableObject * attachment in [self getAttachments]) {
         [copy attachGestureObject:[attachment copy]];
+    }
+    
+    for (THOutputEditable * obj in _outputs) {
+        [copy attachOutput:[obj copy]];
     }
     
     return copy;
@@ -179,15 +195,68 @@
         self.scale = 10;
         self.z = kGestureZ;
         [gest visible];
+        for (THOutputEditable* obj in _outputs) {
+            obj.visible = true;
+        }
     } else {
         _layer.visible = false;
         self.scale = 1;
         self.z = kGestureObjectZ;
         [gest invisible];
+        for (THOutputEditable* obj in _outputs) {
+            obj.visible = false;
+        }
     }
 }
 
--(void) outputAmountChanged {
+-(void) outputAmountChanged:(int)count {
+    if (count > _count) {
+        [self addOutput];
+    }
+    else {
+        [self deleteOutput];
+    }
+}
+
+-(void) attachOutput:(THOutputEditable *)object {
+    [self addChild:object z:1];
+    if (object.scale ==1) object.scale /= 15;
+    if (!_layer.visible) object.visible = false;
+    object.attachedToGesture = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outputRemoved:) name:kNotificationObjectRemoved object:object];
+    
+    [_outputs addObject:object];
+    
+}
+
+-(void) addOutput {
+    THOutputEditable * object = [[THOutputEditable alloc] init];
+    
+    object.position = self.position;
+    
+    [self addChild:object z:1];
+    if (object.scale ==1) object.scale /= 15;
+    if (!_layer.visible) object.visible = false;
+    object.attachedToGesture = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outputRemoved:) name:kNotificationObjectRemoved object:object];
+    
+    [_outputs addObject:object];
+}
+
+-(void) outputRemoved:(NSNotification*) notification{
+
+}
+
+-(void) deleteOutput {
+    THOutputEditable * object = [_outputs firstObject];
+    [_outputs delete:object];
+    [object removeFromParentAndCleanup:YES];
+    object.scale = 1;
+    object.attachedToGesture = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
     
 }
 
