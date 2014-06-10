@@ -187,6 +187,10 @@
     }
 }
 
+-(void) outputAmountChanged {
+    
+}
+
 -(NSMutableArray*) getAttachments {
     THGesture * gest = (THGesture *) self.simulableObject;
     return gest.attachments;
