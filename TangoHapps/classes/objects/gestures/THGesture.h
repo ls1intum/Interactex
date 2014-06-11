@@ -8,7 +8,7 @@
 
 #import "THHardwareComponent.h"
 
-@interface THGesture : THHardwareComponent
+@interface THGesture : TFSimulableObject
 
 @property (nonatomic, strong) NSMutableArray * attachments;
 @property (nonatomic, readwrite) BOOL isOpen;

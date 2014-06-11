@@ -984,8 +984,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) handleItemEnteredPaletteAt:(CGPoint) location{
-#pragma mark Hier liegt der Fehler. Es wird nil zurückgegeben, warum auch immer. Denn in der Methode selbst ist noch ein Objekt bei der Rückgabe.
-    _currentPaletteItem = [self.currentObject paletteItem]; //<-------
+    _currentPaletteItem = [self.currentObject paletteItem];
     [self.dragDelegate paletteItem:_currentPaletteItem didEnterPaletteAtLocation:location];
     
     self.currentObject.position = _draggedObjectPreviousPosition;

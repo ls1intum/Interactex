@@ -285,11 +285,19 @@ You should have received a copy of the GNU General Public License along with thi
         
         THTabbarView * tabView = (THTabbarView*) self.view;
         THTabbarSection * section = [tabView sectionAtLocation:location];
-        if(section){
+        
+        BOOL test = NO;
+        
+        for (int i = 0; i < [section.palette getSize] ;i++) {
+            if ([[section.palette paletteItemAtIndex:i].name isEqualToString:paletteItem.name]) test = YES;
+        }
+        
+        if(section && test){
             _dragView.state = kPaletteItemStateDroppable;
             if(section != _selectedSection){
                 [self selectSection:section];
                 THCustomPaletteItem * customPaletteItem = [THCustomPaletteItem paletteItemWithName:paletteItem.name];
+
                 [_selectedSection.palette temporaryAddPaletteItem:customPaletteItem];
             }
         } else {
@@ -312,13 +320,21 @@ You should have received a copy of the GNU General Public License along with thi
         
         THTabbarView * tabView = (THTabbarView*) self.view;
         THTabbarSection * section = [tabView sectionAtLocation:location];
-        [section.palette addDragablePaletteItem:paletteItem];
         
-        paletteItem.paletteName = section.title;
-        paletteItem.name = [TFFileUtils resolvePaletteNameConflictFor:paletteItem.name];
-        [_customPaletteItems addObject:paletteItem];
-        [paletteItem save];
+        BOOL test = NO;
         
+        for (int i = 0; i < [section.palette getSize] ;i++) {
+            if ([[section.palette paletteItemAtIndex:i].name isEqualToString:paletteItem.name]) test = YES;
+        }
+        
+        if (test) {
+            [section.palette addDragablePaletteItem:paletteItem];
+        
+            paletteItem.paletteName = section.title;
+            paletteItem.name = [TFFileUtils resolvePaletteNameConflictFor:paletteItem.name];
+            [_customPaletteItems addObject:paletteItem];
+            [paletteItem save];
+        }
         [self checkDeselectCurrentSection];
     }
 }

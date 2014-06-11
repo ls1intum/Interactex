@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "THHardwareComponentEditableObject.h"
 #import "THOutputEditable.h"
 
 @class THGestureLayer;
 
-@interface THGestureEditableObject : THHardwareComponentEditableObject{
+@interface THGestureEditableObject : TFEditableObject{
     
 }
 

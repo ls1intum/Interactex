@@ -143,8 +143,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location;
 
 //gestures
--(void) addGesture:(THGestureEditableObject*) object;
--(void) removeGesture:(THGestureEditableObject*) object;
+-(void) addGesture:(TFEditableObject*) object;
+-(void) removeGesture:(TFEditableObject*) object;
 -(NSMutableArray*) gestureAtLocation:(CGPoint) location;
 
 //clothes

@@ -583,12 +583,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Gestures
 
--(void) addGesture:(THGestureEditableObject*) gesture{
+-(void) addGesture:(TFEditableObject*) gesture{
     [_gestures addObject:gesture];
     [self notifyObjectAdded:gesture];
 }
 
--(void) removeGesture:(THGestureEditableObject*) gesture{
+-(void) removeGesture:(TFEditableObject*) gesture{
     [_clothes removeObject:gesture];
     [self notifyObjectRemoved:gesture];
 }

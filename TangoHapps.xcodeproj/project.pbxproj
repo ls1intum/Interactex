@@ -12,6 +12,10 @@
 		6751DB9519017B0100214C40 /* THGestureProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6751DB9419017B0100214C40 /* THGestureProperties.m */; };
 		6751DB9919017DBB00214C40 /* THGestureProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751DB9819017DBB00214C40 /* THGestureProperties.xib */; };
 		6753699519336045007A88A1 /* THGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753699419336045007A88A1 /* THGesture.m */; };
+		67621C6519488B8E00829349 /* output.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6119488B8E00829349 /* output.png */; };
+		67621C6619488B8E00829349 /* output@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6219488B8E00829349 /* output@2x.png */; };
+		67621C6719488B8E00829349 /* palette_output.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6319488B8E00829349 /* palette_output.png */; };
+		67621C6819488B8E00829349 /* palette_output@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6419488B8E00829349 /* palette_output@2x.png */; };
 		6778EA0518F6AC980080B1C9 /* gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0118F6AC980080B1C9 /* gesture.png */; };
 		6778EA0618F6AC980080B1C9 /* gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0218F6AC980080B1C9 /* gesture@2x.png */; };
 		6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0318F6AC980080B1C9 /* palette_gesture.png */; };
@@ -1797,6 +1801,10 @@
 		6751DB9819017DBB00214C40 /* THGestureProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THGestureProperties.xib; sourceTree = "<group>"; };
 		6753699319336045007A88A1 /* THGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THGesture.h; path = gestures/THGesture.h; sourceTree = "<group>"; };
 		6753699419336045007A88A1 /* THGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THGesture.m; path = gestures/THGesture.m; sourceTree = "<group>"; };
+		67621C6119488B8E00829349 /* output.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = output.png; sourceTree = "<group>"; };
+		67621C6219488B8E00829349 /* output@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "output@2x.png"; sourceTree = "<group>"; };
+		67621C6319488B8E00829349 /* palette_output.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_output.png; sourceTree = "<group>"; };
+		67621C6419488B8E00829349 /* palette_output@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_output@2x.png"; sourceTree = "<group>"; };
 		6778EA0118F6AC980080B1C9 /* gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture.png; sourceTree = "<group>"; };
 		6778EA0218F6AC980080B1C9 /* gesture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture@2x.png"; sourceTree = "<group>"; };
 		6778EA0318F6AC980080B1C9 /* palette_gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_gesture.png; sourceTree = "<group>"; };
@@ -2939,6 +2947,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				67621C6119488B8E00829349 /* output.png */,
+				67621C6219488B8E00829349 /* output@2x.png */,
+				67621C6319488B8E00829349 /* palette_output.png */,
+				67621C6419488B8E00829349 /* palette_output@2x.png */,
 				6778EA0118F6AC980080B1C9 /* gesture.png */,
 				6778EA0218F6AC980080B1C9 /* gesture@2x.png */,
 				6778EA0318F6AC980080B1C9 /* palette_gesture.png */,
@@ -4843,6 +4855,7 @@
 				9A3511A2167B7A6800C7484B /* Default@2x.png in Resources */,
 				9A3511A4167B7A6800C7484B /* Default-568h@2x.png in Resources */,
 				9AF503D0167B84B40020241C /* PeerCellServer.xib in Resources */,
+				67621C6519488B8E00829349 /* output.png in Resources */,
 				9AF503D1167B84B40020241C /* ServerController.xib in Resources */,
 				67B3130318EC8063006A9A31 /* palette_flexSensor.png in Resources */,
 				9AF503DF167B84B40020241C /* THColorPicker.xib in Resources */,
@@ -5021,6 +5034,7 @@
 				9A4145E517DE7A060061EDF8 /* palette_slider@2x.png in Resources */,
 				9A4145E717DE7A060061EDF8 /* palette_sound.png in Resources */,
 				9A4145E917DE7A060061EDF8 /* palette_sound@2x.png in Resources */,
+				67621C6819488B8E00829349 /* palette_output@2x.png in Resources */,
 				9A4145EB17DE7A060061EDF8 /* palette_string.png in Resources */,
 				9A4145ED17DE7A060061EDF8 /* palette_string@2x.png in Resources */,
 				9A4145EF17DE7A060061EDF8 /* palette_switch.png in Resources */,
@@ -5064,6 +5078,7 @@
 				9A41462517DE7A060061EDF8 /* timer@2x.png in Resources */,
 				9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */,
 				9A41462717DE7A060061EDF8 /* tshirt.png in Resources */,
+				67621C6719488B8E00829349 /* palette_output.png in Resources */,
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
@@ -5072,6 +5087,7 @@
 				9A41463117DE7A060061EDF8 /* vibeBoard@2x.png in Resources */,
 				9A41463317DE7A060061EDF8 /* yellowLight.png in Resources */,
 				67B3130118EC8063006A9A31 /* flexSensor.png in Resources */,
+				67621C6619488B8E00829349 /* output@2x.png in Resources */,
 				9A95FB7018CF593A009A724F /* palette_powerSupply.png in Resources */,
 				9A41463517DE7A060061EDF8 /* yellowLight@2x.png in Resources */,
 				9A41463717DE7A060061EDF8 /* connect.png in Resources */,

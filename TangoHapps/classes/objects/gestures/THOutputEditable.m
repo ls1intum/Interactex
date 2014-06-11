@@ -15,7 +15,7 @@
     
     self.simulableObject = [[THOutput alloc] init];
     
-    self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
+    self.sprite = [CCSprite spriteWithFile:@"output.png"];
     [self addChild:self.sprite];
     
     self.canBeAddedToGesture = YES;
@@ -25,7 +25,7 @@
     
 }
 
--(id) initWithName:(NSString*) name{
+-(id) init{
     self = [super init];
     if(self){
         
@@ -34,5 +34,8 @@
     return self;
 }
 
+-(NSString*) description{
+    return @"Output";
+}
 
 @end

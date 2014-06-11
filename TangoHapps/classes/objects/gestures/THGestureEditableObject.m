@@ -233,16 +233,19 @@
 -(void) addOutput {
     THOutputEditable * object = [[THOutputEditable alloc] init];
     
-    object.position = [self convertToNodeSpace:self.position];
+    object.position = [_layer convertToNodeSpace:self.position];
     
-    [self addChild:object z:1];
+    NSLog(@"x:%f y:%f", object.position.x, object.position.y);
+    
+    [_layer addChild:object z:1];
     if (object.scale ==1) object.scale /= 15;
     //if (!_layer.visible) object.visible = false;
     object.attachedToGesture = self;
     
+    [_outputs addObject:object];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outputRemoved:) name:kNotificationObjectRemoved object:object];
     
-    [_outputs addObject:object];
 }
 
 -(void) outputRemoved:(NSNotification*) notification{
