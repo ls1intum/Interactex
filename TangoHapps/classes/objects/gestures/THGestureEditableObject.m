@@ -211,9 +211,11 @@
 
 -(void) outputAmountChanged:(int)count {
     if (count > _count) {
+        _count++;
         [self addOutput];
     }
     else {
+        count--;
         [self deleteOutput];
     }
 }
@@ -233,9 +235,12 @@
 -(void) addOutput {
     THOutputEditable * object = [[THOutputEditable alloc] init];
     
-    object.position = [_layer convertToNodeSpace:self.position];
+    CGPoint position = self.position;
     
-    NSLog(@"x:%f y:%f", object.position.x, object.position.y);
+    position.y -= self.boundingBox.size.height/2.f;
+    position.x += (_count -3) * self.boundingBox.size.width/4.f;
+    
+    object.position = [_layer convertToNodeSpace:position];
     
     [_layer addChild:object z:1];
     if (object.scale ==1) object.scale /= 15;
