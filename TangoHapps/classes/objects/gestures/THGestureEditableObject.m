@@ -24,15 +24,12 @@
         
     self.canBeAddedToPalette = YES;
     self.canBeAddedToGesture = YES;
-    self.acceptsConnections = YES;
+    self.acceptsConnections = NO;
     
     self.scale = 1;
     
-    self.count = 1;
+    self.count = 0;
     
-    [self addOutput];
-    
-    //_attachments = [NSMutableArray array];
     
     _layer = [CCLayerColor node];
     _layer.color = ccc3(200, 200, 200);
@@ -41,10 +38,7 @@
     _layer.visible = false;
     [self addChild:_layer];
     
-    /*_closeButton = [CCSprite spriteWithFile:@"delete.png"];
-    _closeButton.scale = 0.2f;
-    _closeButton.position = CGPointMake(_layer.boundingBox.size.height - _closeButton.boundingBox.size.height/2, _layer.boundingBox.size.width - _closeButton.boundingBox.size.width/2);
-    [_layer addChild:_closeButton];*/
+    _outputs = [NSMutableArray array];
 
 }
 
@@ -66,6 +60,7 @@
     if(self){
         
         self.name = [decoder decodeObjectForKey:@"name"];
+        self.saveName = [decoder decodeObjectForKey:@"saveName"];
         
         [self load];
 
@@ -88,6 +83,8 @@
     
     [coder encodeObject:self.name forKey:@"name"];
     
+    [coder encodeObject:self.saveName forKey:@"saveName"];
+    
     [coder encodeObject:[self getAttachments] forKey:@"attachments"];
     
     [coder encodeObject:[self outputs] forKey:@"outputs"];
@@ -98,6 +95,7 @@
     THGestureEditableObject * copy = [super copyWithZone:zone];
     
     copy.name = self.name;
+    copy.saveName = self.saveName;
 
     [copy load];
     
@@ -117,7 +115,7 @@
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
-    if (_isOpen)[controllers addObject:[THGestureProperties properties]];
+    [controllers addObject:[THGestureProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
@@ -156,6 +154,7 @@
 
 -(THPaletteItem*) paletteItem{
     THGesturePaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithName:self.name object:self];
+    paletteItem.saveName = _saveName;
     return paletteItem;
 }
 
@@ -214,7 +213,7 @@
         _count++;
         [self addOutput];
     }
-    else {
+    else if (count < _count) {
         count--;
         [self deleteOutput];
     }
@@ -235,20 +234,23 @@
 -(void) addOutput {
     THOutputEditable * object = [[THOutputEditable alloc] init];
     
-    CGPoint position = self.position;
+    CGPoint position = [self.parent convertToWorldSpace:self.position];
     
-    position.y -= self.boundingBox.size.height/2.f;
-    position.x += (_count -3) * self.boundingBox.size.width/4.f;
+    position.y -= self.boundingBox.size.height/2.2f;
+    position.x += (_count -3) * self.boundingBox.size.width/5.f;
     
-    object.position = [_layer convertToNodeSpace:position];
+    object.position = [self convertToNodeSpace:position];
     
-    [_layer addChild:object z:1];
+    [self addChild:object z:1];
     if (object.scale ==1) object.scale /= 15;
     //if (!_layer.visible) object.visible = false;
     object.attachedToGesture = self;
     
     [_outputs addObject:object];
 
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project addGesture:object];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outputRemoved:) name:kNotificationObjectRemoved object:object];
     
 }
@@ -258,11 +260,13 @@
 }
 
 -(void) deleteOutput {
-    THOutputEditable * object = [_outputs firstObject];
-    [_outputs delete:object];
+    THOutputEditable * object = [_outputs lastObject];
+    [_outputs removeObject:object];
     [object removeFromParentAndCleanup:YES];
     object.scale = 1;
     object.attachedToGesture = nil;
+    
+    NSLog(@"delete Output");
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
     

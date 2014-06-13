@@ -296,8 +296,13 @@ You should have received a copy of the GNU General Public License along with thi
             _dragView.state = kPaletteItemStateDroppable;
             if(section != _selectedSection){
                 [self selectSection:section];
-                THCustomPaletteItem * customPaletteItem = [THCustomPaletteItem paletteItemWithName:paletteItem.name];
-
+                THCustomPaletteItem * customPaletteItem;
+                if (paletteItem.saveName) {
+                    customPaletteItem = [THCustomPaletteItem paletteItemWithName:paletteItem.saveName imageName:[NSString stringWithFormat:@"palette_%@.png",paletteItem.name]];
+                }
+                else {
+                    customPaletteItem = [THCustomPaletteItem paletteItemWithName:paletteItem.name];
+                }
                 [_selectedSection.palette temporaryAddPaletteItem:customPaletteItem];
             }
         } else {
@@ -331,7 +336,15 @@ You should have received a copy of the GNU General Public License along with thi
             [section.palette addDragablePaletteItem:paletteItem];
         
             paletteItem.paletteName = section.title;
-            paletteItem.name = [TFFileUtils resolvePaletteNameConflictFor:paletteItem.name];
+            
+            if (paletteItem.saveName) {
+                paletteItem.name = [TFFileUtils resolvePaletteNameConflictFor:paletteItem.saveName];
+            }
+            else {
+                paletteItem.name = [TFFileUtils resolvePaletteNameConflictFor:paletteItem.name];
+            }
+
+
             [_customPaletteItems addObject:paletteItem];
             [paletteItem save];
         }

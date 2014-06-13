@@ -16,8 +16,8 @@
 }
 
 @property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * saveName;
 @property (nonatomic, strong) CCLayerColor * layer;
-//@property (nonatomic, strong) CCSprite * closeButton;
 @property (nonatomic, readwrite) BOOL isOpen;
 @property int count;
 @property (nonatomic, strong) NSMutableArray * outputs;

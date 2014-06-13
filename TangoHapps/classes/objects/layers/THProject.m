@@ -595,7 +595,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(NSMutableArray*) gestureAtLocation:(CGPoint) location{
     NSMutableArray * arr = [NSMutableArray array];
-    for (THGestureEditableObject * gesture in self.gestures) {
+    for (TFEditableObject * gesture in self.gestures) {
         if([gesture testPoint:location]){
             [arr addObject: gesture];
         }

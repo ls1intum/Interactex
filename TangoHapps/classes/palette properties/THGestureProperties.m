@@ -18,12 +18,19 @@
 
 -(NSString *)title
 {
-    return @"Button";
+    return @"Gesture";
 }
 
 -(void) updateLabel{
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     self.scaleLabel.text = [NSString stringWithFormat:@"%.2f",gesture.scale];
+    self.stepperLabel.text = [NSString stringWithFormat:@"%i",gesture.count];
+    if(gesture.saveName) {
+        self.nameField.text = gesture.saveName;
+    }
+    else {
+        self.nameField.text = gesture.name;
+    }
 }
 
 -(void) updateSlider{
@@ -48,6 +55,9 @@
 - (void)viewDidUnload {
     [self setScaleLabel:nil];
     [self setScaleSlider:nil];
+    [self setStepperLabel:nil];
+    [self setOutputStepper:nil];
+    [self setNameField:nil];
     [super viewDidUnload];
 }
 
@@ -64,6 +74,11 @@
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     int count = [sender value];
     [gesture outputAmountChanged:count];
+    [self updateLabel];
 }
 
+- (IBAction)nameChanged:(id)sender {
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    gesture.saveName = self.nameField.text;
+}
 @end
