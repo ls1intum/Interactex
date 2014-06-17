@@ -10,6 +10,8 @@
 
 @interface THOutput : TFSimulableObject
 
--(void) setOutput;
+@property (nonatomic) NSInteger value;
+-(void) setOutput:(NSObject*) object;
+-(void) setPropertyType:(TFDataType) type;
 
 @end

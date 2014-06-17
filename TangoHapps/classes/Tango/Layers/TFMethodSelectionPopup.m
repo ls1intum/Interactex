@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFMethod.h"
 #import "TFMethodInvokeAction.h"
 #import "TFEvent.h"
+#import "THOutput.h"
 
 @implementation TFMethodSelectionPopup
 
@@ -84,6 +85,11 @@ You should have received a copy of the GNU General Public License along with thi
         action.source = self.object1;
         [self.delegate methodSelectionPopup:self didSelectAction:action forEvent:event];
 
+        if ([self.object2 isKindOfClass:[THOutput class]]) {
+            THOutput* obj = (THOutput*)self.object2.simulableObject;
+            [obj setPropertyType:event.param1.property.type];
+        }
+        
         [popOverController dismissPopoverAnimated:YES];
     }
 }

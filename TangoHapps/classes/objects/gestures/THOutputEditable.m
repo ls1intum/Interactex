@@ -20,6 +20,7 @@
     
     self.canBeAddedToGesture = YES;
     self.acceptsConnections = YES;
+    self.canBeMoved = NO;
     
     self.scale = 1;
     

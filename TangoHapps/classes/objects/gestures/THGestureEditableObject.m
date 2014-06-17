@@ -214,7 +214,7 @@
         [self addOutput];
     }
     else if (count < _count) {
-        count--;
+        _count--;
         [self deleteOutput];
     }
 }
@@ -265,8 +265,6 @@
     [object removeFromParentAndCleanup:YES];
     object.scale = 1;
     object.attachedToGesture = nil;
-    
-    NSLog(@"delete Output");
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
     

@@ -583,9 +583,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) moveCurrentObject:(CGPoint) d{
-    [self gestureMove];
     if(self.currentObject.canBeMoved){
-        
+        [self gestureMove];
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
         }
@@ -692,7 +691,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * gestures = [project gestureAtLocation:location];
     
-    //if (_currentObject.canBeAddedToGesture) {
+    if (!_currentObject.attachedToGesture) {
     
         for (THGestureEditableObject* gesture in gestures) {
             if (gesture != (THGestureEditableObject*)_currentObject && gesture.isOpen && ![[gesture getAttachments]containsObject:     _currentObject]) {
@@ -708,7 +707,7 @@ You should have received a copy of the GNU General Public License along with thi
                 break;
             }
         }
-    //}
+    }
 }
 
 -(void) move:(UIPanGestureRecognizer*)sender{
@@ -975,7 +974,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleMoveFinishedAt:(CGPoint) location{
     CGRect paletteFrame = [THHelper paletteFrame];
     float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
-    
+
     [self checkGestureObject:location];
     
     if(location.x < paletteRightX){
