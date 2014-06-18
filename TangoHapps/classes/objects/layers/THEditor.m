@@ -1526,10 +1526,10 @@ You should have received a copy of the GNU General Public License along with thi
     for (TFEditableObject * object in project.allObjects) {
         if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
             THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
-            if(!hardwareComponent.attachedToClothe && !hardwareComponent.attachedToGesture){
+            if(!hardwareComponent.attachedToClothe){
                 [object removeFromLayer:self];
             }
-        }else {
+        }else if (!object.attachedToGesture) {
             [object removeFromLayer:self];
         }
     }
@@ -1554,10 +1554,10 @@ You should have received a copy of the GNU General Public License along with thi
     for (TFEditableObject * object in project.allObjects) {
         if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
             THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
-            if(!hardwareComponent.attachedToClothe && !hardwareComponent.attachedToGesture){
+            if(!hardwareComponent.attachedToClothe){
                 [object addToLayer:self];
             }
-        }else {
+        } else if (!object.attachedToGesture) {
             [object addToLayer:self];
         }
     }

@@ -266,6 +266,9 @@
     object.scale = 1;
     object.attachedToGesture = nil;
     
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project removeGesture:object];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
     
 }

@@ -13,15 +13,7 @@
 -(void) load{
     
     _attachments = [NSMutableArray array];
-    
-    //TFProperty * property1 = [TFProperty propertyWithName:@"value1" andType:kDataTypeAny];
-    self.properties = [NSMutableArray arrayWithObjects:nil];
-    
-    //TFMethod * method1 =  [TFMethod methodWithName:@"setValue1"];
-    self.methods = [NSMutableArray arrayWithObjects: nil];
-    
-    //TFEvent * event1 = [TFEvent eventNamed:kEventValueChanged];
-    self.events = [NSMutableArray arrayWithObjects:nil];
+
 }
 
 -(id) init{

@@ -11,7 +11,6 @@
 @implementation THOutput
 
 -(void) load{
-    
 
     self.properties = [NSMutableArray array];
     
@@ -20,8 +19,7 @@
     method.firstParamType = kDataTypeAny;
     self.methods = [NSMutableArray arrayWithObjects:method, nil];
     
-    TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
-    self.events = [NSMutableArray arrayWithObjects:event,nil];
+    self.events = [NSMutableArray array];
 }
 
 -(id) init{
@@ -54,15 +52,21 @@
     return copy;
 }
 
--(void) setOutput:(NSObject*) object {
+-(void) setOutput:(id) value {
 //-(void) setOutput {
-    _value = object;
+    _value = value;
+    [self triggerEventNamed:kEventValueChanged];
 }
 
 -(void) setPropertyType:(TFDataType)type {
     self.properties = [NSMutableArray array];
-    TFProperty * property = [TFProperty propertyWithName:@"output" andType:type];
+    TFProperty * property = [TFProperty propertyWithName:@"value" andType:type];
     [self.properties addObject:property];
+    
+    self.events = [NSMutableArray array];
+    TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
+    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
+    [self.events addObject:event];
 }
 
 @end

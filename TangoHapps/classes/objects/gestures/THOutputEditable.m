@@ -21,6 +21,7 @@
     self.canBeAddedToGesture = YES;
     self.acceptsConnections = YES;
     self.canBeMoved = NO;
+    self.canBeDuplicated = NO;
     
     self.scale = 1;
     
@@ -33,6 +34,17 @@
         [self load];
     }
     return self;
+}
+
+-(void) setOutput:(id) value {
+    THOutput * obj = (THOutput*) self.simulableObject;
+    [obj setOutput:value];
+}
+
+-(void) removeFromWorld{
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project removeGesture:self];
+    [super removeFromWorld];
 }
 
 -(NSString*) description{
