@@ -39,11 +39,15 @@
     self.scaleSlider.value = gesture.scale;
 }
 
+-(void) updateStepper {
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    self.outputStepper.value = gesture.count;
+}
+
 -(void) reloadState{
     [self updateLabel];
     [self updateSlider];
-
-    
+    [self updateStepper];
 }
 
 - (void)didReceiveMemoryWarning

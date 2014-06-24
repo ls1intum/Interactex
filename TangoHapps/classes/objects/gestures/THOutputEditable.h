@@ -10,4 +10,6 @@
 
 @interface THOutputEditable : TFEditableObject
 
+@property (nonatomic) id value;
+
 @end

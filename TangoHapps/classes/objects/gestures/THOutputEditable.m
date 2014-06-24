@@ -8,14 +8,15 @@
 
 #import "THOutputEditable.h"
 #import "THOutput.h"
+#import "THGestureEditableObject.h"
 
 @implementation THOutputEditable
 
 -(void) load{
-    
+
     self.simulableObject = [[THOutput alloc] init];
     
-    self.sprite = [CCSprite spriteWithFile:@"output.png"];
+    self.sprite = [CCSprite spriteWithFile:@"outputEmpty.png"];
     [self addChild:self.sprite];
     
     self.canBeAddedToGesture = YES;
@@ -24,6 +25,8 @@
     self.canBeDuplicated = NO;
     
     self.scale = 1;
+    
+
     
 }
 
@@ -36,15 +39,49 @@
     return self;
 }
 
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if(self){
+        [self load];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [super encodeWithCoder:coder];
+    
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    THOutputEditable * copy = [super copyWithZone:zone];
+    
+    [copy load];
+    
+    return copy;
+}
+
+
 -(void) setOutput:(id) value {
     THOutput * obj = (THOutput*) self.simulableObject;
     [obj setOutput:value];
 }
 
+-(void) chooseSprite {
+    
+}
+
 -(void) removeFromWorld{
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeGesture:self];
+    [self.attachedToGesture deattachOutput:self];
     [super removeFromWorld];
+}
+
+-(void) prepareToDie{
+    [super prepareToDie];
+}
+
+-(id) value {
+    THOutput * obj = (THOutput*) self.simulableObject;
+    return obj.value;
 }
 
 -(NSString*) description{

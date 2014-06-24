@@ -589,8 +589,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) removeGesture:(TFEditableObject*) gesture{
+    [self removeAllWiresFrom:gesture notify:YES];
     [_clothes removeObject:gesture];
+    
     [self notifyObjectRemoved:gesture];
+    [self deregisterActionsForObject:gesture];
 }
 
 -(NSMutableArray*) gestureAtLocation:(CGPoint) location{

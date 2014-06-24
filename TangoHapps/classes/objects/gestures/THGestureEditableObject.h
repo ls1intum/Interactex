@@ -6,10 +6,7 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "THOutputEditable.h"
-
-@class THGestureLayer;
 
 @interface THGestureEditableObject : TFEditableObject{
     
@@ -31,6 +28,8 @@
 -(void) addOutput;
 -(void) deleteOutput;
 -(void) attachOutput:(THOutputEditable*) object;
+-(void) deattachOutput:(THOutputEditable*) object;
+-(void) outputRemoved:(NSNotification*) object;
 
 
 @end
