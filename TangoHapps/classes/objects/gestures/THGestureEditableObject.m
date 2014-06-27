@@ -251,7 +251,7 @@
     _count++;
     CGPoint position = [self.parent convertToWorldSpace:self.position];
     
-    position.y -= self.boundingBox.size.height/2.2f;
+    position.y -= self.boundingBox.size.height/2.0f +40;
     position.x += (_count -3) * self.boundingBox.size.width/5.f;
     
     object.position = [self convertToNodeSpace:position];
