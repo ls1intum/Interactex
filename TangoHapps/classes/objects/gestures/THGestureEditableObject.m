@@ -252,14 +252,12 @@
     
     [self attachOutput:object];
     
-    CGPoint position = ccp(0,0);//[self convertToWorldSpace:ccp(0,0)];
+    CGPoint position = ccp(0,0);
     
     position.y -= 5 * 0.6f;
     position.x += _count * 50.0f/(5.f) - 5.0f;
     
-    //position = [self convertToNodeSpace:position];
-    
-    object.position = position;//[self convertToNodeSpace:position];
+    object.position = position;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addGesture:object];
