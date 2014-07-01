@@ -43,12 +43,34 @@
     self = [super initWithCoder:decoder];
     if(self){
         [self load];
+        
+        self.topConnected = [decoder decodeBoolForKey:@"topConnected"];
+        
+        self.botConnected = [decoder decodeBoolForKey:@"botConnected"];
+        
+        self.topType = (TFDataType) [decoder decodeIntForKey:@"topType"];
+        
+        self.botType= (TFDataType) [decoder decodeIntForKey:@"botType"];
+        
+        self.firstType = (TFDataType) [decoder decodeIntForKey:@"firstType"];
+
+        [self chooseSprite];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
+    [coder encodeBool:self.topConnected forKey:@"topConnected"];
+    
+    [coder encodeBool:self.botConnected forKey:@"botConnected"];
+    
+    [coder encodeInt:[NSNumber numberWithInt:self.topType] forKey:@"topType"];
+    
+    [coder encodeInt:[NSNumber numberWithInt:self.botType] forKey:@"botType"];
+    
+    [coder encodeInt:[NSNumber numberWithInt:self.firstType] forKey:@"firstType"];
     
 }
 
@@ -176,8 +198,8 @@
 }
 
 -(void) removeFromWorld{
-    [self.attachedToGesture deattachOutput:self];
     [super removeFromWorld];
+    [self.attachedToGesture deattachOutput:self];
 }
 
 -(void) prepareToDie{

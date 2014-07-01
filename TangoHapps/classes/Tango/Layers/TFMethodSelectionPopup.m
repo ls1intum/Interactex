@@ -86,7 +86,7 @@ You should have received a copy of the GNU General Public License along with thi
             [obj connectTop:event.param1.property.type];
         }
         
-        [self selectEventsAndMethods];
+        //[self selectEventsAndMethods]; causes EXC_BAD_ACCESS
         
         TFMethod * method = [_acceptedMethods objectAtIndex:path2.row];
         

@@ -42,11 +42,17 @@
     self = [super initWithCoder:decoder];
     [self load];
     
+    self.type = (TFDataType) [decoder decodeIntForKey:@"type"];
+    
+    [self setType:self.type];
+    
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
+    [coder encodeInt:[NSNumber numberWithInt:self.type] forKey:@"type"];
     
 }
 
@@ -59,12 +65,14 @@
 }
 
 -(void) setOutput:(id) value {
-//-(void) setOutput {
     _value = value;
     [self triggerEventNamed:kEventValueChanged];
 }
 
 -(void) setPropertyType:(TFDataType)type {
+    
+    self.type = type;
+    
     self.properties = [NSMutableArray array];
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:type];
     [self.properties addObject:property];

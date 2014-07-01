@@ -11,6 +11,8 @@
 @interface THOutput : TFSimulableObject
 
 @property (nonatomic) id value;
+@property (nonatomic) TFDataType type;
+
 -(void) setPropertyType:(TFDataType) type;
 -(void) setOutput:(id) value;
 
