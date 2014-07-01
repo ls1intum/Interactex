@@ -763,7 +763,14 @@ You should have received a copy of the GNU General Public License along with thi
     
     //Juan check
     //[toRemove.action.source removeConnectionTo:toRemove.action.target];
-    
+    if ([toRemove.action.target isKindOfClass:[THOutputEditable class]]) {
+        THOutputEditable * obj = (THOutputEditable*) toRemove.action.target;
+        [obj deleteTop];
+    }
+    if ([toRemove.action.source isKindOfClass:[THOutputEditable class]]) {
+        THOutputEditable * obj = (THOutputEditable*) toRemove.action.source;
+        [obj deleteBot];
+    }
     TFEditableObject * editable = toRemove.action.source;
     [[NSNotificationCenter defaultCenter] removeObserver:action name:toRemove.event.name object:editable.simulableObject];
 }

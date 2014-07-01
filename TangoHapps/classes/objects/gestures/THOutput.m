@@ -13,13 +13,19 @@
 -(void) load{
 
     self.properties = [NSMutableArray array];
+    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeAny];
+    [self.properties addObject:property];
+    
+    self.events = [NSMutableArray array];
+    TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
+    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
+    [self.events addObject:event];
     
     TFMethod * method =  [TFMethod methodWithName:@"setOutput"];
     method.numParams = 1;
     method.firstParamType = kDataTypeAny;
     self.methods = [NSMutableArray arrayWithObjects:method, nil];
     
-    self.events = [NSMutableArray array];
 }
 
 -(id) init{
@@ -67,6 +73,12 @@
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     [self.events addObject:event];
+    
+    self.methods = [NSMutableArray array];
+    TFMethod * method =  [TFMethod methodWithName:@"setOutput"];
+    method.numParams = 1;
+    method.firstParamType = type;
+    [self.methods addObject:method];
 }
 
 @end

@@ -79,17 +79,30 @@ You should have received a copy of the GNU General Public License along with thi
     if(path1 != nil && path2 != nil){
         
         TFEvent * event = [_acceptedEvents objectAtIndex:path1.row];
+
+        //Output receives event and does action
+        if ([self.object2 isKindOfClass:[THOutputEditable class]]) {
+            THOutputEditable* obj = (THOutputEditable*)self.object2;
+            [obj connectTop:event.param1.property.type];
+        }
+        
+        [self selectEventsAndMethods];
+        
         TFMethod * method = [_acceptedMethods objectAtIndex:path2.row];
         
         TFMethodInvokeAction * action = [[TFMethodInvokeAction alloc] initWithTarget:self.object2 method:method];
         action.firstParam = event.param1;
         action.source = self.object1;
+        
+        //Output sends event
+        if ([self.object1 isKindOfClass:[THOutputEditable class]]) {
+            THOutputEditable* obj = (THOutputEditable*) self.object1;
+            [obj connectBot:method.firstParamType];
+        }
+        
         [self.delegate methodSelectionPopup:self didSelectAction:action forEvent:event];
 
-        if ([self.object2 isKindOfClass:[THOutputEditable class]]) {
-            THOutput* obj = (THOutput*)self.object2.simulableObject;
-            [obj setPropertyType:event.param1.property.type];
-        }
+
         
         [popOverController dismissPopoverAnimated:YES];
     }

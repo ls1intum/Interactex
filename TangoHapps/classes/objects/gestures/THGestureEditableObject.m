@@ -249,17 +249,20 @@
     THOutputEditable * object = [[THOutputEditable alloc] init];
     
     _count++;
-    CGPoint position = [self.parent convertToWorldSpace:self.position];
     
-    position.y -= self.boundingBox.size.height/2.0f +40;
-    position.x += (_count -3) * self.boundingBox.size.width/5.f;
+    [self attachOutput:object];
     
-    object.position = [self convertToNodeSpace:position];
+    CGPoint position = ccp(0,0);//[self convertToWorldSpace:ccp(0,0)];
+    
+    position.y -= 5 * 0.6f;
+    position.x += _count * 50.0f/(5.f) - 5.0f;
+    
+    //position = [self convertToNodeSpace:position];
+    
+    object.position = position;//[self convertToNodeSpace:position];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addGesture:object];
-    
-    [self attachOutput:object];
     
 }
 

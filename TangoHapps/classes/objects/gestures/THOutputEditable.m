@@ -66,8 +66,113 @@
     [obj setOutput:value];
 }
 
+-(void) connectTop:(TFDataType)type {
+    if (!self.topConnected && !self.botConnected) {
+        THOutput * obj = (THOutput*) self.simulableObject;
+        [obj setPropertyType:type];
+        self.firstType = type;
+    }
+    self.topConnected = YES;
+    self.topType = type;
+    [self chooseSprite];
+}
+
+-(void) connectBot:(TFDataType)type {
+    if (!self.topConnected && !self.botConnected) {
+        THOutput * obj = (THOutput*) self.simulableObject;
+        [obj setPropertyType:type];
+        self.firstType = type;
+    }
+    self.botConnected = YES;
+    self.botType = type;
+    [self chooseSprite];
+}
+
+-(void) deleteTop {
+    self.topConnected = NO;
+    THOutput * obj = (THOutput*) self.simulableObject;
+    if (self.botConnected) {
+        [obj setPropertyType:self.botType];
+    }
+    else {
+        [obj setPropertyType:kDataTypeAny];
+    }
+    [self chooseSprite];
+}
+
+-(void) deleteBot {
+    self.botConnected = NO;
+    THOutput * obj = (THOutput*) self.simulableObject;
+    if (self.botConnected) {
+        [obj setPropertyType:self.topType];
+    }
+    else {
+        [obj setPropertyType:kDataTypeAny];
+    }
+    [self chooseSprite];
+}
+
 -(void) chooseSprite {
-    
+    [self.sprite removeFromParentAndCleanup:YES];
+    self.sprite = [CCSprite spriteWithFile:@"outputEmpty.png"];
+    if (self.topConnected && self.botConnected) {
+        switch (self.firstType) {
+            case kDataTypeAny:
+                self.sprite = [CCSprite spriteWithFile:@"outputStarFilled.png"];
+                break;
+            case kDataTypeBoolean:
+                self.sprite = [CCSprite spriteWithFile:@"outputCircleFilled.png"];
+                break;
+            case kDataTypeFloat:
+            case kDataTypeInteger:
+                self.sprite = [CCSprite spriteWithFile:@"outputSquareFilled.png"];
+                break;
+            case kDataTypeString:
+                self.sprite = [CCSprite spriteWithFile:@"outputTriangleFilled.png"];
+                break;
+            default:
+                break;
+        }
+    }
+    else if (self.topConnected) {
+        switch (self.topType) {
+            case kDataTypeAny:
+                self.sprite = [CCSprite spriteWithFile:@"outputStarFilledUpper.png"];
+                break;
+            case kDataTypeBoolean:
+                self.sprite = [CCSprite spriteWithFile:@"outputCircleFilledUpper.png"];
+                break;
+            case kDataTypeFloat:
+            case kDataTypeInteger:
+                self.sprite = [CCSprite spriteWithFile:@"outputSquareFilledUpper.png"];
+                break;
+            case kDataTypeString:
+                self.sprite = [CCSprite spriteWithFile:@"outputTriangleFilledUpper.png"];
+                break;
+            default:
+                break;
+        }
+    }
+    else if (self.botConnected) {
+        switch (self.botType) {
+            case kDataTypeAny:
+                self.sprite = [CCSprite spriteWithFile:@"outputStarFilledLower.png"];
+                break;
+            case kDataTypeBoolean:
+                self.sprite = [CCSprite spriteWithFile:@"outputCircleFilledLower.png"];
+                break;
+            case kDataTypeFloat:
+            case kDataTypeInteger:
+                self.sprite = [CCSprite spriteWithFile:@"outputSquareFilledLower.png"];
+                break;
+            case kDataTypeString:
+                self.sprite = [CCSprite spriteWithFile:@"outputTriangleFilledLower.png"];
+                break;
+            default:
+                break;
+        }
+    }
+    [self addChild:self.sprite];
 }
 
 -(void) removeFromWorld{
