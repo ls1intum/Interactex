@@ -29,6 +29,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import <UIKit/UIKit.h>
 
 #import "IFI2CRegisterViewController.h"
+#import "IFI2CViewController.h"
 
 @class IFI2CComponent;
 @class IFI2CRegister;

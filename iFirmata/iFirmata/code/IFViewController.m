@@ -36,8 +36,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "IFFirmataCommunicationModule.h"
 #import "IFFirmataBLECommunicationModule.h"
 #import "IFI2CRegister.h"
-#import "IFCharacteristicDetailsViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "IFI2CComponentProxy.h"
 
 @implementation IFViewController
 
@@ -57,7 +57,7 @@ You should have received a copy of the GNU General Public License along with thi
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.firmataPinsController = appDelegate.firmataController;
     
-    [self loadPersistedObjects];
+    //[self loadPersistedObjects];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -83,14 +83,14 @@ You should have received a copy of the GNU General Public License along with thi
     [self persistObjects];
     goingToI2CScene = NO;
 }
-
+/*
 -(void) loadPersistedObjects{
         
     NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:IFDefaultsI2CComponents];
     if(data){
         self.firmataPinsController.i2cComponents = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     }
-}
+}*/
 
 -(void) persistObjects{
     NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.firmataPinsController.i2cComponents];
@@ -139,14 +139,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark TableViewDelegate
 
--(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == kTableGroupIdxCharacteristics){
-        [self performSegueWithIdentifier:@"toCharacteristicDetailsSegue" sender:self];
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == kTableGroupIdxI2C){
+        if(indexPath.row == self.firmataPinsController.i2cComponents.count){
+            [self performSegueWithIdentifier:@"toGenericI2CComponent" sender:self];
+        } else {
+            
+            [self performSegueWithIdentifier:@"toI2CDeviceSegue" sender:self];
+        }
     }
 }
 
 -(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 2){
+    if(indexPath.section == 2 && indexPath.row < self.firmataPinsController.i2cComponents.count){
         return YES;
     }
     return NO;
@@ -194,12 +199,16 @@ You should have received a copy of the GNU General Public License along with thi
     } else if(section == 1){
         return self.firmataPinsController.analogPins.count;
     } else {
-        return self.firmataPinsController.i2cComponents.count;
+        return self.firmataPinsController.i2cComponentProxies.count;
     }
 }
 
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 64;
+    if(indexPath.section == kTableGroupIdxI2C){
+        return 96;
+    } else {
+        return 64;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -220,18 +229,16 @@ You should have received a copy of the GNU General Public License along with thi
     } else if(indexPath.section == 2){
         
         NSInteger idx = indexPath.row;
-        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:idx];
         
-         cell = [self.table dequeueReusableCellWithIdentifier:@"i2cCell"];
-        ((IFI2CComponentCell*) cell).component = component;
-    } /*else {
+        IFI2CComponentProxy * component = [self.firmataPinsController.i2cComponentProxies objectAtIndex:idx];
+        cell = [self.table dequeueReusableCellWithIdentifier:@"i2cCell"];
         
-        NSInteger idx = indexPath.row;
-        IFI2CComponent * component = [self.firmataPinsController.i2cComponents objectAtIndex:idx];
-        
-        cell = [self.table dequeueReusableCellWithIdentifier:@"characteristicsCell"];
-
-    }*/
+        if(idx < self.firmataPinsController.i2cComponentProxies.count){
+            ((IFI2CComponentCell*) cell).component = component;
+        } else {
+            
+        }
+    }
     
     return cell;
 }
@@ -239,7 +246,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"toI2CDeviceSegue"]){
-        IFI2CComponentViewController * viewController = segue.destinationViewController;
+        IFI2CViewController * viewController = segue.destinationViewController;
         viewController.delegate = self;
         
         IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.table.indexPathForSelectedRow];
@@ -247,7 +254,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         goingToI2CScene = YES;
         
-    } else if([segue.identifier isEqualToString:@"toCharacteristicDetailsSegue"]){
+    } /*else if([segue.identifier isEqualToString:@"toCharacteristicDetailsSegue"]){
         
         NSInteger row = self.table.indexPathForSelectedRow.row;
         CBCharacteristic * characteristic = [self.characteristics objectAtIndex:row];
@@ -259,9 +266,19 @@ You should have received a copy of the GNU General Public License along with thi
             viewController.currentCharacteristic = characteristic;
             viewController.bleService = bleService;
         }
-    }
+    }*/
 }
 
+#pragma mark - Generic Register Observer
+
+-(void) I2CDevice:(IFI2CComponent *)component wroteData:(NSString *)data{
+    
+    [self i2cComponent:component wroteData:data toRegister:component.mainRegister];
+}
+/*
+ -(void) I2CDeviceStarted:(IFI2CComponent *)component{
+ 
+ }*/
 
 #pragma mark - i2cComponent Delegate
 
@@ -294,15 +311,11 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if(buttonIndex == 0){
-        
-        [self addI2CComponent];
-        
-    } else if(buttonIndex == 1){
-        
         self.table.editing = !self.table.editing;
         
         if(self.table.editing){
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+            int numRows = [self.table numberOfRowsInSection:2];
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:numRows-1 inSection:2];
             [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
     }
@@ -314,7 +327,7 @@ You should have received a copy of the GNU General Public License along with thi
      [self.firmataPinsController reset];
      [self.firmataPinsController.firmataController sendFirmwareRequest];
 }
-
+/*
 -(void) addI2CComponent {
     
     IFI2CComponent * component = [[IFI2CComponent alloc] init];
@@ -325,23 +338,28 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.firmataPinsController.i2cComponents.count-1 inSection:2];
     [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-}
+}*/
 
 - (IBAction)optionsMenuTapped:(id)sender {
     
-    NSString * option2;
+    NSString * option;
     
     if(self.table.editing){
-        option2 = @"Stop Editing I2C Components";
+        option = @"Stop Editing I2C Components";
     } else {
-        option2 = @"Edit I2C Components";
+        option = @"Edit I2C Components";
     }
-    
+    /*
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Add I2C Component",option2, nil];
+                                                    otherButtonTitles:@"Add I2C Component",option2, nil];*/
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:option, nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     

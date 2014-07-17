@@ -240,6 +240,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+
 #pragma mark - Register Observer
 
 -(void) handleStartedNotifyingRegister:(IFI2CRegister*) reg{

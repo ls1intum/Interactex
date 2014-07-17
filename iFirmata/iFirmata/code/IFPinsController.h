@@ -65,8 +65,7 @@ typedef struct{
 @property (nonatomic, strong) NSMutableArray * digitalPins;
 @property (nonatomic, strong) NSMutableArray * analogPins;
 @property (nonatomic, strong) NSMutableArray * i2cComponents;
-
-//@property (nonatomic, weak) BLEService * bleService;
+@property (nonatomic, strong) NSMutableArray * i2cComponentProxies;
 @property (nonatomic, strong) IFFirmata * firmataController;
 @property (nonatomic, weak) id<IFFirmataControllerPinsDelegate> delegate;
 

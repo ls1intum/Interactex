@@ -27,6 +27,7 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "IFI2CComponentCell.h"
+#import "IFI2CComponentProxy.h"
 #import "IFI2CComponent.h"
 
 @implementation IFI2CComponentCell
@@ -48,12 +49,19 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) updateNameLabel{
-    self.textLabel.text = self.component.name;
+    self.label.text = self.component.name;
 }
 
 -(void) updateDetailLabel{
-    
-    self.detailTextLabel.text = [NSString stringWithFormat:@"Address: #%d",self.component.address];
+    if(self.component.component == nil){
+        self.addressLabel.text = @"";
+    } else {
+        self.addressLabel.text = [NSString stringWithFormat:@"Address: #%d",self.component.component.address];
+    }
+}
+
+-(void) updateImageLabel{
+    self.cellImageView.image = self.component.image;
 }
 
 /*
@@ -66,7 +74,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }*/
 
--(void) setComponent:(IFI2CComponent *)component{
+-(void) setComponent:(IFI2CComponentProxy *)component{
     if(component != _component){
         
         [self removeComponentObservers];
@@ -77,6 +85,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self updateNameLabel];
         [self updateDetailLabel];
+        [self updateImageLabel];
     }
 }
 

@@ -33,6 +33,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "IFI2CComponent.h"
 #import "IFI2CRegister.h"
 #import "IFFirmata.h"
+#import "IFI2CComponentProxy.h"
 
 @implementation IFPinsController
 
@@ -46,8 +47,45 @@ You should have received a copy of the GNU General Public License along with thi
         self.digitalPins = [NSMutableArray array];
         self.analogPins = [NSMutableArray array];
         self.i2cComponents = [NSMutableArray array];
+        self.i2cComponentProxies = [NSMutableArray array];
+        
+        
+        [self addLsmCompass];
+        [self addGenericProxy];
     }
     return self;
+}
+
+-(void) addLsmCompass{
+    IFI2CComponent * component = [[IFI2CComponent alloc] init];
+    component.name = @"LSM303 Breakout";
+    component.address = 24;
+    
+    IFI2CRegister * reg = [[IFI2CRegister alloc] init];
+    reg.number = 32;
+    [component addRegister:reg];
+    
+    IFI2CRegister * reg2 = [[IFI2CRegister alloc] init];
+    reg2.number = 168;
+    reg2.size = 6;
+    [component addRegister:reg2];
+    
+    [self addI2CComponent:component];
+    
+    IFI2CComponentProxy * proxy = [[IFI2CComponentProxy alloc] init];
+    proxy.component = component;
+    proxy.name = component.name;
+    proxy.image = [UIImage imageNamed:@"LSMCompass"];
+    [self.i2cComponentProxies addObject:proxy];
+}
+
+-(void) addGenericProxy{
+    
+    IFI2CComponentProxy * proxy = [[IFI2CComponentProxy alloc] init];
+
+    proxy.name = @"I2C Component";
+    proxy.image = [UIImage imageNamed:@"i2c"];
+    [self.i2cComponentProxies addObject:proxy];
 }
 
 -(void) reset {
@@ -89,7 +127,6 @@ You should have received a copy of the GNU General Public License along with thi
         pinInfo[i].supportedModes = 0;
     }
 }
-
 
 -(void) sendDigitalOutputForPin:(IFPin*) pin{
     if(self.digitalPins.count == 0) return;
@@ -367,8 +404,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) firmataController:(IFFirmata*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
     
     uint8_t address = buffer[2] + (buffer[3] << 7);
-    NSInteger registerNumber = buffer[4] + 128;
-    
+    //NSInteger registerNumber = buffer[4] + 128;
+    NSInteger registerNumber = buffer[4];
     //NSLog(@"addr: %d reg %d ",address,registerNumber);
     if(!self.firmataController.startedI2C){
         

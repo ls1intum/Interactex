@@ -40,7 +40,7 @@ enum{
     kTableGroupIdxCharacteristics
 };
 
-@interface IFViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, UIActionSheetDelegate>
+@interface IFViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, IFGenericI2CDelegate, UIActionSheetDelegate>
 {
     BOOL connected;
     BOOL goingToI2CScene;
@@ -48,7 +48,6 @@ enum{
 
 @property (weak, nonatomic) IFPinsController * firmataPinsController;
 @property (weak, nonatomic) IBOutlet UITableView * table;
-@property (strong, nonatomic) NSMutableArray * characteristics;
 
 - (IBAction) optionsMenuTapped:(id)sender;
 
