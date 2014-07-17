@@ -39,6 +39,7 @@
     }
     
     _outputs = [NSMutableArray array];
+    _inputs = [NSMutableArray array];
 
 }
 
@@ -46,7 +47,8 @@
     self = [super init];
     if(self){
         self.name = name;
-        self.count = 0;
+        self.inCount = 0;
+        self.outCount= 0;
         self.isOpen = false;
         
         [self load];
@@ -74,8 +76,14 @@
         
         NSArray * outputs = [decoder decodeObjectForKey:@"outputs"];
         for (THOutputEditable * obj in outputs) {
-            _count++;
+            _outCount++;
             [self attachOutput:obj];
+        }
+        
+        NSArray * inputs = [decoder decodeObjectForKey:@"inputs"];
+        for (THOutputEditable * obj in inputs) {
+            _inCount++;
+            [self attachInput:obj];
         }
         
     }
@@ -94,6 +102,8 @@
     [coder encodeObject:[self getAttachments] forKey:@"attachments"];
     
     [coder encodeObject:_outputs forKey:@"outputs"];
+    
+    [coder encodeObject:_inputs forKey:@"inputs"];
 
 }
 
@@ -102,7 +112,8 @@
     
     copy.name = self.name;
     copy.saveName = self.saveName;
-    copy.count = self.count;
+    copy.inCount = self.inCount;
+    copy.outCount = self.outCount;
 
     [copy load];
     
@@ -112,6 +123,10 @@
     
     for (THOutputEditable * obj in _outputs) {
         [copy attachOutput:[obj copy]];
+    }
+    
+    for (THOutputEditable * obj in _inputs) {
+        [copy attachInput:[obj copy]];
     }
     
     return copy;
@@ -140,6 +155,10 @@
     for (THOutputEditable * output in _outputs) {
         [output addToWorld];
     }
+    
+    for (THOutputEditable * input in _inputs) {
+        [input addToWorld];
+    }
 }
 
 -(void) removeFromWorld{
@@ -149,6 +168,10 @@
     }
     
     for (THOutputEditable * object in _outputs) {
+        [object removeFromWorld];
+    }
+    
+    for (THOutputEditable * object in _inputs) {
         [object removeFromWorld];
     }
     
@@ -227,11 +250,20 @@
 }
 
 -(void) outputAmountChanged:(int)count {
-    if (count > _count) {
+    if (count > _outCount) {
         [self addOutput];
     }
-    else if (count < _count) {
+    else if (count < _outCount) {
         [self deleteOutput];
+    }
+}
+
+-(void) inputAmountChanged:(int)count {
+    if (count > _inCount) {
+        [self addInput];
+    }
+    else if (count < _inCount) {
+        [self deleteInput];
     }
 }
 
@@ -248,14 +280,14 @@
 -(void) addOutput {
     THOutputEditable * object = [[THOutputEditable alloc] init];
     
-    _count++;
+    _outCount++;
     
     [self attachOutput:object];
     
     CGPoint position = ccp(0,0);
     
     position.y -= 5 * 0.6f;
-    position.x += _count * 50.0f/(5.f) - 5.0f;
+    position.x += _outCount * 50.0f/(5.f) - 5.0f;
     
     object.position = position;
     
@@ -270,7 +302,7 @@
 }
 
 -(void) deattachOutput:(THOutputEditable *)object {
-    _count--;
+    _outCount--;
     [_outputs removeObject:object];
     [object removeFromParentAndCleanup:YES];
     object.scale = 1;
@@ -286,6 +318,52 @@
     THOutputEditable * object = [_outputs lastObject];
     [self deattachOutput:object];
     
+}
+
+-(void) attachInput:(THOutputEditable *)object {
+    [self addChild:object z:1];
+    if (object.scale ==1) object.scale /= 15;
+    object.attachedToGesture = self;
+    
+    [_inputs addObject:object];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outputRemoved:) name:kNotificationObjectRemoved object:object];
+}
+
+-(void) addInput {
+    THOutputEditable * object = [[THOutputEditable alloc] init];
+    
+    _inCount++;
+    
+    [self attachInput:object];
+    
+    CGPoint position = ccp(0,0);
+    
+    position.y += 5 * 0.6f;
+    position.x += _inCount * 50.0f/(5.f) - 5.0f;
+    
+    object.position = position;
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project addGesture:object];
+}
+
+-(void) deattachInput:(THOutputEditable *) object {
+    _inCount--;
+    [_inputs removeObject:object];
+    [object removeFromParentAndCleanup:YES];
+    object.scale = 1;
+    object.attachedToGesture = nil;
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project removeGesture:object];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
+}
+
+-(void) deleteInput {
+    THOutputEditable * object = [_inputs lastObject];
+    [self deattachInput:object];
 }
 
 -(NSMutableArray*) getAttachments {

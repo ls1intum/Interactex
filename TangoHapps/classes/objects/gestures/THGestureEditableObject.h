@@ -16,7 +16,9 @@
 @property (nonatomic, copy) NSString * saveName;
 @property (nonatomic, strong) CCLayerColor * layer;
 @property (nonatomic, readwrite) BOOL isOpen;
-@property int count;
+@property int outCount;
+@property int inCount;
+@property (nonatomic, strong) NSMutableArray * inputs;
 @property (nonatomic, strong) NSMutableArray * outputs;
 
 -(id) initWithName:(NSString*) name;
@@ -25,6 +27,7 @@
 -(void) openClose;
 -(NSMutableArray*) getAttachments;
 -(void) outputAmountChanged:(int) count;
+-(void) inputAmountChanged:(int) count;
 -(void) addOutput;
 -(void) deleteOutput;
 -(void) attachOutput:(THOutputEditable*) object;

@@ -24,7 +24,8 @@
 -(void) updateLabel{
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     self.scaleLabel.text = [NSString stringWithFormat:@"%.2f",gesture.scale];
-    self.stepperLabel.text = [NSString stringWithFormat:@"%i",gesture.count];
+    self.stepperLabel.text = [NSString stringWithFormat:@"%i",gesture.outCount];
+    self.inputLabel.text = [NSString stringWithFormat:@"%i",gesture.inCount];
     if(gesture.saveName) {
         self.nameField.text = gesture.saveName;
     }
@@ -41,7 +42,8 @@
 
 -(void) updateStepper {
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
-    self.outputStepper.value = gesture.count;
+    self.outputStepper.value = gesture.outCount;
+    self.inputStepper.value = gesture.inCount;
 }
 
 -(void) reloadState{
@@ -81,8 +83,16 @@
     [self updateLabel];
 }
 
+- (IBAction) inputChanged:(UIStepper*)sender {
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    int count = [sender value];
+    [gesture inputAmountChanged:count];
+    [self updateLabel];
+}
+
 - (IBAction)nameChanged:(id)sender {
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     gesture.saveName = self.nameField.text;
 }
+
 @end

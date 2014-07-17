@@ -916,7 +916,7 @@ You should have received a copy of the GNU General Public License along with thi
         } else {
             [self checkPinClotheObject:clotheObject atLocation:location];
         }
-    } else if (gestureObject) {
+    } else if (gestureObject && [gestureObject isKindOfClass:[THGestureEditableObject class]]) {
         [gestureObject openClose];
     } else {
 
