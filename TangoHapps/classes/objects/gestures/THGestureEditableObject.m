@@ -223,6 +223,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 
+-(void) scale:(float)amount {
+    [self scaleBy:amount];
+    self.scale = clampf(self.scale, 2, 15);
+}
+
 -(void) openClose {
     _isOpen = !_isOpen;
     
@@ -339,7 +344,7 @@
     
     CGPoint position = ccp(0,0);
     
-    position.y += 5 * 0.6f;
+    position.y += 53.f;
     position.x += _inCount * 50.0f/(5.f) - 5.0f;
     
     object.position = position;

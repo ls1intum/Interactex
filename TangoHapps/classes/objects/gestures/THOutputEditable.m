@@ -48,11 +48,11 @@
         
         self.botConnected = [decoder decodeBoolForKey:@"botConnected"];
         
-        self.topType = (TFDataType) [decoder decodeIntForKey:@"topType"];
+        self.topType = [self stringToType:[decoder decodeObjectForKey:@"topType"]];
         
-        self.botType= (TFDataType) [decoder decodeIntForKey:@"botType"];
+        self.botType= [self stringToType:[decoder decodeObjectForKey:@"botType"]];
         
-        self.firstType = (TFDataType) [decoder decodeIntForKey:@"firstType"];
+        self.firstType = [self stringToType:[decoder decodeObjectForKey:@"firstType"]];
 
         [self chooseSprite];
     }
@@ -66,12 +66,60 @@
     
     [coder encodeBool:self.botConnected forKey:@"botConnected"];
     
-    [coder encodeInt:[NSNumber numberWithInt:self.topType] forKey:@"topType"];
+    [coder encodeObject:[self typeToString:self.topType] forKey:@"topType"];
     
-    [coder encodeInt:[NSNumber numberWithInt:self.botType] forKey:@"botType"];
+    [coder encodeObject:[self typeToString:self.botType] forKey:@"botType"];
     
-    [coder encodeInt:[NSNumber numberWithInt:self.firstType] forKey:@"firstType"];
+    [coder encodeObject:[self typeToString:self.firstType] forKey:@"firstType"];
     
+}
+
+-(TFDataType) stringToType:(NSString *) string {
+    NSArray *items = @[@"any", @"bool", @"int", @"float", @"string"];
+    int item = [items indexOfObject:string];
+    switch (item) {
+        case 0:
+            return kDataTypeAny;
+            break;
+        case 1:
+            return kDataTypeBoolean;
+            break;
+        case 2:
+            return kDataTypeInteger;
+            break;
+        case 3:
+            return kDataTypeFloat;
+            break;
+        case 4:
+            return kDataTypeString;
+            break;
+        default:
+            return kDataTypeAny;
+            break;
+    }
+}
+
+-(NSString *) typeToString:(TFDataType) type {
+    switch (type) {
+        case kDataTypeAny:
+            return @"any";
+            break;
+        case kDataTypeBoolean:
+            return @"bool";
+            break;
+        case kDataTypeInteger:
+            return @"int";
+            break;
+        case kDataTypeFloat:
+            return @"float";
+            break;
+        case kDataTypeString:
+            return @"string";
+            break;
+        default:
+            return @"any";
+            break;
+    }
 }
 
 -(id)copyWithZone:(NSZone *)zone {
