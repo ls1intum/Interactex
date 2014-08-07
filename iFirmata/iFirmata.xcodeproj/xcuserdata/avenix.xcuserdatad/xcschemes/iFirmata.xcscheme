@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-               BuildableName = "iFirmata.app"
+               BuildableName = "BLEFirmata.app"
                BlueprintName = "iFirmata"
                ReferencedContainer = "container:iFirmata.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-            BuildableName = "iFirmata.app"
+            BuildableName = "BLEFirmata.app"
             BlueprintName = "iFirmata"
             ReferencedContainer = "container:iFirmata.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-            BuildableName = "iFirmata.app"
+            BuildableName = "BLEFirmata.app"
             BlueprintName = "iFirmata"
             ReferencedContainer = "container:iFirmata.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-            BuildableName = "iFirmata.app"
+            BuildableName = "BLEFirmata.app"
             BlueprintName = "iFirmata"
             ReferencedContainer = "container:iFirmata.xcodeproj">
          </BuildableReference>

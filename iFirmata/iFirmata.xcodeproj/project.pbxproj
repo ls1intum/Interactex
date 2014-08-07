@@ -112,7 +112,7 @@
 		9AAF2791182AF2F900531E3A /* IFFirmataBLECommunicationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFFirmataBLECommunicationModule.h; sourceTree = "<group>"; };
 		9AAF2792182AF2F900531E3A /* IFFirmataBLECommunicationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFFirmataBLECommunicationModule.m; sourceTree = "<group>"; };
 		9AAF2797182AF36200531E3A /* Firmata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Firmata.xcodeproj; path = ../Frameworks/Firmata/Firmata.xcodeproj; sourceTree = "<group>"; };
-		9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFirmata.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEE592F177CA8AC00C6D5E8 /* BLEFirmata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEFirmata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE5932177CA8AC00C6D5E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AEE5934177CA8AC00C6D5E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AEE5936177CA8AC00C6D5E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,7 +200,7 @@
 		9AEE5930177CA8AC00C6D5E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */,
+				9AEE592F177CA8AC00C6D5E8 /* BLEFirmata.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 			);
 			name = iFirmata;
 			productName = iFirmata;
-			productReference = 9AEE592F177CA8AC00C6D5E8 /* iFirmata.app */;
+			productReference = 9AEE592F177CA8AC00C6D5E8 /* BLEFirmata.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -493,7 +493,7 @@
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BLEFirmata;
 				USER_HEADER_SEARCH_PATHS = "../Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -564,7 +564,7 @@
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BLEFirmata;
 				USER_HEADER_SEARCH_PATHS = "../Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -577,7 +577,7 @@
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BLEFirmata;
 				USER_HEADER_SEARCH_PATHS = "../Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
