@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <UIKit/UIKit.h>
 #import "IFPinsController.h"
-#import "IFI2CComponentViewController.h"
+#import "IFI2CSpecificViewController.h"
 
 @class IFPinsController;
 @class CBPeripheral;
@@ -40,7 +40,7 @@ enum{
     kTableGroupIdxCharacteristics
 };
 
-@interface IFViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, IFI2CComponentDelegate, IFGenericI2CDelegate, UIActionSheetDelegate>
+@interface IFViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, IFFirmataControllerPinsDelegate, UIActionSheetDelegate>
 {
     BOOL connected;
     BOOL goingToI2CScene;

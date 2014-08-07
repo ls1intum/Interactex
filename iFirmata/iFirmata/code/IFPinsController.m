@@ -66,9 +66,11 @@ You should have received a copy of the GNU General Public License along with thi
     [component addRegister:reg];
     
     IFI2CRegister * reg2 = [[IFI2CRegister alloc] init];
-    reg2.number = 168;
+    reg2.number = 40;
     reg2.size = 6;
     [component addRegister:reg2];
+    
+    component.continousReadingRegister = reg2;
     
     [self addI2CComponent:component];
     
@@ -134,10 +136,10 @@ You should have received a copy of the GNU General Public License along with thi
     IFPin * firstPin = [self.digitalPins objectAtIndex:0];
     NSInteger firstPinIdx = firstPin.number;
     
-    int port = pin.number / 8;
+    NSInteger port = pin.number / 8;
     int value = 0;
     for (int i=0; i < 8; i++) {
-        int pinIdx = port * 8 + i - firstPinIdx;
+        NSInteger pinIdx = port * 8 + i - firstPinIdx;
 //        NSLog(@"%d %d",pinIdx,self.digitalPins.count);
         if(pinIdx >= (int)self.digitalPins.count){
             break;
@@ -219,7 +221,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) createAnalogPinsFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
     
-    int firstAnalog = numDigitalPins;
+    NSInteger firstAnalog = numDigitalPins;
     for (; firstAnalog < IFPinInfoBufSize; firstAnalog++) {
         if(pinInfo[firstAnalog].supportedModes & (1<<IFPinModeAnalog)){
             break;
@@ -435,7 +437,13 @@ You should have received a copy of the GNU General Public License along with thi
 
             NSData * data = [NSData dataWithBytes:values length:reg.size];
             reg.value = data;
+            
         }
+        
+        NSData * data = [NSData dataWithBytes:buffer length:length];
+        
+        NSString * dataStr = [BLEHelper DataToString:data];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNewI2CData object:dataStr];
     }
 }
 

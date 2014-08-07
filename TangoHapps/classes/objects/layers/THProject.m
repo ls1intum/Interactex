@@ -279,8 +279,7 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     
     [coder encodeObject:_name forKey:@"name"];
     [coder encodeObject:_eventActionPairs forKey:@"eventActionPairs"];
@@ -298,7 +297,6 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.actions forKey:@"actions"];
     [coder encodeObject:self.wires forKey:@"wires"];
     [coder encodeObject:self.invocationConnections forKey:@"invocationConnections"];
-
 }
 
 #pragma mark - Notifications
@@ -1156,6 +1154,11 @@ enum zPositions{
     for (TFEventActionPair * pair in self.eventActionPairs) {
         TFMethodInvokeAction * originalAction = (TFMethodInvokeAction*) pair.action;
         
+        TFEvent * event = [pair.event copy];
+        if([event.param1.target isKindOfClass:[TFEditableObject class]]){
+            event.param1.target = [self simulableForEditable:event.param1.target inProject:project];
+        }
+        
         TFSimulableObject * target = [self simulableForEditable:originalAction.target inProject:project];
         
         TFMethodInvokeAction * action = [[TFMethodInvokeAction alloc] initWithTarget:target method:originalAction.method];
@@ -1178,7 +1181,7 @@ enum zPositions{
         TFSimulableObject * source = [self simulableForEditable:pair.action.source inProject:project];
         action.source = source;
         
-        [project registerAction:action forEvent:pair.event];
+        [project registerAction:action forEvent:event];
     }
 }
 

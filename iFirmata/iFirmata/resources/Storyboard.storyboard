@@ -376,10 +376,10 @@
             </objects>
             <point key="canvasLocation" x="1359" y="4"/>
         </scene>
-        <!--View Controller-->
+        <!--Specific View Controller-->
         <scene sceneID="3Uu-pN-Kpx">
             <objects>
-                <viewController id="Ldl-fB-N3X" customClass="IFI2CViewController" sceneMemberID="viewController">
+                <viewController id="Ldl-fB-N3X" customClass="IFI2CSpecificViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dmB-Nq-fa1"/>
                         <viewControllerLayoutGuide type="bottom" id="bkS-YB-hqv"/>
@@ -443,6 +443,8 @@
                     <navigationItem key="navigationItem" id="GaU-jC-cGo"/>
                     <connections>
                         <outlet property="imageView" destination="Q15-vp-RLV" id="W8D-9l-syQ"/>
+                        <outlet property="startButton" destination="oO3-G8-3Vk" id="ygm-ye-urm"/>
+                        <outlet property="stopButton" destination="Vfj-Y6-qbx" id="dKV-gk-9pQ"/>
                         <outlet property="valueLabel" destination="VO2-lb-DQZ" id="7IG-Dm-4o3"/>
                     </connections>
                 </viewController>
@@ -450,10 +452,10 @@
             </objects>
             <point key="canvasLocation" x="1822" y="4"/>
         </scene>
-        <!--Register View Controller - I2C-->
+        <!--Generic View Controller - I2C-->
         <scene sceneID="56h-CM-rue">
             <objects>
-                <viewController id="RcM-3t-PxH" customClass="IFI2CRegisterViewController" sceneMemberID="viewController">
+                <viewController id="RcM-3t-PxH" customClass="IFI2CGenericViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KDj-tH-vzi"/>
                         <viewControllerLayoutGuide type="bottom" id="3Eu-ay-AXs"/>
@@ -463,34 +465,34 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="[124 123 124 125 126 127]" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="172" translatesAutoresizingMaskIntoConstraints="NO" id="46c-23-dm1">
-                                <rect key="frame" x="128" y="166" width="172" height="30"/>
+                                <rect key="frame" x="128" y="208" width="172" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Read Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arK-Jy-gz3">
-                                <rect key="frame" x="5" y="153" width="91" height="56"/>
+                                <rect key="frame" x="5" y="195" width="91" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Write Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNg-EC-h34">
-                                <rect key="frame" x="5" y="58" width="91" height="56"/>
+                                <rect key="frame" x="5" y="87" width="91" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="39" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HPe-ao-0rI">
-                                <rect key="frame" x="128" y="71" width="172" height="30"/>
+                                <rect key="frame" x="128" y="100" width="172" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmP-J9-hgh">
-                                <rect key="frame" x="0.0" y="109" width="320" height="49"/>
+                                <rect key="frame" x="0.0" y="151" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Write Register Value">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -500,47 +502,47 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Register" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m96-tT-iIT">
-                                <rect key="frame" x="5" y="7" width="120" height="56"/>
+                                <rect key="frame" x="5" y="41" width="120" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGJ-Ri-ikJ">
-                                <rect key="frame" x="128" y="20" width="172" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="32" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGJ-Ri-ikJ">
+                                <rect key="frame" x="128" y="54" width="172" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Read Continuously Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV1-kZ-a1m">
-                                <rect key="frame" x="5" y="325" width="192" height="33"/>
+                                <rect key="frame" x="5" y="367" width="192" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rtR-TV-n0H">
-                                <rect key="frame" x="220" y="328" width="85" height="30"/>
+                                <rect key="frame" x="220" y="370" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Read Continuously" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Jt-xG-o69">
-                                <rect key="frame" x="5" y="261" width="153" height="56"/>
+                                <rect key="frame" x="5" y="303" width="153" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="add-3J-HHY">
-                                <rect key="frame" x="251" y="273" width="79" height="27"/>
+                                <rect key="frame" x="220" y="317" width="79" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="startSwitchChanged:" destination="RcM-3t-PxH" eventType="valueChanged" id="g38-cH-I2G"/>
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7Z-nW-4eI">
-                                <rect key="frame" x="0.0" y="204" width="320" height="49"/>
+                                <rect key="frame" x="0.0" y="246" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Read Register Value">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -549,11 +551,25 @@
                                     <action selector="sendTapped:" destination="RcM-3t-PxH" eventType="touchUpInside" id="reY-Yf-K8K"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="24" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="caa-EN-GzP">
+                                <rect key="frame" x="128" y="11" width="172" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti8-GE-ckh">
+                                <rect key="frame" x="5" y="14" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="I2C" id="gaD-DQ-RZn"/>
                     <connections>
+                        <outlet property="addressTextField" destination="caa-EN-GzP" id="cMD-eT-TgE"/>
                         <outlet property="registerTextField" destination="FGJ-Ri-ikJ" id="xgb-ZT-sGH"/>
                         <outlet property="sendTextField" destination="HPe-ao-0rI" id="ZzE-9B-l1S"/>
                         <outlet property="sizeTextField" destination="rtR-TV-n0H" id="0J2-Mk-9ru"/>

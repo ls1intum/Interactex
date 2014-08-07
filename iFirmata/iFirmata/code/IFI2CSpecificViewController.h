@@ -10,24 +10,18 @@
 
 @class IFI2CComponent;
 @class IFI2CComponentProxy;
-@class IFI2CRegisterViewController;
+@class IFI2CGenericViewController;
+@class IFFirmata;
 
-@protocol IFGenericI2CDelegate <NSObject>
-
--(void) I2CDevice:(IFI2CComponent*) component wroteData:(NSString*) data;/*
--(void) I2CDeviceStarted:(IFI2CComponent*) component;
--(void) I2CDeviceStopped:(IFI2CComponent*) component;*/
-
-@end
-
-@interface IFI2CViewController : UIViewController
+@interface IFI2CSpecificViewController : UIViewController
 
 - (IBAction)startTapped:(id)sender;
 - (IBAction)stopTapped:(id)sender;
 
 @property (weak, nonatomic) IFI2CComponentProxy * component;
-@property (weak, nonatomic) id<IFGenericI2CDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+@property (weak,nonatomic) IFFirmata * firmata;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
 @end

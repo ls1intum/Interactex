@@ -35,7 +35,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (copy, nonatomic) NSString * name;
 @property (nonatomic) NSInteger address;
 @property (strong, nonatomic) NSMutableArray * registers;
-@property (weak, nonatomic) IFI2CRegister * mainRegister;
+@property (weak, nonatomic) IFI2CRegister * continousReadingRegister;
 
 -(void) addRegister:(IFI2CRegister*) reg;
 -(void) removeRegister:(IFI2CRegister *)reg;

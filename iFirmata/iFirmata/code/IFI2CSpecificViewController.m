@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 TUM. All rights reserved.
 //
 
-#import "IFI2CViewController.h"
+#import "IFI2CSpecificViewController.h"
 #import "IFI2CRegister.h"
 #import "IFI2CComponent.h"
 #import "IFI2CComponentProxy.h"
+#import "IFFirmata.h"
 
-@implementation IFI2CViewController
+@implementation IFI2CSpecificViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,18 +28,20 @@
     self.navigationItem.title = self.component.name;
     self.imageView.image = self.component.image;
     
-    [self.component.component.mainRegister addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    [self.component.component.continousReadingRegister addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    [self.component.component.mainRegister removeObserver:self forKeyPath:@"value"];
+    [self.component.component.continousReadingRegister removeObserver:self forKeyPath:@"value"];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self updateStartButtons:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,11 +51,11 @@
 }
 
 -(void) updateValueLabel{
-    IFI2CRegister * reg = self.component.component.mainRegister;
+    IFI2CRegister * reg = self.component.component.continousReadingRegister;
     
-    NSLog(@"%d",reg.value.length);
+    NSLog(@"%d",(int)reg.value.length);
     
-    if(!reg.notifies || reg.value.length <= 0){
+    if(reg.value.length <= 0){
         return;
     }
     
@@ -65,29 +68,30 @@
     self.valueLabel.text = [NSString stringWithFormat:@"%d %d %d",x,y,z];
 }
 
--(void) startChanged:(BOOL) start{
+-(void) updateStartButtons:(BOOL) started{
 
-    //[self.component.mainRegister removeObserver:self forKeyPath:@"notifies"];
-    self.component.component.mainRegister.notifies = start;
-    //[self.component.mainRegister addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
-    
-    //[self.delegate I2CDeviceStarted:self.component];
+    self.startButton.enabled = !started;
+    self.stopButton.enabled = started;
 }
 
 #pragma mark - UI
 
 - (IBAction)startTapped:(id)sender {
     
-    NSString * data = @"39";
-    [self.delegate I2CDevice:self.component.component wroteData:data];
+    uint8_t buf[2];
+    [BLEHelper valueAsTwo7bitBytes:39 buffer:buf];
     
-    [self startChanged:YES];
+    [self.firmata sendI2CWriteToAddress:24 reg:32 bytes:buf numBytes:2];
+    [self.firmata sendI2CStartReadingAddress:24 reg:40 size:6];
+    
+    [self updateStartButtons:YES];
 }
 
 - (IBAction)stopTapped:(id)sender {
-    [self startChanged:NO];
+    
+    [self.firmata sendI2CStopReadingAddress:24];
+    [self updateStartButtons:NO];
 }
-
 
 #pragma mark - Observing Value
 

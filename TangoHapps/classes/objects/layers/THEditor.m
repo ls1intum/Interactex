@@ -832,7 +832,7 @@ You should have received a copy of the GNU General Public License along with thi
         [object scaleBy:sender.scale];
     } else if (object && [object isKindOfClass:[THGestureEditableObject class]]) {
         [object scaleBy:sender.scale];
-    }else {
+    } else {
         float newScale = self.zoomableLayer.scale * sender.scale;
         if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
             self.zoomableLayer.scale = newScale;

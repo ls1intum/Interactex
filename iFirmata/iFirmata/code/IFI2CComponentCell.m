@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.component.component == nil){
         self.addressLabel.text = @"";
     } else {
-        self.addressLabel.text = [NSString stringWithFormat:@"Address: #%d",self.component.component.address];
+        self.addressLabel.text = [NSString stringWithFormat:@"Address: #%d",(int)self.component.component.address];
     }
 }
 

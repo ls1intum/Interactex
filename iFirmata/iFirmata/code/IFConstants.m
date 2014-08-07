@@ -35,3 +35,4 @@ NSInteger const IFTextFieldHeight = 44;
 
 
 NSString * const IFDefaultsI2CComponents = @"i2cComponents";
+NSString * const kNotificationNewI2CData = @"notificationNewI2CData";

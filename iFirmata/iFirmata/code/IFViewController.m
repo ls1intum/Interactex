@@ -38,6 +38,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "IFI2CRegister.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "IFI2CComponentProxy.h"
+#import "IFI2CGenericViewController.h"
 
 @implementation IFViewController
 
@@ -203,7 +204,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == kTableGroupIdxI2C){
         return 96;
     } else {
@@ -246,39 +247,36 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"toI2CDeviceSegue"]){
-        IFI2CViewController * viewController = segue.destinationViewController;
-        viewController.delegate = self;
+        IFI2CSpecificViewController * viewController = segue.destinationViewController;
         
         IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.table.indexPathForSelectedRow];
         viewController.component = cell.component;
+        viewController.firmata = self.firmataPinsController.firmataController;
         
-        goingToI2CScene = YES;
         
-    } /*else if([segue.identifier isEqualToString:@"toCharacteristicDetailsSegue"]){
-        
-        NSInteger row = self.table.indexPathForSelectedRow.row;
-        CBCharacteristic * characteristic = [self.characteristics objectAtIndex:row];
-        if(characteristic){
-            
-            BLEService * bleService = [BLEDiscovery sharedInstance].connectedService;
-            IFCharacteristicDetailsViewController * viewController = segue.destinationViewController;
-            viewController.title = [bleService characteristicNameFor:characteristic];
-            viewController.currentCharacteristic = characteristic;
-            viewController.bleService = bleService;
-        }
-    }*/
+    } else if([segue.identifier isEqualToString:@"toGenericI2CComponent"]){
+        IFI2CGenericViewController * viewController = segue.destinationViewController;
+        viewController.firmata = self.firmataPinsController.firmataController;
+    }
+    
 }
 
 #pragma mark - Generic Register Observer
 
--(void) I2CDevice:(IFI2CComponent *)component wroteData:(NSString *)data{
+-(void) I2CDeviceAddress:(NSInteger)address reg:(NSInteger) reg wroteData:(NSString *)data{//1
     
-    [self i2cComponent:component wroteData:data toRegister:component.mainRegister];
+    NSInteger value = data.integerValue;
+    
+    uint8_t buf[2];
+    [BLEHelper valueAsTwo7bitBytes:value buffer:buf];
+    [self.firmataPinsController.firmataController sendI2CWriteToAddress:address reg:reg bytes:buf numBytes:2];
+    
 }
-/*
- -(void) I2CDeviceStarted:(IFI2CComponent *)component{
- 
- }*/
+
+-(void) I2CDeviceAddress:(NSInteger)address reg:(NSInteger) reg startedNotifyingSize:(NSInteger)size{
+    
+    [self.firmataPinsController.firmataController sendI2CStartReadingAddress:address reg:reg size:size];
+}
 
 #pragma mark - i2cComponent Delegate
 
@@ -294,7 +292,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self.firmataPinsController.firmataController sendI2CStartReadingAddress:component.address reg:reg.number size:reg.size];
 }
 
--(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg{
+-(void) i2cComponent:(IFI2CComponent*) component stoppedNotifyingRegister:(IFI2CRegister*) reg{//2
     [self.firmataPinsController.firmataController sendI2CStopReadingAddress:component.address];
 }
 
@@ -314,7 +312,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.table.editing = !self.table.editing;
         
         if(self.table.editing){
-            int numRows = [self.table numberOfRowsInSection:2];
+            NSInteger numRows = [self.table numberOfRowsInSection:2];
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:numRows-1 inSection:2];
             [self.table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }

@@ -26,10 +26,11 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "IFI2CRegisterViewController.h"
+#import "IFI2CGenericViewController.h"
 #import "IFI2CRegister.h"
+#import "IFI2CComponent.h"
 
-@implementation IFI2CRegisterViewController
+@implementation IFI2CGenericViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -71,18 +72,14 @@ You should have received a copy of the GNU General Public License along with thi
     self.valueLabel.layer.borderWidth = 1.0f;
 }
 
--(NSString*) titleString{
-    return [NSString stringWithFormat:@"Register: #%d",self.reg.number];
-}
-
 -(void) updateTitle{
-    self.navigationItem.title = [self titleString];
+    //self.navigationItem.title = [self titleString];
     //self.navigationController.navigationBar.topItem.title = [self titleString];
 }
 
 -(void) updateRegisterText{
     
-    self.registerTextField.text = [NSString stringWithFormat:@"%d",self.reg.number];
+    //self.registerTextField.text = [NSString stringWithFormat:@"%d",self.reg.number];
 }
 
 -(void) updateSizeText{
@@ -92,25 +89,51 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) updateValueLabel{
 
-    self.valueLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:self.reg];
+    //self.valueLabel.text = [IFHelper valueAsBracketedStringForI2CRegister:self.reg];
+}
+
+-(NSInteger) address{
+    return [self.addressTextField.text integerValue];
+}
+
+-(NSInteger) registerNumber{
+    return [self.registerTextField.text integerValue];
+}
+
+-(NSInteger) registerSize{
+    return [self.sizeTextField.text integerValue];
 }
 
 - (IBAction)startSwitchChanged:(id)sender {
-    [self.reg removeObserver:self forKeyPath:@"notifies"];
-    self.reg.notifies = self.startSwitch.on;
-    [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
+    if(self.startSwitch.on){
+        [self.firmata sendI2CStartReadingAddress:self.address reg:self.registerNumber size:self.registerSize];
+    } else {
+        [self.firmata sendI2CStopReadingAddress:self.address];
+    }    
+}
+
+-(void) I2CDeviceAddress:(NSInteger)address reg:(NSInteger) reg startedNotifyingSize:(NSInteger)size{
+    
+    [self.firmata sendI2CStartReadingAddress:address reg:reg size:size];
     
     [self updateValueLabel];
 }
 
 - (IBAction)sendTapped:(id)sender {
-    [self.delegate i2cRegister:self.reg wroteData:self.sendTextField.text];
+    
+    NSInteger value = self.sendTextField.text.integerValue;
+    
+    uint8_t buf[2];
+    [BLEHelper valueAsTwo7bitBytes:value buffer:buf];
+    [self.firmata sendI2CWriteToAddress:self.address reg:self.registerNumber bytes:buf numBytes:2];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     
-    [self.reg addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-    [self.reg addObserver:self forKeyPath:@"notifies" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newI2cDataAvailable:) name:kNotificationNewI2CData object:nil];
+    
     [self reloadUI];
     
     
@@ -123,14 +146,11 @@ You should have received a copy of the GNU General Public License along with thi
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    [self.reg removeObserver:self forKeyPath:@"value"];
-    [self.reg removeObserver:self forKeyPath:@"notifies"];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kNotificationNewI2CData];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification
@@ -139,6 +159,11 @@ You should have received a copy of the GNU General Public License along with thi
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+}
+
+-(void) newI2cDataAvailable:(NSNotification*) notification{
+    NSString * text = notification.object;
+    self.valueLabel.text = text;
 }
 
 -(void) updateReadContinuouslySwitch{
@@ -153,50 +178,13 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateReadContinuouslySwitch];
 }
 
--(void) setRegister:(IFI2CRegister *)reg{
-    if(_reg != reg){
-        _reg = reg;
-        [self reloadUI];
-    }
-}
-
--(NSString*) title{
-    if(self.reg){
-        return [self titleString];
-    } else return @"I2C Register";
-}
-
--(void) checkUpdateNumber{
-    NSInteger regNumber = [self.registerTextField.text integerValue];
-    if(self.reg.number != regNumber){
-        self.reg.number = regNumber;
-        [self.delegate i2cRegister:self.reg changedNumber:regNumber];
-        [self updateTitle];
-    }
-    [self updateRegisterText];
-
-}
-
 -(void) closeNumberPad{
+    [self.addressTextField resignFirstResponder];
     [self.registerTextField resignFirstResponder];
     [self.sendTextField resignFirstResponder];
     [self.sizeTextField resignFirstResponder];
     
-    [self checkUpdateNumber];
-    
-    self.reg.size = [self.sizeTextField.text integerValue];
-    
     [self updateSizeText];
-}
-
-#pragma mark - Observing Value
-
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if([keyPath isEqualToString:@"value"]){
-        [self updateValueLabel];
-    } else if([keyPath isEqualToString:@"notifies"]){
-        [self updateValueLabel];
-    }
 }
 
 #pragma mark - Scrolling up when textFild appears

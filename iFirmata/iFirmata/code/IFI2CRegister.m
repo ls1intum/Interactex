@@ -33,9 +33,9 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeInt:self.number forKey:@"number"];
-    [aCoder encodeInt:self.size forKey:@"size"];
-    [aCoder encodeInt:self.numBytes forKey:@"numBytes"];
+    [aCoder encodeInteger:self.number forKey:@"number"];
+    [aCoder encodeInteger:self.size forKey:@"size"];
+    [aCoder encodeInteger:self.numBytes forKey:@"numBytes"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{

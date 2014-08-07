@@ -73,7 +73,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.label.text = @"A";
     }
     
-    self.label.text = [self.label.text stringByAppendingFormat:@"%d",self.pin.number];
+    self.label.text = [self.label.text stringByAppendingFormat:@"%ld",(long)self.pin.number];
 }
 
 -(void) addDigitalButton{
@@ -152,7 +152,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) updateAnalogLabel{
-    self.analogValueLabel.text = [NSString stringWithFormat:@"%d",self.pin.value];
+    self.analogValueLabel.text = [NSString stringWithFormat:@"%ld",(long)self.pin.value];
 }
 
 -(void) updateSlider{
@@ -161,7 +161,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(IBAction) segmentedControlChanged:(UISegmentedControl*) sender{
     if(sender.selectedSegmentIndex < 2){
-        self.pin.mode = sender.selectedSegmentIndex;
+        self.pin.mode = (IFPinMode)sender.selectedSegmentIndex;
     } else if(sender.selectedSegmentIndex == 2){
         self.pin.mode = IFPinModeServo;
     } else {
