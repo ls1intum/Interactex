@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
+#import "THInvocationConnectionLine.h"
 #import "THGestureEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
@@ -17,19 +18,23 @@
 -(void) load{
     
     self.simulableObject = [[THGesture alloc] init];
-    
-    self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
-    [self addChild:self.sprite];
+    if (_isOpen) {
+        self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
+    }
+    else {
+        self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
+    }
+    [self addChild:self.sprite z:1];
         
     self.canBeAddedToPalette = YES;
     self.canBeAddedToGesture = YES;
     self.acceptsConnections = NO;
     
-    _layer = [CCLayerColor node];
+    /*_layer = [CCLayerColor node];
     _layer.color = ccc3(200, 200, 200);
     _layer.opacity = 255;
     _layer.contentSize = self.sprite.boundingBox.size;
-    [self addChild:_layer];
+    [self addChild:_layer];*/
     
     if(_isOpen) {
         [self visibleCont];
@@ -38,8 +43,11 @@
         [self invisibleCont];
     }
     
+    self.z = kGestureZ;
+    
     _outputs = [NSMutableArray array];
     _inputs = [NSMutableArray array];
+    _connections = [NSMutableArray array];
 
 }
 
@@ -117,16 +125,63 @@
 
     [copy load];
     
+    THProject * project = [THDirector sharedDirector].currentProject;
+    
+    for (TFEditableObject * obj1 in [self getAttachments]) {
+        for (TFEditableObject * obj2 in [self getAttachments]) {
+            [_connections addObjectsFromArray:[project invocationConnectionsFrom:obj1 to:obj2]];
+        }
+        for (TFEditableObject * obj2 in _inputs) {
+            [_connections addObjectsFromArray:[project invocationConnectionsFrom:obj1 to:obj2]];
+        }
+        for (TFEditableObject * obj2 in _outputs) {
+            [_connections addObjectsFromArray:[project invocationConnectionsFrom:obj1 to:obj2]];
+        }
+    }
+    
+    
+    
     for (TFEditableObject * attachment in [self getAttachments]) {
-        [copy attachGestureObject:[attachment copy]];
+        TFEditableObject* cop = [attachment copy];
+        [copy attachGestureObject:cop];
+        for (THInvocationConnectionLine * line in _connections) {
+            if (attachment == line.obj1) {
+                line.obj1 = cop;
+            }
+            else if (attachment == line.obj2) {
+                line.obj2 = cop;
+            }
+        }
     }
     
     for (THOutputEditable * obj in _outputs) {
-        [copy attachOutput:[obj copy]];
+        THOutputEditable* cop = [obj copy];
+        [copy attachOutput:cop];
+        for (THInvocationConnectionLine * line in _connections) {
+            if (obj == line.obj1) {
+                line.obj1 = cop;
+            }
+            else if (obj == line.obj2) {
+                line.obj2 = cop;
+            }
+        }
     }
     
     for (THOutputEditable * obj in _inputs) {
-        [copy attachInput:[obj copy]];
+        THOutputEditable* cop = [obj copy];
+        [copy attachInput:cop];
+        for (THInvocationConnectionLine * line in _connections) {
+            if (obj == line.obj1) {
+                line.obj1 = cop;
+            }
+            else if (obj == line.obj2) {
+                line.obj2 = cop;
+            }
+        }
+    }
+    
+    for (THInvocationConnectionLine * line in _connections) {
+        [project addInvocationConnection:line animated:YES];
     }
     
     return copy;
@@ -181,13 +236,12 @@
 }
 
 -(void) addToLayer:(TFLayer*) layer{
-    [layer addEditableObject:self];
+    [layer addChild:self];
 }
 
 -(void) removeFromLayer:(TFLayer*) layer{
-    [layer removeEditableObject:self];
+    [layer removeChild:self cleanup:YES];
 }
-
 #pragma mark - Methods
 
 -(THPaletteItem*) paletteItem{
@@ -207,7 +261,7 @@
     [gest attachGestureObject:object];
     [self addChild:object z:1];
     if (object.scale ==1) object.scale /= 15;
-    if (!_layer.visible) object.visible = false;
+    if (!_isOpen) object.visible = false;
     object.attachedToGesture = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:object];
@@ -240,7 +294,10 @@
 
 -(void) visibleCont {
     THGesture* gest = (THGesture *) self.simulableObject;
-    _layer.visible = true;
+    //_layer.visible = true;
+    [self.sprite removeFromParentAndCleanup:YES];
+    self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
+    [self addChild:self.sprite z:-10];
     self.scale = 10;
     self.z = kGestureZ;
     [gest visible];
@@ -248,7 +305,10 @@
 
 -(void) invisibleCont {
     THGesture* gest = (THGesture *) self.simulableObject;
-    _layer.visible = false;
+    //_layer.visible = false;
+    [self.sprite removeFromParentAndCleanup:YES];
+    self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
+    [self addChild:self.sprite z:-10];
     self.scale = 1;
     self.z = kGestureObjectZ;
     [gest invisible];
@@ -344,7 +404,7 @@
     
     CGPoint position = ccp(0,0);
     
-    position.y += 53.f;
+    position.y += 75.f;
     position.x += _inCount * 50.0f/(5.f) - 5.0f;
     
     object.position = position;

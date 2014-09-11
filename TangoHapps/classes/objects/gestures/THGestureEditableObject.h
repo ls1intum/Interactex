@@ -20,6 +20,7 @@
 @property int inCount;
 @property (nonatomic, strong) NSMutableArray * inputs;
 @property (nonatomic, strong) NSMutableArray * outputs;
+@property (nonatomic, strong) NSMutableArray * connections;
 
 -(id) initWithName:(NSString*) name;
 -(void) attachGestureObject:(TFEditableObject*) object;

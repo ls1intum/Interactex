@@ -55,6 +55,8 @@
 		67B3130418EC8063006A9A31 /* palette_flexSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B3130018EC8063006A9A31 /* palette_flexSensor@2x.png */; };
 		67B3130718EC8FB4006A9A31 /* THGesturePaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B3130618EC8FB4006A9A31 /* THGesturePaletteItem.m */; };
 		67CDCC2A18EDA9C500E5B140 /* THGestureEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CDCC2918EDA9C500E5B140 /* THGestureEditableObject.m */; };
+		67F9244A19C0BA80007E52C8 /* whiteBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 67F9244819C0BA80007E52C8 /* whiteBox.png */; };
+		67F9244B19C0BA80007E52C8 /* whiteBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67F9244919C0BA80007E52C8 /* whiteBox@2x.png */; };
 		9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06CA6917C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
@@ -1875,6 +1877,8 @@
 		67B3130618EC8FB4006A9A31 /* THGesturePaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGesturePaletteItem.m; sourceTree = "<group>"; };
 		67CDCC2818EDA9C500E5B140 /* THGestureEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THGestureEditableObject.h; path = gestures/THGestureEditableObject.h; sourceTree = "<group>"; };
 		67CDCC2918EDA9C500E5B140 /* THGestureEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THGestureEditableObject.m; path = gestures/THGestureEditableObject.m; sourceTree = "<group>"; };
+		67F9244819C0BA80007E52C8 /* whiteBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBox.png; sourceTree = "<group>"; };
+		67F9244919C0BA80007E52C8 /* whiteBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteBox@2x.png"; sourceTree = "<group>"; };
 		9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneDraggableCell.h; sourceTree = "<group>"; };
 		9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneDraggableCell.m; sourceTree = "<group>"; };
 		9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedPaletteItem.h; sourceTree = "<group>"; };
@@ -3033,6 +3037,8 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				67F9244819C0BA80007E52C8 /* whiteBox.png */,
+				67F9244919C0BA80007E52C8 /* whiteBox@2x.png */,
 				67621C6119488B8E00829349 /* output.png */,
 				67621C6219488B8E00829349 /* output@2x.png */,
 				67621C6319488B8E00829349 /* palette_output.png */,
@@ -5025,6 +5031,7 @@
 				9A41453B17DE7A060061EDF8 /* add.png in Resources */,
 				9A41453D17DE7A060061EDF8 /* add@2x.png in Resources */,
 				670AF0141959A64700156130 /* outputStarFilledUpper.png in Resources */,
+				67F9244A19C0BA80007E52C8 /* whiteBox.png in Resources */,
 				9A41453F17DE7A060061EDF8 /* backwards.png in Resources */,
 				9A41454117DE7A060061EDF8 /* backwards@2x.png in Resources */,
 				9A41454317DE7A060061EDF8 /* forward.png in Resources */,
@@ -5170,6 +5177,7 @@
 				9A41461517DE7A060061EDF8 /* sound@2x.png in Resources */,
 				9A6B284918AA0874009AAE31 /* puredata@2x.png in Resources */,
 				9A6B284318AA0874009AAE31 /* palette_puredata.png in Resources */,
+				67F9244B19C0BA80007E52C8 /* whiteBox@2x.png in Resources */,
 				670AF00A1959A64700156130 /* outputCircleFilledLower.png in Resources */,
 				9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */,
 				9A5BD74B1860C52E00842833 /* starFilled@2x.png in Resources */,
