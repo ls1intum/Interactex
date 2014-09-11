@@ -127,15 +127,26 @@
     
     THProject * project = [THDirector sharedDirector].currentProject;
     
+    //NSMutableArray * att = [self getAttachments];
+    
     for (TFEditableObject * obj1 in [self getAttachments]) {
         for (TFEditableObject * obj2 in [self getAttachments]) {
-            [_connections addObjectsFromArray:[project invocationConnectionsFrom:obj1 to:obj2]];
+            NSArray * arr = [project invocationConnectionsFrom:obj1 to:obj2];
+            for (THInvocationConnectionLine * line in arr) {
+                [_connections addObject:[line copy]];
+            }
         }
         for (TFEditableObject * obj2 in _inputs) {
-            [_connections addObjectsFromArray:[project invocationConnectionsFrom:obj1 to:obj2]];
+            NSArray * arr = [project invocationConnectionsFrom:obj1 to:obj2];
+            for (THInvocationConnectionLine * line in arr) {
+                [_connections addObject:[line copy]];
+            }
         }
         for (TFEditableObject * obj2 in _outputs) {
-            [_connections addObjectsFromArray:[project invocationConnectionsFrom:obj1 to:obj2]];
+            NSArray * arr = [project invocationConnectionsFrom:obj1 to:obj2];
+            for (THInvocationConnectionLine * line in arr) {
+                [_connections addObject:[line copy]];
+            }
         }
     }
     
