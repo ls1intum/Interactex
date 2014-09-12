@@ -213,6 +213,15 @@ www.interactex.org
      }*/
 }
 
+-(void) sendReportRequestsForDigitalPin:(NSInteger) pin reports:(BOOL) reports{
+    
+    uint8_t buf[2];
+    buf[0] = 0xD0 | (pin/8);
+    buf[1] = reports;
+    
+    [self.communicationModule sendData:buf count:2];
+}
+
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
     
     uint8_t buf[2];
@@ -316,10 +325,10 @@ www.interactex.org
         
         int portNum = (parseBuf[0] & 0x0F);
         int portVal = parseBuf[1] | (parseBuf[2] << 7);
-        int port = portNum * 8;
+        //int port = portNum * 8;
         
         if([self.delegate respondsToSelector:@selector(firmataController:didReceiveDigitalMessageForPort:value:)]){ 
-            [self.delegate firmataController:self didReceiveDigitalMessageForPort:port value:portVal];
+            [self.delegate firmataController:self didReceiveDigitalMessageForPort:portNum value:portVal];
         }
         
 	} else if (parseBuf[0] == START_SYSEX && parseBuf[parseCount-1] == END_SYSEX) {

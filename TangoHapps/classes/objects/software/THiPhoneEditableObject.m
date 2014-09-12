@@ -62,6 +62,8 @@ You should have received a copy of the GNU General Public License along with thi
     NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
     self.sprite = [CCSprite spriteWithFile:fileName];
     [self addChild:self.sprite z:kiPhoneZ];
+    
+    self.canBeMoved = NO;
 }
 
 -(void) loadSprite{
