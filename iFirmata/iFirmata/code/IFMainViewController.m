@@ -222,7 +222,7 @@ const NSInteger IFDiscoveryTime = 3;
     
     secondsRemaining--;
         
-    self.refreshingLabel.text = [NSString stringWithFormat:@"Refreshing... %ds left",secondsRemaining];
+    self.refreshingLabel.text = [NSString stringWithFormat:@"Refreshing... %lds left",(long)secondsRemaining];
     
     if(secondsRemaining == 0){
         [self stopRefreshing];
@@ -242,7 +242,7 @@ const NSInteger IFDiscoveryTime = 3;
         [self. activityIndicator startAnimating];
         self.refreshingLabel.hidden = NO;
         
-        self.refreshingLabel.text = [NSString stringWithFormat:@"Refreshing... %ds left",IFDiscoveryTime];
+        self.refreshingLabel.text = [NSString stringWithFormat:@"Refreshing... %lds left",(long)IFDiscoveryTime];
         
     }];
     

@@ -7,7 +7,7 @@
 //
 
 #import "THGestureProperties.h"
-#import "THGesture.h"
+#import "THGestureEditableObject.h"
 
 @implementation THGestureProperties
 
@@ -18,25 +18,36 @@
 
 -(NSString *)title
 {
-    return @"Button";
+    return @"Gesture";
 }
 
 -(void) updateLabel{
-    THGesture * gesture = (THGesture*) self.editableObject;
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     self.scaleLabel.text = [NSString stringWithFormat:@"%.2f",gesture.scale];
+    self.stepperLabel.text = [NSString stringWithFormat:@"%i",gesture.count];
+    if(gesture.saveName) {
+        self.nameField.text = gesture.saveName;
+    }
+    else {
+        self.nameField.text = gesture.name;
+    }
 }
 
 -(void) updateSlider{
     
-    THGesture * gesture = (THGesture*) self.editableObject;
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     self.scaleSlider.value = gesture.scale;
+}
+
+-(void) updateStepper {
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    self.outputStepper.value = gesture.count;
 }
 
 -(void) reloadState{
     [self updateLabel];
     [self updateSlider];
-
-    
+    [self updateStepper];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,16 +59,30 @@
 - (void)viewDidUnload {
     [self setScaleLabel:nil];
     [self setScaleSlider:nil];
+    [self setStepperLabel:nil];
+    [self setOutputStepper:nil];
+    [self setNameField:nil];
     [super viewDidUnload];
 }
 
 - (IBAction)scaleChanged:(id)sender {
     
-    THGesture * gesture = (THGesture*) self.editableObject;
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
     gesture.scale = self.scaleSlider.value;
     
     [self updateLabel];
 }
 
+- (IBAction)outputChanged:(UIStepper*)sender {
+    
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    int count = [sender value];
+    [gesture outputAmountChanged:count];
+    [self updateLabel];
+}
 
+- (IBAction)nameChanged:(id)sender {
+    THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
+    gesture.saveName = self.nameField.text;
+}
 @end

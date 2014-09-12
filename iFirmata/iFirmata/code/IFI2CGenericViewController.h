@@ -29,30 +29,38 @@ You should have received a copy of the GNU General Public License along with thi
 #import <UIKit/UIKit.h>
 
 @class IFI2CRegister;
-@class IFI2CRegisterViewController;
+@class IFI2CGenericViewController;
+/*
+@protocol IFI2CGenericDelegate <NSObject>
 
-@protocol IFI2CRegisterDelegate <NSObject>
+-(void) I2CDeviceAddress:(NSInteger)address reg:(NSInteger) reg wroteData:(NSString *)data;
 
--(void) i2cRegister:(IFI2CRegister*) reg changedNumber:(NSInteger) newNumber;
--(void) i2cRegister:(IFI2CRegister*) reg wroteData:(NSString*) data;
-@end
+-(void) I2CDeviceAddress:(NSInteger)address reg:(NSInteger) reg startedNotifyingSize:(NSInteger)size;
+    
+@end*/
 
-@interface IFI2CRegisterViewController : UIViewController <UIActionSheetDelegate>
+@interface IFI2CGenericViewController : UIViewController <UIActionSheetDelegate>
 {
     UIColor * defaultButtonColor;
     NSInteger keyboardHeight;
 }
 
-@property (weak, nonatomic) IFI2CRegister * reg;
-@property (weak, nonatomic) id<IFI2CRegisterDelegate> delegate;
-
+//@property (weak, nonatomic) id<IFI2CGenericDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UISwitch *startSwitch;
-
 @property (weak, nonatomic) IBOutlet UITextField *registerTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sendTextField;
 @property (weak, nonatomic) IBOutlet UITextField *sizeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+
+@property (weak, nonatomic) NSArray * i2cComponents;
+@property (weak, nonatomic) IFFirmata * firmata;
 
 - (IBAction)startSwitchChanged:(id)sender;
 - (IBAction)sendTapped:(id)sender;
+
+@property (nonatomic) NSInteger address;
+@property (nonatomic) NSInteger registerNumber;
+@property (nonatomic) NSInteger registerSize;
+
 @end

@@ -54,7 +54,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPinsController.h"
 #import "THPinsControllerContainer.h"
 #import "THHardwareComponentEditableObject.h"
-#import "THGestureComponentEditableObject.h"
 
 @implementation THSimulator
 
@@ -248,14 +247,12 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+        if (object.attachedToGesture) {
+            
+        }
+        else if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
             THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
             if(!hardwareComponent.attachedToClothe){
-                [object addToLayer:self];
-            }
-        } else if ([object isKindOfClass:[THGestureComponentEditableObject class]]){
-            THGestureComponentEditableObject * gestureComponent = (THGestureComponentEditableObject*) object;
-            if(!gestureComponent.attachedToGesture){
                 [object addToLayer:self];
             }
         }else {

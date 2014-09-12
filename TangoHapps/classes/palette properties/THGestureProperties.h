@@ -14,4 +14,11 @@
 @property (weak, nonatomic) IBOutlet UISlider *scaleSlider;
 - (IBAction)scaleChanged:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *stepperLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *outputStepper;
+- (IBAction)outputChanged:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+- (IBAction)nameChanged:(id)sender;
+
 @end

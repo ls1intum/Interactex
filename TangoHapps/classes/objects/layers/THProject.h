@@ -43,11 +43,10 @@ You should have received a copy of the GNU General Public License along with thi
 #import <Foundation/Foundation.h>
 
 @class THHardwareComponentEditableObject;
-@class THGestureComponentEditableObject;
 @class THiPhoneEditableObject;
 @class THViewEditableObject;
 @class THClothe;
-@class THGesture;
+@class THGestureEditableObject;
 @class THGestureLayer;
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
@@ -110,8 +109,8 @@ You should have received a copy of the GNU General Public License along with thi
 //pin
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe;
 -(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject;
--(void) pinGestureObject:(THGestureComponentEditableObject*) gestureObject toGesture:(THGesture*) gesture;
--(void) unpinGestureObject:(THGestureComponentEditableObject*) gestureObject;
+-(void) pinGestureObject:(TFEditableObject*) gestureObject toGesture:(THGestureEditableObject*) gesture;
+-(void) unpinGestureObject:(TFEditableObject*) gestureObject;
 
 //iPhone
 -(void) addiPhone:(THiPhoneEditableObject *)iPhone;
@@ -135,10 +134,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject;
 
 //gestureObjects
--(void) addGestureComponent:(THGestureComponentEditableObject*) gestureObject;
--(void) removeGestureComponent:(THGestureComponentEditableObject*) gestureObject;
--(THGestureComponentEditableObject*) gestureComponentAtLocation:(CGPoint) location;
--(void) tryAttachGestureObject: (THGestureComponentEditableObject*) gestureObject;
+-(TFEditableObject*) gestAtLocation:(CGPoint) location;
+-(void) tryAttachGestureObject: (TFEditableObject*) gestureObject;
 
 //other hardware components
 -(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
@@ -146,9 +143,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location;
 
 //gestures
--(void) addGesture:(THGesture*) object;
--(void) removeGesture:(THGesture*) object;
--(THGesture*) gestureAtLocation:(CGPoint) location;
+-(void) addGesture:(TFEditableObject*) object;
+-(void) removeGesture:(TFEditableObject*) object;
+-(NSMutableArray*) gestureAtLocation:(CGPoint) location;
 
 //clothes
 -(void) addClothe:(THClothe*) object;
@@ -203,7 +200,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic,readonly) THiPhoneEditableObject * iPhone;
 @property (nonatomic,readonly) NSMutableArray * boards;
 @property (nonatomic,readonly) NSMutableArray * hardwareComponents;
-@property (nonatomic,readonly) NSMutableArray * gestureComponents;
 @property (nonatomic,readonly) NSMutableArray * otherHardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * gestures;
 @property (nonatomic,readonly) NSMutableArray * clothes;

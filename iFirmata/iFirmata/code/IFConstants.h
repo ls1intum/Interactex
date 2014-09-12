@@ -34,3 +34,5 @@ extern NSString * const IFNotificationModeChanged;
 extern NSInteger const IFTextFieldHeight;
 
 extern NSString * const IFDefaultsI2CComponents;
+
+extern NSString * const kNotificationNewI2CData;

@@ -230,12 +230,12 @@ const NSTimeInterval kFlushInterval = 1.0f/10.0f;
         [self flushData];
     }
     
-    
+    /*
     printf("Sending:\n");
     for (int i = 0; i < count; i++) {
         printf("%X ",bytes[i]);
     }
-    printf("\n");
+    printf("\n");*/
 }
 
 -(void) flushData {

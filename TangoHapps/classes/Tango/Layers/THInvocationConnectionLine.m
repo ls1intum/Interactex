@@ -78,6 +78,7 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(void) loadConnectionLine{
     self.canBeScaled = NO;
     self.canBeMoved = NO;
+    self.z = kGestureObjectZ;
     
     [self reloadSprite];
     

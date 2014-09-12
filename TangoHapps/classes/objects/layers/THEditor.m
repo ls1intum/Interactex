@@ -43,12 +43,12 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THEditor.h"
 #import "THPinEditable.h"
 #import "THHardwareComponentEditableObject.h"
-#import "THGestureComponentEditableObject.h"
 #import "THLilypadEditable.h"
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 #import "THClothe.h"
 #import "THGesture.h"
+#import "THGestureEditableObject.h"
 #import "THViewEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THiPhone.h"
@@ -199,6 +199,13 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(!object){
         object = [project objectAtLocation:position];
+    }
+    
+    if ([object isKindOfClass:[THGestureEditableObject class]]) {
+        THGestureEditableObject * ob = (THGestureEditableObject*) object;
+        if (ob.isOpen) {
+            object = [project gestAtLocation:position];
+        }
     }
     
     return object;
@@ -354,20 +361,12 @@ You should have received a copy of the GNU General Public License along with thi
         } else {
             
             THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:position];
-            THGestureComponentEditableObject * gestureObject = [project gestureComponentAtLocation:position];
             
             if(clotheObject){
                 THElementPinEditable * pin = [clotheObject pinAtPosition:position];
                 if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
                     [self highlightPin:pin];
                 }else {
-                    [self dehighlightCurrentPin];
-                }
-            } else if (gestureObject) {
-                THElementPinEditable * pin = [clotheObject pinAtPosition:position];
-                if(pin != nil && [self.currentConnection.obj1 acceptsConnectionsTo:pin]){
-                    [self highlightPin:pin];
-                } else {
                     [self dehighlightCurrentPin];
                 }
             }else {
@@ -593,9 +592,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) moveCurrentObject:(CGPoint) d{
-    [self gestureMove];
     if(self.currentObject.canBeMoved){
-        
+        [self gestureMove];
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
         }
@@ -684,12 +682,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) gestureMove {
-    if([self.currentObject isKindOfClass:[THGestureComponentEditableObject class]]) {
-        THGestureComponentEditableObject* gest = (THGestureComponentEditableObject*) self.currentObject;
-        THGesture* gesture = gest.attachedToGesture;
+        TFEditableObject* gest = self.currentObject;
+        THGestureEditableObject* gesture = gest.attachedToGesture;
         if (gest.attachedToGesture){
             [gesture deattachGestureObject:gest];
-            _currentObject.position = [gesture convertToWorldSpace:_currentObject.position];
+            gest.position = [gesture.parent convertToNodeSpace:[gesture convertToWorldSpace:gest.position]];
             if (_currentObject.canBeScaled) {
                 [self.zoomableLayer addChild:_currentObject];
             }
@@ -697,24 +694,27 @@ You should have received a copy of the GNU General Public License along with thi
                 [self addChild:_currentObject];
             }
         }
-    }
 }
 
 -(void) checkGestureObject:(CGPoint) location {
     THProject * project = [THDirector sharedDirector].currentProject;
-    THGesture * gesture = [project gestureAtLocation:location];
+    NSMutableArray * gestures = [project gestureAtLocation:location];
     
-    if (gesture && gesture != (THGesture*)_currentObject && gesture.isOpen && ![gesture.attachments containsObject:_currentObject] && [_currentObject isKindOfClass:[THGestureComponentEditableObject class]]) {
-        if (_currentObject.canBeScaled) {
-            [self.zoomableLayer removeChild:_currentObject cleanup:NO];
+    if (!_currentObject.attachedToGesture) {
+    
+        for (THGestureEditableObject* gesture in gestures) {
+            if (gesture != (THGestureEditableObject*)_currentObject && gesture.isOpen && ![[gesture getAttachments]containsObject:     _currentObject]) {
+                if (_currentObject.canBeScaled) {
+                    [self.zoomableLayer removeChild:_currentObject cleanup:NO];
+                }
+                else {
+                    [self removeChild:_currentObject cleanup:NO];
+                }
+                _currentObject.position = [gesture convertToNodeSpace:[gesture.parent convertToWorldSpace:_currentObject.position]];
+                [gesture attachGestureObject:_currentObject];
+                break;
+            }
         }
-        else {
-            [self removeChild:_currentObject cleanup:NO];
-        }
-        _currentObject.position = [gesture.layer convertToNodeSpace:_currentObject.position];
-
-        [gesture attachGestureObject:(THGestureComponentEditableObject*)_currentObject];
-        
     }
 }
 
@@ -839,9 +839,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(object && [object isKindOfClass:[THClothe class]]){
         [object scaleBy:sender.scale];
-    } else if (object && [object isKindOfClass:[THGesture class]]) {
+    } else if (object && [object isKindOfClass:[THGestureEditableObject class]]) {
         [object scaleBy:sender.scale];
-    }else {
+    } else {
         float newScale = self.zoomableLayer.scale * sender.scale;
         if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
             self.zoomableLayer.scale = newScale;
@@ -882,9 +882,9 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) checkPinGestureObject:(THGestureComponentEditableObject*) gestureObject atLocation:(CGPoint) location {
+/*-(void) checkPinGestureObject:(TFEditableObject*) gestureObject atLocation:(CGPoint) location {
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THGesture * gesture = [project gestureAtLocation:location];
+    THGestureEditableObject * gesture = [project gestureAtLocation:location].firstObject;
     if (gesture != nil) {
         CGPoint pos = [gesture convertToNodeSpace:gestureObject.position];
         pos = ccpAdd(pos, self.zoomableLayer.position);
@@ -895,12 +895,12 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) checkUnPinGestureObject:(THGestureComponentEditableObject*) gestureObject{
+-(void) checkUnPinGestureObject:(TFEditableObject*) gestureObject{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
     CGPoint position = [gestureObject convertToWorldSpace:ccp(0,0)];
-    THGesture* gesture = [project gestureAtLocation:position];
+    THGestureEditableObject* gesture = [project gestureAtLocation:position].firstObject;
     
     if(gesture != nil){
         [project unpinGestureObject:gestureObject];
@@ -908,7 +908,7 @@ You should have received a copy of the GNU General Public License along with thi
         gestureObject.position = [gesture convertToWorldSpace:gestureObject.position];
         [gestureObject addToLayer:self];
     }
-}
+}*/
 
 -(void) doubleTapped:(UITapGestureRecognizer*)sender{
     
@@ -917,7 +917,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THHardwareComponentEditableObject * clotheObject = [project hardwareComponentAtLocation:location];
-    THGesture * gestureObject = [project gestureAtLocation:location];
+    THGestureEditableObject * gestureObject = [project gestureAtLocation:location].firstObject;
 
     if(clotheObject){
         if(clotheObject.attachedToClothe){
@@ -982,7 +982,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleMoveFinishedAt:(CGPoint) location{
     CGRect paletteFrame = [THHelper paletteFrame];
     float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
-    
+
     [self checkGestureObject:location];
     
     if(location.x < paletteRightX){
@@ -991,7 +991,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) handleItemEnteredPaletteAt:(CGPoint) location{
-    
     _currentPaletteItem = [self.currentObject paletteItem];
     [self.dragDelegate paletteItem:_currentPaletteItem didEnterPaletteAtLocation:location];
     
@@ -1257,18 +1256,12 @@ You should have received a copy of the GNU General Public License along with thi
     for (THHardwareComponentEditableObject * object in project.allObjects) {
         [object addToLayer:self];
     }
-    for (THGestureComponentEditableObject * object in project.allObjects) {
-        [object addToLayer:self];
-    }
 }
 
 -(void) removeEditableObjects{;
     
     THProject * project = [THDirector sharedDirector].currentProject;
     for (THHardwareComponentEditableObject * object in project.allObjects) {
-        [object removeFromLayer:self];
-    }
-    for (THGestureComponentEditableObject * object in project.allObjects) {
         [object removeFromLayer:self];
     }
 }
@@ -1449,15 +1442,15 @@ You should have received a copy of the GNU General Public License along with thi
     attachedClotheObjectsPositions = nil;
 }
 
--(void) deAttachGestureItems{
+-(void) deAttachGesturesItems{
     
     THProject * project = [THDirector sharedDirector].currentProject;
     attachedGestureObjects = [NSMutableArray arrayWithCapacity:project.gestures.count];
     attachedGestureObjectsPositions = [NSMutableArray arrayWithCapacity:project.gestures.count];
     
-    for (THGesture * gesture in project.gestures) {
-        NSMutableArray * positionsArray = [NSMutableArray arrayWithCapacity:gesture.attachments];
-        for (THGestureComponentEditableObject * gestureComponent in gesture.attachments) {
+    for (THGestureEditableObject * gesture in project.gestures) {
+        NSMutableArray * positionsArray = [NSMutableArray arrayWithCapacity:[gesture getAttachments]];
+        for (TFEditableObject * gestureComponent in [gesture getAttachments]) {
             
             NSValue * value = [NSValue valueWithCGPoint:gestureComponent.position];
             [positionsArray addObject:value];
@@ -1470,7 +1463,7 @@ You should have received a copy of the GNU General Public License along with thi
             gestureComponent.position = position;
             [gestureComponent addToLayer:self];
         }
-        [attachedGestureObjects addObject:gesture.attachments];
+        [attachedGestureObjects addObject:[gesture getAttachments]];
         [attachedGestureObjectsPositions addObject:positionsArray];
     }
 }
@@ -1480,10 +1473,10 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     NSInteger count = 0;
     for (NSArray * array in attachedGestureObjects) {
-        THGesture * gesture = [project.gestures objectAtIndex:count];
+        THGestureEditableObject * gesture = [project.gestures objectAtIndex:count];
         NSArray * positionsArray = [attachedGestureObjectsPositions objectAtIndex:count++];
         NSInteger count2 = 0;
-        for (THGestureComponentEditableObject * gestureComponent in array) {
+        for (TFEditableObject * gestureComponent in array) {
             [gestureComponent removeFromLayer:self];
             NSValue * value = [positionsArray objectAtIndex:count2++];
             [gesture addChild:gestureComponent z:1];
@@ -1539,14 +1532,12 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+        if (object.attachedToGesture) {
+            
+        }
+        else if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
             THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
             if(!hardwareComponent.attachedToClothe){
-                [object removeFromLayer:self];
-            }
-        } else if ([object isKindOfClass:[THGestureComponentEditableObject class]]) {
-            THGestureComponentEditableObject * gestureComponent = (THGestureComponentEditableObject*) object;
-            if(!gestureComponent.attachedToGesture){
                 [object removeFromLayer:self];
             }
         }else {
@@ -1572,17 +1563,15 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+        if (object.attachedToGesture) {
+            
+        }
+        else if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
             THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
             if(!hardwareComponent.attachedToClothe){
                 [object addToLayer:self];
             }
-        } else if ([object isKindOfClass:[THGestureComponentEditableObject class]]) {
-            THGestureComponentEditableObject * gestureComponent = (THGestureComponentEditableObject*) object;
-            if(!gestureComponent.attachedToGesture){
-                [object addToLayer:self];
-            }
-        }else {
+        } else {
             [object addToLayer:self];
         }
     }

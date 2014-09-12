@@ -155,6 +155,10 @@ You should have received a copy of the GNU General Public License along with thi
     return [_paletteItems objectAtIndex:index];
 }
 
+-(int)getSize {
+    return _paletteItems.count;
+}
+
 -(THPaletteItem*)paletteItemAtLocation:(CGPoint)location{
     for (THPaletteItem * item in _paletteItems) {
         if([item testHit:location]){

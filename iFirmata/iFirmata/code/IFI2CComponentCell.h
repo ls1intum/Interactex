@@ -28,11 +28,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <UIKit/UIKit.h>
 
-@class IFI2CComponent;
+@class IFI2CComponentProxy;
 
 @interface IFI2CComponentCell : UITableViewCell
 
-@property (nonatomic, weak) IFI2CComponent * component;
+@property (nonatomic, weak) IFI2CComponentProxy * component;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 
 -(void) removeComponentObservers;
 

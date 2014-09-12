@@ -7,13 +7,13 @@
 //
 
 #import "THGesturePaletteItem.h"
-#import "THGesture.h"
+#import "THGestureEditableObject.h"
 
 @implementation THGesturePaletteItem
 
 - (void)dropAt:(CGPoint)location {
     
-    THGesture* gesture = [[THGesture alloc] initWithName:self.name];
+    THGestureEditableObject* gesture = [[THGestureEditableObject alloc] initWithName:self.name];
     gesture.position = location;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;

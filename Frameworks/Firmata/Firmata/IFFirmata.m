@@ -372,7 +372,7 @@ www.interactex.org
 
 -(void) cleanAddedBytes:(uint8_t *)buffer lenght:(NSInteger*)originalLength{
     
-    int length = *originalLength;
+    NSInteger length = *originalLength;
     
     //remove all END_SYSEX messages at the end of the buffer
     for (int i = 15; i >= 0; i--) {
@@ -400,26 +400,26 @@ www.interactex.org
 }
 
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
-    
+    /*
     printf("before:\n");
     for (int i = 0 ; i < originalLength; i++) {
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n");
+    printf("\n");*/
     
     if(self.communicationModule.usesFillBytes){
         [self cleanAddedBytes:buffer lenght:&originalLength];
     }
     
     NSInteger length = originalLength;
-    
+    /*
     printf("receiving:\n");
     for (int i = 0 ; i < length; i++) {
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n");
+    printf("\n");*/
     
     for (int i = 0 ; i < length; i++) {
         uint8_t value = buffer[i];

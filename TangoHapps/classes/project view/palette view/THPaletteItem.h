@@ -64,6 +64,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, readonly) CGPoint center;
 @property (nonatomic,copy) NSString * name;
+@property (nonatomic, copy) NSString * saveName;
 @property (nonatomic,copy) NSString * imageName;
 @property (nonatomic) UIImage * image;
 @property (nonatomic) BOOL editing;
