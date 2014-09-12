@@ -108,7 +108,10 @@ You should have received a copy of the GNU General Public License along with thi
     TFEditableObject * object = notification.object;
     [object addToLayer:self];
     [self selectObject:object];
-    [self checkGestureObject:object.position];
+
+    if(self.state != kEditorStateDuplicate){
+        [self checkGestureObject:object.position];
+    }
 }
 
 -(void)handleEditableObjectRemoved:(NSNotification *)notification{
@@ -695,12 +698,9 @@ You should have received a copy of the GNU General Public License along with thi
     
         for (THGestureEditableObject* gesture in gestures) {
             if (gesture != (THGestureEditableObject*)_currentObject && gesture.isOpen && ![[gesture getAttachments]containsObject:     _currentObject]) {
-                if (_currentObject.canBeScaled) {
-                    [self.zoomableLayer removeChild:_currentObject cleanup:NO];
-                }
-                else {
-                    [self removeChild:_currentObject cleanup:NO];
-                }
+                
+                [_currentObject removeFromParentAndCleanup:YES];
+
                 _currentObject.position = [gesture convertToNodeSpace:[gesture.parent convertToWorldSpace:_currentObject.position]];
                 [gesture attachGestureObject:_currentObject];
                 break;
