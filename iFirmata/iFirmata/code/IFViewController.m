@@ -83,7 +83,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) viewWillDisappear:(BOOL)animated{
     [self persistObjects];
     goingToI2CScene = NO;
+    
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        [self.firmataPinsController reset];
+        [self.navigationController popViewControllerAnimated:NO];
+    }
 }
+
 /*
 -(void) loadPersistedObjects{
         

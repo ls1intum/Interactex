@@ -272,7 +272,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.firmataName = name;
     [self.delegate firmata:self didUpdateTitle:self.firmataName];
-    [self.firmataController sendAnalogMappingRequest];
+    if(self.digitalPins.count == 0 && self.analogPins.count == 0){
+        [self.firmataController sendAnalogMappingRequest];
+    }
 }
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
@@ -285,17 +287,22 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) portNumber value:(NSInteger) value{
     if(self.digitalPins.count > 0){
-        IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
-        int mask = 1;
         
-        for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
-            IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
-            if (pinObj.mode == IFPinModeInput) {
-                uint32_t val = (value & mask) ? 1 : 0;
-                if (pinObj.value != val) {
-                    pinObj.value = val;
+        IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
+
+        int pinNumber = portNumber * 8;
+        for (int mask = 1; mask & 0xFF ; mask <<= 1, pinNumber++) {
+            int pinIdx = pinNumber - firstPin.number;
+            if(pinIdx >= 0 && pinIdx < self.digitalPins.count){
+                IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber - firstPin.number];
+
+                if (pinObj.mode == IFPinModeInput) {
+                    uint32_t val = (value & mask) ? 1 : 0;
+                    if (pinObj.value != val) {
+                        pinObj.value = val;
+                    }
                 }
             }
         }
@@ -394,6 +401,8 @@ You should have received a copy of the GNU General Public License along with thi
         
         if(self.digitalPins.count % 4 == 0){
             [self makePinQueryForSubsequentPinsStartingAtPin:pinNumber+1];
+        } else {
+            [self.firmataController sendReportRequestsForDigitalPins];
         }
         
     } else {
@@ -478,6 +487,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         IFPin * pin = object;
         [self.firmataController sendPinModeForPin:pin.number mode:pin.mode];
+        
+        if(pin.mode == IFPinModeInput){
+            [self.firmataController sendReportRequestsForDigitalPin:pin.number reports:YES];
+        }
         
     } else if([keyPath isEqual:@"value"]){
         

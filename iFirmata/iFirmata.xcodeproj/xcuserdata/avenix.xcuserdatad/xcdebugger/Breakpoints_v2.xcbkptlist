@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iFirmata/code/IFViewController.m"
-            timestampString = "427997954.750697"
+            timestampString = "432150175.601533"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "-i2cComponent:stoppedNotifyingRegister:"
             landmarkType = "5">
          </BreakpointContent>

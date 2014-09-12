@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "RoundedRedCancelButton.png"
+      "filename" : "RoundedRedCancelButton_disabled.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "RoundedRedCancelButton@2x.png"
+      "filename" : "RoundedRedCancelButton_disabled@2x.png"
     }
   ],
   "info" : {
