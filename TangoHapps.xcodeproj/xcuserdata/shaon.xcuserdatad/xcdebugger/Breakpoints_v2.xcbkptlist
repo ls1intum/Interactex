@@ -217,7 +217,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1389"
             endingLineNumber = "1389"
-            landmarkName = "-showAllPaletteSections"
+            landmarkName = "-hideNonLilypadPaletteSections"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -377,8 +377,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "233"
             endingLineNumber = "233"
-            landmarkName = "-selectObjectAtPosition:"
-            landmarkType = "5">
+            landmarkName = "@implementation THEditor"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
