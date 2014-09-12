@@ -42,10 +42,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "TFConstants.h"
 
-float const kTabWidth = 215;
+float const kTabWidth = 255; // Nazmus 24 Aug 14 Changed 215 to 255 (5 pt for shadow)
 
 float const kPaletteSectionPadding = 5;
-float const kPaletteSectionWidth = 215;
+float const kPaletteSectionWidth = 250; // Nazmus 24 Aug 14 Changed 215 to 249
 
 float const kGridItemWidth = 200;
 float const kGridItemHeight = 230;
@@ -64,16 +64,24 @@ NSString * const kNotificationInvocationCompleted = @"notificationInvocationComp
 NSString * const kNotificationConnectionMade = @"notificationConnectionMade";
 NSString * const kConnectionMadeEffect = @"connectionMade.mp3";
 
-float kPaletteItemsPadding = 8;
-float kPaletteItemSize = 60;
-CGSize const kPaletteItemImageSize = {45,45};
+//float kPaletteItemsPadding = 14; //nazmus commented
+float kPaletteItemsHorizontalPadding = 14; // Nazmus added
+float kPaletteItemsVerticalPadding = 9; // Nazmus added
+//float kPaletteItemSize = 64; // Nazmus commented
+float kPaletteItemWidth = 64; // Nazmus added
+float kPaletteItemHeight = 90; // Nazmus added
+//CGSize const kPaletteItemImageSize = {45,45}; // Nazmus commented 24 Aug 14
+//kPaletteItemImage is set in the center (vertical and horizontal) of kPaletteItem
+CGSize const kPaletteItemImageSize = {64,64}; // Nazmus added 24 Aug 14
 //CGSize const kPaletteItemLabelSize = {58,10};
-CGSize const kPaletteItemLabelSize = {58,25};
+//CGSize const kPaletteItemLabelSize = {58,25};// nazmus commented
+CGSize const kPaletteItemLabelSize = {64,25};// nazmus added
+float const kPaletteItemLabelVerticalPosition = 62; // Nazmus added 24 Aug 14
 
 float const kPaletteLabelHeight = 14;
 float const kPaletteItemImagePadding = 3;
 
-float const kPaletteContainerTitleHeight = 40;
+float const kPaletteContainerTitleHeight = 44;
 
 ccColor4F const kSelectionPopupsDefaultColor = {0.11, 0.58, 0.83,1};
 

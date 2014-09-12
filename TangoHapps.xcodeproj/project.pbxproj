@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
+		25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25643B8D19B0E51F00F8E9CB /* THMenubar.xib */; };
+		25E57B1519C077C6006B61A8 /* playicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1319C077C6006B61A8 /* playicon.png */; };
+		25E57B1619C077C6006B61A8 /* playicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1419C077C6006B61A8 /* playicon@2x.png */; };
+		25E57B5319C0824A006B61A8 /* stopicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5119C0824A006B61A8 /* stopicon.png */; };
+		25E57B5419C0824A006B61A8 /* stopicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5219C0824A006B61A8 /* stopicon@2x.png */; };
+		25E57B5919C08984006B61A8 /* editorLayerBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5519C08984006B61A8 /* editorLayerBg.png */; };
+		25E57B5A19C08984006B61A8 /* editorLayerBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5619C08984006B61A8 /* editorLayerBg@2x.png */; };
 		6751DB9519017B0100214C40 /* THGestureProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6751DB9419017B0100214C40 /* THGestureProperties.m */; };
 		6751DB9919017DBB00214C40 /* THGestureProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751DB9819017DBB00214C40 /* THGestureProperties.xib */; };
 		6778EA0518F6AC980080B1C9 /* gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0118F6AC980080B1C9 /* gesture.png */; };
@@ -1787,6 +1795,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMenubarViewController.h; sourceTree = "<group>"; };
+		25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMenubarViewController.m; sourceTree = "<group>"; };
+		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THMenubar.xib; path = "../../classes/project view/palette view/THMenubar.xib"; sourceTree = "<group>"; };
+		25E57B1319C077C6006B61A8 /* playicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playicon.png; sourceTree = "<group>"; };
+		25E57B1419C077C6006B61A8 /* playicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playicon@2x.png"; sourceTree = "<group>"; };
+		25E57B5119C0824A006B61A8 /* stopicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopicon.png; sourceTree = "<group>"; };
+		25E57B5219C0824A006B61A8 /* stopicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopicon@2x.png"; sourceTree = "<group>"; };
+		25E57B5519C08984006B61A8 /* editorLayerBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editorLayerBg.png; sourceTree = "<group>"; };
+		25E57B5619C08984006B61A8 /* editorLayerBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editorLayerBg@2x.png"; sourceTree = "<group>"; };
 		6751DB9319017B0100214C40 /* THGestureProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGestureProperties.h; sourceTree = "<group>"; };
 		6751DB9419017B0100214C40 /* THGestureProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGestureProperties.m; sourceTree = "<group>"; };
 		6751DB9819017DBB00214C40 /* THGestureProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THGestureProperties.xib; sourceTree = "<group>"; };
@@ -2897,8 +2914,10 @@
 			children = (
 				9AB7789017E6C25700F82424 /* method invocation */,
 				9A5931C117E5CD4500B20D99 /* palette buttons */,
-				9A41469417DE93F30061EDF8 /* palettePull@2x.png */,
 				9A41465917DE86E60061EDF8 /* palettePull.png */,
+				9A41469417DE93F30061EDF8 /* palettePull@2x.png */,
+				25E57B5519C08984006B61A8 /* editorLayerBg.png */,
+				25E57B5619C08984006B61A8 /* editorLayerBg@2x.png */,
 				9A4144A917DE7A060061EDF8 /* add.png */,
 				9A4144AA17DE7A060061EDF8 /* add@2x.png */,
 				9A4144AB17DE7A060061EDF8 /* objects */,
@@ -3110,11 +3129,15 @@
 				9A41453117DE7A060061EDF8 /* editormode.png */,
 				9A41453217DE7A060061EDF8 /* editormode@2x.png */,
 				9A41453317DE7A060061EDF8 /* hideiphone.png */,
+				25E57B5119C0824A006B61A8 /* stopicon.png */,
+				25E57B5219C0824A006B61A8 /* stopicon@2x.png */,
 				9A41453417DE7A060061EDF8 /* hideiphone@2x.png */,
 				9A41453517DE7A060061EDF8 /* lilypadmode.png */,
 				9A41453617DE7A060061EDF8 /* lilypadmode@2x.png */,
 				9A41453717DE7A060061EDF8 /* pinsmode.png */,
 				9A41453817DE7A060061EDF8 /* pinsmode@2x.png */,
+				25E57B1319C077C6006B61A8 /* playicon.png */,
+				25E57B1419C077C6006B61A8 /* playicon@2x.png */,
 				9A41453917DE7A060061EDF8 /* push.png */,
 				9A41453A17DE7A060061EDF8 /* push@2x.png */,
 			);
@@ -3246,6 +3269,8 @@
 				9A59323317E5D58300B20D99 /* THTabbarSection.m */,
 				9A59323417E5D58300B20D99 /* THTabbarView.h */,
 				9A59323517E5D58300B20D99 /* THTabbarView.m */,
+				25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */,
+				25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */,
 				9A59323617E5D58300B20D99 /* THTabbarViewController.h */,
 				9A59323717E5D58300B20D99 /* THTabbarViewController.m */,
 			);
@@ -4126,6 +4151,7 @@
 				9AF60BC416A04D9F00178439 /* THTabbar.xib */,
 				9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */,
 				9A87C06016A4140C0059CC2E /* THGridItem.xib */,
+				25643B8D19B0E51F00F8E9CB /* THMenubar.xib */,
 				9AF502E5167B84B40020241C /* communication */,
 				9AF502F5167B84B40020241C /* utils */,
 			);
@@ -4907,6 +4933,7 @@
 				9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */,
 				9A56CD5217D88888001021B2 /* THBoolValueProperties.xib in Resources */,
 				9A56CDBC17D8EF61001021B2 /* THStringValueProperties.xib in Resources */,
+				25E57B1619C077C6006B61A8 /* playicon@2x.png in Resources */,
 				9ABC272F1809526C00B39D72 /* lilypadSimple@2x.png in Resources */,
 				9A6B284718AA0874009AAE31 /* puredata.png in Resources */,
 				9A56D03B17D946FF001021B2 /* Storyboard.storyboard in Resources */,
@@ -4994,6 +5021,7 @@
 				9A4145CB17DE7A060061EDF8 /* palette_label.png in Resources */,
 				9A4145CD17DE7A060061EDF8 /* palette_label@2x.png in Resources */,
 				9A5BD7471860C52E00842833 /* squareFilled@2x.png in Resources */,
+				25E57B5919C08984006B61A8 /* editorLayerBg.png in Resources */,
 				9A4145CF17DE7A060061EDF8 /* palette_led.png in Resources */,
 				9A4145D117DE7A060061EDF8 /* palette_led@2x.png in Resources */,
 				9A8942A91836241C00B8CA0E /* palette_jennic.png in Resources */,
@@ -5004,6 +5032,7 @@
 				9AA4D6EF18AE169100A43433 /* palette_lipoBattery.png in Resources */,
 				9AA4D76218AE1DDA00A43433 /* THBLELilyPadProperties.xib in Resources */,
 				9A6B284518AA0874009AAE31 /* palette_puredata@2x.png in Resources */,
+				25E57B5A19C08984006B61A8 /* editorLayerBg@2x.png in Resources */,
 				9A6B285418AA08A0009AAE31 /* synthesis.pd in Resources */,
 				9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */,
 				9ABC27A21809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */,
@@ -5048,6 +5077,7 @@
 				9A5BD74B1860C52E00842833 /* starFilled@2x.png in Resources */,
 				9A41461717DE7A060061EDF8 /* switch.png in Resources */,
 				9A41461917DE7A060061EDF8 /* switch@2x.png in Resources */,
+				25E57B5419C0824A006B61A8 /* stopicon@2x.png in Resources */,
 				9A41461B17DE7A060061EDF8 /* switchOn.png in Resources */,
 				9A41461D17DE7A060061EDF8 /* switchOn@2x.png in Resources */,
 				9A41461F17DE7A060061EDF8 /* threeColorLed.png in Resources */,
@@ -5056,9 +5086,11 @@
 				9A5BD7491860C52E00842833 /* starEmpty@2x.png in Resources */,
 				9A95FB7418CF593A009A724F /* powerSupply.png in Resources */,
 				9A41462317DE7A060061EDF8 /* timer.png in Resources */,
+				25E57B5319C0824A006B61A8 /* stopicon.png in Resources */,
 				9A41462517DE7A060061EDF8 /* timer@2x.png in Resources */,
 				9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */,
 				9A41462717DE7A060061EDF8 /* tshirt.png in Resources */,
+				25E57B1519C077C6006B61A8 /* playicon.png in Resources */,
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
@@ -5099,6 +5131,7 @@
 				9AA4D6F018AE169100A43433 /* palette_lipoBattery@2x.png in Resources */,
 				9A5931CE17E5CD4500B20D99 /* paletteIconSelected.png in Resources */,
 				9A5931D017E5CD4500B20D99 /* paletteIconSelected@2x.png in Resources */,
+				25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */,
 				9A5931D217E5CD4500B20D99 /* propertiesIcon.png in Resources */,
 				9AA4D6EB18AE169100A43433 /* lipoBattery.png in Resources */,
 				9A5BD74F1860C52E00842833 /* triangleFilled@2x.png in Resources */,
@@ -5567,6 +5600,7 @@
 				9AF503A6167B84B40020241C /* THComparatorPaletteItem.m in Sources */,
 				9AF503A7167B84B40020241C /* THLSMCompassPaletteItem.m in Sources */,
 				9AF503A8167B84B40020241C /* THGrouperPaletteItem.m in Sources */,
+				25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */,
 				9A6B28AD18AA701A009AAE31 /* THGraphView.m in Sources */,
 				9AF503A9167B84B40020241C /* THiPhoneButtonPaletteItem.m in Sources */,
 				9AF503AA167B84B40020241C /* THiPhonePaletteItem.m in Sources */,

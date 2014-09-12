@@ -78,21 +78,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)layoutSubviews {
     
-    float x = kPaletteItemsPadding;
-    float y = kPaletteItemsPadding;
+    float x = kPaletteItemsHorizontalPadding;
+    float y = kPaletteItemsVerticalPadding;
     for(THPaletteItem * paletteItem in _paletteItems){
         //CGSize paletteItemSize = [self clampSizeToConstraints:paletteItem.frame.size];
-        CGSize paletteItemSize = CGSizeMake(kPaletteItemSize, kPaletteItemSize);
+        CGSize paletteItemSize = CGSizeMake(kPaletteItemWidth, kPaletteLabelHeight);
         [paletteItem setFrame:CGRectMake(x, y, paletteItemSize.width, paletteItemSize.height)];
-        x += kPaletteItemSize + kPaletteItemsPadding;
+        x += kPaletteItemWidth + kPaletteItemsHorizontalPadding;
         BOOL last = [_paletteItems indexOfObject:paletteItem] == [_paletteItems count] - 1;
-        if(!last && x >= self.bounds.size.width - paletteItemSize.width - kPaletteItemsPadding){
-            x = kPaletteItemsPadding;
-            y += kPaletteItemSize + kPaletteItemsPadding;
+        if(!last && x >= self.bounds.size.width - paletteItemSize.width - kPaletteItemsHorizontalPadding){
+            x = kPaletteItemsHorizontalPadding;
+            y += kPaletteItemHeight + kPaletteItemsVerticalPadding;
         }
     }
     
-    self.contentSize = CGSizeMake(self.frame.size.width, y + kPaletteItemSize + kPaletteItemsPadding);
+    self.contentSize = CGSizeMake(self.frame.size.width, y + kPaletteItemHeight + kPaletteItemsVerticalPadding);
     if(self.contentSize.height != self.frame.size.height){
         
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.contentSize.width, self.contentSize.height);
@@ -108,6 +108,12 @@ You should have received a copy of the GNU General Public License along with thi
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapRecognizer.cancelsTouchesInView = NO;
     [self addGestureRecognizer:tapRecognizer];
+    
+    //// Nazmus added - to fix the bug "crash when long tap on palette items"
+    for (UIGestureRecognizer *gr in paletteItem.gestureRecognizers) {
+        [paletteItem removeGestureRecognizer:gr];
+    }
+    ////
     
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragItem:)];
     [panRecognizer setMaximumNumberOfTouches:1];
@@ -210,10 +216,10 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark Private
 
 -(CGSize)clampSizeToConstraints:(CGSize)size {
-    size.width = MIN(size.width, kPaletteItemSize);
-    size.width = MAX(size.width, kPaletteItemSize);
-    size.height = MIN(size.height, kPaletteItemSize);
-    size.height = MAX(size.height, kPaletteItemSize);
+    size.width = MIN(size.width, kPaletteItemWidth);
+    size.width = MAX(size.width, kPaletteItemWidth);
+    size.height = MIN(size.height, kPaletteItemHeight);
+    size.height = MAX(size.height, kPaletteItemHeight);
     
     return size;
 }

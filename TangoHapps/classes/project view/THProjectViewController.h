@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class TFLayer;
 @class THPalette;
 @class THTabbarViewController;
+@class THMenubarViewController;
 @class THEditorToolsViewController;
 
 @interface THProjectViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate, CCDirectorDelegate> {
@@ -64,6 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) CCGLView * glview;
 @property (nonatomic, readonly) TFAppState state;
 @property (nonatomic, readonly) THTabbarViewController * tabController;
+@property (nonatomic, readonly) THMenubarViewController * menuController;
 @property (nonatomic, readonly) THEditorToolsViewController * toolsController;
 @property (nonatomic, strong) UIPanGestureRecognizer * panRecognizer;
 
@@ -75,6 +77,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) NSArray * simulatingTools;
 @property (strong, nonatomic) NSArray * lilypadTools;
 
+// nazmus commented
+/*
 //edition tools
 @property (strong, nonatomic) UIBarButtonItem * connectButton;
 @property (strong, nonatomic) UIBarButtonItem * duplicateButton;
@@ -89,12 +93,38 @@ You should have received a copy of the GNU General Public License along with thi
 //simulation tools
 @property (strong, nonatomic) UIBarButtonItem * pinsModeButton;
 @property (strong, nonatomic) UIBarButtonItem * stopButton;
-
+ 
 //other tools
 @property (strong, nonatomic) UIBarButtonItem * divider;
 @property (strong, nonatomic) UIBarButtonItem * divider2;
 @property (strong, nonatomic) UIBarButtonItem * emptyItem1;
 @property (strong, nonatomic) UIBarButtonItem * emptyItem2;
+
+*/
+////
+//namus added
+//edition tools
+@property (strong, nonatomic) UIButton * connectButton;
+@property (strong, nonatomic) UIButton * duplicateButton;
+@property (strong, nonatomic) UIButton * removeButton;
+@property (strong, nonatomic) UIButton * pushButton;
+@property (strong, nonatomic) UIBarButtonItem * playButton;
+
+//lilypad tools
+@property (strong, nonatomic) UIButton * lilypadButton;
+@property (strong, nonatomic) UIButton * hideiPhoneButton;
+
+//simulation tools
+@property (strong, nonatomic) UIButton * pinsModeButton;
+@property (strong, nonatomic) UIBarButtonItem * stopButton;
+
+//other tools
+@property (strong, nonatomic) UILabel * divider;
+@property (strong, nonatomic) UILabel * divider2;
+@property (strong, nonatomic) UILabel * emptyItem1;
+@property (strong, nonatomic) UILabel * emptyItem2;
+
+////
 
 //tool colors
 @property (strong, nonatomic) UIColor * highlightedItemTintColor;

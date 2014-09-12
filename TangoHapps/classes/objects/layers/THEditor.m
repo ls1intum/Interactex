@@ -444,11 +444,20 @@ You should have received a copy of the GNU General Public License along with thi
             invocationConnection.state = THInvocationConnectionLineStateComplete;
             invocationConnection.action.firstParam = event.param1;
             
-            if([invocationConnection.action.firstParam.target isKindOfClass:[TFSimulableObject class]]){
+            // Nazmus commented - to fix connection draw bug
+            /*if([invocationConnection.action.firstParam.target isKindOfClass:[TFSimulableObject class]]){
                 //NSLog(@"%@",invocationConnection.action.firstParam.target);
                 invocationConnection.action.firstParam.target = [project editableForSimulable:event.param1.target];
-            }
+            }*/
+            ////
         }
+        
+        // Nazmus added - to fix connection draw bug
+        if([invocationConnection.action.firstParam.target isKindOfClass:[TFSimulableObject class]]){
+            //NSLog(@"%@",invocationConnection.action.firstParam.target);
+            invocationConnection.action.firstParam.target = [project editableForSimulable:event.param1.target];
+        }
+        ////
         
         invocationConnection.parameterType = action.method.firstParamType;
         [invocationConnection reloadSprite];
