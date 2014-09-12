@@ -45,8 +45,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponentEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
-#import "THGesture.h"
-#import "THGestureEditableObject.h"
 #import "THLilypadEditable.h"
 
 #import "THClientProject.h"
@@ -139,7 +137,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadCustomProject{
     
     _clothes = [NSMutableArray array];
-    _gestures = [NSMutableArray array];
     _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
     _otherHardwareComponents = [NSMutableArray array];
@@ -204,7 +201,6 @@ You should have received a copy of the GNU General Public License along with thi
         NSArray * hardwareComponents = [decoder decodeObjectForKey:@"hardwareComponents"];
         NSArray * otherHardwareComponents = [decoder decodeObjectForKey:@"otherHardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
-        NSArray * gestures = [decoder decodeObjectForKey:@"gestures"];
         NSArray * iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         NSArray * conditions = [decoder decodeObjectForKey:@"conditions"];
         NSArray * values = [decoder decodeObjectForKey:@"values"];
@@ -225,10 +221,7 @@ You should have received a copy of the GNU General Public License along with thi
         for(THClothe* clothe in clothes){
             [self addClothe:clothe];
         }
-        
-        for(THGestureEditableObject* gesture in gestures) {
-            [self addGesture:gesture];
-        }
+    
         
         for(THBoardEditable * board in boards){
             [self addBoard:board];
@@ -287,7 +280,6 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
-    [coder encodeObject:self.gestures forKey:@"gestures"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
@@ -394,19 +386,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
     if(clotheObject.attachedToClothe){
         [clotheObject.attachedToClothe deattachClotheObject:clotheObject];
-    }
-}
-
--(void) pinGestureObject:(TFEditableObject*) gestureObject toGesture:(THGestureEditableObject*) gesture{
-    
-    if(!gestureObject.attachedToGesture){
-        [gesture attachGestureObject:gestureObject];
-    }
-}
-
--(void) unpinGestureObject:(TFEditableObject*) gestureObject{
-    if(gestureObject.attachedToGesture){
-        [gestureObject.attachedToGesture deattachGestureObject:gestureObject];
     }
 }
 
@@ -542,19 +521,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-#pragma mark - Gesture Objects
-
--(void) tryAttachGestureObject: (TFEditableObject*) gestureObject{
-    if(!gestureObject.attachedToGesture){
-        THGestureEditableObject * gesture = [self gestureAtLocation:gestureObject.position].firstObject;
-        if(gesture){
-            [gestureObject removeFromParentAndCleanup:YES];
-            [self pinGestureObject:gestureObject toGesture:gesture];
-            
-        }
-    }
-}
-
 #pragma mark - Other Hardware Components
 
 -(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) otherHardwareComponent{
@@ -577,31 +543,6 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     return nil;
-}
-
-#pragma mark - Gestures
-
--(void) addGesture:(TFEditableObject*) gesture{
-    [_gestures addObject:gesture];
-    [self notifyObjectAdded:gesture];
-}
-
--(void) removeGesture:(TFEditableObject*) gesture{
-    [self removeAllWiresFrom:gesture notify:YES];
-    [_clothes removeObject:gesture];
-    
-    [self notifyObjectRemoved:gesture];
-    [self deregisterActionsForObject:gesture];
-}
-
--(NSMutableArray*) gestureAtLocation:(CGPoint) location{
-    NSMutableArray * arr = [NSMutableArray array];
-    for (TFEditableObject * gesture in self.gestures) {
-        if([gesture testPoint:location]){
-            [arr addObject: gesture];
-        }
-    }
-    return arr;
 }
 
 #pragma mark - Clothes
@@ -759,16 +700,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
     [_eventActionPairs removeObject:toRemove];
     
-    //Juan check
-    //[toRemove.action.source removeConnectionTo:toRemove.action.target];
-    if ([toRemove.action.target isKindOfClass:[THOutputEditable class]]) {
-        THOutputEditable * obj = (THOutputEditable*) toRemove.action.target;
-        [obj deleteTop];
-    }
-    if ([toRemove.action.source isKindOfClass:[THOutputEditable class]]) {
-        THOutputEditable * obj = (THOutputEditable*) toRemove.action.source;
-        [obj deleteBot];
-    }
     TFEditableObject * editable = toRemove.action.source;
     [[NSNotificationCenter defaultCenter] removeObserver:action name:toRemove.event.name object:editable.simulableObject];
 }
@@ -1022,18 +953,6 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
--(TFEditableObject*) gestAtLocation:(CGPoint)location{
-    NSMutableArray * arr = [NSMutableArray array];
-    for (TFEditableObject* object in self.gestures) {
-        if([object testPoint:location]){
-            [arr addObject:object];
-        }
-    }
-    
-    return arr.lastObject;
-    
-    return nil;
-}
 
 /*
 enum zPositions{
@@ -1049,7 +968,6 @@ enum zPositions{
 -(NSMutableArray*) allObjects{
     NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.boards];
     [allObjects addObjectsFromArray:self.clothes];
-    [allObjects addObjectsFromArray:self.gestures];
     [allObjects addObjectsFromArray:self.actions];
     [allObjects addObjectsFromArray:self.triggers];
     [allObjects addObjectsFromArray:self.values];

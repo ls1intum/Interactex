@@ -46,8 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 @class THiPhoneEditableObject;
 @class THViewEditableObject;
 @class THClothe;
-@class THGestureEditableObject;
-@class THGestureLayer;
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
 @class THClientProject;
@@ -109,8 +107,6 @@ You should have received a copy of the GNU General Public License along with thi
 //pin
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe;
 -(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject;
--(void) pinGestureObject:(TFEditableObject*) gestureObject toGesture:(THGestureEditableObject*) gesture;
--(void) unpinGestureObject:(TFEditableObject*) gestureObject;
 
 //iPhone
 -(void) addiPhone:(THiPhoneEditableObject *)iPhone;
@@ -133,19 +129,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(THHardwareComponentEditableObject*) hardwareComponentAtLocation:(CGPoint) location;
 -(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject;
 
-//gestureObjects
--(TFEditableObject*) gestAtLocation:(CGPoint) location;
--(void) tryAttachGestureObject: (TFEditableObject*) gestureObject;
-
 //other hardware components
 -(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
 -(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location;
-
-//gestures
--(void) addGesture:(TFEditableObject*) object;
--(void) removeGesture:(TFEditableObject*) object;
--(NSMutableArray*) gestureAtLocation:(CGPoint) location;
 
 //clothes
 -(void) addClothe:(THClothe*) object;
@@ -201,7 +188,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic,readonly) NSMutableArray * boards;
 @property (nonatomic,readonly) NSMutableArray * hardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * otherHardwareComponents;
-@property (nonatomic,readonly) NSMutableArray * gestures;
+
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;
 @property (nonatomic,readonly) NSMutableArray * conditions;
