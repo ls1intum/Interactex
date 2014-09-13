@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251F674419C48F5300EF9807 /* iphoneBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674219C48F5300EF9807 /* iphoneBg.png */; };
+		251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674319C48F5300EF9807 /* iphoneBg@2x.png */; };
+		251F678419C4A1A300EF9807 /* hideVPmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678019C4A1A300EF9807 /* hideVPmode.png */; };
+		251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678119C4A1A300EF9807 /* hideVPmode@2x.png */; };
+		251F678619C4A1A300EF9807 /* vpmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678219C4A1A300EF9807 /* vpmode.png */; };
+		251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678319C4A1A300EF9807 /* vpmode@2x.png */; };
 		25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
 		25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25643B8D19B0E51F00F8E9CB /* THMenubar.xib */; };
 		25E57B1519C077C6006B61A8 /* playicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1319C077C6006B61A8 /* playicon.png */; };
@@ -1787,6 +1793,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		251F674219C48F5300EF9807 /* iphoneBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneBg.png; sourceTree = "<group>"; };
+		251F674319C48F5300EF9807 /* iphoneBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneBg@2x.png"; sourceTree = "<group>"; };
+		251F678019C4A1A300EF9807 /* hideVPmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hideVPmode.png; sourceTree = "<group>"; };
+		251F678119C4A1A300EF9807 /* hideVPmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hideVPmode@2x.png"; sourceTree = "<group>"; };
+		251F678219C4A1A300EF9807 /* vpmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vpmode.png; sourceTree = "<group>"; };
+		251F678319C4A1A300EF9807 /* vpmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vpmode@2x.png"; sourceTree = "<group>"; };
 		25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMenubarViewController.h; sourceTree = "<group>"; };
 		25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMenubarViewController.m; sourceTree = "<group>"; };
 		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THMenubar.xib; path = "../../classes/project view/palette view/THMenubar.xib"; sourceTree = "<group>"; };
@@ -2974,6 +2986,8 @@
 				9A4144CC17DE7A060061EDF8 /* iphone4@2x.png */,
 				9A4144CD17DE7A060061EDF8 /* iphone5.png */,
 				9A4144CE17DE7A060061EDF8 /* iphone5@2x.png */,
+				251F674219C48F5300EF9807 /* iphoneBg.png */,
+				251F674319C48F5300EF9807 /* iphoneBg@2x.png */,
 				9A4144CF17DE7A060061EDF8 /* iphoneFrameSimulator.xcf */,
 				9ABC27251809526C00B39D72 /* lilypadComplex.png */,
 				9ABC27261809526C00B39D72 /* lilypadComplex@2x.png */,
@@ -3104,6 +3118,10 @@
 				25E57B1419C077C6006B61A8 /* playicon@2x.png */,
 				9A41453917DE7A060061EDF8 /* push.png */,
 				9A41453A17DE7A060061EDF8 /* push@2x.png */,
+				251F678019C4A1A300EF9807 /* hideVPmode.png */,
+				251F678119C4A1A300EF9807 /* hideVPmode@2x.png */,
+				251F678219C4A1A300EF9807 /* vpmode.png */,
+				251F678319C4A1A300EF9807 /* vpmode@2x.png */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -4864,6 +4882,7 @@
 				9A94F42A16A0192700AF52AB /* THLabelProperties.xib in Resources */,
 				9AA4D6E918AE169100A43433 /* BLE-LilyPad.png in Resources */,
 				9A94F42C16A0192700AF52AB /* THLedProperties.xib in Resources */,
+				251F678619C4A1A300EF9807 /* vpmode.png in Resources */,
 				9A8942AD1836241C00B8CA0E /* jennic.png in Resources */,
 				9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */,
 				9A94F43016A0192700AF52AB /* THMapperProperties.xib in Resources */,
@@ -4921,12 +4940,14 @@
 				9A41456517DE7A060061EDF8 /* LSMCompass.png in Resources */,
 				9A41456717DE7A060061EDF8 /* LSMCompass@2x.png in Resources */,
 				9A41456917DE7A060061EDF8 /* compassCircle.png in Resources */,
+				251F674419C48F5300EF9807 /* iphoneBg.png in Resources */,
 				9A41456B17DE7A060061EDF8 /* compassCircle@2x.png in Resources */,
 				9A41456D17DE7A060061EDF8 /* condition.png in Resources */,
 				9A41456F17DE7A060061EDF8 /* condition@2x.png in Resources */,
 				9A41457117DE7A060061EDF8 /* contactBook.png in Resources */,
 				9A41457317DE7A060061EDF8 /* contactBook@2x.png in Resources */,
 				9A41457517DE7A060061EDF8 /* grouper.png in Resources */,
+				251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */,
 				9A41457717DE7A060061EDF8 /* grouper@2x.png in Resources */,
 				9A41457917DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457B17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
@@ -4950,6 +4971,7 @@
 				9A41459F17DE7A060061EDF8 /* palette_button.png in Resources */,
 				9A6B285218AA08A0009AAE31 /* musinum_generator1.pd in Resources */,
 				9A5BD7431860C52E00842833 /* circleFilled@2x.png in Resources */,
+				251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */,
 				9A4145A117DE7A060061EDF8 /* palette_button@2x.png in Resources */,
 				9A4145A317DE7A060061EDF8 /* palette_buzzer.png in Resources */,
 				9A4145A517DE7A060061EDF8 /* palette_buzzer@2x.png in Resources */,
@@ -5084,8 +5106,10 @@
 				9A5931CA17E5CD4500B20D99 /* paletteIcon.png in Resources */,
 				9A5931CC17E5CD4500B20D99 /* paletteIcon@2x.png in Resources */,
 				9AA4D6F018AE169100A43433 /* palette_lipoBattery@2x.png in Resources */,
+				251F678419C4A1A300EF9807 /* hideVPmode.png in Resources */,
 				9A5931CE17E5CD4500B20D99 /* paletteIconSelected.png in Resources */,
 				9A5931D017E5CD4500B20D99 /* paletteIconSelected@2x.png in Resources */,
+				251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */,
 				25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */,
 				9A5931D217E5CD4500B20D99 /* propertiesIcon.png in Resources */,
 				9AA4D6EB18AE169100A43433 /* lipoBattery.png in Resources */,
