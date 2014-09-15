@@ -61,14 +61,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 -(void) addViews{
     
+//    self.layer.borderWidth = 1.0f;
+    
     CGRect frame = CGRectMake(0, 0, kPaletteItemWidth, kPaletteItemHeight);
     
     //container
     _container = [[UIView alloc] initWithFrame:frame];
-    
-    // nazmus commented 24 Aug 14
-    //_container.layer.borderWidth = 1.0f;
-    /*_container.layer.cornerRadius = 5.0f;*/
     
     [self addSubview:_container];
     
