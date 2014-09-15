@@ -159,10 +159,11 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self loadCustomProject];
     
-    /*
+    // nazmus uncommented the following lines
     THiPhoneEditableObject * iPhone = [THiPhoneEditableObject iPhoneWithDefaultView];
     iPhone.position = kDefaultiPhonePosition;
-    [self addiPhone:iPhone];*/
+    [self addiPhone:iPhone];
+    ////
 }
 
 -(id) init{

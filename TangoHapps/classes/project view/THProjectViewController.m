@@ -92,8 +92,8 @@ float const kToolsTabMargin = 5;
     _menuController = [[THMenubarViewController alloc] initWithNibName:@"THMenubar" bundle:nil];
     [_menuController.view setFrame:CGRectMake(0, 0, 1024.0f, 64.0f)];
     [_menuController.view viewWithTag:1].layer.masksToBounds = NO;
-    [_menuController.view viewWithTag:1].layer.shadowOffset = CGSizeMake(5, -5);
-    [_menuController.view viewWithTag:1].layer.shadowRadius = 5;
+    [_menuController.view viewWithTag:1].layer.shadowOffset = CGSizeMake(0, -5);
+    [_menuController.view viewWithTag:1].layer.shadowRadius = 4;
     [_menuController.view viewWithTag:1].layer.shadowOpacity = 0.5;
     [self.view insertSubview:_menuController.view belowSubview:_tabController.view];
     ////
@@ -494,6 +494,7 @@ float const kToolsTabMargin = 5;
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
+        self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         [self updatePalettePullVisibility];
         [self removePalettePullRecognizer];
@@ -579,6 +580,9 @@ float const kToolsTabMargin = 5;
     
     UIImage * connectButtonImage = [UIImage imageNamed:imageName];
     UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
+    if ([imageName isEqualToString:@"vpmode.png"]) {
+        [retButton setFrame:CGRectMake(0, 0, 248, 73)];
+    }
     [retButton setImage:connectButtonImage forState:UIControlStateNormal];
     [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     
@@ -599,7 +603,9 @@ float const kToolsTabMargin = 5;
     self.pushButton = [self createItemWithImageName:@"push.png" action:@selector(pushPressed:)];
     self.lilypadButton = [self createItemWithImageName:@"lilypadmode.png" action:@selector(lilypadPressed:)];
     self.pinsModeButton = [self createItemWithImageName:@"pinsmode.png" action:@selector(pinsModePressed:)];
-    self.hideiPhoneButton = [self createItemWithImageName:@"hideiphone.png" action:@selector(hideiPhonePressed:)];
+    self.hideiPhoneButton = [self createItemWithImageName:@"hideVPmode.png" action:@selector(hideiPhonePressed:)];
+    self.vpmodeButton = [self createItemWithImageName:@"vpmode.png" action:nil];
+    [self.vpmodeButton setUserInteractionEnabled:NO];
     
     self.playButton = [[UIBarButtonItem alloc]
                        initWithImage:[UIImage imageNamed:@"playicon.png"]
@@ -626,9 +632,14 @@ float const kToolsTabMargin = 5;
     */
     ////
     // nazmus added
-    self.editingTools = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.simulatingTools = [NSArray arrayWithObjects: self.pinsModeButton, nil];
+    self.editingToolsWithoutVPmode = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    
+    self.editingTools = self.editingToolsWithVPmode;
+    
+    //self.simulatingTools = [NSArray arrayWithObjects: self.pinsModeButton, nil];
+    self.simulatingTools = [[NSArray alloc ] init];
     
     self.lilypadTools = [NSArray arrayWithObjects: self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
@@ -803,6 +814,7 @@ float const kToolsTabMargin = 5;
         [editor stopLilypadMode];
         
         [self checkSwitchToState:kEditorStateNormal];
+        self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         
     } else {
@@ -836,8 +848,17 @@ float const kToolsTabMargin = 5;
 - (void) hideiPhonePressed:(id)sender {
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    if (project.iPhone.visible) {
+        self.editingTools = self.editingToolsWithoutVPmode;
+    } else {
+        self.editingTools = self.editingToolsWithVPmode;
+    }
+    [self addEditionButtons];
     project.iPhone.visible = !project.iPhone.visible;
     [self updateHideIphoneButtonTint];
+    
+    
+    
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];

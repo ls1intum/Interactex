@@ -59,6 +59,14 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.sprite != nil){
         [self.sprite removeFromParentAndCleanup:YES];
     }
+    
+    // nazmus added
+    CCSprite *iphoneBgSprite = [CCSprite spriteWithFile:@"iphoneBg.png"];
+    [iphoneBgSprite setOpacity:180.0];
+    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding)];
+    [self addChild:iphoneBgSprite z:kiPhoneZ-1];
+    ////
+    
     NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
     self.sprite = [CCSprite spriteWithFile:fileName];
     [self addChild:self.sprite z:kiPhoneZ];
@@ -200,6 +208,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.currentView = (THView*) currentView.simulableObject;
+    
+    iPhone.currentView.backgroundColor = [UIColor lightGrayColor];
 }
 
 -(void) setPosition:(CGPoint)position{

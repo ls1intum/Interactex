@@ -74,6 +74,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, strong) UIImageView * palettePullImageView;
 
 @property (strong, nonatomic) NSArray * editingTools;
+@property (strong, nonatomic) NSArray * editingToolsWithVPmode;
+@property (strong, nonatomic) NSArray * editingToolsWithoutVPmode;
 @property (strong, nonatomic) NSArray * simulatingTools;
 @property (strong, nonatomic) NSArray * lilypadTools;
 
@@ -113,6 +115,7 @@ You should have received a copy of the GNU General Public License along with thi
 //lilypad tools
 @property (strong, nonatomic) UIButton * lilypadButton;
 @property (strong, nonatomic) UIButton * hideiPhoneButton;
+@property (strong, nonatomic) UIButton * vpmodeButton;
 
 //simulation tools
 @property (strong, nonatomic) UIButton * pinsModeButton;
