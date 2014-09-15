@@ -12,7 +12,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view autoresizesSubviews="NO" contentMode="scaleAspectFit" id="6kj-eY-t8s">
-            <rect key="frame" x="0.0" y="0.0" width="1024" height="64"/>
+            <rect key="frame" x="0.0" y="0.0" width="255" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view tag="1" contentMode="scaleToFill" id="w66-y6-bZt">

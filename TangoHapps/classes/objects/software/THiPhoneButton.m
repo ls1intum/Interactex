@@ -126,6 +126,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     UIButton * button = (UIButton*) self.view;
     [button setTitle:text forState:UIControlStateNormal];
+    [button setTitle:text forState:UIControlStateDisabled];
 }
 
 -(NSString*) text{
