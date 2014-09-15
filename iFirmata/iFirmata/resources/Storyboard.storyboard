@@ -376,10 +376,10 @@
             </objects>
             <point key="canvasLocation" x="1359" y="4"/>
         </scene>
-        <!--Specific View Controller-->
+        <!--View Controller-->
         <scene sceneID="3Uu-pN-Kpx">
             <objects>
-                <viewController id="Ldl-fB-N3X" customClass="IFI2CSpecificViewController" sceneMemberID="viewController">
+                <viewController id="Ldl-fB-N3X" customClass="IFI2CLSM303ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dmB-Nq-fa1"/>
                         <viewControllerLayoutGuide type="bottom" id="bkS-YB-hqv"/>

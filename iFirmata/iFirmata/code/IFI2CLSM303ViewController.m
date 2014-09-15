@@ -6,13 +6,16 @@
 //  Copyright (c) 2014 TUM. All rights reserved.
 //
 
-#import "IFI2CSpecificViewController.h"
+#import "IFI2CLSM303ViewController.h"
 #import "IFI2CRegister.h"
 #import "IFI2CComponent.h"
 #import "IFI2CComponentProxy.h"
 #import "IFFirmata.h"
 
-@implementation IFI2CSpecificViewController
+@implementation IFI2CLSM303ViewController
+
+NSInteger const address = 24;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +37,11 @@
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self.component.component.continousReadingRegister removeObserver:self forKeyPath:@"value"];
+    
+    if(self.stopButton.enabled){
+        
+        [self stopReadingAccelerometer];
+    }
 }
 
 - (void)viewDidLoad
@@ -53,17 +61,15 @@
 -(void) updateValueLabel{
     IFI2CRegister * reg = self.component.component.continousReadingRegister;
     
-    NSLog(@"%d",(int)reg.value.length);
-    
     if(reg.value.length <= 0){
         return;
     }
     
     uint8_t* bytes = (uint8_t*)reg.value.bytes;
     
-    int x = bytes[0] | (bytes[1] << 7);
-    int y = bytes[2] | (bytes[3] << 7);
-    int z = bytes[4] | (bytes[5] << 7);
+    int x = bytes[1] << 8 | bytes[0];
+    int y = bytes[3] << 8 | bytes[2];
+    int z = bytes[5] << 8 | bytes[4];
     
     self.valueLabel.text = [NSString stringWithFormat:@"%d %d %d",x,y,z];
 }
@@ -78,19 +84,26 @@
 
 - (IBAction)startTapped:(id)sender {
     
+    uint8_t firstVal = 0;
+    
     uint8_t buf[2];
     [BLEHelper valueAsTwo7bitBytes:39 buffer:buf];
     
-    [self.firmata sendI2CWriteToAddress:24 reg:32 bytes:buf numBytes:2];
-    [self.firmata sendI2CStartReadingAddress:24 reg:40 size:6];
+    [self.firmata sendI2CWriteToAddress:address reg:35 bytes:&firstVal numBytes:1];
+    [self.firmata sendI2CWriteToAddress:address reg:32 bytes:buf numBytes:2];
+    [self.firmata sendI2CStartReadingAddress:address reg:40 size:6];
     
     [self updateStartButtons:YES];
 }
 
-- (IBAction)stopTapped:(id)sender {
+-(void) stopReadingAccelerometer{
     
-    [self.firmata sendI2CStopReadingAddress:24];
+    [self.firmata sendI2CStopReadingAddress:address];
     [self updateStartButtons:NO];
+}
+
+- (IBAction)stopTapped:(id)sender {
+    [self stopReadingAccelerometer];
 }
 
 #pragma mark - Observing Value

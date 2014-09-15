@@ -253,7 +253,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"toI2CDeviceSegue"]){
-        IFI2CSpecificViewController * viewController = segue.destinationViewController;
+        IFI2CLSM303ViewController * viewController = segue.destinationViewController;
         
         IFI2CComponentCell * cell = (IFI2CComponentCell*) [self.table cellForRowAtIndexPath:self.table.indexPathForSelectedRow];
         viewController.component = cell.component;

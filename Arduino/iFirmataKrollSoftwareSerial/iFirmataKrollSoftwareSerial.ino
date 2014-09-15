@@ -320,7 +320,8 @@ void reportAnalogCallback(byte analogPin, int value)
 }
 
 void reportDigitalCallback(byte port, int value) {
-     
+     Serial.print("enter report for port ");
+     Serial.println(port);
   if (port < TOTAL_PORTS) {
   
     reportPINs[port] = (byte)value;
