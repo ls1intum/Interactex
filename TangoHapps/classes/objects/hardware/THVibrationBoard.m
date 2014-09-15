@@ -157,7 +157,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOn {
     if(!self.on){
-        NSLog(@"vibe on");
         self.on = YES;
         
         [self triggerEventNamed:kEventTurnedOn];
@@ -166,7 +165,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOff {
     if(self.on){
-        NSLog(@"vibe off");
         self.on = NO;
         
         [self triggerEventNamed:kEventTurnedOff];
