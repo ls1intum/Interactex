@@ -292,9 +292,9 @@ You should have received a copy of the GNU General Public License along with thi
         
         IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
 
-        int pinNumber = portNumber * 8;
+        NSInteger pinNumber = portNumber * 8;
         for (int mask = 1; mask & 0xFF ; mask <<= 1, pinNumber++) {
-            int pinIdx = pinNumber - firstPin.number;
+            NSInteger pinIdx = pinNumber - firstPin.number;
             if(pinIdx >= 0 && pinIdx < self.digitalPins.count){
                 IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber - firstPin.number];
 

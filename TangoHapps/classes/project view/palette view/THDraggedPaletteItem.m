@@ -52,7 +52,13 @@ You should have received a copy of the GNU General Public License along with thi
         _imageView = [[UIImageView alloc] initWithImage:item.image];
         [_imageView setContentMode:UIViewContentModeScaleAspectFit];
         [_imageView setAlpha:kDragViewDefaultOpacity];
-        self.frame = _imageView.frame;
+        
+        float scaleFactor = 1.2f;
+        CGRect frame = _imageView.frame;
+        frame.size = CGSizeMake(frame.size.width * scaleFactor, frame.size.height * scaleFactor);
+        self.frame = frame;
+        _imageView.frame = frame;
+        
         [self addSubview:_imageView];
     }
     return self;
