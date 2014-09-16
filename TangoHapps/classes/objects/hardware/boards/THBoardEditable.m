@@ -46,18 +46,114 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPinEditable.h"
 #import "THWire.h"
 #import "THHardwareComponentEditableObject.h"
+#import "THPin.h"
+#import "THBoard.h"
 
 @implementation THBoardEditable
 
-#pragma mark - Archiving
+#pragma mark - Initialization
+
+#define kBLELilypadNumberOfPins 22
+
+NSInteger kBoardNumPins[kMaxNumBoards] = {11,22,22};
+
+CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
+    {//simple
+        {55.0, -94.0}, {94.0, -55.0},{109.0, -2.0},{94.0, 52.0},{54.0, 91.0},//D2,3,9,10,11
+        {-52, -94}, {2.0, -110.0},//- +
+        {-52,91},{-92,51},{-105, -3},{-91, -55}//A2 - A5
+    },
+    {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
+        {-111.0, 16.0}, {-102.0, -17.0},//- +
+        {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
+        {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
+        {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
+    },
+    {//ble
+        {1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
+        {-111.0, 16.0}, {-102.0, -17.0},//- +
+        {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
+        {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
+        {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
+    }
+};
+
+/*
+CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
+    {-111.0, 16.0}, {-102.0, -17.0},//- +
+    {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
+    {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
+    {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
+};
+
+
+CGPoint kBLELilypadPinPositions[kBLELilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
+    {-111.0, 16.0}, {-102.0, -17.0},//- +
+    {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
+    {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
+    {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
+};
+
+CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
+    {55.0, -94.0}, {94.0, -55.0},{109.0, -2.0},{94.0, 52.0},{54.0, 91.0},//D2,3,9,10,11
+    {-52, -94}, {2.0, -110.0},//- +
+    {-52,91},{-92,51},{-105, -3},{-91, -55}//A2 - A5
+};*/
+
+/*
+ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
+ {0, 0}, {0, 0},{0, 0},{0, 0},{0, 0},//D2,3,9,10,11
+ {-52, -94}, {-2, -110.0},//- +
+ {0,0},{0,0},{0, 0},{0, 0}//A2 - A5
+ };*/
+
+-(void) loadBoard{
+    
+    [self loadPins];
+    
+    self.canBeDuplicated = NO;
+    
+    self.minusPin.highlightColor = kMinusPinHighlightColor;
+    self.plusPin.highlightColor = kPlusPinHighlightColor;
+}
+
+-(void) addPins{
+    for (THPinEditable * pin in self.pins) {
+        [self addChild:pin z:1];
+    }
+}
+
+-(void) loadPins{
+    int i = 0;
+    
+    THBoard * lilypad = (THBoard*) self.simulableObject;
+    for (THPin * pin in lilypad.pins) {
+        THBoardPinEditable * pinEditable = [[THBoardPinEditable alloc] init];
+        pinEditable.simulableObject = pin;
+        
+        pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kBoardPinPositions[self.boardType][i]);
+        pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
+        
+        [self.pins addObject:pinEditable];
+        i++;
+    }
+    
+    [self addPins];
+}
 
 -(id) init{
     self = [super init];
     if (self) {
+        
+        self.pins = [NSMutableArray array];
+        
         self.showsWires = YES;
+        
     }
     return self;
 }
+
+#pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
@@ -176,11 +272,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) prepareToDie{
     
-    for (THElementPinEditable * pin in _pins) {
+    for (THElementPinEditable * pin in self.pins) {
         [pin prepareToDie];
     }
     
-    _pins = nil;
+    self.pins = nil;
     [super prepareToDie];
 }
 
