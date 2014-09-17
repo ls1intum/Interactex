@@ -174,9 +174,12 @@
         for (THInvocationConnectionLine * line in _connections) {
             if (obj == line.obj1) {
                 line.obj1 = cop;
+                line.action.source = cop;
+                line.action.firstParam.target = cop;
             }
             else if (obj == line.obj2) {
                 line.obj2 = cop;
+                line.action.target = cop;
             }
         }
     }
@@ -187,9 +190,12 @@
         for (THInvocationConnectionLine * line in _connections) {
             if (obj == line.obj1) {
                 line.obj1 = cop;
+                line.action.source = cop;
+                line.action.firstParam.target = cop;
             }
             else if (obj == line.obj2) {
                 line.obj2 = cop;
+                line.action.target = cop;
             }
         }
     }
