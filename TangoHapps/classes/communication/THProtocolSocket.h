@@ -93,6 +93,7 @@ typedef enum {
     NSMutableData *receiveBuffer;
     NSUInteger receivedChunks;
     NSUInteger receiveChunksTotal;
+
     
     GKSession *session;
     NSString *peerID;

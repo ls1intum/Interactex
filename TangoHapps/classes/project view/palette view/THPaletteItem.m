@@ -224,8 +224,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     if(selected != _selected){
         _selected = selected;
         if(selected){
+            _container.layer.borderWidth = 1.0f;
             _container.layer.borderColor = [UIColor blueColor].CGColor;
         } else {
+            _container.layer.borderWidth = 0.0f;
             _container.layer.borderColor = [UIColor blackColor].CGColor;
         }
     }
