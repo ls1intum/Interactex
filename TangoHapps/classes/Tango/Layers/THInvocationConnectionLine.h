@@ -60,6 +60,7 @@ typedef enum  {
 @property(nonatomic) TFEditableObject * obj1;
 @property(nonatomic) TFEditableObject * obj2;
 @property(nonatomic) TFMethodInvokeAction * action;
+@property(nonatomic) TFEvent * event;
 
 @property(nonatomic) BOOL shouldAnimate;
 

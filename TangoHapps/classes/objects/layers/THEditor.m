@@ -454,6 +454,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         invocationConnection.parameterType = action.method.firstParamType;
         [invocationConnection reloadSprite];
+        invocationConnection.event = event;
         
     } else {
         invocationConnection.action.firstParam = nil;

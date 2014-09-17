@@ -113,6 +113,24 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     [coder encodeCGPoint:self.lineCenter forKey:@"lineCenter"];
 }
 
+-(id)copyWithZone:(NSZone *)zone {
+    
+    THInvocationConnectionLine * copy = [super copyWithZone:zone];
+    
+    copy.numParameters = self.numParameters;
+    copy.state = self.state;
+    copy.parameterType = self.parameterType;
+    copy.action = [self.action copy];
+    copy.obj1 = self.obj1;
+    copy.obj2 = self.obj2;
+    copy.lineCenter = self.lineCenter;
+    copy.event = self.event;
+    
+    [copy loadConnectionLine];
+    
+    return copy;
+}
+
 #pragma mark - Property Controller
 
 

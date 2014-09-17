@@ -7,6 +7,7 @@
 //
 
 #import "THInvocationConnectionLine.h"
+#import "TFEventActionPair.h"
 #import "THGestureEditableObject.h"
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
@@ -151,16 +152,18 @@
     }
     
     
-    
     for (TFEditableObject * attachment in [self getAttachments]) {
         TFEditableObject* cop = [attachment copy];
         [copy attachGestureObject:cop];
         for (THInvocationConnectionLine * line in _connections) {
             if (attachment == line.obj1) {
                 line.obj1 = cop;
+                line.action.source = cop;
+                line.action.firstParam.target = cop;
             }
             else if (attachment == line.obj2) {
                 line.obj2 = cop;
+                line.action.target = cop;
             }
         }
     }
@@ -193,6 +196,12 @@
     
     for (THInvocationConnectionLine * line in _connections) {
         [project addInvocationConnection:line animated:YES];
+        TFEvent* event;
+        for (TFEvent * ev in line.obj1.events) {
+           if (line.event.name == ev.name)
+               event = ev;
+        }
+        [project registerAction:(TFAction*)line.action forEvent:event];
     }
     
     return copy;
