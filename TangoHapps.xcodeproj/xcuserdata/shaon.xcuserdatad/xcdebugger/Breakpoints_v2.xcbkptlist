@@ -212,12 +212,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHapps/classes/objects/layers/THEditor.m"
-            timestampString = "426617292.525921"
+            timestampString = "432980525.14953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1389"
-            endingLineNumber = "1389"
-            landmarkName = "-hideNonLilypadPaletteSections"
+            startingLineNumber = "1404"
+            endingLineNumber = "1404"
+            landmarkName = "-startLilypadMode"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHapps/classes/objects/layers/THEditor.m"
-            timestampString = "426616165.469874"
+            timestampString = "432979498.531342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "-methodSelectionPopup:didSelectAction:forEvent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -340,12 +340,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHapps/classes/objects/layers/THEditor.m"
-            timestampString = "426686344.52315"
+            timestampString = "432979498.531342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "811"
-            endingLineNumber = "811"
-            landmarkName = "-tapped:"
+            startingLineNumber = "822"
+            endingLineNumber = "822"
+            landmarkName = "-checkPinClotheObject:atLocation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -372,13 +372,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHapps/classes/objects/layers/THEditor.m"
-            timestampString = "426689911.472819"
+            timestampString = "432979498.531342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "@implementation THEditor"
-            landmarkType = "3">
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "-selectObject:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TangoHapps/classes/objects/layers/THEditor.m"
+            timestampString = "432979498.531342"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
+            landmarkName = "-tapped:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TangoHapps/classes/objects/layers/THEditor.m"
+            timestampString = "432979233.683626"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "-selectObjectAtPosition:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TangoHapps/classes/objects/layers/THEditor.m"
+            timestampString = "432980207.118811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "669"
+            endingLineNumber = "669"
+            landmarkName = "-handleSingleTouchMove:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

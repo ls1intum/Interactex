@@ -395,6 +395,18 @@ float const kToolsTabMargin = 5;
 {
     _tabController.hidden = NO;
 }
+
+//nazmus added 21 Sep 14
+-(void)hideMenuBar
+{
+    _menuController.view.hidden = YES;
+}
+
+-(void)showMenuBar
+{
+    _menuController.view.hidden = NO;
+}
+////
 /*
 -(void)hideTools
 {
@@ -463,6 +475,10 @@ float const kToolsTabMargin = 5;
         
         [self hideTabBar];
         
+        //nazmus added 21 Sep 14 - hide menubar because there is no button in it
+        [self hideMenuBar];
+        ////
+        
         [self addSimulationButtons];
         
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -494,6 +510,12 @@ float const kToolsTabMargin = 5;
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
+        
+        //nazmus added 21 Sep 14
+        [self showMenuBar];
+        [self.tabController showTab:0];
+        ////
+        
         self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         [self updatePalettePullVisibility];
@@ -788,7 +810,6 @@ float const kToolsTabMargin = 5;
 }
 
 - (void)duplicatePressed:(id)sender {
-    
     [self checkSwitchToState:kEditorStateDuplicate];
 }
 
@@ -856,9 +877,6 @@ float const kToolsTabMargin = 5;
     [self addEditionButtons];
     project.iPhone.visible = !project.iPhone.visible;
     [self updateHideIphoneButtonTint];
-    
-    
-    
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];

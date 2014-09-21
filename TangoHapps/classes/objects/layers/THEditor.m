@@ -230,6 +230,12 @@ You should have received a copy of the GNU General Public License along with thi
     if(object){
         [self selectObject:object];
     }
+    // nazmus added - 21 Sep 14 - to switch back to palette (/ library) view when no item is selected
+    else {
+        THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+        [[projectController tabController] showTab:0];
+    }
+    ////
 }
 
 -(void) handleSelectionLost{
@@ -277,6 +283,11 @@ You should have received a copy of the GNU General Public License along with thi
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
     }
+    
+    // nazmus added - 21 Sep 14 - to automatically open properties tab when selecting an object
+    THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+    [[projectController tabController] showTab:1];
+    ////
 }
 
 #pragma mark - Connection
@@ -918,6 +929,10 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.currentObject.canBeAddedToPalette){
         if(location.x < paletteRightX){
             if(!_currentPaletteItem){
+                // nazmus added - 21 Sep 14 - to switch back to the palette(/library) view when trying to add custom palette object
+                THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+                [[projectController tabController] showTab:0];
+                ////
                 [self handleItemEnteredPaletteAt:location];
             }
         } else {

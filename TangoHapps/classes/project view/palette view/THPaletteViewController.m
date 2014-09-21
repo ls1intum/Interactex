@@ -442,7 +442,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.clothesSectionArray  = [NSMutableArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
     
-    self.uiSectionArray = [NSMutableArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
+    self.uiSectionArray = [NSMutableArray arrayWithObjects://[[THiPhonePaletteItem alloc] initWithName:@"iphone"], //nazmus commented
                            [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
                            [[THLabelPaletteItem alloc] initWithName:@"label"],
                            [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
@@ -483,10 +483,10 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
+                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
-                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
                                      
                                      nil];
     

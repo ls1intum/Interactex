@@ -59,6 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (IBAction)paletteTapped:(id)sender;
 - (IBAction)propertiesTapped:(id)sender;
+- (void) showTab:(NSInteger)index;
 
 
 @end

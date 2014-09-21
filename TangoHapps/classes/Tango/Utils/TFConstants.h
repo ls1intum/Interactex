@@ -71,6 +71,7 @@ extern float kPaletteItemsHorizontalPadding; // Nazmus added
 extern float kPaletteItemsVerticalPadding; // Nazmus added
 extern float kPaletteItemWidth; // Nazmus added
 extern float kPaletteItemHeight; // Nazmus added
+extern float kPaletteItemPaddingTop; // Nazmus added
 extern CGSize const kPaletteItemImageSize;
 extern CGSize const kPaletteItemLabelSize;
 extern float const kPaletteItemLabelVerticalPosition;
