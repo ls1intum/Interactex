@@ -42,7 +42,9 @@
 
 - (IBAction)uuidTextChanged:(id)sender {
     THiBeaconEditable * ibeacon = (THiBeaconEditable*) self.editableObject;
-    ibeacon.uuid = [[NSUUID UUID] initWithString:self.uuidText.text];
+    
+    ibeacon.uuid = [[NSUUID UUID] initWithUUIDString:self.uuidText.text];
+    //ibeacon.uuid = [[NSUUID UUID] initWithString:self.uuidText.text];
     [self updateUUIDText];
     
 }
