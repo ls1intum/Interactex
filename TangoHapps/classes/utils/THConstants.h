@@ -191,6 +191,8 @@ extern CGSize const kiPhoneButtonDefaultSize;
 
 extern CGPoint const kDefaultiPhonePosition;
 
+extern float const kiPhoneBgPadding; // nazmus added
+
 extern CGPoint const kSewedPositions[kNumHardwareTypes];
 
 

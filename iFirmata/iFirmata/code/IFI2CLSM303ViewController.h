@@ -13,7 +13,7 @@
 @class IFI2CGenericViewController;
 @class IFFirmata;
 
-@interface IFI2CSpecificViewController : UIViewController
+@interface IFI2CLSM303ViewController : UIViewController
 
 - (IBAction)startTapped:(id)sender;
 - (IBAction)stopTapped:(id)sender;

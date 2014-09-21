@@ -359,7 +359,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="iFirmata" id="H0L-qt-b72">
-                        <barButtonItem key="rightBarButtonItem" image="optionsMenu.png" id="a0R-rl-gvE">
+                        <barButtonItem key="rightBarButtonItem" image="optionsMenu" id="a0R-rl-gvE">
                             <connections>
                                 <action selector="optionsMenuTapped:" destination="dTY-Yg-s3k" id="cG0-Se-piH"/>
                             </connections>
@@ -376,10 +376,10 @@
             </objects>
             <point key="canvasLocation" x="1359" y="4"/>
         </scene>
-        <!--Specific View Controller-->
+        <!--View Controller-->
         <scene sceneID="3Uu-pN-Kpx">
             <objects>
-                <viewController id="Ldl-fB-N3X" customClass="IFI2CSpecificViewController" sceneMemberID="viewController">
+                <viewController id="Ldl-fB-N3X" customClass="IFI2CLSM303ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dmB-Nq-fa1"/>
                         <viewControllerLayoutGuide type="bottom" id="bkS-YB-hqv"/>
@@ -408,13 +408,13 @@
                                     <action selector="stopTapped:" destination="Ldl-fB-N3X" eventType="touchUpInside" id="mHJ-XI-S6M"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VO2-lb-DQZ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VO2-lb-DQZ">
                                 <rect key="frame" x="20" y="357" width="280" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="okR-4f-gqq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -586,7 +586,7 @@
         <image name="RoundedRedCancelButton" width="111" height="111"/>
         <image name="RoundedStartButton" width="111" height="111"/>
         <image name="arrowDown.png" width="603" height="477"/>
-        <image name="optionsMenu.png" width="20" height="20"/>
+        <image name="optionsMenu" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

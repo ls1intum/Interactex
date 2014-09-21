@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectViewController.h"
 #import "THProjectViewController.h"
 #import "THTabbarViewController.h"
+#import "THMenubarViewController.h"
 #import "THSimulator.h"
 #import "THEditor.h"
 #import "THiPhoneEditableObject.h"
@@ -50,7 +51,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THProjectViewController
 
-float const kPalettePullY = 364;
+//float const kPalettePullY = 364; // Nazmus commented
+float const kPalettePullY = 0;
 float const kToolsTabMargin = 5;
 
 #pragma mark - View Lifecycle
@@ -82,8 +84,19 @@ float const kToolsTabMargin = 5;
     
     _tabController = [[THTabbarViewController alloc] initWithNibName:@"THTabbar" bundle:nil];
     
+    [_tabController.view setFrame:CGRectMake(0, 0, kPaletteSectionWidth, 722.0f)];  //Nazmus added
+    
     [self.view addSubview:_tabController.view];
     
+    //nazmus added
+    _menuController = [[THMenubarViewController alloc] initWithNibName:@"THMenubar" bundle:nil];
+    [_menuController.view setFrame:CGRectMake(0, 0, 1024.0f, 64.0f)];
+    [_menuController.view viewWithTag:1].layer.masksToBounds = NO;
+    [_menuController.view viewWithTag:1].layer.shadowOffset = CGSizeMake(0, -5);
+    [_menuController.view viewWithTag:1].layer.shadowRadius = 4;
+    [_menuController.view viewWithTag:1].layer.shadowOpacity = 0.5;
+    [self.view insertSubview:_menuController.view belowSubview:_tabController.view];
+    ////
     
     // Observe some notifications so we can properly instruct the director.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -331,6 +344,39 @@ float const kToolsTabMargin = 5;
             [sender setTranslation:CGPointMake(0, 0) inView:self.view];
         }
     } else {
+        
+        /// Nazmus 28 June 14
+        if(self.movingTabBar){
+            CGPoint velocity = [sender velocityInView:self.view];
+            if(velocity.x > 0)
+            {
+                //NSLog(@"Final gesture went right");
+                //set palette frame
+                CGRect paletteFrame = self.tabController.view.frame;
+                paletteFrame.origin.x = 0;
+                self.tabController.view.frame = paletteFrame;
+                
+                //set palette pull icon frame
+                CGRect imageViewFrame = self.palettePullImageView.frame;
+                imageViewFrame.origin.x = paletteFrame.size.width;;
+                self.palettePullImageView.frame = imageViewFrame;
+            }
+            else
+            {
+                //NSLog(@"Final gesture went left");
+                //set palette frame
+                CGRect paletteFrame = self.tabController.view.frame;
+                paletteFrame.origin.x = -paletteFrame.size.width;
+                self.tabController.view.frame = paletteFrame;
+                
+                //set palette pull icon frame
+                CGRect imageViewFrame = self.palettePullImageView.frame;
+                imageViewFrame.origin.x = 0;
+                self.palettePullImageView.frame = imageViewFrame;
+            }
+        }
+        ///
+        
         self.movingTabBar = NO;
         
         THEditor * editor = (THEditor*) self.currentLayer;
@@ -349,6 +395,18 @@ float const kToolsTabMargin = 5;
 {
     _tabController.hidden = NO;
 }
+
+//nazmus added 21 Sep 14
+-(void)hideMenuBar
+{
+    _menuController.view.hidden = YES;
+}
+
+-(void)showMenuBar
+{
+    _menuController.view.hidden = NO;
+}
+////
 /*
 -(void)hideTools
 {
@@ -417,6 +475,10 @@ float const kToolsTabMargin = 5;
         
         [self hideTabBar];
         
+        //nazmus added 21 Sep 14 - hide menubar because there is no button in it
+        [self hideMenuBar];
+        ////
+        
         [self addSimulationButtons];
         
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -448,6 +510,13 @@ float const kToolsTabMargin = 5;
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
+        
+        //nazmus added 21 Sep 14
+        [self showMenuBar];
+        [self.tabController showTab:0];
+        ////
+        
+        self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         [self updatePalettePullVisibility];
         [self removePalettePullRecognizer];
@@ -490,7 +559,8 @@ float const kToolsTabMargin = 5;
 }
 
 #pragma mark - Tools
-
+//Nazmus commented
+/*
 -(UIBarButtonItem*) createDivider{
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 44)];
@@ -510,6 +580,37 @@ float const kToolsTabMargin = 5;
     UIImage * connectButtonImage = [UIImage imageNamed:imageName];
     return [[UIBarButtonItem alloc] initWithImage:connectButtonImage style:UIBarButtonItemStylePlain target:self action:selector];
 }
+*/
+////
+
+//Nazmus added
+-(UILabel*) createDivider{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 64)];
+    label.backgroundColor = [UIColor colorWithRed:200/255.0f green:198/255.0f blue:195/255.0f alpha:1.0f];
+    return label;
+}
+
+-(UILabel*) createEmptyItem{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 65, 64)];
+    label.backgroundColor = [UIColor clearColor];
+    return label;
+}
+
+-(UIButton*) createItemWithImageName:(NSString*) imageName action:(SEL) selector{
+    
+    UIImage * connectButtonImage = [UIImage imageNamed:imageName];
+    UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
+    if ([imageName isEqualToString:@"vpmode.png"]) {
+        [retButton setFrame:CGRectMake(0, 0, 248, 73)];
+    }
+    [retButton setImage:connectButtonImage forState:UIControlStateNormal];
+    [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    
+    return retButton;
+}
+////
 
 -(void) loadTools{
     
@@ -524,27 +625,50 @@ float const kToolsTabMargin = 5;
     self.pushButton = [self createItemWithImageName:@"push.png" action:@selector(pushPressed:)];
     self.lilypadButton = [self createItemWithImageName:@"lilypadmode.png" action:@selector(lilypadPressed:)];
     self.pinsModeButton = [self createItemWithImageName:@"pinsmode.png" action:@selector(pinsModePressed:)];
-    self.hideiPhoneButton = [self createItemWithImageName:@"hideiphone.png" action:@selector(hideiPhonePressed:)];
+    self.hideiPhoneButton = [self createItemWithImageName:@"hideVPmode.png" action:@selector(hideiPhonePressed:)];
+    self.vpmodeButton = [self createItemWithImageName:@"vpmode.png" action:nil];
+    [self.vpmodeButton setUserInteractionEnabled:NO];
     
     self.playButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                       initWithImage:[UIImage imageNamed:@"playicon.png"]
+                       style:UIBarButtonItemStylePlain
                        target:self
                        action:@selector(startSimulation)];
     
     self.stopButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemPause   
+                       initWithImage:[UIImage imageNamed:@"stopicon.png"]
+                       style:UIBarButtonItemStylePlain
                        target:self
                        action:@selector(endSimulation)];
     
+    // nazmus commented
+    /*
     self.editingTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.hideiPhoneButton, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+     self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
+     
+     self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+     
+     self.highlightedItemTintColor = nil;
+     self.hideiPhoneButton.tintColor = self.highlightedItemTintColor;
+     self.unselectedTintColor = [UIColor grayColor];
+    */
+    ////
+    // nazmus added
+    self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
+    self.editingToolsWithoutVPmode = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.editingTools = self.editingToolsWithVPmode;
     
-    self.highlightedItemTintColor = nil;
-    self.hideiPhoneButton.tintColor = self.highlightedItemTintColor;
-    self.unselectedTintColor = [UIColor grayColor];
+    //self.simulatingTools = [NSArray arrayWithObjects: self.pinsModeButton, nil];
+    self.simulatingTools = [[NSArray alloc ] init];
+    
+    self.lilypadTools = [NSArray arrayWithObjects: self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    
+    self.highlightedItemTintColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
+    self.hideiPhoneButton.backgroundColor = self.highlightedItemTintColor;
+    self.unselectedTintColor = [UIColor whiteColor];
+    ////
     
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
@@ -552,18 +676,41 @@ float const kToolsTabMargin = 5;
 }
 
 -(void) addEditionButtons{
+    //self.navigationItem.rightBarButtonItems = self.editingTools; // nazmus commented
     
-    self.navigationItem.rightBarButtonItems = self.editingTools;
+    [self addButtonsToMenubar:self.editingTools];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.playButton];
 }
 
 -(void) addLilypadButtons{
+    //self.navigationItem.rightBarButtonItems = self.lilypadTools; // nazmus commented
     
-    self.navigationItem.rightBarButtonItems = self.lilypadTools;
+    [self addButtonsToMenubar:self.lilypadTools];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.playButton];
 }
 
 -(void) addSimulationButtons{
+    //self.navigationItem.rightBarButtonItems = self.simulatingTools;
     
-    self.navigationItem.rightBarButtonItems = self.simulatingTools;
+    [self addButtonsToMenubar:self.simulatingTools];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.stopButton];
+}
+
+-(void) addButtonsToMenubar:(NSArray *) tools {
+    [[[self.menuController.view viewWithTag:1] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    float totalWidth = [[self.menuController.view viewWithTag:1] frame].size.width;
+    float offset = 0;
+    
+    for (int i = 0; i < tools.count; i++) {
+        CGRect itemFrame = [[tools objectAtIndex:i] frame];
+        offset += itemFrame.size.width;
+        [[tools objectAtIndex:i] setFrame:CGRectMake(totalWidth - offset,
+                                                                 itemFrame.origin.y,
+                                                                 itemFrame.size.width,
+                                                                 itemFrame.size.height)];
+        [[self.menuController.view viewWithTag:1] addSubview:[tools objectAtIndex:i]];
+    }
 }
 
 -(void) handleEditableObjectAdded:(NSNotification*) notification{
@@ -577,18 +724,25 @@ float const kToolsTabMargin = 5;
 
 //editing
 -(void) unselectAllEditingButtons{
+    /* nazmus commented
     self.connectButton.tintColor = self.unselectedTintColor;
     self.duplicateButton.tintColor = self.unselectedTintColor;
     self.removeButton.tintColor = self.unselectedTintColor;
     self.hideiPhoneButton.tintColor = self.unselectedTintColor;
     self.lilypadButton.tintColor = self.unselectedTintColor;
+    */
+    self.connectButton.backgroundColor = self.unselectedTintColor;
+    self.duplicateButton.backgroundColor = self.unselectedTintColor;
+    self.removeButton.backgroundColor = self.unselectedTintColor;
+    self.hideiPhoneButton.backgroundColor = self.unselectedTintColor;
+    self.lilypadButton.backgroundColor = self.unselectedTintColor;
 }
 
 -(void) updateEditingButtonsTint{
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
     [self unselectAllEditingButtons];
-    
+    /* nazmus commented
     if(editor.state == kEditorStateConnect){
         self.connectButton.tintColor = self.highlightedItemTintColor;
     } else if(editor.state == kEditorStateDuplicate){
@@ -596,7 +750,17 @@ float const kToolsTabMargin = 5;
     } else if(editor.state == kEditorStateDelete){
         self.removeButton.tintColor = self.highlightedItemTintColor;
     }
+    */
+    //nazmus added
+    if(editor.state == kEditorStateConnect){
+        self.connectButton.backgroundColor = self.highlightedItemTintColor;
+    } else if(editor.state == kEditorStateDuplicate){
+        self.duplicateButton.backgroundColor = self.highlightedItemTintColor;
+    } else if(editor.state == kEditorStateDelete){
+        self.removeButton.backgroundColor = self.highlightedItemTintColor;
+    }
     
+    ////
     [self updatePushButtonState];
     [self updateHideIphoneButtonTint];
     [self updateLilypadTint];
@@ -611,20 +775,20 @@ float const kToolsTabMargin = 5;
 -(void) updateHideIphoneButtonTint{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    self.hideiPhoneButton.tintColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor);
+    self.hideiPhoneButton.backgroundColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor); // nazmus - replaced tintcolor with backgroundcolor
 }
 
 -(void) updateLilypadTint{
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    self.lilypadButton.tintColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor);
+    self.lilypadButton.backgroundColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor); // nazmus - replaced tintcolor with backgroundcolor
 }
 
 //simulation
 -(void) updatePinsModeItemTint{
     
     THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
-    self.pinsModeButton.tintColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor);
+    self.pinsModeButton.backgroundColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor); // nazmus - replaced tintcolor with backgroundcolor
 }
 
 -(void) checkSwitchToState:(TFEditorState) state{
@@ -646,7 +810,6 @@ float const kToolsTabMargin = 5;
 }
 
 - (void)duplicatePressed:(id)sender {
-    
     [self checkSwitchToState:kEditorStateDuplicate];
 }
 
@@ -672,6 +835,7 @@ float const kToolsTabMargin = 5;
         [editor stopLilypadMode];
         
         [self checkSwitchToState:kEditorStateNormal];
+        self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         
     } else {
@@ -705,6 +869,12 @@ float const kToolsTabMargin = 5;
 - (void) hideiPhonePressed:(id)sender {
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    if (project.iPhone.visible) {
+        self.editingTools = self.editingToolsWithoutVPmode;
+    } else {
+        self.editingTools = self.editingToolsWithVPmode;
+    }
+    [self addEditionButtons];
     project.iPhone.visible = !project.iPhone.visible;
     [self updateHideIphoneButtonTint];
     

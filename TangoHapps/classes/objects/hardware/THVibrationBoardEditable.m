@@ -56,10 +56,11 @@ You should have received a copy of the GNU General Public License along with thi
     self.sprite = [CCSprite spriteWithFile:@"vibeBoard.png"];
     [self addChild:self.sprite];
     
+    /*
     _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
     _lightSprite.visible = NO;
     _lightSprite.position = ccp(20,20);
-    [self.sprite addChild:_lightSprite];
+    [self.sprite addChild:_lightSprite];*/
     
     self.acceptsConnections = YES;
     
@@ -84,7 +85,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     
     [self loadVibrationBoard];
-    [self adaptFrequency];
+    //[self adaptFrequency];
     
     return self;
 }
@@ -140,19 +141,33 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) update{
-    
-    if(self.on && !_lightSprite.visible){
+
+    if(self.on && !self.shaking){
         [self handleOn];
-    } else if(!self.on && _lightSprite.visible){
+    } else if(!self.on && self.shaking){
         [self handleOff];
     }
-    [self adaptFrequency];
 }
 
--(void) adaptFrequency{
+-(CCAction*) shakeActionWithFrequency:(float) frequency{
     
-    THVibrationBoard * vibrationBoard = (THVibrationBoard*)self.simulableObject;
-    _lightSprite.opacity = vibrationBoard.frequency;
+    CGPoint displ = ccp(2,2);
+    float duration = 6.0f/(float)self.frequency;
+    
+    CCMoveBy * move1 = [CCMoveBy actionWithDuration:duration position:ccp(displ.x, displ.y)];
+    CCMoveBy * move2 = [CCMoveBy actionWithDuration:duration * 2 position:ccp(-displ.x, -displ.y)];
+    CCSequence * sequence = [CCSequence actionOne:move1 two:move2];
+    
+    return [CCRepeatForever actionWithAction:sequence];
+}
+
+-(void) adaptVibrationFrequency{
+    [self stopAction:_shakeAction];
+
+    if(self.frequency > 0){
+        _shakeAction = [self shakeActionWithFrequency:self.frequency];
+        [self runAction:_shakeAction];
+    }
 }
 
 -(BOOL) on{
@@ -169,14 +184,19 @@ You should have received a copy of the GNU General Public License along with thi
     
     THVibrationBoard * vibrationBoard = (THVibrationBoard*)self.simulableObject;
     vibrationBoard.frequency = frequency;
+    if(self.on){
+        [self adaptVibrationFrequency];
+    }
 }
 
 -(void) handleOn{
-    _lightSprite.visible = YES;
+    self.shaking = YES;
+    [self adaptVibrationFrequency];
 }
 
 -(void) handleOff{
-    _lightSprite.visible = NO;
+    self.shaking = NO;
+    [self stopAction:_shakeAction];
 }
 
 - (void)turnOn{
