@@ -438,6 +438,7 @@ float const kConnectingTimeout = 7.0f;
     
     [self.currentProject startSimulating];
     [self.firmataController sendFirmwareRequest];
+    //TODO **********
 }
 
 -(void) bleServiceDidReset {

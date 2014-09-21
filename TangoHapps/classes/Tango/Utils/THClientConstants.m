@@ -94,6 +94,8 @@ NSString * const kEventXChanged = @"xChanged";
 NSString * const kEventYChanged = @"yChanged";
 NSString * const kEventZChanged = @"zChanged";
 
+NSString * const kProxımıtyChanged = @"proxımıtyChanged";
+
 NSString * const kEventTapped = @"tapped";
 NSString * const kEventDoubleTapped = @"doubleTapped";
 NSString * const kEventScaleChanged = @"scaled";

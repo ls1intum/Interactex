@@ -94,6 +94,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THStringValuePaletteItem.h"
 #import "THPureDataPaletteItem.h"
 
+#import "THiBeaconPaletteItem.h"
+
 @implementation THPaletteViewController
 
 -(id)init {
@@ -476,6 +478,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  [[THTemperatureSensorPaletteItem alloc] initWithName:@"temperatureSensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                  [[THFlexSensorPaletteItem alloc] initWithName:@"flexSensor"],
+                                 [[THiBeaconPaletteItem alloc] initWithName:@"iBeacon"],
                                  nil];
     
     
