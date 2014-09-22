@@ -4173,9 +4173,9 @@
 				9AB29B47167F4F2600F5AF62 /* THImageViewProperties.h */,
 				9AB29B48167F4F2600F5AF62 /* THImageViewProperties.m */,
 				9A06EE9A169AD99B00B88519 /* THSliderProperties.h */,
+				9A06EE9B169AD99B00B88519 /* THSliderProperties.m */,
 				02F4BA3319C875A60039D9C5 /* THiBeaconProperties.h */,
 				02F4BA3419C875A60039D9C5 /* THiBeaconProperties.m */,
-				9A06EE9B169AD99B00B88519 /* THSliderProperties.m */,
 				9A06EF2C169AE51F00B88519 /* THPotentiometerProperties.h */,
 				9A06EF2D169AE51F00B88519 /* THPotentiometerProperties.m */,
 				9A06EFC0169C0B0C00B88519 /* THThreeColorLedProperties.h */,
@@ -6418,7 +6418,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -6435,7 +6435,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
@@ -6480,7 +6480,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;

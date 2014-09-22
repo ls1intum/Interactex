@@ -50,6 +50,11 @@
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
+        
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.uuid = [decoder decodeObjectForKey:@"uuid"];
+        self.beaconRegion = [decoder decodeObjectForKey:@"beaconRegion"];
+        
         [self loadLabels];
         [self loadiBeacon];
         [self loadMethods];
@@ -59,7 +64,13 @@
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    [coder encodeObject:self.uuid forKey:@"uuid"];
+    [coder encodeObject:self.name forKey:@"name"];
+//    [coder encodeObject:self.majorValue forKey:@"majorValue"];
+  //  [coder encodeObject:self.minorValue forKey:@"minorValue"];
+    [coder encodeObject:self.beaconRegion forKey:@"beaconRegion"];
 }
+
 
 -(void) update{
 }

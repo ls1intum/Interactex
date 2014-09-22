@@ -25,6 +25,7 @@
         
         [self loadLocationManager];
         [self initRegion];
+        [self initLabels];
         [self.locationManager startUpdatingLocation];
         [self loadMethods];
     }
@@ -57,9 +58,18 @@
     //[[UIApplication sharedApplication] openURL:url];
     
 }
+
+-(void) initLabels{
+    
+    self.uuid =[[NSUUID alloc] initWithUUIDString:@"F7826DA6-4FA2-4E98-8024-BC5B71E0893E"];
+    
+}
+
 - (void)initRegion {
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"F7826DA6-4FA2-4E98-8024-BC5B71E0893E"];
     self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.tum.region"];
+    //self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid  major:62.070
+     //                                       minor:2.882 identifier:@"com.tum.region"];
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
     
     [self.locationManager startMonitoringForRegion:self.beaconRegion];

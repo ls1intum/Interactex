@@ -10,5 +10,5 @@
 
 @interface THiBeaconProperties : THEditableObjectProperties
 @property (weak, nonatomic) IBOutlet UITextField *uuidText;
-
+- (IBAction)uuidTextChanged:(id)sender;
 @end
