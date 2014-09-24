@@ -907,11 +907,23 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)paletteItem:(THDraggedPaletteItem*)item movedTo:(CGPoint)location {
     item.center = location;
     
-    if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
+    //nazmus commented
+    /*if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
         item.state = kPaletteItemStateDroppable;
     } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:location]){
         item.state = kPaletteItemStateNormal;
+    }*/
+    ////
+    
+    //nazmus added - converted the location to be used in canBeDroppedAt method equally 'when dropping at item'  
+    CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL: location];
+    if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:convertedLocation]){
+        item.state = kPaletteItemStateDroppable;
+    } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:convertedLocation]){
+        item.state = kPaletteItemStateNormal;
     }
+    ////
+    
 }
 
 -(void)paletteItem:(THDraggedPaletteItem*)item endedAt:(CGPoint) location{

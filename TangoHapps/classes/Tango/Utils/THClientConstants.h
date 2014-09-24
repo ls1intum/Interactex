@@ -140,6 +140,8 @@ typedef enum{
 } THIPhoneType;
 
 extern CGRect const kiPhoneFrames[kNumiPhoneTypes];
+extern float const kiphoneFrameXMargin;
+extern float const kiphoneFrameYMargin;
 
 typedef enum{
     kI2CComponentTypeLSM,
