@@ -78,7 +78,15 @@
 }
 
 -(id)copyWithZone:(NSZone *)zone{
-    THiBeacon * copy = [super copyWithZone:zone];
+    THiBeaconEditable * copy = [super copyWithZone:zone];
+/*
+ THiBeacon * copy = [super copyWithZone:zone];
+ copy.uuid = self.uuid;
+ copy.name = self.name;
+ copy.status = self.status;
+ 
+ return copy;
+ */
     return copy;
 }
 

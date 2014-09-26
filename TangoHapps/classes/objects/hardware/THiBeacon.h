@@ -15,7 +15,7 @@
 }
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSUUID *uuid;
+@property (strong, nonatomic) NSUUID * uuid;
 @property (assign, nonatomic) CLBeaconMajorValue *majorValue;
 @property (assign, nonatomic) CLBeaconMinorValue *minorValue;
 @property (nonatomic) NSString * status;
