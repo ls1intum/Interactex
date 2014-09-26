@@ -63,7 +63,7 @@ You should have received a copy of the GNU General Public License along with thi
     // nazmus added
     CCSprite *iphoneBgSprite = [CCSprite spriteWithFile:@"iphoneBg.png"];
     [iphoneBgSprite setOpacity:180.0];
-    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding)];
+    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding + kiphoneFrameXMargin, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding + kiphoneFrameYMargin)];
     [self addChild:iphoneBgSprite z:kiPhoneZ-1];
     ////
     

@@ -76,7 +76,7 @@ float kPaletteItemPaddingTop = 4; // Nazmus added
 CGSize const kPaletteItemImageSize = {64,64}; // Nazmus added 24 Aug 14
 //CGSize const kPaletteItemLabelSize = {58,10};
 //CGSize const kPaletteItemLabelSize = {58,25};// nazmus commented
-CGSize const kPaletteItemLabelSize = {64,25};// nazmus added
+CGSize const kPaletteItemLabelSize = {72,25};// nazmus added
 float const kPaletteItemLabelVerticalPosition = 62; // Nazmus added 24 Aug 14
 
 float const kPaletteLabelHeight = 14;

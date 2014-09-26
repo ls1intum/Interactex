@@ -603,7 +603,7 @@ float const kToolsTabMargin = 5;
     UIImage * connectButtonImage = [UIImage imageNamed:imageName];
     UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
     if ([imageName isEqualToString:@"vpmode.png"]) {
-        [retButton setFrame:CGRectMake(0, 0, 248, 73)];
+        [retButton setFrame:CGRectMake(0, 0, 330, 73)];
     }
     [retButton setImage:connectButtonImage forState:UIControlStateNormal];
     [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
