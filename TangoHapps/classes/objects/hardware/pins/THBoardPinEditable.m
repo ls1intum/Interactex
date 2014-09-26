@@ -59,6 +59,8 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         _attachedPins = [NSMutableArray array];
+        
+        self.z = 100;
     }
     return self;
 }
@@ -100,14 +102,12 @@ You should have received a copy of the GNU General Public License along with thi
             text = [text stringByAppendingFormat:@" %d",self.number];
         }
         
-        
-        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultBoldFont fontSize:18];
-        
-        //_label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:18 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
+        _label = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultBoldFont fontSize:24];
+        _label.color = ccc3(0, 0, 0);
         
         _label.position = ccp(0,50);
         
-        [self addChild:_label];
+        [self addChild:_label z:1];
         
     } else {
         [_label removeFromParentAndCleanup:YES];

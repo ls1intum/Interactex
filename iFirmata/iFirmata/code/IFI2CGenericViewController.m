@@ -150,7 +150,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kNotificationNewI2CData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationNewI2CData object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification

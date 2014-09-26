@@ -53,60 +53,25 @@
 @dynamic numberOfDigitalPins;
 @dynamic numberOfAnalogPins;
 
-#define kBLELilypadNumberOfPins 22
-
-CGPoint kBLELilypadPinPositions[kBLELilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
-    {-111.0, 16.0}, {-102.0, -17.0},//- +
-    {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
-    {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
-    {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
-};
-
 -(void) loadLilypad{
+    
+    self.boardType = kBoardTypeLilypadBLE;
+    
     self.z = kLilypadZ;
     
     self.sprite = [CCSprite spriteWithFile:@"BLE-LilyPad.png"];
     [self addChild:self.sprite];
-    
-    self.canBeDuplicated = NO;
-}
-
--(void) addPins{
-    for (THPinEditable * pin in _pins) {
-        [self addChild:pin];
-    }
-}
-
--(void) loadPins{
-    int i = 0;
-    
-    THLilyPad * lilypad = (THLilyPad*) self.simulableObject;
-    for (THPin * pin in lilypad.pins) {
-        THBoardPinEditable * pinEditable = [[THBoardPinEditable alloc] init];
-        pinEditable.simulableObject = pin;
-        
-        pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kBLELilypadPinPositions[i]);
-        pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
-        [_pins addObject:pinEditable];
-        i++;
-    }
-    
-    [self addPins];
 }
 
 -(id) init{
     self = [super init];
     if(self){
-        _pins = [NSMutableArray array];
         
         THLilyPad * lilyPad = [[THLilyPad alloc] init];
         self.simulableObject = lilyPad;
         
         [self loadLilypad];
-        [self loadPins];
-        
-        self.minusPin.highlightColor = kMinusPinHighlightColor;
-        self.plusPin.highlightColor = kPlusPinHighlightColor;
+        [self loadBoard];
         
     }
     return self;
@@ -119,7 +84,7 @@ CGPoint kBLELilypadPinPositions[kBLELilypadNumberOfPins] = {{1,110},{-29,104},{-
     if(self){
         
         [self loadLilypad];
-        [self addPins];
+        [self loadBoard];
     }
     return self;
 }
