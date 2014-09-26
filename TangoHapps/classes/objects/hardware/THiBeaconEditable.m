@@ -38,7 +38,7 @@
     if(self){
         self.simulableObject = [[THiBeacon alloc] init];
         
-        self.type = kHardwareTypeFlexSensor;
+        self.type = kHardwareTypeiBeacon;
         
         //[self loadLabels];
         [self loadiBeacon];

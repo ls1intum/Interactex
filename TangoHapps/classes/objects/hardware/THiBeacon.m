@@ -159,8 +159,10 @@ BOOL enterNotified = NO;
             break;
     }
     
-    NSString *format = @"%@, %@ • %@ • %f • %li";
-    return [NSString stringWithFormat:format, beacon.major, beacon.minor, proximity, beacon.accuracy, beacon.rssi];
+//    NSString *format = @"%@,%@•%@•%f•%li";
+//    return [NSString stringWithFormat:format, beacon.major, beacon.minor, proximity, beacon.accuracy, beacon.rssi];
+    NSString *format = @"%@,%@•%f•%li";
+    return [NSString stringWithFormat:format, beacon.major, beacon.minor, beacon.accuracy, beacon.rssi];
 }
 
 #pragma mark - Beacon ranging
@@ -311,9 +313,16 @@ BOOL enterNotified = NO;
     _status = status;
     NSLog(@"Status set%@",status);
     //TODO change of string
+    [self releaseStateChangedEvent];
     [self triggerEventNamed:KNotificationiBeaconRangingStatus];
 }
 
+-(void) releaseStateChangedEvent{
+    TFProperty * property = [TFProperty propertyWithName:@"status" andType:kDataTypeString];
+    TFEvent * event = [TFEvent eventNamed:KNotificationiBeaconRangingStatus];
+    event.param1 =[TFPropertyInvocation invocationWithProperty:property target:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:event.name  object:self];
+}
 
 -(void) setUuid:(NSUUID *)newUuid{
     if(_uuid != newUuid){
