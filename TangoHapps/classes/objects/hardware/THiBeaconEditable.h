@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSUUID *uuid;
 @property (assign, nonatomic) CLBeaconMajorValue *majorValue;
 @property (assign, nonatomic) CLBeaconMinorValue *minorValue;
+@property (nonatomic) NSString * status;
 
 //@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;

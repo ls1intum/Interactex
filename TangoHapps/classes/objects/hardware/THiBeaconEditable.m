@@ -25,14 +25,14 @@
     
     self.acceptsConnections = YES;
 }
-
+/*
 -(void) loadLabels{
     
     THiBeacon * ibeacon = (THiBeacon *) self.simulableObject;
   //  self.uuid = ibeacon.beaconRegion.
     
 }
-
+*/
 -(id) init{
     self = [super init];
     if(self){
@@ -40,7 +40,7 @@
         
         self.type = kHardwareTypeFlexSensor;
         
-        [self loadLabels];
+        //[self loadLabels];
         [self loadiBeacon];
         [self loadMethods];
     }
@@ -54,8 +54,9 @@
         self.name = [decoder decodeObjectForKey:@"name"];
         self.uuid = [decoder decodeObjectForKey:@"uuid"];
         self.beaconRegion = [decoder decodeObjectForKey:@"beaconRegion"];
+        self.status = [decoder decodeObjectForKey:@"status"];
         
-        [self loadLabels];
+       // [self loadLabels];
         [self loadiBeacon];
         [self loadMethods];
     }
@@ -66,9 +67,10 @@
     [super encodeWithCoder:coder];
     [coder encodeObject:self.uuid forKey:@"uuid"];
     [coder encodeObject:self.name forKey:@"name"];
-//    [coder encodeObject:self.majorValue forKey:@"majorValue"];
-  //  [coder encodeObject:self.minorValue forKey:@"minorValue"];
     [coder encodeObject:self.beaconRegion forKey:@"beaconRegion"];
+    [coder encodeObject:self.status forKey:@"status"];
+    //    [coder encodeObject:self.majorValue forKey:@"majorValue"];
+    //  [coder encodeObject:self.minorValue forKey:@"minorValue"];
 }
 
 
@@ -98,6 +100,16 @@
     [controllers addObjectsFromArray:[super propertyControllers]];
     
     return controllers;
+}
+
+-(NSString*) status{
+    THiBeacon * ibeacon = (THiBeacon*) self.simulableObject;
+    return ibeacon.status;
+}
+
+-(void) setStatus:(NSString *)status{
+    THiBeacon * ibeacon = (THiBeacon*) self.simulableObject;
+    ibeacon.status = status;
 }
 
 -(NSString*) name{
