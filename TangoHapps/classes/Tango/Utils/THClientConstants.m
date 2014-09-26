@@ -49,7 +49,8 @@ NSString* const dataTypeStrings[kNumDataTypes] = {@"boolean",@"integer", @"float
 NSInteger const kLilypadPwmPins[kLilypadNumPwmPins] = {3,5,6,9,10,11};
 
 
-CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}};
+//CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}}; // nazmus commented
+CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,180,268},{26,99,180,300}}; // nazmus added
 
 //notifications
 NSString * const kNotificationLedOn = @"notificationLedOn";

@@ -64,8 +64,9 @@ float const kTabbarToolbarHeight = 50;
 
 -(THTabbarView*) tabbarViewForController:(UIViewController*) controller title:(NSString*) title {
     
-    THTabbarView * view = [[THTabbarView alloc] initWithFrame:CGRectMake(0, 0, kTabWidth, self.view.frame.size.height - self.toolBar.frame.size.height)];
-
+    //THTabbarView * view = [[THTabbarView alloc] initWithFrame:CGRectMake(0, 0, kTabWidth, self.view.frame.size.height - self.toolBar.frame.size.height)]; // Nazmus commented
+    THTabbarView * view = [[THTabbarView alloc] initWithFrame:CGRectMake(0, self.toolBarView.frame.size.height-10, kTabWidth, self.view.frame.size.height - self.toolBarView.frame.size.height+10)]; // Nazmus added
+    
     controller.view = view;
     controller.title = title;
     [self.view addSubview:view];
@@ -82,7 +83,9 @@ float const kTabbarToolbarHeight = 50;
     _propertiesController.view = [self tabbarViewForController:_propertiesController title:@"Properties"];
     [self showTab:0];
     
-    self.view.backgroundColor = [UIColor grayColor];
+    //self.view.backgroundColor = [UIColor grayColor]; // NS commented 24 Aug 14
+    self.view.backgroundColor = [UIColor whiteColor]; // NS added 24 Aug 14
+    [self.view bringSubviewToFront:self.toolBarView];
     //self.view.frame = CGRectMake(0, 100, kTabWidth, 500);
 }
 
@@ -112,11 +115,31 @@ float const kTabbarToolbarHeight = 50;
     if(index == 0){
         self.paletteButton.selected = YES;
         self.propertiesButton.selected = NO;
+        
+        /// Nazmus 28 June 14
+        [UIView transitionFromView:_propertiesController.view
+                            toView:_paletteController.view
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:^(BOOL finished){
+                            [self.view bringSubviewToFront:self.toolBarView];
+                        }];
+        ///
     } else if(index == 1){
         
         self.paletteButton.selected = NO;
         self.propertiesButton.selected = YES;
+        /// Nazmus 28 June 14
+        [UIView transitionFromView:_paletteController.view
+                            toView:_propertiesController.view
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        completion:^(BOOL finished){
+                            [self.view bringSubviewToFront:self.toolBarView];
+                        }];
+        ///
     }
+    
 }
 
 - (IBAction)paletteTapped:(id)sender {

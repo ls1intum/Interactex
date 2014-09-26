@@ -65,10 +65,16 @@ extern NSString * const kNotificationConnectionMade;
 extern NSString * const kConnectionMadeEffect;
 extern NSString * const kNotificationInvocationCompleted;
 
-extern float kPaletteItemsPadding;
-extern float kPaletteItemSize;
+//extern float kPaletteItemsPadding; // Nazmus commented
+//extern float kPaletteItemSize; // Nazmus commented
+extern float kPaletteItemsHorizontalPadding; // Nazmus added
+extern float kPaletteItemsVerticalPadding; // Nazmus added
+extern float kPaletteItemWidth; // Nazmus added
+extern float kPaletteItemHeight; // Nazmus added
+extern float kPaletteItemPaddingTop; // Nazmus added
 extern CGSize const kPaletteItemImageSize;
 extern CGSize const kPaletteItemLabelSize;
+extern float const kPaletteItemLabelVerticalPosition;
 
 extern float const kPaletteLabelHeight;
 

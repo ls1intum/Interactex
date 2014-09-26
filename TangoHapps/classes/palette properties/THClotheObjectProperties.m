@@ -84,7 +84,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self.tableView reloadData];
     
     CGRect tableFrame = self.tableView.frame;
-    self.tableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y, tableFrame.size.width, self.tableView.contentSize.height);
+    self.tableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y, tableFrame.size.width-5, self.tableView.contentSize.height);
     
     CGRect frame = self.view.frame;
     

@@ -141,10 +141,13 @@ void readAndReportData(byte address, int theRegister, byte numBytes) {
 
 void outputPort(byte portNumber, byte portValue, byte forceSend)
 {
-  Serial.println(portValue);
   
   // pins not configured as INPUT are cleared to zeros
   portValue = portValue & portConfigInputs[portNumber];
+  
+  Serial.println("reporting");
+  Serial.println(portValue);
+  
   // only send if the value is different than previously sent
   if(forceSend || previousPINs[portNumber] != portValue) {
     iFirmata.sendDigitalPort(portNumber, portValue);
@@ -154,6 +157,11 @@ void outputPort(byte portNumber, byte portValue, byte forceSend)
 
 void checkDigitalInputs(void)
 {
+  Serial.print(" config: ");
+  Serial.print(portConfigInputs[1]);
+Serial.print(" report: ");
+  Serial.println(reportPINs[1]);
+  
   if (TOTAL_PORTS > 0 && reportPINs[0]) outputPort(0, readPort(0, portConfigInputs[0]), false);
   if (TOTAL_PORTS > 1 && reportPINs[1]) outputPort(1, readPort(1, portConfigInputs[1]), false);
   if (TOTAL_PORTS > 2 && reportPINs[2]) outputPort(2, readPort(2, portConfigInputs[2]), false);
@@ -173,7 +181,8 @@ void checkDigitalInputs(void)
 }
 
 void setPinModeCallback(byte pin, int mode)
-{  
+{
+  
   if (pinConfig[pin] == I2C && isI2CEnabled && mode != I2C) {
     // disable i2c so pins can be used for other functions
     // the following if statements should reconfigure the pins properly
@@ -208,11 +217,10 @@ void setPinModeCallback(byte pin, int mode)
   case INPUT:
   
     if (IS_PIN_DIGITAL(pin)) {
-      Serial.print("input ");
-  Serial.println(PIN_TO_DIGITAL(pin));
   
-      pinMode(PIN_TO_DIGITAL(pin), INPUT); // disable output driver
-      digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
+      pinMode(PIN_TO_DIGITAL(pin), INPUT_PULLUP); // disable output driver
+      //digitalWrite(PIN_TO_DIGITAL(pin), HIGH); // enable internal pull-ups
+      //digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
       pinConfig[pin] = INPUT;
     }
     break;
@@ -253,7 +261,6 @@ void setPinModeCallback(byte pin, int mode)
 
 void analogWriteCallback(byte pin, int value)
 {
-  Serial.println("calling analog");
   
   if (pin < TOTAL_PINS) {
     switch(pinConfig[pin]) {
@@ -261,13 +268,13 @@ void analogWriteCallback(byte pin, int value)
       if (IS_PIN_SERVO(pin)){
         servos[PIN_TO_SERVO(pin)].write(value);
       }
-      //pinState[pin] = value;
+      pinState[pin] = value;
       break;
     case PWM:
     
       if (IS_PIN_PWM(pin))
         analogWrite(PIN_TO_PWM(pin), value);
-        //pinState[pin] = value;
+        pinState[pin] = value;
       break;
     }
   }
@@ -313,9 +320,9 @@ void reportAnalogCallback(byte analogPin, int value)
 }
 
 void reportDigitalCallback(byte port, int value) {
-     
+     Serial.print("enter report for port ");
+     Serial.println(port);
   if (port < TOTAL_PORTS) {
-  Serial.println("report digital");
   
     reportPINs[port] = (byte)value;
   }
@@ -337,7 +344,7 @@ void sysexCallback(byte command, byte argc, byte *argv)
   unsigned int delayTime; 
   
   switch(command) {
-  case I2C_REQUEST:
+    case I2C_REQUEST:
     mode = argv[1] & I2C_READ_WRITE_MODE_MASK;
     if (argv[1] & I2C_10BIT_ADDRESS_MODE_MASK) {
       Serial.println("10-bit addressing mode is not yet supported");
@@ -604,8 +611,19 @@ void systemResetCallback()
     previousPINs[i] = 0;
   }
   
+  /*
   // pins with analog capability default to analog input
   // otherwise, pins default to digital output
+  for(byte i = 0 ; i < 4 ; i++){
+    if (IS_PIN_DIGITAL(i)) {
+      //if (mode == INPUT) {
+        //portConfigInputs[i/8] |= (1 << (i & 7));
+      //} else {
+        portConfigInputs[i/8] &= ~(1 << (i & 7));
+      //}
+    }
+  }*/
+  
   for (byte i=4; i < TOTAL_PINS; i++) {
     if (IS_PIN_ANALOG(i)) {
       // turns off pullup, configures everything
@@ -641,6 +659,9 @@ void setup()
   systemResetCallback();  // reset to default config */ 
   
   Serial.println("starting");
+  
+  pinMode(12, INPUT_PULLUP);
+  pinMode(8, INPUT_PULLUP);
 }
 
 

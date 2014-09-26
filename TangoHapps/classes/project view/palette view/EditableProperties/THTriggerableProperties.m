@@ -60,10 +60,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [ super init];
     if(self){
-        CGRect frame = CGRectMake(0, 0, 230, 310);
+        CGRect frame = CGRectMake(0, 0, kTabWidth-5, 310);
         self.view = [[UIView alloc] initWithFrame:frame];
         
-        CGRect tableFrame = CGRectMake(0, 0, 230, 250);
+        CGRect tableFrame = CGRectMake(0, 0, kTabWidth-5, 250);
         self.tableView = [[UITableView alloc] initWithFrame:tableFrame style:UITableViewStylePlain];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
