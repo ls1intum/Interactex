@@ -44,15 +44,27 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THBoardPinEditable;
 
+#define kMaxNumBoards 4
+
+typedef enum {
+    kBoardTypeLilypadSimple = 0,
+    kBoardTypeLilypad = 1,
+    kBoardTypeLilypadBLE = 2,
+    kBoardTypeJennic = 3
+} THBoardType;
+
 @interface THBoardEditable : TFEditableObject
 {
     
 }
 
+@property (nonatomic)THBoardType boardType;
 @property (nonatomic, readonly) NSInteger numberOfDigitalPins;
 @property (nonatomic, readonly) NSInteger numberOfAnalogPins;
 @property (nonatomic, strong) NSMutableArray * pins;
 @property (nonatomic) BOOL showsWires;
+
+-(void) loadBoard;
 
 -(THBoardPinEditable*) minusPin;
 -(THBoardPinEditable*) plusPin;

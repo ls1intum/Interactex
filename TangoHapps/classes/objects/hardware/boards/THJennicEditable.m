@@ -60,6 +60,8 @@ CGPoint kYannicPinPositions[kYannicNumberOfPins] = {{-99,-53},{-81,-28},//plus u
 };
 
 -(void) loadYannic{
+    self.boardType = kBoardTypeJennic;
+    
     self.z = kYannicZ;
     
     self.sprite = [CCSprite spriteWithFile:@"jennic.png"];

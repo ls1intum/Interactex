@@ -17,7 +17,7 @@
 		9A5C0EFC19752E4600B0A784 /* icon_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5C0EF619752E4600B0A784 /* icon_58.png */; };
 		9A5C0EFD19752E4600B0A784 /* icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5C0EF719752E4600B0A784 /* icon_80.png */; };
 		9A5C0F041975361300B0A784 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5C0F031975361300B0A784 /* Images.xcassets */; };
-		9A5C0F0E1975379F00B0A784 /* IFI2CSpecificViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5C0F0D1975379F00B0A784 /* IFI2CSpecificViewController.m */; };
+		9A5C0F0E1975379F00B0A784 /* IFI2CLSM303ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5C0F0D1975379F00B0A784 /* IFI2CLSM303ViewController.m */; };
 		9A7D0B6418159FA1001CA90A /* IFPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D0B6318159FA1001CA90A /* IFPin.m */; };
 		9A7D0B6918159FDD001CA90A /* IFI2CComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D0B6618159FDD001CA90A /* IFI2CComponent.m */; };
 		9A7D0B6A18159FDD001CA90A /* IFI2CRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D0B6818159FDD001CA90A /* IFI2CRegister.m */; };
@@ -93,8 +93,8 @@
 		9A5C0EF619752E4600B0A784 /* icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_58.png; sourceTree = "<group>"; };
 		9A5C0EF719752E4600B0A784 /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_80.png; sourceTree = "<group>"; };
 		9A5C0F031975361300B0A784 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9A5C0F0C1975379F00B0A784 /* IFI2CSpecificViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CSpecificViewController.h; sourceTree = "<group>"; };
-		9A5C0F0D1975379F00B0A784 /* IFI2CSpecificViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CSpecificViewController.m; sourceTree = "<group>"; };
+		9A5C0F0C1975379F00B0A784 /* IFI2CLSM303ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CLSM303ViewController.h; sourceTree = "<group>"; };
+		9A5C0F0D1975379F00B0A784 /* IFI2CLSM303ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFI2CLSM303ViewController.m; sourceTree = "<group>"; };
 		9A7D0B6218159FA1001CA90A /* IFPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFPin.h; sourceTree = "<group>"; };
 		9A7D0B6318159FA1001CA90A /* IFPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFPin.m; sourceTree = "<group>"; };
 		9A7D0B6518159FDD001CA90A /* IFI2CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFI2CComponent.h; sourceTree = "<group>"; };
@@ -260,8 +260,8 @@
 				9A2CAE94182CE893002AB9E8 /* IFI2CComponentCell.m */,
 				9A2CAE97182CE893002AB9E8 /* IFI2CGenericViewController.h */,
 				9A2CAE98182CE893002AB9E8 /* IFI2CGenericViewController.m */,
-				9A5C0F0C1975379F00B0A784 /* IFI2CSpecificViewController.h */,
-				9A5C0F0D1975379F00B0A784 /* IFI2CSpecificViewController.m */,
+				9A5C0F0C1975379F00B0A784 /* IFI2CLSM303ViewController.h */,
+				9A5C0F0D1975379F00B0A784 /* IFI2CLSM303ViewController.m */,
 				9A3DC2E81975632300EEE822 /* IFI2CComponentProxy.h */,
 				9A3DC2E91975632300EEE822 /* IFI2CComponentProxy.m */,
 				9A86CF8017A2793000E3F9E4 /* IFDeviceCell.h */,
@@ -418,7 +418,7 @@
 				9AEE5957177CAA2E00C6D5E8 /* IFMainViewController.m in Sources */,
 				9AEE595A177CB01C00C6D5E8 /* IFHelper.m in Sources */,
 				9A3DC2EA1975632300EEE822 /* IFI2CComponentProxy.m in Sources */,
-				9A5C0F0E1975379F00B0A784 /* IFI2CSpecificViewController.m in Sources */,
+				9A5C0F0E1975379F00B0A784 /* IFI2CLSM303ViewController.m in Sources */,
 				9A7D0B6A18159FDD001CA90A /* IFI2CRegister.m in Sources */,
 				9AEE595D177CD29700C6D5E8 /* IFViewController.m in Sources */,
 				9AEE5963177CD3F300C6D5E8 /* IFPinCell.m in Sources */,

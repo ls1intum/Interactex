@@ -55,9 +55,25 @@ You should have received a copy of the GNU General Public License along with thi
     CGRect frame = CGRectMake(0, 0, kPaletteSectionWidth, kPaletteContainerTitleHeight);
     
     _navigationBar = [[UINavigationBar alloc] initWithFrame:frame];
-    UINavigationItem * item = [[UINavigationItem alloc] initWithTitle:self.title];
+    //UINavigationItem * item = [[UINavigationItem alloc] initWithTitle:self.title]; // NS commented 24 Aug 14
+    UINavigationItem * item = [[UINavigationItem alloc] init];
+    
+    // nazmus added 24 Aug 14
+    [_navigationBar setBarStyle:UIBarStyleDefault];
+    [_navigationBar setBarTintColor:[UIColor colorWithRed:48/255.0f green:46/255.0f blue:42/255.0f alpha:1.0f]];
+    [_navigationBar setTranslucent:NO];
+    
+    UILabel *sectionTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    sectionTitleLabel.backgroundColor = [UIColor clearColor];
+    sectionTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0];
+    sectionTitleLabel.textColor = [UIColor whiteColor];
+    sectionTitleLabel.text = [self.title uppercaseString];
+    [sectionTitleLabel sizeToFit];
+    [item setTitleView:sectionTitleLabel];
+    ////
+    
     [_navigationBar pushNavigationItem:item animated:YES];
-    _navigationBar.layer.cornerRadius = 5;
+    //_navigationBar.layer.cornerRadius = 5; // nazmus commented
 
     [self addSubview:_navigationBar];
 }
@@ -90,9 +106,19 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self addLabel];
         
-        self.backgroundColor = [UIColor grayColor];
+        // nazmus commented 24 Aug 14
+        /*self.backgroundColor = [UIColor grayColor];
         self.layer.cornerRadius = 5;
-        self.layer.borderColor = [UIColor blueColor].CGColor;
+        self.layer.borderColor = [UIColor blueColor].CGColor;*/
+        
+        // nazmus added 24 Aug 14
+        self.backgroundColor = [UIColor whiteColor];
+        self.layer.masksToBounds = NO;
+        self.layer.shadowOffset = CGSizeMake(-5, 5);
+        self.layer.shadowRadius = 5;
+        self.layer.shadowOpacity = 0.5;
+        ////
+        
     }
     return self;
 }

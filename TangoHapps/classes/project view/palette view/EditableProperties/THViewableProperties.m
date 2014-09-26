@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [ super init];
     if(self){
-        CGRect frame = CGRectMake(0, 0, 230, 250);
+        CGRect frame = CGRectMake(0, 0, 250, 250);
         
         self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         self.tableView.delegate = self;
@@ -133,11 +133,12 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self.tableView reloadData];
     
-    
     CGRect tableFrame = self.tableView.frame;
+    
     self.tableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y, tableFrame.size.width, self.tableView.contentSize.height);
     
     CGRect frame = self.view.frame;
+    
     self.view.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, self.tableView.contentSize.height);
     
     [self.sizeDelegate properties:self didChangeSize:self.view.frame.size];

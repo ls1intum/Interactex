@@ -58,7 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [ super init];
     if(self){
-        CGRect frame = CGRectMake(0, 0, 230, 250);
+        CGRect frame = CGRectMake(0, 0, 250, 250);
         
         self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         self.tableView.delegate = self;

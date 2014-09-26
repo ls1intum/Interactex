@@ -61,20 +61,26 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 -(void) addViews{
     
-    CGRect frame = CGRectMake(0, 0, kPaletteItemSize, kPaletteItemSize);
+    //self.layer.borderWidth = 1.0f;
+    
+    CGRect frame = CGRectMake(0, 0, kPaletteItemWidth, kPaletteItemHeight);
     
     //container
     _container = [[UIView alloc] initWithFrame:frame];
-    _container.layer.borderWidth = 1.0f;
-    _container.layer.cornerRadius = 5.0f;
+    //nazmus added 21 sep 14
+    [_container.layer setCornerRadius:4.0f];
+    [_container.layer setBorderWidth:1.0f];
+    [_container.layer setBackgroundColor:[UIColor clearColor].CGColor];
+    [_container.layer setBorderColor:[UIColor clearColor].CGColor];
+    ////
+    
     [self addSubview:_container];
     
-    //[self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-    
     //image view
-    float diffx = kPaletteItemSize - kPaletteItemImageSize.width;
-    float diffy = kPaletteItemSize - kPaletteItemImageSize.height;
-    CGRect imageFrame = CGRectMake(diffx/2.0f, diffy/2.0f - 5, kPaletteItemImageSize.width, kPaletteItemImageSize.height);
+    float diffx = kPaletteItemWidth - kPaletteItemImageSize.width;
+    //float diffy = kPaletteItemHeight - kPaletteItemImageSize.height; //nazmus commented
+    //CGRect imageFrame = CGRectMake(diffx/2.0f, diffy/2.0f, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus commented
+    CGRect imageFrame = CGRectMake(diffx/2.0f, kPaletteItemPaddingTop, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus added
     
     _imageView = [[UIImageView alloc] initWithImage:self.image];
     _imageView.clipsToBounds = YES;
@@ -84,14 +90,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     //label
     //CGRect labelFrame = CGRectMake(2, 49, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height);
-    CGRect labelFrame = CGRectMake(2, 40, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height);
+    //CGRect labelFrame = CGRectMake(2, 40, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height); // Nazmus commented 24 Aug 14
+    CGRect labelFrame = CGRectMake(0, kPaletteItemLabelVerticalPosition, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height); // Nazmus Added 24 Aug 14
     _label = [[UILabel alloc] initWithFrame:labelFrame];
     _label.numberOfLines = 2;
     _label.lineBreakMode = NSLineBreakByCharWrapping;
     _label.text = self.name;
     _label.backgroundColor = [UIColor clearColor];
-    _label.textColor = [UIColor whiteColor];
-    _label.font = [UIFont boldSystemFontOfSize:8];
+    //_label.textColor = [UIColor whiteColor]; // Nazmus commented 24 Aug 14
+    _label.textColor = [UIColor darkGrayColor]; // Nazmus added 24 Aug 14
+    //_label.font = [UIFont boldSystemFontOfSize:8]; //nazmus commented
+    _label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:9.0]; // nazmus added
     _label.textAlignment = NSTextAlignmentCenter;
     
     [_container addSubview:_label];
@@ -219,9 +228,16 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     if(selected != _selected){
         _selected = selected;
         if(selected){
-            _container.layer.borderColor = [UIColor blueColor].CGColor;
+            //nazmus added 21 sep 14
+            [_container.layer setBackgroundColor:[UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f].CGColor];
+            [_container.layer setBorderColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f].CGColor];
+            ////
+            
         } else {
-            _container.layer.borderColor = [UIColor blackColor].CGColor;
+            //nazmus added 21 sep 14
+            [_container.layer setBackgroundColor:[UIColor clearColor].CGColor];
+            [_container.layer setBorderColor:[UIColor clearColor].CGColor];
+            ////
         }
     }
 }
