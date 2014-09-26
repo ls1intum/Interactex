@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <UIKit/UIKit.h>
 #import "IFPinsController.h"
-#import "IFI2CSpecificViewController.h"
+#import "IFI2CLSM303ViewController.h"
 
 @class IFPinsController;
 @class CBPeripheral;
