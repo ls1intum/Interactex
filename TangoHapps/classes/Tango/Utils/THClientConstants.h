@@ -172,6 +172,10 @@ extern NSString * const kNotificationLilypadRemoved;
 extern NSString * const kNotificationPinAttached;
 extern NSString * const kNotificationPinDeattached;
 
+extern NSString * const KNotificationiBeaconRegionEntered;
+extern NSString * const KNotificationiBeaconRegionExited;
+extern NSString * const KNotificationiBeaconRangingStatus;
+
 //events
 extern NSString * const kEventTurnedOn;
 extern NSString * const kEventTurnedOff;

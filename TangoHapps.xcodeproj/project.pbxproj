@@ -10,6 +10,9 @@
 		02008A61199A4B62007BE11E /* THiBeaconPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A60199A4B62007BE11E /* THiBeaconPaletteItem.m */; };
 		02008A64199A61D9007BE11E /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A63199A61D9007BE11E /* THiBeacon.m */; };
 		020C47E8199B8A1C00B5A968 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 020C47E7199B8A1C00B5A968 /* THiBeaconEditable.m */; };
+		0218C7CF19D4BD870082B6E8 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A63199A61D9007BE11E /* THiBeacon.m */; };
+		0218C7D019D4BD940082B6E8 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 020C47E7199B8A1C00B5A968 /* THiBeaconEditable.m */; };
+		0218C7D319D4BEC90082B6E8 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A63199A61D9007BE11E /* THiBeacon.m */; };
 		02AE522D19C9C39300EFA36B /* palette_iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AE522B19C9C39300EFA36B /* palette_iBeacon.png */; };
 		02AE522E19C9C39300EFA36B /* palette_iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AE522C19C9C39300EFA36B /* palette_iBeacon@2x.png */; };
 		02D2376919C843DE00ADF272 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D2376719C843DE00ADF272 /* iBeacon.png */; };
@@ -4496,9 +4499,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Technische Universität München";
 				TargetAttributes = {
-					9A351188167B7A6800C7484B = {
-						DevelopmentTeam = 7PLLZ436SG;
-					};
 					9AF5FFF0167B82F70020241C = {
 						DevelopmentTeam = 7PLLZ436SG;
 					};
@@ -6083,6 +6083,7 @@
 				9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */,
 				9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */,
 				9ABC276218098F2400B39D72 /* THLilypadEditable.m in Sources */,
+				0218C7CF19D4BD870082B6E8 /* THiBeacon.m in Sources */,
 				9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */,
 				9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */,
 				9A06EE87169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */,
@@ -6107,6 +6108,7 @@
 				9A5F8D8B16A2C4E4000DF472 /* THContactBookProperties.m in Sources */,
 				9A5F8E2B16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */,
 				9A93841C16D651D700A41BD2 /* THTimer.m in Sources */,
+				0218C7D019D4BD940082B6E8 /* THiBeaconEditable.m in Sources */,
 				9A93846316D652EC00A41BD2 /* THTimerEditable.m in Sources */,
 				9A93846916D6534500A41BD2 /* THTimerProperties.m in Sources */,
 				9A39649618AE5A090061E44B /* THGraphViewSegment.m in Sources */,
@@ -6230,6 +6232,7 @@
 				9AF50459167B84F50020241C /* THPotentiometer.m in Sources */,
 				9AFB7DD61832B0B100694CCE /* THClientProjectProxy.m in Sources */,
 				9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */,
+				0218C7D319D4BEC90082B6E8 /* THiBeacon.m in Sources */,
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
 				9A6B283318AA0768009AAE31 /* THPureData.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
@@ -6415,11 +6418,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "a31b996c-1af0-49af-a97e-f2e03ed7cea3";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6432,12 +6438,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "a31b996c-1af0-49af-a97e-f2e03ed7cea3";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6477,11 +6486,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "a31b996c-1af0-49af-a97e-f2e03ed7cea3";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6494,6 +6506,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6503,6 +6517,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
@@ -6534,6 +6549,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6543,6 +6560,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				VALIDATE_PRODUCT = NO;
@@ -6555,6 +6573,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6564,6 +6584,7 @@
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = "Interactex Client";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** ./Frameworks/BLE/BLE/** ./Frameworks/Firmata/Firmata/**";
 				WRAPPER_EXTENSION = app;
