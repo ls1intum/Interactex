@@ -80,8 +80,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THClothePaletteItem.h"
 
-#import "THGesturePaletteItem.h"
-
 #import "THComparatorPaletteItem.h"
 #import "THGrouperPaletteItem.h"
 #import "THValuePaletteItem.h"
@@ -438,15 +436,15 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) useDefaultPaletteSections{
     
-    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, self.gesturesSectionArray, nil];
-    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, self.gesturesSectionName, nil];
+    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, nil];
+    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, nil];
 }
 
 -(void) loadPaletteData {
     
     self.clothesSectionArray  = [NSMutableArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
     
-    self.uiSectionArray = [NSMutableArray arrayWithObjects:[[THiPhonePaletteItem alloc] initWithName:@"iphone"],
+    self.uiSectionArray = [NSMutableArray arrayWithObjects://[[THiPhonePaletteItem alloc] initWithName:@"iphone"], //nazmus commented
                            [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
                            [[THLabelPaletteItem alloc] initWithName:@"label"],
                            [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
@@ -488,10 +486,10 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
+                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
-                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
                                      
                                      nil];
     
@@ -500,11 +498,11 @@ You should have received a copy of the GNU General Public License along with thi
                                        //[[THLipoBatteryPaletteItem alloc] initWithName:@"lipoBattery"],
                                        nil
                                        ];
-    
+    /*
     self.gesturesSectionArray = [NSMutableArray arrayWithObjects:
                                   [[THGesturePaletteItem alloc] initWithName:@"gesture"],
                                   nil
-                                 ];
+                                 ];*/
                                      
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";
@@ -512,7 +510,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Visual Programming";
     self.otherHardwareSectionName = @"Other Hardware";
-    self.gesturesSectionName = @"Gestures";
+    //self.gesturesSectionName = @"Gestures";
 }
 
 -(void) tabBar:(THTabbarView*) tabBar didAddSection:(THTabbarSection*) section{

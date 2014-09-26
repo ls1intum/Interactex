@@ -43,12 +43,14 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponentEditableObject.h"
 
 @interface THVibrationBoardEditable : THHardwareComponentEditableObject{
-    CCSprite * _lightSprite;
+    CCAction * _shakeAction;
 }
 
 @property (nonatomic) BOOL onAtStart;
 @property (nonatomic, readonly) BOOL on;
 @property (nonatomic) NSInteger frequency;
+
+@property (nonatomic) BOOL shaking;
 
 @property (nonatomic) THElementPinEditable * minusPin;
 @property (nonatomic) THElementPinEditable * digitalPin;

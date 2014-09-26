@@ -50,7 +50,7 @@ You should have received a copy of the GNU General Public License along with thi
 {    
 }
 
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (nonatomic, readonly) THPaletteViewController *paletteController;
 @property (nonatomic, readonly) THPropertiesViewController *propertiesController;
 @property (nonatomic) BOOL hidden;
@@ -59,5 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (IBAction)paletteTapped:(id)sender;
 - (IBAction)propertiesTapped:(id)sender;
+- (void) showTab:(NSInteger)index;
+
 
 @end

@@ -56,66 +56,24 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define kSimpleLilypadNumberOfPins 11
 
-CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
-    {55.0, -94.0}, {94.0, -55.0},{109.0, -2.0},{94.0, 52.0},{54.0, 91.0},//D2,3,9,10,11
-    {-52, -94}, {2.0, -110.0},//- +
-    {-52,91},{-92,51},{-105, -3},{-91, -55}//A2 - A5
-};
-
-/*
-CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
-    {0, 0}, {0, 0},{0, 0},{0, 0},{0, 0},//D2,3,9,10,11
-    {-52, -94}, {-2, -110.0},//- +
-    {0,0},{0,0},{0, 0},{0, 0}//A2 - A5
-};*/
-
-
 -(void) loadLilypad{
+    self.boardType = kBoardTypeLilypadSimple;
+    
     self.z = kLilypadZ;
     
     self.sprite = [CCSprite spriteWithFile:@"lilypadSimple.png"];
     [self addChild:self.sprite];
-    
-    self.canBeDuplicated = NO;
-}
-
--(void) addPins{
-    for (THPinEditable * pin in _pins) {
-        [self addChild:pin];
-    }
-}
-
--(void) loadPins{
-    int i = 0;
-    
-    THSimpleLilypad * lilypad = (THSimpleLilypad*) self.simulableObject;
-    for (THPin * pin in lilypad.pins) {
-        THBoardPinEditable * pinEditable = [[THBoardPinEditable alloc] init];
-        pinEditable.simulableObject = pin;
-        
-        pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kSimpleLilypadPinPositions[i]);
-        pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
-        //NSLog(@"final positioN: %f %f",pinEditable.position.x,pinEditable.position.y);
-        [_pins addObject:pinEditable];
-        i++;
-    }
-    
-    [self addPins];
 }
 
 -(id) init{
     self = [super init];
     if(self){
-        _pins = [NSMutableArray array];
         
         THSimpleLilypad * lilyPad = [[THSimpleLilypad alloc] init];
         self.simulableObject = lilyPad;
         
         [self loadLilypad];
-        [self loadPins];
-        
-        self.minusPin.highlightColor = kMinusPinHighlightColor;
-        self.plusPin.highlightColor = kPlusPinHighlightColor;
+        [self loadBoard];
         
     }
     return self;
@@ -128,7 +86,7 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     if(self){
         
         [self loadLilypad];
-        [self addPins];
+        [self loadBoard];
     }
     return self;
 }
