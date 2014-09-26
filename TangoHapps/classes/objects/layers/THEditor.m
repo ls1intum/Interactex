@@ -407,13 +407,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) checkDistributeInvocationConnectionsBetweenObj1:(TFEditableObject*) object1 obj2:(TFEditableObject*) object2{
     
     THProject * project = [THDirector sharedDirector].currentProject;
-    
-    //NSArray * invocationConnections = [project invocationConnectionsFrom:object1 to:object2]; // nazmus commented
-    //nazmus added - to fix the connection-overlap-bug between obj2 and obj1
-    NSArray * invocationConnections1 = [project invocationConnectionsFrom:object1 to:object2];
-    NSArray * invocationConnections2 = [project invocationConnectionsFrom:object2 to:object1];
-    NSArray * invocationConnections = [invocationConnections1 arrayByAddingObjectsFromArray:invocationConnections2];
-    ////
+    NSArray * invocationConnections = [project invocationConnectionsFrom:object1 to:object2];
     
     CGPoint p1 = object1.center;
     CGPoint p2 = object2.center;
@@ -913,23 +907,11 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)paletteItem:(THDraggedPaletteItem*)item movedTo:(CGPoint)location {
     item.center = location;
     
-    //nazmus commented
-    /*if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
+    if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
         item.state = kPaletteItemStateDroppable;
     } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:location]){
         item.state = kPaletteItemStateNormal;
-    }*/
-    ////
-    
-    //nazmus added - converted the location to be used in canBeDroppedAt method equally 'when dropping at item'  
-    CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL: location];
-    if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:convertedLocation]){
-        item.state = kPaletteItemStateDroppable;
-    } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:convertedLocation]){
-        item.state = kPaletteItemStateNormal;
     }
-    ////
-    
 }
 
 -(void)paletteItem:(THDraggedPaletteItem*)item endedAt:(CGPoint) location{

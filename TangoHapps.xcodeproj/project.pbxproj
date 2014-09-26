@@ -7,6 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
+		02008A61199A4B62007BE11E /* THiBeaconPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A60199A4B62007BE11E /* THiBeaconPaletteItem.m */; };
+		02008A64199A61D9007BE11E /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A63199A61D9007BE11E /* THiBeacon.m */; };
+		020C47E8199B8A1C00B5A968 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 020C47E7199B8A1C00B5A968 /* THiBeaconEditable.m */; };
+		0218C7CF19D4BD870082B6E8 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A63199A61D9007BE11E /* THiBeacon.m */; };
+		0218C7D019D4BD940082B6E8 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 020C47E7199B8A1C00B5A968 /* THiBeaconEditable.m */; };
+		0218C7D319D4BEC90082B6E8 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02008A63199A61D9007BE11E /* THiBeacon.m */; };
+		02AE522D19C9C39300EFA36B /* palette_iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AE522B19C9C39300EFA36B /* palette_iBeacon.png */; };
+		02AE522E19C9C39300EFA36B /* palette_iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AE522C19C9C39300EFA36B /* palette_iBeacon@2x.png */; };
+		02D2376919C843DE00ADF272 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D2376719C843DE00ADF272 /* iBeacon.png */; };
+		02D2376A19C843DE00ADF272 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D2376819C843DE00ADF272 /* iBeacon@2x.png */; };
+		02D2376D19C843F900ADF272 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D2376B19C843F900ADF272 /* iBeacon.png */; };
+		02D2376E19C843F900ADF272 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D2376C19C843F900ADF272 /* iBeacon@2x.png */; };
+		02F4BA3619C875A60039D9C5 /* THiBeaconProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4BA3419C875A60039D9C5 /* THiBeaconProperties.m */; };
+		02F4BA3719C875A60039D9C5 /* THiBeaconProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F4BA3519C875A60039D9C5 /* THiBeaconProperties.xib */; };
+		670057941962B04E005D0A5E /* outputCircleFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6700578C1962B04E005D0A5E /* outputCircleFilled@2x.png */; };
+		670057951962B04E005D0A5E /* outputCircleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6700578D1962B04E005D0A5E /* outputCircleFilled.png */; };
+		670057961962B04E005D0A5E /* outputSquareFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6700578E1962B04E005D0A5E /* outputSquareFilled.png */; };
+		670057971962B04E005D0A5E /* outputSquareFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6700578F1962B04E005D0A5E /* outputSquareFilled@2x.png */; };
+		670057981962B04E005D0A5E /* outputStarFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 670057901962B04E005D0A5E /* outputStarFilled.png */; };
+		670057991962B04E005D0A5E /* outputStarFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670057911962B04E005D0A5E /* outputStarFilled@2x.png */; };
+		6700579A1962B04E005D0A5E /* outputTriangleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 670057921962B04E005D0A5E /* outputTriangleFilled.png */; };
+		6700579B1962B04E005D0A5E /* outputTriangleFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670057931962B04E005D0A5E /* outputTriangleFilled@2x.png */; };
+		670AF0081959A64700156130 /* outputEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFF61959A64700156130 /* outputEmpty.png */; };
+		670AF0091959A64700156130 /* outputEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFF71959A64700156130 /* outputEmpty@2x.png */; };
+		670AF00A1959A64700156130 /* outputCircleFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFF81959A64700156130 /* outputCircleFilledLower.png */; };
+		670AF00B1959A64700156130 /* outputCircleFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFF91959A64700156130 /* outputCircleFilledLower@2x.png */; };
+		670AF00C1959A64700156130 /* outputCircleFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFFA1959A64700156130 /* outputCircleFilledUpper.png */; };
+		670AF00D1959A64700156130 /* outputCircleFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFFB1959A64700156130 /* outputCircleFilledUpper@2x.png */; };
+		670AF00E1959A64700156130 /* outputSquareFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFFC1959A64700156130 /* outputSquareFilledLower.png */; };
+		670AF00F1959A64700156130 /* outputSquareFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFFD1959A64700156130 /* outputSquareFilledLower@2x.png */; };
+		670AF0101959A64700156130 /* outputSquareFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFFE1959A64700156130 /* outputSquareFilledUpper.png */; };
+		670AF0111959A64700156130 /* outputSquareFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AEFFF1959A64700156130 /* outputSquareFilledUpper@2x.png */; };
+		670AF0121959A64700156130 /* outputStarFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0001959A64700156130 /* outputStarFilledLower.png */; };
+		670AF0131959A64700156130 /* outputStarFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0011959A64700156130 /* outputStarFilledLower@2x.png */; };
+		670AF0141959A64700156130 /* outputStarFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0021959A64700156130 /* outputStarFilledUpper.png */; };
+		670AF0151959A64700156130 /* outputStarFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0031959A64700156130 /* outputStarFilledUpper@2x.png */; };
+		670AF0161959A64700156130 /* outputTriangleFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0041959A64700156130 /* outputTriangleFilledLower.png */; };
+		670AF0171959A64700156130 /* outputTriangleFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0051959A64700156130 /* outputTriangleFilledLower@2x.png */; };
+		670AF0181959A64700156130 /* outputTriangleFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0061959A64700156130 /* outputTriangleFilledUpper.png */; };
+		670AF0191959A64700156130 /* outputTriangleFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 670AF0071959A64700156130 /* outputTriangleFilledUpper@2x.png */; };
+		671B35AC1946F9470019E348 /* THOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 671B35AB1946F9470019E348 /* THOutput.m */; };
+		671B35E91946FC600019E348 /* THOutputEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 671B35E81946FC600019E348 /* THOutputEditable.m */; };
+		6751DB9519017B0100214C40 /* THGestureProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6751DB9419017B0100214C40 /* THGestureProperties.m */; };
+		6751DB9919017DBB00214C40 /* THGestureProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751DB9819017DBB00214C40 /* THGestureProperties.xib */; };
+		6753699519336045007A88A1 /* THGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6753699419336045007A88A1 /* THGesture.m */; };
+		67621C6519488B8E00829349 /* output.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6119488B8E00829349 /* output.png */; };
+		67621C6619488B8E00829349 /* output@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6219488B8E00829349 /* output@2x.png */; };
+		67621C6719488B8E00829349 /* palette_output.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6319488B8E00829349 /* palette_output.png */; };
+		67621C6819488B8E00829349 /* palette_output@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67621C6419488B8E00829349 /* palette_output@2x.png */; };
+		6778EA0518F6AC980080B1C9 /* gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0118F6AC980080B1C9 /* gesture.png */; };
+		6778EA0618F6AC980080B1C9 /* gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0218F6AC980080B1C9 /* gesture@2x.png */; };
+=======
 		251F674419C48F5300EF9807 /* iphoneBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674219C48F5300EF9807 /* iphoneBg.png */; };
 		251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674319C48F5300EF9807 /* iphoneBg@2x.png */; };
 		251F678419C4A1A300EF9807 /* hideVPmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678019C4A1A300EF9807 /* hideVPmode.png */; };
@@ -21,6 +74,7 @@
 		25E57B5419C0824A006B61A8 /* stopicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5219C0824A006B61A8 /* stopicon@2x.png */; };
 		25E57B5919C08984006B61A8 /* editorLayerBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5519C08984006B61A8 /* editorLayerBg.png */; };
 		25E57B5A19C08984006B61A8 /* editorLayerBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5619C08984006B61A8 /* editorLayerBg@2x.png */; };
+>>>>>>> cd4ee1a40d918362110904da9d2f2916e0c2dd0e
 		6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0318F6AC980080B1C9 /* palette_gesture.png */; };
 		6778EA0818F6AC980080B1C9 /* palette_gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */; };
 		679857A718EC61CC0037B366 /* THFlexSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */; };
@@ -4037,6 +4091,11 @@
 				9AB29B48167F4F2600F5AF62 /* THImageViewProperties.m */,
 				9A06EE9A169AD99B00B88519 /* THSliderProperties.h */,
 				9A06EE9B169AD99B00B88519 /* THSliderProperties.m */,
+<<<<<<< HEAD
+				02F4BA3319C875A60039D9C5 /* THiBeaconProperties.h */,
+				02F4BA3419C875A60039D9C5 /* THiBeaconProperties.m */,
+=======
+>>>>>>> cd4ee1a40d918362110904da9d2f2916e0c2dd0e
 				9A06EF2C169AE51F00B88519 /* THPotentiometerProperties.h */,
 				9A06EF2D169AE51F00B88519 /* THPotentiometerProperties.m */,
 				9A06EFC0169C0B0C00B88519 /* THThreeColorLedProperties.h */,
@@ -4353,9 +4412,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Technische Universität München";
 				TargetAttributes = {
-					9A351188167B7A6800C7484B = {
-						DevelopmentTeam = 7PLLZ436SG;
-					};
 					9AF5FFF0167B82F70020241C = {
 						DevelopmentTeam = WCM2L8RG39;
 					};
@@ -5904,6 +5960,7 @@
 				9AB29C05167F89C800F5AF62 /* THProgrammingElementEditable.m in Sources */,
 				9AB29C06167F89C800F5AF62 /* THProgrammingElement.m in Sources */,
 				9ABC276218098F2400B39D72 /* THLilypadEditable.m in Sources */,
+				0218C7CF19D4BD870082B6E8 /* THiBeacon.m in Sources */,
 				9A7DBF6B169AC49900F86D71 /* THThreeColorLed.m in Sources */,
 				9A7DBF6F169ACD5C00F86D71 /* THThreeColorLedEditable.m in Sources */,
 				9A06EE87169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */,
@@ -5928,6 +5985,7 @@
 				9A5F8D8B16A2C4E4000DF472 /* THContactBookProperties.m in Sources */,
 				9A5F8E2B16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */,
 				9A93841C16D651D700A41BD2 /* THTimer.m in Sources */,
+				0218C7D019D4BD940082B6E8 /* THiBeaconEditable.m in Sources */,
 				9A93846316D652EC00A41BD2 /* THTimerEditable.m in Sources */,
 				9A93846916D6534500A41BD2 /* THTimerProperties.m in Sources */,
 				9A39649618AE5A090061E44B /* THGraphViewSegment.m in Sources */,
@@ -6051,6 +6109,7 @@
 				9AF50459167B84F50020241C /* THPotentiometer.m in Sources */,
 				9AFB7DD61832B0B100694CCE /* THClientProjectProxy.m in Sources */,
 				9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */,
+				0218C7D319D4BEC90082B6E8 /* THiBeacon.m in Sources */,
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
 				9A6B283318AA0768009AAE31 /* THPureData.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
@@ -6237,12 +6296,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+<<<<<<< HEAD
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
+				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "a31b996c-1af0-49af-a97e-f2e03ed7cea3";
+=======
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
+>>>>>>> cd4ee1a40d918362110904da9d2f2916e0c2dd0e
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6260,10 +6329,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
+<<<<<<< HEAD
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "a31b996c-1af0-49af-a97e-f2e03ed7cea3";
+=======
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
+>>>>>>> cd4ee1a40d918362110904da9d2f2916e0c2dd0e
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6308,9 +6384,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
+<<<<<<< HEAD
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "a31b996c-1af0-49af-a97e-f2e03ed7cea3";
+=======
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
+>>>>>>> cd4ee1a40d918362110904da9d2f2916e0c2dd0e
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6323,6 +6405,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6364,7 +6448,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+<<<<<<< HEAD
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+=======
 				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
+>>>>>>> cd4ee1a40d918362110904da9d2f2916e0c2dd0e
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6387,6 +6476,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";

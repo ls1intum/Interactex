@@ -146,17 +146,7 @@ You should have received a copy of the GNU General Public License along with thi
                 [invocation setArgument:&f atIndex:2];
             }
             
-        }
-        //nazmus added 24 sep 14 - to fix the connection bug number and string in simulator mode
-        else if(self.method.firstParamType == kDataTypeString){
-            
-            NSNumber * number = result;
-            NSString *b = number.stringValue;
-            [invocation setArgument:&b atIndex:2];
-            
-        }
-        ////
-        else {
+        } else {
             
             [invocation setArgument:&result atIndex:2];
             

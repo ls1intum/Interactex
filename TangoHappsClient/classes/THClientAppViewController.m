@@ -61,6 +61,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THJennic.h"
 #import "IFFirmata.h"
 #import "THI2CMessage.h"
+#import "THiBeacon.h"
 
 float const kScanningTimeout = 3.0f;
 float const kConnectingTimeout = 7.0f;
@@ -438,6 +439,7 @@ float const kConnectingTimeout = 7.0f;
     
     [self.currentProject startSimulating];
     [self.firmataController sendFirmwareRequest];
+    //TODO **********
 }
 
 -(void) bleServiceDidReset {

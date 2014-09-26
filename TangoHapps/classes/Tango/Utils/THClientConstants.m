@@ -50,10 +50,7 @@ NSInteger const kLilypadPwmPins[kLilypadNumPwmPins] = {3,5,6,9,10,11};
 
 
 //CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}}; // nazmus commented
-//CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,180,268},{26,99,180,300}}; // nazmus added, then commented
-CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,90,262,394},{26,99,262,470}}; // nazmus 24 sep 14 added - iphone4 is used by default
-float const kiphoneFrameXMargin = 23;
-float const kiphoneFrameYMargin = 120;
+CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,180,268},{26,99,180,300}}; // nazmus added
 
 //notifications
 NSString * const kNotificationLedOn = @"notificationLedOn";
@@ -78,6 +75,10 @@ NSString * const kNotificationPinAttached = @"notificationPinAttached";
 NSString * const kNotificationPinDeattached = @"notificationPinDeattached";
 NSString * const kNotificationPinValueChanged = @"notificationPinValueChanged";
 
+NSString * const KNotificationiBeaconRegionEntered = @"iBeaconRegionEntered";
+NSString * const KNotificationiBeaconRegionExited = @"iBeaconRegionExited";
+NSString * const KNotificationiBeaconRangingStatus = @"iBeaconRangingStatus";
+
 //events
 NSString * const kEventTurnedOn = @"turnedOn";
 NSString * const kEventTurnedOff = @"turnedOff";
@@ -97,6 +98,8 @@ NSString * const kEventConditionChanged = @"conditionChanged";
 NSString * const kEventXChanged = @"xChanged";
 NSString * const kEventYChanged = @"yChanged";
 NSString * const kEventZChanged = @"zChanged";
+
+NSString * const kProxımıtyChanged = @"proxımıtyChanged";
 
 NSString * const kEventTapped = @"tapped";
 NSString * const kEventDoubleTapped = @"doubleTapped";

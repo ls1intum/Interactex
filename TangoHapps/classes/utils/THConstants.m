@@ -113,9 +113,8 @@ CGSize const kDefaultPinSize = {30,30};
 CGSize const kiPhoneButtonDefaultSize = {100,50};
 
 //CGPoint const kDefaultiPhonePosition = {840, 430}; // nazmus commented
-//CGPoint const kDefaultiPhonePosition = {900, 410}; // nazmus added: 1024-(iphone5 width/2)- 20 padding, 768-(iphone5 height/2)- 20 padding - 44 navigation bar height - 64 menubar height
-CGPoint const kDefaultiPhonePosition = {858, 340}; // nazmus added: 1024-(iphone5 width/2)- 6 padding, 768-(iphone5 height/2)- 6 padding - 44 navigation bar height - 64 menubar height - 24 statusbar
-float const kiPhoneBgPadding = 6.0f; // nazmus added
+CGPoint const kDefaultiPhonePosition = {900, 410}; // nazmus added: 1024-(iphone5 width/2)- 20 padding, 768-(iphone5 height/2)- 20 padding - 44 navigation bar height - 64 menubar height
+float const kiPhoneBgPadding = 20.0f; // nazmus added
 
 CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {60,80},//buzzer
