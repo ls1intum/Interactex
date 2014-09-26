@@ -76,8 +76,7 @@ typedef enum{
     kHardwareTypeMPUCompass,
     kHardwareTypeLipoBattery,
     kHardwareTypePowerSupply,
-    kHardwareTypeFlexSensor,//15
-    kHardwareTypeiBeacon
+    kHardwareTypeFlexSensor//15
 }THHardwareType;
 
 #define kNumPinTypes 4

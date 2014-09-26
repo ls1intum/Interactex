@@ -27,7 +27,7 @@
  Interactex also implements the Firmata protocol. Its software serial library is based on the original Arduino Firmata library.
  www.firmata.org
  
- All hardware part graphics in Interactex Designerl are reproduced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
+ All hardware part graphics in Interactex Designer are reproduced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
  www.frizting.org
  
  Martijn ten Bhömer from TU Eindhoven contributed PureData support. Contact: m.t.bhomer@tue.nl.
