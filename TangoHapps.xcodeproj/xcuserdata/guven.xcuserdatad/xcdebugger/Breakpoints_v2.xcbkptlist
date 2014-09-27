@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHapps/classes/objects/layers/THProject.m"
-            timestampString = "433534847.149346"
+            timestampString = "433537632.50019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1069"
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TangoHapps/classes/communication/THServerController.m"
-            timestampString = "433535084.19797"
+            filePath = "TangoHapps/classes/objects/layers/THProject.m"
+            timestampString = "433540080.223256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-pushProjectToAllClients:"
+            startingLineNumber = "1142"
+            endingLineNumber = "1142"
+            landmarkName = "-nonEditableElementsForArray:forProject:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHapps/classes/objects/layers/THProject.m"
-            timestampString = "433535132.750292"
+            timestampString = "433540080.223256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1164"
-            endingLineNumber = "1164"
+            startingLineNumber = "1175"
+            endingLineNumber = "1175"
             landmarkName = "-addNonEditableActionPairsTo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TangoHapps/classes/Tango/Objects/TFSimulableObject.m"
+            timestampString = "433539770.872525"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "-isEqual:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

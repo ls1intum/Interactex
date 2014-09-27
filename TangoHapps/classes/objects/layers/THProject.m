@@ -1067,7 +1067,8 @@ enum zPositions{
 -(NSInteger) idxOfSimulable:(TFSimulableObject*) simulable inArray:(NSArray*) array{
     NSInteger i = 0;
     for (TFEditableObject * editable in array) {
-        if(editable.simulableObject == simulable){
+        //if(editable.simulableObject == simulable){
+        if([editable.simulableObject isEqual:simulable]){
             return i;
         }
         i++;

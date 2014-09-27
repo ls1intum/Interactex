@@ -183,4 +183,34 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(BOOL) isEqual:(id)object{
+    
+    if (self == object)
+        return YES;
+    
+    TFSimulableObject *theObject = (TFSimulableObject*)object;
+    
+    if(theObject.simulating!=self.simulating)
+        return NO;
+    if(theObject.visible!=self.visible)
+        return NO;
+    
+    //compare events
+    for (TFEvent * event in theObject.events) {
+        if(![self eventNamed:event.name]){
+            return NO;
+        }
+    }
+    
+    //compare methods
+    for (TFProperty * property in theObject.properties) {
+        if(![self propertyNamed:property.name]){
+            return NO;
+        }
+    }
+    
+    
+    return YES;
+}
+
 @end
