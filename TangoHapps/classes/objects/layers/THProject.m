@@ -1072,7 +1072,6 @@ enum zPositions{
         }
         i++;
     }
-    --i;
     return i;
 }
 

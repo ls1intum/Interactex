@@ -94,7 +94,7 @@
 }
 
 -(NSString*) description{
-    return @"iBeacon";
+    return @"IBeacon";
 }
 
 -(void) didStartSimulating{
