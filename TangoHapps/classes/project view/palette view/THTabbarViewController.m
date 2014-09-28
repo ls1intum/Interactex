@@ -115,39 +115,39 @@ float const kTabbarToolbarHeight = 50;
     if(index == 0){
         self.paletteButton.selected = YES;
         self.propertiesButton.selected = NO;
+        
+        /// Nazmus 28 June 14
+        [UIView transitionFromView:_propertiesController.view
+                            toView:_paletteController.view
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:^(BOOL finished){
+                            [self.view bringSubviewToFront:self.toolBarView];
+                        }];
+        ///
     } else if(index == 1){
         
         self.paletteButton.selected = NO;
         self.propertiesButton.selected = YES;
+        /// Nazmus 28 June 14
+        [UIView transitionFromView:_paletteController.view
+                            toView:_propertiesController.view
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        completion:^(BOOL finished){
+                            [self.view bringSubviewToFront:self.toolBarView];
+                        }];
+        ///
     }
     
 }
 
 - (IBAction)paletteTapped:(id)sender {
     [self showTab:0];
-    /// Nazmus 28 June 14
-    [UIView transitionFromView:_propertiesController.view
-                        toView:_paletteController.view
-                      duration:1
-                       options:UIViewAnimationOptionTransitionFlipFromRight
-                    completion:^(BOOL finished){
-                        [self.view bringSubviewToFront:self.toolBarView];
-                    }];
-    ///
 }
 
 - (IBAction)propertiesTapped:(id)sender {
     [self showTab:1];
-    /// Nazmus 28 June 14
-    [UIView transitionFromView:_paletteController.view
-                        toView:_propertiesController.view
-                      duration:1
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    completion:^(BOOL finished){
-                        [self.view bringSubviewToFront:self.toolBarView];
-                    }];
-    ///
-    
 }
 
 #pragma mark - Dealloc

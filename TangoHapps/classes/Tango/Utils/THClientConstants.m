@@ -50,7 +50,10 @@ NSInteger const kLilypadPwmPins[kLilypadNumPwmPins] = {3,5,6,9,10,11};
 
 
 //CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}}; // nazmus commented
-CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,180,268},{26,99,180,300}}; // nazmus added
+//CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,180,268},{26,99,180,300}}; // nazmus added, then commented
+CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,90,262,394},{26,99,262,470}}; // nazmus 24 sep 14 added - iphone4 is used by default
+float const kiphoneFrameXMargin = 23;
+float const kiphoneFrameYMargin = 120;
 
 //notifications
 NSString * const kNotificationLedOn = @"notificationLedOn";

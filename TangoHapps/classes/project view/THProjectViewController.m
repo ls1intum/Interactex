@@ -98,6 +98,22 @@ float const kToolsTabMargin = 5;
     [self.view insertSubview:_menuController.view belowSubview:_tabController.view];
     ////
     
+    // nazmus added 27 Sep 14
+    _zoomSlider = [[UISlider alloc] initWithFrame:CGRectMake(412.0, 688.0, 200.0, 32.0)];
+    [_zoomSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+    [_zoomSlider setBackgroundColor:[UIColor clearColor]];
+    [_zoomSlider setMinimumValueImage:[UIImage imageNamed:@"zoomMinus.png"]];
+    [_zoomSlider setMaximumValueImage:[UIImage imageNamed:@"zoomPlus.png"]];
+    [_zoomSlider setMinimumTrackTintColor:[UIColor blackColor]];
+    _zoomSlider.minimumValue = kLayerMinScale;
+    _zoomSlider.maximumValue = kLayerMaxScale;
+    _zoomSlider.continuous = YES;
+    _zoomSlider.value = 1.0;
+    [self.view addSubview:_zoomSlider];
+    ////
+    
+
+    
     // Observe some notifications so we can properly instruct the director.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationWillResignActive:)
@@ -395,6 +411,30 @@ float const kToolsTabMargin = 5;
 {
     _tabController.hidden = NO;
 }
+
+//nazmus added 21 Sep 14
+-(void)hideMenuBar
+{
+    _menuController.view.hidden = YES;
+}
+
+-(void)showMenuBar
+{
+    _menuController.view.hidden = NO;
+}
+////
+
+//nazmus added 27 Sep 14
+-(void)hideZoomBar
+{
+    _zoomSlider.hidden = YES;
+}
+
+-(void)showZoomBar
+{
+    _zoomSlider.hidden = NO;
+}
+////
 /*
 -(void)hideTools
 {
@@ -463,6 +503,13 @@ float const kToolsTabMargin = 5;
         
         [self hideTabBar];
         
+        //nazmus added 21 Sep 14 - hide menubar because there is no button in it
+        [self hideMenuBar];
+        ////
+        //nazmus added 27 Sep 14 - hide zoomSlider
+        [self hideZoomBar];
+        ////
+        
         [self addSimulationButtons];
         
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -494,6 +541,15 @@ float const kToolsTabMargin = 5;
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
+        
+        //nazmus added 21 Sep 14
+        [self showMenuBar];
+        [self.tabController showTab:0];
+        ////
+        //nazmus added 27 Sep 14 - hide zoomSlider
+        [self showZoomBar];
+        ////
+        
         self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         [self updatePalettePullVisibility];
@@ -581,7 +637,7 @@ float const kToolsTabMargin = 5;
     UIImage * connectButtonImage = [UIImage imageNamed:imageName];
     UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
     if ([imageName isEqualToString:@"vpmode.png"]) {
-        [retButton setFrame:CGRectMake(0, 0, 248, 73)];
+        [retButton setFrame:CGRectMake(0, 0, 330, 73)];
     }
     [retButton setImage:connectButtonImage forState:UIControlStateNormal];
     [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
@@ -788,7 +844,6 @@ float const kToolsTabMargin = 5;
 }
 
 - (void)duplicatePressed:(id)sender {
-    
     [self checkSwitchToState:kEditorStateDuplicate];
 }
 
@@ -857,13 +912,20 @@ float const kToolsTabMargin = 5;
     project.iPhone.visible = !project.iPhone.visible;
     [self updateHideIphoneButtonTint];
     
-    
-    
-    
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
 }
 
+//nazmus added - 27 Sep 14
+-(void)sliderAction:(id)sender {
+    THEditor * editor = (THEditor*) self.currentLayer;
+    float newScale = [(UISlider *)sender value];
+    
+    if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
+        editor.zoomableLayer.scale = newScale;
+    }
+}
+////
 
 -(NSString*) description{
     return @"ProjectController";

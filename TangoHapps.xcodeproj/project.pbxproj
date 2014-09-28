@@ -15,6 +15,10 @@
 		251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678319C4A1A300EF9807 /* vpmode@2x.png */; };
 		25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
 		25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25643B8D19B0E51F00F8E9CB /* THMenubar.xib */; };
+		25981C8219D6BCC600DE4131 /* zoomMinus.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C7E19D6BCC600DE4131 /* zoomMinus.png */; };
+		25981C8319D6BCC600DE4131 /* zoomMinus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */; };
+		25981C8419D6BCC600DE4131 /* zoomPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8019D6BCC600DE4131 /* zoomPlus.png */; };
+		25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8119D6BCC600DE4131 /* zoomPlus@2x.png */; };
 		25E57B1519C077C6006B61A8 /* playicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1319C077C6006B61A8 /* playicon.png */; };
 		25E57B1619C077C6006B61A8 /* playicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1419C077C6006B61A8 /* playicon@2x.png */; };
 		25E57B5319C0824A006B61A8 /* stopicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5119C0824A006B61A8 /* stopicon.png */; };
@@ -1795,7 +1799,11 @@
 		251F678319C4A1A300EF9807 /* vpmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vpmode@2x.png"; sourceTree = "<group>"; };
 		25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMenubarViewController.h; sourceTree = "<group>"; };
 		25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMenubarViewController.m; sourceTree = "<group>"; };
-		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THMenubar.xib; path = "../../classes/project view/palette view/THMenubar.xib"; sourceTree = "<group>"; };
+		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THMenubar.xib; sourceTree = "<group>"; };
+		25981C7E19D6BCC600DE4131 /* zoomMinus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomMinus.png; sourceTree = "<group>"; };
+		25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomMinus@2x.png"; sourceTree = "<group>"; };
+		25981C8019D6BCC600DE4131 /* zoomPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomPlus.png; sourceTree = "<group>"; };
+		25981C8119D6BCC600DE4131 /* zoomPlus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomPlus@2x.png"; sourceTree = "<group>"; };
 		25E57B1319C077C6006B61A8 /* playicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playicon.png; sourceTree = "<group>"; };
 		25E57B1419C077C6006B61A8 /* playicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playicon@2x.png"; sourceTree = "<group>"; };
 		25E57B5119C0824A006B61A8 /* stopicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopicon.png; sourceTree = "<group>"; };
@@ -3115,6 +3123,10 @@
 				251F678119C4A1A300EF9807 /* hideVPmode@2x.png */,
 				251F678219C4A1A300EF9807 /* vpmode.png */,
 				251F678319C4A1A300EF9807 /* vpmode@2x.png */,
+				25981C7E19D6BCC600DE4131 /* zoomMinus.png */,
+				25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */,
+				25981C8019D6BCC600DE4131 /* zoomPlus.png */,
+				25981C8119D6BCC600DE4131 /* zoomPlus@2x.png */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -4912,6 +4924,7 @@
 				9A41454717DE7A060061EDF8 /* musicPlay.png in Resources */,
 				9A41454917DE7A060061EDF8 /* musicPlay@2x.png in Resources */,
 				9A41454B17DE7A060061EDF8 /* pause.png in Resources */,
+				25981C8219D6BCC600DE4131 /* zoomMinus.png in Resources */,
 				9A41454D17DE7A060061EDF8 /* pause@2x.png in Resources */,
 				9A41454F17DE7A060061EDF8 /* accelerometerArrow.png in Resources */,
 				9A41455117DE7A060061EDF8 /* accelerometerArrow@2x.png in Resources */,
@@ -4938,6 +4951,7 @@
 				9A41457517DE7A060061EDF8 /* grouper.png in Resources */,
 				251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */,
 				9A41457717DE7A060061EDF8 /* grouper@2x.png in Resources */,
+				25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */,
 				9A41457917DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457B17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
 				9ABC277B1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */,
@@ -5019,6 +5033,7 @@
 				9A4145F317DE7A060061EDF8 /* palette_threeColorLed.png in Resources */,
 				9A4145F517DE7A060061EDF8 /* palette_threeColorLed@2x.png in Resources */,
 				9A4145F717DE7A060061EDF8 /* palette_timer.png in Resources */,
+				25981C8319D6BCC600DE4131 /* zoomMinus@2x.png in Resources */,
 				9A4145F917DE7A060061EDF8 /* palette_timer@2x.png in Resources */,
 				9A4145FB17DE7A060061EDF8 /* palette_touchpad.png in Resources */,
 				9A4145FD17DE7A060061EDF8 /* palette_touchpad@2x.png in Resources */,
@@ -5035,6 +5050,7 @@
 				9A41460F17DE7A060061EDF8 /* sewed.png in Resources */,
 				9ABC27751809985900B39D72 /* palette_lilypadBig.png in Resources */,
 				9A41461117DE7A060061EDF8 /* sewed@2x.png in Resources */,
+				25981C8419D6BCC600DE4131 /* zoomPlus.png in Resources */,
 				67B3130418EC8063006A9A31 /* palette_flexSensor@2x.png in Resources */,
 				9A41461317DE7A060061EDF8 /* sound.png in Resources */,
 				9A41461517DE7A060061EDF8 /* sound@2x.png in Resources */,

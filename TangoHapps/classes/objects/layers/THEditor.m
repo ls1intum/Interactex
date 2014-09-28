@@ -232,6 +232,12 @@ You should have received a copy of the GNU General Public License along with thi
     if(object){
         [self selectObject:object];
     }
+    // nazmus added - 21 Sep 14 - to switch back to palette (/ library) view when no item is selected
+    else {
+        THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+        [[projectController tabController] showTab:0];
+    }
+    ////
 }
 
 -(void) handleSelectionLost{
@@ -279,6 +285,11 @@ You should have received a copy of the GNU General Public License along with thi
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
     }
+    
+    // nazmus added - 21 Sep 14 - to automatically open properties tab when selecting an object
+    THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+    [[projectController tabController] showTab:1];
+    ////
 }
 
 #pragma mark - Connection
@@ -398,7 +409,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) checkDistributeInvocationConnectionsBetweenObj1:(TFEditableObject*) object1 obj2:(TFEditableObject*) object2{
     
     THProject * project = [THDirector sharedDirector].currentProject;
-    NSArray * invocationConnections = [project invocationConnectionsFrom:object1 to:object2];
+    
+    //NSArray * invocationConnections = [project invocationConnectionsFrom:object1 to:object2]; // nazmus commented
+    //nazmus added - to fix the connection-overlap-bug between obj2 and obj1
+    NSArray * invocationConnections1 = [project invocationConnectionsFrom:object1 to:object2];
+    NSArray * invocationConnections2 = [project invocationConnectionsFrom:object2 to:object1];
+    NSArray * invocationConnections = [invocationConnections1 arrayByAddingObjectsFromArray:invocationConnections2];
+    ////
     
     CGPoint p1 = object1.center;
     CGPoint p2 = object2.center;
@@ -897,11 +914,23 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)paletteItem:(THDraggedPaletteItem*)item movedTo:(CGPoint)location {
     item.center = location;
     
-    if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
+    //nazmus commented
+    /*if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
         item.state = kPaletteItemStateDroppable;
     } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:location]){
         item.state = kPaletteItemStateNormal;
+    }*/
+    ////
+    
+    //nazmus added - converted the location to be used in canBeDroppedAt method equally 'when dropping at item'  
+    CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL: location];
+    if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:convertedLocation]){
+        item.state = kPaletteItemStateDroppable;
+    } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:convertedLocation]){
+        item.state = kPaletteItemStateNormal;
     }
+    ////
+    
 }
 
 -(void)paletteItem:(THDraggedPaletteItem*)item endedAt:(CGPoint) location{
@@ -919,6 +948,10 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.currentObject.canBeAddedToPalette){
         if(location.x < paletteRightX){
             if(!_currentPaletteItem){
+                // nazmus added - 21 Sep 14 - to switch back to the palette(/library) view when trying to add custom palette object
+                THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+                [[projectController tabController] showTab:0];
+                ////
                 [self handleItemEnteredPaletteAt:location];
             }
         } else {

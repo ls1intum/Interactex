@@ -61,22 +61,26 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 -(void) addViews{
     
-//    self.layer.borderWidth = 1.0f;
+    //self.layer.borderWidth = 1.0f;
     
     CGRect frame = CGRectMake(0, 0, kPaletteItemWidth, kPaletteItemHeight);
     
     //container
     _container = [[UIView alloc] initWithFrame:frame];
+    //nazmus added 21 sep 14
+    [_container.layer setCornerRadius:4.0f];
+    [_container.layer setBorderWidth:1.0f];
+    [_container.layer setBackgroundColor:[UIColor clearColor].CGColor];
+    [_container.layer setBorderColor:[UIColor clearColor].CGColor];
+    ////
     
     [self addSubview:_container];
-    
-    //[self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
     
     //image view
     float diffx = kPaletteItemWidth - kPaletteItemImageSize.width;
     //float diffy = kPaletteItemHeight - kPaletteItemImageSize.height; //nazmus commented
     //CGRect imageFrame = CGRectMake(diffx/2.0f, diffy/2.0f, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus commented
-    CGRect imageFrame = CGRectMake(diffx/2.0f, 0, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus added
+    CGRect imageFrame = CGRectMake(diffx/2.0f, kPaletteItemPaddingTop, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus added
     
     _imageView = [[UIImageView alloc] initWithImage:self.image];
     _imageView.clipsToBounds = YES;
@@ -224,11 +228,16 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     if(selected != _selected){
         _selected = selected;
         if(selected){
-            _container.layer.borderWidth = 1.0f;
-            _container.layer.borderColor = [UIColor blueColor].CGColor;
+            //nazmus added 21 sep 14
+            [_container.layer setBackgroundColor:[UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f].CGColor];
+            [_container.layer setBorderColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f].CGColor];
+            ////
+            
         } else {
-            _container.layer.borderWidth = 0.0f;
-            _container.layer.borderColor = [UIColor blackColor].CGColor;
+            //nazmus added 21 sep 14
+            [_container.layer setBackgroundColor:[UIColor clearColor].CGColor];
+            [_container.layer setBorderColor:[UIColor clearColor].CGColor];
+            ////
         }
     }
 }
