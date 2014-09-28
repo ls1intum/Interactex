@@ -403,6 +403,8 @@
 		9A41471B17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
 		9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
+		9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
+		9A4DF91819CAAE8800D75C38 /* THServerController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController2.m */; };
 		9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5110141837D23A00EB25FA /* CoreMotion.framework */; };
 		9A5110181837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
 		9A5110191837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
@@ -962,9 +964,6 @@
 		9AF50161167B83A90020241C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50160167B83A90020241C /* OpenGLES.framework */; };
 		9AF50163167B83AD0020241C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50162167B83AD0020241C /* libz.dylib */; };
 		9AF50165167B83B50020241C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50164167B83B50020241C /* QuartzCore.framework */; };
-		9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
-		9AF50364167B84B40020241C /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* THServerController.m */; };
-		9AF50365167B84B40020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF50366167B84B40020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF50367167B84B40020241C /* THComparisonConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */; };
 		9AF50368167B84B40020241C /* THConditionEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020D167B84B40020241C /* THConditionEditableObject.m */; };
@@ -1068,8 +1067,6 @@
 		9AF50440167B84B40020241C /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035C167B84B40020241C /* song1.mp3 */; };
 		9AF50441167B84B40020241C /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035D167B84B40020241C /* song2.mp3 */; };
 		9AF50442167B84B40020241C /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
-		9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
-		9AF50448167B84C30020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50211167B84B40020241C /* THGrouperCondition.m */; };
 		9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50215167B84B40020241C /* THNumberValue.m */; };
@@ -1137,9 +1134,6 @@
 		9AF505EA167B91DB0020241C /* THConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DE167B84B40020241C /* THConstants.m */; };
 		9AF505EB167B91DB0020241C /* THToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502E0167B84B40020241C /* THToneGenerator.m */; };
 		9AF505EC167B91DB0020241C /* THUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502E2167B84B40020241C /* THUtils.m */; };
-		9AF505F1167B91E70020241C /* THProtocolSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50200167B84B40020241C /* THProtocolSocket.m */; };
-		9AF505F2167B91E70020241C /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50202167B84B40020241C /* THServerController.m */; };
-		9AF505F3167B91E70020241C /* THTransferAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50204167B84B40020241C /* THTransferAgent.m */; };
 		9AF505F4167B91F10020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
 		9AF505F5167B91F10020241C /* THComparisonConditionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020A167B84B40020241C /* THComparisonConditionEditable.m */; };
 		9AF505F6167B91F10020241C /* THConditionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5020F167B84B40020241C /* THConditionObject.m */; };
@@ -2037,6 +2031,9 @@
 		9A41471517E1D3A10061EDF8 /* THProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectViewController.m; sourceTree = "<group>"; };
 		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
 		9A41472117E255700061EDF8 /* THTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTableProjectCell.m; sourceTree = "<group>"; };
+		9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		9A4DF91619CAAE8800D75C38 /* THServerController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController2.h; sourceTree = "<group>"; };
+		9A4DF91719CAAE8800D75C38 /* THServerController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController2.m; sourceTree = "<group>"; };
 		9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "../cocos2d-iphone-2.0/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
 		9A5110141837D23A00EB25FA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9A5110161837DD5800EB25FA /* projectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectIcon.png; sourceTree = "<group>"; };
@@ -2446,12 +2443,6 @@
 		9AF50160167B83A90020241C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9AF50162167B83AD0020241C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9AF50164167B83B50020241C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		9AF501FF167B84B40020241C /* THProtocolSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProtocolSocket.h; sourceTree = "<group>"; };
-		9AF50200167B84B40020241C /* THProtocolSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProtocolSocket.m; sourceTree = "<group>"; };
-		9AF50201167B84B40020241C /* THServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController.h; sourceTree = "<group>"; };
-		9AF50202167B84B40020241C /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
-		9AF50203167B84B40020241C /* THTransferAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransferAgent.h; sourceTree = "<group>"; };
-		9AF50204167B84B40020241C /* THTransferAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransferAgent.m; sourceTree = "<group>"; };
 		9AF50207167B84B40020241C /* THComparisonCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparisonCondition.h; sourceTree = "<group>"; };
 		9AF50208167B84B40020241C /* THComparisonCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THComparisonCondition.m; sourceTree = "<group>"; };
 		9AF50209167B84B40020241C /* THComparisonConditionEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THComparisonConditionEditable.h; sourceTree = "<group>"; };
@@ -2723,6 +2714,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */,
 				9A9C425118B1F2BF002C2BC9 /* libpd-ios.a in Frameworks */,
 				9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */,
 				9AFA65ED18296E070082990F /* libcocos2d.a in Frameworks */,
@@ -2831,6 +2823,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */,
 				9A6B28E718AA708F009AAE31 /* libpd.xcodeproj */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */,
@@ -3640,12 +3633,8 @@
 		9AF501F5167B84B40020241C /* communication */ = {
 			isa = PBXGroup;
 			children = (
-				9AF501FF167B84B40020241C /* THProtocolSocket.h */,
-				9AF50200167B84B40020241C /* THProtocolSocket.m */,
-				9AF50201167B84B40020241C /* THServerController.h */,
-				9AF50202167B84B40020241C /* THServerController.m */,
-				9AF50203167B84B40020241C /* THTransferAgent.h */,
-				9AF50204167B84B40020241C /* THTransferAgent.m */,
+				9A4DF91619CAAE8800D75C38 /* THServerController2.h */,
+				9A4DF91719CAAE8800D75C38 /* THServerController2.m */,
 			);
 			path = communication;
 			sourceTree = "<group>";
@@ -5498,9 +5487,6 @@
 				9A6B27F818AA075F009AAE31 /* THPureData.m in Sources */,
 				679857E418EC64510037B366 /* THFlexSensorEditable.m in Sources */,
 				9A35119E167B7A6800C7484B /* THAppDelegate.m in Sources */,
-				9AF50363167B84B40020241C /* THProtocolSocket.m in Sources */,
-				9AF50364167B84B40020241C /* THServerController.m in Sources */,
-				9AF50365167B84B40020241C /* THTransferAgent.m in Sources */,
 				9A89425D18361F4000B8CA0E /* THJennicEditable.m in Sources */,
 				9AF50366167B84B40020241C /* THComparisonCondition.m in Sources */,
 				9AF50367167B84B40020241C /* THComparisonConditionEditable.m in Sources */,
@@ -5519,6 +5505,7 @@
 				9AF50374167B84B40020241C /* THPin.m in Sources */,
 				9AF50375167B84B40020241C /* THPinEditable.m in Sources */,
 				9AF50376167B84B40020241C /* THPinValue.m in Sources */,
+				9A4DF91819CAAE8800D75C38 /* THServerController2.m in Sources */,
 				9AF50377167B84B40020241C /* THButton.m in Sources */,
 				9AF50378167B84B40020241C /* THButtonEditableObject.m in Sources */,
 				9A7E4D7218361A5000657B72 /* THJennic.m in Sources */,
@@ -5771,9 +5758,6 @@
 				9AF505EB167B91DB0020241C /* THToneGenerator.m in Sources */,
 				9AF505EC167B91DB0020241C /* THUtils.m in Sources */,
 				9A0F687D1886B9AC00B589DC /* THCompassMPU6050.m in Sources */,
-				9AF505F1167B91E70020241C /* THProtocolSocket.m in Sources */,
-				9AF505F2167B91E70020241C /* THServerController.m in Sources */,
-				9AF505F3167B91E70020241C /* THTransferAgent.m in Sources */,
 				9AF505F4167B91F10020241C /* THComparisonCondition.m in Sources */,
 				9AF505F5167B91F10020241C /* THComparisonConditionEditable.m in Sources */,
 				9AF505F6167B91F10020241C /* THConditionObject.m in Sources */,
@@ -6030,8 +6014,6 @@
 				9AF5002D167B83140020241C /* THClientScene.m in Sources */,
 				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */,
-				9AF50447167B84C30020241C /* THProtocolSocket.m in Sources */,
-				9AF50448167B84C30020241C /* THTransferAgent.m in Sources */,
 				9AA4D72F18AE16EE00A43433 /* THBLELilyPad.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
 				9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */,
@@ -6236,11 +6218,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
@@ -6255,12 +6238,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
@@ -6303,12 +6287,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;

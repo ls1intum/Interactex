@@ -68,6 +68,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoard.h"
 #import "THHardwareComponent.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation THEditor
 
 -(id) init{
@@ -707,7 +709,6 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
-#import <QuartzCore/QuartzCore.h>
 
 -(void)tapped:(UITapGestureRecognizer*)sender {
     

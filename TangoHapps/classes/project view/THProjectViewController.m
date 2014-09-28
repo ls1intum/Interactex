@@ -746,7 +746,7 @@ float const kToolsTabMargin = 5;
 
 -(void) updatePushButtonState{
     THDirector * director = [THDirector sharedDirector];
-    self.pushButton.enabled = (director.serverController.peers.count > 0);
+    self.pushButton.enabled = (director.serverController.session.connectedPeers > 0);
 }
 
 
@@ -838,11 +838,11 @@ float const kToolsTabMargin = 5;
 }
 
 - (void) pushPressed:(id)sender {
-    THServerController * serverController = [THDirector sharedDirector].serverController;
-    if(serverController.serverIsRunning){
+    THServerController2 * serverController = [THDirector sharedDirector].serverController;
+    //if(serverController.serverIsRunning){
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         [serverController pushProjectToAllClients:project];
-    }
+    //}
 }
 
 - (void) hideiPhonePressed:(id)sender {

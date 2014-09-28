@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectProxy.h"
 #import "THProjectViewController.h"
 //#import "THEditorToolsDataSource.h"
-#import "THServerController.h"
+#import "THServerController2.h"
 
 @implementation THDirector
 
@@ -87,7 +87,7 @@ static THDirector * _sharedInstance = nil;
         
         [self loadProjectProxies];
         
-        self.serverController = [[THServerController alloc] init];
+        self.serverController = [[THServerController2 alloc] init];
         self.serverController.delegate = self;
         
         [self preload];
@@ -135,21 +135,21 @@ static THDirector * _sharedInstance = nil;
 
 #pragma Mark - Server Delegate
 
--(void) server:(THServerController*)controller peerConnected:(NSString*)peerName {
+-(void) server:(THServerController2*)controller peerConnected:(NSString*)peerName {
     [[SimpleAudioEngine sharedEngine] playEffect:@"peer_connected.mp3"];
     [self.projectController updatePushButtonState];
 }
 
--(void) server:(THServerController*)controller peerDisconnected:(NSString*)peerName {
+-(void) server:(THServerController2*)controller peerDisconnected:(NSString*)peerName {
     [[SimpleAudioEngine sharedEngine] playEffect:@"peer_disconnected.mp3"];
     [self.projectController updatePushButtonState];
 }
 
--(void) server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready {
+-(void) server:(THServerController2*)controller isReadyForSceneTransfer:(BOOL)ready {
     [self.projectController updatePushButtonState];
 }
 
--(void) server:(THServerController*)controller isTransferring:(BOOL)transferring {
+-(void) server:(THServerController2*)controller isTransferring:(BOOL)transferring {
     /*
      UIImage * image;
      if(transferring){
@@ -160,7 +160,7 @@ static THDirector * _sharedInstance = nil;
      wirelessButton.image = image;*/
 }
 
-- (void) server:(THServerController*)controller isRunning:(BOOL)running{
+- (void) server:(THServerController2*)controller isRunning:(BOOL)running{
     //[self updateWirelessButtonTo:running];
 }
 
