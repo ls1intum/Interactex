@@ -246,7 +246,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) dealloc{
-    NSLog(@"deallocing thworld");
     [self prepareAllObjectsToDie];
 }
 

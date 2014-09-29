@@ -20,18 +20,14 @@ const NSInteger kTransferActionSceneId = 1;
 
 @implementation THServerController2
 
-// Session container designated initializer
-- (id)initWithDisplayName:(NSString *)displayName serviceType:(NSString *)serviceType
-{
+- (id)init {
     if (self = [super init]) {
 
-        MCPeerID *peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
+        //NSString * displayName = @"InteractexDesiger";
 
-        _session = [[MCSession alloc] initWithPeer:peerID securityIdentity:nil encryptionPreference:MCEncryptionRequired];
+        _localPeerId = [[MCPeerID alloc] initWithDisplayName:[[UIDevice currentDevice] name]];
 
-        _session.delegate = self;
-        
-        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:peerID discoveryInfo:nil serviceType:serviceType];
+        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.localPeerId discoveryInfo:nil serviceType:kConnectionServiceType];
         _advertiser.delegate = self;
         
     }
@@ -61,8 +57,11 @@ const NSInteger kTransferActionSceneId = 1;
 
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler{
     
-    //self.connectedPeer = peerID;
-    invitationHandler(YES,self.session);
+    _session = [[MCSession alloc] initWithPeer:self.localPeerId];
+    _session.delegate = self;
+    
+    NSLog(@"accepting invitation");
+    invitationHandler(YES,_session);
 }
 
 #pragma mark - Public methods
@@ -120,6 +119,8 @@ const NSInteger kTransferActionSceneId = 1;
 // Instance method for sending a string bassed text message to all remote peers
 - (void)sendMessage:(NSString *)message
 {
+    NSLog(@"sending msg to connected peers: %d",self.session.connectedPeers.count);
+    
     // Convert the string into a UTF8 encoded data
     NSData *messageData = [message dataUsingEncoding:NSUTF8StringEncoding];
     // Send text message to all connected peers
@@ -235,6 +236,11 @@ const NSInteger kTransferActionSceneId = 1;
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"Received data over stream with name %@ from peer %@", streamName, peerID.displayName);
+}
+
+- (void) session:(MCSession *)session didReceiveCertificate:(NSArray *)certificate fromPeer:(MCPeerID *)peerID certificateHandler:(void (^)(BOOL accept))certificateHandler
+{
+    certificateHandler(YES);
 }
 
 @end

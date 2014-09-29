@@ -54,6 +54,7 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -69,11 +70,15 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 -(void) viewWillAppear:(BOOL)animated{
     
     [self.connectionController startClient];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startClient) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self.connectionController stopClient];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning

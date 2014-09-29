@@ -802,7 +802,8 @@ float const kToolsTabMargin = 5;
 
 -(void) updatePushButtonState{
     THDirector * director = [THDirector sharedDirector];
-    self.pushButton.enabled = (director.serverController.session.connectedPeers > 0);
+    NSLog(@"connected peers in thprojectviewcontroller: %d",director.serverController.session.connectedPeers.count);
+    self.pushButton.enabled = (director.serverController.session.connectedPeers.count > 0);
 }
 
 

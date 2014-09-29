@@ -89,6 +89,7 @@ static THDirector * _sharedInstance = nil;
         
         self.serverController = [[THServerController2 alloc] init];
         self.serverController.delegate = self;
+        [self.serverController startServer];
         
         [self preload];
         

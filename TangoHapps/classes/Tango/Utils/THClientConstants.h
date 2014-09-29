@@ -250,3 +250,5 @@ extern NSInteger const kLilypadPwmPins[kLilypadNumPwmPins];
 extern float const kGraphViewGraphOffsetY;
 extern CGSize const kGraphViewAxisLabelSize;
 extern float const kGraphViewAxisLineWidth;
+
+extern NSString * const kConnectionServiceType;

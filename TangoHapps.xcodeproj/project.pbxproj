@@ -52,7 +52,6 @@
 		9A06EFC3169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EFC1169C0B0C00B88519 /* THThreeColorLedProperties.m */; };
 		9A06EFC4169C0B0C00B88519 /* THThreeColorLedProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EFC1169C0B0C00B88519 /* THThreeColorLedProperties.m */; };
 		9A09762F171570050028A6B4 /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
-		9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionController.m */; };
 		9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9A09767C171864BB0028A6B4 /* THVibrationBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09767B171864BA0028A6B4 /* THVibrationBoard.m */; };
@@ -102,7 +101,6 @@
 		9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3165A61827989D00CB3E59 /* palette_monitor.png */; };
 		9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3165A71827989D00CB3E59 /* palette_monitor@2x.png */; };
 		9A3165AB1827994100CB3E59 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3165AA1827994100CB3E59 /* GLKit.framework */; };
-		9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3165AA1827994100CB3E59 /* GLKit.framework */; };
 		9A35118E167B7A6800C7484B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118D167B7A6800C7484B /* UIKit.framework */; };
 		9A351190167B7A6800C7484B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118F167B7A6800C7484B /* Foundation.framework */; };
 		9A351192167B7A6800C7484B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A351191167B7A6800C7484B /* CoreGraphics.framework */; };
@@ -588,6 +586,8 @@
 		9A7E4D7318361A5000657B72 /* THJennic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E4D7118361A5000657B72 /* THJennic.m */; };
 		9A7E4D7418361A5000657B72 /* THJennic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E4D7118361A5000657B72 /* THJennic.m */; };
 		9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
+		9A801B9619D955450001B6F9 /* THClientConnectionController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A801B9519D955450001B6F9 /* THClientConnectionController2.m */; };
+		9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
 		9A8426A617564A80009495AB /* TFConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265317564A80009495AB /* TFConnectionLine.m */; };
 		9A8426A817564A80009495AB /* TFConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265317564A80009495AB /* TFConnectionLine.m */; };
 		9A8426AC17564A80009495AB /* TFMethodSelectionPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265717564A80009495AB /* TFMethodSelectionPopup.m */; };
@@ -955,7 +955,6 @@
 		9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9AF5002D167B83140020241C /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
-		9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5001A167B83140020241C /* THClientConnectionController.m */; };
 		9AF50032167B83140020241C /* iphoneFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001E167B83140020241C /* iphoneFrame.png */; };
 		9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001F167B83140020241C /* iphoneFrame@2x.png */; };
 		9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50020167B83140020241C /* MainStoryboard.storyboard */; };
@@ -1097,7 +1096,6 @@
 		9AF50464167B852F0020241C /* THTouchpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5027E167B84B40020241C /* THTouchpad.m */; };
 		9AF50465167B852F0020241C /* THView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50282167B84B40020241C /* THView.m */; };
 		9AF50467167B855C0020241C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50466167B855C0020241C /* CoreBluetooth.framework */; };
-		9AF50469167B855F0020241C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50468167B855F0020241C /* GameKit.framework */; };
 		9AF5046B167B85710020241C /* THClientHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502DC167B84B40020241C /* THClientHelper.m */; };
 		9AF5046D167B85710020241C /* THUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF502E2167B84B40020241C /* THUtils.m */; };
 		9AF5046E167B85A00020241C /* THHardwareComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50238167B84B40020241C /* THHardwareComponent.m */; };
@@ -1108,7 +1106,6 @@
 		9AF50505167B8C820020241C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5015E167B83A40020241C /* AVFoundation.framework */; };
 		9AF50506167B8C860020241C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50162167B83AD0020241C /* libz.dylib */; };
 		9AF50507167B8C8D0020241C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50164167B83B50020241C /* QuartzCore.framework */; };
-		9AF50508167B8C920020241C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50468167B855F0020241C /* GameKit.framework */; };
 		9AF50509167B8C980020241C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50466167B855C0020241C /* CoreBluetooth.framework */; };
 		9AF5050B167B8DC30020241C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050A167B8DC30020241C /* OpenAL.framework */; };
 		9AF5050F167B8DE20020241C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
@@ -1235,7 +1232,6 @@
 		9AF506D1167B97780020241C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF506D0167B97760020241C /* MediaPlayer.framework */; };
 		9AF5FFF3167B82F70020241C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118D167B7A6800C7484B /* UIKit.framework */; };
 		9AF5FFF4167B82F70020241C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118F167B7A6800C7484B /* Foundation.framework */; };
-		9AF5FFF5167B82F70020241C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A351191167B7A6800C7484B /* CoreGraphics.framework */; };
 		9AF60BBF16A04BDB00178439 /* connectionMade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */; };
 		9AF60BC016A04BDB00178439 /* connectionMade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */; };
 		9AF60BC616A04D9F00178439 /* THTabbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BC416A04D9F00178439 /* THTabbar.xib */; };
@@ -2172,6 +2168,8 @@
 		9A7E4D7018361A5000657B72 /* THJennic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THJennic.h; sourceTree = "<group>"; };
 		9A7E4D7118361A5000657B72 /* THJennic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THJennic.m; sourceTree = "<group>"; };
 		9A7F66F81756579C00E04BC8 /* TangoHappsClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TangoHappsClient-Prefix.pch"; sourceTree = "<group>"; };
+		9A801B9419D955450001B6F9 /* THClientConnectionController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController2.h; sourceTree = "<group>"; };
+		9A801B9519D955450001B6F9 /* THClientConnectionController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController2.m; sourceTree = "<group>"; };
 		9A84265217564A80009495AB /* TFConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConnectionLine.h; sourceTree = "<group>"; };
 		9A84265317564A80009495AB /* TFConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFConnectionLine.m; sourceTree = "<group>"; };
 		9A84265617564A80009495AB /* TFMethodSelectionPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMethodSelectionPopup.h; sourceTree = "<group>"; };
@@ -2437,8 +2435,6 @@
 		9AF50010167B83140020241C /* THClientAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientAppViewController.m; sourceTree = "<group>"; };
 		9AF50015167B83140020241C /* THClientScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientScene.h; sourceTree = "<group>"; };
 		9AF50016167B83140020241C /* THClientScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientScene.m; sourceTree = "<group>"; };
-		9AF50019167B83140020241C /* THClientConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController.h; sourceTree = "<group>"; };
-		9AF5001A167B83140020241C /* THClientConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController.m; sourceTree = "<group>"; };
 		9AF5001E167B83140020241C /* iphoneFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneFrame.png; sourceTree = "<group>"; };
 		9AF5001F167B83140020241C /* iphoneFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneFrame@2x.png"; sourceTree = "<group>"; };
 		9AF50020167B83140020241C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -2737,7 +2733,6 @@
 				9AF5050F167B8DE20020241C /* AudioToolbox.framework in Frameworks */,
 				9AF5050B167B8DC30020241C /* OpenAL.framework in Frameworks */,
 				9AF50509167B8C980020241C /* CoreBluetooth.framework in Frameworks */,
-				9AF50508167B8C920020241C /* GameKit.framework in Frameworks */,
 				9AF50507167B8C8D0020241C /* QuartzCore.framework in Frameworks */,
 				9AF50506167B8C860020241C /* libz.dylib in Frameworks */,
 				9AF50504167B8C7F0020241C /* OpenGLES.framework in Frameworks */,
@@ -2774,17 +2769,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */,
 				9A6B28F218AA709A009AAE31 /* libpd-ios.a in Frameworks */,
 				9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */,
 				9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */,
-				9A3165AC1827994900CB3E59 /* GLKit.framework in Frameworks */,
 				9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */,
 				9A94F1EF169ED69A00AF52AB /* AssetsLibrary.framework in Frameworks */,
 				9A94F1EB169ED62800AF52AB /* OpenAL.framework in Frameworks */,
 				9A8BBA3C167F281000FBABFB /* CoreLocation.framework in Frameworks */,
 				9A8BB907167BA60000FBABFB /* MediaPlayer.framework in Frameworks */,
 				9AF505E7167B91530020241C /* AddressBook.framework in Frameworks */,
-				9AF50469167B855F0020241C /* GameKit.framework in Frameworks */,
 				9AF50467167B855C0020241C /* CoreBluetooth.framework in Frameworks */,
 				9AF50165167B83B50020241C /* QuartzCore.framework in Frameworks */,
 				9AF50163167B83AD0020241C /* libz.dylib in Frameworks */,
@@ -2792,7 +2786,6 @@
 				9AF5015F167B83A40020241C /* AVFoundation.framework in Frameworks */,
 				9AF5FFF3167B82F70020241C /* UIKit.framework in Frameworks */,
 				9AF5FFF4167B82F70020241C /* Foundation.framework in Frameworks */,
-				9AF5FFF5167B82F70020241C /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3311,6 +3304,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A801BD219D9568A0001B6F9 /* connection */ = {
+			isa = PBXGroup;
+			children = (
+				9A801B9419D955450001B6F9 /* THClientConnectionController2.h */,
+				9A801B9519D955450001B6F9 /* THClientConnectionController2.m */,
+			);
+			name = connection;
+			sourceTree = "<group>";
+		};
 		9A84265017564A80009495AB /* Tango */ = {
 			isa = PBXGroup;
 			children = (
@@ -3583,10 +3585,9 @@
 				9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */,
 				9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */,
 				9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */,
-				9AF50019167B83140020241C /* THClientConnectionController.h */,
-				9AF5001A167B83140020241C /* THClientConnectionController.m */,
 				9AF5000F167B83140020241C /* THClientAppViewController.h */,
 				9AF50010167B83140020241C /* THClientAppViewController.m */,
+				9A801BD219D9568A0001B6F9 /* connection */,
 				9AF50015167B83140020241C /* THClientScene.h */,
 				9AF50016167B83140020241C /* THClientScene.m */,
 				9AF5025C167B84B40020241C /* THClientProject.h */,
@@ -5938,7 +5939,6 @@
 				9AA4D73118AE16F200A43433 /* THBLELilyPadEditable.m in Sources */,
 				9A9384B016D69CCA00A41BD2 /* THActionEditable.m in Sources */,
 				9A09762F171570050028A6B4 /* THClientScene.m in Sources */,
-				9A0976311715700C0028A6B4 /* THClientConnectionController.m in Sources */,
 				9A0976321715700F0028A6B4 /* THClientAppViewController.m in Sources */,
 				9A0976331715701C0028A6B4 /* THClientAppDelegate.m in Sources */,
 				9A09767E171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
@@ -6029,7 +6029,6 @@
 				9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */,
 				9AF5002D167B83140020241C /* THClientScene.m in Sources */,
 				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
-				9AF5002F167B83140020241C /* THClientConnectionController.m in Sources */,
 				9AA4D72F18AE16EE00A43433 /* THBLELilyPad.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
 				9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */,
@@ -6089,6 +6088,7 @@
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				9A801B9619D955450001B6F9 /* THClientConnectionController2.m in Sources */,
 				9A8426B317564A80009495AB /* TFAction.m in Sources */,
 				9A8426B617564A80009495AB /* TFEvent.m in Sources */,
 				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,
@@ -6177,6 +6177,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -6209,6 +6210,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -6234,7 +6236,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
@@ -6254,7 +6255,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6277,6 +6277,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -6303,7 +6304,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6324,6 +6324,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6365,7 +6367,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
@@ -6388,6 +6391,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
