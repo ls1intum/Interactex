@@ -43,11 +43,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTestsHelper.h"
 #import "THButtonEditableObject.h"
 #import "THLedEditableObject.h"
-#import "THProjectDelegate.h"
-#import "THPaletteDataSource.h"
-#import "THEditorToolsDataSource.h"
 #import "THEditor.h"
 #import "THProjectViewController.h"
+#import "THDirector.h"
 
 @implementation THTestsHelper
 
@@ -55,21 +53,35 @@ static THEditor * _editor;
 
 +(THProject*) emptyProject{
     
-    THProject * project = (THProject*) [[THDirector sharedDirector].projectDelegate newCustomProject];
-    [TFDirector sharedDirector].currentProject = project;
+    THProject * project =  [THProject emptyProject];
+    
+    [THDirector sharedDirector].currentProject = project;
      return project;
 }
 
-+(void) startDirector{
-    THProjectDelegate * projectDelegate = [[THProjectDelegate alloc] init];
-    
-    THDirector * director = [THDirector sharedDirector];
-    director.paletteDataSource = [[THPaletteDataSource alloc] init];
-    director.projectDelegate = projectDelegate;
-    director.editorToolsDataSource = [[THEditorToolsDataSource alloc] init];
-    director.gridDelegate = projectDelegate;
++(void) startCocos2d{
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director isViewLoaded] == NO) {
+        //float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+        //float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+        float navBarHeight = 20;
+        director.view = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight)
+                                       pixelFormat:kEAGLColorFormatRGB565
+                                       depthFormat:0
+                                preserveBackbuffer:NO
+                                        sharegroup:nil
+                                     multiSampling:NO
+                                   numberOfSamples:0];
+        
+        
+        [director setAnimationInterval:1.0f/30.0f];
+        [director enableRetinaDisplay:YES];
+        
+        [[CCTextureCache sharedTextureCache] removeAllTextures];
+        glClearColor(0, 0, 0, 0);
+    }
 }
-
+/*
 +(void) startCocos2d {
     [[CCDirector sharedDirector] stopAnimation];
     if(![CCDirector setDirectorType:kCCDirectorTypeDisplayLink])
@@ -87,7 +99,7 @@ static THEditor * _editor;
     
     [[CCTextureCache sharedTextureCache] removeAllTextures];
     glClearColor(0, 0, 0, 0);
-}
+}*/
 
 +(void) startEditor {
     
@@ -101,19 +113,19 @@ static THEditor * _editor;
 
 +(void) startWithEditor {
     
-    [self startDirector];
+    //[self startDirector];
     [self startCocos2d];
     //[self startEditor];
     
     THProjectViewController * projectController = [THDirector sharedDirector].projectController;
-    [CCDirector sharedDirector].openGLView = projectController.glview;
+    [CCDirector sharedDirector].view = projectController.glview;
     
      [projectController startWithEditor];
 }
 
 +(void) stop{
     [[CCDirector sharedDirector] end];
-    [[THDirector sharedDirector] stop];
+    //[[THDirector sharedDirector] stop];
     
     /*
     TFLayer * layer = [TFDirector sharedDirector].currentLayer;
@@ -145,14 +157,14 @@ static THEditor * _editor;
 
 +(void) startSimulation{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     [project willStartSimulation];
     [project didStartSimulation];
 }
 
 +(void) stopSimulation{
     
-    TFProject * project = [TFDirector sharedDirector].currentProject;
+    THProject * project = [THDirector sharedDirector].currentProject;
     [project prepareForEdition];
 }
 

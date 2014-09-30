@@ -13,16 +13,55 @@
     #import <Foundation/Foundation.h>
 #endif
 
+
+#import "THTestsHelper.h"
+#import "GHUnit.h"
+
+
+#import "BLE.h"
+#import "IFFirmata.h"
+
 #import "cocos2d.h"
-#import "SimpleAudioEngine.h"
-#import "Tango/Tango.h"
+
+#import "TFConstants.h"
+#import "THClientConstants.h"
+#import "TFFileUtils.h"
+#import "TFAction.h"
+#import "TFSimulableObject.h"
+#import "TFEvent.h"
+#import "TFMethod.h"
+#import "TFProperty.h"
+#import "TFPropertyInvocation.h"
+#import "TFMethodInvokeAction.h"
 
 #import "THUtils.h"
 
-#import "THConstants.h"
-#import "THClientHelper.h"
 
+#import "TFSimulableObject.h"
+#import "TFEditableObject.h"
+#import "TFEvent.h"
+#import "TFProperty.h"
+#import "TFPropertyInvocation.h"
+#import "TFMethodInvokeAction.h"
+#import "TFConnectionLine.h"
+#import "TFMethod.h"
+
+#import <QuartzCore/QuartzCore.h>
+
+#import "SimpleAudioEngine.h"
+#import "THClientHelper.h"
+#import "THUtils.h"
+#import "THConstants.h"
+#import "THHelper.h"
 #import "THProject.h"
+
+#import "THCondition.h"
+#import "THDirector.h"
+#import "TFAction.h"
+
+#import <CoreMotion/CoreMotion.h>
+
+
 
 #import "THLedEditableObject.h"
 #import "THButtonEditableObject.h"
@@ -55,9 +94,12 @@
 #import "THTouchpad.h"
 #import "THTouchPadEditableObject.h"
 
-#import "THBluetoothHelper.h"
 
-#import <GHUnitIOS/GHUnit.h>
-#import "THTestsHelper.h"
-#import "THDirector.h"
+
+
+#import "TFHelper.h"
+#import "TFFileUtils.h"
+#import "THClientHelper.h"
+#import "THClientProject.h"
+#import "THSimulableWorldController.h"
 

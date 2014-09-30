@@ -105,7 +105,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "317"
             endingLineNumber = "317"
-            landmarkName = "-handleTap"
+            landmarkName = "-setEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

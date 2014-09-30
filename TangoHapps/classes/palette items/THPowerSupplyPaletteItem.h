@@ -41,7 +41,9 @@
  */
 
 #import "THPaletteItem.h"
+#import "THPowerSupplyEditable.h"
 
 @interface THPowerSupplyPaletteItem : THPaletteItem
+
 
 @end

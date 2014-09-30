@@ -58,7 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
     THDirector * director = [THDirector sharedDirector];
     [director.serverController startServer];
     
-    
     self.motionManager = [[CMMotionManager alloc] init];
     
     return YES;

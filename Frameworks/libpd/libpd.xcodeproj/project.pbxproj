@@ -803,7 +803,6 @@
 					"-DHAVE_UNISTD_H",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -826,7 +825,6 @@
 					"-DHAVE_UNISTD_H",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
