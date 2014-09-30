@@ -10,7 +10,7 @@
 #import "THElementPin.h"
 
 @implementation THFlexSensor
-@dynamic plusPin;
+//@dynamic plusPin;
 
 float const kMaxFlexSensorValue = 1023;
 
@@ -39,7 +39,7 @@ float const kMaxFlexSensorValue = 1023;
 
 -(void) loadPins{
     
-    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
+    //THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
     //pin1.hardware = self;
     THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
     //pin2.hardware = self;
@@ -47,7 +47,7 @@ float const kMaxFlexSensorValue = 1023;
     //pin3.hardware = self;
     pin3.defaultBoardPinMode = kPinModeAnalogInput;
     
-    [self.pins addObject:pin1];
+    //[self.pins addObject:pin1];
     [self.pins addObject:pin2];
     [self.pins addObject:pin3];
 }

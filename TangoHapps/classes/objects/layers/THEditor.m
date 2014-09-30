@@ -1367,7 +1367,7 @@ You should have received a copy of the GNU General Public License along with thi
     attachedClotheObjectsPositions = [NSMutableArray arrayWithCapacity:project.clothes.count];
     
     for (THClothe * clothe in project.clothes) {
-        NSMutableArray * positionsArray = [NSMutableArray arrayWithCapacity:clothe.attachments];
+        NSMutableArray * positionsArray = [NSMutableArray arrayWithCapacity:clothe.attachments.count];
         for (THHardwareComponentEditableObject * hardwareComponent in clothe.attachments) {
             
             NSValue * value = [NSValue valueWithCGPoint:hardwareComponent.position];

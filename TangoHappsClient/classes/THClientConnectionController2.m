@@ -7,6 +7,7 @@
 //
 
 #import "THClientConnectionController2.h"
+#import "THAssetCollection.h"
 
 @interface THClientConnectionController2()
 
@@ -22,15 +23,13 @@
 - (id)init{
     if (self = [super init]) {
         
-        //NSString * displayName = @"InteractexClient";
-        
         _localPeerID = [[MCPeerID alloc] initWithDisplayName:[[UIDevice currentDevice] name]];
         
         _browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_localPeerID serviceType:kConnectionServiceType];
         
         _browser.delegate = self;
         
-        self.foundPeers = [NSMutableArray array];
+        //self.foundPeers = [NSMutableArray array];
     }
     return self;
 }
@@ -50,11 +49,11 @@
 
 -(void) stopClient{
     [self.browser stopBrowsingForPeers];
+    [self.session disconnect];
 }
 
 //delete this method
-- (NSString *)stringForPeerConnectionState:(MCSessionState)state
-{
+- (NSString *)stringForPeerConnectionState:(MCSessionState)state {
     switch (state) {
         case MCSessionStateConnected:
             return @"Connected";
@@ -71,21 +70,14 @@
 
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info{
     
-    NSLog(@"found peer");
-    
-    [self.foundPeers addObject:peerID];
-    
     _session = [[MCSession alloc] initWithPeer:_localPeerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
     _session.delegate = self;
     
     [browser invitePeer:peerID toSession:self.session withContext:nil timeout:0];
-
-    [browser stopBrowsingForPeers];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID{
-    [self.foundPeers removeObject:peerID];
-    NSLog(@"lost peer");
+    //[self.foundPeers removeObject:peerID];
 }
 
 #pragma mark - MCSessionDelegate methods
@@ -94,9 +86,9 @@
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
     //NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
-    
+    /*
     NSString *adminMessage = [NSString stringWithFormat:@"'%@' is %@", peerID.displayName, [self stringForPeerConnectionState:state]];
-    NSLog(@"%@",adminMessage);
+    NSLog(@"%@",adminMessage);*/
     
     /*
     // Create an local transcript
@@ -109,9 +101,33 @@
 // MCSession Delegate callback when receiving data from a peer in a given session
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
-    // Decode the incoming data to a UTF8 encoded string
-    NSString *receivedMessage = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
-    NSLog(@"%@",receivedMessage);
+    if(receivingState == kReceivingStateNone){
+        
+        NSString *projectName = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate didStartReceivingProjectNamed:projectName];
+        });
+                       
+        receivingState = kReceivingStateShouldReceiveProject;
+        
+    } else if(receivingState == kReceivingStateShouldReceiveAssets){
+        /*
+        THAssetCollection * assets = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [self.delegate didReceiveAssets:assets];
+         */
+        receivingState = kReceivingStateShouldReceiveProject;
+        
+    } else if(receivingState == kReceivingStateShouldReceiveProject){
+        
+        THClientProject * project = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate didFinishReceivingProject:project];
+        });
+        
+        receivingState = kReceivingStateNone;
+    }
     
     /*
     // Create an received transcript

@@ -62,7 +62,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class TFEvent;
 @class TFSimulableObject;
 
-@interface THProject : NSObject
+@interface THProject : NSObject <NSCoding>
 {
     
 }

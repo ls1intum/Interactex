@@ -22,6 +22,6 @@ extern float const kMaxFlexSensorValue;
 
 @property (nonatomic, readonly) THElementPin * minusPin;
 @property (nonatomic, readonly) THElementPin * analogPin;
-@property (nonatomic, readonly) THElementPin * plusPin;
+//@property (nonatomic, readonly) THElementPin * plusPin;
 
 @end

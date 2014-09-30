@@ -22,8 +22,6 @@
     
     CGSize size = CGSizeMake(75, 20);
     
-    //_valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
     _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
     
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-50);
@@ -80,15 +78,15 @@
 #pragma mark - Pins
 
 -(THElementPinEditable*) minusPin{
-    return [self.pins objectAtIndex:1];
+    return [self.pins objectAtIndex:0];
 }
 
 -(THElementPinEditable*) analogPin{
-    return [self.pins objectAtIndex:2];
+    return [self.pins objectAtIndex:1];
 }
 
 -(THElementPinEditable*) plusPin{
-    return [self.pins objectAtIndex:0];
+    return nil;
 }
 
 #pragma mark - Methods

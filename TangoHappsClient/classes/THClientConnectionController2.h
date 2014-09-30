@@ -9,16 +9,25 @@
 #import <Foundation/Foundation.h>
 @import MultipeerConnectivity;
 
+@class THAssetCollection;
+
+typedef enum{
+    kReceivingStateNone,
+    kReceivingStateShouldReceiveAssets,
+    kReceivingStateShouldReceiveProject
+} THClientReceivingState;
+
 @protocol THClientConnectionControllerDelegate <NSObject>
 
 -(void) didStartReceivingProjectNamed:(NSString*) name;
 -(void) didMakeProgressForCurrentProject:(float) progress;
 -(void) didFinishReceivingProject:(THClientProject*) project;
-
+-(void) didReceiveAssets:(THAssetCollection*) assets;
 @end
 
 @interface THClientConnectionController2 : NSObject <MCSessionDelegate, MCNearbyServiceBrowserDelegate>{
-
+    
+    THClientReceivingState receivingState;
 }
 
 @property (readonly, nonatomic) MCPeerID * localPeerID;
@@ -26,7 +35,6 @@
 @property (readonly) BOOL isConnectedToServer;
 @property (copy, nonatomic) NSString * connectedPeerID;
 @property (weak, nonatomic) id<THClientConnectionControllerDelegate> delegate;
-@property (strong, nonatomic) NSMutableArray * foundPeers;
 
 -(void) startClient;
 -(void) stopClient;

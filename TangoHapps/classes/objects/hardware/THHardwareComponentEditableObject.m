@@ -92,8 +92,9 @@ You should have received a copy of the GNU General Public License along with thi
         pinEditable.simulableObject = pin;
         pinEditable.hardware = self;
         pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kPinPositions[self.type][i]);
+        //NSLog(@"%f",kPinPositions[self.type][i]);
         pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
-        //NSLog(@"%f pos: %f %f",pinEditable.anchorPoint.x, pinEditable.position.x,pinEditable.position.y);
+
         [_pins addObject:pinEditable];
         
         i++;
@@ -177,6 +178,7 @@ You should have received a copy of the GNU General Public License along with thi
         [self.nameLabel removeFromParentAndCleanup:YES];
     }
     self.nameLabel = [CCLabelTTF labelWithString:self.objectName dimensions:kEditableObjectNameLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    self.nameLabel.color = ccBLACK;
     self.nameLabel.position = ccp(self.contentSize.width/2,-20);
     [self addChild:self.nameLabel];
 }
@@ -285,12 +287,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) autoroutePlusAndMinusPins{
     
     THElementPinEditable * plusPin = [self plusPin];
-    if(!plusPin.attachedToPin){
+    if(plusPin != nil && !plusPin.attachedToPin){
         [self autoroutePin:plusPin];
     }
     
     THElementPinEditable * minusPin = [self minusPin];
-    if(!minusPin.attachedToPin){
+    if(minusPin != nil && !minusPin.attachedToPin){
         [self autoroutePin:minusPin];
     }
 }

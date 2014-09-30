@@ -66,7 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) TFAppState state;
 @property (nonatomic, readonly) THTabbarViewController * tabController;
 @property (nonatomic, readonly) THMenubarViewController * menuController;
-@property (nonatomic, readonly) THEditorToolsViewController * toolsController;
+//@property (nonatomic, readonly) THEditorToolsViewController * toolsController;
 @property (nonatomic, strong) UIPanGestureRecognizer * panRecognizer;
 
 @property (nonatomic, readonly) BOOL editingSceneName;

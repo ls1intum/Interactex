@@ -801,11 +801,12 @@ float const kToolsTabMargin = 5;
 }
 
 -(void) updatePushButtonState{
+    //self.pushButton.enabled = YES;
+    
     THDirector * director = [THDirector sharedDirector];
-    NSLog(@"connected peers in thprojectviewcontroller: %d",director.serverController.session.connectedPeers.count);
     self.pushButton.enabled = (director.serverController.session.connectedPeers.count > 0);
+    [self.pushButton setNeedsDisplay];
 }
-
 
 -(void) updateHideIphoneButtonTint{
     

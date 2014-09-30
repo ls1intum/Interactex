@@ -57,7 +57,7 @@ const float kIconInstallationUpdateFrequency;
     
     NSTimer * installationProgressTimer;
     NSTimeInterval timeWhenInstallationStarted;
-    float installationUpdateRate;
+    CGFloat installationUpdateRate;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;

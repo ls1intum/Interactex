@@ -58,7 +58,7 @@ typedef enum {
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
 
-#define kNumHardwareTypes 13
+#define kNumHardwareTypes 15
 #define kMaxNumPinsPerElement 5
 
 typedef enum{
@@ -252,3 +252,10 @@ extern CGSize const kGraphViewAxisLabelSize;
 extern float const kGraphViewAxisLineWidth;
 
 extern NSString * const kConnectionServiceType;
+
+typedef enum {
+    THCommunicationMsgTransferProjectName,
+    THCommunicationMsgTransferProject,
+    THCommunicationMsgTransferAsset
+    
+} THCommunicationMsg;
