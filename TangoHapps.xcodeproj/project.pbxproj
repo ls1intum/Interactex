@@ -1194,13 +1194,6 @@
 			remoteGlobalIDString = 50CB2FC91004C8B100B7A750;
 			remoteInfo = CocosDenshion;
 		};
-		9A2EA87A19DB172300E30E2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A351180167B7A6800C7484B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A351188167B7A6800C7484B;
-			remoteInfo = TangoHapps;
-		};
 		9A2EA89519DB1DC600E30E2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AAF283A182B88EF00531E3A /* BLE.xcodeproj */;
@@ -4229,7 +4222,6 @@
 			);
 			dependencies = (
 				9A2EA8DC19DB2E9B00E30E2D /* PBXTargetDependency */,
-				9A2EA87B19DB172300E30E2D /* PBXTargetDependency */,
 				9A1FBD74187ED74600699B61 /* PBXTargetDependency */,
 				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
 			);
@@ -4252,7 +4244,7 @@
 						DevelopmentTeam = 7PLLZ436SG;
 					};
 					9AF5FFF0167B82F70020241C = {
-						DevelopmentTeam = WCM2L8RG39;
+						DevelopmentTeam = 7PLLZ436SG;
 					};
 				};
 			};
@@ -5884,11 +5876,6 @@
 			name = CocosDenshion;
 			targetProxy = 9A2EA87619DB15E100E30E2D /* PBXContainerItemProxy */;
 		};
-		9A2EA87B19DB172300E30E2D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9A351188167B7A6800C7484B /* TangoHapps */;
-			targetProxy = 9A2EA87A19DB172300E30E2D /* PBXContainerItemProxy */;
-		};
 		9A2EA89619DB1DC600E30E2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BLE;
@@ -5994,7 +5981,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -6021,7 +6008,7 @@
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Interactex Designer";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6040,7 +6027,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6058,7 +6045,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Technische Universitat Munchen";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -6086,7 +6073,7 @@
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Interactex Designer";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -6106,7 +6093,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "446C5F6A-ACF0-4E04-B5BD-4FF276C93025";
+				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
@@ -6142,7 +6129,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "446C5F6A-ACF0-4E04-B5BD-4FF276C93025";
+				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				VALIDATE_PRODUCT = NO;
@@ -6162,7 +6149,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "446C5F6A-ACF0-4E04-B5BD-4FF276C93025";
+				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
