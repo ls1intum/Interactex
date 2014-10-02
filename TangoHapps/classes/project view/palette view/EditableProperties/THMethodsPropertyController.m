@@ -40,14 +40,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THInvokableProperties.h"
+#import "THMethodsPropertyController.h"
 #import "TFMethod.h"
 #import "TFEventActionPair.h"
 #import "TFMethodInvokeAction.h"
 #import "TFConnectionLine.h"
 #import "TFEditableObject.h"
 
-@implementation THInvokableProperties
+@implementation THMethodsPropertyController
 
 @synthesize tableView;
 

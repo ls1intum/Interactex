@@ -1,5 +1,5 @@
 /*
-THInvokableProperties.h
+THTriggerableProperties.h
 Interactex Designer
 
 Created by Juan Haladjian on 05/10/2013.
@@ -43,7 +43,17 @@ You should have received a copy of the GNU General Public License along with thi
 #import <UIKit/UIKit.h>
 #import "THEditableObjectProperties.h"
 
-@interface THInvokableProperties : THEditableObjectProperties <UITableViewDataSource, UITableViewDelegate>
+@interface THEventPropertyController : THEditableObjectProperties <UITableViewDataSource, UITableViewDelegate>
+{
+    
+}
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIButton * removeButton;
+@property (nonatomic, strong) UILabel *connectionCountLabel;
+
+- (void)removeButtonDown:(id)sender;
+- (void)removeButtonUp:(id)sender;
+
+
 @end

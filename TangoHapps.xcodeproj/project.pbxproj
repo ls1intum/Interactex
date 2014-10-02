@@ -377,14 +377,14 @@
 		9A5931D917E5CD4500B20D99 /* propertiesIconSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5931C917E5CD4500B20D99 /* propertiesIconSelected@2x.png */; };
 		9A59323817E5D58300B20D99 /* THEditableObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321917E5D58300B20D99 /* THEditableObjectProperties.m */; };
 		9A59323917E5D58300B20D99 /* THEditableObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321917E5D58300B20D99 /* THEditableObjectProperties.m */; };
-		9A59323A17E5D58300B20D99 /* THInvokableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321B17E5D58300B20D99 /* THInvokableProperties.m */; };
-		9A59323B17E5D58300B20D99 /* THInvokableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321B17E5D58300B20D99 /* THInvokableProperties.m */; };
+		9A59323A17E5D58300B20D99 /* THMethodsPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321B17E5D58300B20D99 /* THMethodsPropertyController.m */; };
+		9A59323B17E5D58300B20D99 /* THMethodsPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321B17E5D58300B20D99 /* THMethodsPropertyController.m */; };
 		9A59323C17E5D58300B20D99 /* THPaletteItemProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321D17E5D58300B20D99 /* THPaletteItemProperties.m */; };
 		9A59323D17E5D58300B20D99 /* THPaletteItemProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321D17E5D58300B20D99 /* THPaletteItemProperties.m */; };
-		9A59323E17E5D58300B20D99 /* THTriggerableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321F17E5D58300B20D99 /* THTriggerableProperties.m */; };
-		9A59323F17E5D58300B20D99 /* THTriggerableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321F17E5D58300B20D99 /* THTriggerableProperties.m */; };
-		9A59324017E5D58300B20D99 /* THViewableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322117E5D58300B20D99 /* THViewableProperties.m */; };
-		9A59324117E5D58300B20D99 /* THViewableProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322117E5D58300B20D99 /* THViewableProperties.m */; };
+		9A59323E17E5D58300B20D99 /* THEventPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321F17E5D58300B20D99 /* THEventPropertyController.m */; };
+		9A59323F17E5D58300B20D99 /* THEventPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59321F17E5D58300B20D99 /* THEventPropertyController.m */; };
+		9A59324017E5D58300B20D99 /* THPropertiesPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322117E5D58300B20D99 /* THPropertiesPropertyController.m */; };
+		9A59324117E5D58300B20D99 /* THPropertiesPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322117E5D58300B20D99 /* THPropertiesPropertyController.m */; };
 		9A59324217E5D58300B20D99 /* THImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322417E5D58300B20D99 /* THImagePickerController.m */; };
 		9A59324317E5D58300B20D99 /* THImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322417E5D58300B20D99 /* THImagePickerController.m */; };
 		9A59324417E5D58300B20D99 /* THCustomPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A59322717E5D58300B20D99 /* THCustomPaletteItem.m */; };
@@ -1979,14 +1979,14 @@
 		9A5931C917E5CD4500B20D99 /* propertiesIconSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "propertiesIconSelected@2x.png"; sourceTree = "<group>"; };
 		9A59321817E5D58300B20D99 /* THEditableObjectProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditableObjectProperties.h; sourceTree = "<group>"; };
 		9A59321917E5D58300B20D99 /* THEditableObjectProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditableObjectProperties.m; sourceTree = "<group>"; };
-		9A59321A17E5D58300B20D99 /* THInvokableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THInvokableProperties.h; sourceTree = "<group>"; };
-		9A59321B17E5D58300B20D99 /* THInvokableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THInvokableProperties.m; sourceTree = "<group>"; };
+		9A59321A17E5D58300B20D99 /* THMethodsPropertyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMethodsPropertyController.h; sourceTree = "<group>"; };
+		9A59321B17E5D58300B20D99 /* THMethodsPropertyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMethodsPropertyController.m; sourceTree = "<group>"; };
 		9A59321C17E5D58300B20D99 /* THPaletteItemProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPaletteItemProperties.h; sourceTree = "<group>"; };
 		9A59321D17E5D58300B20D99 /* THPaletteItemProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPaletteItemProperties.m; sourceTree = "<group>"; };
-		9A59321E17E5D58300B20D99 /* THTriggerableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTriggerableProperties.h; sourceTree = "<group>"; };
-		9A59321F17E5D58300B20D99 /* THTriggerableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTriggerableProperties.m; sourceTree = "<group>"; };
-		9A59322017E5D58300B20D99 /* THViewableProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THViewableProperties.h; sourceTree = "<group>"; };
-		9A59322117E5D58300B20D99 /* THViewableProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THViewableProperties.m; sourceTree = "<group>"; };
+		9A59321E17E5D58300B20D99 /* THEventPropertyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEventPropertyController.h; sourceTree = "<group>"; };
+		9A59321F17E5D58300B20D99 /* THEventPropertyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEventPropertyController.m; sourceTree = "<group>"; };
+		9A59322017E5D58300B20D99 /* THPropertiesPropertyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPropertiesPropertyController.h; sourceTree = "<group>"; };
+		9A59322117E5D58300B20D99 /* THPropertiesPropertyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPropertiesPropertyController.m; sourceTree = "<group>"; };
 		9A59322317E5D58300B20D99 /* THImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImagePickerController.h; sourceTree = "<group>"; };
 		9A59322417E5D58300B20D99 /* THImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THImagePickerController.m; sourceTree = "<group>"; };
 		9A59322517E5D58300B20D99 /* TFPaletteViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFPaletteViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -3152,14 +3152,14 @@
 			children = (
 				9A59321817E5D58300B20D99 /* THEditableObjectProperties.h */,
 				9A59321917E5D58300B20D99 /* THEditableObjectProperties.m */,
-				9A59321A17E5D58300B20D99 /* THInvokableProperties.h */,
-				9A59321B17E5D58300B20D99 /* THInvokableProperties.m */,
+				9A59321A17E5D58300B20D99 /* THMethodsPropertyController.h */,
+				9A59321B17E5D58300B20D99 /* THMethodsPropertyController.m */,
 				9A59321C17E5D58300B20D99 /* THPaletteItemProperties.h */,
 				9A59321D17E5D58300B20D99 /* THPaletteItemProperties.m */,
-				9A59321E17E5D58300B20D99 /* THTriggerableProperties.h */,
-				9A59321F17E5D58300B20D99 /* THTriggerableProperties.m */,
-				9A59322017E5D58300B20D99 /* THViewableProperties.h */,
-				9A59322117E5D58300B20D99 /* THViewableProperties.m */,
+				9A59321E17E5D58300B20D99 /* THEventPropertyController.h */,
+				9A59321F17E5D58300B20D99 /* THEventPropertyController.m */,
+				9A59322017E5D58300B20D99 /* THPropertiesPropertyController.h */,
+				9A59322117E5D58300B20D99 /* THPropertiesPropertyController.m */,
 				9A59322217E5D58300B20D99 /* utils */,
 			);
 			path = EditableProperties;
@@ -5460,10 +5460,10 @@
 				9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */,
 				9A59314317E50DA200B20D99 /* THWire.m in Sources */,
 				9A59323817E5D58300B20D99 /* THEditableObjectProperties.m in Sources */,
-				9A59323A17E5D58300B20D99 /* THInvokableProperties.m in Sources */,
+				9A59323A17E5D58300B20D99 /* THMethodsPropertyController.m in Sources */,
 				9A59323C17E5D58300B20D99 /* THPaletteItemProperties.m in Sources */,
-				9A59323E17E5D58300B20D99 /* THTriggerableProperties.m in Sources */,
-				9A59324017E5D58300B20D99 /* THViewableProperties.m in Sources */,
+				9A59323E17E5D58300B20D99 /* THEventPropertyController.m in Sources */,
+				9A59324017E5D58300B20D99 /* THPropertiesPropertyController.m in Sources */,
 				9A59324217E5D58300B20D99 /* THImagePickerController.m in Sources */,
 				9A59324417E5D58300B20D99 /* THCustomPaletteItem.m in Sources */,
 				9A59324617E5D58300B20D99 /* THDraggedPaletteItem.m in Sources */,
@@ -5739,10 +5739,10 @@
 				9A95FB8318CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */,
 				9A59314417E50DA200B20D99 /* THWire.m in Sources */,
 				9A59323917E5D58300B20D99 /* THEditableObjectProperties.m in Sources */,
-				9A59323B17E5D58300B20D99 /* THInvokableProperties.m in Sources */,
+				9A59323B17E5D58300B20D99 /* THMethodsPropertyController.m in Sources */,
 				9A59323D17E5D58300B20D99 /* THPaletteItemProperties.m in Sources */,
-				9A59323F17E5D58300B20D99 /* THTriggerableProperties.m in Sources */,
-				9A59324117E5D58300B20D99 /* THViewableProperties.m in Sources */,
+				9A59323F17E5D58300B20D99 /* THEventPropertyController.m in Sources */,
+				9A59324117E5D58300B20D99 /* THPropertiesPropertyController.m in Sources */,
 				9A59324317E5D58300B20D99 /* THImagePickerController.m in Sources */,
 				9A59324517E5D58300B20D99 /* THCustomPaletteItem.m in Sources */,
 				9A59324717E5D58300B20D99 /* THDraggedPaletteItem.m in Sources */,

@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class TFProperty;
 
-@interface THViewableProperties : THEditableObjectProperties <UITableViewDataSource, UITableViewDelegate>
+@interface THPropertiesPropertyController : THEditableObjectProperties <UITableViewDataSource, UITableViewDelegate>
 {
 }
 

@@ -1089,7 +1089,9 @@ enum zPositions{
         TFMethodInvokeAction * newAction = [originalAction copy];
         newAction.source = [self simulableForEditable:newAction.source inProject:project];
         newAction.target = [self simulableForEditable:newAction.target inProject:project];
-        newAction.firstParam.target = [self simulableForEditable:newAction.firstParam.target inProject:project];
+        if(originalAction.firstParam != originalEvent.param1){
+            newAction.firstParam.target = [self simulableForEditable:newAction.firstParam.target inProject:project];
+        }
         
         [project registerAction:newAction forEvent:newEvent];
     }

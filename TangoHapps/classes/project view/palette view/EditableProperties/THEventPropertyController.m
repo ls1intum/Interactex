@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THTriggerableProperties.h"
+#import "THEventPropertyController.h"
 #import "TFEditableObject.h"
 #import "TFAction.h"
 #import "TFConnectionLine.h"
@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFMethod.h"
 #import "TFEvent.h"
 
-@implementation THTriggerableProperties
+@implementation THEventPropertyController
 @synthesize tableView;
 @synthesize removeButton;
 

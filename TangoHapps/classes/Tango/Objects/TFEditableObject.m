@@ -50,9 +50,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFEvent.h"
 #import "TFProperty.h"
 
-#import "THViewableProperties.h"
-#import "THInvokableProperties.h"
-#import "THTriggerableProperties.h"
+#import "THPropertiesPropertyController.h"
+#import "THMethodsPropertyController.h"
+#import "THEventPropertyController.h"
 #import "THPaletteItem.h"
 #import "THEditableObjectCommonProperties.h"
 
@@ -143,20 +143,21 @@ static NSInteger objectCount = 1;
 -(NSArray*)propertyControllers {
     
     NSMutableArray * array = [NSMutableArray array];
-    if(self.viewableProperties.count > 0){
-        _viewableEditableProperties = [THViewableProperties properties];
-        [array addObject:_viewableEditableProperties];
-    }
-    if(self.methods.count > 0){
-        _invokableEditableProperties = [THInvokableProperties properties];
-        [array addObject:_invokableEditableProperties];
-    }
-    if(self.events.count > 0){
-        _triggerableProperties = [THTriggerableProperties properties];
-        [array addObject:_triggerableProperties];
+    
+    if(self.properties.count > 0){
+        _propertiesPropertyController = [THPropertiesPropertyController properties];
+        [array addObject:_propertiesPropertyController];
     }
     
-    //[array addObject:[THEditableObjectCommonProperties properties]];
+    if(self.events.count > 0){
+        _eventsPropertyController = [THEventPropertyController properties];
+        [array addObject:_eventsPropertyController];
+    }
+    
+    if(self.methods.count > 0){
+        _methodsPropertyController = [THMethodsPropertyController properties];
+        [array addObject:_methodsPropertyController];
+    }
     
     return array;
 }
@@ -187,7 +188,7 @@ static NSInteger objectCount = 1;
         }
     }
     
-    for (TFProperty * property in self.viewableProperties) {
+    for (TFProperty * property in self.properties) {
         if([object acceptsPropertiesOfType:property.type]){
             return YES;
         }
@@ -206,19 +207,31 @@ static NSInteger objectCount = 1;
 
 #pragma mark - Properties
 
--(NSMutableArray*) viewableProperties{
-    return self.simulableObject.properties;
-}
-
 -(BOOL) acceptsPropertiesOfType:(TFDataType)type{
     return [self.simulableObject acceptsPropertiesOfType:type];
 }
 
--(NSMutableArray*) events{
-    return self.simulableObject.events;
+
+#pragma mark - Getters
+
+-(NSMutableArray*) properties{
+    return self.simulableObject.properties;
 }
 
--(NSArray*) methods{
+-(NSMutableArray*) events{
+    if(!_events){//lazy init of events with references to local editable object
+        _events = [NSMutableArray array];
+        for (TFEvent * event in self.simulableObject.events) {
+            TFEvent * copy = [event copy];
+            copy.param1.target = self;
+            [_events addObject:copy];
+        }
+    }
+    return _events;
+}
+
+-(NSMutableArray*) methods{
+
     return self.simulableObject.methods;
 }
 
@@ -303,9 +316,9 @@ static NSInteger objectCount = 1;
 }
 
 -(void) reloadProperties{
-    [self.triggerableProperties reloadState];
-    [self.viewableEditableProperties reloadState];
-    [self.invokableEditableProperties reloadState];
+    [self.eventsPropertyController reloadState];
+    [self.propertiesPropertyController reloadState];
+    [self.methodsPropertyController reloadState];
 }
 
 -(CGRect) boundingBox{
@@ -430,9 +443,9 @@ static NSInteger objectCount = 1;
 
 -(void) prepareToDie{
         
-    _triggerableProperties = nil;
-    _viewableEditableProperties = nil;
-    _invokableEditableProperties = nil;
+    _eventsPropertyController = nil;
+    _propertiesPropertyController = nil;
+    _methodsPropertyController = nil;
     
     [self.simulableObject prepareToDie];
     _simulableObject = nil;

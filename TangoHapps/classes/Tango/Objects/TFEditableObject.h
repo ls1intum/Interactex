@@ -44,9 +44,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class TFSimulableObject;
 @class THGestureEditableObject;
-@class THTriggerableProperties;
-@class THViewableProperties;
-@class THInvokableProperties;
+@class THEventPropertyController;
+@class THPropertiesPropertyController;
+@class THMethodsPropertyController;
 @class TFEvent;
 @class TFMethod;
 @class THPaletteItem;
@@ -99,9 +99,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, readonly) THPaletteItem * paletteItem;
 
-@property (nonatomic) THTriggerableProperties * triggerableProperties;
-@property (nonatomic) THViewableProperties * viewableEditableProperties;
-@property (nonatomic) THInvokableProperties * invokableEditableProperties;
+@property (nonatomic) THPropertiesPropertyController * propertiesPropertyController;
+@property (nonatomic) THEventPropertyController * eventsPropertyController;
+@property (nonatomic) THMethodsPropertyController * methodsPropertyController;
 
 //transformation
 -(void) displaceBy: (CGPoint) displacement;
@@ -147,9 +147,9 @@ You should have received a copy of the GNU General Public License along with thi
 //boxes
 -(void) update;
 
-@property (nonatomic) NSMutableArray* viewableProperties;
-@property (nonatomic) NSMutableArray* events;
-@property(nonatomic) NSMutableArray * methods;
+@property (nonatomic, readonly) NSMutableArray * properties;
+@property (nonatomic, strong) NSMutableArray * events;
+@property (nonatomic, readonly) NSMutableArray * methods;
 
 
 @end

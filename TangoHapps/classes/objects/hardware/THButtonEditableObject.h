@@ -42,7 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THSwitchEditableObject.h"
 
-@class THTriggerableProperties;
+@class THEventPropertyController;
 
 @interface THButtonEditableObject : THSwitchEditableObject {
 }

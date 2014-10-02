@@ -40,13 +40,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THViewableProperties.h"
+#import "THPropertiesPropertyController.h"
 #import "TFProperty.h"
 #import "TFConnectionLine.h"
 #import "TFMethodInvokeAction.h"
 #import "TFEditableObject.h"
 
-@implementation THViewableProperties
+@implementation THPropertiesPropertyController
 @synthesize tableView;
 
 +(id) properties{
@@ -84,13 +84,13 @@ You should have received a copy of the GNU General Public License along with thi
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
-    return editable.viewableProperties.count;
+    return editable.properties.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
-    NSMutableArray * properties = editable.viewableProperties;
+    NSMutableArray * properties = editable.properties;
     NSInteger idx = indexPath.row;
     TFProperty * property = [properties objectAtIndex:idx];
     UITableViewCell * cell = [[UITableViewCell alloc] init];

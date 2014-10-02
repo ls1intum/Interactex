@@ -88,7 +88,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)addPropertiesController:(THEditableObjectProperties*)controller
                       object:(TFEditableObject*)object {
-    //[self addObjectsPalette];
     
     THTabbarView * sidebar = (THTabbarView*)self.view;
     
