@@ -53,7 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateMinLabel];
     [self updateMaxLabel];
     [self updateMinSlider];
-    [self updateMinSlider];
+    [self updateMaxSlider];
     [self updateBehaviorType];
     [self updateTextLabel];
 }

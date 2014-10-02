@@ -152,3 +152,8 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
 float const kLayerMinScale = 0.5f;
 float const kLayerMaxScale = 2.5f;
 
+float const kDefaultAnalogSimulationIncrease = 5.0f;
+
+ccColor3B const kDefaultSimulationLabelColor = {0,0,0};//black
+
+

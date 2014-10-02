@@ -46,8 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THPotentiometer
 @dynamic plusPin;
 
-float const kMaxPotentiometerValue = 1023;
-
 -(void) loadPotentiometer{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeInteger];
@@ -166,7 +164,7 @@ float const kMaxPotentiometerValue = 1023;
 }
 
 -(void) setValue:(NSInteger)value{
-    value = [THClientHelper Constrain:value min:0 max:kMaxPotentiometerValue];
+    value = [THClientHelper Constrain:value min:0 max:kMaxAnalogValue];
     if(value != _value){
         _value = value;
         //NSLog(@"new val: %d",_value);

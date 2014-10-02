@@ -198,3 +198,7 @@ extern CGPoint const kSewedPositions[kNumHardwareTypes];
 
 extern float const kLayerMinScale;
 extern float const kLayerMaxScale;
+
+extern float const kDefaultAnalogSimulationIncrease;
+
+extern ccColor3B const kDefaultSimulationLabelColor;

@@ -1035,31 +1035,6 @@ enum zPositions{
     }
 }
 
--(TFSimulableObject*) simulableForSimulable:(TFSimulableObject*) simulable inProject:(THClientProject*) project{
-    if([simulable isKindOfClass:[THHardwareComponent class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.hardwareComponents];
-        return [project.hardwareComponents objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THView class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.iPhoneObjects];
-        return [project.iPhoneObjects objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THConditionObject class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.conditions];
-        return [project.conditions objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THNumberValue class]] || [simulable isKindOfClass:[THBoolValue class]] || [simulable isKindOfClass:[THStringValue class]] ||[simulable isKindOfClass:[THMapper class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.values];
-        return [project.values objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[THTrigger class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.triggers];
-        return [project.triggers objectAtIndex:idx];
-    } else if ([simulable isKindOfClass:[TFAction class]]){
-        NSInteger idx = [self idxOfSimulable:simulable inArray:self.actions];
-        return [project.triggers objectAtIndex:idx];
-    } else {
-        NSAssert(NO, @"returning nil for %@ in simulableForSimulable",simulable);
-        return nil;
-    }
-}
-
 -(NSMutableArray*) nonEditableElementsForArray:(NSMutableArray*) objects forProject:(THClientProject*) project{
     NSMutableArray * ret = [NSMutableArray arrayWithCapacity:objects.count];
     
@@ -1152,6 +1127,14 @@ enum zPositions{
 
 -(THClientProject*) nonEditableProject{
     THClientProject * project = [[THClientProject alloc] initWithName:self.name];
+    
+    /*
+    NSMutableDictionary * objectMapping = [NSMutableDictionary dictionary];
+    TFEditableObject * testObj = [self.boards objectAtIndex:0];
+    [objectMapping setObject:testObj.simulableObject forKey:testObj];
+    TFSimulableObject * retobj = [objectMapping objectForKey:testObj];
+    NSLog(@"%@",retobj);*/
+    
     
     project.boards = [self nonEditableElementsForArray:self.boards forProject:project];
     project.hardwareComponents = [self nonEditableElementsForArray:self.hardwareComponents forProject:project];
