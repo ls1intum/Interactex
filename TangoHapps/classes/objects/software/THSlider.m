@@ -157,7 +157,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(NSString*) description{
-    return @"slider";
+    return [NSString stringWithFormat:@"slder: %p",self];
+//    return @"slider";
 }
 
 @end

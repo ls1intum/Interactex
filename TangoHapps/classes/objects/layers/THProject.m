@@ -986,6 +986,9 @@ enum zPositions{
 -(NSInteger) idxOfSimulable:(TFSimulableObject*) simulable inArray:(NSArray*) array{
     NSInteger i = 0;
     for (TFEditableObject * editable in array) {
+        
+        NSLog(@"got %@, checking %@",simulable,editable.simulableObject);
+        
         if(editable.simulableObject == simulable){
             return i;
         }
@@ -1070,37 +1073,25 @@ enum zPositions{
 
 -(void) addNonEditableActionPairsTo:(THClientProject*) project{
     
+    
     for (TFEventActionPair * pair in self.eventActionPairs) {
+        
+        TFEvent * originalEvent = pair.event;
         TFMethodInvokeAction * originalAction = (TFMethodInvokeAction*) pair.action;
         
-        TFEvent * event = [pair.event copy];
-        if([event.param1.target isKindOfClass:[TFEditableObject class]]){
-            event.param1.target = [self simulableForEditable:event.param1.target inProject:project];
+        //event
+        TFEvent * newEvent = [originalEvent copy];
+        if([newEvent.param1.target isKindOfClass:[TFEditableObject class]]){
+            newEvent.param1.target = [self simulableForEditable:newEvent.param1.target inProject:project];
         }
         
-        TFSimulableObject * target = [self simulableForEditable:originalAction.target inProject:project];
+        //action
+        TFMethodInvokeAction * newAction = [originalAction copy];
+        newAction.source = [self simulableForEditable:newAction.source inProject:project];
+        newAction.target = [self simulableForEditable:newAction.target inProject:project];
+        newAction.firstParam.target = [self simulableForEditable:newAction.firstParam.target inProject:project];
         
-        TFMethodInvokeAction * action = [[TFMethodInvokeAction alloc] initWithTarget:target method:originalAction.method];
-        if(originalAction.firstParam != nil){
-            action.firstParam = [originalAction.firstParam copy];
-            
-            NSLog(@"replacing simulable: %@",originalAction.firstParam.target);
-            
-            if([originalAction.firstParam.target isKindOfClass:[TFEditableObject class]]){
-                
-                action.firstParam.target = [self simulableForEditable:originalAction.firstParam.target inProject:project];
-                
-            } else if([originalAction.firstParam.target isKindOfClass:[TFSimulableObject class]]){
-                
-                action.firstParam.target = [self simulableForSimulable:originalAction.firstParam.target inProject:project];
-                
-            }
-        }
-        
-        TFSimulableObject * source = [self simulableForEditable:pair.action.source inProject:project];
-        action.source = source;
-        
-        [project registerAction:action forEvent:event];
+        [project registerAction:newAction forEvent:newEvent];
     }
 }
 

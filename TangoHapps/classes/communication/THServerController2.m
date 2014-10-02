@@ -80,12 +80,10 @@
 }
 
 -(void) pushProjectToAllClients:(THProject*)project {
+    [project nonEditableProject];
     
     if(self.session.connectedPeers.count > 0){
         [self sendMessage:[self projectNameMessageForProject:project]];
-        /*
-         THAssetCollection * assetCollection = project.assetCollection;
-         [self sendObject:assetCollection];*/
         
         THClientProject * clientProject = [project nonEditableProject];
         [self sendObject: clientProject];

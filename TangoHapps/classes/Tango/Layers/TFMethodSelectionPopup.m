@@ -77,9 +77,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(path1 != nil && path2 != nil){
         
         TFEvent * event = [_acceptedEvents objectAtIndex:path1.row];
-
-        
-        //[self selectEventsAndMethods]; causes EXC_BAD_ACCESS
         
         TFMethod * method = [_acceptedMethods objectAtIndex:path2.row];
         
