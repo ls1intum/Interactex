@@ -58,7 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self addChild:self.sprite];
     
     self.acceptsConnections = YES;
-    self.isInputObject = NO;
 }
 
 -(id) init{

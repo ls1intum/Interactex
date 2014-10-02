@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 float const kMaxPotentiometerValue = 1023;
 
--(void) load{
+-(void) loadPotentiometer{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeInteger];
     self.properties = [NSMutableArray arrayWithObject:property];
@@ -75,7 +75,7 @@ float const kMaxPotentiometerValue = 1023;
 -(id) init{
     self = [super init];
     if(self){
-        [self load];
+        [self loadPotentiometer];
         [self loadPins];
         self.minValueNotify = 0;
         self.maxValueNotify = 255;
@@ -87,13 +87,13 @@ float const kMaxPotentiometerValue = 1023;
 
 -(id)initWithCoder:(NSCoder *)decoder{
     self = [super initWithCoder:decoder];
-    
-    self.minValueNotify = [decoder decodeIntegerForKey:@"minValueNotify"];
-    self.maxValueNotify = [decoder decodeIntegerForKey:@"maxValueNotify"];
-    self.notifyBehavior = [decoder decodeIntegerForKey:@"notifyBehavior"];
-    
-    [self load];
-    
+    if(self){
+        self.minValueNotify = [decoder decodeIntegerForKey:@"minValueNotify"];
+        self.maxValueNotify = [decoder decodeIntegerForKey:@"maxValueNotify"];
+        self.notifyBehavior = [decoder decodeIntegerForKey:@"notifyBehavior"];
+        
+        [self loadPotentiometer];
+    }
     return self;
 }
 

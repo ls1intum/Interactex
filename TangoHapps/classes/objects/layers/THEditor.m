@@ -231,13 +231,10 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(object){
         [self selectObject:object];
-    }
-    // nazmus added - 21 Sep 14 - to switch back to palette (/ library) view when no item is selected
-    else {
+    } else {
         THProjectViewController *projectController = [THDirector sharedDirector].projectController;
         [[projectController tabController] showTab:0];
     }
-    ////
 }
 
 -(void) handleSelectionLost{
@@ -286,10 +283,8 @@ You should have received a copy of the GNU General Public License along with thi
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:editableObject];
     }
     
-    // nazmus added - 21 Sep 14 - to automatically open properties tab when selecting an object
     THProjectViewController *projectController = [THDirector sharedDirector].projectController;
     [[projectController tabController] showTab:1];
-    ////
 }
 
 #pragma mark - Connection
@@ -308,32 +303,25 @@ You should have received a copy of the GNU General Public License along with thi
     [project removeAllWiresFromElementPin:elementPin notify:YES];
 }
 
--(void) connectElementPin:(THElementPinEditable*) objectPin toBoardAtPosition:(CGPoint) position{
+-(void) connectElementPin:(THElementPinEditable*) elementPinEditable toBoardAtPosition:(CGPoint) position{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THBoardEditable * board = [project boardAtLocation:position];
     THBoardPinEditable * lilypadPin = [board pinAtPosition:position];
     
-    if([objectPin acceptsConnectionsTo:lilypadPin]){
-        [lilypadPin attachPin:objectPin];
-        [objectPin attachToPin:lilypadPin animated:YES];
-        [project addWireFrom:objectPin to:lilypadPin];
+    if([elementPinEditable acceptsConnectionsTo:lilypadPin]){
+        [lilypadPin attachPin:elementPinEditable];
+        [elementPinEditable attachToPin:lilypadPin animated:YES];
+        [project addWireFrom:elementPinEditable to:lilypadPin];
         
-        THElementPin * elementPin = (THElementPin*)objectPin.simulableObject;
-        
-        if([elementPin.hardware conformsToProtocol:@protocol(THI2CProtocol)] && (lilypadPin.supportsSCL || lilypadPin.supportsSDA)){
+        if(elementPinEditable.hardware.isI2CComponent && (lilypadPin.supportsSCL || lilypadPin.supportsSDA)){
             
-            THBoard * boardNonEditable = (THBoard*) board.simulableObject;
+            THBoardPinEditable * sdaPin = board.sdaPin;
+            THBoardPinEditable * sclPin = board.sclPin;
             
-            THBoardPin * sdaPinNonEditable = boardNonEditable.sdaPin;
-            THBoardPin * sclPinNonEditable = boardNonEditable.sclPin;
-            
-            
-            if((lilypadPin.supportsSCL && [sdaPinNonEditable isClotheObjectAttached:elementPin.hardware]) ||
-               (lilypadPin.supportsSDA && [sclPinNonEditable isClotheObjectAttached:elementPin.hardware])) {
-                
-                THElementPin<THI2CProtocol> * i2cObject = (THElementPin<THI2CProtocol>*)elementPin.hardware;
-                [(THBoard*)board.simulableObject addI2CComponent:i2cObject];
+            if((lilypadPin.supportsSCL && [sdaPin isClotheObjectAttached:elementPinEditable.hardware]) ||
+               (lilypadPin.supportsSDA && [sclPin isClotheObjectAttached:elementPinEditable.hardware])) {
+                [board addI2CComponent:elementPinEditable.hardware];
             }
         }
     }
@@ -388,9 +376,6 @@ You should have received a copy of the GNU General Public License along with thi
     [popup.connection reloadSprite];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInvocationCompleted object:popup.connection.action.firstParam];
-    
-    
-    //THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
 }
 
 -(void) showPropertySelectionPopupFor:(TFEditableObject*) object invocationParameter:(THInvocationConnectionLine*) connectionLine{
@@ -409,13 +394,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) checkDistributeInvocationConnectionsBetweenObj1:(TFEditableObject*) object1 obj2:(TFEditableObject*) object2{
     
     THProject * project = [THDirector sharedDirector].currentProject;
-    
-    //NSArray * invocationConnections = [project invocationConnectionsFrom:object1 to:object2]; // nazmus commented
-    //nazmus added - to fix the connection-overlap-bug between obj2 and obj1
+
     NSArray * invocationConnections1 = [project invocationConnectionsFrom:object1 to:object2];
     NSArray * invocationConnections2 = [project invocationConnectionsFrom:object2 to:object1];
     NSArray * invocationConnections = [invocationConnections1 arrayByAddingObjectsFromArray:invocationConnections2];
-    ////
     
     CGPoint p1 = object1.center;
     CGPoint p2 = object2.center;
@@ -451,11 +433,6 @@ You should have received a copy of the GNU General Public License along with thi
             
             invocationConnection.state = THInvocationConnectionLineStateComplete;
             invocationConnection.action.firstParam = event.param1;
-        }
-        
-        if([invocationConnection.action.firstParam.target isKindOfClass:[TFSimulableObject class]]){
-
-            invocationConnection.action.firstParam.target = [project editableForSimulable:event.param1.target];
         }
         
         invocationConnection.parameterType = action.method.firstParamType;

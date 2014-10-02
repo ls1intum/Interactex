@@ -1140,13 +1140,12 @@ enum zPositions{
     NSInteger i = 0;
     
     for (THBoardEditable * board in self.boards) {
-        THBoard * realBoard = [project.boards objectAtIndex:i++];
-        realBoard.i2cComponents = [NSMutableArray array];
+        THBoard * clientBoard = [project.boards objectAtIndex:i++];
         
-        THBoard * boardSimulable = (THBoard*)board.simulableObject;
-        for (TFSimulableObject * component in boardSimulable.i2cComponents){
-            TFSimulableObject * simulable = [self simulableForSimulable:component inProject:project];
-            [realBoard.i2cComponents addObject:simulable];
+        clientBoard.i2cComponents = [NSMutableArray array];
+        for (THHardwareComponentEditableObject * component in board.i2cComponents){
+            TFSimulableObject * simulable = [self simulableForEditable:component inProject:project];
+            [clientBoard.i2cComponents addObject:simulable];
         }
     }
 }
@@ -1172,16 +1171,6 @@ enum zPositions{
 
 -(BOOL) isEmpty{
     return (self.allObjects.count == 0);
-}
-
--(TFEditableObject*) editableForSimulable:(TFSimulableObject*) simulable{
-    for (TFEditableObject* editable in self.allObjects) {
-        if(editable.simulableObject == simulable){
-            return editable;
-        }
-    }
-    NSLog(@"warning, simulable not found");
-    return nil;
 }
 
 -(NSMutableArray*) hardwareProblems{

@@ -56,11 +56,15 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        
+        [self loadMPU6050];
         [self loadMethods];
         [self loadPins];
     }
     return self;
+}
+
+-(void) loadMPU6050{
+    self.isI2CComponent = YES;
 }
 
 #pragma mark - Archiving
@@ -69,6 +73,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self = [super initWithCoder:decoder];
     if(self){
+        [self loadMPU6050];
         [self loadMethods];
         [self loadI2CComponent];
     }

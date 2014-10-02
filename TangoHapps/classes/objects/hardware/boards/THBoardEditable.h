@@ -58,26 +58,30 @@ typedef enum {
     
 }
 
-@property (nonatomic)THBoardType boardType;
+@property (nonatomic) THBoardType boardType;
 @property (nonatomic, readonly) NSInteger numberOfDigitalPins;
 @property (nonatomic, readonly) NSInteger numberOfAnalogPins;
 @property (nonatomic, strong) NSMutableArray * pins;
 @property (nonatomic) BOOL showsWires;
+@property (nonatomic, strong) NSMutableArray * i2cComponents;
 
 -(void) loadBoard;
 
+//pins
 -(THBoardPinEditable*) minusPin;
 -(THBoardPinEditable*) plusPin;
-
 -(THBoardPinEditable*) sclPin;
 -(THBoardPinEditable*) sdaPin;
-
 -(THBoardPinEditable*) pinAtPosition:(CGPoint) position;
-
 -(NSInteger) pinNumberAtPosition:(CGPoint) position;
 -(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
 
+//power supply
 -(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location;
 
+//i2c components
+-(void) addI2CComponent:(THHardwareComponentEditableObject*) component;
+-(void) removeI2CComponent:(THHardwareComponentEditableObject*) component;
+-(THHardwareComponentEditableObject*) I2CComponentWithAddress:(NSInteger) address;
 @end

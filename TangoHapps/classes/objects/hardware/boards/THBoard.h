@@ -56,8 +56,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) THBoardPin * minusPin;
 @property (nonatomic, readonly) THBoardPin * plusPin;
 
-@property (nonatomic, readonly) THBoardPin * sclPin;//analog 5
-@property (nonatomic, readonly) THBoardPin * sdaPin;//analog 4
+@property (nonatomic, readonly) THBoardPin * sclPin;//analog 5 in arduino
+@property (nonatomic, readonly) THBoardPin * sdaPin;//analog 4 in arduino
 
 -(void) attachPin:(THElementPin*) object atPin:(NSInteger) pin;
 -(NSInteger) pinIdxForPin:(NSInteger) pinNumber ofType:(THPinType) type;
@@ -65,6 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(THBoardPin*) digitalPinWithNumber:(NSInteger) number;
 -(THBoardPin*) analogPinWithNumber:(NSInteger) number;
 
+//i2c components
 -(void) addI2CComponent:(id<THI2CProtocol>) component;
 -(void) removeI2CComponent:(id<THI2CProtocol>) component;
 -(id<THI2CProtocol>) I2CComponentWithAddress:(NSInteger) address;

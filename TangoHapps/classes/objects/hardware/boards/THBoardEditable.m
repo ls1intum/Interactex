@@ -78,35 +78,6 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     }
 };
 
-/*
-CGPoint kLilypadPinPositions[kLilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
-    {-111.0, 16.0}, {-102.0, -17.0},//- +
-    {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
-    {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
-    {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
-};
-
-
-CGPoint kBLELilypadPinPositions[kBLELilypadNumberOfPins] = {{1,110},{-29,104},{-58.0, 91.0},{-84.0, 72.0},{-100.0, 45.0},//0 - 4
-    {-111.0, 16.0}, {-102.0, -17.0},//- +
-    {-100.0, -42.0},{-83.0, -70.0},{-59.0, -92.0},{-31.0, -102.0},{0.0, -110.0},{30.0, -105.0},//5-10
-    {60.0, -96.0},{84.0, -73.0},{101.0, -48.0},//11-13
-    {110.0, -17.0},{108.0, 13.0},{101.0, 42.0},{84.0, 72.0},{61.0, 92.0},{31,105}//A0 - A5
-};
-
-CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
-    {55.0, -94.0}, {94.0, -55.0},{109.0, -2.0},{94.0, 52.0},{54.0, 91.0},//D2,3,9,10,11
-    {-52, -94}, {2.0, -110.0},//- +
-    {-52,91},{-92,51},{-105, -3},{-91, -55}//A2 - A5
-};*/
-
-/*
- CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
- {0, 0}, {0, 0},{0, 0},{0, 0},{0, 0},//D2,3,9,10,11
- {-52, -94}, {-2, -110.0},//- +
- {0,0},{0,0},{0, 0},{0, 0}//A2 - A5
- };*/
-
 -(void) loadBoard{
     
     [self loadPins];
@@ -160,6 +131,7 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     if(self){
         self.pins = [decoder decodeObjectForKey:@"pins"];
         self.showsWires = [decoder decodeBoolForKey:@"showsWires"];
+        self.i2cComponents = [decoder decodeObjectForKey:@"i2cComponents"];
     }
     return self;
 }
@@ -169,6 +141,19 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
     
     [coder encodeObject:self.pins forKey:@"pins"];
     [coder encodeBool:self.showsWires forKey:@"showsWires"];
+    [coder encodeObject:self.i2cComponents forKey:@"i2cComponents"];
+}
+
+
+-(id)copyWithZone:(NSZone *)zone {
+    THBoardEditable * copy = [super copyWithZone:zone];
+    copy.boardType = self.boardType;
+
+    for (THHardwareComponentEditableObject * i2cComponent in self.i2cComponents) {
+        [copy addI2CComponent:i2cComponent];
+    }
+    
+    return copy;
 }
 
 #pragma mark - Methods
@@ -215,20 +200,13 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 }
 
 -(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number{
+    NSLog(@"Warning, calling digitalPinWithNumber on THBoardEditable");
     return nil;
 }
 
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number{
     return nil;
 }
-
-/*
--(void) setShowsWires:(BOOL)showsWires{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THWire * wire in project.wires) {
-        wire.visible = showsWires;
-    }
-}*/
 
 -(void) autoroutePlusAndMinusPins{
     
@@ -240,6 +218,28 @@ CGPoint kSimpleLilypadPinPositions[kSimpleLilypadNumberOfPins] = {
 
 -(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location{
     return NO;
+}
+
+
+#pragma mark - I2C Components
+
+-(void) addI2CComponent:(THHardwareComponentEditableObject*) component{
+    [self.i2cComponents addObject:component];
+}
+
+-(void) removeI2CComponent:(THHardwareComponentEditableObject*) component{
+    [self.i2cComponents removeObject:component];
+}
+
+-(THHardwareComponentEditableObject*) I2CComponentWithAddress:(NSInteger) address{
+    
+    for (THHardwareComponentEditableObject* component in self.i2cComponents) {
+        id<THI2CProtocol> componentSimulable = (id<THI2CProtocol>)component.simulableObject;
+        if(componentSimulable.i2cComponent.address == address){
+            return component;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - Object's Lifecycle

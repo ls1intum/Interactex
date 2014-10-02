@@ -59,7 +59,6 @@ You should have received a copy of the GNU General Public License along with thi
 @synthesize type = _type;
 @synthesize pins = _pins;
 @dynamic hardwareProblems;
-@dynamic isInputObject;
 
 -(void) loadObject{
     
@@ -209,17 +208,6 @@ You should have received a copy of the GNU General Public License along with thi
         }
         _attachedToClothe = attachedToClothe;
     }
-}
-
--(void) setIsInputObject:(BOOL)isInputObject{
-    
-    THHardwareComponent * object = (THHardwareComponent*) self.simulableObject;
-    object.isInputObject = isInputObject;
-}
-
--(BOOL) isInputObject{
-    THHardwareComponent * object = (THHardwareComponent*) self.simulableObject;
-    return object.isInputObject;
 }
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position{

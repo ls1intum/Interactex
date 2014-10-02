@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THButton
 
--(void) load{
+-(void) loadButton{
 
     TFEvent * event1 = [TFEvent eventNamed:kEventStartedPressing];
     TFEvent * event2 = [TFEvent eventNamed:kEventStoppedPressing];
@@ -55,19 +55,18 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        [self load];
+        [self loadButton];
     }
     return self;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self load];
-    
+    if(self){
+        [self loadButton];
+    }
     return self;
 }
 

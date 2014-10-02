@@ -182,8 +182,6 @@ You should have received a copy of the GNU General Public License along with thi
 //non editable project
 -(THClientProject*) nonEditableProject;
 
--(TFEditableObject*) editableForSimulable:(TFSimulableObject*) object;
-
 @property (nonatomic,readonly) THiPhoneEditableObject * iPhone;
 @property (nonatomic,readonly) NSMutableArray * boards;
 @property (nonatomic,readonly) NSMutableArray * hardwareComponents;

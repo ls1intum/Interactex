@@ -50,6 +50,10 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THCompassMPU6050Editable
 
 -(void) loadCompass{
+    
+    self.type = kHardwareTypeMPUCompass;
+    self.isI2CComponent = YES;
+    
     self.sprite = [CCSprite spriteWithFile:@"LSMCompass.png"];
     [self addChild:self.sprite];
     
@@ -76,8 +80,6 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         self.simulableObject = [[THCompassMPU6050 alloc] init];
-        
-        self.type = kHardwareTypeMPUCompass;
         
         [self loadCompass];
         [self loadPins];

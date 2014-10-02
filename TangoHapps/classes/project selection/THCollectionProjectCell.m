@@ -46,10 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THCollectionProjectCell
 
-const float kShakingEffectAngleInRadians = 2.0f;
-const float kShakingEffectRotationTime = 0.10f;
-const float kProjectCellScaleEffectDuration = 0.5;
-
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {

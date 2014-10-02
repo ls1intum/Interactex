@@ -40,6 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
+//this file contains all the constants shard between the designer and the client
 #import <Foundation/Foundation.h>
 
 
@@ -259,3 +260,8 @@ typedef enum {
     THCommunicationMsgTransferAsset
     
 } THCommunicationMsg;
+
+
+extern const float kShakingEffectAngleInRadians;
+extern const float kShakingEffectRotationTime;
+extern const float kProjectCellScaleEffectDuration;

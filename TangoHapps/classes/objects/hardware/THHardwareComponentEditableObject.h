@@ -55,7 +55,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, copy) NSString * objectName;
 @property (nonatomic) THHardwareType type;
 @property (nonatomic, readonly) NSMutableArray * pins;
-@property (nonatomic) BOOL isInputObject;
+@property (nonatomic) BOOL isI2CComponent;
 @property (nonatomic, readonly) NSArray * hardwareProblems;
 @property (nonatomic, weak) THClothe * attachedToClothe;
 @property (nonatomic, readonly) THElementPinEditable * mainPin;
@@ -63,7 +63,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
 -(void) addPinChilds;
 -(void) loadPins;
--(BOOL) isInputObject;
 -(void) autoroutePlusAndMinusPins;
 -(void) autoroute;
 -(void) handleBoardRemoved:(THBoardEditable *)board;
