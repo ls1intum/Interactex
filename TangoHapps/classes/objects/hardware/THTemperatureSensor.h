@@ -42,8 +42,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THHardwareComponent.h"
 
-extern float const kMaxTemperatureSensorValue;
-
 @interface THTemperatureSensor : THHardwareComponent
 {
     BOOL _insideRange;

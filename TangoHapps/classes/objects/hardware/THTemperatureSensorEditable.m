@@ -57,12 +57,11 @@ You should have received a copy of the GNU General Public License along with thi
     
     CGSize size = CGSizeMake(75, 20);
     
-    //_valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
      _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
     
-    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-50);
+    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2 - 75);
     _valueLabel.visible = NO;
+    _valueLabel.color = kDefaultSimulationLabelColor;
     [self addChild:_valueLabel z:1];
     
     self.acceptsConnections = YES;
@@ -139,11 +138,11 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) update{
     
     if(self.isDown){
-        _touchDownIntensity += 2.0f;
+        _touchDownIntensity += kDefaultAnalogSimulationIncrease;
     } else {
-        _touchDownIntensity -= 1.0f;
+        _touchDownIntensity -= kDefaultAnalogSimulationIncrease;
     }
-    _touchDownIntensity = [THClientHelper Constrain:_touchDownIntensity min:0 max:kMaxTemperatureSensorValue];
+    _touchDownIntensity = [THClientHelper Constrain:_touchDownIntensity min:0 max:kMaxAnalogValue];
     
     THTemperatureSensor * temperatureSensor = (THTemperatureSensor*) self.simulableObject;
     temperatureSensor.value = _touchDownIntensity;
@@ -189,15 +188,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setNotifyBehavior:(THSensorNotifyBehavior)notifyBehavior{
     THTemperatureSensor * temperatureSensor = (THTemperatureSensor*) self.simulableObject;
     temperatureSensor.notifyBehavior = notifyBehavior;
-}
-
--(void) handleRotation:(float) degree{
-    
-    THTemperatureSensor * temperatureSensor = (THTemperatureSensor*) self.simulableObject;
-    _value += degree*10;
-    
-    _value = [THClientHelper Constrain:_value min:0 max:kMaxTemperatureSensorValue];
-    temperatureSensor.value = (NSInteger) _value;
 }
 
 -(void) willStartEdition{

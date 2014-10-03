@@ -46,8 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THTemperatureSensor
 @dynamic plusPin;
 
-float const kMaxTemperatureSensorValue = 1023;
-
 -(void) load{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeInteger];
@@ -167,10 +165,11 @@ float const kMaxTemperatureSensorValue = 1023;
 }
 
 -(void) setValue:(NSInteger)value{
-    value = [THClientHelper Constrain:value min:0 max:kMaxTemperatureSensorValue];
+    value = [THClientHelper Constrain:value min:0 max:kMaxAnalogValue];
     if(value != _value){
+        
         _value = value;
-        //NSLog(@"new val: %d",_value);
+        
         [self checkNotifyValueChanged];
         
         [self updatePinValue];

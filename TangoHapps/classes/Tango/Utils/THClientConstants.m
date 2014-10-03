@@ -133,7 +133,7 @@ NSString * const kPresetsDirectory = @"presets";
 NSString * const kProjectImagesDirectory = @"projectImages";
 NSString * const kProjectProxiesFileName = @"projectProxies";
 
-float const kMaxAnalogValue = 1024;
+float const kMaxAnalogValue = 1023;
 
 float const kGraphViewGraphOffsetY = 5.0f;
 CGSize const kGraphViewAxisLabelSize = {36.0f, 16.0f};
