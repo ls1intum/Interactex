@@ -81,12 +81,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addTrigger:self];
+    [project addVisualProgrammingObject:self];
 }
 
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeTrigger:self];
+    [project addVisualProgrammingObject:self];
     [super removeFromWorld];
 }
 

@@ -799,6 +799,8 @@
 		9ABC27B51809B57900B39D72 /* THAccelerometerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */; };
 		9ABC27B81809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
 		9ABC27B91809B6EC00B39D72 /* THAccelerometerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */; };
+		9AC06D3A19E577440052F197 /* THHardwareComponentPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC06D3919E577440052F197 /* THHardwareComponentPaletteItem.m */; };
+		9AC06D7E19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC06D7D19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m */; };
 		9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD221800255400363CD2 /* CoreText.framework */; };
 		9ACBC5EC18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
 		9ACBC5ED18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
@@ -2305,6 +2307,10 @@
 		9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerEditable.m; sourceTree = "<group>"; };
 		9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAccelerometerPaletteItem.h; sourceTree = "<group>"; };
 		9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAccelerometerPaletteItem.m; sourceTree = "<group>"; };
+		9AC06D3819E576A20052F197 /* THHardwareComponentPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHardwareComponentPaletteItem.h; sourceTree = "<group>"; };
+		9AC06D3919E577440052F197 /* THHardwareComponentPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHardwareComponentPaletteItem.m; sourceTree = "<group>"; };
+		9AC06D7D19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVisualProgrammingObjectPaletteItem.m; sourceTree = "<group>"; };
+		9AC06D7F19E57E280052F197 /* THVisualProgrammingObjectPaletteItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THVisualProgrammingObjectPaletteItem.h; sourceTree = "<group>"; };
 		9AC3CD221800255400363CD2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditableObjectCommonProperties.h; sourceTree = "<group>"; };
 		9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditableObjectCommonProperties.m; sourceTree = "<group>"; };
@@ -3456,6 +3462,124 @@
 			path = boards;
 			sourceTree = "<group>";
 		};
+		9AC06D3B19E578900052F197 /* hardware */ = {
+			isa = PBXGroup;
+			children = (
+				9AF5029C167B84B40020241C /* THLedPaletteItem.h */,
+				9AF5029D167B84B40020241C /* THLedPaletteItem.m */,
+				9AF50288167B84B40020241C /* THButtonPaletteItem.h */,
+				9AF50289167B84B40020241C /* THButtonPaletteItem.m */,
+				9AF5028A167B84B40020241C /* THBuzzerPaletteItem.h */,
+				9AF5028B167B84B40020241C /* THBuzzerPaletteItem.m */,
+				9AF50290167B84B40020241C /* THLSMCompassPaletteItem.h */,
+				9AF50291167B84B40020241C /* THLSMCompassPaletteItem.m */,
+				9AF5029E167B84B40020241C /* THLightSensorPaletteItem.h */,
+				9AF5029F167B84B40020241C /* THLightSensorPaletteItem.m */,
+				9AF502A2167B84B40020241C /* THPotentiometerPaletteItem.h */,
+				9AF502A3167B84B40020241C /* THPotentiometerPaletteItem.m */,
+				9AF502A4167B84B40020241C /* THSwitchPaletteItem.h */,
+				9AF502A5167B84B40020241C /* THSwitchPaletteItem.m */,
+				9A09768A17186B2D0028A6B4 /* THVibrationBoardPaletteItem.h */,
+				9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */,
+				9ABC27861809B1E500B39D72 /* THTemperatureSensorPaletteItem.h */,
+				9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */,
+				9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */,
+				9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */,
+				679857A518EC61CC0037B366 /* THFlexSensorPaletteItem.h */,
+				679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */,
+				9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */,
+				9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */,
+			);
+			name = hardware;
+			sourceTree = "<group>";
+		};
+		9AC06D3C19E579C30052F197 /* visual programming */ = {
+			isa = PBXGroup;
+			children = (
+				9AF5028E167B84B40020241C /* THComparatorPaletteItem.h */,
+				9AF5028F167B84B40020241C /* THComparatorPaletteItem.m */,
+				9AF50292167B84B40020241C /* THGrouperPaletteItem.h */,
+				9AF50293167B84B40020241C /* THGrouperPaletteItem.m */,
+				9AF502A8167B84B40020241C /* THValuePaletteItem.h */,
+				9AF502A9167B84B40020241C /* THValuePaletteItem.m */,
+				9A93846D16D6723600A41BD2 /* THTimerPaletteItem.h */,
+				9A93846E16D6723600A41BD2 /* THTimerPaletteItem.m */,
+				9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */,
+				9A097780172693E60028A6B4 /* THSoundPaletteItem.m */,
+				9A56CD5417D88A2C001021B2 /* THBoolValuePaletteItem.h */,
+				9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */,
+				9A56CDC417D8F357001021B2 /* THStringValuePaletteItem.h */,
+				9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */,
+				9A6B283818AA07BD009AAE31 /* THPureDataPaletteItem.h */,
+				9A6B283918AA07BD009AAE31 /* THPureDataPaletteItem.m */,
+				9AB29B6A167F82E900F5AF62 /* THMapperPaletteItem.h */,
+				9AB29B6B167F82E900F5AF62 /* THMapperPaletteItem.m */,
+			);
+			name = "visual programming";
+			sourceTree = "<group>";
+		};
+		9AC06D3D19E57A010052F197 /* software */ = {
+			isa = PBXGroup;
+			children = (
+				9AF50294167B84B40020241C /* THiPhoneButtonPaletteItem.h */,
+				9AF50295167B84B40020241C /* THiPhoneButtonPaletteItem.m */,
+				9AF50296167B84B40020241C /* THiPhonePaletteItem.h */,
+				9AF50297167B84B40020241C /* THiPhonePaletteItem.m */,
+				9AF50298167B84B40020241C /* THiSwitchPaletteItem.h */,
+				9AF50299167B84B40020241C /* THiSwitchPaletteItem.m */,
+				9AF5029A167B84B40020241C /* THLabelPaletteItem.h */,
+				9AF5029B167B84B40020241C /* THLabelPaletteItem.m */,
+				9AF502A0167B84B40020241C /* THMusicPlayerPaletteItem.h */,
+				9AF502A1167B84B40020241C /* THMusicPlayerPaletteItem.m */,
+				9AF502A6167B84B40020241C /* THTouchpadPaletteItem.h */,
+				9AF502A7167B84B40020241C /* THTouchpadPaletteItem.m */,
+				9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */,
+				9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */,
+				9A06EE9E169ADA9B00B88519 /* THSliderPaletteItem.h */,
+				9A06EE9F169ADA9B00B88519 /* THSliderPaletteItem.m */,
+				9A5F8E2816A2C6EE000DF472 /* THContactBookPaletteItem.h */,
+				9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */,
+				9A3165A3182796A200CB3E59 /* THMonitorPaletteItem.h */,
+				9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */,
+			);
+			name = software;
+			sourceTree = "<group>";
+		};
+		9AC06D3E19E57A260052F197 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				9AA4D73C18AE174C00A43433 /* THLipoBatteryPaletteItem.h */,
+				9AA4D73D18AE174C00A43433 /* THLipoBatteryPaletteItem.m */,
+				9A95FB7818CF59DF009A724F /* THPowerSupplyPaletteItem.h */,
+				9A95FB7918CF59DF009A724F /* THPowerSupplyPaletteItem.m */,
+			);
+			name = other;
+			sourceTree = "<group>";
+		};
+		9AC06D3F19E57A300052F197 /* boards */ = {
+			isa = PBXGroup;
+			children = (
+				9AA4D73A18AE174C00A43433 /* THBLELilyPadPaletteItem.h */,
+				9AA4D73B18AE174C00A43433 /* THBLELilyPadPaletteItem.m */,
+				9ABC27691809960D00B39D72 /* THSimpleLilypadPaletteItem.h */,
+				9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */,
+				9ABC276D180996C200B39D72 /* THLilypadPaletteItem.h */,
+				9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */,
+				9A894297183620BD00B8CA0E /* THJennicPaletteItem.h */,
+				9A894298183620BD00B8CA0E /* THJennicPaletteItem.m */,
+			);
+			name = boards;
+			sourceTree = "<group>";
+		};
+		9AC06D4019E57A470052F197 /* clothes */ = {
+			isa = PBXGroup;
+			children = (
+				9AF5028D167B84B40020241C /* THClothePaletteItem.m */,
+				9AF5028C167B84B40020241C /* THClothePaletteItem.h */,
+			);
+			name = clothes;
+			sourceTree = "<group>";
+		};
 		9AF5000C167B83140020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -3784,82 +3908,16 @@
 		9AF50287167B84B40020241C /* palette items */ = {
 			isa = PBXGroup;
 			children = (
-				9AA4D73A18AE174C00A43433 /* THBLELilyPadPaletteItem.h */,
-				9AA4D73B18AE174C00A43433 /* THBLELilyPadPaletteItem.m */,
-				9AA4D73C18AE174C00A43433 /* THLipoBatteryPaletteItem.h */,
-				9AA4D73D18AE174C00A43433 /* THLipoBatteryPaletteItem.m */,
-				9A6B283818AA07BD009AAE31 /* THPureDataPaletteItem.h */,
-				9A6B283918AA07BD009AAE31 /* THPureDataPaletteItem.m */,
-				9AB29B6A167F82E900F5AF62 /* THMapperPaletteItem.h */,
-				9AB29B6B167F82E900F5AF62 /* THMapperPaletteItem.m */,
-				9AF50288167B84B40020241C /* THButtonPaletteItem.h */,
-				9AF50289167B84B40020241C /* THButtonPaletteItem.m */,
-				9AF5028A167B84B40020241C /* THBuzzerPaletteItem.h */,
-				9AF5028B167B84B40020241C /* THBuzzerPaletteItem.m */,
-				9AF5028C167B84B40020241C /* THClothePaletteItem.h */,
-				9AF5028D167B84B40020241C /* THClothePaletteItem.m */,
-				9AF5028E167B84B40020241C /* THComparatorPaletteItem.h */,
-				9AF5028F167B84B40020241C /* THComparatorPaletteItem.m */,
-				9AF50290167B84B40020241C /* THLSMCompassPaletteItem.h */,
-				9AF50291167B84B40020241C /* THLSMCompassPaletteItem.m */,
-				9AF50292167B84B40020241C /* THGrouperPaletteItem.h */,
-				9AF50293167B84B40020241C /* THGrouperPaletteItem.m */,
-				9AF50294167B84B40020241C /* THiPhoneButtonPaletteItem.h */,
-				9AF50295167B84B40020241C /* THiPhoneButtonPaletteItem.m */,
-				9AF50296167B84B40020241C /* THiPhonePaletteItem.h */,
-				9AF50297167B84B40020241C /* THiPhonePaletteItem.m */,
-				9AF50298167B84B40020241C /* THiSwitchPaletteItem.h */,
-				9AF50299167B84B40020241C /* THiSwitchPaletteItem.m */,
-				9AF5029A167B84B40020241C /* THLabelPaletteItem.h */,
-				9AF5029B167B84B40020241C /* THLabelPaletteItem.m */,
-				9AF5029C167B84B40020241C /* THLedPaletteItem.h */,
-				9AF5029D167B84B40020241C /* THLedPaletteItem.m */,
-				9AF5029E167B84B40020241C /* THLightSensorPaletteItem.h */,
-				9AF5029F167B84B40020241C /* THLightSensorPaletteItem.m */,
-				9AF502A0167B84B40020241C /* THMusicPlayerPaletteItem.h */,
-				9AF502A1167B84B40020241C /* THMusicPlayerPaletteItem.m */,
-				9AF502A2167B84B40020241C /* THPotentiometerPaletteItem.h */,
-				9AF502A3167B84B40020241C /* THPotentiometerPaletteItem.m */,
-				9AF502A4167B84B40020241C /* THSwitchPaletteItem.h */,
-				9AF502A5167B84B40020241C /* THSwitchPaletteItem.m */,
-				9AF502A6167B84B40020241C /* THTouchpadPaletteItem.h */,
-				9AF502A7167B84B40020241C /* THTouchpadPaletteItem.m */,
-				9AF502A8167B84B40020241C /* THValuePaletteItem.h */,
-				9AF502A9167B84B40020241C /* THValuePaletteItem.m */,
-				9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */,
-				9AB29B3F167F4B5D00F5AF62 /* THImageViewPaletteItem.m */,
-				9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */,
-				9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */,
-				9A06EE9E169ADA9B00B88519 /* THSliderPaletteItem.h */,
-				9A06EE9F169ADA9B00B88519 /* THSliderPaletteItem.m */,
-				9A5F8E2816A2C6EE000DF472 /* THContactBookPaletteItem.h */,
-				9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */,
-				9A93846D16D6723600A41BD2 /* THTimerPaletteItem.h */,
-				9A93846E16D6723600A41BD2 /* THTimerPaletteItem.m */,
-				9A09768A17186B2D0028A6B4 /* THVibrationBoardPaletteItem.h */,
-				9A09768B17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m */,
-				9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */,
-				9A097780172693E60028A6B4 /* THSoundPaletteItem.m */,
-				9A56CD5417D88A2C001021B2 /* THBoolValuePaletteItem.h */,
-				9A56CD5517D88A2C001021B2 /* THBoolValuePaletteItem.m */,
-				9A56CDC417D8F357001021B2 /* THStringValuePaletteItem.h */,
-				9A56CDC517D8F357001021B2 /* THStringValuePaletteItem.m */,
-				9ABC27691809960D00B39D72 /* THSimpleLilypadPaletteItem.h */,
-				9ABC276A1809960D00B39D72 /* THSimpleLilypadPaletteItem.m */,
-				9ABC276D180996C200B39D72 /* THLilypadPaletteItem.h */,
-				9ABC276E180996C200B39D72 /* THLilypadPaletteItem.m */,
-				9ABC27861809B1E500B39D72 /* THTemperatureSensorPaletteItem.h */,
-				9ABC27871809B1E500B39D72 /* THTemperatureSensorPaletteItem.m */,
-				9ABC27B61809B6EC00B39D72 /* THAccelerometerPaletteItem.h */,
-				9ABC27B71809B6EC00B39D72 /* THAccelerometerPaletteItem.m */,
-				9A3165A3182796A200CB3E59 /* THMonitorPaletteItem.h */,
-				9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */,
-				9A894297183620BD00B8CA0E /* THJennicPaletteItem.h */,
-				9A894298183620BD00B8CA0E /* THJennicPaletteItem.m */,
-				9A95FB7818CF59DF009A724F /* THPowerSupplyPaletteItem.h */,
-				9A95FB7918CF59DF009A724F /* THPowerSupplyPaletteItem.m */,
-				679857A518EC61CC0037B366 /* THFlexSensorPaletteItem.h */,
-				679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */,
+				9AC06D3819E576A20052F197 /* THHardwareComponentPaletteItem.h */,
+				9AC06D3919E577440052F197 /* THHardwareComponentPaletteItem.m */,
+				9AC06D7F19E57E280052F197 /* THVisualProgrammingObjectPaletteItem.h */,
+				9AC06D7D19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m */,
+				9AC06D4019E57A470052F197 /* clothes */,
+				9AC06D3F19E57A300052F197 /* boards */,
+				9AC06D3E19E57A260052F197 /* other */,
+				9AC06D3C19E579C30052F197 /* visual programming */,
+				9AC06D3B19E578900052F197 /* hardware */,
+				9AC06D3D19E57A010052F197 /* software */,
 			);
 			path = "palette items";
 			sourceTree = "<group>";
@@ -5313,6 +5371,7 @@
 				9AF503A6167B84B40020241C /* THComparatorPaletteItem.m in Sources */,
 				9AF503A7167B84B40020241C /* THLSMCompassPaletteItem.m in Sources */,
 				9AF503A8167B84B40020241C /* THGrouperPaletteItem.m in Sources */,
+				9AC06D3A19E577440052F197 /* THHardwareComponentPaletteItem.m in Sources */,
 				25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */,
 				9A6B28AD18AA701A009AAE31 /* THGraphView.m in Sources */,
 				9AF503A9167B84B40020241C /* THiPhoneButtonPaletteItem.m in Sources */,
@@ -5323,6 +5382,7 @@
 				9AF503AE167B84B40020241C /* THLightSensorPaletteItem.m in Sources */,
 				9AF503AF167B84B40020241C /* THMusicPlayerPaletteItem.m in Sources */,
 				9AF503B0167B84B40020241C /* THPotentiometerPaletteItem.m in Sources */,
+				9AC06D7E19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m in Sources */,
 				9ABC275A18098F2400B39D72 /* THBoardEditable.m in Sources */,
 				9AF503B1167B84B40020241C /* THSwitchPaletteItem.m in Sources */,
 				9AF503B2167B84B40020241C /* THTouchpadPaletteItem.m in Sources */,
@@ -6093,7 +6153,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
@@ -6129,7 +6189,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				VALIDATE_PRODUCT = NO;
@@ -6149,7 +6209,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "2dd098b9-5967-4b18-9ad8-9ba1e22509d8";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;

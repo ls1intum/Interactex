@@ -44,7 +44,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THActionEditable : TFEditableObject
 
-//@property (nonatomic, weak) TFEditableObject * source;
 @property (nonatomic, weak) TFEditableObject * target;
 
 @end

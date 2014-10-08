@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiPhoneViewProperties.h"
 #import "THView.h"
 #import "THEditor.h"
+#import "THiPhoneEditableObject.h"
 
 @implementation THViewEditableObject
 
@@ -121,6 +122,22 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
+
+-(BOOL) canBeMovedBy:(CGPoint)d{
+    if(!self.canBeMoved){
+        return NO;
+    }
+    
+    THViewEditableObject * rootView = [THDirector sharedDirector].currentProject.iPhone.currentView;
+    CGRect currentBoundingBox = self.boundingBox;
+    CGRect newBoundingBox = currentBoundingBox;
+    newBoundingBox.origin = ccpAdd(currentBoundingBox.origin, d);
+    CGRect rootViewRect = rootView.boundingBox;
+    if(!CGRectContainsRect(rootView.boundingBox, currentBoundingBox) || CGRectContainsRect(rootViewRect, newBoundingBox)){
+        return YES;
+    }
+    return NO;
+}
 
 -(void) setVisible:(BOOL)visible{
     if(visible != self.visible){
@@ -235,7 +252,8 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint origin = iPhoneObject.view.frame.origin;
     CGSize size = iPhoneObject.view.frame.size;
     origin = [TFHelper ConvertToCocos2dView:origin];
-    return CGRectMake(origin.x, origin.y - size.height, size.width, size.height);
+    CGRect boundingBox = CGRectMake(origin.x, origin.y - size.height, size.width, size.height);
+    return boundingBox;
 }
 
 -(CGPoint) position{

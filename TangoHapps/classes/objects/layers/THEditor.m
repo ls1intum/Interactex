@@ -80,8 +80,8 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.shouldRecognizePanGestures = YES;
         
-        //_zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 0, 0, 252)];
-        _zoomableLayer = [CCLayer node];
+        _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 0, 0, 252)];
+        //_zoomableLayer = [CCLayer node];
         _zoomableLayer.contentSize = CGSizeMake(2048, 1448);
         [self resetZoomableLayerPosition];
         [self addChild:_zoomableLayer z:-10];
@@ -107,6 +107,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) resetZoomableLayerPosition{
     CGRect iPadRect = [THHelper iPadRect];
     CGPoint diff = ccp((iPadRect.size.width - _zoomableLayer.contentSize.width) / 2.0f, (iPadRect.size.height - _zoomableLayer.contentSize.height) / 2.0f);
+    
     _zoomableLayer.position = diff;
 }
 
@@ -159,11 +160,8 @@ You should have received a copy of the GNU General Public License along with thi
     [TFHelper drawLines:self.additionalConnections];
     [self drawTemporaryLine];
     
-    CGRect newCanvasRect = self.zoomableLayer.boundingBox;
-    
-    //CGRect newCanvasRect = CGRectMake(self.zoomableLayer.position.x , self.zoomableLayer.position.y , self.zoomableLayer.contentSize.width * self.zoomLevel, self.zoomableLayer.contentSize.height * self.zoomLevel);
-    
-    [TFHelper drawRect:newCanvasRect];
+    //CGRect newCanvasRect = self.zoomableLayer.boundingBox;
+    //[TFHelper drawRect:newCanvasRect];
 }
 
 #pragma mark - Methods
@@ -1088,86 +1086,32 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Adding, Removing, Showing, Hiding
 
 -(void) addEditableObject:(TFEditableObject*) editableObject{
-
+    
     if(!editableObject.parent){
         if(editableObject.canBeScaled){
             
-            CGPoint position = ccpSub(editableObject.position,self.zoomableLayer.position);
-            editableObject.position = position;
             [self.zoomableLayer addChild:editableObject z:editableObject.z];
             
         } else{
             [super addEditableObject:editableObject];
         }
     }
-}
-
--(void) addConditions{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THConditionEditableObject * object in project.conditions) {
-        [object addToLayer:self];
+    
+    if([editableObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+    NSLog(@"ed obj addded at: %f %f",editableObject.position.x,editableObject.position.y);
     }
 }
 
--(void) removeConditions{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THConditionEditableObject * object in project.conditions) {
-        [object removeFromLayer:self];
-    }
-}
-
--(void) showConditions{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THConditionEditableObject * object in project.conditions) {
-        object.visible = YES;
-    }
-}
-
--(void) hideConditions{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THConditionEditableObject * object in project.conditions) {
-        object.visible = NO;
-    }
-}
-
--(void) showValues{
+-(void) showVisualProgrammingObjects{
     THProject * project =  [THDirector sharedDirector].currentProject;
-    for (THNumberValueEditable * object in project.values) {
+    for (THNumberValueEditable * object in project.visualProgrammingObjects) {
         object.visible = YES;
     }
 }
 
--(void) hideValues{
+-(void) hideVisualProgrammingObjects{
     THProject * project =  [THDirector sharedDirector].currentProject;
-    for (THNumberValueEditable * object in project.values) {
-        object.visible = NO;
-    }
-}
-
--(void) showTriggers{
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    for (THTriggerEditable * object in project.triggers) {
-        object.visible = YES;
-    }
-}
-
--(void) hideTriggers{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THTriggerEditable * object in project.triggers) {
-        object.visible = NO;
-    }
-}
-
--(void) showActions{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THActionEditable * object in project.actions) {
-        object.visible = YES;
-    }
-}
-
--(void) hideActions{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    for (THActionEditable * object in project.actions) {
+    for (THNumberValueEditable * object in project.visualProgrammingObjects) {
         object.visible = NO;
     }
 }
@@ -1262,36 +1206,16 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Lilypad Mode
-/*
--(void) addLilypadObjects{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    
-    [self addEditableObject:project.lilypad];
-}
-
--(void) removeLilypadObjects{
-    THProject * project = [THDirector sharedDirector].currentProject;
-    
-    if(project.lilypad != nil){
-        [project.lilypad removeFromParentAndCleanup:YES];
-    }
-}*/
 
 -(void) hideNonLilypadObjects{
     [self hideClothes];
-    [self hideConditions];
-    [self hideValues];
-    [self hideTriggers];
-    [self hideActions];
+    [self hideVisualProgrammingObjects];
     [self hideiPhone];
 }
 
 -(void) showNonLilypadObjects{
     [self showClothes];
-    [self showConditions];
-    [self showValues];
-    [self showTriggers];
-    [self showActions];
+    [self showVisualProgrammingObjects];
     [self showiPhone];
 }
 
@@ -1474,7 +1398,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
- 
+        
         if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
             THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
             if(!hardwareComponent.attachedToClothe){

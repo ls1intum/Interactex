@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THBuzzerEditableObject * buzzer = [[THBuzzerEditableObject alloc] init];
-    buzzer.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:buzzer];
+    [self addHardwareComponentToProject:buzzer atLocation:location];
 }
 
 @end

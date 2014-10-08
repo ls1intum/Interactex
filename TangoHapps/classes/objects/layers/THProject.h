@@ -139,25 +139,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeClothe:(THClothe*) object;
 -(THClothe*) clotheAtLocation:(CGPoint) location;
 
-//condition
--(void) addCondition:(TFEditableObject*) condition;
--(void) removeCondition:(TFEditableObject*) condition;
--(TFEditableObject*) conditionAtLocation:(CGPoint) location;
-
 //values
--(void) addValue:(TFEditableObject*) condition;
--(void) removeValue:(TFEditableObject*) condition;
--(TFEditableObject*) valueAtLocation:(CGPoint) location;
-
-//triggers
--(void) addTrigger:(TFEditableObject*) trigger;
--(void) removeTrigger:(TFEditableObject*) trigger;
--(TFEditableObject*) triggerAtLocation:(CGPoint) location;
-
-//actions
--(void) addAction:(TFEditableObject*) action;
--(void) removeAction:(TFEditableObject*) action;
--(TFEditableObject*) actionAtLocation:(CGPoint) location;
+-(void) addVisualProgrammingObject:(TFEditableObject*) condition;
+-(void) removeVisualProgrammingObject:(TFEditableObject*) condition;
+-(TFEditableObject*) visualProgrammingObjectAtLocation:(CGPoint) location;
 
 //wires
 -(void) addWire:(THWire*) wire;
@@ -189,10 +174,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;
-@property (nonatomic,readonly) NSMutableArray * conditions;
-@property (nonatomic,readonly) NSMutableArray * values;
-@property (nonatomic,readonly) NSMutableArray * triggers;
-@property (nonatomic,readonly) NSMutableArray * actions;
+@property (nonatomic,readonly) NSMutableArray * visualProgrammingObjects;
 @property (nonatomic, readonly) NSMutableArray * wires;
 @property (nonatomic, readonly) NSMutableArray * invocationConnections;
 

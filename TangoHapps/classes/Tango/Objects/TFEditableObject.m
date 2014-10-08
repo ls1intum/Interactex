@@ -387,8 +387,14 @@ static NSInteger objectCount = 1;
         return NO;
     }
     
-    return YES;
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
+    CGRect newBoundingBox = self.boundingBox;
+    newBoundingBox.origin = ccpAdd(newBoundingBox.origin,d);
+    if(CGRectContainsRect(editor.zoomableLayer.boundingBox, newBoundingBox)){
+        return YES;
+    }
+    return NO;
 }
 
 -(void) handleTouchBegan{

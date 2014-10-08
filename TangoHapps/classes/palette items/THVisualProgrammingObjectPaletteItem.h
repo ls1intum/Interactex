@@ -1,5 +1,5 @@
 /*
- THFlexSensorPaletteItem.m
+ THVisualProgrammingObjectPaletteItem.h
  Interactex Designer
  
  Created by Juan Haladjian on 08/10/14.
@@ -40,14 +40,13 @@
  
  */
 
-#import "THFlexSensorPaletteItem.h"
-#import "THFlexSensorEditable.h"
+#import "THPaletteItem.h"
 
-@implementation THFlexSensorPaletteItem
-
-- (void)dropAt:(CGPoint)location {
-    THFlexSensorEditable * flexSensor = [[THFlexSensorEditable alloc] init];
-    [self addHardwareComponentToProject:flexSensor atLocation:location];
+@interface THVisualProgrammingObjectPaletteItem : THPaletteItem
+{
+    
 }
+
+-(void) addToProject:(TFEditableObject*) object atLocation:(CGPoint) location;
 
 @end

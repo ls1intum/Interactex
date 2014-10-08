@@ -94,6 +94,8 @@ You should have received a copy of the GNU General Public License along with thi
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     
     
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    
     [THClientScene persistScenes:self.projectProxies];
     
     [self.connectionController stopClient];
@@ -103,6 +105,8 @@ You should have received a copy of the GNU General Public License along with thi
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -110,6 +114,8 @@ You should have received a copy of the GNU General Public License along with thi
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     //[self.connectionController startClient];
+    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

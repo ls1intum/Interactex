@@ -48,10 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)dropAt:(CGPoint)location
 {
     THSlideSwitchEditableObject * clotheSwitch = [[THSlideSwitchEditableObject alloc] init];
-    clotheSwitch.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:clotheSwitch];
+    [self addHardwareComponentToProject:clotheSwitch atLocation:location];
 }
 
 @end

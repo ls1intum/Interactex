@@ -171,20 +171,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
--(BOOL) canBeMovedBy:(CGPoint) d{
-    if([super canBeMovedBy:d]){
-        
-        THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-        
-        CGRect newBoundingBox = self.boundingBox;
-        newBoundingBox.origin = ccpAdd(newBoundingBox.origin,d);
-        if(CGRectContainsRect(editor.zoomableLayer.boundingBox, newBoundingBox)){
-            return YES;
-        }
-    }
-    return NO;
-}
-
 -(void) updateNameLabel{
     CGSize const kEditableObjectNameLabelSize = {100,20};
     if(self.nameLabel){
@@ -325,7 +311,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToLayer:(TFLayer*) layer{
     [self updateNameLabel];
-    
     
     [layer addEditableObject:self];
     

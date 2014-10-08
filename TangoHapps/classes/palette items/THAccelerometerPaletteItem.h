@@ -41,7 +41,8 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
+#import "THHardwareComponentPaletteItem.h"
 
-@interface THAccelerometerPaletteItem : THPaletteItem
+@interface THAccelerometerPaletteItem : THHardwareComponentPaletteItem
 
 @end

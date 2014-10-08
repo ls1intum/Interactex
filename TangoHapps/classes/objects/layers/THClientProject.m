@@ -108,11 +108,8 @@ You should have received a copy of the GNU General Public License along with thi
     _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
-    _conditions = [NSMutableArray array];
-    _values = [NSMutableArray array];
-    _actions = [NSMutableArray array];
+    _visualProgrammingObjects = [NSMutableArray array];
     _actionPairs = [NSMutableArray array];
-    _triggers = [NSMutableArray array];
 }
 
 #pragma mark - Archiving
@@ -128,10 +125,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.hardwareComponents = [decoder decodeObjectForKey:@"clotheObjects"];
         self.iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         self.iPhone = [decoder decodeObjectForKey:@"iPhone"];
-        self.conditions = [decoder decodeObjectForKey:@"conditions"];
-        self.values = [decoder decodeObjectForKey:@"values"];
-        self.triggers = [decoder decodeObjectForKey:@"triggers"];
-        self.actions = [decoder decodeObjectForKey:@"actions"];
+        self.visualProgrammingObjects = [decoder decodeObjectForKey:@"values"];
         
         NSMutableArray * actionPairs = [decoder decodeObjectForKey:@"actionPairs"];
         for (TFEventActionPair * pair in actionPairs) {
@@ -150,10 +144,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.iPhone != nil)
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
     
-    [coder encodeObject:self.conditions forKey:@"conditions"];
-    [coder encodeObject:self.values forKey:@"values"];
-    [coder encodeObject:self.triggers forKey:@"triggers"];
-    [coder encodeObject:self.actions forKey:@"actions"];
+    [coder encodeObject:self.visualProgrammingObjects forKey:@"values"];
     
     [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
@@ -189,10 +180,7 @@ You should have received a copy of the GNU General Public License along with thi
     NSArray * allObjects = [self.hardwareComponents arrayByAddingObjectsFromArray:self.iPhoneObjects];
     
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.boards];
-    allObjects = [allObjects arrayByAddingObjectsFromArray:self.conditions];
-    allObjects = [allObjects arrayByAddingObjectsFromArray:self.actions];
-    allObjects = [allObjects arrayByAddingObjectsFromArray:self.triggers];
-    allObjects = [allObjects arrayByAddingObjectsFromArray:self.values];
+    allObjects = [allObjects arrayByAddingObjectsFromArray:self.visualProgrammingObjects];
     return allObjects;
 }
 

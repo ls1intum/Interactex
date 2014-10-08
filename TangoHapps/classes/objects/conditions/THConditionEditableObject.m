@@ -100,12 +100,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addCondition:self];
+    [project addVisualProgrammingObject:self];
 }
 
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeCondition:self];
+    [project removeVisualProgrammingObject:self];
     [super removeFromWorld];
 }
 

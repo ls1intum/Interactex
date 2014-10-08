@@ -581,7 +581,7 @@ NSString * const kPureDataProjectName = @"PureData";
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,button, nil];
     
     THPureData * pureData = [[THPureData alloc] init];
-    project.actions = [NSMutableArray arrayWithObjects:pureData, nil];
+    project.visualProgrammingObjects = [NSMutableArray arrayWithObjects:pureData, nil];
     
     //start playing action
     TFMethod * startMethod = [pureData.methods objectAtIndex:2];

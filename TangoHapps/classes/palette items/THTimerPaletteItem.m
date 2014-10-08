@@ -46,16 +46,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THTimerPaletteItem
 
-- (BOOL)canBeDroppedAt:(CGPoint)location {
-    return YES;
-}
-
 - (void)dropAt:(CGPoint)location {
     THTimerEditable * timer = [[THTimerEditable alloc] init];
-    timer.position = location;
-        
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addTrigger:timer];
+    [self addToProject:timer atLocation:location];
 }
 
 @end

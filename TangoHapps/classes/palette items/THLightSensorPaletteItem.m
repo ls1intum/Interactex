@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THLightSensorEditableObject * lightSensor = [[THLightSensorEditableObject alloc] init];
-    lightSensor.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:lightSensor];
+    [self addHardwareComponentToProject:lightSensor atLocation:location];
 }
 
 @end

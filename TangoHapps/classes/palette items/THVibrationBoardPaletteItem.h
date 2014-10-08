@@ -41,7 +41,8 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <UIKit/UIKit.h>
+#import "THHardwareComponentPaletteItem.h"
 
-@interface THVibrationBoardPaletteItem : THPaletteItem
+@interface THVibrationBoardPaletteItem : THHardwareComponentPaletteItem
 
 @end

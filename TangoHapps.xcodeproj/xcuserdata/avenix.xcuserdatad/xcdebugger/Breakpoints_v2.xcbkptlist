@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TangoHappsClient/classes/THClientDownloadViewController.m"
-            timestampString = "433779146.164373"
+            filePath = "TangoHapps/classes/objects/hardware/THBuzzerEditableObject.m"
+            timestampString = "434464551.739854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-handleFinishedInstallingProject"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "-playSound"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

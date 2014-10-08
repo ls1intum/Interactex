@@ -480,13 +480,8 @@ float const kToolsTabMargin = 5;
         simulator.zoomableLayer.position = editor.zoomableLayer.position;
         
         [self hideTabBar];
-        
-        //nazmus added 21 Sep 14 - hide menubar because there is no button in it
         [self hideMenuBar];
-        ////
-        //nazmus added 27 Sep 14 - hide zoomSlider
         [self hideZoomBar];
-        ////
         
         [self addSimulationButtons];
         
@@ -519,14 +514,9 @@ float const kToolsTabMargin = 5;
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
-        
-        //nazmus added 21 Sep 14
         [self showMenuBar];
         [self.tabController showTab:0];
-        ////
-        //nazmus added 27 Sep 14 - hide zoomSlider
         [self showZoomBar];
-        ////
         
         self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
@@ -870,7 +860,6 @@ float const kToolsTabMargin = 5;
 }
 
 //zoom slider
-
 -(void)sliderAction:(id)sender {
     THEditor * editor = (THEditor*) self.currentLayer;
     float newScale = [(UISlider *)sender value];

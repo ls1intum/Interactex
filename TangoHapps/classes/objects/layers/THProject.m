@@ -141,10 +141,7 @@ You should have received a copy of the GNU General Public License along with thi
     _hardwareComponents = [NSMutableArray array];
     _otherHardwareComponents = [NSMutableArray array];
     _iPhoneObjects = [NSMutableArray array];
-    _conditions = [NSMutableArray array];
-    _actions = [NSMutableArray array];
-    _values = [NSMutableArray array];
-    _triggers = [NSMutableArray array];
+    _visualProgrammingObjects = [NSMutableArray array];
     _wires = [NSMutableArray array];
     _invocationConnections = [NSMutableArray array];
     
@@ -203,10 +200,7 @@ You should have received a copy of the GNU General Public License along with thi
         NSArray * otherHardwareComponents = [decoder decodeObjectForKey:@"otherHardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
         NSArray * iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
-        NSArray * conditions = [decoder decodeObjectForKey:@"conditions"];
-        NSArray * values = [decoder decodeObjectForKey:@"values"];
-        NSArray * triggers = [decoder decodeObjectForKey:@"triggers"];
-        NSArray * actions = [decoder decodeObjectForKey:@"actions"];
+        NSArray * visualProgrammingObjects = [decoder decodeObjectForKey:@"visualProgrammingObjects"];
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
         
         NSArray * wires = [decoder decodeObjectForKey:@"wires"];
@@ -240,28 +234,16 @@ You should have received a copy of the GNU General Public License along with thi
             [self addiPhoneObject:iphoneObject];
         }
         
-        for(TFEditableObject* condition in conditions){
-            [self addCondition:condition];
-        }
-        
-        for(TFEditableObject* value in values){
-            [self addValue:value];
-        }
-        
-        for(TFEditableObject* trigger in triggers){
-            [self addTrigger:trigger];
-        }
-        
-        for(TFEditableObject* action in actions){
-            [self addAction:action];
+        for(TFEditableObject* visualProgrammingObject in visualProgrammingObjects){
+            [self addVisualProgrammingObject:visualProgrammingObject];
         }
         
         for(THWire * wire in wires){
             [self addWire:wire];
         }
         
-        for(THInvocationConnectionLine * connetion in invocationConnections){
-            [self addInvocationConnection:connetion animated:NO];
+        for(THInvocationConnectionLine * connection in invocationConnections){
+            [self addInvocationConnection:connection animated:NO];
         }
         
         if(lilypad != nil){
@@ -284,10 +266,7 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
-    [coder encodeObject:self.conditions forKey:@"conditions"];
-    [coder encodeObject:self.values forKey:@"values"];
-    [coder encodeObject:self.triggers forKey:@"triggers"];
-    [coder encodeObject:self.actions forKey:@"actions"];
+    [coder encodeObject:self.visualProgrammingObjects forKey:@"visualProgrammingObjects"];
     [coder encodeObject:self.wires forKey:@"wires"];
     [coder encodeObject:self.invocationConnections forKey:@"invocationConnections"];
 }
@@ -567,67 +546,23 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
-#pragma mark - Conditions
+#pragma mark - Visual Programming
 
--(void) addCondition:(TFEditableObject*) condition{
-    [_conditions addObject:condition];
-    [self notifyObjectAdded:condition];
+-(void) addVisualProgrammingObject:(TFEditableObject*) object{
+    [_visualProgrammingObjects addObject:object];
+    [self notifyObjectAdded:object];
 }
 
--(void) removeCondition:(TFEditableObject*) condition{
-    [_conditions removeObject:condition];
-    [self deregisterActionsForObject:condition];
-    [self notifyObjectRemoved:condition];
+-(void) removeVisualProgrammingObject:(TFEditableObject*) object{
+    [_visualProgrammingObjects removeObject:object];
+    [self deregisterActionsForObject:object];
+    [self notifyObjectRemoved:object];
 }
 
--(TFEditableObject*) conditionAtLocation:(CGPoint) location{
-    for (TFEditableObject* condition in self.conditions) {
-        if([condition testPoint:location]){
-            return condition;
-        }
-    }
-    return nil;
-}
-
-#pragma mark - Values
-
--(void) addValue:(TFEditableObject*) value{
-    [_values addObject:value];
-    [self notifyObjectAdded:value];
-}
-
--(void) removeValue:(TFEditableObject*) value{
-    [_values removeObject:value];
-    [self deregisterActionsForObject:value];
-    [self notifyObjectRemoved:value];
-}
-
--(TFEditableObject*) valueAtLocation:(CGPoint) location{
-    for (TFEditableObject* value in self.values) {
-        if([value testPoint:location]){
-            return value;
-        }
-    }
-    return nil;
-}
-
-#pragma mark - Triggers
-
--(void) addTrigger:(TFEditableObject*) trigger{
-    [_triggers addObject:trigger];
-    [self notifyObjectAdded:trigger];
-}
-
--(void) removeTrigger:(TFEditableObject*) trigger{
-    [_triggers removeObject:trigger];
-    [self deregisterActionsForObject:trigger];
-    [self notifyObjectRemoved:trigger];
-}
-
--(TFEditableObject*) triggerAtLocation:(CGPoint) location{
-    for (TFEditableObject* trigger in self.triggers) {
-        if([trigger testPoint:location]){
-            return trigger;
+-(TFEditableObject*) visualProgrammingObjectAtLocation:(CGPoint) location{
+    for (TFEditableObject * object in self.visualProgrammingObjects) {
+        if([object testPoint:location]){
+            return object;
         }
     }
     return nil;
@@ -674,21 +609,6 @@ You should have received a copy of the GNU General Public License along with thi
     [[NSNotificationCenter defaultCenter] removeObserver:object];
 }
 
-/*
--(void) removeConnectionsBetween:(TFEditableObject*) obj1 and:(TFEditableObject*) obj2{
-    
-    TFConnectionLine * connectionToRemove = nil;
-    for (TFConnectionLine * connection in obj1.connections) {
-        TFEditableObject * obj = connection.obj2;
-        if(obj2 == obj){
-            connectionToRemove = connection;
-        }
-    }
-    if(connectionToRemove != nil){
-        [obj1.connections removeObject:connectionToRemove];
-    }
-}*/
-
 -(void) deregisterAction:(TFAction*) action{
     TFEventActionPair * toRemove;
     NSInteger idx = 0;
@@ -719,26 +639,6 @@ You should have received a copy of the GNU General Public License along with thi
     [target handleRegisteredAsTargetForAction:action];
     
     [[NSNotificationCenter defaultCenter] addObserver:action selector:@selector(startAction) name:event.name object:((TFEditableObject*)action.source).simulableObject];
-}
-
--(void) addAction:(TFEditableObject*) action{
-    [_actions addObject:action];
-    [self notifyObjectAdded:action];
-}
-
--(void) removeAction:(TFEditableObject*) action{
-    [_actions removeObject:action];
-    [self deregisterActionsForObject:action];
-    [self notifyObjectRemoved:action];
-}
-
--(TFEditableObject*) actionAtLocation:(CGPoint) location{
-    for (TFEditableObject* action in _actions) {
-        if([action testPoint:location]){
-            return action;
-        }
-    }
-    return nil;
 }
 
 #pragma mark - Wires
@@ -969,13 +869,10 @@ enum zPositions{
 -(NSMutableArray*) allObjects{
     NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.boards];
     [allObjects addObjectsFromArray:self.clothes];
-    [allObjects addObjectsFromArray:self.actions];
-    [allObjects addObjectsFromArray:self.triggers];
-    [allObjects addObjectsFromArray:self.values];
+    [allObjects addObjectsFromArray:self.visualProgrammingObjects];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.otherHardwareComponents];
-    [allObjects addObjectsFromArray:self.conditions];
 
     return allObjects;
 }
@@ -1015,20 +912,11 @@ enum zPositions{
     }else if ([editable isKindOfClass:[THViewEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.iPhoneObjects];
         return [project.iPhoneObjects objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THConditionEditableObject class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.conditions];
-        return [project.conditions objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THNumberValueEditable class]] || [editable isKindOfClass:[THBoolValueEditable class]] || [editable isKindOfClass:[THStringValueEditable class]] || [editable isKindOfClass:[THMapperEditable class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.values];
-        return [project.values objectAtIndex:idx];
+        NSInteger idx = [self idxOfEditable:editable inArray:self.visualProgrammingObjects];
+        return [project.visualProgrammingObjects objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
         return (TFSimulableObject*) project.iPhone;
-    } else if ([editable isKindOfClass:[THTriggerEditable class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.triggers];
-        return [project.triggers objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THActionEditable class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.actions];
-        return [project.actions objectAtIndex:idx];
     } else {
         NSAssert(NO, @"returning nil in simulableForEditable for %@",editable);
         return nil;
@@ -1140,10 +1028,7 @@ enum zPositions{
     project.boards = [self nonEditableElementsForArray:self.boards forProject:project];
     project.hardwareComponents = [self nonEditableElementsForArray:self.hardwareComponents forProject:project];
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
-    project.conditions = [self nonEditableElementsForArray:self.conditions forProject:project];
-    project.actions = [self nonEditableElementsForArray:self.actions forProject:project];
-    project.values = [self nonEditableElementsForArray:self.values forProject:project];
-    project.triggers = [self nonEditableElementsForArray:self.triggers forProject:project];
+    project.visualProgrammingObjects = [self nonEditableElementsForArray:self.visualProgrammingObjects forProject:project];
     project.iPhone = (THiPhone*) self.iPhone.simulableObject;
     
     [self cleanBoardPinsFor:project];

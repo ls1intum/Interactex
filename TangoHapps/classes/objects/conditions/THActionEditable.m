@@ -57,7 +57,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-        //self.source = [decoder decodeObjectForKey:@"source"];
         self.target = [decoder decodeObjectForKey:@"target"];
     }
     return self;
@@ -65,13 +64,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    //[coder encodeObject:self.source forKey:@"source"];
+
     [coder encodeObject:self.target forKey:@"target"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     TFAction * copy = [[[self class] alloc] init];
-    //copy.source = self.source;
     copy.target = self.target;
     
     return copy;
@@ -81,12 +79,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addAction:self];
+    [project addVisualProgrammingObject:self];
 }
 
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeAction:self];
+    [project addVisualProgrammingObject:self];
     [super removeFromWorld];
 }
 

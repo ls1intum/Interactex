@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THThreeColorLedEditable * led = [[THThreeColorLedEditable alloc] init];
-    led.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:led];
+    [self addHardwareComponentToProject:led atLocation:location];
 }
 
 @end
