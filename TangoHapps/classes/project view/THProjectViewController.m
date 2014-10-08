@@ -51,7 +51,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THProjectViewController
 
-//float const kPalettePullY = 364; // Nazmus commented
 float const kPalettePullY = 0;
 float const kToolsTabMargin = 5;
 
@@ -81,14 +80,12 @@ float const kToolsTabMargin = 5;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    
     _tabController = [[THTabbarViewController alloc] initWithNibName:@"THTabbar" bundle:nil];
     
     [_tabController.view setFrame:CGRectMake(0, 0, kPaletteSectionWidth, 722.0f)];  //Nazmus added
     
     [self.view addSubview:_tabController.view];
     
-    //nazmus added
     _menuController = [[THMenubarViewController alloc] initWithNibName:@"THMenubar" bundle:nil];
     [_menuController.view setFrame:CGRectMake(0, 0, 1024.0f, 64.0f)];
     [_menuController.view viewWithTag:1].layer.masksToBounds = NO;
@@ -96,9 +93,7 @@ float const kToolsTabMargin = 5;
     [_menuController.view viewWithTag:1].layer.shadowRadius = 4;
     [_menuController.view viewWithTag:1].layer.shadowOpacity = 0.5;
     [self.view insertSubview:_menuController.view belowSubview:_tabController.view];
-    ////
     
-    // nazmus added 27 Sep 14
     _zoomSlider = [[UISlider alloc] initWithFrame:CGRectMake(412.0, 688.0, 200.0, 32.0)];
     [_zoomSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     [_zoomSlider setBackgroundColor:[UIColor clearColor]];
@@ -110,9 +105,7 @@ float const kToolsTabMargin = 5;
     _zoomSlider.continuous = YES;
     _zoomSlider.value = 1.0;
     [self.view addSubview:_zoomSlider];
-    ////
     
-
     
     // Observe some notifications so we can properly instruct the director.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -145,6 +138,11 @@ float const kToolsTabMargin = 5;
                                                  name:UIApplicationSignificantTimeChangeNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateEditorZoomSlider:)
+                                                 name:kNotificationEditorZoomReset
+                                               object:nil];
+    
     _state = kAppStateEditor;
     
     [self showTabBar];
@@ -169,8 +167,6 @@ float const kToolsTabMargin = 5;
     
     [self saveCurrentProjectAndPalette];
     
-    //[[THDirector sharedDirector].serverController stopServer];
-    
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center removeObserver:self];
 }
@@ -184,7 +180,7 @@ float const kToolsTabMargin = 5;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationSignificantTimeChangeNotification object:nil];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationEditorZoomReset object:nil];
     
     [self.currentLayer prepareToDie];
     [[THDirector sharedDirector].currentProject prepareToDie];
@@ -224,9 +220,7 @@ float const kToolsTabMargin = 5;
 -(void) saveCurrentProject{
     THDirector * director = [THDirector sharedDirector];
     THProject * currentProject = director.currentProject;
-    
-    //_projectName = [THDirector sharedDirector].currentProject.name;
-    
+        
     UIImage * image = [TFHelper screenshot];
     
     if(![THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
@@ -412,7 +406,6 @@ float const kToolsTabMargin = 5;
     _tabController.hidden = NO;
 }
 
-//nazmus added 21 Sep 14
 -(void)hideMenuBar
 {
     _menuController.view.hidden = YES;
@@ -422,9 +415,6 @@ float const kToolsTabMargin = 5;
 {
     _menuController.view.hidden = NO;
 }
-////
-
-//nazmus added 27 Sep 14
 -(void)hideZoomBar
 {
     _zoomSlider.hidden = YES;
@@ -434,18 +424,6 @@ float const kToolsTabMargin = 5;
 {
     _zoomSlider.hidden = NO;
 }
-////
-/*
--(void)hideTools
-{
-    _toolsController.hidden = YES;
-}
-
--(void)showTools
-{
-    _toolsController.hidden = NO;
-}
-*/
 
 #pragma mark - Simulation
 
@@ -709,22 +687,36 @@ float const kToolsTabMargin = 5;
     
 }
 
+#pragma mark -- Switch Edition <--> Simulation
+
+-(void) checkSwitchToState:(TFEditorState) state{
+    THProjectViewController * projectController = [THDirector sharedDirector].projectController;
+    if(projectController.state == kAppStateEditor){
+        THEditor * editor = (THEditor*) projectController.currentLayer;
+        if(editor.state == state){
+            editor.state = kEditorStateNormal;
+        } else {
+            editor.state = state;
+        }
+        [self updateEditingButtonsTint];
+    }
+}
+
+#pragma mark -- UI setup
+
 -(void) addEditionButtons{
-    //self.navigationItem.rightBarButtonItems = self.editingTools; // nazmus commented
     
     [self addButtonsToMenubar:self.editingTools];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.playButton];
 }
 
 -(void) addLilypadButtons{
-    //self.navigationItem.rightBarButtonItems = self.lilypadTools; // nazmus commented
     
     [self addButtonsToMenubar:self.lilypadTools];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.playButton];
 }
 
 -(void) addSimulationButtons{
-    //self.navigationItem.rightBarButtonItems = self.simulatingTools;
     
     [self addButtonsToMenubar:self.simulatingTools];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.stopButton];
@@ -747,6 +739,9 @@ float const kToolsTabMargin = 5;
     }
 }
 
+
+#pragma mark -- UI state
+
 -(void) handleEditableObjectAdded:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
     
@@ -756,15 +751,8 @@ float const kToolsTabMargin = 5;
     }
 }
 
-//editing
 -(void) unselectAllEditingButtons{
-    /* nazmus commented
-    self.connectButton.tintColor = self.unselectedTintColor;
-    self.duplicateButton.tintColor = self.unselectedTintColor;
-    self.removeButton.tintColor = self.unselectedTintColor;
-    self.hideiPhoneButton.tintColor = self.unselectedTintColor;
-    self.lilypadButton.tintColor = self.unselectedTintColor;
-    */
+
     self.connectButton.backgroundColor = self.unselectedTintColor;
     self.duplicateButton.backgroundColor = self.unselectedTintColor;
     self.removeButton.backgroundColor = self.unselectedTintColor;
@@ -776,16 +764,7 @@ float const kToolsTabMargin = 5;
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
     [self unselectAllEditingButtons];
-    /* nazmus commented
-    if(editor.state == kEditorStateConnect){
-        self.connectButton.tintColor = self.highlightedItemTintColor;
-    } else if(editor.state == kEditorStateDuplicate){
-        self.duplicateButton.tintColor = self.highlightedItemTintColor;
-    } else if(editor.state == kEditorStateDelete){
-        self.removeButton.tintColor = self.highlightedItemTintColor;
-    }
-    */
-    //nazmus added
+
     if(editor.state == kEditorStateConnect){
         self.connectButton.backgroundColor = self.highlightedItemTintColor;
     } else if(editor.state == kEditorStateDuplicate){
@@ -794,53 +773,38 @@ float const kToolsTabMargin = 5;
         self.removeButton.backgroundColor = self.highlightedItemTintColor;
     }
     
-    ////
     [self updatePushButtonState];
     [self updateHideIphoneButtonTint];
     [self updateLilypadTint];
 }
 
 -(void) updatePushButtonState{
-    self.pushButton.enabled = YES;
-    /*
+    
     THDirector * director = [THDirector sharedDirector];
     self.pushButton.enabled = (director.serverController.session.connectedPeers.count > 0);
-    [self.pushButton setNeedsDisplay];*/
+    [self.pushButton setNeedsDisplay];
 }
 
 -(void) updateHideIphoneButtonTint{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    self.hideiPhoneButton.backgroundColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor); // nazmus - replaced tintcolor with backgroundcolor
+    self.hideiPhoneButton.backgroundColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor);
 }
 
 -(void) updateLilypadTint{
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    self.lilypadButton.backgroundColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor); // nazmus - replaced tintcolor with backgroundcolor
+    self.lilypadButton.backgroundColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor);
 }
 
-//simulation
 -(void) updatePinsModeItemTint{
     
     THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
-    self.pinsModeButton.backgroundColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor); // nazmus - replaced tintcolor with backgroundcolor
+    self.pinsModeButton.backgroundColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor);
 }
 
--(void) checkSwitchToState:(TFEditorState) state{
-    THProjectViewController * projectController = [THDirector sharedDirector].projectController;
-    if(projectController.state == kAppStateEditor){
-        THEditor * editor = (THEditor*) projectController.currentLayer;
-        if(editor.state == state){
-            editor.state = kEditorStateNormal;
-        } else {
-            editor.state = state;
-        }
-        [self updateEditingButtonsTint];
-    }
-}
+#pragma mark -- Toolbar Buttons
 
-//actions
 - (void)connectPressed:(id)sender {
     [self checkSwitchToState:kEditorStateConnect];
 }
@@ -852,17 +816,6 @@ float const kToolsTabMargin = 5;
 - (void)removePressed:(id)sender {
     [self checkSwitchToState:kEditorStateDelete];
 }
-/*
--(void) setHidden:(BOOL)hidden{
-    if(!hidden){
-        [self unselectAllButtons];
-    }
-    self.view.hidden = hidden;
-}
-
--(BOOL) hidden{
-    return self.view.hidden;
-}*/
 
 - (void) lilypadPressed:(id)sender {
     
@@ -895,11 +848,9 @@ float const kToolsTabMargin = 5;
 }
 
 - (void) pushPressed:(id)sender {
-    THServerController2 * serverController = [THDirector sharedDirector].serverController;
-    //if(serverController.serverIsRunning){
-        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-        [serverController pushProjectToAllClients:project];
-    //}
+    THServerController * serverController = [THDirector sharedDirector].serverController;
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [serverController pushProjectToAllClients:project];
 }
 
 - (void) hideiPhonePressed:(id)sender {
@@ -918,16 +869,20 @@ float const kToolsTabMargin = 5;
     [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
 }
 
-//nazmus added - 27 Sep 14
+//zoom slider
+
 -(void)sliderAction:(id)sender {
     THEditor * editor = (THEditor*) self.currentLayer;
     float newScale = [(UISlider *)sender value];
     
-    if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
-        editor.zoomableLayer.scale = newScale;
-    }
+    editor.zoomLevel = newScale;
 }
-////
+
+-(void) updateEditorZoomSlider:(NSNotification*) notification{
+    THEditor * editor = (THEditor*) self.currentLayer;
+    self.zoomSlider.value = editor.zoomLevel;
+}
+
 
 -(NSString*) description{
     return @"ProjectController";

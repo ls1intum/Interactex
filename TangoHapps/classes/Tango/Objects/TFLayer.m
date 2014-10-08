@@ -61,17 +61,14 @@ You should have received a copy of the GNU General Public License along with thi
         self.isTouchEnabled = YES;
         self.isAccelerometerEnabled = YES;
         
-        //nazmus added
         CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 252)];
         [self addChild:colorLayer z:-100];
+        
+        //NSLog(@"initializing layer %f %f",self.contentSize.width,self.contentSize.height);
+        
         CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
         [bg setPosition:ccp(self.contentSize.width / 2, self.contentSize.height / 2)];
         [self addChild:bg z:-99];
-        ////
-        
-        //_zoomableLayer.contentSize = self.contentSize;
-
-        //[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0f/30.0f];
     }
     return self;
 }

@@ -80,7 +80,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.shouldRecognizePanGestures = YES;
         
+        //_zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 0, 0, 252)];
         _zoomableLayer = [CCLayer node];
+        _zoomableLayer.contentSize = CGSizeMake(2048, 1448);
+        [self resetZoomableLayerPosition];
         [self addChild:_zoomableLayer z:-10];
         
         [self showAllPaletteSections];
@@ -98,8 +101,13 @@ You should have received a copy of the GNU General Public License along with thi
     
     [c addObserver:self selector:@selector(handlePinDeattached:) name:kNotificationPinDeattached object:nil];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSelectionLost) name:kNotificationPaletteItemSelected object:nil];
+}
+
+-(void) resetZoomableLayerPosition{
+    CGRect iPadRect = [THHelper iPadRect];
+    CGPoint diff = ccp((iPadRect.size.width - _zoomableLayer.contentSize.width) / 2.0f, (iPadRect.size.height - _zoomableLayer.contentSize.height) / 2.0f);
+    _zoomableLayer.position = diff;
 }
 
 #pragma mark - Event handling
@@ -150,6 +158,11 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) draw{
     [TFHelper drawLines:self.additionalConnections];
     [self drawTemporaryLine];
+    
+    
+    CGRect newCanvasRect = CGRectMake(self.zoomableLayer.position.x , self.zoomableLayer.position.y , self.zoomableLayer.contentSize.width * self.zoomLevel, self.zoomableLayer.contentSize.height * self.zoomLevel);
+    
+    [TFHelper drawRect:newCanvasRect];
 }
 
 #pragma mark - Methods
@@ -582,7 +595,35 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) moveLayer:(CGPoint) d{
-    self.zoomableLayer.position = ccpAdd(self.zoomableLayer.position, d);
+    
+    CGRect iPadRect = [THHelper iPadRect];
+    
+    CGRect newCanvasRect = CGRectMake(self.zoomableLayer.position.x + d.x, self.zoomableLayer.position.y + d.y, self.zoomableLayer.contentSize.width * self.zoomLevel, self.zoomableLayer.contentSize.height * self.zoomLevel);
+
+    NSLog(@"%f %f %f %f",newCanvasRect.origin.x, newCanvasRect.origin.y, newCanvasRect.size.width,newCanvasRect.size.height);
+    
+    if(CGRectIntersectsRect(newCanvasRect, iPadRect)){
+        
+        self.zoomableLayer.position = newCanvasRect.origin;
+    }
+    /*
+    if(CGRectGetMinX(newCanvasRect) > CGRectGetMinX(iPadRect)){
+        newCanvasRect.origin.x = CGRectGetMinX(iPadRect);
+        
+    } else if(CGRectGetMaxX(newCanvasRect) < CGRectGetMaxX(iPadRect)){
+        newCanvasRect.origin.x = CGRectGetMaxX(iPadRect) - self.zoomableLayer.contentSize.width;
+    }
+    
+    if(CGRectGetMinY(newCanvasRect) > CGRectGetMinY(iPadRect)){
+        newCanvasRect.origin.y = CGRectGetMinY(iPadRect);
+        
+    } else if(CGRectGetMaxY(newCanvasRect) < CGRectGetMaxY(iPadRect)){
+        newCanvasRect.origin.y = CGRectGetMaxY(iPadRect) - self.zoomableLayer.contentSize.height;
+    }
+    
+    //NSLog(@"%f %f",newCanvasRect.origin.x,newCanvasRect.origin.y);
+    
+    self.zoomableLayer.position = newCanvasRect.origin;*/
 }
 
 
@@ -661,7 +702,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) move:(UIPanGestureRecognizer*)sender{
     if(!self.shouldRecognizePanGestures) return;
-    
     
     
     if(sender.numberOfTouches == 1){
@@ -753,8 +793,12 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 
--(void) setZoomLevel:(float)zoomLevel{
-    self.zoomableLayer.scale = zoomLevel;
+-(void) setZoomLevel:(float)newZoomLevel{
+    
+    if(newZoomLevel > kLayerMinScale && newZoomLevel < kLayerMaxScale){
+        
+        self.zoomableLayer.scale = newZoomLevel;
+    }
 }
 
 -(float) zoomLevel{
@@ -762,6 +806,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) setDisplacement:(CGPoint)displacement{
+    
     self.zoomableLayer.position = displacement;
 }
 
@@ -779,12 +824,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(object && [object isKindOfClass:[THClothe class]]){
         [object scaleBy:sender.scale];
-    } else {
-        float newScale = self.zoomableLayer.scale * sender.scale;
-        if(newScale > kLayerMinScale && newScale < kLayerMaxScale){
-            self.zoomableLayer.scale = newScale;
-        }
     }
+    
     sender.scale = 1.0f;
 }
 
@@ -865,8 +906,10 @@ You should have received a copy of the GNU General Public License along with thi
     } else {
 
         _zoomableLayer.scale = 1.0f;
-        //self.position = ccp(0,0);
-        _zoomableLayer.position = ccp(0,0);
+        [self resetZoomableLayerPosition];
+//        _zoomableLayer.position = ccp(0,0);
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationEditorZoomReset object:nil];
+        
     }
     
     [super doubleTapped:sender];

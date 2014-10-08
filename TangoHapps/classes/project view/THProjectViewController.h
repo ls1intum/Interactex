@@ -128,8 +128,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) UILabel * emptyItem1;
 @property (strong, nonatomic) UILabel * emptyItem2;
 
-////
-
 //tool colors
 @property (strong, nonatomic) UIColor * highlightedItemTintColor;
 @property (strong, nonatomic) UIColor * unselectedTintColor;

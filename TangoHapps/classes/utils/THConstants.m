@@ -156,4 +156,4 @@ float const kDefaultAnalogSimulationIncrease = 5.0f;
 
 ccColor3B const kDefaultSimulationLabelColor = {0,0,0};//black
 
-
+NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";

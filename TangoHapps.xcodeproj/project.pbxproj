@@ -99,7 +99,7 @@
 		9A2EA87E19DB1C2200E30E2D /* libFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1FBD6F187ED71900699B61 /* libFirmata.a */; };
 		9A2EA89D19DB1F0500E30E2D /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EA89C19DB1F0500E30E2D /* GHUnitIOS.framework */; };
 		9A2EA89E19DB1F3B00E30E2D /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
-		9A2EA89F19DB1F4B00E30E2D /* THServerController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController2.m */; };
+		9A2EA89F19DB1F4B00E30E2D /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController.m */; };
 		9A2EA8A119DB1F8F00E30E2D /* THGraphViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AA18AA9AF70080CD2E /* THGraphViewHelper.m */; };
 		9A2EA8A219DB1F8F00E30E2D /* THGraphTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7046B18AA98F00080CD2E /* THGraphTextView.m */; };
 		9A2EA8A319DB1F8F00E30E2D /* THGraphViewSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD704AE18AA9E220080CD2E /* THGraphViewSegment.m */; };
@@ -321,7 +321,7 @@
 		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
 		9A41472317E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
 		9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
-		9A4DF91819CAAE8800D75C38 /* THServerController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController2.m */; };
+		9A4DF91819CAAE8800D75C38 /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController.m */; };
 		9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5110141837D23A00EB25FA /* CoreMotion.framework */; };
 		9A5110181837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
 		9A5110191837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
@@ -1936,8 +1936,8 @@
 		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
 		9A41472117E255700061EDF8 /* THTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTableProjectCell.m; sourceTree = "<group>"; };
 		9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		9A4DF91619CAAE8800D75C38 /* THServerController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController2.h; sourceTree = "<group>"; };
-		9A4DF91719CAAE8800D75C38 /* THServerController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController2.m; sourceTree = "<group>"; };
+		9A4DF91619CAAE8800D75C38 /* THServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController.h; sourceTree = "<group>"; };
+		9A4DF91719CAAE8800D75C38 /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
 		9A50D8D618296D3600335926 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "../cocos2d-iphone-2.0/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
 		9A5110141837D23A00EB25FA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9A5110161837DD5800EB25FA /* projectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectIcon.png; sourceTree = "<group>"; };
@@ -3526,8 +3526,8 @@
 		9AF501F5167B84B40020241C /* communication */ = {
 			isa = PBXGroup;
 			children = (
-				9A4DF91619CAAE8800D75C38 /* THServerController2.h */,
-				9A4DF91719CAAE8800D75C38 /* THServerController2.m */,
+				9A4DF91619CAAE8800D75C38 /* THServerController.h */,
+				9A4DF91719CAAE8800D75C38 /* THServerController.m */,
 			);
 			path = communication;
 			sourceTree = "<group>";
@@ -5254,7 +5254,7 @@
 				9AF50374167B84B40020241C /* THPin.m in Sources */,
 				9AF50375167B84B40020241C /* THPinEditable.m in Sources */,
 				9AF50376167B84B40020241C /* THPinValue.m in Sources */,
-				9A4DF91819CAAE8800D75C38 /* THServerController2.m in Sources */,
+				9A4DF91819CAAE8800D75C38 /* THServerController.m in Sources */,
 				9AF50377167B84B40020241C /* THButton.m in Sources */,
 				9AF50378167B84B40020241C /* THButtonEditableObject.m in Sources */,
 				9A7E4D7218361A5000657B72 /* THJennic.m in Sources */,
@@ -5589,7 +5589,7 @@
 				9AF50639167B925A0020241C /* THiSwitchPaletteItem.m in Sources */,
 				9ABC276518098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9A2EA8A119DB1F8F00E30E2D /* THGraphViewHelper.m in Sources */,
-				9A2EA89F19DB1F4B00E30E2D /* THServerController2.m in Sources */,
+				9A2EA89F19DB1F4B00E30E2D /* THServerController.m in Sources */,
 				9AF5063A167B925A0020241C /* THLabelPaletteItem.m in Sources */,
 				9AF5063B167B925A0020241C /* THLedPaletteItem.m in Sources */,
 				9A95FB7B18CF59DF009A724F /* THPowerSupplyPaletteItem.m in Sources */,

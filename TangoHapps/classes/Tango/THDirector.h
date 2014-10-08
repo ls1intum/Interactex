@@ -46,7 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectSelectionViewController.h"
 #import "THPaletteViewController.h"
 #import "THTabbarView.h"
-#import "THServerController2.h"
+#import "THServerController.h"
 
 @class THProjectViewController;
 @class THProjectProxy;
@@ -76,7 +76,7 @@ typedef enum {
 @property (nonatomic, strong) THProject * currentProject;
 @property (nonatomic, weak) THProjectProxy * currentProxy;
 @property (nonatomic, strong) NSMutableArray * projectProxies;
-@property (nonatomic, strong) THServerController2 * serverController;
+@property (nonatomic, strong) THServerController * serverController;
 
 +(THDirector*)sharedDirector;
 

@@ -202,3 +202,5 @@ extern float const kLayerMaxScale;
 extern float const kDefaultAnalogSimulationIncrease;
 
 extern ccColor3B const kDefaultSimulationLabelColor;
+
+extern NSString * const kNotificationEditorZoomReset;

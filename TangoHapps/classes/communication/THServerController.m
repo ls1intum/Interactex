@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import "THServerController2.h"
+#import "THServerController.h"
 #import "THAssetCollection.h"
 #import "THClientProject.h"
 
-@interface THServerController2()
+@interface THServerController()
 
 @property (retain, nonatomic) MCNearbyServiceAdvertiser * advertiser;
 
 @end
 
 
-@implementation THServerController2
+@implementation THServerController
 
 - (id)init {
     if (self = [super init]) {

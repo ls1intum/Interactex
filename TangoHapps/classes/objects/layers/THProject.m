@@ -1126,6 +1126,7 @@ enum zPositions{
 }
 
 -(THClientProject*) nonEditableProject{
+    
     THClientProject * project = [[THClientProject alloc] initWithName:self.name];
     
     /*

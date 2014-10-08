@@ -10,17 +10,17 @@
 
 @import MultipeerConnectivity;
 
-@class THServerController2;
+@class THServerController;
 
 @protocol THServerControllerDelegate <NSObject>
-- (void)server:(THServerController2*)controller peerConnected:(NSString*)peerName;
-- (void)server:(THServerController2*)controller peerDisconnected:(NSString*)peerName;
-- (void)server:(THServerController2*)controller isReadyForSceneTransfer:(BOOL)ready;
-- (void)server:(THServerController2*)controller isRunning:(BOOL)running;
-- (void)server:(THServerController2*)controller isTransferring:(BOOL)transferring;
+- (void)server:(THServerController*)controller peerConnected:(NSString*)peerName;
+- (void)server:(THServerController*)controller peerDisconnected:(NSString*)peerName;
+- (void)server:(THServerController*)controller isReadyForSceneTransfer:(BOOL)ready;
+- (void)server:(THServerController*)controller isRunning:(BOOL)running;
+- (void)server:(THServerController*)controller isTransferring:(BOOL)transferring;
 @end
 
-@interface THServerController2 : NSObject <MCNearbyServiceAdvertiserDelegate, MCSessionDelegate>
+@interface THServerController : NSObject <MCNearbyServiceAdvertiserDelegate, MCSessionDelegate>
 {
 }
 
