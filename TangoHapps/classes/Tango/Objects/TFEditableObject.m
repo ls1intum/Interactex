@@ -382,6 +382,15 @@ static NSInteger objectCount = 1;
     return (self.visible && CGRectContainsPoint(self.boundingBox, point));
 }
 
+-(BOOL) canBeMovedBy:(CGPoint) d{
+    if(!self.canBeMoved){
+        return NO;
+    }
+    
+    return YES;
+    
+}
+
 -(void) handleTouchBegan{
 }
 

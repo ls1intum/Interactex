@@ -84,7 +84,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 +(void) drawRect:(CGRect) rect{
 
-    ccDrawSolidRect(rect.origin, ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height)), ccc4f(1, 0, 0, 1));
+    ccDrawSolidRect(rect.origin, ccpAdd(rect.origin,ccp(rect.size.width,rect.size.height)), ccc4f(1, 0, 0, 0.1f));
 }
 
 +(void) drawEmptyRect:(CGRect) rect{

@@ -147,6 +147,9 @@ You should have received a copy of the GNU General Public License along with thi
 //boxes
 -(void) update;
 
+//moving
+-(BOOL) canBeMovedBy:(CGPoint) d;
+
 @property (nonatomic, readonly) NSMutableArray * properties;
 @property (nonatomic, strong) NSMutableArray * events;
 @property (nonatomic, readonly) NSMutableArray * methods;

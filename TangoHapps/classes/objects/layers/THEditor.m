@@ -583,7 +583,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) moveCurrentObject:(CGPoint) d{
-    if(self.currentObject.canBeMoved){
+    if([self.currentObject canBeMovedBy:d]){
 
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
@@ -610,7 +610,6 @@ You should have received a copy of the GNU General Public License along with thi
         self.zoomableLayer.position = ccpAdd(self.zoomableLayer.position,d);
     }
 }
-
 
 -(void) handleSingleTouchMove:(UIPanGestureRecognizer*) sender{
     
