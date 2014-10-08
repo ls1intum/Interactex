@@ -205,9 +205,13 @@ void setPinModeCallback(byte pin, int mode)
     }
     break;
   case INPUT:
-    if (IS_PIN_DIGITAL(pin)) {      
+    if (IS_PIN_DIGITAL(pin)) {   
+   /*   
       pinMode(PIN_TO_DIGITAL(pin), INPUT); // disable output driver
       digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
+      */
+      
+      pinMode(PIN_TO_DIGITAL(pin), INPUT_PULLUP); // disable output driver
       pinConfig[pin] = INPUT;
       
       // hack it only

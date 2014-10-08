@@ -769,6 +769,7 @@ float const kToolsTabMargin = 5;
 }
 
 -(void) updatePushButtonState{
+    //self.pushButton.enabled = YES;
     
     THDirector * director = [THDirector sharedDirector];
     self.pushButton.enabled = (director.serverController.session.connectedPeers.count > 0);

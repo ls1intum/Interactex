@@ -219,8 +219,6 @@ void setPinModeCallback(byte pin, int mode)
     if (IS_PIN_DIGITAL(pin)) {
   
       pinMode(PIN_TO_DIGITAL(pin), INPUT_PULLUP); // disable output driver
-      //digitalWrite(PIN_TO_DIGITAL(pin), HIGH); // enable internal pull-ups
-      //digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
       pinConfig[pin] = INPUT;
     }
     break;
@@ -657,11 +655,6 @@ void setup()
   iFirmata.begin(19200);
   
   systemResetCallback();  // reset to default config */ 
-  
-  Serial.println("starting");
-  
-  pinMode(12, INPUT_PULLUP);
-  pinMode(8, INPUT_PULLUP);
 }
 
 

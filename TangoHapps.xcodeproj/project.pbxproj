@@ -3586,6 +3586,7 @@
 		9AF5000C167B83140020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				9A801BD219D9568A0001B6F9 /* connection */,
 				9AFB7E641833DE6400694CCE /* util */,
 				9AF5000D167B83140020241C /* THClientAppDelegate.h */,
 				9AF5000E167B83140020241C /* THClientAppDelegate.m */,
@@ -3595,7 +3596,6 @@
 				9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */,
 				9AF5000F167B83140020241C /* THClientAppViewController.h */,
 				9AF50010167B83140020241C /* THClientAppViewController.m */,
-				9A801BD219D9568A0001B6F9 /* connection */,
 				9AF50015167B83140020241C /* THClientScene.h */,
 				9AF50016167B83140020241C /* THClientScene.m */,
 				9AF5025C167B84B40020241C /* THClientProject.h */,

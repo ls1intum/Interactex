@@ -79,7 +79,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     TFEvent * copy = [[TFEvent alloc] init];
     copy.name = self.name;
-    copy.param1 = self.param1;
+    //copy.param1 = self.param1;
+    copy.param1 = [self.param1 copy];
     
     return copy;
 }

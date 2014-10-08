@@ -936,7 +936,6 @@ enum zPositions{
 
 -(void) addNonEditableActionPairsTo:(THClientProject*) project{
     
-    
     for (TFEventActionPair * pair in self.eventActionPairs) {
         
         TFEvent * originalEvent = pair.event;
@@ -952,7 +951,7 @@ enum zPositions{
         TFMethodInvokeAction * newAction = [originalAction copy];
         newAction.source = [self simulableForEditable:newAction.source inProject:project];
         newAction.target = [self simulableForEditable:newAction.target inProject:project];
-        if(originalAction.firstParam != originalEvent.param1){
+        if(originalAction.firstParam){
             newAction.firstParam.target = [self simulableForEditable:newAction.firstParam.target inProject:project];
         }
         

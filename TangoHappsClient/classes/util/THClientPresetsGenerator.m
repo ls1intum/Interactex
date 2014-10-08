@@ -219,7 +219,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [project registerAction:turnOff2 forEvent:event2];
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"LED to pin 4, button to pin 5";
+    label.text = @"LED to pin 13, button to pin 12";
     label.position = CGPointMake(170, 100);
     label.width = 240;
     label.height = 80;
@@ -228,13 +228,13 @@ NSString * const kPureDataProjectName = @"PureData";
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label, nil];
     
     //pins
-    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:4];
+    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:13];
     lilypinled.mode = kPinModeDigitalOutput;
     THElementPin * ledpin = [led.pins objectAtIndex:1];
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:5];
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:12];
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
