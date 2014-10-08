@@ -45,7 +45,7 @@
 
 @implementation THVisualProgrammingObjectPaletteItem
 
--(void) addToProject:(TFEditableObject*) object atLocation:(CGPoint) location{
+-(void) handleObjectDropped:(TFEditableObject*) object atLocation:(CGPoint) location{
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     

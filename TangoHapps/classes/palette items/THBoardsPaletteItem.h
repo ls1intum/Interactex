@@ -1,8 +1,8 @@
 /*
- THBLELilyPadPaletteItem.m
+ THBoardsPaletteItem.h
  Interactex Designer
  
- Created by Juan Haladjian on 13/02/14.
+ Created by Juan Haladjian on 08/10/14.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,15 +40,10 @@
  
  */
 
-#import "THBLELilyPadPaletteItem.h"
-#import "THBLELilyPadEditable.h"
+#import "THPaletteItem.h"
 
-@implementation THBLELilyPadPaletteItem
+@interface THBoardsPaletteItem : THPaletteItem
 
-- (void)dropAt:(CGPoint)location {
-    THBLELilyPadEditable * bleLilypad = [[THBLELilyPadEditable alloc] init];
-    [self handleObjectDropped:bleLilypad atLocation:location];
-    
-}
+-(void) handleObjectDropped:(TFEditableObject*) object atLocation:(CGPoint) location;
 
 @end

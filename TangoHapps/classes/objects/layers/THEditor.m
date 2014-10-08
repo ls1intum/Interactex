@@ -76,15 +76,20 @@ You should have received a copy of the GNU General Public License along with thi
     
     self = [super init];
     if(self){
+        
         self.additionalConnections = [NSMutableArray array];
         
         self.shouldRecognizePanGestures = YES;
         
-        _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 0, 0, 252)];
-        //_zoomableLayer = [CCLayer node];
-        _zoomableLayer.contentSize = CGSizeMake(2048, 1448);
+        //_zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 0, 0, 10)];
+        _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 0)];
+        _zoomableLayer.contentSize = kDefaultCanvasSize;
         [self resetZoomableLayerPosition];
         [self addChild:_zoomableLayer z:-10];
+        
+        CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
+        [bg setPosition:ccp(_zoomableLayer.contentSize.width / 2.0f, _zoomableLayer.contentSize.height / 2.0f)];
+        [_zoomableLayer addChild:bg z:-99];
         
         [self showAllPaletteSections];
     }
@@ -95,7 +100,6 @@ You should have received a copy of the GNU General Public License along with thi
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
     [c addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:nil];
-    //[c addObserver:self selector:@selector(handleNewConnectionMade:) name:kNotificationConnectionMade object:nil];
     [c addObserver:self selector:@selector(startRemovingConnections) name:kNotificationStartRemovingConnections object:nil];
     [c addObserver:self selector:@selector(stopRemovingConnections) name:kNotificationStopRemovingConnections object:nil];
     
@@ -157,11 +161,13 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) draw{
+    [super draw];
+    
     [TFHelper drawLines:self.additionalConnections];
     [self drawTemporaryLine];
-    
-    //CGRect newCanvasRect = self.zoomableLayer.boundingBox;
-    //[TFHelper drawRect:newCanvasRect];
+    /*
+    CGRect newCanvasRect = self.zoomableLayer.boundingBox;
+    [TFHelper drawRect:newCanvasRect];*/
 }
 
 #pragma mark - Methods

@@ -74,7 +74,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self loadButtonEditable];
+    if(self){
+        [self loadButtonEditable];
+    }
     return self;
 }
 

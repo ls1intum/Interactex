@@ -48,7 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THTimerEditable * timer = [[THTimerEditable alloc] init];
-    [self addToProject:timer atLocation:location];
+    [self handleObjectDropped:timer atLocation:location];
 }
 
 @end

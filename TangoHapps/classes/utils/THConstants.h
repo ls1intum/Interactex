@@ -122,8 +122,7 @@ enum zPositions{
     kNormalObjectZ = -7,
     kiPhoneZ = -6,
     kWireObjectZ = -5,
-    kSelectedObjectZ = -4,
-    kSelectionSpriteZ = 2
+    kSelectedObjectZ = -4
 };
 
 //#define ARC4RANDOM_MAX      0x10000000
@@ -204,3 +203,5 @@ extern float const kDefaultAnalogSimulationIncrease;
 extern ccColor3B const kDefaultSimulationLabelColor;
 
 extern NSString * const kNotificationEditorZoomReset;
+
+extern CGSize const kDefaultCanvasSize;

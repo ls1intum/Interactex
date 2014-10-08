@@ -62,13 +62,8 @@ You should have received a copy of the GNU General Public License along with thi
         self.isAccelerometerEnabled = YES;
         
         CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 252)];
+        //CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
         [self addChild:colorLayer z:-100];
-        
-        //NSLog(@"initializing layer %f %f",self.contentSize.width,self.contentSize.height);
-        
-        CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
-        [bg setPosition:ccp(self.contentSize.width / 2, self.contentSize.height / 2)];
-        [self addChild:bg z:-99];
     }
     return self;
 }

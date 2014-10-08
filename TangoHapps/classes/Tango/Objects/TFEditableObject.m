@@ -389,9 +389,11 @@ static NSInteger objectCount = 1;
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
-    CGRect newBoundingBox = self.boundingBox;
+    CGRect canvasBox = editor.zoomableLayer.boundingBox;
+    CGRect oldBoundingBox = self.boundingBox;
+    CGRect newBoundingBox = oldBoundingBox;
     newBoundingBox.origin = ccpAdd(newBoundingBox.origin,d);
-    if(CGRectContainsRect(editor.zoomableLayer.boundingBox, newBoundingBox)){
+    if(!CGRectContainsRect(canvasBox, oldBoundingBox) || CGRectContainsRect(canvasBox, newBoundingBox)){
         return YES;
     }
     return NO;

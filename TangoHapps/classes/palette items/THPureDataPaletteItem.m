@@ -48,7 +48,7 @@
 
 - (void)dropAt:(CGPoint)location {
     THPureDataEditable * puredata = [[THPureDataEditable alloc] init];
-    [self addToProject:puredata atLocation:location];
+    [self handleObjectDropped:puredata atLocation:location];
 }
 
 @end
