@@ -45,7 +45,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THAccelerometerPaletteItem
 
-
 - (void)dropAt:(CGPoint)location {
     THAccelerometerEditable * accelerometer = [[THAccelerometerEditable alloc] init];
     accelerometer.position = location;

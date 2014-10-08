@@ -328,9 +328,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 #pragma mark Droppable
 
-- (BOOL)canBeDroppedAt:(CGPoint)location
-{
-    return YES;
+- (BOOL)canBeDroppedAt:(CGPoint)location {
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    if(CGRectContainsPoint(editor.zoomableLayer.boundingBox,location)){
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (void) dropAt:(CGPoint)location

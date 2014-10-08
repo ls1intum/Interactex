@@ -159,8 +159,9 @@ You should have received a copy of the GNU General Public License along with thi
     [TFHelper drawLines:self.additionalConnections];
     [self drawTemporaryLine];
     
+    CGRect newCanvasRect = self.zoomableLayer.boundingBox;
     
-    CGRect newCanvasRect = CGRectMake(self.zoomableLayer.position.x , self.zoomableLayer.position.y , self.zoomableLayer.contentSize.width * self.zoomLevel, self.zoomableLayer.contentSize.height * self.zoomLevel);
+    //CGRect newCanvasRect = CGRectMake(self.zoomableLayer.position.x , self.zoomableLayer.position.y , self.zoomableLayer.contentSize.width * self.zoomLevel, self.zoomableLayer.contentSize.height * self.zoomLevel);
     
     [TFHelper drawRect:newCanvasRect];
 }
@@ -598,32 +599,16 @@ You should have received a copy of the GNU General Public License along with thi
     
     CGRect iPadRect = [THHelper iPadRect];
     
-    CGRect newCanvasRect = CGRectMake(self.zoomableLayer.position.x + d.x, self.zoomableLayer.position.y + d.y, self.zoomableLayer.contentSize.width * self.zoomLevel, self.zoomableLayer.contentSize.height * self.zoomLevel);
-
-    NSLog(@"%f %f %f %f",newCanvasRect.origin.x, newCanvasRect.origin.y, newCanvasRect.size.width,newCanvasRect.size.height);
+    CGRect oldCanvasRect = self.zoomableLayer.boundingBox;
     
-    if(CGRectIntersectsRect(newCanvasRect, iPadRect)){
+    CGRect newCanvasRect = CGRectMake(oldCanvasRect.origin.x + d.x, oldCanvasRect.origin.y + d.y, oldCanvasRect.size.width, oldCanvasRect.size.height);
+    
+    //NSLog(@"%f %f %f %f",newCanvasRect.origin.x, newCanvasRect.origin.y, newCanvasRect.size.width,newCanvasRect.size.height);
+    
+    if(!CGRectIntersectsRect(oldCanvasRect, iPadRect) || CGRectIntersectsRect(newCanvasRect, iPadRect)){
         
-        self.zoomableLayer.position = newCanvasRect.origin;
+        self.zoomableLayer.position = ccpAdd(self.zoomableLayer.position,d);
     }
-    /*
-    if(CGRectGetMinX(newCanvasRect) > CGRectGetMinX(iPadRect)){
-        newCanvasRect.origin.x = CGRectGetMinX(iPadRect);
-        
-    } else if(CGRectGetMaxX(newCanvasRect) < CGRectGetMaxX(iPadRect)){
-        newCanvasRect.origin.x = CGRectGetMaxX(iPadRect) - self.zoomableLayer.contentSize.width;
-    }
-    
-    if(CGRectGetMinY(newCanvasRect) > CGRectGetMinY(iPadRect)){
-        newCanvasRect.origin.y = CGRectGetMinY(iPadRect);
-        
-    } else if(CGRectGetMaxY(newCanvasRect) < CGRectGetMaxY(iPadRect)){
-        newCanvasRect.origin.y = CGRectGetMaxY(iPadRect) - self.zoomableLayer.contentSize.height;
-    }
-    
-    //NSLog(@"%f %f",newCanvasRect.origin.x,newCanvasRect.origin.y);
-    
-    self.zoomableLayer.position = newCanvasRect.origin;*/
 }
 
 
