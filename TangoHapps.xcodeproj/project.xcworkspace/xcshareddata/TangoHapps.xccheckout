@@ -12,26 +12,34 @@
 	<dict>
 		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
 		<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
+		<key>84410F66CAD3859283F4388870B4C7B8079BC454</key>
+		<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TangoHapps.xcodeproj/project.xcworkspace</string>
+	<string>TangoHapps.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>44F1A242-84DF-450C-A579-29A977C09B27</key>
-		<string>../../Frameworks/BLE</string>
 		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
+		<string>../../../wearablesm2m</string>
+		<key>84410F66CAD3859283F4388870B4C7B8079BC454</key>
 		<string>../..</string>
-		<key>7F97075A-A169-4026-97C6-F9CFEB23825D</key>
-		<string>../../Frameworks/Firmata</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
+	<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>720A638E-E4F5-413C-9006-7AAEE8B91024</string>
+	<string>84410F66CAD3859283F4388870B4C7B8079BC454</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>84410F66CAD3859283F4388870B4C7B8079BC454</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wearables2m</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
