@@ -89,7 +89,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
             endingLineNumber = "159"
-            landmarkName = "-addEditableObject:"
+            landmarkName = "-willDisappear"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,7 +105,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
-            landmarkName = "-addObservers"
+            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,7 +201,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1422"
             endingLineNumber = "1422"
-            landmarkName = "-startLilypadMode"
+            landmarkName = "-prepareObjectsForEdition"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -281,7 +281,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
             endingLineNumber = "266"
-            landmarkName = "-selectObject:"
+            landmarkName = "-unselectCurrentObject"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -297,8 +297,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "782"
             endingLineNumber = "782"
-            landmarkName = "-tapped:"
-            landmarkType = "5">
+            landmarkName = "@implementation THEditor"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -393,7 +393,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "296"
             endingLineNumber = "296"
-            landmarkName = "-addConnectionLine:"
+            landmarkName = "-selectObject:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

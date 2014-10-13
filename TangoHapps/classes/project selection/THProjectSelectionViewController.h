@@ -78,6 +78,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) UIView * activityIndicatorView;
 
 @property (nonatomic) NSInteger currentDraggableCellIndex;
+@property (nonatomic) NSInteger totalNumberOfProjects; // nazmus added - to keep track of the number of projects after delete, duplicate
 
 -(IBAction)addButtonTapped:(id)sender;
 -(IBAction)viewControlChanged:(id)sender;
