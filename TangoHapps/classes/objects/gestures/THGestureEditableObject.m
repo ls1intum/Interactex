@@ -262,11 +262,11 @@
 }
 
 -(void) addToLayer:(TFLayer*) layer{
-    [layer addChild:self];
+    [layer addEditableObject:self];
 }
 
 -(void) removeFromLayer:(TFLayer*) layer{
-    [layer removeChild:self cleanup:YES];
+    [layer removeEditableObject:self];
 }
 #pragma mark - Methods
 

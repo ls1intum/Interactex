@@ -702,7 +702,7 @@ You should have received a copy of the GNU General Public License along with thi
                 
                 [_currentObject removeFromParentAndCleanup:YES];
 
-                _currentObject.position = [gesture convertToNodeSpace:[_currentObject.parent convertToWorldSpace:_currentObject.position]];
+                _currentObject.position = [gesture convertToNodeSpace:[gesture.parent convertToWorldSpace:_currentObject.position]];
                 [gesture attachGestureObject:_currentObject];
                 break;
             }
