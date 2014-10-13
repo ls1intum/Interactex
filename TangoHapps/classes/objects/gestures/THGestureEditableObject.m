@@ -25,7 +25,7 @@
     else {
         self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     }
-    [self addChild:self.sprite z:1];
+    [self addChild:self.sprite];
         
     self.canBeAddedToPalette = YES;
     self.canBeAddedToGesture = YES;
