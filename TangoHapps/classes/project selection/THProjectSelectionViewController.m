@@ -150,6 +150,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    self.totalNumberOfProjects = self.projectProxies.count; // nazmus added
 }
 
 - (void)didReceiveMemoryWarning
@@ -531,16 +533,15 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     NSInteger index = row * maxCols + col;
     
     if(index > self.projectProxies.count){
-        index = self.projectProxies.count;
+        index = self.projectProxies.count-1;
     }
     
     return index;
 }
 
 -(void) temporaryInsertDragCellAtIndex:(NSInteger) index{
-    
         [self.projectProxies insertObject:self.currentProject atIndex:index];
-        
+
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
         [self.collectionView insertItemsAtIndexPaths:indexPaths];
@@ -562,6 +563,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         self.currentProjectCell = nil;
         self.currentDraggableCell = nil;
     }
+    
 }
 
 -(void) handleMovedToPosition:(CGPoint) position{
@@ -576,21 +578,28 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             
             if(insertedTemporaryProject){
                 [self.projectProxies removeObjectAtIndex:self.currentDraggableCellIndex];
-                
                 NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.currentDraggableCellIndex inSection:0];
                 NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
                 [self.collectionView deleteItemsAtIndexPaths:indexPaths];
             }
             
             [self temporaryInsertDragCellAtIndex:index];
+            
             insertedTemporaryProject = YES;
             
             self.currentDraggableCellIndex = index;
+            
         }
     }
 }
 
 -(void) moved:(UIPanGestureRecognizer*) recognizer{
+    
+    // nazmus added to stop movement, if there is only one project
+    if (self.totalNumberOfProjects < 2) {
+        return;
+    }
+    ////
     
     if(self.editingScenes || self.editingOneScene){
         
@@ -639,6 +648,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     THProjectProxy * proxyCopy = [proxy copy];
     proxyCopy.name = project.name;
     [self.projectProxies insertObject:proxyCopy atIndex:index+1];
+    
+    self.totalNumberOfProjects = self.projectProxies.count; // nazmus added
 }
 
 -(void) showDuplicateMenuForCell:(THCollectionProjectCell*) cell{
@@ -725,6 +736,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             [self stopEditingScenes];
             [self updateEditButtonEnabledState];
         }
+        
+        self.totalNumberOfProjects = self.projectProxies.count; // nazmus added
     }
 }
 
