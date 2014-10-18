@@ -328,6 +328,18 @@ You should have received a copy of the GNU General Public License along with thi
     [self.firmataController sendPinQueryForPinNumbers:buf length:len];
 }
 
+-(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
+    
+    int pin=0;
+    for (int i=2; i<length-1; i++) {
+        
+        pinInfo[pin].analogChannel = buffer[i];
+        pin++;
+    }
+    
+    [self.firmataController sendCapabilitiesRequest];
+}
+
 -(void) firmataController:(IFFirmata*) firmataController didReceiveCapabilityResponse:(uint8_t*) buffer length:(NSInteger) length{
     
     for (int i=2, n=0, pin=0; i<length; i++) {
@@ -345,19 +357,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self countPins];
     [self createAnalogPinsFromBuffer:buffer length:length];
     [self sendInitialPinStateQuery];
-}
-
-
--(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
-    
-    int pin=0;
-    for (int i=2; i<length-1; i++) {
-        
-        pinInfo[pin].analogChannel = buffer[i];
-        pin++;
-    }
-    
-    [self.firmataController sendCapabilitiesRequest];
 }
 
 -(void) makePinQueryForSubsequentPinsStartingAtPin:(int) pin{
