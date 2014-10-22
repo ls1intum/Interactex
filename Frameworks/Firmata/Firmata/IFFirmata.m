@@ -110,7 +110,7 @@ www.interactex.org
         buf[len++] = 1;
     }
     
-    [self.communicationModule sendData:buf count:3];
+    [self.communicationModule sendData:buf count:6];
 }
 
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{

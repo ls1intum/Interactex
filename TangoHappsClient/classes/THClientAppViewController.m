@@ -636,7 +636,7 @@ float const kConnectingTimeout = 7.0f;
         
         id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
         
-        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber];
+        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber - 128];
         
         if(reg){
             

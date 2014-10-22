@@ -6443,6 +6443,7 @@
 				253DEC5519F0184500318D7B /* AddHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A351183167B7A6800C7484B /* Build configuration list for PBXProject "TangoHapps" */ = {
 			isa = XCConfigurationList;
