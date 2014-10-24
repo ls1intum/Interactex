@@ -523,7 +523,6 @@
 		9AC06D3A19E577440052F197 /* THHardwareComponentPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC06D3919E577440052F197 /* THHardwareComponentPaletteItem.m */; };
 		9AC06D7E19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC06D7D19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m */; };
 		9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD221800255400363CD2 /* CoreText.framework */; };
-		9AC648E519FA8D01008E5E22 /* TangoHappsUniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC648E419FA8D01008E5E22 /* TangoHappsUniTests.m */; };
 		9ACBC5EC18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
 		9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */; };
 		9AD5980819E5959900369464 /* THBoardsPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5980719E5959900369464 /* THBoardsPaletteItem.m */; };
@@ -1193,13 +1192,6 @@
 			remoteGlobalIDString = 9A17359517B11D87001DD4A4;
 			remoteInfo = BLE;
 		};
-		9AC648E619FA8D01008E5E22 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A351180167B7A6800C7484B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A351188167B7A6800C7484B;
-			remoteInfo = TangoHapps;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1834,10 +1826,6 @@
 		9AC06D7D19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THVisualProgrammingObjectPaletteItem.m; sourceTree = "<group>"; };
 		9AC06D7F19E57E280052F197 /* THVisualProgrammingObjectPaletteItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THVisualProgrammingObjectPaletteItem.h; sourceTree = "<group>"; };
 		9AC3CD221800255400363CD2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		9AC648E019FA8D00008E5E22 /* TangoHappsUniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TangoHappsUniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC648E319FA8D01008E5E22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AC648E419FA8D01008E5E22 /* TangoHappsUniTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangoHappsUniTests.m; sourceTree = "<group>"; };
-		9AC648EC19FA8DFD008E5E22 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditableObjectCommonProperties.h; sourceTree = "<group>"; };
 		9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditableObjectCommonProperties.m; sourceTree = "<group>"; };
 		9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THEditableObjectCommonProperties.xib; sourceTree = "<group>"; };
@@ -2153,13 +2141,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AC648DD19FA8D00008E5E22 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AF5FFEE167B82F70020241C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2229,7 +2210,6 @@
 			children = (
 				9A351193167B7A6800C7484B /* TangoHapps */,
 				9AF5FFF6167B82F70020241C /* TangoHappsClient */,
-				9AC648E119FA8D00008E5E22 /* TangoHappsUniTests */,
 				9A35118C167B7A6800C7484B /* Frameworks */,
 				9A35118A167B7A6800C7484B /* Products */,
 			);
@@ -2240,7 +2220,6 @@
 			children = (
 				9A351189167B7A6800C7484B /* Interactex Designer.app */,
 				9AF5FFF1167B82F70020241C /* Interactex Client.app */,
-				9AC648E019FA8D00008E5E22 /* TangoHappsUniTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3091,24 +3070,6 @@
 			name = clothes;
 			sourceTree = "<group>";
 		};
-		9AC648E119FA8D00008E5E22 /* TangoHappsUniTests */ = {
-			isa = PBXGroup;
-			children = (
-				9AC648E419FA8D01008E5E22 /* TangoHappsUniTests.m */,
-				9AC648E219FA8D01008E5E22 /* Supporting Files */,
-				9AC648EC19FA8DFD008E5E22 /* Header.h */,
-			);
-			path = TangoHappsUniTests;
-			sourceTree = "<group>";
-		};
-		9AC648E219FA8D01008E5E22 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AC648E319FA8D01008E5E22 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		9AF5000C167B83140020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -3715,24 +3676,6 @@
 			productReference = 9A351189167B7A6800C7484B /* Interactex Designer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9AC648DF19FA8D00008E5E22 /* TangoHappsUniTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9AC648E819FA8D01008E5E22 /* Build configuration list for PBXNativeTarget "TangoHappsUniTests" */;
-			buildPhases = (
-				9AC648DC19FA8D00008E5E22 /* Sources */,
-				9AC648DD19FA8D00008E5E22 /* Frameworks */,
-				9AC648DE19FA8D00008E5E22 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9AC648E719FA8D01008E5E22 /* PBXTargetDependency */,
-			);
-			name = TangoHappsUniTests;
-			productName = TangoHappsUniTests;
-			productReference = 9AC648E019FA8D00008E5E22 /* TangoHappsUniTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		9AF5FFF0167B82F70020241C /* TangoHappsClient */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AF5000A167B82F70020241C /* Build configuration list for PBXNativeTarget "TangoHappsClient" */;
@@ -3766,10 +3709,6 @@
 				TargetAttributes = {
 					9A351188167B7A6800C7484B = {
 						DevelopmentTeam = 7PLLZ436SG;
-					};
-					9AC648DF19FA8D00008E5E22 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = 9A351188167B7A6800C7484B;
 					};
 					9AF5FFF0167B82F70020241C = {
 						DevelopmentTeam = 7PLLZ436SG;
@@ -3809,7 +3748,6 @@
 			targets = (
 				9A351188167B7A6800C7484B /* TangoHapps */,
 				9AF5FFF0167B82F70020241C /* TangoHappsClient */,
-				9AC648DF19FA8D00008E5E22 /* TangoHappsUniTests */,
 			);
 		};
 /* End PBXProject section */
@@ -4551,13 +4489,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AC648DE19FA8D00008E5E22 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AF5FFEF167B82F70020241C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4878,14 +4809,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AC648DC19FA8D00008E5E22 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9AC648E519FA8D01008E5E22 /* TangoHappsUniTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AF5FFED167B82F70020241C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5002,11 +4925,6 @@
 			isa = PBXTargetDependency;
 			name = BLE;
 			targetProxy = 9AAF2843182B8AFE00531E3A /* PBXContainerItemProxy */;
-		};
-		9AC648E719FA8D01008E5E22 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9A351188167B7A6800C7484B /* TangoHapps */;
-			targetProxy = 9AC648E619FA8D01008E5E22 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5184,108 +5102,6 @@
 			};
 			name = AddHoc;
 		};
-		9AC648E919FA8D01008E5E22 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = TangoHappsUniTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
-				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
-			};
-			name = Debug;
-		};
-		9AC648EA19FA8D01008E5E22 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = TangoHappsUniTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
-				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
-			};
-			name = Release;
-		};
-		9AC648EB19FA8D01008E5E22 /* AddHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = TangoHappsUniTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
-				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
-			};
-			name = AddHoc;
-		};
 		9AF50008167B82F70020241C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5344,16 +5160,6 @@
 				9A3511A8167B7A6800C7484B /* Debug */,
 				9A3511A9167B7A6800C7484B /* Release */,
 				9A94F279169EEEE100AF52AB /* AddHoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9AC648E819FA8D01008E5E22 /* Build configuration list for PBXNativeTarget "TangoHappsUniTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9AC648E919FA8D01008E5E22 /* Debug */,
-				9AC648EA19FA8D01008E5E22 /* Release */,
-				9AC648EB19FA8D01008E5E22 /* AddHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
