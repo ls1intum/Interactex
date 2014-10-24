@@ -47,8 +47,6 @@
     
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,method3,method4,nil];
 
-    //start pure data library
-    //[self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 mixingEnabled:YES];
     audioController_ = [[PdAudioController alloc] init];
     if ([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:NO mixingEnabled:NO] != PdAudioOK) {
         NSLog(@"failed to initialize pureData audio components");
@@ -56,16 +54,6 @@
     self.dispatcher = [[PdDispatcher alloc] init];
 	[PdBase openFile:@"synthesis.pd" path:[[NSBundle mainBundle] resourcePath]];
    
-	//[self.audioController print];
-
-    /*
-    TFEvent * event0 = [TFEvent eventNamed:kEventOnChanged];
-    event0.param1 = [TFPropertyInvocation invocationWithProperty:property1 target:self];
-    TFEvent * event1 = [TFEvent eventNamed:kEventIntensityChanged];
-    event1.param1 = [TFPropertyInvocation invocationWithProperty:property2 target:self];
-
-    self.events = [NSArray arrayWithObjects:event0,event1,nil];
-     */
 }
 
 #pragma mark - Archiving

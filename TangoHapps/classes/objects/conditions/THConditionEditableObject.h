@@ -41,12 +41,13 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THCondition.h"
+#import "THProgrammingElementEditable.h"
 
 @class THConditionObject;
 @class THEventPropertyController;
 
 
-@interface THConditionEditableObject : TFEditableObject <THCondition>
+@interface THConditionEditableObject : THProgrammingElementEditable <THCondition>
 {
     THEventPropertyController * _currentProperties;
 }

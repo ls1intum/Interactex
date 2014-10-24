@@ -42,8 +42,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "THProgrammingElement.h"
 
-@interface THSound : TFAction
+@interface THSound : THProgrammingElement
 {
 }
 

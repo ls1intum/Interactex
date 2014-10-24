@@ -40,9 +40,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THActionEditable.h"
+#import "THProgrammingElementEditable.h"
 
-@interface THSoundEditable : THActionEditable
+@interface THSoundEditable : THProgrammingElementEditable
 
 -(void) play;
 

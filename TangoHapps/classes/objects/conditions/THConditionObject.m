@@ -76,16 +76,15 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
-            
-    [self loadEvents];
-    
+    if(self){
+        [self loadEvents];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder{
+-(void)encodeWithCoder:(NSCoder *)coder {
 }
 
 #pragma mark - Protocols

@@ -41,8 +41,9 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
+#import "THProgrammingElement.h"
 
-@interface THNumberValue : TFSimulableObject
+@interface THNumberValue : THProgrammingElement
 
 @property (nonatomic) float value;
 
