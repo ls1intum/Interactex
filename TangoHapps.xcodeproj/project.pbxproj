@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
 		251F674419C48F5300EF9807 /* iphoneBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674219C48F5300EF9807 /* iphoneBg.png */; };
 		251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674319C48F5300EF9807 /* iphoneBg@2x.png */; };
 		251F678419C4A1A300EF9807 /* hideVPmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678019C4A1A300EF9807 /* hideVPmode.png */; };
@@ -19,6 +20,7 @@
 		25981C8319D6BCC600DE4131 /* zoomMinus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */; };
 		25981C8419D6BCC600DE4131 /* zoomPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8019D6BCC600DE4131 /* zoomPlus.png */; };
 		25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8119D6BCC600DE4131 /* zoomPlus@2x.png */; };
+		25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B05DB019FA95C10019E431 /* TangoHappsUnitTests.m */; };
 		25E57B1519C077C6006B61A8 /* playicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1319C077C6006B61A8 /* playicon.png */; };
 		25E57B1619C077C6006B61A8 /* playicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1419C077C6006B61A8 /* playicon@2x.png */; };
 		25E57B5319C0824A006B61A8 /* stopicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5119C0824A006B61A8 /* stopicon.png */; };
@@ -737,6 +739,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		25B05DB219FA95C10019E431 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A351180167B7A6800C7484B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A351188167B7A6800C7484B;
+			remoteInfo = TangoHapps;
+		};
 		9A1FBD6E187ED71900699B61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */;
@@ -1207,6 +1216,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2517683419FB9EF30060FF83 /* THTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestsHelper.h; sourceTree = "<group>"; };
+		2517683519FB9EF30060FF83 /* THTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestsHelper.m; sourceTree = "<group>"; };
 		251F674219C48F5300EF9807 /* iphoneBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneBg.png; sourceTree = "<group>"; };
 		251F674319C48F5300EF9807 /* iphoneBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneBg@2x.png"; sourceTree = "<group>"; };
 		251F678019C4A1A300EF9807 /* hideVPmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hideVPmode.png; sourceTree = "<group>"; };
@@ -1220,6 +1231,10 @@
 		25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomMinus@2x.png"; sourceTree = "<group>"; };
 		25981C8019D6BCC600DE4131 /* zoomPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomPlus.png; sourceTree = "<group>"; };
 		25981C8119D6BCC600DE4131 /* zoomPlus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomPlus@2x.png"; sourceTree = "<group>"; };
+		25B05DAC19FA95C00019E431 /* TangoHappsUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TangoHappsUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B05DAF19FA95C10019E431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25B05DB019FA95C10019E431 /* TangoHappsUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangoHappsUnitTests.m; sourceTree = "<group>"; };
+		25B05DB819FA95F10019E431 /* ImportHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHeaders.h; sourceTree = "<group>"; };
 		25E57B1319C077C6006B61A8 /* playicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playicon.png; sourceTree = "<group>"; };
 		25E57B1419C077C6006B61A8 /* playicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playicon@2x.png"; sourceTree = "<group>"; };
 		25E57B5119C0824A006B61A8 /* stopicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopicon.png; sourceTree = "<group>"; };
@@ -2113,6 +2128,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		25B05DA919FA95C00019E431 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A351186167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2168,6 +2190,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25B05DAD19FA95C00019E431 /* TangoHappsUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				25B05DB019FA95C10019E431 /* TangoHappsUnitTests.m */,
+				25B05DAE19FA95C10019E431 /* Supporting Files */,
+			);
+			path = TangoHappsUnitTests;
+			sourceTree = "<group>";
+		};
+		25B05DAE19FA95C10019E431 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2517683419FB9EF30060FF83 /* THTestsHelper.h */,
+				2517683519FB9EF30060FF83 /* THTestsHelper.m */,
+				25B05DAF19FA95C10019E431 /* Info.plist */,
+				25B05DB819FA95F10019E431 /* ImportHeaders.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		9A1FBD6B187ED71900699B61 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2210,6 +2252,7 @@
 			children = (
 				9A351193167B7A6800C7484B /* TangoHapps */,
 				9AF5FFF6167B82F70020241C /* TangoHappsClient */,
+				25B05DAD19FA95C00019E431 /* TangoHappsUnitTests */,
 				9A35118C167B7A6800C7484B /* Frameworks */,
 				9A35118A167B7A6800C7484B /* Products */,
 			);
@@ -2220,6 +2263,7 @@
 			children = (
 				9A351189167B7A6800C7484B /* Interactex Designer.app */,
 				9AF5FFF1167B82F70020241C /* Interactex Client.app */,
+				25B05DAC19FA95C00019E431 /* TangoHappsUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3658,6 +3702,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		25B05DAB19FA95C00019E431 /* TangoHappsUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25B05DB419FA95C10019E431 /* Build configuration list for PBXNativeTarget "TangoHappsUnitTests" */;
+			buildPhases = (
+				25B05DA819FA95C00019E431 /* Sources */,
+				25B05DA919FA95C00019E431 /* Frameworks */,
+				25B05DAA19FA95C00019E431 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25B05DB319FA95C10019E431 /* PBXTargetDependency */,
+			);
+			name = TangoHappsUnitTests;
+			productName = TangoHappsUnitTests;
+			productReference = 25B05DAC19FA95C00019E431 /* TangoHappsUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9A351188167B7A6800C7484B /* TangoHapps */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A3511A7167B7A6800C7484B /* Build configuration list for PBXNativeTarget "TangoHapps" */;
@@ -3707,6 +3769,10 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Technische Universität München";
 				TargetAttributes = {
+					25B05DAB19FA95C00019E431 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 9A351188167B7A6800C7484B;
+					};
 					9A351188167B7A6800C7484B = {
 						DevelopmentTeam = 7PLLZ436SG;
 					};
@@ -3748,6 +3814,7 @@
 			targets = (
 				9A351188167B7A6800C7484B /* TangoHapps */,
 				9AF5FFF0167B82F70020241C /* TangoHappsClient */,
+				25B05DAB19FA95C00019E431 /* TangoHappsUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -4183,6 +4250,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		25B05DAA19FA95C00019E431 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A351187167B7A6800C7484B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4549,6 +4623,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		25B05DA819FA95C00019E431 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */,
+				2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A351185167B7A6800C7484B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4906,6 +4989,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		25B05DB319FA95C10019E431 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A351188167B7A6800C7484B /* TangoHapps */;
+			targetProxy = 25B05DB219FA95C10019E431 /* PBXContainerItemProxy */;
+		};
 		9A1FBD74187ED74600699B61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Firmata;
@@ -4940,6 +5028,108 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		25B05DB519FA95C10019E431 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TangoHappsUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
+				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
+			};
+			name = Debug;
+		};
+		25B05DB619FA95C10019E431 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TangoHappsUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
+				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
+			};
+			name = Release;
+		};
+		25B05DB719FA95C10019E431 /* AddHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TangoHappsUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
+				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
+			};
+			name = AddHoc;
+		};
 		9A3511A5167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5144,6 +5334,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		25B05DB419FA95C10019E431 /* Build configuration list for PBXNativeTarget "TangoHappsUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25B05DB519FA95C10019E431 /* Debug */,
+				25B05DB619FA95C10019E431 /* Release */,
+				25B05DB719FA95C10019E431 /* AddHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A351183167B7A6800C7484B /* Build configuration list for PBXProject "TangoHapps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
