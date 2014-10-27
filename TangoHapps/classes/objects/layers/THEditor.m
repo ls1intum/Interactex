@@ -1102,9 +1102,9 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     
-    if([editableObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+    /*if([editableObject isKindOfClass:[THHardwareComponentEditableObject class]]){
     NSLog(@"ed obj addded at: %f %f",editableObject.position.x,editableObject.position.y);
-    }
+    }*/
 }
 
 -(void) showVisualProgrammingObjects{

@@ -48,33 +48,33 @@
     THProject * testProject = [THTestsHelper emptyProject];
     
     ////
-    THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
+    /*THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
     [testProject addHardwareComponent:led1];
     
     THButtonEditableObject * button1 = [[THButtonEditableObject alloc] init];
     [testProject addHardwareComponent:button1];
     
-    [THTestsHelper registerActionForObject:button1 target:led1 event:kEventStartedPressing method:@"turnOn"];
+    [THTestsHelper registerActionForObject:button1 target:led1 event:kEventStartedPressing method:@"turnOn"];*/
     ////
     
     ////
-    /*THLedEditableObject * led2 = [[THLedEditableObject alloc] init];
+    THLedEditableObject * led2 = [[THLedEditableObject alloc] init];
     [testProject addHardwareComponent:led2];
     
     THTouchPadEditableObject * touchpad2 = [[THTouchPadEditableObject alloc] init];
     [testProject addiPhoneObject:touchpad2];
     
     [THTestsHelper registerActionForObject:touchpad2 target:led2 event:kEventDxChanged method:@"varyIntensity"];
-    *////
+    ////
     
     ////
-    THLedEditableObject * led3 = [[THLedEditableObject alloc] init];
+    /*THLedEditableObject * led3 = [[THLedEditableObject alloc] init];
     [testProject addHardwareComponent:led3];
     
     THLabelEditableObject * label3 = [[THLabelEditableObject alloc] init];
     [testProject addiPhoneObject:label3];
     
-    [THTestsHelper registerActionForObject:led3 target:label3 event:kEventIntensityChanged method:@"setText"];
+    [THTestsHelper registerActionForObject:led3 target:label3 event:kEventIntensityChanged method:@"setText"];*/
     ////
     
     ////
@@ -87,7 +87,7 @@
     [THTestsHelper registerActionForObject:button10 target:led10 event:kEventStartedPressing method:@"turnOn"];
     *////
     
-    [THTestsHelper startSimulation];
+    //[THTestsHelper startSimulation];
     
     THClientProject * testClientProject = [testProject nonEditableProject];
     

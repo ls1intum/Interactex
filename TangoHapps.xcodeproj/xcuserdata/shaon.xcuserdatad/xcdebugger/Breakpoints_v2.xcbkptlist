@@ -32,15 +32,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TangoHapps/classes/objects/layers/THProject.m"
+            timestampString = "436106283.041185"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "949"
+            endingLineNumber = "949"
+            landmarkName = "-addNonEditableActionPairsTo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TangoHappsUnitTests/THTestsHelper.m"
-            timestampString = "435940009.612138"
+            timestampString = "436107138.460868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "+registerActionForObject:target:event:method:"
             landmarkType = "5">
          </BreakpointContent>
