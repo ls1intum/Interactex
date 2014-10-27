@@ -169,12 +169,23 @@ static NSInteger objectCount = 1;
 }
 
 -(TFMethod*) methodNamed:(NSString*) methodName{
-    return [self.simulableObject methodNamed:methodName];
+    for (TFMethod * method in self.methods) {
+        if([method.name isEqualToString:methodName]){
+            return method;
+        }
+    }
+    return nil;
 }
 
 -(TFEvent*) eventNamed:(NSString*) eventName{
-    return [self.simulableObject eventNamed:eventName];
+    for (TFEvent * event in self.events) {
+        if([event.name isEqualToString:eventName]){
+            return event;
+        }
+    }
+    return nil;
 }
+
 
 #pragma mark - Connections
 
