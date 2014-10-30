@@ -315,10 +315,13 @@ You should have received a copy of the GNU General Public License along with thi
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
-    node.position = [editor convertToNodeSpace:position];
-    
+    //nazmus 30 Oct 2014 commented - to fix the positioning bug of node in Wire
+    //node.position = [editor convertToNodeSpace:position];
+    //nazmus 30 Oct 2014 added - to fix the positioning bug of node in Wire
+    node.position = [editor.zoomableLayer convertToNodeSpace:position];
     
     [self insertNode:node atIndex:index+1];
+    
 }
 
 -(void) insertNode:(THWireNode*) node atIndex:(NSUInteger) index{
