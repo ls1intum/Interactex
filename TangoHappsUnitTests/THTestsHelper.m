@@ -46,6 +46,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THEditor.h"
 #import "THProjectViewController.h"
 #import "THDirector.h"
+#import "THClientProject.h"
+#import "TFEventActionPair.h"
 
 @implementation THTestsHelper
 
@@ -196,6 +198,46 @@ static THEditor * _editor;
     [_editor methodSelectionPopup:popup didSelectAction:action forEvent:event];
     
     return action;
+}
+
++(THPropertySelectionPopup*) registerPropertyForObject:(TFEditableObject*) source connection:(THInvocationConnectionLine*) connection property:(NSString*) property {
+
+    THPropertySelectionPopup * popup = [[THPropertySelectionPopup alloc] init];
+    popup.object = source;
+    popup.connection = connection;
+    
+    TFProperty * propertyObject = [TFProperty propertyWithName:property andType:kDataTypeInteger];
+    [_editor propertySelectionPopup:popup didSelectProperty:propertyObject];
+    
+    return popup;
+}
+
++(int) getNumberOfEditablesInClientProject: (THClientProject *) clientProject{
+    
+    int numberOfEditableObjects = 0;
+    for (TFEventActionPair * pair in clientProject.actionPairs) {
+        
+        if([pair.event.param1.target isKindOfClass:[TFEditableObject class]]) {
+            //NSLog(@"Editable object found in event target: %@", pair.event.param1.target);
+            numberOfEditableObjects++;
+        }
+        
+        if([pair.action.source isKindOfClass:[TFEditableObject class]]) {
+            //NSLog(@"Editable object found in action source: %@", pair.action.source);
+            numberOfEditableObjects++;
+        }
+        
+        if([pair.action.target isKindOfClass:[TFEditableObject class]]) {
+            //NSLog(@"Editable object found in action target: %@", pair.action.target);
+            numberOfEditableObjects++;
+        }
+        
+        if([((TFMethodInvokeAction*)pair.action).firstParam.target isKindOfClass:[TFEditableObject class]]) {
+            //NSLog(@"Editable object found in action invoke: %@", ((TFMethodInvokeAction*)pair.action).firstParam.target);
+            numberOfEditableObjects++;
+        }
+    }
+    return numberOfEditableObjects;
 }
 
 

@@ -61,4 +61,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 +(TFMethodInvokeAction*) registerActionForObject:(TFEditableObject*) object target:(TFEditableObject*) target event:(NSString*) eventName method:(NSString*) methodName;
 
++(THPropertySelectionPopup*) registerPropertyForObject:(TFEditableObject*) source connection:(THInvocationConnectionLine*) connection property:(NSString*) property;
+
++(int) getNumberOfEditablesInClientProject: (THClientProject *) clientProject;
+
 @end

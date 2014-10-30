@@ -16,12 +16,15 @@
 #import "THLedEditableObject.h"
 #import "THTouchPadEditableObject.h"
 #import "THLabelEditableObject.h"
+#import "THiSwitchEditableObject.h"
+#import "THLightSensorEditableObject.h"
 
 #import "THEditor.h"
 #import "THProjectViewController.h"
 #import "THDirector.h"
 
 #import "THClientProject.h"
+#import "TFEventActionPair.h"
 
 @interface TangoHappsUniTests : XCTestCase
 
@@ -44,17 +47,92 @@
     [THTestsHelper stop];
 }
 
-- (void)testEqualityOfEditablesAndSimulables {
+- (void)testEditableInClientProjectWithoutParam {
     THProject * testProject = [THTestsHelper emptyProject];
     
     ////
-    /*THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
+    THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
     [testProject addHardwareComponent:led1];
     
     THButtonEditableObject * button1 = [[THButtonEditableObject alloc] init];
     [testProject addHardwareComponent:button1];
     
-    [THTestsHelper registerActionForObject:button1 target:led1 event:kEventStartedPressing method:@"turnOn"];*/
+    [THTestsHelper registerActionForObject:button1 target:led1 event:kEventStartedPressing method:@"turnOn"];
+    ////
+    
+    THClientProject * testClientProject = [testProject nonEditableProject];
+    
+    int numberOfEditableObjects = 0;
+    numberOfEditableObjects = [THTestsHelper getNumberOfEditablesInClientProject:testClientProject];
+    
+    NSLog(@"Editable objects : %d", numberOfEditableObjects);
+    XCTAssertEqual(numberOfEditableObjects, 0, @"Number of Editable objects should be 0");
+    
+}
+
+- (void)testEditableInClientProjectWithOneParam {
+    THProject * testProject = [THTestsHelper emptyProject];
+    
+    ////
+    THLedEditableObject * led2 = [[THLedEditableObject alloc] init];
+    [testProject addHardwareComponent:led2];
+    
+    THTouchPadEditableObject * touchpad2 = [[THTouchPadEditableObject alloc] init];
+    [testProject addiPhoneObject:touchpad2];
+    
+    [THTestsHelper registerActionForObject:touchpad2 target:led2 event:kEventDxChanged method:@"varyIntensity"];
+    ////
+    
+    THClientProject * testClientProject = [testProject nonEditableProject];
+    
+    int numberOfEditableObjects = 0;
+    numberOfEditableObjects = [THTestsHelper getNumberOfEditablesInClientProject:testClientProject];
+    
+    NSLog(@"Editable objects : %d", numberOfEditableObjects);
+    XCTAssertEqual(numberOfEditableObjects, 0, @"Number of Editable objects should be 0");
+    
+}
+
+- (void)testEditableInClientProjectWithExternalParam {
+    THProject * testProject = [THTestsHelper emptyProject];
+    
+    ////
+    
+    THLedEditableObject * led3 = [[THLedEditableObject alloc] init];
+    [testProject addHardwareComponent:led3];
+    
+    THLightSensorEditableObject * light3 = [[THLightSensorEditableObject alloc] init];
+    [testProject addHardwareComponent:light3];
+    
+    
+    THiSwitchEditableObject * iSwitch3 = [[THiSwitchEditableObject alloc] init];
+    [testProject addiPhoneObject:iSwitch3];
+    
+    [THTestsHelper registerActionForObject:iSwitch3 target:led3 event:@"switchOn" method:@"varyIntensity"];
+    [THTestsHelper registerPropertyForObject:light3 connection:(THInvocationConnectionLine*)[testProject.invocationConnections objectAtIndex:0] property:@"light"];
+    ////
+    
+    THClientProject * testClientProject = [testProject nonEditableProject];
+    
+    int numberOfEditableObjects = 0;
+    numberOfEditableObjects = [THTestsHelper getNumberOfEditablesInClientProject:testClientProject];
+    
+    NSLog(@"Editable objects : %d", numberOfEditableObjects);
+    XCTAssertEqual(numberOfEditableObjects, 0, @"Number of Editable objects should be 0");
+    
+}
+
+- (void)testEqualityOfEditablesAndSimulables {
+    THProject * testProject = [THTestsHelper emptyProject];
+    
+    ////
+    THLedEditableObject * led1 = [[THLedEditableObject alloc] init];
+    [testProject addHardwareComponent:led1];
+    
+    THButtonEditableObject * button1 = [[THButtonEditableObject alloc] init];
+    [testProject addHardwareComponent:button1];
+    
+    [THTestsHelper registerActionForObject:button1 target:led1 event:kEventStartedPressing method:@"turnOn"];
     ////
     
     ////
@@ -68,24 +146,14 @@
     ////
     
     ////
-    /*THLedEditableObject * led3 = [[THLedEditableObject alloc] init];
+    THLedEditableObject * led3 = [[THLedEditableObject alloc] init];
     [testProject addHardwareComponent:led3];
     
     THLabelEditableObject * label3 = [[THLabelEditableObject alloc] init];
     [testProject addiPhoneObject:label3];
     
-    [THTestsHelper registerActionForObject:led3 target:label3 event:kEventIntensityChanged method:@"setText"];*/
+    [THTestsHelper registerActionForObject:led3 target:label3 event:kEventIntensityChanged method:@"setText"];
     ////
-    
-    ////
-    /*THLedEditableObject * led10 = [[THLedEditableObject alloc] init];
-    [testProject addHardwareComponent:led10];
-    
-    THButtonEditableObject * button10 = [[THButtonEditableObject alloc] init];
-    [testProject addHardwareComponent:button10];
-    
-    [THTestsHelper registerActionForObject:button10 target:led10 event:kEventStartedPressing method:@"turnOn"];
-    *////
     
     //[THTestsHelper startSimulation];
     
@@ -104,16 +172,7 @@
             numberOfSimulableObjects++;
         }
     }
-    
-    //XCTAssertFalse(led.on, @"led should be off here");
-    //[led turnOn];
-    //[button handleTouchBegan];
-    //XCTAssertTrue(led.on, @"led should be on here");
-    
-    //XCTAssertEqual(led2.intensity, 255 , @"led should have default intensity here");
-    //touchpad2.dx = -5;
-    //XCTAssertEqual(led2.intensity, 250, @"led intensity should be 250 here");
-    
+
     NSLog(@"Edi, Simu : %d = %d", numberOfEditableObjects, numberOfSimulableObjects);
     XCTAssertEqual(numberOfEditableObjects, numberOfSimulableObjects, @"Number of Editable and simulable objects should be equal");
     
