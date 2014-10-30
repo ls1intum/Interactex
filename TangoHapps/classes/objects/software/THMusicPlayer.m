@@ -273,6 +273,21 @@ NSString * const kPauseImageName = @"pause.png";
     _musicPlayer.volume = volume;
     #else
     
+    //// nazmus 30 Oct 14 - added
+    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
+    
+    //find the volumeSlider
+    UISlider* volumeViewSlider = nil;
+    for (UIView *view in [volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    
+    [volumeViewSlider setValue:volume animated:YES];
+    ////
+    
 #endif
 }
 
