@@ -168,6 +168,7 @@
         }
     }
     
+    
     for (THOutputEditable * obj in _outputs) {
         THOutputEditable* cop = [obj copy];
         [copy attachOutput:cop];
@@ -201,14 +202,19 @@
     }
     
     for (THInvocationConnectionLine * line in _connections) {
+        //Hier liegt der Fehler, Stürtzt mit Verbindung nur ab, wenn offen beim speichern, Verbindungen nicht mitgespeicher (Funktioniert aber und taucht auf)
         [project addInvocationConnection:line animated:YES];
+        
         TFEvent* event;
         for (TFEvent * ev in line.obj1.events) {
-           if (line.event.name == ev.name)
-               event = ev;
+            if (line.event.name == ev.name)
+                event = ev;
         }
+
         [project registerAction:(TFAction*)line.action forEvent:event];
     }
+    
+    [_connections removeAllObjects];
     
     return copy;
 }
