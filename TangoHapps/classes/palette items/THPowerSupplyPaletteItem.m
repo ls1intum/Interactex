@@ -63,7 +63,6 @@
 
 - (void)dropAt:(CGPoint)location {
     
-    
     location = [TFHelper ConvertToCocos2dView:location];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;

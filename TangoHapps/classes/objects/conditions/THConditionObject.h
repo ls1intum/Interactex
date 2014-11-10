@@ -41,10 +41,10 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
-
 #import "THCondition.h"
+#import "THProgrammingElement.h"
 
-@interface THConditionObject : TFSimulableObject <THCondition>
+@interface THConditionObject : THProgrammingElement <THCondition>
 {
 }
 

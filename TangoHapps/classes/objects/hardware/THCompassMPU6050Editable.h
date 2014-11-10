@@ -42,6 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THHardwareComponentEditableObject.h"
 #import <CoreLocation/CoreLocation.h>
+#import "THI2CProtocol.h"
 
 @interface THCompassMPU6050Editable : THHardwareComponentEditableObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
     CCSprite * _accelerometerBall;

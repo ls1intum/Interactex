@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientAppDelegate.h"
 #import "THClientScene.h"
 #import "THClientProjectProxy.h"
-#import "THClientConnectionController.h"
+#import "THClientConnectionController2.h"
 
 @implementation THClientAppDelegate
 
@@ -60,8 +60,8 @@ You should have received a copy of the GNU General Public License along with thi
         
     }
     
-    self.connectionController = [[THClientConnectionController alloc] init];
-    
+    self.connectionController = [[THClientConnectionController2 alloc] init];
+
     //[self generateRandomScenes];
     
     // Override point for customization after application launch.
@@ -94,6 +94,8 @@ You should have received a copy of the GNU General Public License along with thi
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     
     
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    
     [THClientScene persistScenes:self.projectProxies];
     
     [self.connectionController stopClient];
@@ -103,18 +105,25 @@ You should have received a copy of the GNU General Public License along with thi
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
-    [self.connectionController startClient];
+    //[self.connectionController startClient];
+    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //if([UINavigationController ])
+    //[self.connectionController startClient];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

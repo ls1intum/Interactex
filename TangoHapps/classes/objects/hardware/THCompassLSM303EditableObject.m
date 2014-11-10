@@ -52,6 +52,9 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THCompassLSM303EditableObject
 
 -(void) loadCompass{
+    
+    self.isI2CComponent = YES;
+    
     self.sprite = [CCSprite spriteWithFile:@"LSMCompass.png"];
     [self addChild:self.sprite];
     

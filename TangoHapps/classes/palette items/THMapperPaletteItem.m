@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THMapperEditable * mapper = [[THMapperEditable alloc] init];
-    mapper.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addValue:mapper];
+    [self handleObjectDropped:mapper atLocation:location];
 }
 
 @end

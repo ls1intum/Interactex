@@ -119,13 +119,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)initWithCoder:(NSCoder *)decoder{
     self = [super initWithCoder:decoder];
-    self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
-    self.red = [decoder decodeIntegerForKey:@"red"];
-    self.green = [decoder decodeIntegerForKey:@"green"];
-    self.blue = [decoder decodeIntegerForKey:@"blue"];
-    
-    [self loadThreeColorLed];
-    
+    if(self){
+        self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
+        self.red = [decoder decodeIntegerForKey:@"red"];
+        self.green = [decoder decodeIntegerForKey:@"green"];
+        self.blue = [decoder decodeIntegerForKey:@"blue"];
+        
+        [self loadThreeColorLed];
+    }
     return self;
 }
 

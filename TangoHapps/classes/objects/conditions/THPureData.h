@@ -10,8 +10,9 @@
 #import "PdAudioController.h"
 #import "PdBase.h"
 #import "PdDispatcher.h"
+#import "THProgrammingElement.h"
 
-@interface THPureData : TFAction
+@interface THPureData : THProgrammingElement
 {
 }
 

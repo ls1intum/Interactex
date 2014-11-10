@@ -48,10 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THSoundEditable * sound = [[THSoundEditable alloc] init];
-    sound.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addAction:sound];
+    [self handleObjectDropped:sound atLocation:location];
 }
 
 @end

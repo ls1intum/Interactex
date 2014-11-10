@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THCompassLSM303EditableObject * compass = [[THCompassLSM303EditableObject alloc] init];
-    compass.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:compass];
+    [self addHardwareComponentToProject:compass atLocation:location];
 }
 
 @end

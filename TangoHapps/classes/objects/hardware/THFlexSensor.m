@@ -10,9 +10,6 @@
 #import "THElementPin.h"
 
 @implementation THFlexSensor
-@dynamic plusPin;
-
-float const kMaxFlexSensorValue = 1023;
 
 #pragma mark - Initialization
 
@@ -39,7 +36,7 @@ float const kMaxFlexSensorValue = 1023;
 
 -(void) loadPins{
     
-    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
+    //THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
     //pin1.hardware = self;
     THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
     //pin2.hardware = self;
@@ -47,7 +44,7 @@ float const kMaxFlexSensorValue = 1023;
     //pin3.hardware = self;
     pin3.defaultBoardPinMode = kPinModeAnalogInput;
     
-    [self.pins addObject:pin1];
+    //[self.pins addObject:pin1];
     [self.pins addObject:pin2];
     [self.pins addObject:pin3];
 }
@@ -105,7 +102,6 @@ float const kMaxFlexSensorValue = 1023;
     THElementPin * pin = self.plusPin;
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     lilypadPin.value = self.value;
-    
 }
 
 -(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue{
@@ -139,7 +135,7 @@ float const kMaxFlexSensorValue = 1023;
 }
 
 -(void) setValue:(NSInteger)value{
-    value = [THClientHelper Constrain:value min:0 max:kMaxFlexSensorValue];
+    value = [THClientHelper Constrain:value min:0 max:kMaxAnalogValue];
     if(value != _value){
         _value = value;
         //NSLog(@"new val: %d",_value);

@@ -12,7 +12,7 @@
 
 @interface THFlexSensorEditable : THHardwareComponentEditableObject {
     float _value;
-    float _touchDownIntensity;
+    float _bendIntensity;
     CCLabelTTF * _valueLabel;
 }
 

@@ -60,10 +60,10 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         self.isTouchEnabled = YES;
         self.isAccelerometerEnabled = YES;
-
-        //_zoomableLayer.contentSize = self.contentSize;
-
-        //[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0f/30.0f];
+        
+        CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 252)];
+        //CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
+        [self addChild:colorLayer z:-100];
     }
     return self;
 }

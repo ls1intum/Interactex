@@ -41,7 +41,8 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THPaletteItem.h"
+#import "THBoardsPaletteItem.h"
 
-@interface THLilypadPaletteItem : THPaletteItem
+@interface THLilypadPaletteItem : THBoardsPaletteItem
 
 @end

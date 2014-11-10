@@ -40,6 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
+//this file contains all the constants shard between the designer and the client
 #import <Foundation/Foundation.h>
 
 
@@ -58,7 +59,7 @@ typedef enum {
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
 
-#define kNumHardwareTypes 13
+#define kNumHardwareTypes 15
 #define kMaxNumPinsPerElement 5
 
 typedef enum{
@@ -140,6 +141,8 @@ typedef enum{
 } THIPhoneType;
 
 extern CGRect const kiPhoneFrames[kNumiPhoneTypes];
+extern float const kiphoneFrameXMargin;
+extern float const kiphoneFrameYMargin;
 
 typedef enum{
     kI2CComponentTypeLSM,
@@ -248,3 +251,17 @@ extern NSInteger const kLilypadPwmPins[kLilypadNumPwmPins];
 extern float const kGraphViewGraphOffsetY;
 extern CGSize const kGraphViewAxisLabelSize;
 extern float const kGraphViewAxisLineWidth;
+
+extern NSString * const kConnectionServiceType;
+
+typedef enum {
+    THCommunicationMsgTransferProjectName,
+    THCommunicationMsgTransferProject,
+    THCommunicationMsgTransferAsset
+    
+} THCommunicationMsg;
+
+
+extern const float kShakingEffectAngleInRadians;
+extern const float kShakingEffectRotationTime;
+extern const float kProjectCellScaleEffectDuration;

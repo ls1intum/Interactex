@@ -53,7 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 @property (nonatomic, strong) NSMutableArray * pins;
-@property (nonatomic) BOOL isInputObject;
+@property (nonatomic) BOOL isI2CComponent;
 
 -(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue;
 

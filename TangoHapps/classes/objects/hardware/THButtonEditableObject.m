@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadSprite{
     
     self.sprite = [CCSprite spriteWithFile:@"button.png"];
-    [self addChild:self.sprite z:1];
+    [self addChild:self.sprite]; // nazmus  z:1
 }
 
 -(id) init{

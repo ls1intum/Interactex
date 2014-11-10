@@ -51,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 float const kBuzzerMaxFrequency = 20000;
 float const kBuzzerMinFrequency = 20;
 
--(void) load{
+-(void) loadBuzzer{
         
     TFProperty * property1 = [TFProperty propertyWithName:@"frequency" andType:kDataTypeFloat];
     TFProperty * property2 = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
@@ -93,7 +93,7 @@ float const kBuzzerMinFrequency = 20;
 -(id) init{
     self = [super init];
     if(self){
-        [self load];
+        [self loadBuzzer];
         [self loadPins];
         
         self.frequency = 2500;
@@ -105,10 +105,11 @@ float const kBuzzerMinFrequency = 20;
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self load];
-    
-    self.frequency = [decoder decodeFloatForKey:@"frequency"];
-    
+    if(self){
+        [self loadBuzzer];
+        
+        self.frequency = [decoder decodeFloatForKey:@"frequency"];
+    }
     return self;
 }
 

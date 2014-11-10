@@ -41,7 +41,8 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <UIKit/UIKit.h>
+#import "THVisualProgrammingObjectPaletteItem.h"
 
-@interface THSoundPaletteItem : THPaletteItem
+@interface THSoundPaletteItem : THVisualProgrammingObjectPaletteItem
 
 @end

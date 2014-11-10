@@ -61,7 +61,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     TFEvent * event0 = [TFEvent eventNamed:kEventOnChanged];
     event0.param1 = [TFPropertyInvocation invocationWithProperty:property1 target:self];
-    TFEvent * event1 = [TFEvent eventNamed:kEventIntensityChanged];
+    TFEvent * event1 = [TFEvent eventNamed:kEventFrequencyChanged];
     event1.param1 = [TFPropertyInvocation invocationWithProperty:property2 target:self];
     TFEvent * event2 = [TFEvent eventNamed:kEventTurnedOn];
     TFEvent * event3 = [TFEvent eventNamed:kEventTurnedOff];
@@ -157,7 +157,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOn {
     if(!self.on){
-        NSLog(@"vibe on");
         self.on = YES;
         
         [self triggerEventNamed:kEventTurnedOn];
@@ -166,7 +165,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOff {
     if(self.on){
-        NSLog(@"vibe off");
         self.on = NO;
         
         [self triggerEventNamed:kEventTurnedOff];

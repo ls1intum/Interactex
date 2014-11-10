@@ -221,7 +221,7 @@ int open_soundfile_via_fd(int fd, int headersize,
     else
     {
         char buf[OBUFSIZE];
-        int bytesread = read(fd, buf, READHDRSIZE);
+        int bytesread = (int)read(fd, buf, READHDRSIZE);
         int format;
         if (bytesread < 4)
             goto badheader;

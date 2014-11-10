@@ -40,10 +40,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THTriggerEditable.h"
 #import "THTimer.h"
+#import "THProgrammingElementEditable.h"
 
-@interface THTimerEditable : THTriggerEditable
+@interface THTimerEditable : THProgrammingElementEditable
 
 
 @property (nonatomic) float frequency;

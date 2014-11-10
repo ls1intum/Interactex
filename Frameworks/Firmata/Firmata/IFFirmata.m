@@ -110,7 +110,7 @@ www.interactex.org
         buf[len++] = 1;
     }
     
-    [self.communicationModule sendData:buf count:3];
+    [self.communicationModule sendData:buf count:6];
 }
 
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
@@ -211,6 +211,15 @@ www.interactex.org
      
      [self.bleService sendData:buf count:9];
      }*/
+}
+
+-(void) sendReportRequestsForDigitalPin:(NSInteger) pin reports:(BOOL) reports{
+    
+    uint8_t buf[2];
+    buf[0] = 0xD0 | (pin/8);
+    buf[1] = reports;
+    
+    [self.communicationModule sendData:buf count:2];
 }
 
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports{
@@ -316,10 +325,10 @@ www.interactex.org
         
         int portNum = (parseBuf[0] & 0x0F);
         int portVal = parseBuf[1] | (parseBuf[2] << 7);
-        int port = portNum * 8;
+        //int port = portNum * 8;
         
         if([self.delegate respondsToSelector:@selector(firmataController:didReceiveDigitalMessageForPort:value:)]){ 
-            [self.delegate firmataController:self didReceiveDigitalMessageForPort:port value:portVal];
+            [self.delegate firmataController:self didReceiveDigitalMessageForPort:portNum value:portVal];
         }
         
 	} else if (parseBuf[0] == START_SYSEX && parseBuf[parseCount-1] == END_SYSEX) {
@@ -372,7 +381,7 @@ www.interactex.org
 
 -(void) cleanAddedBytes:(uint8_t *)buffer lenght:(NSInteger*)originalLength{
     
-    int length = *originalLength;
+    NSInteger length = *originalLength;
     
     //remove all END_SYSEX messages at the end of the buffer
     for (int i = 15; i >= 0; i--) {
@@ -400,26 +409,26 @@ www.interactex.org
 }
 
 -(void) didReceiveData:(uint8_t *)buffer lenght:(NSInteger)originalLength{
-    
+    /*
     printf("before:\n");
     for (int i = 0 ; i < originalLength; i++) {
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n");
+    printf("\n");*/
     
     if(self.communicationModule.usesFillBytes){
         [self cleanAddedBytes:buffer lenght:&originalLength];
     }
     
     NSInteger length = originalLength;
-    
+    /*
     printf("receiving:\n");
     for (int i = 0 ; i < length; i++) {
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n");
+    printf("\n");*/
     
     for (int i = 0 ; i < length; i++) {
         uint8_t value = buffer[i];

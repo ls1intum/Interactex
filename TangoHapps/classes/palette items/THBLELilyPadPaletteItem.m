@@ -47,10 +47,8 @@
 
 - (void)dropAt:(CGPoint)location {
     THBLELilyPadEditable * bleLilypad = [[THBLELilyPadEditable alloc] init];
-    bleLilypad.position = location;
+    [self handleObjectDropped:bleLilypad atLocation:location];
     
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addBoard:bleLilypad];
 }
 
 @end

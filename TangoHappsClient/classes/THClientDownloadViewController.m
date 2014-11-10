@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientAppDelegate.h"
 
 const NSTimeInterval kMinInstallationDuration = 1.0f;
-const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
+const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 
 @implementation THClientDownloadViewController
 
@@ -54,6 +54,7 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -69,11 +70,15 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 -(void) viewWillAppear:(BOOL)animated{
     
     [self.connectionController startClient];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self.connectionController selector:@selector(startClient) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self.connectionController stopClient];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,7 +91,10 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
 #pragma mark - ConnectionController Delegate
 
 -(void) increaseInstallationProgress{
+    NSLog(@"progress to %f",self.progressBar.progress);
+    
     if(self.progressBar.progress >= 1.0f){
+
         [installationProgressTimer invalidate];
         installationProgressTimer = nil;
         
@@ -94,13 +102,19 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     }
     
     float progress = self.progressBar.progress + 0.01;
+
+    
     self.progressBar.progress += progress;
 }
 
 -(void) animateProjectInstallationWithDuration:(float) duration{
     installationUpdateRate = kIconInstallationUpdateFrequency / duration;
     
-    installationProgressTimer = [NSTimer scheduledTimerWithTimeInterval:kIconInstallationUpdateFrequency target:self selector:@selector(increaseInstallationProgress) userInfo:nil repeats:YES];
+    NSLog(@"firign after %f secs",installationUpdateRate);
+    
+    installationProgressTimer = [NSTimer scheduledTimerWithTimeInterval:installationUpdateRate target:self selector:@selector(increaseInstallationProgress) userInfo:nil repeats:YES];
+    
+//    [installationProgressTimer fire];
 }
 
 -(void) handleFinishedInstallingProject{
@@ -151,5 +165,8 @@ const float kIconInstallationUpdateFrequency = 1.0f/30.0f;
     //sceneBeingInstalled.progressBar.progress = progress;
 }
 
+-(void) didReceiveAssets:(THAssetCollection *)assets{
+    
+}
 
 @end

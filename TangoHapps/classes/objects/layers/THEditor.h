@@ -94,7 +94,6 @@ typedef enum {
 @property (nonatomic, strong) THPaletteItem * currentPaletteItem;
 @property (nonatomic) TFGestureState gestureState;
 @property (nonatomic) float zoomLevel;
-@property (nonatomic) CGPoint displacement;
 @property (nonatomic) CCLayer * zoomableLayer;
 @property (nonatomic, weak) THEditorToolsViewController * editorToolsController;
 @property (nonatomic, strong) TFConnectionLine * currentConnection;
@@ -121,5 +120,7 @@ typedef enum {
 
 //wires lilypad mode
 -(void) updateWiresVisibility;
+
+//zooming
 
 @end

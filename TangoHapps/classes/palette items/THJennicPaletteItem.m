@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THJennicEditable * yannic = [[THJennicEditable alloc] init];
-    yannic.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addBoard:yannic];
+    [self handleObjectDropped:yannic atLocation:location];
 }
 
 @end

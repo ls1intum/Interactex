@@ -50,7 +50,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     //[self.firmataController stopReportingI2CComponents];
     //[self.firmataController stopReportingAnalogPins];
-    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+    if([BLEDiscovery sharedInstance].connectedService){
+        [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

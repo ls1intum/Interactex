@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THGrouperConditionEditable * condition = [[THGrouperConditionEditable alloc] init];
-    condition.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addCondition:condition];
+    [self handleObjectDropped:condition atLocation:location];
 }
 
 @end

@@ -164,13 +164,13 @@ NSString * const kPureDataProjectName = @"PureData";
     [project registerAction:turnOff forEvent:event2];
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a LED to pin 4";
+    label.text = @"connect a LED to pin 13";
     label.position = CGPointMake(150, 100);
     label.width = 200;
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label,nil];
     
-    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:4];
+    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:13];
     lilypinled.mode = kPinModeDigitalOutput;
     THElementPin * ledpin = [led.pins objectAtIndex:1];
     [lilypinled attachPin:ledpin];
@@ -219,7 +219,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [project registerAction:turnOff2 forEvent:event2];
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"LED to pin 4, button to pin 5";
+    label.text = @"LED to pin 13, button to pin 12";
     label.position = CGPointMake(170, 100);
     label.width = 240;
     label.height = 80;
@@ -228,13 +228,13 @@ NSString * const kPureDataProjectName = @"PureData";
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:button,button2,label, nil];
     
     //pins
-    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:4];
+    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:13];
     lilypinled.mode = kPinModeDigitalOutput;
     THElementPin * ledpin = [led.pins objectAtIndex:1];
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:5];
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:12];
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
@@ -265,7 +265,7 @@ NSString * const kPureDataProjectName = @"PureData";
     touchpad.position = CGPointMake(150, 300);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a Buzzer to pin 10";
+    label.text = @"connect a Buzzer to pin 5";
     label.position = CGPointMake(150, 50);
     label.width = 250;
     
@@ -294,7 +294,7 @@ NSString * const kPureDataProjectName = @"PureData";
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.boards = [NSMutableArray arrayWithObject:lilypad];
     
-    THBoardPin * lilypinBuzzer = [lilypad digitalPinWithNumber:10];
+    THBoardPin * lilypinBuzzer = [lilypad digitalPinWithNumber:5];
     lilypinBuzzer.mode = kPinModePWM;
     THElementPin * buzzerPin = [buzzer.pins objectAtIndex:0];
     [lilypinBuzzer attachPin:buzzerPin];
@@ -317,7 +317,7 @@ NSString * const kPureDataProjectName = @"PureData";
     project.hardwareComponents = [NSMutableArray arrayWithObjects:led,nil];
     
     //pins
-    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:9];
+    THBoardPin * lilypinled = [lilypad digitalPinWithNumber:13];
     lilypinled.mode = kPinModePWM;
     THElementPin * ledpin = [led.pins objectAtIndex:1];
     [lilypinled attachPin:ledpin];
@@ -327,7 +327,7 @@ NSString * const kPureDataProjectName = @"PureData";
     touchpad.position = CGPointMake(150, 200);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a LED to pin 9";
+    label.text = @"connect a LED to pin 13";
     label.position = CGPointMake(150, 50);
     label.width = 200;
     
@@ -478,7 +478,7 @@ NSString * const kPureDataProjectName = @"PureData";
     monitor.position = CGPointMake(160, 250);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a LSM303 Compass";
+    label.text = @"connect a LSM303 Compass over I2C";
     label.position = CGPointMake(160, 50);
     label.width = 300;
     
@@ -581,7 +581,7 @@ NSString * const kPureDataProjectName = @"PureData";
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,button, nil];
     
     THPureData * pureData = [[THPureData alloc] init];
-    project.actions = [NSMutableArray arrayWithObjects:pureData, nil];
+    project.visualProgrammingObjects = [NSMutableArray arrayWithObjects:pureData, nil];
     
     //start playing action
     TFMethod * startMethod = [pureData.methods objectAtIndex:2];

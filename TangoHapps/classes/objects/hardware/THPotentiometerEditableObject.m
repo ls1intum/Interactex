@@ -57,12 +57,10 @@ You should have received a copy of the GNU General Public License along with thi
     
     CGSize size = CGSizeMake(75, 20);
     
+    _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
     
-    //_valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
-        _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
-    
-    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-50);
+    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
+    _valueLabel.color = kDefaultSimulationLabelColor;
     _valueLabel.visible = NO;
     [self addChild:_valueLabel z:1];
     
@@ -84,11 +82,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadPotentiometer];
+    if(self){
+        [self loadPotentiometer];
+    }
     
     return self;
 }
@@ -140,16 +139,15 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) update{
     
     if(self.isDown){
-        _touchDownIntensity += 2.0f;
+        _touchDownIntensity += kDefaultAnalogSimulationIncrease;
     } else {
-        _touchDownIntensity -= 1.0f;
+        _touchDownIntensity -= kDefaultAnalogSimulationIncrease;
     }
-    _touchDownIntensity = [THClientHelper Constrain:_touchDownIntensity min:0 max:kMaxPotentiometerValue];
+    _touchDownIntensity = [THClientHelper Constrain:_touchDownIntensity min:0 max:kMaxAnalogValue];
     
     THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
     potentiometer.value = _touchDownIntensity;
     _valueLabel.string = [NSString stringWithFormat:@"%d",potentiometer.value];
-    //potentiometer.opacity = _touchDownIntensity;
 }
 
 -(NSInteger) value{
@@ -191,15 +189,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setNotifyBehavior:(THSensorNotifyBehavior)notifyBehavior{
     THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
     potentiometer.notifyBehavior = notifyBehavior;
-}
-
--(void) handleRotation:(float) degree{
-    
-    THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
-    _value += degree*10;
-
-    _value = [THClientHelper Constrain:_value min:0 max:kMaxPotentiometerValue];
-    potentiometer.value = (NSInteger) _value;
 }
 
 -(void) willStartEdition{

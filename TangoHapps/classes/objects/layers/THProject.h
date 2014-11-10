@@ -46,8 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 @class THiPhoneEditableObject;
 @class THViewEditableObject;
 @class THClothe;
-@class THGestureEditableObject;
-@class THGestureLayer;
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
 @class THClientProject;
@@ -64,7 +62,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class TFEvent;
 @class TFSimulableObject;
 
-@interface THProject : NSObject
+@interface THProject : NSObject <NSCoding>
 {
     
 }
@@ -109,8 +107,6 @@ You should have received a copy of the GNU General Public License along with thi
 //pin
 -(void) pinClotheObject:(THHardwareComponentEditableObject*) clotheObject toClothe:(THClothe*) clothe;
 -(void) unpinClotheObject:(THHardwareComponentEditableObject*) clotheObject;
--(void) pinGestureObject:(TFEditableObject*) gestureObject toGesture:(THGestureEditableObject*) gesture;
--(void) unpinGestureObject:(TFEditableObject*) gestureObject;
 
 //iPhone
 -(void) addiPhone:(THiPhoneEditableObject *)iPhone;
@@ -133,44 +129,20 @@ You should have received a copy of the GNU General Public License along with thi
 -(THHardwareComponentEditableObject*) hardwareComponentAtLocation:(CGPoint) location;
 -(void) tryAttachClotheObject: (THHardwareComponentEditableObject*) clotheObject;
 
-//gestureObjects
--(TFEditableObject*) gestAtLocation:(CGPoint) location;
--(void) tryAttachGestureObject: (TFEditableObject*) gestureObject;
-
 //other hardware components
 -(void) addOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
 -(void) removeOtherHardwareComponent:(THHardwareComponentEditableObject*) hardwareComponent;
 -(THHardwareComponentEditableObject*) otherHardwareComponentAtLocation:(CGPoint) location;
-
-//gestures
--(void) addGesture:(TFEditableObject*) object;
--(void) removeGesture:(TFEditableObject*) object;
--(NSMutableArray*) gestureAtLocation:(CGPoint) location;
 
 //clothes
 -(void) addClothe:(THClothe*) object;
 -(void) removeClothe:(THClothe*) object;
 -(THClothe*) clotheAtLocation:(CGPoint) location;
 
-//condition
--(void) addCondition:(TFEditableObject*) condition;
--(void) removeCondition:(TFEditableObject*) condition;
--(TFEditableObject*) conditionAtLocation:(CGPoint) location;
-
 //values
--(void) addValue:(TFEditableObject*) condition;
--(void) removeValue:(TFEditableObject*) condition;
--(TFEditableObject*) valueAtLocation:(CGPoint) location;
-
-//triggers
--(void) addTrigger:(TFEditableObject*) trigger;
--(void) removeTrigger:(TFEditableObject*) trigger;
--(TFEditableObject*) triggerAtLocation:(CGPoint) location;
-
-//actions
--(void) addAction:(TFEditableObject*) action;
--(void) removeAction:(TFEditableObject*) action;
--(TFEditableObject*) actionAtLocation:(CGPoint) location;
+-(void) addVisualProgrammingObject:(TFEditableObject*) condition;
+-(void) removeVisualProgrammingObject:(TFEditableObject*) condition;
+-(TFEditableObject*) visualProgrammingObjectAtLocation:(CGPoint) location;
 
 //wires
 -(void) addWire:(THWire*) wire;
@@ -195,19 +167,13 @@ You should have received a copy of the GNU General Public License along with thi
 //non editable project
 -(THClientProject*) nonEditableProject;
 
--(TFEditableObject*) editableForSimulable:(TFSimulableObject*) object;
-
 @property (nonatomic,readonly) THiPhoneEditableObject * iPhone;
 @property (nonatomic,readonly) NSMutableArray * boards;
 @property (nonatomic,readonly) NSMutableArray * hardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * otherHardwareComponents;
-@property (nonatomic,readonly) NSMutableArray * gestures;
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;
-@property (nonatomic,readonly) NSMutableArray * conditions;
-@property (nonatomic,readonly) NSMutableArray * values;
-@property (nonatomic,readonly) NSMutableArray * triggers;
-@property (nonatomic,readonly) NSMutableArray * actions;
+@property (nonatomic,readonly) NSMutableArray * visualProgrammingObjects;
 @property (nonatomic, readonly) NSMutableArray * wires;
 @property (nonatomic, readonly) NSMutableArray * invocationConnections;
 

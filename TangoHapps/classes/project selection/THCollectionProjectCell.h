@@ -42,10 +42,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <UIKit/UIKit.h>
 
-extern const float kShakingEffectAngleInRadians;
-extern const float kShakingEffectRotationTime;
-extern const float kProjectCellScaleEffectDuration;
-
 @class THCollectionProjectCell;
 
 @protocol THProjectCellDelegate <NSObject>

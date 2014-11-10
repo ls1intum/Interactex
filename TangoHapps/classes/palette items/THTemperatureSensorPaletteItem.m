@@ -48,10 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THTemperatureSensorEditable * temperatureSensor = [[THTemperatureSensorEditable alloc] init];
-    temperatureSensor.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:temperatureSensor];
+    [self addHardwareComponentToProject:temperatureSensor atLocation:location];
 }
 
 @end

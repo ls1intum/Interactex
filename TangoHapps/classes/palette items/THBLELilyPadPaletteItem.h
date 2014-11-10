@@ -41,7 +41,8 @@
  */
 
 #import "THPaletteItem.h"
+#import "THBoardsPaletteItem.h"
 
-@interface THBLELilyPadPaletteItem : THPaletteItem
+@interface THBLELilyPadPaletteItem : THBoardsPaletteItem
 
 @end

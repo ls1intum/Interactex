@@ -48,7 +48,10 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)dropAt:(CGPoint)location {
 
     THClothe * clothe = [[THClothe alloc] initWithName:self.name];
-    clothe.position = location;
+    
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    CGPoint position = [editor.zoomableLayer convertToNodeSpace:location];
+    clothe.position = position;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addClothe:clothe];

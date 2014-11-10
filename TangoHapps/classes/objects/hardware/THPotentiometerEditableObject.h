@@ -44,7 +44,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THPotentiometerEditableObject : THHardwareComponentEditableObject {
     float _value;
-    UIRotationGestureRecognizer * _rotationRecognizer;
     float _touchDownIntensity;
     CCLabelTTF * _valueLabel;
 }

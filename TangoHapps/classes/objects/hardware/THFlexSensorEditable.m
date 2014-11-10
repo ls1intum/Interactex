@@ -22,11 +22,10 @@
     
     CGSize size = CGSizeMake(75, 20);
     
-    //_valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
     _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
     
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-50);
+    _valueLabel.color = kDefaultSimulationLabelColor;
     _valueLabel.visible = NO;
     [self addChild:_valueLabel z:1];
     
@@ -80,15 +79,15 @@
 #pragma mark - Pins
 
 -(THElementPinEditable*) minusPin{
-    return [self.pins objectAtIndex:1];
+    return [self.pins objectAtIndex:0];
 }
 
 -(THElementPinEditable*) analogPin{
-    return [self.pins objectAtIndex:2];
+    return [self.pins objectAtIndex:1];
 }
 
 -(THElementPinEditable*) plusPin{
-    return [self.pins objectAtIndex:0];
+    return nil;
 }
 
 #pragma mark - Methods
@@ -104,14 +103,14 @@
 -(void) update{
     
     if(self.isDown){
-        _touchDownIntensity += 2.0f;
+        _bendIntensity += kDefaultAnalogSimulationIncrease;
     } else {
-        _touchDownIntensity -= 1.0f;
+        _bendIntensity -= kDefaultAnalogSimulationIncrease;
     }
-    _touchDownIntensity = [THClientHelper Constrain:_touchDownIntensity min:0 max:kMaxFlexSensorValue];
+    _bendIntensity = [THClientHelper Constrain:_bendIntensity min:0 max:kMaxAnalogValue];
     
     THFlexSensor * flexSensor = (THFlexSensor*) self.simulableObject;
-    flexSensor.value = _touchDownIntensity;
+    flexSensor.value = _bendIntensity;
     _valueLabel.string = [NSString stringWithFormat:@"%d",flexSensor.value];
 }
 
@@ -154,15 +153,6 @@
 -(void) setNotifyBehavior:(THSensorNotifyBehavior)notifyBehavior{
     THFlexSensor * flexSensor = (THFlexSensor*) self.simulableObject;
     flexSensor.notifyBehavior = notifyBehavior;
-}
-
--(void) handleRotation:(float) degree{
-    
-    THFlexSensor * flexSensor = (THFlexSensor*) self.simulableObject;
-    _value += degree*10;
-    
-    _value = [THClientHelper Constrain:_value min:0 max:kMaxFlexSensorValue];
-    flexSensor.value = (NSInteger) _value;
 }
 
 -(void) willStartEdition{

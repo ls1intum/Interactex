@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THNumberValueEditable * value = [[THNumberValueEditable alloc] init];
-    value.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addValue:value];
+    [self handleObjectDropped:value atLocation:location];
 }
 
 @end

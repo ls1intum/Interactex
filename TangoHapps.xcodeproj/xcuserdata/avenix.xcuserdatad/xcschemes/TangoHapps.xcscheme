@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -20,6 +20,34 @@
                ReferencedContainer = "container:TangoHapps.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "253DEC4A19F0184500318D7B"
+               BuildableName = "TangoHappsUnitTests.xctest"
+               BlueprintName = "TangoHappsUnitTests"
+               ReferencedContainer = "container:TangoHapps.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AB291C619FA895100AF757C"
+               BuildableName = "TangoHappsUniTests.xctest"
+               BlueprintName = "TangoHappsUniTests"
+               ReferencedContainer = "container:TangoHapps.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,6 +56,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "253DEC4A19F0184500318D7B"
+               BuildableName = "TangoHappsUnitTests.xctest"
+               BlueprintName = "TangoHappsUnitTests"
+               ReferencedContainer = "container:TangoHapps.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AB291C619FA895100AF757C"
+               BuildableName = "TangoHappsUniTests.xctest"
+               BlueprintName = "TangoHappsUniTests"
+               ReferencedContainer = "container:TangoHapps.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THSlideSwitch
 
--(void) load{
+-(void) loadSlideSwitch{
     
     TFEvent * event1 = [TFEvent eventNamed:kNotificationSwitchOn];
     TFEvent * event2 = [TFEvent eventNamed:kNotificationSwitchOff];
@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        [self load];
+        [self loadSlideSwitch];
     }
     return self;
 }
@@ -65,9 +65,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self load];
-    
+    if(self){
+        [self loadSlideSwitch];
+    }
     return self;
 }
 

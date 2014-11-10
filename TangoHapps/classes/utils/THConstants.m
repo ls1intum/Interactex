@@ -63,22 +63,40 @@ NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";
 
-NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {2,2,2,2,3,3,4,4,2,3,5,4,2};
+NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {
+    2,//led
+    2,//buzzer
+    2,//button
+    2,//switch
+    3,//5 - potentiometer
+    3,//light sensor
+    4,//lsm compass
+    4,//3-color-led
+    2,//vibeBoard
+    3,//10 - temperature sensor
+    5,//accelerometer
+    4,//mpu compass
+    0,//lipo battery
+    0,//power supply
+    2//flex sensor
+};
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
     {{-24,14},{24,-14}},//buzzer
     {{-23,-20},{23,-20},{0,18}},//button
     {{-25,-18},{25,-18},{0,18}},//switch
-    {{-23,-12},{0,26},{25,-12}},//potentiometer
+    {{-23,-12},{0,26},{25,-12}},//5 - potentiometer
     {{-23,-12},{0,26},{25,-12}},//light sensor
     {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
     {{0,25},{-26,-11},{0,-25},{26,-11}},//three color led
     {{-24,15},{24,15}},//vibeBoard
-    {{-23,-12},{0,26},{25,-12}},//temperature sensor
+    {{-23,-12},{0,26},{25,-12}},//10 - temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
-    {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
-    {{-24,14},{24,-14}}//flex sensor
+    {{32,-4},{32,-13},{-32,13},{-32,4}},//mpu compass
+    {},//lipo
+    {},//power supply
+    {{-145,5},{-145,-5}}//15 - flex sensor
 };
 
 float const kUiViewOpacityEditor = 0.5f;
@@ -112,7 +130,10 @@ CGSize const kDefaultPinSize = {30,30};
 
 CGSize const kiPhoneButtonDefaultSize = {100,50};
 
-CGPoint const kDefaultiPhonePosition = {840, 430};
+//CGPoint const kDefaultiPhonePosition = {840, 430}; // nazmus commented
+//CGPoint const kDefaultiPhonePosition = {900, 410}; // nazmus added: 1024-(iphone5 width/2)- 20 padding, 768-(iphone5 height/2)- 20 padding - 44 navigation bar height - 64 menubar height
+CGPoint const kDefaultiPhonePosition = {858, 340}; // nazmus added: 1024-(iphone5 width/2)- 6 padding, 768-(iphone5 height/2)- 6 padding - 44 navigation bar height - 64 menubar height - 24 statusbar
+float const kiPhoneBgPadding = 6.0f; // nazmus added
 
 CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {60,80},//buzzer
@@ -131,3 +152,11 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
 float const kLayerMinScale = 0.5f;
 float const kLayerMaxScale = 2.5f;
 
+float const kDefaultAnalogSimulationIncrease = 5.0f;
+
+ccColor3B const kDefaultSimulationLabelColor = {0,0,0};//black
+
+NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";
+
+CGSize const kDefaultCanvasSize = {1536, 1152};
+//CGSize const kDefaultCanvasSize = {2048, 1448};

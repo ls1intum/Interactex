@@ -48,10 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)dropAt:(CGPoint)location
 {
     THButtonEditableObject * clotheButton = [[THButtonEditableObject alloc] init];
-    clotheButton.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:clotheButton];
+    [self addHardwareComponentToProject:clotheButton atLocation:location];
 }
 
 @end

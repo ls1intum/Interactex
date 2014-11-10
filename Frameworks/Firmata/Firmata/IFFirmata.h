@@ -103,6 +103,7 @@ typedef enum{
 -(void) sendDigitalOutputForPort:(NSInteger) port value:(NSInteger) value;
 -(void) sendAnalogOutputForPin:(NSInteger) pin value:(NSInteger) value;
 -(void) sendReportRequestsForDigitalPins;
+-(void) sendReportRequestsForDigitalPin:(NSInteger) pin reports:(BOOL) reports;
 -(void) sendReportRequestForAnalogPin:(NSInteger) pin reports:(BOOL) reports;
 -(void) sendI2CStartReadingAddress:(NSInteger) address reg:(NSInteger) reg size:(NSInteger) size;
 -(void) sendI2CConfigMessage;

@@ -52,5 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
 +(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientatio;
 +(CGRect) paletteFrame;
 +(BOOL) isUIObject:(TFEditableObject*) object;
++(CGRect) iPadRect;
 
 @end

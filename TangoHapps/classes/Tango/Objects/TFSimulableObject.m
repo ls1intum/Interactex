@@ -51,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @synthesize events = _events;
 @synthesize methods = _methods;
-@synthesize properties = _viewableProperties;
+@synthesize properties = _properties;
 @synthesize visible = _visible;
 
 #pragma mark - Archiving
@@ -173,7 +173,7 @@ You should have received a copy of the GNU General Public License along with thi
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _methods = nil;
     _events = nil;
-    _viewableProperties = nil;
+    _properties = nil;
 }
 
 -(void) dealloc{

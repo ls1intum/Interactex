@@ -265,8 +265,11 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
+//TODO fix volume since iOS 7 needs volumeView
 -(void) setVolume:(float)volume{
+    
 #if !(TARGET_IPHONE_SIMULATOR)
+    _musicPlayer.
     _musicPlayer.volume = volume;
     #else
     
@@ -274,12 +277,15 @@ NSString * const kPauseImageName = @"pause.png";
 }
 
 -(float) volume{
+    return 1.0f;
+    /*
     
 #if (TARGET_IPHONE_SIMULATOR)
     return 1;
 #else
     return _musicPlayer.volume;
 #endif
+                 */
 }
 
 -(void) setText:(NSString *)text{

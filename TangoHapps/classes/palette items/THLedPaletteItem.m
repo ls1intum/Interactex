@@ -15,7 +15,7 @@ juan.haladjian@cs.tum.edu
 katharina.bredies@udk-berlin.de
 opensource@telekom.de
 
-    
+
 The first version of the software was designed and implemented as part of "Wearable M2M", a joint project of UdK Berlin and TU Munich, which was founded by Telekom Innovation Laboratories Berlin. It has been extended with funding from EIT ICT, as part of the activity "Connected Textiles".
 
 Interactex is built using the Tango framework developed by TU Munich.
@@ -47,10 +47,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THLedEditableObject * myObject = [[THLedEditableObject alloc] init];
-    myObject.position = location;
     
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addHardwareComponent:myObject];
+    [self addHardwareComponentToProject:myObject atLocation:location];
 }
 
 @end

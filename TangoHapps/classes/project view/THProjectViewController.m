@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectViewController.h"
 #import "THProjectViewController.h"
 #import "THTabbarViewController.h"
+#import "THMenubarViewController.h"
 #import "THSimulator.h"
 #import "THEditor.h"
 #import "THiPhoneEditableObject.h"
@@ -50,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THProjectViewController
 
-float const kPalettePullY = 364;
+float const kPalettePullY = 0;
 float const kToolsTabMargin = 5;
 
 #pragma mark - View Lifecycle
@@ -79,10 +80,31 @@ float const kToolsTabMargin = 5;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    
     _tabController = [[THTabbarViewController alloc] initWithNibName:@"THTabbar" bundle:nil];
     
+    [_tabController.view setFrame:CGRectMake(0, 0, kPaletteSectionWidth, 722.0f)];  //Nazmus added
+    
     [self.view addSubview:_tabController.view];
+    
+    _menuController = [[THMenubarViewController alloc] initWithNibName:@"THMenubar" bundle:nil];
+    [_menuController.view setFrame:CGRectMake(0, 0, 1024.0f, 64.0f)];
+    [_menuController.view viewWithTag:1].layer.masksToBounds = NO;
+    [_menuController.view viewWithTag:1].layer.shadowOffset = CGSizeMake(0, -5);
+    [_menuController.view viewWithTag:1].layer.shadowRadius = 4;
+    [_menuController.view viewWithTag:1].layer.shadowOpacity = 0.5;
+    [self.view insertSubview:_menuController.view belowSubview:_tabController.view];
+    
+    _zoomSlider = [[UISlider alloc] initWithFrame:CGRectMake(412.0, 688.0, 200.0, 32.0)];
+    [_zoomSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+    [_zoomSlider setBackgroundColor:[UIColor clearColor]];
+    [_zoomSlider setMinimumValueImage:[UIImage imageNamed:@"zoomMinus.png"]];
+    [_zoomSlider setMaximumValueImage:[UIImage imageNamed:@"zoomPlus.png"]];
+    [_zoomSlider setMinimumTrackTintColor:[UIColor blackColor]];
+    _zoomSlider.minimumValue = kLayerMinScale;
+    _zoomSlider.maximumValue = kLayerMaxScale;
+    _zoomSlider.continuous = YES;
+    _zoomSlider.value = 1.0;
+    [self.view addSubview:_zoomSlider];
     
     
     // Observe some notifications so we can properly instruct the director.
@@ -116,6 +138,11 @@ float const kToolsTabMargin = 5;
                                                  name:UIApplicationSignificantTimeChangeNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateEditorZoomSlider:)
+                                                 name:kNotificationEditorZoomReset
+                                               object:nil];
+    
     _state = kAppStateEditor;
     
     [self showTabBar];
@@ -140,8 +167,6 @@ float const kToolsTabMargin = 5;
     
     [self saveCurrentProjectAndPalette];
     
-    //[[THDirector sharedDirector].serverController stopServer];
-    
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center removeObserver:self];
 }
@@ -155,7 +180,7 @@ float const kToolsTabMargin = 5;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationSignificantTimeChangeNotification object:nil];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationEditorZoomReset object:nil];
     
     [self.currentLayer prepareToDie];
     [[THDirector sharedDirector].currentProject prepareToDie];
@@ -195,9 +220,7 @@ float const kToolsTabMargin = 5;
 -(void) saveCurrentProject{
     THDirector * director = [THDirector sharedDirector];
     THProject * currentProject = director.currentProject;
-    
-    //_projectName = [THDirector sharedDirector].currentProject.name;
-    
+        
     UIImage * image = [TFHelper screenshot];
     
     if(![THProject doesProjectExistWithName:currentProject.name]){ // if it is a new project
@@ -331,6 +354,39 @@ float const kToolsTabMargin = 5;
             [sender setTranslation:CGPointMake(0, 0) inView:self.view];
         }
     } else {
+        
+        /// Nazmus 28 June 14
+        if(self.movingTabBar){
+            CGPoint velocity = [sender velocityInView:self.view];
+            if(velocity.x > 0)
+            {
+                //NSLog(@"Final gesture went right");
+                //set palette frame
+                CGRect paletteFrame = self.tabController.view.frame;
+                paletteFrame.origin.x = 0;
+                self.tabController.view.frame = paletteFrame;
+                
+                //set palette pull icon frame
+                CGRect imageViewFrame = self.palettePullImageView.frame;
+                imageViewFrame.origin.x = paletteFrame.size.width;;
+                self.palettePullImageView.frame = imageViewFrame;
+            }
+            else
+            {
+                //NSLog(@"Final gesture went left");
+                //set palette frame
+                CGRect paletteFrame = self.tabController.view.frame;
+                paletteFrame.origin.x = -paletteFrame.size.width;
+                self.tabController.view.frame = paletteFrame;
+                
+                //set palette pull icon frame
+                CGRect imageViewFrame = self.palettePullImageView.frame;
+                imageViewFrame.origin.x = 0;
+                self.palettePullImageView.frame = imageViewFrame;
+            }
+        }
+        ///
+        
         self.movingTabBar = NO;
         
         THEditor * editor = (THEditor*) self.currentLayer;
@@ -349,17 +405,25 @@ float const kToolsTabMargin = 5;
 {
     _tabController.hidden = NO;
 }
-/*
--(void)hideTools
+
+-(void)hideMenuBar
 {
-    _toolsController.hidden = YES;
+    _menuController.view.hidden = YES;
 }
 
--(void)showTools
+-(void)showMenuBar
 {
-    _toolsController.hidden = NO;
+    _menuController.view.hidden = NO;
 }
-*/
+-(void)hideZoomBar
+{
+    _zoomSlider.hidden = YES;
+}
+
+-(void)showZoomBar
+{
+    _zoomSlider.hidden = NO;
+}
 
 #pragma mark - Simulation
 
@@ -416,6 +480,8 @@ float const kToolsTabMargin = 5;
         simulator.zoomableLayer.position = editor.zoomableLayer.position;
         
         [self hideTabBar];
+        [self hideMenuBar];
+        [self hideZoomBar];
         
         [self addSimulationButtons];
         
@@ -448,6 +514,11 @@ float const kToolsTabMargin = 5;
         _tabController.paletteController.delegate = editor;
         
         [self showTabBar];
+        [self showMenuBar];
+        [self.tabController showTab:0];
+        [self showZoomBar];
+        
+        self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         [self updatePalettePullVisibility];
         [self removePalettePullRecognizer];
@@ -490,7 +561,8 @@ float const kToolsTabMargin = 5;
 }
 
 #pragma mark - Tools
-
+//Nazmus commented
+/*
 -(UIBarButtonItem*) createDivider{
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 44)];
@@ -510,6 +582,37 @@ float const kToolsTabMargin = 5;
     UIImage * connectButtonImage = [UIImage imageNamed:imageName];
     return [[UIBarButtonItem alloc] initWithImage:connectButtonImage style:UIBarButtonItemStylePlain target:self action:selector];
 }
+*/
+////
+
+//Nazmus added
+-(UILabel*) createDivider{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 64)];
+    label.backgroundColor = [UIColor colorWithRed:200/255.0f green:198/255.0f blue:195/255.0f alpha:1.0f];
+    return label;
+}
+
+-(UILabel*) createEmptyItem{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 65, 64)];
+    label.backgroundColor = [UIColor clearColor];
+    return label;
+}
+
+-(UIButton*) createItemWithImageName:(NSString*) imageName action:(SEL) selector{
+    
+    UIImage * connectButtonImage = [UIImage imageNamed:imageName];
+    UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
+    if ([imageName isEqualToString:@"vpmode.png"]) {
+        [retButton setFrame:CGRectMake(0, 0, 330, 73)];
+    }
+    [retButton setImage:connectButtonImage forState:UIControlStateNormal];
+    [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    
+    return retButton;
+}
+////
 
 -(void) loadTools{
     
@@ -524,108 +627,57 @@ float const kToolsTabMargin = 5;
     self.pushButton = [self createItemWithImageName:@"push.png" action:@selector(pushPressed:)];
     self.lilypadButton = [self createItemWithImageName:@"lilypadmode.png" action:@selector(lilypadPressed:)];
     self.pinsModeButton = [self createItemWithImageName:@"pinsmode.png" action:@selector(pinsModePressed:)];
-    self.hideiPhoneButton = [self createItemWithImageName:@"hideiphone.png" action:@selector(hideiPhonePressed:)];
+    self.hideiPhoneButton = [self createItemWithImageName:@"hideVPmode.png" action:@selector(hideiPhonePressed:)];
+    self.vpmodeButton = [self createItemWithImageName:@"vpmode.png" action:nil];
+    [self.vpmodeButton setUserInteractionEnabled:NO];
     
     self.playButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                       initWithImage:[UIImage imageNamed:@"playicon.png"]
+                       style:UIBarButtonItemStylePlain
                        target:self
                        action:@selector(startSimulation)];
     
     self.stopButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemPause   
+                       initWithImage:[UIImage imageNamed:@"stopicon.png"]
+                       style:UIBarButtonItemStylePlain
                        target:self
                        action:@selector(endSimulation)];
     
+    // nazmus commented
+    /*
     self.editingTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.hideiPhoneButton, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+     self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
+     
+     self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+     
+     self.highlightedItemTintColor = nil;
+     self.hideiPhoneButton.tintColor = self.highlightedItemTintColor;
+     self.unselectedTintColor = [UIColor grayColor];
+    */
+    ////
+    // nazmus added
+    self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
+    self.editingToolsWithoutVPmode = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
     
-    self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.editingTools = self.editingToolsWithVPmode;
     
-    self.highlightedItemTintColor = nil;
-    self.hideiPhoneButton.tintColor = self.highlightedItemTintColor;
-    self.unselectedTintColor = [UIColor grayColor];
+    //self.simulatingTools = [NSArray arrayWithObjects: self.pinsModeButton, nil];
+    self.simulatingTools = [[NSArray alloc ] init];
+    
+    self.lilypadTools = [NSArray arrayWithObjects: self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    
+    self.highlightedItemTintColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
+    self.hideiPhoneButton.backgroundColor = self.highlightedItemTintColor;
+    self.unselectedTintColor = [UIColor whiteColor];
+    ////
     
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
     
 }
 
--(void) addEditionButtons{
-    
-    self.navigationItem.rightBarButtonItems = self.editingTools;
-}
-
--(void) addLilypadButtons{
-    
-    self.navigationItem.rightBarButtonItems = self.lilypadTools;
-}
-
--(void) addSimulationButtons{
-    
-    self.navigationItem.rightBarButtonItems = self.simulatingTools;
-}
-
--(void) handleEditableObjectAdded:(NSNotification*) notification{
-    TFEditableObject * object = notification.object;
-    
-    if([object isKindOfClass:[THiPhoneEditableObject class]]){
-        
-        [self updateHideIphoneButtonTint];
-    }
-}
-
-//editing
--(void) unselectAllEditingButtons{
-    self.connectButton.tintColor = self.unselectedTintColor;
-    self.duplicateButton.tintColor = self.unselectedTintColor;
-    self.removeButton.tintColor = self.unselectedTintColor;
-    self.hideiPhoneButton.tintColor = self.unselectedTintColor;
-    self.lilypadButton.tintColor = self.unselectedTintColor;
-}
-
--(void) updateEditingButtonsTint{
-    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    
-    [self unselectAllEditingButtons];
-    
-    if(editor.state == kEditorStateConnect){
-        self.connectButton.tintColor = self.highlightedItemTintColor;
-    } else if(editor.state == kEditorStateDuplicate){
-        self.duplicateButton.tintColor = self.highlightedItemTintColor;
-    } else if(editor.state == kEditorStateDelete){
-        self.removeButton.tintColor = self.highlightedItemTintColor;
-    }
-    
-    [self updatePushButtonState];
-    [self updateHideIphoneButtonTint];
-    [self updateLilypadTint];
-}
-
--(void) updatePushButtonState{
-    THDirector * director = [THDirector sharedDirector];
-    self.pushButton.enabled = (director.serverController.peers.count > 0);
-}
-
-
--(void) updateHideIphoneButtonTint{
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    self.hideiPhoneButton.tintColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor);
-}
-
--(void) updateLilypadTint{
-    
-    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    self.lilypadButton.tintColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor);
-}
-
-//simulation
--(void) updatePinsModeItemTint{
-    
-    THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
-    self.pinsModeButton.tintColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor);
-}
+#pragma mark -- Switch Edition <--> Simulation
 
 -(void) checkSwitchToState:(TFEditorState) state{
     THProjectViewController * projectController = [THDirector sharedDirector].projectController;
@@ -640,30 +692,121 @@ float const kToolsTabMargin = 5;
     }
 }
 
-//actions
+#pragma mark -- UI setup
+
+-(void) addEditionButtons{
+    
+    [self addButtonsToMenubar:self.editingTools];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.playButton];
+}
+
+-(void) addLilypadButtons{
+    
+    [self addButtonsToMenubar:self.lilypadTools];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.playButton];
+}
+
+-(void) addSimulationButtons{
+    
+    [self addButtonsToMenubar:self.simulatingTools];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:self.stopButton];
+}
+
+-(void) addButtonsToMenubar:(NSArray *) tools {
+    [[[self.menuController.view viewWithTag:1] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    float totalWidth = [[self.menuController.view viewWithTag:1] frame].size.width;
+    float offset = 0;
+    
+    for (int i = 0; i < tools.count; i++) {
+        CGRect itemFrame = [[tools objectAtIndex:i] frame];
+        offset += itemFrame.size.width;
+        [[tools objectAtIndex:i] setFrame:CGRectMake(totalWidth - offset,
+                                                                 itemFrame.origin.y,
+                                                                 itemFrame.size.width,
+                                                                 itemFrame.size.height)];
+        [[self.menuController.view viewWithTag:1] addSubview:[tools objectAtIndex:i]];
+    }
+}
+
+
+#pragma mark -- UI state
+
+-(void) handleEditableObjectAdded:(NSNotification*) notification{
+    TFEditableObject * object = notification.object;
+    
+    if([object isKindOfClass:[THiPhoneEditableObject class]]){
+        
+        [self updateHideIphoneButtonTint];
+    }
+}
+
+-(void) unselectAllEditingButtons{
+
+    self.connectButton.backgroundColor = self.unselectedTintColor;
+    self.duplicateButton.backgroundColor = self.unselectedTintColor;
+    self.removeButton.backgroundColor = self.unselectedTintColor;
+    self.hideiPhoneButton.backgroundColor = self.unselectedTintColor;
+    self.lilypadButton.backgroundColor = self.unselectedTintColor;
+}
+
+-(void) updateEditingButtonsTint{
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    
+    [self unselectAllEditingButtons];
+
+    if(editor.state == kEditorStateConnect){
+        self.connectButton.backgroundColor = self.highlightedItemTintColor;
+    } else if(editor.state == kEditorStateDuplicate){
+        self.duplicateButton.backgroundColor = self.highlightedItemTintColor;
+    } else if(editor.state == kEditorStateDelete){
+        self.removeButton.backgroundColor = self.highlightedItemTintColor;
+    }
+    
+    [self updatePushButtonState];
+    [self updateHideIphoneButtonTint];
+    [self updateLilypadTint];
+}
+
+-(void) updatePushButtonState{
+    self.pushButton.enabled = YES;
+    /*
+    THDirector * director = [THDirector sharedDirector];
+    self.pushButton.enabled = (director.serverController.session.connectedPeers.count > 0);
+    [self.pushButton setNeedsDisplay];*/
+}
+
+-(void) updateHideIphoneButtonTint{
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    self.hideiPhoneButton.backgroundColor = (project.iPhone.visible ? self.highlightedItemTintColor : self.unselectedTintColor);
+}
+
+-(void) updateLilypadTint{
+    
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    self.lilypadButton.backgroundColor = (editor.isLilypadMode ? self.highlightedItemTintColor : self.unselectedTintColor);
+}
+
+-(void) updatePinsModeItemTint{
+    
+    THSimulator * simulator = (THSimulator*) [THDirector sharedDirector].currentLayer;
+    self.pinsModeButton.backgroundColor = (simulator.state == kSimulatorStatePins ? self.highlightedItemTintColor : self.unselectedTintColor);
+}
+
+#pragma mark -- Toolbar Buttons
+
 - (void)connectPressed:(id)sender {
     [self checkSwitchToState:kEditorStateConnect];
 }
 
 - (void)duplicatePressed:(id)sender {
-    
     [self checkSwitchToState:kEditorStateDuplicate];
 }
 
 - (void)removePressed:(id)sender {
     [self checkSwitchToState:kEditorStateDelete];
 }
-/*
--(void) setHidden:(BOOL)hidden{
-    if(!hidden){
-        [self unselectAllButtons];
-    }
-    self.view.hidden = hidden;
-}
-
--(BOOL) hidden{
-    return self.view.hidden;
-}*/
 
 - (void) lilypadPressed:(id)sender {
     
@@ -672,6 +815,7 @@ float const kToolsTabMargin = 5;
         [editor stopLilypadMode];
         
         [self checkSwitchToState:kEditorStateNormal];
+        self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         
     } else {
@@ -696,20 +840,37 @@ float const kToolsTabMargin = 5;
 
 - (void) pushPressed:(id)sender {
     THServerController * serverController = [THDirector sharedDirector].serverController;
-    if(serverController.serverIsRunning){
-        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-        [serverController pushProjectToAllClients:project];
-    }
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [serverController pushProjectToAllClients:project];
 }
 
 - (void) hideiPhonePressed:(id)sender {
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    if (project.iPhone.visible) {
+        self.editingTools = self.editingToolsWithoutVPmode;
+    } else {
+        self.editingTools = self.editingToolsWithVPmode;
+    }
+    [self addEditionButtons];
     project.iPhone.visible = !project.iPhone.visible;
     [self updateHideIphoneButtonTint];
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
+}
+
+//zoom slider
+-(void)sliderAction:(id)sender {
+    THEditor * editor = (THEditor*) self.currentLayer;
+    float newScale = [(UISlider *)sender value];
+    
+    editor.zoomLevel = newScale;
+}
+
+-(void) updateEditorZoomSlider:(NSNotification*) notification{
+    THEditor * editor = (THEditor*) self.currentLayer;
+    self.zoomSlider.value = editor.zoomLevel;
 }
 
 

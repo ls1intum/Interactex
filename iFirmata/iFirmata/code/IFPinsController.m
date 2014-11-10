@@ -33,6 +33,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "IFI2CComponent.h"
 #import "IFI2CRegister.h"
 #import "IFFirmata.h"
+#import "IFI2CComponentProxy.h"
 
 @implementation IFPinsController
 
@@ -46,8 +47,47 @@ You should have received a copy of the GNU General Public License along with thi
         self.digitalPins = [NSMutableArray array];
         self.analogPins = [NSMutableArray array];
         self.i2cComponents = [NSMutableArray array];
+        self.i2cComponentProxies = [NSMutableArray array];
+        
+        
+        [self addLsmCompass];
+        [self addGenericProxy];
     }
     return self;
+}
+
+-(void) addLsmCompass{
+    IFI2CComponent * component = [[IFI2CComponent alloc] init];
+    component.name = @"LSM303 Breakout";
+    component.address = 24;
+    
+    IFI2CRegister * reg = [[IFI2CRegister alloc] init];
+    reg.number = 32;
+    [component addRegister:reg];
+    
+    IFI2CRegister * reg2 = [[IFI2CRegister alloc] init];
+    reg2.number = 40;
+    reg2.size = 6;
+    [component addRegister:reg2];
+    
+    component.continousReadingRegister = reg2;
+    
+    [self addI2CComponent:component];
+    
+    IFI2CComponentProxy * proxy = [[IFI2CComponentProxy alloc] init];
+    proxy.component = component;
+    proxy.name = component.name;
+    proxy.image = [UIImage imageNamed:@"LSMCompass"];
+    [self.i2cComponentProxies addObject:proxy];
+}
+
+-(void) addGenericProxy{
+    
+    IFI2CComponentProxy * proxy = [[IFI2CComponentProxy alloc] init];
+
+    proxy.name = @"I2C Component";
+    proxy.image = [UIImage imageNamed:@"i2c"];
+    [self.i2cComponentProxies addObject:proxy];
 }
 
 -(void) reset {
@@ -90,17 +130,16 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-
 -(void) sendDigitalOutputForPin:(IFPin*) pin{
     if(self.digitalPins.count == 0) return;
     
     IFPin * firstPin = [self.digitalPins objectAtIndex:0];
     NSInteger firstPinIdx = firstPin.number;
     
-    int port = pin.number / 8;
+    NSInteger port = pin.number / 8;
     int value = 0;
     for (int i=0; i < 8; i++) {
-        int pinIdx = port * 8 + i - firstPinIdx;
+        NSInteger pinIdx = port * 8 + i - firstPinIdx;
 //        NSLog(@"%d %d",pinIdx,self.digitalPins.count);
         if(pinIdx >= (int)self.digitalPins.count){
             break;
@@ -182,7 +221,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) createAnalogPinsFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
     
-    int firstAnalog = numDigitalPins;
+    NSInteger firstAnalog = numDigitalPins;
     for (; firstAnalog < IFPinInfoBufSize; firstAnalog++) {
         if(pinInfo[firstAnalog].supportedModes & (1<<IFPinModeAnalog)){
             break;
@@ -233,7 +272,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.firmataName = name;
     [self.delegate firmata:self didUpdateTitle:self.firmataName];
-    [self.firmataController sendAnalogMappingRequest];
+    if(self.digitalPins.count == 0 && self.analogPins.count == 0){
+        [self.firmataController sendAnalogMappingRequest];
+    }
 }
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMessageOnChannel:(NSInteger) channel value:(NSInteger) value{
@@ -246,17 +287,22 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) pinNumber value:(NSInteger) value{
+-(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) portNumber value:(NSInteger) value{
     if(self.digitalPins.count > 0){
-        IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
-        int mask = 1;
         
-        for (mask <<= firstPin.number; pinNumber < self.digitalPins.count; mask <<= 1, pinNumber++) {
-            IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber];
-            if (pinObj.mode == IFPinModeInput) {
-                uint32_t val = (value & mask) ? 1 : 0;
-                if (pinObj.value != val) {
-                    pinObj.value = val;
+        IFPin * firstPin = (IFPin*) [self.digitalPins objectAtIndex:0];
+
+        NSInteger pinNumber = portNumber * 8;
+        for (int mask = 1; mask & 0xFF ; mask <<= 1, pinNumber++) {
+            NSInteger pinIdx = pinNumber - firstPin.number;
+            if(pinIdx >= 0 && pinIdx < self.digitalPins.count){
+                IFPin * pinObj = [self.digitalPins objectAtIndex:pinNumber - firstPin.number];
+
+                if (pinObj.mode == IFPinModeInput) {
+                    uint32_t val = (value & mask) ? 1 : 0;
+                    if (pinObj.value != val) {
+                        pinObj.value = val;
+                    }
                 }
             }
         }
@@ -282,6 +328,18 @@ You should have received a copy of the GNU General Public License along with thi
     [self.firmataController sendPinQueryForPinNumbers:buf length:len];
 }
 
+-(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
+    
+    int pin=0;
+    for (int i=2; i<length-1; i++) {
+        
+        pinInfo[pin].analogChannel = buffer[i];
+        pin++;
+    }
+    
+    [self.firmataController sendCapabilitiesRequest];
+}
+
 -(void) firmataController:(IFFirmata*) firmataController didReceiveCapabilityResponse:(uint8_t*) buffer length:(NSInteger) length{
     
     for (int i=2, n=0, pin=0; i<length; i++) {
@@ -299,19 +357,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self countPins];
     [self createAnalogPinsFromBuffer:buffer length:length];
     [self sendInitialPinStateQuery];
-}
-
-
--(void) firmataController:(IFFirmata*) firmataController didReceiveAnalogMappingResponse:(uint8_t*) buffer length:(NSInteger) length {
-    
-    int pin=0;
-    for (int i=2; i<length-1; i++) {
-        
-        pinInfo[pin].analogChannel = buffer[i];
-        pin++;
-    }
-    
-    [self.firmataController sendCapabilitiesRequest];
 }
 
 -(void) makePinQueryForSubsequentPinsStartingAtPin:(int) pin{
@@ -355,6 +400,8 @@ You should have received a copy of the GNU General Public License along with thi
         
         if(self.digitalPins.count % 4 == 0){
             [self makePinQueryForSubsequentPinsStartingAtPin:pinNumber+1];
+        } else {
+            [self.firmataController sendReportRequestsForDigitalPins];
         }
         
     } else {
@@ -367,8 +414,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) firmataController:(IFFirmata*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger)length {
     
     uint8_t address = buffer[2] + (buffer[3] << 7);
-    NSInteger registerNumber = buffer[4] + 128;
-    
+    //NSInteger registerNumber = buffer[4] + 128;
+    NSInteger registerNumber = buffer[4];
     //NSLog(@"addr: %d reg %d ",address,registerNumber);
     if(!self.firmataController.startedI2C){
         
@@ -398,7 +445,13 @@ You should have received a copy of the GNU General Public License along with thi
 
             NSData * data = [NSData dataWithBytes:values length:reg.size];
             reg.value = data;
+            
         }
+        
+        NSData * data = [NSData dataWithBytes:buffer length:length];
+        
+        NSString * dataStr = [BLEHelper DataToString:data];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNewI2CData object:dataStr];
     }
 }
 
@@ -433,6 +486,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         IFPin * pin = object;
         [self.firmataController sendPinModeForPin:pin.number mode:pin.mode];
+        
+        if(pin.mode == IFPinModeInput){
+            [self.firmataController sendReportRequestsForDigitalPin:pin.number reports:YES];
+        }
         
     } else if([keyPath isEqual:@"value"]){
         

@@ -93,4 +93,9 @@ You should have received a copy of the GNU General Public License along with thi
     return [object isKindOfClass: [THViewEditableObject class]] || [object isKindOfClass:[THiPhoneEditableObject class]];
 }
 
+
++(CGRect) iPadRect{
+    return CGRectMake(0, 0, 1024, 768);
+}
+
 @end

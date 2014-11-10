@@ -8,8 +8,6 @@
 
 #import "THHardwareComponent.h"
 
-extern float const kMaxFlexSensorValue;
-
 @interface THFlexSensor : THHardwareComponent
 {
     BOOL _insideRange;
@@ -22,6 +20,5 @@ extern float const kMaxFlexSensorValue;
 
 @property (nonatomic, readonly) THElementPin * minusPin;
 @property (nonatomic, readonly) THElementPin * analogPin;
-@property (nonatomic, readonly) THElementPin * plusPin;
 
 @end

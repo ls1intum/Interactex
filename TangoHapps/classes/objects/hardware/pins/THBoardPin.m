@@ -121,30 +121,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
-/*
--(NSInteger) number{
-    return self.pin.number;
-}
-
--(void) setNumber:(NSInteger)number{
-    self.pin.number = number;
-}
-
--(void) setMode:(IFPinMode)mode{
-    self.pin.mode = mode;
-}
-
--(IFPinMode) mode{
-    return self.pin.mode;
-}
-
--(NSInteger) value{
-    return self.pin.value;
-}
-
--(void) setValue:(NSInteger)value{
-    self.pin.value = value;
-}*/
 
 -(void) setValueWithoutNotifications:(NSInteger) value{
     
@@ -154,15 +130,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self addPinObserver];
 }
-/*
--(void) setPin:(IFPin *)pin{
-    if(_pin != pin){
-        
-        [self removePinObserver];
-        _pin = pin;
-        [self addPinObserver];
-    }
-}*/
 
 -(BOOL) acceptsManyPins{
     return (self.type == kPintypeMinus || self.type == kPintypePlus || self.supportsSDA || self.supportsSCL);

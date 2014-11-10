@@ -53,28 +53,33 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
-        pin1.hardware = self;
-        THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
-        pin2.hardware = self;
-        THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeDigital];
-        pin3.hardware = self;
-        pin3.defaultBoardPinMode = kPinModeDigitalInput;
-        
-        [self.pins addObject:pin1];
-        [self.pins addObject:pin2];
-        [self.pins addObject:pin3];
-        
-        self.isInputObject = YES;
+        [self loadPins];
     }
     return self;
 }
 
--(id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
+-(void) loadPins{
     
-    self.isInputObject = YES;
+    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
+    pin1.hardware = self;
+    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
+    pin2.hardware = self;
+    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeDigital];
+    pin3.hardware = self;
+    pin3.defaultBoardPinMode = kPinModeDigitalInput;
+    
+    [self.pins addObject:pin1];
+    [self.pins addObject:pin2];
+    [self.pins addObject:pin3];
+}
+
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if(self){
+
+    }
     
     return self;
 }

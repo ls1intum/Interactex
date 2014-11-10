@@ -77,7 +77,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone *)zone {
     TFPropertyInvocation * copy = [[TFPropertyInvocation alloc] init];
     
-    copy.property = [self.property copy];
+    copy.property = self.property;
     copy.target = self.target;
     
     return copy;

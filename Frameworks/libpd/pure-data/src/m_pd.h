@@ -62,7 +62,7 @@ extern "C" {
 
 /* signed and unsigned integer types the size of a pointer:  */
 #if !defined(PD_LONGINTTYPE)
-#define PD_LONGINTTYPE long
+#define PD_LONGINTTYPE int //juan changed to int, it was long
 #endif
 #if !defined(PD_FLOATTYPE)
 #define PD_FLOATTYPE float

@@ -47,10 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THLilyPadEditable * lilypad = [[THLilyPadEditable alloc] init];
-    lilypad.position = location;
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addBoard:lilypad];
+    [self handleObjectDropped:lilypad atLocation:location];
 }
 
 @end

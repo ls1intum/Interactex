@@ -67,11 +67,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     
-    [coder encodeInt:self.number forKey:@"number"];
-    [coder encodeInt:self.type forKey:@"type"];
-    [coder encodeInt:self.mode forKey:@"mode"];
-    [coder encodeInt:self.analogChannel forKey:@"analogChannel"];
-    [coder encodeInt:self.supportedModes forKey:@"supportedModes"];
+    [coder encodeInteger:self.number forKey:@"number"];
+    [coder encodeInteger:self.type forKey:@"type"];
+    [coder encodeInteger:self.mode forKey:@"mode"];
+    [coder encodeInteger:self.analogChannel forKey:@"analogChannel"];
+    [coder encodeInteger:self.supportedModes forKey:@"supportedModes"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {

@@ -36,8 +36,9 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     
     [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeInt:self.address forKey:@"address"];
+    [aCoder encodeInteger:self.address forKey:@"address"];
     [aCoder encodeObject:self.registers forKey:@"registers"];
+    [aCoder encodeObject:self.continousReadingRegister forKey:@"mainRegister"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -46,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.address = [aDecoder decodeIntegerForKey:@"address"];
         self.registers = [aDecoder decodeObjectForKey:@"registers"];
+        self.continousReadingRegister = [aDecoder decodeObjectForKey:@"mainRegister"];
     }
     return self;
 }
@@ -63,6 +65,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addRegister:(IFI2CRegister*) reg{
     
     [self.registers addObject:reg];
+    if(self.continousReadingRegister == nil){
+        self.continousReadingRegister = reg;
+    }
 }
 
 -(void) removeRegister:(IFI2CRegister *)reg{

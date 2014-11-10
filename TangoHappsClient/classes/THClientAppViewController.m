@@ -542,19 +542,26 @@ float const kConnectingTimeout = 7.0f;
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
+    BOOL shouldSendDigitalPinReportRequest = NO;
+    
     for (THBoardPin * pin in project.currentBoard.pins) {
         
         if(pin.attachedElementPins.count > 0){
             
-            if(pin.mode == kPinModeDigitalInput && pin.attachedElementPins.count > 0){
+            if(pin.mode == kPinModeDigitalInput){
                 
-                [self.firmataController sendReportRequestsForDigitalPins];
+                shouldSendDigitalPinReportRequest = YES;
                 
-            } else if(pin.mode == kPinModeAnalogInput && pin.attachedElementPins.count > 0){
+            } else if(pin.mode == kPinModeAnalogInput){
                 
                 [self.firmataController sendReportRequestForAnalogPin:pin.number reports:YES];
             }
         }
+    }
+    
+    if(shouldSendDigitalPinReportRequest){
+        
+        [self.firmataController sendReportRequestsForDigitalPins];
     }
 }
 
@@ -629,7 +636,7 @@ float const kConnectingTimeout = 7.0f;
         
         id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
         
-        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber];
+        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber - 128];
         
         if(reg){
             

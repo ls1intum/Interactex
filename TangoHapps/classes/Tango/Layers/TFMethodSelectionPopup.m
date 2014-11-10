@@ -46,8 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFMethod.h"
 #import "TFMethodInvokeAction.h"
 #import "TFEvent.h"
-#import "THOutput.h"
-#import "THOutputEditable.h"
 
 @implementation TFMethodSelectionPopup
 
@@ -79,14 +77,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(path1 != nil && path2 != nil){
         
         TFEvent * event = [_acceptedEvents objectAtIndex:path1.row];
-
-        //Output receives event and does action
-        if ([self.object2 isKindOfClass:[THOutputEditable class]]) {
-            THOutputEditable* obj = (THOutputEditable*)self.object2;
-            [obj connectTop:event.param1.property.type];
-        }
-        
-        //[self selectEventsAndMethods]; causes EXC_BAD_ACCESS
         
         TFMethod * method = [_acceptedMethods objectAtIndex:path2.row];
         
@@ -94,16 +84,8 @@ You should have received a copy of the GNU General Public License along with thi
         action.firstParam = event.param1;
         action.source = self.object1;
         
-        //Output sends event
-        if ([self.object1 isKindOfClass:[THOutputEditable class]]) {
-            THOutputEditable* obj = (THOutputEditable*) self.object1;
-            [obj connectBot:method.firstParamType];
-        }
-        
         [self.delegate methodSelectionPopup:self didSelectAction:action forEvent:event];
 
-
-        
         [popOverController dismissPopoverAnimated:YES];
     }
 }

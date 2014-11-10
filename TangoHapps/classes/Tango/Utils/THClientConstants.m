@@ -49,7 +49,11 @@ NSString* const dataTypeStrings[kNumDataTypes] = {@"boolean",@"integer", @"float
 NSInteger const kLilypadPwmPins[kLilypadNumPwmPins] = {3,5,6,9,10,11};
 
 
-CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}};
+//CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,270,404},{26,99,270,481}}; // nazmus commented
+//CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,99,180,268},{26,99,180,300}}; // nazmus added, then commented
+CGRect const kiPhoneFrames[kNumiPhoneTypes] = {{26,90,262,394},{26,99,262,470}}; // nazmus 24 sep 14 added - iphone4 is used by default
+float const kiphoneFrameXMargin = 23;
+float const kiphoneFrameYMargin = 120;
 
 //notifications
 NSString * const kNotificationLedOn = @"notificationLedOn";
@@ -129,8 +133,16 @@ NSString * const kPresetsDirectory = @"presets";
 NSString * const kProjectImagesDirectory = @"projectImages";
 NSString * const kProjectProxiesFileName = @"projectProxies";
 
-float const kMaxAnalogValue = 255;
+float const kMaxAnalogValue = 1023;
 
 float const kGraphViewGraphOffsetY = 5.0f;
 CGSize const kGraphViewAxisLabelSize = {36.0f, 16.0f};
 float const kGraphViewAxisLineWidth = 6.0f;
+
+
+NSString * const kConnectionServiceType = @"th-service";
+
+
+const float kShakingEffectAngleInRadians = 2.0f;
+const float kShakingEffectRotationTime = 0.10f;
+const float kProjectCellScaleEffectDuration = 0.5;

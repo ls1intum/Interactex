@@ -136,15 +136,15 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) update{
     
     if(self.isDown){
-        _lightTouchDownIntensity += 1.5f;
+        _lightTouchDownIntensity += kDefaultAnalogSimulationIncrease;
     } else {
-        _lightTouchDownIntensity -= 1.0f;
+        _lightTouchDownIntensity -= kDefaultAnalogSimulationIncrease;
     }
     THLightSensor * lightSensor = (THLightSensor*) self.simulableObject;
-    _lightTouchDownIntensity = [THClientHelper Constrain:_lightTouchDownIntensity min:0 max:255];
+    _lightTouchDownIntensity = [THClientHelper Constrain:_lightTouchDownIntensity min:0 max:kMaxAnalogValue];
     
     lightSensor.light =_lightTouchDownIntensity;
-    _lightSprite.opacity = _lightTouchDownIntensity;
+    _lightSprite.opacity = _lightTouchDownIntensity * (255.0f / kMaxAnalogValue);
 }
 
 -(void) willStartSimulation{

@@ -49,7 +49,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (BOOL)canBeDroppedAt:(CGPoint)location {
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    if([project.iPhone testPoint:location]){
+    //if([project.iPhone testPoint:location]){ //nazmus commented
+    if([project.iPhone.currentView testPoint:location]){ //nazmus added
         return YES;
     }
     return NO;
