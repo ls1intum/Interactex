@@ -695,7 +695,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * gestures = [project gestureAtLocation:location];
     
-    if (!_currentObject.attachedToGesture) {
+    if (_currentObject && !_currentObject.attachedToGesture) {
     
         for (THGestureEditableObject* gesture in gestures) {
             if (gesture != (THGestureEditableObject*)_currentObject && gesture.isOpen && ![[gesture getAttachments]containsObject:     _currentObject]) {
@@ -976,10 +976,12 @@ You should have received a copy of the GNU General Public License along with thi
     CGRect paletteFrame = [THHelper paletteFrame];
     float paletteRightX = paletteFrame.origin.x + paletteFrame.size.width;
 
-    [self checkGestureObject:location];
     
     if(location.x < paletteRightX){
         [self handleItemDroppedInPaletteAt:location];
+    } else {
+        
+        [self checkGestureObject:location];
     }
 }
 
