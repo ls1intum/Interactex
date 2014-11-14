@@ -59,6 +59,7 @@ float const kLilypadPinRadius = 21;
 CGPoint const kLilypadDefaultPosition = {400,500};
 
 NSString * const kPaletteNameClothes = @"clothes";
+NSString * const kPaletteNameGestures = @"gestures";
 NSString * const kPaletteNameSoftware = @"software";
 NSString * const kPaletteNameHardware = @"hardware";
 NSString * const kPaletteNameTriggers = @"triggers";

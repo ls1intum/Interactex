@@ -145,6 +145,7 @@ extern float const kLilypadPinRadius;
 extern CGPoint const kLilypadDefaultPosition;
 
 extern NSString * const kPaletteNameClothes;
+extern NSString * const kPaletteNameGestures;
 extern NSString * const kPaletteNameSoftware;
 extern NSString * const kPaletteNameHardware;
 extern NSString * const kPaletteNameTriggers;
