@@ -152,6 +152,116 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
                                                object:nil];
     
     self.totalNumberOfProjects = self.projectProxies.count; // nazmus added
+    
+    //Nazmus 15 Nov 14
+    [self beautifyProjectSelectionScreen];
+    
+}
+
+//Nazmus 15 Nov 14
+- (void) beautifyProjectSelectionScreen {
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:font, @1.3, nil] forKeys:[NSArray arrayWithObjects:NSFontAttributeName, NSKernAttributeName, nil]];
+    
+    
+    //"VIEW AS:" label
+    NSString *lblContent = @"VIEW AS:";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:lblContent];
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(1.3)
+                             range:NSMakeRange(0, [lblContent length])];
+    
+    UILabel *viewAsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 70.0f, 21.0f)];
+    [viewAsLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12.0f]];
+    [viewAsLabel setBackgroundColor:[UIColor clearColor]];
+    [viewAsLabel setTextColor:[UIColor whiteColor]];
+    [viewAsLabel setAttributedText:attributedString];
+    [viewAsLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [self.labelViewAs setCustomView:viewAsLabel];
+    ////
+    
+    //Segmented control
+    // Set divider images
+    [self.viewControl setDividerImage:[UIImage imageNamed:@"segDivider.png"]
+                  forLeftSegmentState:UIControlStateNormal
+                    rightSegmentState:UIControlStateNormal
+                           barMetrics:UIBarMetricsDefault];
+    [self.viewControl setDividerImage:[UIImage imageNamed:@"segDivider.png"]
+                  forLeftSegmentState:UIControlStateSelected
+                    rightSegmentState:UIControlStateNormal
+                           barMetrics:UIBarMetricsDefault];
+    [self.viewControl setDividerImage:[UIImage imageNamed:@"segDivider.png"]
+                  forLeftSegmentState:UIControlStateNormal
+                    rightSegmentState:UIControlStateSelected
+                           barMetrics:UIBarMetricsDefault];
+    
+    // Set background images
+    UIImage *normalBackgroundImage = [[UIImage imageNamed:@"segBg"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];
+    [self.viewControl  setBackgroundImage:normalBackgroundImage
+                                 forState:UIControlStateNormal
+                               barMetrics:UIBarMetricsDefault];
+    UIImage *selectedBackgroundImage = [[UIImage imageNamed:@"segBgSelected"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)];
+    [self.viewControl setBackgroundImage:selectedBackgroundImage
+                                forState:UIControlStateSelected
+                              barMetrics:UIBarMetricsDefault];
+    
+    [self.viewControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    ////
+    
+    //"ABOUT INTERACTEX" button
+    lblContent = @"ABOUT INTERACTEX";
+    attributedString = [[NSMutableAttributedString alloc] initWithString:lblContent];
+
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(1.3)
+                             range:NSMakeRange(0, [lblContent length])];
+    
+    UIButton *aboutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, [lblContent length]*10, 29)];
+    [aboutButton setBackgroundColor:[UIColor clearColor]];
+    [aboutButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12.0f]];
+    [aboutButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [aboutButton setAttributedTitle:attributedString forState:UIControlStateNormal];
+    
+    [aboutButton addTarget:self action:@selector(aboutButtonClicked:)
+        forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.buttonAbout setCustomView:aboutButton];
+    ////
+    
+    //"IMPRINT" button
+    lblContent = @"IMPRINT";
+    attributedString = [[NSMutableAttributedString alloc] initWithString:lblContent];
+    
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(1.3)
+                             range:NSMakeRange(0, [lblContent length])];
+    
+    UIButton *imprintButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, [lblContent length]*10, 29)];
+    [imprintButton setBackgroundColor:[UIColor clearColor]];
+    [imprintButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12.0f]];
+    [imprintButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [imprintButton setAttributedTitle:attributedString forState:UIControlStateNormal];
+    
+    [imprintButton addTarget:self action:@selector(imprintButtonClicked:)
+          forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.buttonImprint setCustomView:imprintButton];
+    ////
+    
+    //Table view
+    self.tableView.layoutMargins = UIEdgeInsetsZero;
+    ////
+    
+    //"YOUR PROJECT" label
+    lblContent = @"YOUR PROJECTS";
+    attributedString = [[NSMutableAttributedString alloc] initWithString:lblContent];
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(1.3)
+                             range:NSMakeRange(0, [lblContent length])];
+    [self.labelProjects setAttributedText:attributedString];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -329,6 +439,14 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     THTableProjectCell * cell = (THTableProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectTableCell"];
     cell.nameLabel.text = proxy.name;
     
+    //Nazmus 15 Nov 14
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.contentView.superview.backgroundColor = [UIColor clearColor];
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor darkGrayColor];
+    [cell setSelectedBackgroundView:bgColorView];
+    ////
+    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     dateFormat.dateStyle = NSDateFormatterMediumStyle;
     
@@ -389,6 +507,13 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
     
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    return view;
 }
 
 #pragma mark - Table Project Cell Delegate
@@ -887,6 +1012,42 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     //self.scrollView.contentOffset = contentOffset;
     
     [UIView commitAnimations];
+}
+
+-(IBAction)imprintButtonClicked:(UIButton*)sender {
+    NSString *body = @"<html><body><h2 style='text-align:center;'>IMPRINT</h2>";
+    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
+    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
+    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet.</p>"];
+    body = [body stringByAppendingString:@"</body></html>"];
+    
+    [self showSimplePopoverWebview:body];
+}
+
+-(IBAction)aboutButtonClicked:(UIButton*)sender {
+    NSString *body = @"<html><body><h2 style='text-align:center;'>ABOUT INTERACTEX</h2>";
+    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
+    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
+    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet.</p>"];
+    body = [body stringByAppendingString:@"</body></html>"];
+    
+    [self showSimplePopoverWebview:body];
+}
+
+-(void)showSimplePopoverWebview: (NSString*) body {
+    UIViewController *popoverView =[[UIViewController alloc] init];
+    popoverView.preferredContentSize=CGSizeMake(600, 400);
+    
+    UIWebView *webContent = [[UIWebView alloc] initWithFrame:CGRectMake(20, 20, popoverView.preferredContentSize.width - 40, popoverView.preferredContentSize.height - 40)];
+    
+    NSString *htmlString = [NSString stringWithFormat:@"<font face='HelveticaNeue' size='3'>%@", body];
+    [webContent loadHTMLString:htmlString baseURL:nil];
+    
+    [popoverView.view addSubview:webContent];
+    
+    UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:popoverView];
+    
+    [popController presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2-popoverView.preferredContentSize.width/2, self.view.frame.size.height/2-popoverView.preferredContentSize.height/2, popoverView.preferredContentSize.width, popoverView.preferredContentSize.height) inView:self.view permittedArrowDirections:0 animated:YES];
 }
 
 @end

@@ -67,6 +67,8 @@ You should have received a copy of the GNU General Public License along with thi
             self.deleteButton.hidden = NO;
             self.nameTextField.enabled = YES;
             self.nameTextField.borderStyle = UITextBorderStyleLine;
+            self.nameTextField.layer.borderWidth = 2.0;
+            self.nameTextField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
             
         } else {
             
@@ -75,6 +77,7 @@ You should have received a copy of the GNU General Public License along with thi
             self.deleteButton.hidden = YES;
             self.nameTextField.enabled = NO;
             self.nameTextField.borderStyle = UITextBorderStyleNone;
+            self.nameTextField.layer.borderColor = [[UIColor clearColor] CGColor];
         }
     }
 }

@@ -60,6 +60,10 @@ You should have received a copy of the GNU General Public License along with thi
     BOOL didMoveViewUp;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *labelProjects;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *labelViewAs;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonAbout;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonImprint;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

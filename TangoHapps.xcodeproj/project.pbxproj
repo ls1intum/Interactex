@@ -14,8 +14,16 @@
 		251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678119C4A1A300EF9807 /* hideVPmode@2x.png */; };
 		251F678619C4A1A300EF9807 /* vpmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678219C4A1A300EF9807 /* vpmode.png */; };
 		251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F678319C4A1A300EF9807 /* vpmode@2x.png */; };
+		254EFDAE1A17B82800289A18 /* newProject.png in Resources */ = {isa = PBXBuildFile; fileRef = 254EFDAC1A17B82800289A18 /* newProject.png */; };
+		254EFDAF1A17B82800289A18 /* newProject@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 254EFDAD1A17B82800289A18 /* newProject@2x.png */; };
 		25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
 		25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25643B8D19B0E51F00F8E9CB /* THMenubar.xib */; };
+		2577302F1A17858800F038D1 /* segBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 257730291A17858800F038D1 /* segBg.png */; };
+		257730301A17858800F038D1 /* segBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302A1A17858800F038D1 /* segBg@2x.png */; };
+		257730311A17858800F038D1 /* segBgSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302B1A17858800F038D1 /* segBgSelected.png */; };
+		257730321A17858800F038D1 /* segBgSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302C1A17858800F038D1 /* segBgSelected@2x.png */; };
+		257730331A17858800F038D1 /* segDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302D1A17858800F038D1 /* segDivider.png */; };
+		257730341A17858800F038D1 /* segDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302E1A17858800F038D1 /* segDivider@2x.png */; };
 		25981C8219D6BCC600DE4131 /* zoomMinus.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C7E19D6BCC600DE4131 /* zoomMinus.png */; };
 		25981C8319D6BCC600DE4131 /* zoomMinus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */; };
 		25981C8419D6BCC600DE4131 /* zoomPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8019D6BCC600DE4131 /* zoomPlus.png */; };
@@ -1224,9 +1232,17 @@
 		251F678119C4A1A300EF9807 /* hideVPmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hideVPmode@2x.png"; sourceTree = "<group>"; };
 		251F678219C4A1A300EF9807 /* vpmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vpmode.png; sourceTree = "<group>"; };
 		251F678319C4A1A300EF9807 /* vpmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vpmode@2x.png"; sourceTree = "<group>"; };
+		254EFDAC1A17B82800289A18 /* newProject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newProject.png; sourceTree = "<group>"; };
+		254EFDAD1A17B82800289A18 /* newProject@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newProject@2x.png"; sourceTree = "<group>"; };
 		25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMenubarViewController.h; sourceTree = "<group>"; };
 		25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMenubarViewController.m; sourceTree = "<group>"; };
 		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THMenubar.xib; sourceTree = "<group>"; };
+		257730291A17858800F038D1 /* segBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segBg.png; sourceTree = "<group>"; };
+		2577302A1A17858800F038D1 /* segBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segBg@2x.png"; sourceTree = "<group>"; };
+		2577302B1A17858800F038D1 /* segBgSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segBgSelected.png; sourceTree = "<group>"; };
+		2577302C1A17858800F038D1 /* segBgSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segBgSelected@2x.png"; sourceTree = "<group>"; };
+		2577302D1A17858800F038D1 /* segDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segDivider.png; sourceTree = "<group>"; };
+		2577302E1A17858800F038D1 /* segDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segDivider@2x.png"; sourceTree = "<group>"; };
 		25981C7E19D6BCC600DE4131 /* zoomMinus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomMinus.png; sourceTree = "<group>"; };
 		25981C7F19D6BCC600DE4131 /* zoomMinus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomMinus@2x.png"; sourceTree = "<group>"; };
 		25981C8019D6BCC600DE4131 /* zoomPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomPlus.png; sourceTree = "<group>"; };
@@ -2883,6 +2899,14 @@
 		9A94F3E316A00EA400AF52AB /* selection */ = {
 			isa = PBXGroup;
 			children = (
+				254EFDAC1A17B82800289A18 /* newProject.png */,
+				254EFDAD1A17B82800289A18 /* newProject@2x.png */,
+				257730291A17858800F038D1 /* segBg.png */,
+				2577302A1A17858800F038D1 /* segBg@2x.png */,
+				2577302B1A17858800F038D1 /* segBgSelected.png */,
+				2577302C1A17858800F038D1 /* segBgSelected@2x.png */,
+				2577302D1A17858800F038D1 /* segDivider.png */,
+				2577302E1A17858800F038D1 /* segDivider@2x.png */,
 				9A94F3E416A00EA400AF52AB /* ipadFrame.png */,
 				9A94F3E516A00EA400AF52AB /* ipadFrame@2x.png */,
 				9A94F3E616A00EA400AF52AB /* removeButton.png */,
@@ -4311,6 +4335,7 @@
 				9A94F42C16A0192700AF52AB /* THLedProperties.xib in Resources */,
 				251F678619C4A1A300EF9807 /* vpmode.png in Resources */,
 				9A8942AD1836241C00B8CA0E /* jennic.png in Resources */,
+				257730341A17858800F038D1 /* segDivider@2x.png in Resources */,
 				9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */,
 				9A94F43016A0192700AF52AB /* THMapperProperties.xib in Resources */,
 				9A94F43216A0192700AF52AB /* THMusicPlayerProperties.xib in Resources */,
@@ -4364,6 +4389,7 @@
 				9AA4D75818AE1C8500A43433 /* THLilypadProperties.xib in Resources */,
 				9A41456117DE7A060061EDF8 /* comparator.png in Resources */,
 				9AA4D6EC18AE169100A43433 /* lipoBattery@2x.png in Resources */,
+				257730311A17858800F038D1 /* segBgSelected.png in Resources */,
 				9A41456317DE7A060061EDF8 /* comparator@2x.png in Resources */,
 				9A41456517DE7A060061EDF8 /* LSMCompass.png in Resources */,
 				9A41456717DE7A060061EDF8 /* LSMCompass@2x.png in Resources */,
@@ -4375,6 +4401,7 @@
 				9A41457117DE7A060061EDF8 /* contactBook.png in Resources */,
 				9A41457317DE7A060061EDF8 /* contactBook@2x.png in Resources */,
 				9A41457517DE7A060061EDF8 /* grouper.png in Resources */,
+				254EFDAE1A17B82800289A18 /* newProject.png in Resources */,
 				251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */,
 				9A41457717DE7A060061EDF8 /* grouper@2x.png in Resources */,
 				25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */,
@@ -4395,6 +4422,7 @@
 				9A41459517DE7A060061EDF8 /* mapper@2x.png in Resources */,
 				9A41459717DE7A060061EDF8 /* music.png in Resources */,
 				9A41459917DE7A060061EDF8 /* music@2x.png in Resources */,
+				257730331A17858800F038D1 /* segDivider.png in Resources */,
 				9A41459B17DE7A060061EDF8 /* palette_boolean.png in Resources */,
 				9A41459D17DE7A060061EDF8 /* palette_boolean@2x.png in Resources */,
 				9A41459F17DE7A060061EDF8 /* palette_button.png in Resources */,
@@ -4449,6 +4477,8 @@
 				9AB490391886E54500BCB1C6 /* THAutorouteProperties.xib in Resources */,
 				9A4145E117DE7A060061EDF8 /* palette_potentiometer@2x.png in Resources */,
 				9A4145E317DE7A060061EDF8 /* palette_slider.png in Resources */,
+				257730301A17858800F038D1 /* segBg@2x.png in Resources */,
+				254EFDAF1A17B82800289A18 /* newProject@2x.png in Resources */,
 				9A4145E517DE7A060061EDF8 /* palette_slider@2x.png in Resources */,
 				9A4145E717DE7A060061EDF8 /* palette_sound.png in Resources */,
 				9A4145E917DE7A060061EDF8 /* palette_sound@2x.png in Resources */,
@@ -4504,6 +4534,7 @@
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
 				9A95FB7218CF593A009A724F /* palette_powerSupply@2x.png in Resources */,
 				9A41462F17DE7A060061EDF8 /* vibeBoard.png in Resources */,
+				257730321A17858800F038D1 /* segBgSelected@2x.png in Resources */,
 				9A41463117DE7A060061EDF8 /* vibeBoard@2x.png in Resources */,
 				9A41463317DE7A060061EDF8 /* yellowLight.png in Resources */,
 				67B3130118EC8063006A9A31 /* flexSensor.png in Resources */,
@@ -4529,6 +4560,7 @@
 				9A1C3AC21886DDAE007C5E94 /* palette_LSMCompass.png in Resources */,
 				9A41465117DE7A060061EDF8 /* pinsmode@2x.png in Resources */,
 				9A41465317DE7A060061EDF8 /* push.png in Resources */,
+				2577302F1A17858800F038D1 /* segBg.png in Resources */,
 				9A41465517DE7A060061EDF8 /* push@2x.png in Resources */,
 				9A41465A17DE86E60061EDF8 /* palettePull.png in Resources */,
 				9A41469517DE93F30061EDF8 /* palettePull@2x.png in Resources */,
