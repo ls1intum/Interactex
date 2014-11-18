@@ -75,6 +75,8 @@
         self.isOpen = [decoder decodeBoolForKey:@"isOpen"];
         
         [self load];
+        
+        self.scale = [decoder decodeFloatForKey:@"scale"];
 
         NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
         for (TFEditableObject * attachment in attachments) {
@@ -106,6 +108,8 @@
     
     [coder encodeBool:self.isOpen forKey:@"isOpen"];
     
+    [coder encodeFloat:self.scale forKey:@"scale"];
+    
     [coder encodeObject:self.attachments forKey:@"attachments"];
     
     [coder encodeObject:_outputs forKey:@"outputs"];
@@ -121,6 +125,7 @@
     copy.saveName = self.saveName;
     copy.inCount = self.inCount;
     copy.outCount = self.outCount;
+    copy.scale = self.scale;
 
     [copy load];
     
@@ -287,7 +292,8 @@
 -(void) attachGestureObject:(TFEditableObject*) object{
     [_attachments addObject:object];
     [self addChild:object z:1];
-    if (object.scale ==1) object.scale /= 15;
+    //if (object.scale ==1)
+    object.scale /= 8;
     if (!_isOpen) object.visible = false;
     object.attachedToGesture = self;
     
@@ -297,15 +303,17 @@
 -(void) deattachGestureObject:(TFEditableObject*) object{
     [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
-    object.scale = 1;
+    object.scale *= 8;
     object.attachedToGesture = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 
 -(void) scale:(float)amount {
-    [self scaleBy:amount];
-    self.scale = clampf(self.scale, 2, 15);
+    if (!self.attachedToGesture) {
+        [self scaleBy:amount];
+        self.scale = clampf(self.scale, 2, 15);
+    }
 }
 
 -(void) openClose {
@@ -322,7 +330,6 @@
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
     [self addChild:self.sprite z:-10];
-    self.scale = 10;
     self.z = kGestureZ;
     for (TFEditableObject * obj in _attachments) {
         obj.visible = true;
@@ -333,7 +340,6 @@
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite z:-10];
-    self.scale = 1;
     self.z = kGestureObjectZ;
     for (TFEditableObject * obj in _attachments) {
         obj.visible = false;
@@ -360,7 +366,7 @@
 
 -(void) attachOutput:(THOutputEditable *)object {
     [self addChild:object z:1];
-    if (object.scale ==1) object.scale /= 15;
+    object.scale /= 8;
     object.attachedToGesture = self;
     
     [_outputs addObject:object];
@@ -377,8 +383,8 @@
     
     CGPoint position = ccp(0,0);
     
-    position.y -= 5 * 0.6f;
-    position.x += _outCount * 50.0f/(5.f) - 5.0f;
+    position.y -= 5 * 1.0f;
+    position.x += _outCount * 75.0f/(5.f) - 10.0f;
     
     object.position = position;
     
@@ -396,7 +402,7 @@
     _outCount--;
     [_outputs removeObject:object];
     [object removeFromParentAndCleanup:YES];
-    object.scale = 1;
+    object.scale *= 8;
     object.attachedToGesture = nil;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -413,7 +419,7 @@
 
 -(void) attachInput:(THOutputEditable *)object {
     [self addChild:object z:1];
-    if (object.scale ==1) object.scale /= 15;
+    object.scale /= 8;
     object.attachedToGesture = self;
     
     [_inputs addObject:object];
@@ -430,8 +436,8 @@
     
     CGPoint position = ccp(0,0);
     
-    position.y += 75.f;
-    position.x += _inCount * 50.0f/(5.f) - 5.0f;
+    position.y += 80.f;
+    position.x += _inCount * 75.0f/(5.f) - 8.0f;
     
     object.position = position;
     
@@ -443,7 +449,7 @@
     _inCount--;
     [_inputs removeObject:object];
     [object removeFromParentAndCleanup:YES];
-    object.scale = 1;
+    object.scale *= 8;
     object.attachedToGesture = nil;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;

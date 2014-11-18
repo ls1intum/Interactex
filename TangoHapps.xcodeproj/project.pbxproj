@@ -27,6 +27,32 @@
 		25E57B5419C0824A006B61A8 /* stopicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5219C0824A006B61A8 /* stopicon@2x.png */; };
 		25E57B5919C08984006B61A8 /* editorLayerBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5519C08984006B61A8 /* editorLayerBg.png */; };
 		25E57B5A19C08984006B61A8 /* editorLayerBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5619C08984006B61A8 /* editorLayerBg@2x.png */; };
+		675515911A1BD14C00AC4869 /* outputCircleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515771A1BD14C00AC4869 /* outputCircleFilled.png */; };
+		675515921A1BD14C00AC4869 /* outputCircleFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515781A1BD14C00AC4869 /* outputCircleFilled@2x.png */; };
+		675515931A1BD14C00AC4869 /* outputCircleFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515791A1BD14C00AC4869 /* outputCircleFilledLower.png */; };
+		675515941A1BD14C00AC4869 /* outputCircleFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755157A1A1BD14C00AC4869 /* outputCircleFilledLower@2x.png */; };
+		675515951A1BD14C00AC4869 /* outputCircleFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755157B1A1BD14C00AC4869 /* outputCircleFilledUpper.png */; };
+		675515961A1BD14C00AC4869 /* outputCircleFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755157C1A1BD14C00AC4869 /* outputCircleFilledUpper@2x.png */; };
+		675515971A1BD14C00AC4869 /* outputEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755157D1A1BD14C00AC4869 /* outputEmpty.png */; };
+		675515981A1BD14C00AC4869 /* outputEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755157E1A1BD14C00AC4869 /* outputEmpty@2x.png */; };
+		675515991A1BD14C00AC4869 /* outputSquareFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755157F1A1BD14C00AC4869 /* outputSquareFilled.png */; };
+		6755159A1A1BD14C00AC4869 /* outputSquareFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515801A1BD14C00AC4869 /* outputSquareFilled@2x.png */; };
+		6755159B1A1BD14C00AC4869 /* outputSquareFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515811A1BD14C00AC4869 /* outputSquareFilledLower.png */; };
+		6755159C1A1BD14C00AC4869 /* outputSquareFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515821A1BD14C00AC4869 /* outputSquareFilledLower@2x.png */; };
+		6755159D1A1BD14C00AC4869 /* outputSquareFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515831A1BD14C00AC4869 /* outputSquareFilledUpper.png */; };
+		6755159E1A1BD14C00AC4869 /* outputSquareFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515841A1BD14C00AC4869 /* outputSquareFilledUpper@2x.png */; };
+		6755159F1A1BD14C00AC4869 /* outputStarFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515851A1BD14C00AC4869 /* outputStarFilled.png */; };
+		675515A01A1BD14C00AC4869 /* outputStarFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515861A1BD14C00AC4869 /* outputStarFilled@2x.png */; };
+		675515A11A1BD14C00AC4869 /* outputStarFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515871A1BD14C00AC4869 /* outputStarFilledLower.png */; };
+		675515A21A1BD14C00AC4869 /* outputStarFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515881A1BD14C00AC4869 /* outputStarFilledLower@2x.png */; };
+		675515A31A1BD14C00AC4869 /* outputStarFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515891A1BD14C00AC4869 /* outputStarFilledUpper.png */; };
+		675515A41A1BD14C00AC4869 /* outputStarFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755158A1A1BD14C00AC4869 /* outputStarFilledUpper@2x.png */; };
+		675515A51A1BD14C00AC4869 /* outputTriangleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755158B1A1BD14C00AC4869 /* outputTriangleFilled.png */; };
+		675515A61A1BD14C00AC4869 /* outputTriangleFilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755158C1A1BD14C00AC4869 /* outputTriangleFilled@2x.png */; };
+		675515A71A1BD14C00AC4869 /* outputTriangleFilledLower.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755158D1A1BD14C00AC4869 /* outputTriangleFilledLower.png */; };
+		675515A81A1BD14C00AC4869 /* outputTriangleFilledLower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755158E1A1BD14C00AC4869 /* outputTriangleFilledLower@2x.png */; };
+		675515A91A1BD14C00AC4869 /* outputTriangleFilledUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 6755158F1A1BD14C00AC4869 /* outputTriangleFilledUpper.png */; };
+		675515AA1A1BD14C00AC4869 /* outputTriangleFilledUpper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 675515901A1BD14C00AC4869 /* outputTriangleFilledUpper@2x.png */; };
 		6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0318F6AC980080B1C9 /* palette_gesture.png */; };
 		6778EA0818F6AC980080B1C9 /* palette_gesture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */; };
 		679857A718EC61CC0037B366 /* THFlexSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */; };
@@ -1256,6 +1282,32 @@
 		25E57B5219C0824A006B61A8 /* stopicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopicon@2x.png"; sourceTree = "<group>"; };
 		25E57B5519C08984006B61A8 /* editorLayerBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editorLayerBg.png; sourceTree = "<group>"; };
 		25E57B5619C08984006B61A8 /* editorLayerBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editorLayerBg@2x.png"; sourceTree = "<group>"; };
+		675515771A1BD14C00AC4869 /* outputCircleFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputCircleFilled.png; sourceTree = "<group>"; };
+		675515781A1BD14C00AC4869 /* outputCircleFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputCircleFilled@2x.png"; sourceTree = "<group>"; };
+		675515791A1BD14C00AC4869 /* outputCircleFilledLower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputCircleFilledLower.png; sourceTree = "<group>"; };
+		6755157A1A1BD14C00AC4869 /* outputCircleFilledLower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputCircleFilledLower@2x.png"; sourceTree = "<group>"; };
+		6755157B1A1BD14C00AC4869 /* outputCircleFilledUpper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputCircleFilledUpper.png; sourceTree = "<group>"; };
+		6755157C1A1BD14C00AC4869 /* outputCircleFilledUpper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputCircleFilledUpper@2x.png"; sourceTree = "<group>"; };
+		6755157D1A1BD14C00AC4869 /* outputEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputEmpty.png; sourceTree = "<group>"; };
+		6755157E1A1BD14C00AC4869 /* outputEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputEmpty@2x.png"; sourceTree = "<group>"; };
+		6755157F1A1BD14C00AC4869 /* outputSquareFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputSquareFilled.png; sourceTree = "<group>"; };
+		675515801A1BD14C00AC4869 /* outputSquareFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputSquareFilled@2x.png"; sourceTree = "<group>"; };
+		675515811A1BD14C00AC4869 /* outputSquareFilledLower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputSquareFilledLower.png; sourceTree = "<group>"; };
+		675515821A1BD14C00AC4869 /* outputSquareFilledLower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputSquareFilledLower@2x.png"; sourceTree = "<group>"; };
+		675515831A1BD14C00AC4869 /* outputSquareFilledUpper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputSquareFilledUpper.png; sourceTree = "<group>"; };
+		675515841A1BD14C00AC4869 /* outputSquareFilledUpper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputSquareFilledUpper@2x.png"; sourceTree = "<group>"; };
+		675515851A1BD14C00AC4869 /* outputStarFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputStarFilled.png; sourceTree = "<group>"; };
+		675515861A1BD14C00AC4869 /* outputStarFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputStarFilled@2x.png"; sourceTree = "<group>"; };
+		675515871A1BD14C00AC4869 /* outputStarFilledLower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputStarFilledLower.png; sourceTree = "<group>"; };
+		675515881A1BD14C00AC4869 /* outputStarFilledLower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputStarFilledLower@2x.png"; sourceTree = "<group>"; };
+		675515891A1BD14C00AC4869 /* outputStarFilledUpper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputStarFilledUpper.png; sourceTree = "<group>"; };
+		6755158A1A1BD14C00AC4869 /* outputStarFilledUpper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputStarFilledUpper@2x.png"; sourceTree = "<group>"; };
+		6755158B1A1BD14C00AC4869 /* outputTriangleFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputTriangleFilled.png; sourceTree = "<group>"; };
+		6755158C1A1BD14C00AC4869 /* outputTriangleFilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputTriangleFilled@2x.png"; sourceTree = "<group>"; };
+		6755158D1A1BD14C00AC4869 /* outputTriangleFilledLower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputTriangleFilledLower.png; sourceTree = "<group>"; };
+		6755158E1A1BD14C00AC4869 /* outputTriangleFilledLower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputTriangleFilledLower@2x.png"; sourceTree = "<group>"; };
+		6755158F1A1BD14C00AC4869 /* outputTriangleFilledUpper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputTriangleFilledUpper.png; sourceTree = "<group>"; };
+		675515901A1BD14C00AC4869 /* outputTriangleFilledUpper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputTriangleFilledUpper@2x.png"; sourceTree = "<group>"; };
 		6778EA0318F6AC980080B1C9 /* palette_gesture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_gesture.png; sourceTree = "<group>"; };
 		6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_gesture@2x.png"; sourceTree = "<group>"; };
 		679857A518EC61CC0037B366 /* THFlexSensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THFlexSensorPaletteItem.h; sourceTree = "<group>"; };
@@ -2243,6 +2295,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		675515761A1BD14C00AC4869 /* outputs */ = {
+			isa = PBXGroup;
+			children = (
+				675515771A1BD14C00AC4869 /* outputCircleFilled.png */,
+				675515781A1BD14C00AC4869 /* outputCircleFilled@2x.png */,
+				675515791A1BD14C00AC4869 /* outputCircleFilledLower.png */,
+				6755157A1A1BD14C00AC4869 /* outputCircleFilledLower@2x.png */,
+				6755157B1A1BD14C00AC4869 /* outputCircleFilledUpper.png */,
+				6755157C1A1BD14C00AC4869 /* outputCircleFilledUpper@2x.png */,
+				6755157D1A1BD14C00AC4869 /* outputEmpty.png */,
+				6755157E1A1BD14C00AC4869 /* outputEmpty@2x.png */,
+				6755157F1A1BD14C00AC4869 /* outputSquareFilled.png */,
+				675515801A1BD14C00AC4869 /* outputSquareFilled@2x.png */,
+				675515811A1BD14C00AC4869 /* outputSquareFilledLower.png */,
+				675515821A1BD14C00AC4869 /* outputSquareFilledLower@2x.png */,
+				675515831A1BD14C00AC4869 /* outputSquareFilledUpper.png */,
+				675515841A1BD14C00AC4869 /* outputSquareFilledUpper@2x.png */,
+				675515851A1BD14C00AC4869 /* outputStarFilled.png */,
+				675515861A1BD14C00AC4869 /* outputStarFilled@2x.png */,
+				675515871A1BD14C00AC4869 /* outputStarFilledLower.png */,
+				675515881A1BD14C00AC4869 /* outputStarFilledLower@2x.png */,
+				675515891A1BD14C00AC4869 /* outputStarFilledUpper.png */,
+				6755158A1A1BD14C00AC4869 /* outputStarFilledUpper@2x.png */,
+				6755158B1A1BD14C00AC4869 /* outputTriangleFilled.png */,
+				6755158C1A1BD14C00AC4869 /* outputTriangleFilled@2x.png */,
+				6755158D1A1BD14C00AC4869 /* outputTriangleFilledLower.png */,
+				6755158E1A1BD14C00AC4869 /* outputTriangleFilledLower@2x.png */,
+				6755158F1A1BD14C00AC4869 /* outputTriangleFilledUpper.png */,
+				675515901A1BD14C00AC4869 /* outputTriangleFilledUpper@2x.png */,
+			);
+			path = outputs;
+			sourceTree = "<group>";
+		};
 		67EEDF9A1A164CB600288A7D /* gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -2377,6 +2462,7 @@
 		9A4144A817DE7A060061EDF8 /* project */ = {
 			isa = PBXGroup;
 			children = (
+				675515761A1BD14C00AC4869 /* outputs */,
 				9AB7789017E6C25700F82424 /* method invocation */,
 				9A5931C117E5CD4500B20D99 /* palette buttons */,
 				9A41465917DE86E60061EDF8 /* palettePull.png */,
@@ -4361,6 +4447,7 @@
 				9A94F41C16A0192700AF52AB /* THComparatorEditableProperties.xib in Resources */,
 				9A94F41E16A0192700AF52AB /* THGrouperEditableProperties.xib in Resources */,
 				9AFB7E1B1833BBDD00694CCE /* THMonitorProperties.xib in Resources */,
+				675515A31A1BD14C00AC4869 /* outputStarFilledUpper.png in Resources */,
 				9A94F42016A0192700AF52AB /* THImageViewProperties.xib in Resources */,
 				9A94F42216A0192700AF52AB /* THiPhoneButtonProperties.xib in Resources */,
 				9A94F42416A0192700AF52AB /* THiPhoneProperties.xib in Resources */,
@@ -4368,6 +4455,7 @@
 				9A94F42816A0192700AF52AB /* THiSwitchEditableProperties.xib in Resources */,
 				9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */,
 				9A94F42A16A0192700AF52AB /* THLabelProperties.xib in Resources */,
+				675515A11A1BD14C00AC4869 /* outputStarFilledLower.png in Resources */,
 				9AA4D6E918AE169100A43433 /* BLE-LilyPad.png in Resources */,
 				9A94F42C16A0192700AF52AB /* THLedProperties.xib in Resources */,
 				251F678619C4A1A300EF9807 /* vpmode.png in Resources */,
@@ -4378,6 +4466,7 @@
 				9A94F43216A0192700AF52AB /* THMusicPlayerProperties.xib in Resources */,
 				9A94F43416A0192700AF52AB /* THPotentiometerProperties.xib in Resources */,
 				9A94F43616A0192700AF52AB /* THSliderProperties.xib in Resources */,
+				675515A41A1BD14C00AC4869 /* outputStarFilledUpper@2x.png in Resources */,
 				9A94F43816A0192700AF52AB /* THSwitchProperties.xib in Resources */,
 				9A94F43A16A0192700AF52AB /* THThreeColorLedProperties.xib in Resources */,
 				9ABC27A01809B46C00B39D72 /* palette_accelerometer.png in Resources */,
@@ -4386,15 +4475,19 @@
 				9AF60BBF16A04BDB00178439 /* connectionMade.mp3 in Resources */,
 				67EEDFC41A16516600288A7D /* gesture.png in Resources */,
 				9AF60BC616A04D9F00178439 /* THTabbar.xib in Resources */,
+				675515941A1BD14C00AC4869 /* outputCircleFilledLower@2x.png in Resources */,
 				9AF60BC816A04D9F00178439 /* THTabbarViewSection.xib in Resources */,
 				9ABC279E1809B46C00B39D72 /* accelerometer@2x.png in Resources */,
 				9A5BD7411860C52E00842833 /* circleEmpty@2x.png in Resources */,
 				9A5F8D8D16A2C524000DF472 /* THContactBookProperties.xib in Resources */,
 				9A87C06116A4140C0059CC2E /* THGridItem.xib in Resources */,
+				675515A01A1BD14C00AC4869 /* outputStarFilled@2x.png in Resources */,
 				67EEDFC71A16516600288A7D /* output@2x.png in Resources */,
 				9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */,
 				9A93848E16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
 				9A9384F616D6BE8D00A41BD2 /* sewed.mp3 in Resources */,
+				6755159F1A1BD14C00AC4869 /* outputStarFilled.png in Resources */,
+				6755159D1A1BD14C00AC4869 /* outputSquareFilledUpper.png in Resources */,
 				9A097688171868730028A6B4 /* THVibrationBoardProperties.xib in Resources */,
 				9A09777D17268EF40028A6B4 /* THSoundProperties.xib in Resources */,
 				9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */,
@@ -4408,6 +4501,7 @@
 				9A41453D17DE7A060061EDF8 /* add@2x.png in Resources */,
 				9A41453F17DE7A060061EDF8 /* backwards.png in Resources */,
 				9A41454117DE7A060061EDF8 /* backwards@2x.png in Resources */,
+				6755159A1A1BD14C00AC4869 /* outputSquareFilled@2x.png in Resources */,
 				9A41454317DE7A060061EDF8 /* forward.png in Resources */,
 				9A8942AF1836241C00B8CA0E /* jennic@2x.png in Resources */,
 				9A41454517DE7A060061EDF8 /* forward@2x.png in Resources */,
@@ -4424,12 +4518,16 @@
 				9A41455917DE7A060061EDF8 /* buzzer.png in Resources */,
 				9A41455B17DE7A060061EDF8 /* buzzer@2x.png in Resources */,
 				9A41455D17DE7A060061EDF8 /* call.png in Resources */,
+				675515931A1BD14C00AC4869 /* outputCircleFilledLower.png in Resources */,
 				9A41455F17DE7A060061EDF8 /* call@2x.png in Resources */,
+				675515A51A1BD14C00AC4869 /* outputTriangleFilled.png in Resources */,
+				675515A91A1BD14C00AC4869 /* outputTriangleFilledUpper.png in Resources */,
 				9AA4D75818AE1C8500A43433 /* THLilypadProperties.xib in Resources */,
 				9A41456117DE7A060061EDF8 /* comparator.png in Resources */,
 				9AA4D6EC18AE169100A43433 /* lipoBattery@2x.png in Resources */,
 				9A41456317DE7A060061EDF8 /* comparator@2x.png in Resources */,
 				9A41456517DE7A060061EDF8 /* LSMCompass.png in Resources */,
+				6755159B1A1BD14C00AC4869 /* outputSquareFilledLower.png in Resources */,
 				9A41456717DE7A060061EDF8 /* LSMCompass@2x.png in Resources */,
 				9A41456917DE7A060061EDF8 /* compassCircle.png in Resources */,
 				251F674419C48F5300EF9807 /* iphoneBg.png in Resources */,
@@ -4439,12 +4537,14 @@
 				9A41457117DE7A060061EDF8 /* contactBook.png in Resources */,
 				9A41457317DE7A060061EDF8 /* contactBook@2x.png in Resources */,
 				9A41457517DE7A060061EDF8 /* grouper.png in Resources */,
+				6755159E1A1BD14C00AC4869 /* outputSquareFilledUpper@2x.png in Resources */,
 				251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */,
 				9A41457717DE7A060061EDF8 /* grouper@2x.png in Resources */,
 				25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */,
 				9A41457917DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457B17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
 				9ABC277B1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */,
+				675515981A1BD14C00AC4869 /* outputEmpty@2x.png in Resources */,
 				9A41457D17DE7A060061EDF8 /* iphone5.png in Resources */,
 				9A41457F17DE7A060061EDF8 /* iphone5@2x.png in Resources */,
 				9A41458117DE7A060061EDF8 /* iphoneFrameSimulator.xcf in Resources */,
@@ -4480,6 +4580,8 @@
 				9A4145B717DE7A060061EDF8 /* palette_grouper.png in Resources */,
 				9AA4D6EA18AE169100A43433 /* BLE-LilyPad@2x.png in Resources */,
 				9A4145B917DE7A060061EDF8 /* palette_grouper@2x.png in Resources */,
+				675515971A1BD14C00AC4869 /* outputEmpty.png in Resources */,
+				675515961A1BD14C00AC4869 /* outputCircleFilledUpper@2x.png in Resources */,
 				9A4145BB17DE7A060061EDF8 /* palette_ibutton.png in Resources */,
 				9A4145BD17DE7A060061EDF8 /* palette_ibutton@2x.png in Resources */,
 				9A4145BF17DE7A060061EDF8 /* palette_imageview.png in Resources */,
@@ -4490,7 +4592,9 @@
 				9A4145C717DE7A060061EDF8 /* palette_iswitch.png in Resources */,
 				9A4145C917DE7A060061EDF8 /* palette_iswitch@2x.png in Resources */,
 				9A4145CB17DE7A060061EDF8 /* palette_label.png in Resources */,
+				675515991A1BD14C00AC4869 /* outputSquareFilled.png in Resources */,
 				9A4145CD17DE7A060061EDF8 /* palette_label@2x.png in Resources */,
+				675515951A1BD14C00AC4869 /* outputCircleFilledUpper.png in Resources */,
 				9A5BD7471860C52E00842833 /* squareFilled@2x.png in Resources */,
 				25E57B5919C08984006B61A8 /* editorLayerBg.png in Resources */,
 				9A4145CF17DE7A060061EDF8 /* palette_led.png in Resources */,
@@ -4504,6 +4608,7 @@
 				9AA4D76218AE1DDA00A43433 /* THBLELilyPadProperties.xib in Resources */,
 				9A6B284518AA0874009AAE31 /* palette_puredata@2x.png in Resources */,
 				25E57B5A19C08984006B61A8 /* editorLayerBg@2x.png in Resources */,
+				675515AA1A1BD14C00AC4869 /* outputTriangleFilledUpper@2x.png in Resources */,
 				9A6B285418AA08A0009AAE31 /* synthesis.pd in Resources */,
 				9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */,
 				9ABC27A21809B46C00B39D72 /* palette_accelerometer@2x.png in Resources */,
@@ -4516,6 +4621,7 @@
 				9A4145E317DE7A060061EDF8 /* palette_slider.png in Resources */,
 				9A4145E517DE7A060061EDF8 /* palette_slider@2x.png in Resources */,
 				9A4145E717DE7A060061EDF8 /* palette_sound.png in Resources */,
+				675515911A1BD14C00AC4869 /* outputCircleFilled.png in Resources */,
 				9A4145E917DE7A060061EDF8 /* palette_sound@2x.png in Resources */,
 				9A4145EB17DE7A060061EDF8 /* palette_string.png in Resources */,
 				9A4145ED17DE7A060061EDF8 /* palette_string@2x.png in Resources */,
@@ -4530,6 +4636,7 @@
 				9A4145FD17DE7A060061EDF8 /* palette_touchpad@2x.png in Resources */,
 				9A4145FF17DE7A060061EDF8 /* palette_tshirt.png in Resources */,
 				9A41460117DE7A060061EDF8 /* palette_tshirt@2x.png in Resources */,
+				675515A81A1BD14C00AC4869 /* outputTriangleFilledLower@2x.png in Resources */,
 				9A5BD74D1860C52E00842833 /* triangleEmpty@2x.png in Resources */,
 				67EEDFC51A16516600288A7D /* gesture@2x.png in Resources */,
 				9A41460317DE7A060061EDF8 /* palette_number.png in Resources */,
@@ -4551,6 +4658,7 @@
 				9A6B284318AA0874009AAE31 /* palette_puredata.png in Resources */,
 				9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */,
 				9A5BD74B1860C52E00842833 /* starFilled@2x.png in Resources */,
+				675515921A1BD14C00AC4869 /* outputCircleFilled@2x.png in Resources */,
 				9A41461717DE7A060061EDF8 /* switch.png in Resources */,
 				9A41461917DE7A060061EDF8 /* switch@2x.png in Resources */,
 				25E57B5419C0824A006B61A8 /* stopicon@2x.png in Resources */,
@@ -4560,6 +4668,7 @@
 				9A41462117DE7A060061EDF8 /* threeColorLed@2x.png in Resources */,
 				9A5BD7491860C52E00842833 /* starEmpty@2x.png in Resources */,
 				9A95FB7418CF593A009A724F /* powerSupply.png in Resources */,
+				675515A61A1BD14C00AC4869 /* outputTriangleFilled@2x.png in Resources */,
 				9A41462317DE7A060061EDF8 /* timer.png in Resources */,
 				25E57B5319C0824A006B61A8 /* stopicon.png in Resources */,
 				9A41462517DE7A060061EDF8 /* timer@2x.png in Resources */,
@@ -4568,6 +4677,7 @@
 				25E57B1519C077C6006B61A8 /* playicon.png in Resources */,
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
+				675515A21A1BD14C00AC4869 /* outputStarFilledLower@2x.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
 				9A95FB7218CF593A009A724F /* palette_powerSupply@2x.png in Resources */,
 				9A41462F17DE7A060061EDF8 /* vibeBoard.png in Resources */,
@@ -4579,6 +4689,7 @@
 				9A41463717DE7A060061EDF8 /* connect.png in Resources */,
 				9A41463917DE7A060061EDF8 /* connect@2x.png in Resources */,
 				9A41463B17DE7A060061EDF8 /* delete.png in Resources */,
+				6755159C1A1BD14C00AC4869 /* outputSquareFilledLower@2x.png in Resources */,
 				9A41463D17DE7A060061EDF8 /* delete@2x.png in Resources */,
 				9A41463F17DE7A060061EDF8 /* duplicate.png in Resources */,
 				9A41464117DE7A060061EDF8 /* duplicate@2x.png in Resources */,
@@ -4616,6 +4727,7 @@
 				9A5931D617E5CD4500B20D99 /* propertiesIconSelected.png in Resources */,
 				9A5931D817E5CD4500B20D99 /* propertiesIconSelected@2x.png in Resources */,
 				9AB7784817E66B3300F82424 /* THInvocationConnectionProperties.xib in Resources */,
+				675515A71A1BD14C00AC4869 /* outputTriangleFilledLower.png in Resources */,
 				9AB7789917E6C25700F82424 /* circleEmpty.png in Resources */,
 				9AB7789B17E6C25700F82424 /* circleFilled.png in Resources */,
 				9AB7789D17E6C25700F82424 /* squareEmpty.png in Resources */,
