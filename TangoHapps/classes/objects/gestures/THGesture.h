@@ -13,10 +13,12 @@
 @property (nonatomic, strong) NSMutableArray * attachments;
 @property (nonatomic, readwrite) BOOL isOpen;
 
--(void) attachGestureObject:(TFEditableObject*) object;
--(void) deattachGestureObject:(TFEditableObject*) object;
+-(void) attachGestureObject:(id) object;
+-(void) deattachGestureObject:(id) object;
+/*
 -(void) visible;
--(void) invisible;
+-(void) invisible;*/
+
 -(void) emptyAttachments;
 
 

@@ -46,25 +46,25 @@
     return copy;
 }
 
--(void) attachGestureObject:(TFEditableObject*) object{
+-(void) attachGestureObject:(id) object{
     [_attachments addObject:object];
 }
 
--(void) deattachGestureObject:(TFEditableObject*) object{
+-(void) deattachGestureObject:(id) object{
     [_attachments removeObject:object];
 }
-
+/*
 -(void) visible {
-    for (TFEditableObject* obj in _attachments) {
+    for (id obj in _attachments) {
         obj.visible = true;
     }
 }
 
 -(void) invisible {
-    for (TFEditableObject* obj in _attachments) {
+    for (id obj in _attachments) {
         obj.visible = false;
     }
-}
+}*/
 
 -(void) emptyAttachments {
     _attachments = nil;

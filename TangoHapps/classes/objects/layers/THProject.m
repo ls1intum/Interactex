@@ -981,20 +981,29 @@ enum zPositions{
 }
 
 -(TFSimulableObject*) simulableForEditable:(TFEditableObject*) editable inProject:(THClientProject*) project{
-    if([editable isKindOfClass:[THHardwareComponentEditableObject class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.hardwareComponents];
-        return [project.hardwareComponents objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THViewEditableObject class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.iPhoneObjects];
-        return [project.iPhoneObjects objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
-        return (TFSimulableObject*) project.iPhone;
-    } else if ([editable isKindOfClass:[THProgrammingElementEditable class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.visualProgrammingObjects];
-        return [project.visualProgrammingObjects objectAtIndex:idx];
+    
+    if([editable isKindOfClass:[THOutputEditable class]]){
+        
+        NSInteger idx = [self idxOfEditable:editable inArray:self.gestures];
+        return [project.gestures objectAtIndex:idx];
+        
     } else {
-        NSAssert(NO, @"returning nil in simulableForEditable for %@",editable);
-        return nil;
+        
+        if([editable isKindOfClass:[THHardwareComponentEditableObject class]]){
+            NSInteger idx = [self idxOfEditable:editable inArray:self.hardwareComponents];
+            return [project.hardwareComponents objectAtIndex:idx];
+        } else if ([editable isKindOfClass:[THViewEditableObject class]]){
+            NSInteger idx = [self idxOfEditable:editable inArray:self.iPhoneObjects];
+            return [project.iPhoneObjects objectAtIndex:idx];
+        } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
+            return (TFSimulableObject*) project.iPhone;
+        } else if ([editable isKindOfClass:[THProgrammingElementEditable class]]){
+            NSInteger idx = [self idxOfEditable:editable inArray:self.visualProgrammingObjects];
+            return [project.visualProgrammingObjects objectAtIndex:idx];
+        } else {
+            NSAssert(NO, @"returning nil in simulableForEditable for %@",editable);
+            return nil;
+        }
     }
 }
 

@@ -60,6 +60,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, strong) NSMutableArray * iPhoneObjects;
 @property (nonatomic, strong) NSMutableArray * visualProgrammingObjects;
 @property (nonatomic, strong) NSMutableArray * actionPairs;
+@property (nonatomic, strong) NSMutableArray * gestures;
+
 @property (nonatomic, strong) THiPhone * iPhone;
 @property (nonatomic, readonly) THBoard * currentBoard;
 @property (nonatomic, readonly) NSArray * allObjects;

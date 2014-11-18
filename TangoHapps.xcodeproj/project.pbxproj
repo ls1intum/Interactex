@@ -99,6 +99,9 @@
 		9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3165A61827989D00CB3E59 /* palette_monitor.png */; };
 		9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3165A71827989D00CB3E59 /* palette_monitor@2x.png */; };
 		9A3165AB1827994100CB3E59 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3165AA1827994100CB3E59 /* GLKit.framework */; };
+		9A3469FD1A1B5CE70042ED33 /* THFlexSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857E618EC66310037B366 /* THFlexSensor.m */; };
+		9A346A381A1B5CF10042ED33 /* THOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 67EEDFA01A164CB600288A7D /* THOutput.m */; };
+		9A346A391A1B5D980042ED33 /* THGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 67EEDF9C1A164CB600288A7D /* THGesture.m */; };
 		9A35118E167B7A6800C7484B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118D167B7A6800C7484B /* UIKit.framework */; };
 		9A351190167B7A6800C7484B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A35118F167B7A6800C7484B /* Foundation.framework */; };
 		9A351192167B7A6800C7484B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A351191167B7A6800C7484B /* CoreGraphics.framework */; };
@@ -4978,7 +4981,9 @@
 				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AA4D72F18AE16EE00A43433 /* THBLELilyPad.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
+				9A3469FD1A1B5CE70042ED33 /* THFlexSensor.m in Sources */,
 				9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */,
+				9A346A381A1B5CF10042ED33 /* THOutput.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
 				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
 				9AF5044E167B84D90020241C /* THBoardPin.m in Sources */,
@@ -4997,6 +5002,7 @@
 				9AF5045A167B84F50020241C /* THSlideSwitch.m in Sources */,
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
 				9A6B283318AA0768009AAE31 /* THPureData.m in Sources */,
+				9A346A391A1B5D980042ED33 /* THGesture.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
 				9ABC276418098F2400B39D72 /* THSimpleLilypad.m in Sources */,
 				9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,

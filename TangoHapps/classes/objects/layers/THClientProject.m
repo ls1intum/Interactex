@@ -126,6 +126,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         self.iPhone = [decoder decodeObjectForKey:@"iPhone"];
         self.visualProgrammingObjects = [decoder decodeObjectForKey:@"values"];
+        self.gestures = [decoder decodeObjectForKey:@"gestures"];
         
         NSMutableArray * actionPairs = [decoder decodeObjectForKey:@"actionPairs"];
         for (TFEventActionPair * pair in actionPairs) {
@@ -145,6 +146,7 @@ You should have received a copy of the GNU General Public License along with thi
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
     
     [coder encodeObject:self.visualProgrammingObjects forKey:@"values"];
+    [coder encodeObject:self.gestures forKey:@"gestures"];
     
     [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
@@ -181,6 +183,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.boards];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.visualProgrammingObjects];
+    allObjects = [allObjects arrayByAddingObjectsFromArray:self.gestures];
+    
     return allObjects;
 }
 
