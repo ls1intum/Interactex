@@ -12,13 +12,11 @@
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
 #import "THGestureProperties.h"
-#import "THGesture.h"
 
 @implementation THGestureEditableObject
 
 -(void) load{
     
-    self.simulableObject = [[THGesture alloc] init];
     if (_isOpen) {
         self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
     }
@@ -108,7 +106,7 @@
     
     [coder encodeBool:self.isOpen forKey:@"isOpen"];
     
-    [coder encodeObject:[self getAttachments] forKey:@"attachments"];
+    [coder encodeObject:self.attachments forKey:@"attachments"];
     
     [coder encodeObject:_outputs forKey:@"outputs"];
     
@@ -130,8 +128,8 @@
     
     //NSMutableArray * att = [self getAttachments];
     
-    for (TFEditableObject * obj1 in [self getAttachments]) {
-        for (TFEditableObject * obj2 in [self getAttachments]) {
+    for (TFEditableObject * obj1 in self.attachments) {
+        for (TFEditableObject * obj2 in self.attachments) {
             NSArray * arr = [project invocationConnectionsFrom:obj1 to:obj2];
             for (THInvocationConnectionLine * line in arr) {
                 [_connections addObject:[line copy]];
@@ -152,7 +150,7 @@
     }
     
     
-    for (TFEditableObject * attachment in [self getAttachments]) {
+    for (TFEditableObject * attachment in self.attachments) {
         TFEditableObject* cop = [attachment copy];
         [copy attachGestureObject:cop];
         for (THInvocationConnectionLine * line in _connections) {
@@ -202,7 +200,7 @@
     }
     
     for (THInvocationConnectionLine * line in _connections) {
-        //Hier liegt der Fehler, Stürtzt mit Verbindung nur ab, wenn offen beim speichern, Verbindungen nicht mitgespeicher (Funktioniert aber und taucht auf)
+
         [project addInvocationConnection:line animated:YES];
         
         TFEvent* event;
@@ -235,7 +233,7 @@
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addGesture:self];
     
-    for (TFEditableObject * attachment in [self getAttachments]) {
+    for (TFEditableObject * attachment in self.attachments) {
         [attachment addToWorld];
     }
     
@@ -249,8 +247,7 @@
 }
 
 -(void) removeFromWorld{
-    NSMutableArray * attachments = [NSMutableArray arrayWithArray:[self getAttachments]];
-    for (TFEditableObject * object in attachments) {
+    for (TFEditableObject * object in self.attachments) {
         [object removeFromWorld];
     }
     
@@ -284,13 +281,11 @@
 
 -(void) objectRemoved:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest deattachGestureObject:object];
+    [_attachments removeObject:object];
 }
 
 -(void) attachGestureObject:(TFEditableObject*) object{
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest attachGestureObject:object];
+    [_attachments addObject:object];
     [self addChild:object z:1];
     if (object.scale ==1) object.scale /= 15;
     if (!_isOpen) object.visible = false;
@@ -300,8 +295,7 @@
 }
 
 -(void) deattachGestureObject:(TFEditableObject*) object{
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest deattachGestureObject:object];
+    [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
     object.scale = 1;
     object.attachedToGesture = nil;
@@ -325,25 +319,25 @@
 }
 
 -(void) visibleCont {
-    THGesture* gest = (THGesture *) self.simulableObject;
-    //_layer.visible = true;
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
     [self addChild:self.sprite z:-10];
     self.scale = 10;
     self.z = kGestureZ;
-    [gest visible];
+    for (TFEditableObject * obj in _attachments) {
+        obj.visible = true;
+    }
 }
 
 -(void) invisibleCont {
-    THGesture* gest = (THGesture *) self.simulableObject;
-    //_layer.visible = false;
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite z:-10];
     self.scale = 1;
     self.z = kGestureObjectZ;
-    [gest invisible];
+    for (TFEditableObject * obj in _attachments) {
+        obj.visible = false;
+    }
 }
 
 -(void) outputAmountChanged:(int)count {
@@ -463,18 +457,12 @@
     [self deattachInput:object];
 }
 
--(NSMutableArray*) getAttachments {
-    THGesture * gest = (THGesture *) self.simulableObject;
-    return gest.attachments;
-}
-
 -(NSString*) description{
     return @"Gesture";
 }
 
 -(void) prepareToDie{
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest emptyAttachments];
+    [self.attachments removeAllObjects];
     [super prepareToDie];
 }
 

@@ -18,6 +18,7 @@
 @property (nonatomic, readwrite) BOOL isOpen;
 @property int outCount;
 @property int inCount;
+@property (nonatomic, strong) NSMutableArray * attachments;
 @property (nonatomic, strong) NSMutableArray * inputs;
 @property (nonatomic, strong) NSMutableArray * outputs;
 @property (nonatomic, strong) NSMutableArray * connections;
@@ -27,7 +28,6 @@
 -(void) deattachGestureObject:(TFEditableObject*) object;
 -(void) openClose;
 -(void) scale:(float) amount;
--(NSMutableArray*) getAttachments;
 -(void) outputAmountChanged:(int) count;
 -(void) inputAmountChanged:(int) count;
 -(void) addOutput;
