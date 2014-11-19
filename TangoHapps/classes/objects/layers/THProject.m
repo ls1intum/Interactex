@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
 #import "THGestureEditableObject.h"
+#import "THOutputEditable.h"
 #import "THLilypadEditable.h"
 
 #import "THClientProject.h"
@@ -133,6 +134,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     _clothes = [NSMutableArray array];
     _gestures = [NSMutableArray array];
+    _outputs = [NSMutableArray array];
     _boards = [NSMutableArray array];
     _hardwareComponents = [NSMutableArray array];
     _otherHardwareComponents = [NSMutableArray array];
@@ -196,6 +198,7 @@ You should have received a copy of the GNU General Public License along with thi
         NSArray * otherHardwareComponents = [decoder decodeObjectForKey:@"otherHardwareComponents"];
         NSArray * clothes = [decoder decodeObjectForKey:@"clothes"];
         NSArray * gestures = [decoder decodeObjectForKey:@"gestures"];
+        NSArray * outputs = [decoder decodeObjectForKey:@"outputs"];
         NSArray * iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         NSArray * visualProgrammingObjects = [decoder decodeObjectForKey:@"visualProgrammingObjects"];
         THLilyPadEditable * lilypad = [decoder decodeObjectForKey:@"lilypad"];
@@ -216,6 +219,10 @@ You should have received a copy of the GNU General Public License along with thi
     
         for(THGestureEditableObject* gesture in gestures) {
             [self addGesture:gesture];
+        }
+        
+        for(THOutputEditable* output in outputs) {
+            [self addOutput:output];
         }
 
         for(THBoardEditable * board in boards){
@@ -263,6 +270,7 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.boards forKey:@"boards"];
     [coder encodeObject:self.hardwareComponents forKey:@"hardwareComponents"];
     [coder encodeObject:self.clothes forKey:@"clothes"];
+    [coder encodeObject:self.outputs forKey:@"outputs"];
     [coder encodeObject:self.gestures forKey:@"gestures"];
     [coder encodeObject:self.iPhoneObjects forKey:@"iPhoneObjects"];
     if(self.iPhone != nil)
@@ -575,6 +583,19 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     return arr;
+}
+
+-(void) addOutput:(TFEditableObject*) output{
+    [_outputs addObject:output];
+    [self notifyObjectAdded:output];
+}
+
+-(void) removeOutput:(TFEditableObject*) output{
+    [self removeAllWiresFrom:output notify:YES];
+    [_outputs removeObject:output];
+    
+    [self notifyObjectRemoved:output];
+    [self deregisterActionsForObject:output];
 }
 
 #pragma mark - Clothes
@@ -943,6 +964,7 @@ enum zPositions{
     NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.boards];
     [allObjects addObjectsFromArray:self.clothes];
     [allObjects addObjectsFromArray:self.gestures];
+    [allObjects addObjectsFromArray:self.outputs];
     [allObjects addObjectsFromArray:self.visualProgrammingObjects];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.hardwareComponents];
@@ -983,8 +1005,8 @@ enum zPositions{
     
     if([editable isKindOfClass:[THOutputEditable class]]){
         
-        NSInteger idx = [self idxOfEditable:editable inArray:self.gestures];
-        return [project.gestures objectAtIndex:idx];
+        NSInteger idx = [self idxOfEditable:editable inArray:self.outputs];
+        return [project.outputs objectAtIndex:idx];
         
     } else {
         
@@ -1114,6 +1136,7 @@ enum zPositions{
     project.iPhoneObjects = [self nonEditableElementsForArray:self.iPhoneObjects forProject:project];
     project.visualProgrammingObjects = [self nonEditableElementsForArray:self.visualProgrammingObjects forProject:project];
     project.iPhone = (THiPhone*) self.iPhone.simulableObject;
+    project.outputs = [self nonEditableElementsForArray:self.outputs forProject:project];
     
     [self cleanBoardPinsFor:project];
     [self cleanI2CComponentsFor:project];

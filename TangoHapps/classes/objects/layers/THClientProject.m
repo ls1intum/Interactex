@@ -110,6 +110,7 @@ You should have received a copy of the GNU General Public License along with thi
     _iPhoneObjects = [NSMutableArray array];
     _visualProgrammingObjects = [NSMutableArray array];
     _actionPairs = [NSMutableArray array];
+    _outputs = [NSMutableArray array];
 }
 
 #pragma mark - Archiving
@@ -126,7 +127,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.iPhoneObjects = [decoder decodeObjectForKey:@"iPhoneObjects"];
         self.iPhone = [decoder decodeObjectForKey:@"iPhone"];
         self.visualProgrammingObjects = [decoder decodeObjectForKey:@"values"];
-        self.gestures = [decoder decodeObjectForKey:@"gestures"];
+        self.outputs = [decoder decodeObjectForKey:@"outputs"];
         
         NSMutableArray * actionPairs = [decoder decodeObjectForKey:@"actionPairs"];
         for (TFEventActionPair * pair in actionPairs) {
@@ -146,7 +147,7 @@ You should have received a copy of the GNU General Public License along with thi
         [coder encodeObject:self.iPhone forKey:@"iPhone"];
     
     [coder encodeObject:self.visualProgrammingObjects forKey:@"values"];
-    [coder encodeObject:self.gestures forKey:@"gestures"];
+    [coder encodeObject:self.outputs forKey:@"outputs"];
     
     [coder encodeObject:self.actionPairs forKey:@"actionPairs"];
 }
@@ -183,7 +184,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.boards];
     allObjects = [allObjects arrayByAddingObjectsFromArray:self.visualProgrammingObjects];
-    allObjects = [allObjects arrayByAddingObjectsFromArray:self.gestures];
+    allObjects = [allObjects arrayByAddingObjectsFromArray:self.outputs];
     
     return allObjects;
 }

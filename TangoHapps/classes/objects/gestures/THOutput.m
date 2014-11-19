@@ -64,6 +64,9 @@
     
     [copy load];
     
+    [copy setPropertyType:self.type];
+    
+    
     return copy;
 }
 

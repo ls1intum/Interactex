@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 @class THViewEditableObject;
 @class THClothe;
 @class THGestureEditableObject;
+@class THOutputEditable;
 @class THGestureLayer;
 @class THLilyPadEditable;
 @class THiPhoneEditableObject;
@@ -147,6 +148,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeGesture:(TFEditableObject*) object;
 -(NSMutableArray*) gestureAtLocation:(CGPoint) location;
 
+-(void) addOutput:(THOutputEditable*) object;
+-(void) removeOutput:(THOutputEditable*) object;
+
 //clothes
 -(void) addClothe:(THClothe*) object;
 -(void) removeClothe:(THClothe*) object;
@@ -186,6 +190,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic,readonly) NSMutableArray * otherHardwareComponents;
 @property (nonatomic,readonly) NSMutableArray * clothes;
 @property (nonatomic,readonly) NSMutableArray * gestures;
+@property (nonatomic,readonly) NSMutableArray * outputs;
 @property (nonatomic,readonly) NSMutableArray * iPhoneObjects;
 @property (nonatomic,readonly) NSMutableArray * visualProgrammingObjects;
 @property (nonatomic, readonly) NSMutableArray * wires;

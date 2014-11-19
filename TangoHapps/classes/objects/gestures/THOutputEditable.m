@@ -125,11 +125,18 @@
 -(id)copyWithZone:(NSZone *)zone {
     THOutputEditable * copy = [super copyWithZone:zone];
     
+    copy.topConnected = self.topConnected;
+    copy.topType = self.topType;
+    copy.firstType = self.firstType;
+    
     [copy load];
+    
+    copy.simulableObject = [self.simulableObject copy];
+    
+    [copy chooseSprite];
     
     return copy;
 }
-
 
 -(void) setOutput:(id) value {
     THOutput * obj = (THOutput*) self.simulableObject;
@@ -243,6 +250,11 @@
         }
     }
     [self addChild:self.sprite];
+}
+
+-(void) addToWorld{
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project addOutput:self];
 }
 
 -(void) removeFromWorld{

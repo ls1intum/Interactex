@@ -104,8 +104,12 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 {
     THComparisonConditionEditable * copy = [super copyWithZone:zone];
     
-    copy.action1 = self.action1;
-    copy.action2 = self.action2;
+    if (!self.attachedToGesture) {
+        //copy.action1 = self.action1;
+        //copy.action2 = self.action2;
+    }
+    
+    copy.type = self.type;
     
     return copy;
 }
@@ -215,6 +219,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(void) prepareToDie{
     _currentComparatorProperties = nil;
+#pragma mark EXC_BAD_ACCES why?
     self.action1 = nil;
     self.action2 = nil;
     [super prepareToDie];

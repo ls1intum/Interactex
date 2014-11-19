@@ -83,6 +83,8 @@ CGSize const kLabelSize = {80,30};
 -(id)copyWithZone:(NSZone *)zone {
     THNumberValueEditable * copy = [super copyWithZone:zone];
     
+    copy.value = self.value;
+    
     return copy;
 }
 

@@ -77,7 +77,7 @@
         
         [self load];
         
-        self.scale = [decoder decodeFloatForKey:@"scale"];
+        self.scale = [decoder decodeFloatForKey:@"scaling"];
 
         NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
         for (TFEditableObject * attachment in attachments) {
@@ -109,7 +109,7 @@
     
     [coder encodeBool:self.isOpen forKey:@"isOpen"];
     
-    [coder encodeFloat:self.scale forKey:@"scale"];
+    [coder encodeFloat:self.scale forKey:@"scaling"];
     
     [coder encodeObject:self.attachments forKey:@"attachments"];
     
@@ -159,6 +159,8 @@
     for (TFEditableObject * attachment in self.attachments) {
         TFEditableObject* cop = [attachment copy];
         [copy attachGestureObject:cop];
+        //THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+        //[project addGesture:cop];
         for (THInvocationConnectionLine * line in _connections) {
             if (attachment == line.obj1) {
                 line.obj1 = cop;
@@ -176,6 +178,8 @@
     for (THOutputEditable * obj in _outputs) {
         THOutputEditable* cop = [obj copy];
         [copy attachOutput:cop];
+        //THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+        //[project addGesture:cop];
         for (THInvocationConnectionLine * line in _connections) {
             if (obj == line.obj1) {
                 line.obj1 = cop;
@@ -388,13 +392,13 @@
     object.position = position;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addGesture:object];
+    [project addOutput:object];
     
 }
 
 -(void) outputRemoved:(NSNotification*) notification{
-    TFEditableObject * object = notification.object;
-    [self deattachGestureObject:object];
+    //THOutputEditable * object = notification.object;
+    //[self deattachOutput:object];
 }
 
 -(void) deattachOutput:(THOutputEditable *)object {
@@ -405,7 +409,7 @@
     object.attachedToGesture = nil;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeGesture:object];
+    [project removeOutput:object];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
@@ -441,7 +445,7 @@
     object.position = position;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addGesture:object];
+    [project addOutput:object];
 }
 
 -(void) deattachInput:(THOutputEditable *) object {
@@ -452,7 +456,7 @@
     object.attachedToGesture = nil;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeGesture:object];
+    [project removeOutput:object];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
