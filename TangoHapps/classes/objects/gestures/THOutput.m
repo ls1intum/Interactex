@@ -67,6 +67,10 @@
 -(void) setOutput:(id) value {
     _value = value;
     [self triggerEventNamed:kEventValueChanged];
+    if (self.type == kDataTypeBoolean) {
+        if (value) [self triggerEventNamed:kEventConditionIsTrue];
+        else [self triggerEventNamed:kEventConditionIsFalse];
+    }
 }
 
 -(void) setPropertyType:(TFDataType)type {
@@ -81,6 +85,13 @@
     TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     [self.events addObject:event];
+    
+    if (self.type == kDataTypeBoolean) {
+        event = [TFEvent eventNamed:kEventConditionIsTrue];
+        [self.events addObject:event];
+        event = [TFEvent eventNamed:kEventConditionIsFalse];
+        [self.events addObject:event];
+    }
     
     self.methods = [NSMutableArray array];
     TFMethod * method =  [TFMethod methodWithName:@"setOutput"];

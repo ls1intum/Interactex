@@ -142,6 +142,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(TFMethod*) methodNamed:(NSString*) methodName;
 -(TFEvent*) eventNamed:(NSString*) eventName;
 
+-(void) renewEvents;
 -(void) reloadProperties;
 
 //boxes

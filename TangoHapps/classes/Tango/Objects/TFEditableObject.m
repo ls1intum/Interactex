@@ -229,6 +229,15 @@ static NSInteger objectCount = 1;
     return self.simulableObject.properties;
 }
 
+-(void) renewEvents {
+    _events = [NSMutableArray array];
+    for (TFEvent * event in self.simulableObject.events) {
+        TFEvent * copy = [event copy];
+        copy.param1.target = self;
+        [_events addObject:copy];
+    }
+}
+
 -(NSMutableArray*) events{
     if(!_events){//lazy init of events with references to local editable object
         _events = [NSMutableArray array];

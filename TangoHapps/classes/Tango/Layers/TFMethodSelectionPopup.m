@@ -46,6 +46,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFMethod.h"
 #import "TFMethodInvokeAction.h"
 #import "TFEvent.h"
+#import "THOutput.h"
+#import "THOutputEditable.h"
 
 @implementation TFMethodSelectionPopup
 
@@ -78,11 +80,25 @@ You should have received a copy of the GNU General Public License along with thi
         
         TFEvent * event = [_acceptedEvents objectAtIndex:path1.row];
         
+        //Output receives event and does action
+        if ([self.object2 isKindOfClass:[THOutputEditable class]]) {
+            THOutputEditable* obj = (THOutputEditable*)self.object2;
+            [obj connectTop:event.param1.property.type];
+        }
+
+        
         TFMethod * method = [_acceptedMethods objectAtIndex:path2.row];
         
         TFMethodInvokeAction * action = [[TFMethodInvokeAction alloc] initWithTarget:self.object2 method:method];
         action.firstParam = event.param1;
         action.source = self.object1;
+        
+        //Output sends event
+        if ([self.object1 isKindOfClass:[THOutputEditable class]]) {
+            THOutputEditable* obj = (THOutputEditable*) self.object1;
+            [obj connectBot:method.firstParamType];
+        }
+
         
         [self.delegate methodSelectionPopup:self didSelectAction:action forEvent:event];
 
@@ -129,6 +145,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) selectEventsAndMethods{
+    [self.object1 renewEvents];
     _acceptedEvents = self.object1.events;
     _acceptedMethods = self.object2.methods;
 }
