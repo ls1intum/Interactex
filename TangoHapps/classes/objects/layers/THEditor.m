@@ -47,7 +47,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 #import "THClothe.h"
-#import "THGesture.h"
 #import "THGestureEditableObject.h"
 #import "THViewEditableObject.h"
 #import "THiPhoneEditableObject.h"
@@ -123,9 +122,9 @@ You should have received a copy of the GNU General Public License along with thi
     [object addToLayer:self];
     [self selectObject:object];
     
-    if(self.state != kEditorStateDuplicate){
+    /*if(self.state != kEditorStateDuplicate){
         [self checkGestureObject:object.position];
-    }
+    }*/
 
 }
 

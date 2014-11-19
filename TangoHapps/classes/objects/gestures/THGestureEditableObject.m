@@ -47,6 +47,7 @@
     _outputs = [NSMutableArray array];
     _inputs = [NSMutableArray array];
     _connections = [NSMutableArray array];
+    _attachments = [NSMutableArray array];
 
 }
 
@@ -125,13 +126,13 @@
     copy.saveName = self.saveName;
     copy.inCount = self.inCount;
     copy.outCount = self.outCount;
-    copy.scale = self.scale;
 
     [copy load];
     
+    copy.scale = self.scale;
+    
     THProject * project = [THDirector sharedDirector].currentProject;
     
-    //NSMutableArray * att = [self getAttachments];
     
     for (TFEditableObject * obj1 in self.attachments) {
         for (TFEditableObject * obj2 in self.attachments) {
@@ -290,10 +291,10 @@
 }
 
 -(void) attachGestureObject:(TFEditableObject*) object{
-    [_attachments addObject:object];
+    [self.attachments addObject:object];
     [self addChild:object z:1];
     //if (object.scale ==1)
-    object.scale /= 8;
+    if (object.scale >=1) object.scale /= 8;
     if (!_isOpen) object.visible = false;
     object.attachedToGesture = self;
     

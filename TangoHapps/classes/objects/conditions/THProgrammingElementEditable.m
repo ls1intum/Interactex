@@ -86,7 +86,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addVisualProgrammingObject:self];
+    [project removeVisualProgrammingObject:self];
     [super removeFromWorld];
 }
 

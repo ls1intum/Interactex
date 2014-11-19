@@ -45,7 +45,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponentEditableObject.h"
 #import "THiPhoneEditableObject.h"
 #import "THClothe.h"
-#import "THGesture.h"
 #import "THGestureEditableObject.h"
 #import "THLilypadEditable.h"
 
@@ -562,7 +561,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) removeGesture:(TFEditableObject*) gesture{
     [self removeAllWiresFrom:gesture notify:YES];
-    [_clothes removeObject:gesture];
+    [_gestures removeObject:gesture];
     
     [self notifyObjectRemoved:gesture];
     [self deregisterActionsForObject:gesture];
