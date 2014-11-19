@@ -70,7 +70,12 @@
 - (IBAction)scaleChanged:(id)sender {
     
     THGestureEditableObject * gesture = (THGestureEditableObject*) self.editableObject;
-    gesture.scale = self.scaleSlider.value;
+    if (gesture.attachedToGesture) {
+        gesture.scale = self.scaleSlider.value /8.0f;
+    }
+    else {
+        gesture.scale = self.scaleSlider.value;
+    }
     
     [self updateLabel];
 }

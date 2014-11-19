@@ -64,6 +64,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.z = kClotheObjectZ;
     self.acceptsConnections = YES;
+    self.canBeAddedToGesture = YES;
 }
 
 -(void) addPinChilds{

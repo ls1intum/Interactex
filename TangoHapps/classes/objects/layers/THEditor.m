@@ -47,7 +47,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 #import "THBoardPinEditable.h"
 #import "THClothe.h"
-#import "THGesture.h"
 #import "THGestureEditableObject.h"
 #import "THViewEditableObject.h"
 #import "THiPhoneEditableObject.h"
@@ -123,9 +122,9 @@ You should have received a copy of the GNU General Public License along with thi
     [object addToLayer:self];
     [self selectObject:object];
     
-    if(self.state != kEditorStateDuplicate){
+    /*if(self.state != kEditorStateDuplicate){
         [self checkGestureObject:object.position];
-    }
+    }*/
 
 }
 
@@ -431,7 +430,13 @@ You should have received a copy of the GNU General Public License along with thi
     NSArray * invocationConnections = [invocationConnections1 arrayByAddingObjectsFromArray:invocationConnections2];
     
     CGPoint p1 = object1.center;
+    if (object1.attachedToGesture) {
+        p1 = [object1 convertToWorldSpace:ccp(0,0)];
+    }
     CGPoint p2 = object2.center;
+    if (object2.attachedToGesture) {
+        p2 = [object2 convertToWorldSpace:ccp(0,0)];
+    }
     CGPoint diff = ccpSub(p1,p2);
     CGPoint orthog = ccpNormalize(ccpRPerp(diff));
     float const kEditorInvocationLinesDistance = 26;
@@ -602,9 +607,15 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) moveCurrentObject:(CGPoint) d{
     if([self.currentObject canBeMovedBy:d]){
+        
+        [self gestureMove];
 
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
+        }
+        
+        if([self.currentObject.parent isKindOfClass:[THGestureEditableObject class]]) {
+            d = ccpMult(d, 1.0f/self.currentObject.parent.scale);
         }
         
         [self.currentObject displaceBy:d];
@@ -708,10 +719,10 @@ You should have received a copy of the GNU General Public License along with thi
         [gesture deattachGestureObject:gest];
         gest.position = [gesture.parent convertToNodeSpace:[gesture convertToWorldSpace:gest.position]];
         if (_currentObject.canBeScaled) {
-            [self.zoomableLayer addChild:_currentObject];
+            [self.zoomableLayer addChild:_currentObject z:_currentObject.z];
         }
         else {
-            [self addChild:_currentObject];
+            [super addChild:_currentObject];
         }
     }
 }
@@ -720,10 +731,10 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     NSMutableArray * gestures = [project gestureAtLocation:location];
     
-    if (_currentObject && !_currentObject.attachedToGesture) {
+    if (_currentObject && !_currentObject.attachedToGesture && _currentObject.canBeAddedToGesture) {
         
         for (THGestureEditableObject* gesture in gestures) {
-            if (gesture != (THGestureEditableObject*)_currentObject && gesture.isOpen && ![[gesture getAttachments]containsObject:     _currentObject]) {
+            if (gesture != (THGestureEditableObject*)_currentObject && gesture.isOpen && ![gesture.attachments containsObject:     _currentObject]) {
                 
                 [_currentObject removeFromParentAndCleanup:YES];
                 
@@ -1408,55 +1419,6 @@ You should have received a copy of the GNU General Public License along with thi
     attachedClotheObjectsPositions = nil;
 }
 
--(void) deAttachGesturesItems{
-    
-    THProject * project = [THDirector sharedDirector].currentProject;
-    attachedGestureObjects = [NSMutableArray arrayWithCapacity:project.gestures.count];
-    attachedGestureObjectsPositions = [NSMutableArray arrayWithCapacity:project.gestures.count];
-    
-    for (THGestureEditableObject * gesture in project.gestures) {
-        NSMutableArray * positionsArray = [NSMutableArray arrayWithCapacity:[gesture getAttachments]];
-        for (TFEditableObject * gestureComponent in [gesture getAttachments]) {
-            
-            NSValue * value = [NSValue valueWithCGPoint:gestureComponent.position];
-            [positionsArray addObject:value];
-            
-            CGPoint position = [gestureComponent convertToWorldSpace:ccp(0,0)];
-            position = ccpAdd(position, ccp(gestureComponent.contentSize.width/2,gestureComponent.contentSize.height/2));
-            [gestureComponent removeFromParentAndCleanup:YES];
-            gestureComponent.attachedToGesture = nil;
-            
-            gestureComponent.position = position;
-            [gestureComponent addToLayer:self];
-        }
-        [attachedGestureObjects addObject:[gesture getAttachments]];
-        [attachedGestureObjectsPositions addObject:positionsArray];
-    }
-}
-
--(void) reAttachGestureItems{
-    
-    THProject * project = [THDirector sharedDirector].currentProject;
-    NSInteger count = 0;
-    for (NSArray * array in attachedGestureObjects) {
-        THGestureEditableObject * gesture = [project.gestures objectAtIndex:count];
-        NSArray * positionsArray = [attachedGestureObjectsPositions objectAtIndex:count++];
-        NSInteger count2 = 0;
-        for (TFEditableObject * gestureComponent in array) {
-            [gestureComponent removeFromLayer:self];
-            NSValue * value = [positionsArray objectAtIndex:count2++];
-            [gesture addChild:gestureComponent z:1];
-            
-            CGPoint position = value.CGPointValue;
-            gestureComponent.position = position;
-            //hardwareComponent.position = [clothe convertToNodeSpace:position];
-            gestureComponent.attachedToGesture = gesture;
-        }
-    }
-    
-    attachedClotheObjects = nil;
-    attachedClotheObjectsPositions = nil;
-}
 
 -(void) startLilypadMode{
     
@@ -1540,6 +1502,9 @@ You should have received a copy of the GNU General Public License along with thi
                 [object addToLayer:self];
             }
         } else {
+#pragma mark seems to be needed to correct the position
+            if ([object isKindOfClass:[THGestureEditableObject class]])
+                            object.position = ccpAdd(object.position,self.zoomableLayer.position);
             [object addToLayer:self];
         }
     }

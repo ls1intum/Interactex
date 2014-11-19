@@ -56,6 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadProgElement{
     self.z = kValueZ;
     self.acceptsConnections = YES;
+    self.canBeAddedToGesture = YES;
 }
 
 #pragma mark - Archiving

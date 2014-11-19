@@ -12,13 +12,11 @@
 #import "THGesturePaletteItem.h"
 #import "THCustomPaletteItem.h"
 #import "THGestureProperties.h"
-#import "THGesture.h"
 
 @implementation THGestureEditableObject
 
 -(void) load{
     
-    self.simulableObject = [[THGesture alloc] init];
     if (_isOpen) {
         self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
     }
@@ -49,6 +47,7 @@
     _outputs = [NSMutableArray array];
     _inputs = [NSMutableArray array];
     _connections = [NSMutableArray array];
+    _attachments = [NSMutableArray array];
 
 }
 
@@ -77,6 +76,8 @@
         self.isOpen = [decoder decodeBoolForKey:@"isOpen"];
         
         [self load];
+        
+        self.scale = [decoder decodeFloatForKey:@"scale"];
 
         NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
         for (TFEditableObject * attachment in attachments) {
@@ -108,7 +109,9 @@
     
     [coder encodeBool:self.isOpen forKey:@"isOpen"];
     
-    [coder encodeObject:[self getAttachments] forKey:@"attachments"];
+    [coder encodeFloat:self.scale forKey:@"scale"];
+    
+    [coder encodeObject:self.attachments forKey:@"attachments"];
     
     [coder encodeObject:_outputs forKey:@"outputs"];
     
@@ -126,12 +129,13 @@
 
     [copy load];
     
+    copy.scale = self.scale;
+    
     THProject * project = [THDirector sharedDirector].currentProject;
     
-    //NSMutableArray * att = [self getAttachments];
     
-    for (TFEditableObject * obj1 in [self getAttachments]) {
-        for (TFEditableObject * obj2 in [self getAttachments]) {
+    for (TFEditableObject * obj1 in self.attachments) {
+        for (TFEditableObject * obj2 in self.attachments) {
             NSArray * arr = [project invocationConnectionsFrom:obj1 to:obj2];
             for (THInvocationConnectionLine * line in arr) {
                 [_connections addObject:[line copy]];
@@ -152,7 +156,7 @@
     }
     
     
-    for (TFEditableObject * attachment in [self getAttachments]) {
+    for (TFEditableObject * attachment in self.attachments) {
         TFEditableObject* cop = [attachment copy];
         [copy attachGestureObject:cop];
         for (THInvocationConnectionLine * line in _connections) {
@@ -202,7 +206,7 @@
     }
     
     for (THInvocationConnectionLine * line in _connections) {
-        //Hier liegt der Fehler, Stürtzt mit Verbindung nur ab, wenn offen beim speichern, Verbindungen nicht mitgespeicher (Funktioniert aber und taucht auf)
+
         [project addInvocationConnection:line animated:YES];
         
         TFEvent* event;
@@ -235,7 +239,7 @@
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addGesture:self];
     
-    for (TFEditableObject * attachment in [self getAttachments]) {
+    for (TFEditableObject * attachment in self.attachments) {
         [attachment addToWorld];
     }
     
@@ -249,8 +253,7 @@
 }
 
 -(void) removeFromWorld{
-    NSMutableArray * attachments = [NSMutableArray arrayWithArray:[self getAttachments]];
-    for (TFEditableObject * object in attachments) {
+    for (TFEditableObject * object in self.attachments) {
         [object removeFromWorld];
     }
     
@@ -284,15 +287,14 @@
 
 -(void) objectRemoved:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest deattachGestureObject:object];
+    [_attachments removeObject:object];
 }
 
 -(void) attachGestureObject:(TFEditableObject*) object{
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest attachGestureObject:object];
+    [self.attachments addObject:object];
     [self addChild:object z:1];
-    if (object.scale ==1) object.scale /= 15;
+    //if (object.scale ==1)
+    if (object.scale >=1) object.scale /= 8;
     if (!_isOpen) object.visible = false;
     object.attachedToGesture = self;
     
@@ -300,18 +302,19 @@
 }
 
 -(void) deattachGestureObject:(TFEditableObject*) object{
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest deattachGestureObject:object];
+    [_attachments removeObject:object];
     [object removeFromParentAndCleanup:YES];
-    object.scale = 1;
+    object.scale *= 8;
     object.attachedToGesture = nil;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationObjectRemoved object:object];
 }
 
 -(void) scale:(float)amount {
-    [self scaleBy:amount];
-    self.scale = clampf(self.scale, 2, 15);
+    if (!self.attachedToGesture) {
+        [self scaleBy:amount];
+        self.scale = clampf(self.scale, 2, 15);
+    }
 }
 
 -(void) openClose {
@@ -325,23 +328,19 @@
 }
 
 -(void) visibleCont {
-    THGesture* gest = (THGesture *) self.simulableObject;
-    //_layer.visible = true;
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [CCSprite spriteWithFile:@"whiteBox.png"];
     [self addChild:self.sprite z:-10];
-    self.scale = 10;
     self.z = kGestureZ;
-    [gest visible];
+    for (TFEditableObject * obj in _attachments) {
+        obj.visible = true;
+    }
 }
 
 -(void) invisibleCont {
-    THGesture* gest = (THGesture *) self.simulableObject;
-    //_layer.visible = false;
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite z:-10];
-    self.scale = 1;
     self.z = kGestureObjectZ;
     //[gest invisible];
 }
@@ -366,7 +365,7 @@
 
 -(void) attachOutput:(THOutputEditable *)object {
     [self addChild:object z:1];
-    if (object.scale ==1) object.scale /= 15;
+    object.scale /= 8;
     object.attachedToGesture = self;
     
     [_outputs addObject:object];
@@ -383,8 +382,8 @@
     
     CGPoint position = ccp(0,0);
     
-    position.y -= 5 * 0.6f;
-    position.x += _outCount * 50.0f/(5.f) - 5.0f;
+    position.y -= 5 * 1.0f;
+    position.x += _outCount * 75.0f/(5.f) - 10.0f;
     
     object.position = position;
     
@@ -402,7 +401,7 @@
     _outCount--;
     [_outputs removeObject:object];
     [object removeFromParentAndCleanup:YES];
-    object.scale = 1;
+    object.scale *= 8;
     object.attachedToGesture = nil;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -419,7 +418,7 @@
 
 -(void) attachInput:(THOutputEditable *)object {
     [self addChild:object z:1];
-    if (object.scale ==1) object.scale /= 15;
+    object.scale /= 8;
     object.attachedToGesture = self;
     
     [_inputs addObject:object];
@@ -436,8 +435,8 @@
     
     CGPoint position = ccp(0,0);
     
-    position.y += 75.f;
-    position.x += _inCount * 50.0f/(5.f) - 5.0f;
+    position.y += 80.f;
+    position.x += _inCount * 75.0f/(5.f) - 8.0f;
     
     object.position = position;
     
@@ -449,7 +448,7 @@
     _inCount--;
     [_inputs removeObject:object];
     [object removeFromParentAndCleanup:YES];
-    object.scale = 1;
+    object.scale *= 8;
     object.attachedToGesture = nil;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -463,18 +462,12 @@
     [self deattachInput:object];
 }
 
--(NSMutableArray*) getAttachments {
-    THGesture * gest = (THGesture *) self.simulableObject;
-    return gest.attachments;
-}
-
 -(NSString*) description{
     return @"Gesture";
 }
 
 -(void) prepareToDie{
-    THGesture* gest = (THGesture *) self.simulableObject;
-    [gest emptyAttachments];
+    [self.attachments removeAllObjects];
     [super prepareToDie];
 }
 

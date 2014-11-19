@@ -65,6 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.z = kClotheZ;
     
     self.canBeAddedToPalette = YES;
+    self.canBeAddedToGesture = NO;
     
     _attachments = [NSMutableArray array];
 }
