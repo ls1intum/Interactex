@@ -137,4 +137,13 @@ You should have received a copy of the GNU General Public License along with thi
         [self updatePinValue];
     }
 }
+
+
+#pragma mark - Lifecycle
+
+-(void) didStartSimulating{
+    [self triggerEventNamed:kEventLightChanged];
+    [super didStartSimulating];
+}
+
 @end

@@ -90,26 +90,6 @@ You should have received a copy of the GNU General Public License along with thi
     return [condition testCondition];
 }
 
-/*
--(void) addToLayer:(TFLayer *)layer{
-    [layer addEditableObject:self];
-}
-
--(void) removeFromLayer:(TFLayer *)layer{
-    [layer removeEditableObject:self];
-}
-
--(void) addToWorld{
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addVisualProgrammingObject:self];
-}
-
--(void) removeFromWorld{
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeVisualProgrammingObject:self];
-    [super removeFromWorld];
-}*/
-
 -(void) prepareToDie{
     _currentProperties = nil;
     

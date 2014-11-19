@@ -14,7 +14,7 @@
    height="600"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="tshirt.svg"
    inkscape:export-filename="/Users/avenix/Desktop/tshirt.png"
    inkscape:export-xdpi="125.82318"
@@ -36,8 +36,8 @@
      showgrid="false"
      inkscape:window-width="1463"
      inkscape:window-height="886"
-     inkscape:window-x="1303"
-     inkscape:window-y="13"
+     inkscape:window-x="1640"
+     inkscape:window-y="124"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -93,7 +93,7 @@
              inkscape:connector-curvature="0"
              id="path3134"
              d="m 322.92525,860.4498 c 8.59052,-74.00923 20.30146,-130.36702 -4.01655,-200.87021 l -64.08655,49.58396 c 1.41797,-26.48131 3.07657,-53.01181 -26.47357,-73.16088 l 93.26564,-83.081 179.93883,-0.59303 0.16378,0.59303 91.70502,83.081 c -20.96189,14.59145 -26.67417,40.98434 -24.91294,73.16088 l -65.77304,-53.11784 c 27.28751,70.25851 42.54912,128.05026 -5.81582,202.24981 -60.89017,29.34061 -118.35126,22.01252 -173.9948,2.15428 z"
-             style="fill:#ffffff;stroke:#ffffff;stroke-width:6.18140161999999993;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1" />
+             style="fill:#c8c8c8;stroke:#000000;stroke-width:6.18140161999999993;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1" />
           <path
              sodipodi:nodetypes="cc"
              inkscape:connector-curvature="0"
