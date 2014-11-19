@@ -343,7 +343,7 @@
     [self addChild:self.sprite z:-10];
     self.scale = 1;
     self.z = kGestureObjectZ;
-    [gest invisible];
+    //[gest invisible];
 }
 
 -(void) outputAmountChanged:(int)count {

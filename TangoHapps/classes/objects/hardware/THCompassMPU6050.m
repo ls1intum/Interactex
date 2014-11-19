@@ -222,6 +222,9 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+
+#pragma mark - Lifecycle
+
 -(void) didStartSimulating{
     [self triggerEventNamed:kEventXChanged];
     [self triggerEventNamed:kEventYChanged];
@@ -232,6 +235,7 @@ You should have received a copy of the GNU General Public License along with thi
     [super didStartSimulating];
 }
 
+#pragma mark - Other
 
 -(NSString*) description{
     return @"compass MPU6050";

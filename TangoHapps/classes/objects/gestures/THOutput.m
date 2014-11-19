@@ -17,9 +17,12 @@
     [self.properties addObject:property];
     
     self.events = [NSMutableArray array];
-    TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
-    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
-    [self.events addObject:event];
+    TFEvent * event1 = [TFEvent eventNamed:kEventValueChanged];
+    event1.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
+    [self.events addObject:event1];
+    
+    TFEvent * event2 = [TFEvent eventNamed:kEventConditionIsTrue];
+    [self.events addObject:event2];
     
     TFMethod * method =  [TFMethod methodWithName:@"setOutput"];
     method.numParams = 1;

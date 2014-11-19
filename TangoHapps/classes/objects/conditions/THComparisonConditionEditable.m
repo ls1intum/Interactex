@@ -121,29 +121,13 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     return controllers;
 }
 
-#pragma mark - Protocols
-/*
--(void) registerAction:(THAction *)action forProperty:(THProperty *)property{
-    THMethodInvokeAction * methodInvoke = (THMethodInvokeAction*) action;
-    if(self.obj1 == nil){
-        self.obj1 = action.target;
-        self.propertyName1 = methodInvoke.firstParam.property.name;
-        
-    } else if(self.obj2 == nil){
-        self.obj2 = action.target;
-        self.propertyName2 = methodInvoke.firstParam.property.name;
-        
-    } else {
-        self.obj1 = action.target;
-        self.propertyName1 = methodInvoke.firstParam.property.name;
-        self.obj2 = nil;
-    }
-    
-    [super registerAction:action forProperty:property];
-}*/
-
-
 #pragma mark - Methods
+
+-(BOOL) isTrue{
+    
+    THComparisonCondition * condition = (THComparisonCondition*) self.simulableObject;
+    return condition.isTrue;
+}
 
 -(THConditionType) type{
     THComparisonCondition * condition = (THComparisonCondition*) self.simulableObject;
@@ -213,21 +197,13 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     } else {
         
         self.action1 = action;
-        self.action2 = action;
+        self.action2 = nil;
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleObjectRemoved:) name:kNotificationObjectRemoved object:action.source];
     
     [_currentComparatorProperties reloadState];
 }
-
-/* Juan check
--(void) addConnectionTo:(TFEditableObject *)object animated:(BOOL)animated{
-    
-    [_currentComparatorProperties reloadState];
-    [super addConnectionTo:object animated:animated];
-}
-*/
 
 -(NSString*) conditionTypeString{
     return kConditionTypeDescriptionStrings[self.type];

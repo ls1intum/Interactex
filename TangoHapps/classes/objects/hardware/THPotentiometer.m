@@ -174,6 +174,9 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+
+#pragma mark - Lifecycle
+
 -(void) didStartSimulating{
     [self triggerEventNamed:kEventValueChanged];
     [super didStartSimulating];

@@ -68,4 +68,6 @@ extern NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes];
 @property (nonatomic) THConditionType type;
 @property (nonatomic, readonly) NSString * conditionTypeString;
 
+@property (nonatomic, readonly) BOOL isTrue;
+
 @end
