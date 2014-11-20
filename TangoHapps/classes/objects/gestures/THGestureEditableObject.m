@@ -346,7 +346,9 @@
     self.sprite = [CCSprite spriteWithFile:@"gesture.png"];
     [self addChild:self.sprite z:-10];
     self.z = kGestureObjectZ;
-    //[gest invisible];
+    for (TFEditableObject * obj in _attachments) {
+        obj.visible = true;
+    }
 }
 
 -(void) outputAmountChanged:(int)count {
