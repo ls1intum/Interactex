@@ -347,7 +347,7 @@
     [self addChild:self.sprite z:-10];
     self.z = kGestureObjectZ;
     for (TFEditableObject * obj in _attachments) {
-        obj.visible = true;
+        obj.visible = false;
     }
 }
 
