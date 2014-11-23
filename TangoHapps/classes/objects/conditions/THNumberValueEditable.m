@@ -104,7 +104,8 @@ CGSize const kLabelSize = {80,30};
     
     _label = [CCLabelTTF labelWithString:text dimensions:kLabelSize hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
     
-    _label.position = ccp(25,20);
+    _label.position = ccp(33,26);
+    [_label setColor:ccc3(6/255.0f, 76/255.0f, 120/255.0f)];
     [self addChild:_label];
     
     _displayedValue = self.value;
