@@ -162,7 +162,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) removeAllInvocationConnectionsFrom:(id) object;
 -(void) removeAllInvocationConnectionsTo:(id) object;
--(void) removeExtraInvocationConnectionsForComparatorInConnection:(THInvocationConnectionLine*) connection numberOfAllowedConnections:(int) numberOfConnections;
 -(void) removeAllConnectionsFrom:(TFEditableObject*) obj1 to:(TFEditableObject*) obj2;
 
 //non editable project

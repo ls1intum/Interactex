@@ -202,7 +202,8 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
     
-    if(self.action1 == nil){
+    //Nazmus commented
+    /*if(self.action1 == nil){
         
         self.action1 = action;
         
@@ -214,8 +215,42 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
         
         self.action1 = action;
         self.action2 = action;
+    }*/
+    ////
+    //Nazmus added
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    THInvocationConnectionLine * previousConnectionToSameAction = nil;
+    if ([action.method.name isEqualToString:kMethodSetValue1]) {
+        if(self.action1 != nil) {
+            for (THInvocationConnectionLine * connection in project.invocationConnections) {
+                if(connection.obj1 == self || connection.obj2 == self){
+                    if ([connection.action.method.name isEqualToString:kMethodSetValue1]) {
+                        previousConnectionToSameAction = connection;
+                    }
+                }
+            }
+            if (previousConnectionToSameAction) {
+                [project removeInvocationConnection:previousConnectionToSameAction];
+            }
+        }
+        self.action1 = action;
+    } else {
+        if(self.action2 != nil) {
+            for (THInvocationConnectionLine * connection in project.invocationConnections) {
+                if(connection.obj1 == self || connection.obj2 == self){
+                    if ([connection.action.method.name isEqualToString:kMethodSetValue2]) {
+                        previousConnectionToSameAction = connection;
+                    }
+                }
+            }
+            if (previousConnectionToSameAction) {
+                [project removeInvocationConnection:previousConnectionToSameAction];
+            }
+        }
+        self.action2 = action;
     }
-
+    ////
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleObjectRemoved:) name:kNotificationObjectRemoved object:action.source];
     
     [_currentComparatorProperties reloadState];

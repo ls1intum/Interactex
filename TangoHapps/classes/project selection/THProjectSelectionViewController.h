@@ -67,12 +67,15 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewSecond;
 @property (nonatomic) BOOL editingScenes;
 @property (nonatomic) BOOL editingOneScene;
 @property (nonatomic) BOOL showingIcons;
 @property (strong, nonatomic) UIBarButtonItem * editButton;
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
 @property (weak, nonatomic) NSMutableArray * projectProxies;
+@property (strong, nonatomic) NSMutableArray * oddProjectProxyIndices;
+@property (strong, nonatomic) NSMutableArray * evenProjectProxyIndices;
 @property (strong, nonatomic) THCollectionProjectCell * currentProjectCell;
 @property (strong, nonatomic) THProjectDraggableCell * currentDraggableCell;
 @property (strong, nonatomic) THCollectionProjectCell * currentRenamingCell;

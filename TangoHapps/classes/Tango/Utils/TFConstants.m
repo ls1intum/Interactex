@@ -86,7 +86,7 @@ float const kPaletteContainerTitleHeight = 44;
 
 ccColor4F const kSelectionPopupsDefaultColor = {0.11, 0.58, 0.83,1};
 
-ccColor3B const kConnectionLineDefaultColor = {30, 148, 214};
+ccColor3B const kConnectionLineDefaultColor = {100, 100, 100}; // {30, 148, 214};
 ccColor4B const kDefaultObjectHighlightColor = {200, 150, 150, 100};
 //ccColor4B const kDefaultObjectSelectionColor = {180, 180, 200, 15};
 ccColor4B const kDefaultObjectSelectionColor = {10, 10, 50, 255};

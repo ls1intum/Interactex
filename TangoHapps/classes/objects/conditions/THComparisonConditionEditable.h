@@ -44,6 +44,10 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THConditionEditableObject.h"
 #import "THComparisonCondition.h"
 
+#import "THProject.h"
+#import "THInvocationConnectionLine.h"
+#import "TFMethodInvokeAction.h"
+
 @class THComparisonCondition;
 @class THComparatorEditableProperties;
 @class TFMethodInvokeAction;

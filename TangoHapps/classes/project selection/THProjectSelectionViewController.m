@@ -137,6 +137,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     [self.collectionView reloadData];
     [self.tableView reloadData];
+    [self.tableViewSecond reloadData];
     
     [self updateEditButtonEnabledState];
     
@@ -155,6 +156,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     //Nazmus 15 Nov 14
     [self beautifyProjectSelectionScreen];
+    [self setupIndicesForMultipleTables];
     
 }
 
@@ -251,6 +253,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     //Table view
     self.tableView.layoutMargins = UIEdgeInsetsZero;
+    self.tableViewSecond.layoutMargins = UIEdgeInsetsZero;
     ////
     
     //"YOUR PROJECT" label
@@ -262,6 +265,18 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.labelProjects setAttributedText:attributedString];
     
     
+}
+
+- (void)setupIndicesForMultipleTables {
+    self.oddProjectProxyIndices = [[NSMutableArray alloc] init];
+    self.evenProjectProxyIndices = [[NSMutableArray alloc] init];
+    for(int i = 0 ; i < self.projectProxies.count ; i++){
+        if (i%2 == 1) { //odd
+            [self.oddProjectProxyIndices addObject:[NSNumber numberWithInt:i]];
+        } else {
+            [self.evenProjectProxyIndices addObject:[NSNumber numberWithInt:i]];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -429,12 +444,22 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 #pragma mark - TableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [THDirector sharedDirector].projectProxies.count;
+    if(tableView == self.tableView) {
+        return ceil((float)[THDirector sharedDirector].projectProxies.count / 2);
+    } else if(tableView == self.tableViewSecond) {
+        return floor((float)[THDirector sharedDirector].projectProxies.count / 2);
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    THProjectProxy * proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:indexPath.row];
+    THProjectProxy * proxy;
+    if(tableView == self.tableView) {
+        proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
+    } else if(tableView == self.tableViewSecond) {
+        proxy = [[THDirector sharedDirector].projectProxies objectAtIndex:[self.oddProjectProxyIndices[indexPath.row] integerValue]];
+    }
     
     THTableProjectCell * cell = (THTableProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectTableCell"];
     cell.nameLabel.text = proxy.name;
@@ -461,38 +486,67 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 #pragma mark - TableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-       
-    [self proceedToProjectAtIndex:indexPath.row];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(tableView == self.tableView) {
+        [self proceedToProjectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
+    } else if(tableView == self.tableViewSecond) {
+        [self proceedToProjectAtIndex:[self.oddProjectProxyIndices[indexPath.row] integerValue]];
+    }
+    //[self proceedToProjectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        THTableProjectCell * cell = (THTableProjectCell*) [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell.textField resignFirstResponder];
-        
-        [self deleteProjectAtIndex:indexPath.row];
+        if (tableView == self.tableView) {
+            THTableProjectCell * cell = (THTableProjectCell*) [self.tableView cellForRowAtIndexPath:indexPath];
+            [cell.textField resignFirstResponder];
+            
+            //[self deleteProjectAtIndex:indexPath.row];
+            [self deleteProjectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
+            
+        } else if (tableView == self.tableViewSecond){
+            THTableProjectCell * cell = (THTableProjectCell*) [self.tableViewSecond cellForRowAtIndexPath:indexPath];
+            [cell.textField resignFirstResponder];
+            
+            [self deleteProjectAtIndex:[self.oddProjectProxyIndices[indexPath.row] integerValue]];
+            
+        }
         [self.tableView reloadData];
+        [self.tableViewSecond reloadData];
         if(self.projectProxies.count == 0){
             [self stopEditingScenes];
         }
     }
 }
 
+
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    NSUInteger actualSourceIndexPathRow = nil;
+    NSUInteger actualDestinationIndexPathRow = nil;
     
-    id object = [self.projectProxies objectAtIndex:sourceIndexPath.row];
-    [self.projectProxies removeObjectAtIndex:sourceIndexPath.row];
-    [self.projectProxies insertObject:object atIndex:destinationIndexPath.row];
+    if (tableView == self.tableView) {
+        actualSourceIndexPathRow = [self.evenProjectProxyIndices[sourceIndexPath.row] integerValue];
+        actualDestinationIndexPathRow = [self.evenProjectProxyIndices[destinationIndexPath.row] integerValue];
+    } else if (tableView == self.tableViewSecond) {
+        actualSourceIndexPathRow = [self.evenProjectProxyIndices[sourceIndexPath.row] integerValue];
+        actualDestinationIndexPathRow = [self.evenProjectProxyIndices[destinationIndexPath.row] integerValue];
+    }
     
-    [self.collectionView reloadData];
+    id object = [self.projectProxies objectAtIndex:actualSourceIndexPathRow];
+    [self.projectProxies removeObjectAtIndex:actualSourceIndexPathRow];
+    [self.projectProxies insertObject:object atIndex:actualDestinationIndexPathRow];
+    
+    //[self setupIndicesForMultipleTables];
+    //[self.tableView reloadData];
+    //[self.tableViewSecond reloadData];
+    //[self.collectionView reloadData];
+    
 }
 
-//
 -(BOOL) tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIMenuItem * menuItem = [[UIMenuItem alloc] initWithTitle:@"Duplicate" action:@selector(duplicate:)];
     [[UIMenuController sharedMenuController] setMenuItems: @[menuItem]];
@@ -512,40 +566,67 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] init];
-    
     return view;
 }
 
 #pragma mark - Table Project Cell Delegate
 
--(void) tableProjectCell:(THTableProjectCell*) cell didChangeNameTo:(NSString*) name{
-    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    if(indexPath){
-        THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
-        //NSString * oldName = proxy.name;
-        BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
-        if(success){
-            //[TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
-            
-            cell.nameLabel.text = name;
-            proxy.name = name;
-            
-            NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
-            [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+-(void) tableProjectCell:(THTableProjectCell*) cell didChangeNameTo:(NSString*) name {
+    NSIndexPath * indexPath;
+    if ([cell getParentTableView] == self.tableView) {
+        indexPath = [self.tableView indexPathForCell:cell];
+        if(indexPath){
+            THProjectProxy * proxy = [self.projectProxies objectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
+            //NSString * oldName = proxy.name;
+            BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
+            if(success){
+                //[TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
+                
+                cell.nameLabel.text = name;
+                proxy.name = name;
+                
+                //NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+                //[self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+
+    } else if ([cell getParentTableView] == self.tableViewSecond) {
+        indexPath = [self.tableViewSecond indexPathForCell:cell];
+        if(indexPath){
+            THProjectProxy * proxy = [self.projectProxies objectAtIndex:[self.oddProjectProxyIndices[indexPath.row] integerValue]];
+            BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
+            if(success){
+                cell.nameLabel.text = name;
+                proxy.name = name;
+                //NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+                //[self.tableViewSecond reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            }
         }
     }
+    [self.tableView reloadData];
+    [self.tableViewSecond reloadData];
 }
 
 -(void) didDuplicateTableProjectCell:(THTableProjectCell*) cell{
-    
-    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    if(indexPath){
-        
-        [self duplicateProjectAtIndex:indexPath.row];
-
-        NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    NSIndexPath * indexPath;
+    if ([cell getParentTableView] == self.tableView) {
+        indexPath = [self.tableView indexPathForCell:cell];
+        if(indexPath){
+            [self duplicateProjectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
+        }
+    } else if ([cell getParentTableView] == self.tableViewSecond) {
+        indexPath = [self.tableViewSecond indexPathForCell:cell];
+        if(indexPath){
+            [self duplicateProjectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
+        }
     }
+    
+    //NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
+    //[self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self.tableView reloadData];
+    [self.tableViewSecond reloadData];
+    
 }
 
 #pragma mark - Editing
@@ -560,6 +641,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         }
     } else {
         [self.tableView setEditing:YES animated:YES];
+        [self.tableViewSecond setEditing:YES animated:YES];
     }
     
     self.editButton.title = @"Done";
@@ -579,6 +661,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         }
     //} else {
         [self.tableView setEditing:NO animated:YES];
+        [self.tableViewSecond setEditing:NO animated:YES];
     //}
     
     self.editButton.title = @"Edit";
@@ -775,6 +858,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.projectProxies insertObject:proxyCopy atIndex:index+1];
     
     self.totalNumberOfProjects = self.projectProxies.count; // nazmus added
+    [self setupIndicesForMultipleTables];
+    
 }
 
 -(void) showDuplicateMenuForCell:(THCollectionProjectCell*) cell{
@@ -863,6 +948,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         }
         
         self.totalNumberOfProjects = self.projectProxies.count; // nazmus added
+        [self setupIndicesForMultipleTables];
     }
 }
 
@@ -926,6 +1012,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 }
 
 - (IBAction)viewControlChanged:(id)sender {
+    [self setupIndicesForMultipleTables];
     
     if(self.editingScenes){
         [self stopEditingScenes];
@@ -935,6 +1022,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         [self.collectionView reloadData];
         
         self.tableView.hidden = YES;
+        self.tableViewSecond.hidden = YES;
         self.collectionView.hidden = NO;
         [self addGestureRecognizers];
         
@@ -942,8 +1030,10 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         
     } else {
         [self.tableView reloadData];
+        [self.tableViewSecond reloadData];
         
         self.tableView.hidden = NO;
+        self.tableViewSecond.hidden = NO;
         self.collectionView.hidden = YES;
         
         [self removeGestureRecognizers];
@@ -964,12 +1054,11 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 #pragma mark - Scrolling up when textFild
 
 -(void)keyboardWillShow:(NSNotification*) notification {
-    
     CGRect currentCellFrame = self.currentRenamingCell.frame;
     
     NSDictionary* userInfo = [notification userInfo];
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    keyboardHeight = keyboardSize.width;
+    keyboardHeight = keyboardSize.height;
     
     if(currentCellFrame.origin.y + currentCellFrame.size.height > self.view.frame.size.height - keyboardHeight){
         
@@ -985,7 +1074,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     if(didMoveViewUp){
         NSDictionary* userInfo = [notification userInfo];
         CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        keyboardHeight = keyboardSize.width;
+        keyboardHeight = keyboardSize.height;
         
         [self moveScrollViewUp:NO];
     }
@@ -1015,20 +1104,26 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 }
 
 -(IBAction)imprintButtonClicked:(UIButton*)sender {
-    NSString *body = @"<html><body><h2 style='text-align:center;'>IMPRINT</h2>";
-    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
-    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
-    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet.</p>"];
+    NSString *body = @"<html><body style='text-align:center; color:#302e2a; padding-top:40px; background-color:#f6f6f6;'><div style='font-size:14px; line-height:20px; letter-spacing:1px;'><b>IMPRINT</b></div>";
+    body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Bernd Brügge, Gesche Joost</b><br>(Project Lead)<br><br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Katharina Bredies</b><br>(Project Lead, Design)<br><br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Attila Mann</b><br>(Design)<br><br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Juan Haladjian</b><br>(Lead Developer)<br><br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer</b><br>(Developer)<br></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];
 }
 
 -(IBAction)aboutButtonClicked:(UIButton*)sender {
-    NSString *body = @"<html><body><h2 style='text-align:center;'>ABOUT INTERACTEX</h2>";
-    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
-    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"];
-    body = [body stringByAppendingString:@"<p>Lorem ipsum dolor sit amet.</p>"];
+    NSString *body = @"<html><body style='text-align:center; color:#302e2a; padding-top:40px; background-color:#f6f6f6;'><div style='font-size:14px; line-height:20px; letter-spacing:1px;'><b>ABOUT INTERACTEX</b></div>";
+    body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b><span style=' letter-spacing:1px;'>Interactex Designer</span></b><br>Version 1.0<br>www.interactex.de</div>"];
+    body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'>You can use the Interactex Designer to visually create and test software for your eTextiles<br>without the need to write any code.<br><br>It supports every hardware components of the Arduino Lilypad family such as LEDs, buttons,<br>accelerometers, light sensors etc. and every iOS user interface elements such as buttons,<br>labels, switches etc.</div>"];
+    body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:18px;'>This is an open source software:<br><a style='color:#007aff; text-decoration:none;' href='https://github.com/avenix/Interactex'>https://github.com/avenix/Interactex</a></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];
@@ -1036,7 +1131,9 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 -(void)showSimplePopoverWebview: (NSString*) body {
     UIViewController *popoverView =[[UIViewController alloc] init];
-    popoverView.preferredContentSize=CGSizeMake(600, 400);
+    popoverView.preferredContentSize=CGSizeMake(732, 480);
+    
+    [popoverView.view.layer setBackgroundColor:[[UIColor clearColor] CGColor]];
     
     UIWebView *webContent = [[UIWebView alloc] initWithFrame:CGRectMake(20, 20, popoverView.preferredContentSize.width - 40, popoverView.preferredContentSize.height - 40)];
     
@@ -1046,8 +1143,11 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [popoverView.view addSubview:webContent];
     
     UIPopoverController *popController = [[UIPopoverController alloc] initWithContentViewController:popoverView];
+    [popController setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.15f]];
     
     [popController presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2-popoverView.preferredContentSize.width/2, self.view.frame.size.height/2-popoverView.preferredContentSize.height/2, popoverView.preferredContentSize.width, popoverView.preferredContentSize.height) inView:self.view permittedArrowDirections:0 animated:YES];
+    
+    
 }
 
 @end

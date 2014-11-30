@@ -160,7 +160,7 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 
 -(void) startDrawingNormalLines{
     
-    ccDrawColor4F(kConnectionLineDefaultColor.r, kConnectionLineDefaultColor.g, kConnectionLineDefaultColor.b, 255);
+    ccDrawColor4F(kConnectionLineDefaultColor.r/255.0f, kConnectionLineDefaultColor.g/255.0f, kConnectionLineDefaultColor.b/255.0f, 1.0f); //nazmus updated - value was inappropriate for ccDrawColor4F
     glLineWidth(kLineWidthNormal);
 }
 

@@ -773,32 +773,7 @@ You should have received a copy of the GNU General Public License along with thi
     connection.shouldAnimate = animated;
     [self.invocationConnections addObject:connection];
     [self notifyObjectAdded:connection];
-    
-    [self removeExtraInvocationConnectionsForComparatorInConnection:connection numberOfAllowedConnections:2]; // nazmus added - 23 Nov 14
 }
-
-// nazmus added - 23 Nov 14
--(void) removeExtraInvocationConnectionsForComparatorInConnection:(THInvocationConnectionLine*) connection numberOfAllowedConnections:(int) numberOfConnections {
-    
-    NSMutableArray * comparatorConnections;
-    if([connection.obj1 isKindOfClass:[THComparisonConditionEditable class]])
-    {
-        comparatorConnections = [NSMutableArray arrayWithArray:[self invocationConnectionsForObject:connection.obj1]];
-        [comparatorConnections addObjectsFromArray:[self invocationConnectionsToObject:connection.obj1]];
-    }
-    else if([connection.obj2 isKindOfClass:[THComparisonConditionEditable class]])
-    {
-        comparatorConnections = [NSMutableArray arrayWithArray:[self invocationConnectionsForObject:connection.obj2]];
-        [comparatorConnections addObjectsFromArray:[self invocationConnectionsToObject:connection.obj2]];
-    }
-    if (comparatorConnections.count > numberOfConnections) {
-        for (int i = 0; i < comparatorConnections.count - numberOfConnections; i++) {
-            [self.invocationConnections removeObject:[comparatorConnections objectAtIndex:i]];
-            [self notifyObjectRemoved:[comparatorConnections objectAtIndex:i]];
-        }
-    }
-}
-////
 
 -(void) removeInvocationConnection:(THInvocationConnectionLine*) invocationConnection{
     [self.invocationConnections removeObject:invocationConnection];
