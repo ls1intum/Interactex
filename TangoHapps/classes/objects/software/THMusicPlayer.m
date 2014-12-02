@@ -269,8 +269,8 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) setVolume:(float)volume{
     
 #if !(TARGET_IPHONE_SIMULATOR)
-    _musicPlayer.
-    _musicPlayer.volume = volume;
+    //_musicPlayer.
+    //_musicPlayer.volume = volume;
     #else
     
     //// nazmus 30 Oct 14 - added
