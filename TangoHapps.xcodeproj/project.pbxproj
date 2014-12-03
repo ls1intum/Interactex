@@ -75,7 +75,6 @@
 		9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1FBD6F187ED71900699B61 /* libFirmata.a */; };
 		9A1FBE08187F208400699B61 /* THI2CMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FBE07187F208400699B61 /* THI2CMessage.m */; };
 		9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FBE07187F208400699B61 /* THI2CMessage.m */; };
-		9A2CAD8E182C47FC002AB9E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */; };
 		9A2EA8B719DB2CF200E30E2D /* backwards.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144AD17DE7A060061EDF8 /* backwards.png */; };
 		9A2EA8B819DB2CF200E30E2D /* backwards@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144AE17DE7A060061EDF8 /* backwards@2x.png */; };
 		9A2EA8B919DB2CF200E30E2D /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144AF17DE7A060061EDF8 /* forward.png */; };
@@ -330,6 +329,7 @@
 		9A6B285618AA08A0009AAE31 /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284F18AA08A0009AAE31 /* test.pd */; };
 		9A6B28AD18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
+		9A777D7B1A2F5944006D1FBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */; };
 		9A7B65131834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B65171834D830009D0103 /* THCompassProperties.xib */; };
 		9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
@@ -4322,6 +4322,7 @@
 				9AA4D74C18AE17F900A43433 /* THBoardProperties.xib in Resources */,
 				9A94F41A16A0192700AF52AB /* THClotheObjectProperties.xib in Resources */,
 				9A94F41C16A0192700AF52AB /* THComparatorEditableProperties.xib in Resources */,
+				9A777D7B1A2F5944006D1FBA /* Images.xcassets in Resources */,
 				9A94F41E16A0192700AF52AB /* THGrouperEditableProperties.xib in Resources */,
 				9AFB7E1B1833BBDD00694CCE /* THMonitorProperties.xib in Resources */,
 				9A94F42016A0192700AF52AB /* THImageViewProperties.xib in Resources */,
@@ -4639,7 +4640,6 @@
 				9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */,
 				9A2EA8BC19DB2CF200E30E2D /* musicPlay@2x.png in Resources */,
 				9AFB7E4C1833D89800694CCE /* potentiometer@2x.png in Resources */,
-				9A2CAD8E182C47FC002AB9E8 /* Images.xcassets in Resources */,
 				9AF50475167B86490020241C /* Default-568h@2x.png in Resources */,
 				9AFB7E581833D89800694CCE /* vibeBoard@2x.png in Resources */,
 				9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
@@ -5227,11 +5227,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "eeedbbb2-1560-41ca-8ae6-604468fb1cad";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -5244,12 +5246,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "eeedbbb2-1560-41ca-8ae6-604468fb1cad";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
@@ -5290,11 +5294,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Interactex Designer";
+				PROVISIONING_PROFILE = "eeedbbb2-1560-41ca-8ae6-604468fb1cad";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
