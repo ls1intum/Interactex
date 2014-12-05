@@ -64,20 +64,14 @@ NSString * const kNotificationInvocationCompleted = @"notificationInvocationComp
 NSString * const kNotificationConnectionMade = @"notificationConnectionMade";
 NSString * const kConnectionMadeEffect = @"connectionMade.mp3";
 
-//float kPaletteItemsPadding = 14; //nazmus commented
-float kPaletteItemsHorizontalPadding = 8; // Nazmus added
-float kPaletteItemsVerticalPadding = 9; // Nazmus added
-//float kPaletteItemSize = 64; // Nazmus commented
-float kPaletteItemWidth = 72; // Nazmus added - ( 4 horizontal padding )
-float kPaletteItemHeight = 94; // Nazmus added
-float kPaletteItemPaddingTop = 4; // Nazmus added
-//CGSize const kPaletteItemImageSize = {45,45}; // Nazmus commented 24 Aug 14
-//kPaletteItemImage is set in the center (horizontal) of kPaletteItem
-CGSize const kPaletteItemImageSize = {64,64}; // Nazmus added 24 Aug 14
-//CGSize const kPaletteItemLabelSize = {58,10};
-//CGSize const kPaletteItemLabelSize = {58,25};// nazmus commented
-CGSize const kPaletteItemLabelSize = {72,25};// nazmus added
-float const kPaletteItemLabelVerticalPosition = 62; // Nazmus added 24 Aug 14
+float kPaletteItemsHorizontalPadding = 8;
+float kPaletteItemsVerticalPadding = 9;
+float kPaletteItemWidth = 72;
+float kPaletteItemHeight = 94;
+float kPaletteItemPaddingTop = 4;
+CGSize const kPaletteItemImageSize = {64,64};
+CGSize const kPaletteItemLabelSize = {72,30};
+float const kPaletteItemLabelVerticalPosition = 62;
 
 float const kPaletteLabelHeight = 14;
 float const kPaletteItemImagePadding = 3;
@@ -86,9 +80,8 @@ float const kPaletteContainerTitleHeight = 44;
 
 ccColor4F const kSelectionPopupsDefaultColor = {0.11, 0.58, 0.83,1};
 
-ccColor3B const kConnectionLineDefaultColor = {100, 100, 100}; // {30, 148, 214};
+ccColor3B const kConnectionLineDefaultColor = {100, 100, 100};
 ccColor4B const kDefaultObjectHighlightColor = {200, 150, 150, 100};
-//ccColor4B const kDefaultObjectSelectionColor = {180, 180, 200, 15};
 ccColor4B const kDefaultObjectSelectionColor = {10, 10, 50, 255};
 
 float const kLineAcceptedShinningTime = 0.9f;
