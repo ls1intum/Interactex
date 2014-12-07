@@ -423,7 +423,7 @@ static NSInteger objectCount = 1;
         glLineWidth(1);
         
         if(self.highlighted){
-            
+            glLineWidth(2);
             ccDrawColor4B(self.highlightColor.r, self.highlightColor.g, self.highlightColor.b, self.highlightColor.a);
             
         } else {

@@ -165,7 +165,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
     
-    if(self.obj1 == nil){
+    /*if(self.obj1 == nil){
         self.obj1 = action.source;
         self.propertyName1 = action.firstParam.property.name;
         
@@ -178,7 +178,42 @@ You should have received a copy of the GNU General Public License along with thi
         self.propertyName1 = action.firstParam.property.name;
         self.obj2 = nil;
         self.propertyName2 = nil;
+    }*/
+    //Nazmus added
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    THInvocationConnectionLine * previousConnectionToSameAction = nil;
+    if ([action.method.name isEqualToString:kMethodSetValue1]) {
+        if(self.obj1 != nil) {
+            for (THInvocationConnectionLine * connection in project.invocationConnections) {
+                if(connection.obj1 == self || connection.obj2 == self){
+                    if ([connection.action.method.name isEqualToString:kMethodSetValue1]) {
+                        previousConnectionToSameAction = connection;
+                    }
+                }
+            }
+            if (previousConnectionToSameAction) {
+                [project removeInvocationConnection:previousConnectionToSameAction];
+            }
+        }
+        self.obj1 = action.source;
+        self.propertyName1 = action.firstParam.property.name;
+    } else {
+        if(self.obj2 != nil) {
+            for (THInvocationConnectionLine * connection in project.invocationConnections) {
+                if(connection.obj1 == self || connection.obj2 == self){
+                    if ([connection.action.method.name isEqualToString:kMethodSetValue2]) {
+                        previousConnectionToSameAction = connection;
+                    }
+                }
+            }
+            if (previousConnectionToSameAction) {
+                [project removeInvocationConnection:previousConnectionToSameAction];
+            }
+        }
+        self.obj2 = action.source;
+        self.propertyName2 = action.firstParam.property.name;
     }
+    ////
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleObjectRemoved:) name:kNotificationObjectRemoved object:action.source];
     
