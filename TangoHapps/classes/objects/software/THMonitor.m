@@ -79,7 +79,7 @@ float const kMonitorNewValueX = 75.0f;
     
     if(self){
         
-        self.width = 265;
+        self.width = 260;
         self.height = 130;
         
         _maxValue = 255;

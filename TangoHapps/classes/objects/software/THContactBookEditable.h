@@ -43,10 +43,16 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THViewEditableObject.h"
 
 @interface THContactBookEditable : THViewEditableObject
-
+{
+    
+}
 
 @property (nonatomic) BOOL showCallButton;
 @property (nonatomic) BOOL showPreviousButton;
 @property (nonatomic) BOOL showNextButton;
+/*
+-(void) next;
+-(void) previous;
+-(void) call;*/
 
 @end
