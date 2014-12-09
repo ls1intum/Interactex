@@ -173,35 +173,55 @@ You should have received a copy of the GNU General Public License along with thi
     return connection;
 }
 
--(void) addConnection:(TFConnectionLine*) connection{/*
-    TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
-    [editor addConnectionLine:connection];*/
+-(void) addConnection:(TFConnectionLine*) connection{
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    [editor addConnectionLine:connection];
 }
 
 -(void) removeConnection:(TFConnectionLine*) connection{
-    /*
-    TFEditor * editor = (TFEditor*) [THDirector sharedDirector].currentLayer;
-    [editor removeConnectionLine:connection];*/
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    [editor removeConnectionLine:connection];
 }
 
 -(void) selectionChanged{
     
-    //[Editor sharedInstance].selectedConnections = self.selectedConnections;
-    //THGrouperConditionEditable * conditionEditable = (THGrouperConditionEditable*) self.editableObject;
-    /*
+    THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
+    
+    TFEditableObject * object1 = condition.obj1;
+    TFEditableObject * object2 = condition.obj2;
+    
+#warning The following code was copied from THComparisonEditableProperties. Fix it for this class. Do we need property action1 and action2 in THGrouperConditionEditable?
+    //if it was a simulable object, then the event source is the same as the parameter source
+    if([object1 isKindOfClass:[TFSimulableObject class]]){
+        //object1 = condition.action1.source;
+    }
+    
+    if([object2 isKindOfClass:[TFSimulableObject class]]){
+        //object2 = condition.action2.source;
+    }
+    //#
+    
     if(button1Down){
-        connection1 = [self createConnectionLineFor:conditionEditable.obj1];
+        object1.highlighted = YES;
+        connection1 = [self createConnectionLineFor:object1];
         [self addConnection:connection1];
+        
     } else {
+        object1.highlighted = NO;
         [self removeConnection:connection1];
     }
     
     if(button2Down){
-        connection2 = [self createConnectionLineFor:conditionEditable.obj2];
+        
+        object2.highlighted = YES;
+        connection2 = [self createConnectionLineFor:object2];
         [self addConnection:connection2];
+        
     } else {
+        
+        object2.highlighted = NO;
         [self removeConnection:connection2];
-    }*/
+    }
 }
 
 - (IBAction)button1Up:(id)sender {

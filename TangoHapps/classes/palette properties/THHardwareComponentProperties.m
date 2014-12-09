@@ -44,6 +44,8 @@
 }
 
 - (IBAction)nameChanged:(id)sender {
+    THHardwareComponentEditableObject * object = (THHardwareComponentEditableObject*) self.editableObject;
+    object.objectName = self.nameTextField.text;
 }
 
 
