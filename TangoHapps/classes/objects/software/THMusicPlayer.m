@@ -201,7 +201,10 @@ NSString * const kPauseImageName = @"pause.png";
     
     _musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
     MPMediaQuery * songsQuery = [MPMediaQuery songsQuery];
+    [songsQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
+    
     [_musicPlayer setQueueWithQuery:songsQuery];
+    [_musicPlayer setRepeatMode:MPMusicRepeatModeAll];
     _songs = songsQuery.items;
 #endif
 
@@ -253,13 +256,11 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) handleCurrentPlayerStateChanged{
     if(_musicPlayer.playbackState == MPMusicPlaybackStatePlaying){
-        NSLog(@"playing");
-        
+        //NSLog(@"playing");
         _playing = YES;
     } else {
-        
         _playing = NO;
-        NSLog(@"stopped");
+        //NSLog(@"stopped");
     }
 }
 
