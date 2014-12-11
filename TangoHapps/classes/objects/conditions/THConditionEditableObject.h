@@ -52,6 +52,10 @@ You should have received a copy of the GNU General Public License along with thi
     THEventPropertyController * _currentProperties;
 }
 
+//Nazmus 11 Dec Added these in this superclass
+@property (nonatomic, weak) TFMethodInvokeAction * action1;
+@property (nonatomic, weak) TFMethodInvokeAction * action2;
+///
 
 @property (nonatomic, readonly) BOOL isTrue;
 

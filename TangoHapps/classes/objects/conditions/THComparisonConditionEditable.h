@@ -60,9 +60,6 @@ extern NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes];
     THComparatorEditableProperties * _currentComparatorProperties;
 }
 
-@property (nonatomic, weak) TFMethodInvokeAction * action1;
-@property (nonatomic, weak) TFMethodInvokeAction * action2;
-
 @property (nonatomic, readonly) NSString * propertyName1;
 @property (nonatomic, readonly) NSString * propertyName2;
 

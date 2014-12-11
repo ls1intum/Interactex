@@ -78,8 +78,6 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     self = [super initWithCoder:decoder];
     [self loadSprite];
     
-    self.action1 = [decoder decodeObjectForKey:@"action1"];
-    self.action2 = [decoder decodeObjectForKey:@"action2"];
     
     /* Juan check
     if(self.obj1 != nil){
@@ -95,17 +93,11 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 -(void)encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    
-    [coder encodeObject:self.action1 forKey:@"action1"];
-    [coder encodeObject:self.action2 forKey:@"action2"];
 }
 
 -(id)copyWithZone:(NSZone *)zone
 {
     THComparisonConditionEditable * copy = [super copyWithZone:zone];
-    
-    copy.action1 = self.action1;
-    copy.action2 = self.action2;
     
     return copy;
 }
@@ -202,21 +194,6 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
     
-    //Nazmus commented
-    /*if(self.action1 == nil){
-        
-        self.action1 = action;
-        
-    } else if(self.action2 == nil){
-        
-        self.action2 = action;
-        
-    } else {
-        
-        self.action1 = action;
-        self.action2 = action;
-    }*/
-    ////
     //Nazmus added
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THInvocationConnectionLine * previousConnectionToSameAction = nil;
@@ -274,8 +251,6 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(void) prepareToDie{
     _currentComparatorProperties = nil;
-    self.action1 = nil;
-    self.action2 = nil;
     [super prepareToDie];
 }
 

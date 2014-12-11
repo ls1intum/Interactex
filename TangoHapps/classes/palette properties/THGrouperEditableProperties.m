@@ -185,21 +185,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) selectionChanged{
     
+    // Nazmus updated this method
+    
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
     
-    TFEditableObject * object1 = condition.obj1;
-    TFEditableObject * object2 = condition.obj2;
+    TFEditableObject * object1 = condition.action1.firstParam.target;
+    TFEditableObject * object2 = condition.action2.firstParam.target;
     
-#warning The following code was copied from THComparisonEditableProperties. Fix it for this class. Do we need property action1 and action2 in THGrouperConditionEditable?
     //if it was a simulable object, then the event source is the same as the parameter source
     if([object1 isKindOfClass:[TFSimulableObject class]]){
-        //object1 = condition.action1.source;
+        object1 = condition.action1.source;
     }
     
     if([object2 isKindOfClass:[TFSimulableObject class]]){
-        //object2 = condition.action2.source;
+        object2 = condition.action2.source;
     }
-    //#
     
     if(button1Down){
         object1.highlighted = YES;

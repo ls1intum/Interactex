@@ -65,7 +65,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
-        
+    
+    self.action1 = [decoder decodeObjectForKey:@"action1"];
+    self.action2 = [decoder decodeObjectForKey:@"action2"];
+    
     [self loadCondition];
     
     return self;
@@ -74,11 +77,17 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
+    
+    [coder encodeObject:self.action1 forKey:@"action1"];
+    [coder encodeObject:self.action2 forKey:@"action2"];
 }
 
 -(id)copyWithZone:(NSZone *)zone
 {
     THConditionEditableObject * copy = [super copyWithZone:zone];
+    
+    copy.action1 = self.action1;
+    copy.action2 = self.action2;
     
     return copy;
 }
@@ -118,6 +127,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) prepareToDie{
     _currentProperties = nil;
+    
+    self.action1 = nil;
+    self.action2 = nil;
     
     [super prepareToDie];
 }
