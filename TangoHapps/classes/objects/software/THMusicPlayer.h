@@ -54,6 +54,8 @@ You should have received a copy of the GNU General Public License along with thi
     UIButton * _playButton;
     UIButton * _nextButton;
     UIButton * _previousButton;
+    
+    MPVolumeView * _volumeView;
 }
 
 -(void) play;
@@ -65,10 +67,10 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic,readonly) NSString * currentSong;
 @property (nonatomic) float volume;
 
-
 @property (nonatomic, readonly) BOOL playing;
 @property (nonatomic) BOOL showPlayButton;
 @property (nonatomic) BOOL showNextButton;
 @property (nonatomic) BOOL showPreviousButton;
+@property (nonatomic) BOOL showVolumeView;
 
 @end

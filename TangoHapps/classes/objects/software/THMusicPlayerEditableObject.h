@@ -54,6 +54,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL showPlayButton;
 @property (nonatomic) BOOL showNextButton;
 @property (nonatomic) BOOL showPreviousButton;
+@property (nonatomic) BOOL showVolumeView;
 
 @property (nonatomic) BOOL visibleDuringSimulation;
 

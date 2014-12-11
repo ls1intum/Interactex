@@ -49,6 +49,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 float const kMusicPlayerButtonWidth = 30;
 float const kMusicPlayerButtonHeight = 30;
+float const kMusicPlayerVolumeViewWidth = 150;
+float const kMusicPlayerVolumeViewHeight = 30;
 float const kMusicPlayerLabelHeight = 40;
 float const kMusicPlayerInnerPadding = 10;
 
@@ -60,11 +62,12 @@ NSString * const kPauseImageName = @"pause.png";
     if(self){
         
         self.width = 260;
-        self.height = 100;
+        self.height = 140;
         
         _showPlayButton = YES;
         _showNextButton = YES;
         _showPreviousButton = YES;
+        _showVolumeView = YES;
         
         [self loadMusicPlayer];
         
@@ -109,6 +112,14 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
+-(void) checkAddRemoveVolumeView{
+    if(self.showVolumeView){
+        [self.view addSubview:_volumeView];
+    } else {
+        [_volumeView removeFromSuperview];
+    }
+}
+
 
 -(void) loadMusicPlayerViews{
     UIView * containerView = [[UIView alloc] init];
@@ -145,9 +156,18 @@ NSString * const kPauseImageName = @"pause.png";
     _nextButton = [self buttonWithFrame:nextButtonFrame imageName:@"forward.png"];
     [_nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchDown];
     
+    //nazmus
+    CGRect volumeViewFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding + kMusicPlayerButtonHeight + kMusicPlayerInnerPadding, kMusicPlayerVolumeViewWidth, kMusicPlayerVolumeViewHeight);
+    _volumeView = [[MPVolumeView alloc] initWithFrame:volumeViewFrame];
+    _volumeView.showsRouteButton = NO;
+    [_volumeView setAlpha:0.5];
+    _volumeView.userInteractionEnabled = NO;
+    ////
+    
     [self checkAddRemovePreviousButton];
     [self checkAddRemovePlayButton];
     [self checkAddRemoveNextButton];
+    [self checkAddRemoveVolumeView];
 }
 
 -(void) reloadView{
@@ -208,6 +228,7 @@ NSString * const kPauseImageName = @"pause.png";
     _showPlayButton = [decoder decodeBoolForKey:@"showPlayButton"];
     _showNextButton = [decoder decodeBoolForKey:@"showNextButton"];
     _showPreviousButton = [decoder decodeBoolForKey:@"showPreviousButton"];
+    _showVolumeView = [decoder decodeBoolForKey:@"showVolumeView"];
     
     [self loadMusicPlayer];
     
@@ -221,6 +242,7 @@ NSString * const kPauseImageName = @"pause.png";
     [coder encodeBool:_showPlayButton forKey:@"showPlayButton"];
     [coder encodeBool:_showNextButton forKey:@"showNextButton"];
     [coder encodeBool:_showPreviousButton forKey:@"showPreviousButton"];
+    [coder encodeBool:_showVolumeView forKey:@"showVolumeView"];
 }
 
 #pragma mark - Music player events
@@ -265,57 +287,33 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
-//TODO fix volume since iOS 7 needs volumeView
+-(void) setShowVolumeView:(BOOL)showVolumeView{
+    if(showVolumeView != self.showVolumeView){
+        _showVolumeView = showVolumeView;
+        [self checkAddRemoveVolumeView];
+    }
+}
+
+//nazmus
 -(void) setVolume:(float)volume{
-    
-#if !(TARGET_IPHONE_SIMULATOR)
-    //_musicPlayer.
-    _musicPlayer.volume = volume;
-    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
-    
-    //find the volumeSlider
-    UISlider* volumeViewSlider = nil;
-    for (UIView *view in [volumeView subviews]){
+    for (UIView *view in [_volumeView subviews]){
         if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-            volumeViewSlider = (UISlider*)view;
+            [(UISlider*)view setValue:volume];
             break;
         }
     }
-    
-    [volumeViewSlider setValue:volume animated:YES];
-    
-    #else
-    
-    //// nazmus 30 Oct 14 - added
-    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
-    
-    //find the volumeSlider
-    UISlider* volumeViewSlider = nil;
-    for (UIView *view in [volumeView subviews]){
-        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-            volumeViewSlider = (UISlider*)view;
-            break;
-        }
-    }
-    
-    [volumeViewSlider setValue:volume animated:YES];
-    ////
-    
-#endif
 }
 
 -(float) volume{
-    return 1.0f;
-    /*
-    
-#if (TARGET_IPHONE_SIMULATOR)
-    return 1;
-#else
-    return _musicPlayer.volume;
-#endif
-                 */
+    for (UIView *view in [_volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            self.volume = [(UISlider*)view value];
+            break;
+        }
+    }
+    return self.volume;
 }
-
+//
 -(void) setText:(NSString *)text{
     
     _label.text = text;
@@ -448,6 +446,8 @@ NSString * const kPauseImageName = @"pause.png";
         _playButton.enabled = YES;
         _nextButton.enabled = YES;
         _previousButton.enabled = YES;
+        _volumeView.userInteractionEnabled = YES;
+        [_volumeView setAlpha:1.0];
         [self updateLabel];
     }
 }

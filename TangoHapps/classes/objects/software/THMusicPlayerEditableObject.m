@@ -50,6 +50,7 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic showPlayButton;
 @dynamic showNextButton;
 @dynamic showPreviousButton;
+@dynamic showVolumeView;
 
 -(void) load{
     self.canBeRootView = NO;
@@ -99,15 +100,22 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(void) updateBoudingBox{
+    if(self.height > 60){
+        self.height = 60;
+        self.minSize = CGSizeMake(self.minSize.width,60);
+    }
+    
     if(self.showPlayButton || self.showNextButton || self.showPreviousButton){
         if(self.height < 100){
             self.height = 100;
             self.minSize = CGSizeMake(self.minSize.width,100);
         }
-    } else{
-        if(self.height > 60){
-            self.height = 60;
-            self.minSize = CGSizeMake(self.minSize.width,60);
+    }
+    
+    if(self.showVolumeView){
+        if(self.height < 140){
+            self.height = 140;
+            self.minSize = CGSizeMake(self.minSize.width,140);
         }
     }
 }
@@ -151,15 +159,29 @@ You should have received a copy of the GNU General Public License along with thi
     return player.showPreviousButton;
 }
 
+-(void) setShowVolumeView:(BOOL)showVolumeView{
+    
+    THMusicPlayer * player = (THMusicPlayer*) self.simulableObject;
+    player.showVolumeView = showVolumeView;
+    
+    [self updateBoudingBox];
+}
+
+-(BOOL) showVolumeView{
+    
+    THMusicPlayer * player = (THMusicPlayer*) self.simulableObject;
+    return player.showVolumeView;
+}
+
 -(void) setVolume:(float)volume{
     
     THMusicPlayer * player = (THMusicPlayer*) self.simulableObject;
-    player.volume = volume;
+    [player setVolume:volume];
 }
 
 -(float) volume{
     THMusicPlayer * player = (THMusicPlayer*) self.simulableObject;
-    return player.volume;
+    return [player volume];
 }
 
 -(void) play{
