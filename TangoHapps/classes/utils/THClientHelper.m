@@ -62,14 +62,19 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 +(void) MakeCallTo:(NSString*) number{
-    NSString *phoneNumber = [@"tel://" stringByAppendingString:number];
-    NSURL * url = [NSURL URLWithString:phoneNumber];
-    
-    if([[UIApplication sharedApplication] canOpenURL:url]){
-        [[UIApplication sharedApplication] openURL:url];
+    if (number) {
+        NSString *phoneNumber = [@"tel://" stringByAppendingString:number];
+        NSURL * url = [NSURL URLWithString:phoneNumber];
+        
+        if([[UIApplication sharedApplication] canOpenURL:url]){
+            [[UIApplication sharedApplication] openURL:url];
+        } else {
+            NSLog(@"Call cannot be made. Does your device support making calls?");
+        }
     } else {
-        NSLog(@"Call cannot be made. Does your device support making calls?");
+        NSLog(@"Call cannot be made. This contact does not have a number.");
     }
+    
 }
 
 +(void) valueAsTwo7bitBytes:(NSInteger) value buffer:(uint8_t[2]) buf {
