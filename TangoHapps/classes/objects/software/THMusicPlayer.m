@@ -270,7 +270,20 @@ NSString * const kPauseImageName = @"pause.png";
     
 #if !(TARGET_IPHONE_SIMULATOR)
     //_musicPlayer.
-    //_musicPlayer.volume = volume;
+    _musicPlayer.volume = volume;
+    MPVolumeView* volumeView = [[MPVolumeView alloc] init];
+    
+    //find the volumeSlider
+    UISlider* volumeViewSlider = nil;
+    for (UIView *view in [volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    
+    [volumeViewSlider setValue:volume animated:YES];
+    
     #else
     
     //// nazmus 30 Oct 14 - added
