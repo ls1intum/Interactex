@@ -445,7 +445,7 @@ static NSInteger objectCount = 1;
 
 -(void) addSelectionLabel{
     
-    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter];
     
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];

@@ -21,8 +21,8 @@
     [self addChild:self.sprite];
     
     CGSize size = CGSizeMake(75, 20);
-    
-    _valueLabel = [CCLabelTTF labelWithString:@"" dimensions:size hAlignment:NSTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
+        
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
     
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-50);
     _valueLabel.color = kDefaultSimulationLabelColor;

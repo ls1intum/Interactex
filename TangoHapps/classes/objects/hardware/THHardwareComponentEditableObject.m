@@ -176,7 +176,9 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.nameLabel){
         [self.nameLabel removeFromParentAndCleanup:YES];
     }
-    self.nameLabel = [CCLabelTTF labelWithString:self.objectName dimensions:kEditableObjectNameLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    
+    self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultFont fontSize:9 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    
     self.nameLabel.color = ccBLACK;
     self.nameLabel.position = ccp(self.contentSize.width/2,-20);
     [self addChild:self.nameLabel];
