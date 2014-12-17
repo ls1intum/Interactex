@@ -340,7 +340,7 @@
 		9A7E4D7218361A5000657B72 /* THJennic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E4D7118361A5000657B72 /* THJennic.m */; };
 		9A7E4D7318361A5000657B72 /* THJennic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E4D7118361A5000657B72 /* THJennic.m */; };
 		9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
-		9A801B9619D955450001B6F9 /* THClientConnectionController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A801B9519D955450001B6F9 /* THClientConnectionController2.m */; };
+		9A801B9619D955450001B6F9 /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A801B9519D955450001B6F9 /* THClientConnectionController.m */; };
 		9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
 		9A8426A617564A80009495AB /* TFConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265317564A80009495AB /* TFConnectionLine.m */; };
 		9A8426AC17564A80009495AB /* TFMethodSelectionPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265717564A80009495AB /* TFMethodSelectionPopup.m */; };
@@ -1303,8 +1303,8 @@
 		9A7E4D7018361A5000657B72 /* THJennic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THJennic.h; sourceTree = "<group>"; };
 		9A7E4D7118361A5000657B72 /* THJennic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THJennic.m; sourceTree = "<group>"; };
 		9A7F66F81756579C00E04BC8 /* TangoHappsClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TangoHappsClient-Prefix.pch"; sourceTree = "<group>"; };
-		9A801B9419D955450001B6F9 /* THClientConnectionController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController2.h; sourceTree = "<group>"; };
-		9A801B9519D955450001B6F9 /* THClientConnectionController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController2.m; sourceTree = "<group>"; };
+		9A801B9419D955450001B6F9 /* THClientConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController.h; sourceTree = "<group>"; };
+		9A801B9519D955450001B6F9 /* THClientConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController.m; sourceTree = "<group>"; };
 		9A84265217564A80009495AB /* TFConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConnectionLine.h; sourceTree = "<group>"; };
 		9A84265317564A80009495AB /* TFConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFConnectionLine.m; sourceTree = "<group>"; };
 		9A84265617564A80009495AB /* TFMethodSelectionPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMethodSelectionPopup.h; sourceTree = "<group>"; };
@@ -2374,8 +2374,8 @@
 		9A801BD219D9568A0001B6F9 /* connection */ = {
 			isa = PBXGroup;
 			children = (
-				9A801B9419D955450001B6F9 /* THClientConnectionController2.h */,
-				9A801B9519D955450001B6F9 /* THClientConnectionController2.m */,
+				9A801B9419D955450001B6F9 /* THClientConnectionController.h */,
+				9A801B9519D955450001B6F9 /* THClientConnectionController.m */,
 			);
 			name = connection;
 			sourceTree = "<group>";
@@ -4316,7 +4316,7 @@
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
-				9A801B9619D955450001B6F9 /* THClientConnectionController2.m in Sources */,
+				9A801B9619D955450001B6F9 /* THClientConnectionController.m in Sources */,
 				9A8426B317564A80009495AB /* TFAction.m in Sources */,
 				9A8426B617564A80009495AB /* TFEvent.m in Sources */,
 				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,

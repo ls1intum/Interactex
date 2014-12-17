@@ -25,7 +25,7 @@ typedef enum{
 -(void) didReceiveAssets:(THAssetCollection*) assets;
 @end
 
-@interface THClientConnectionController2 : NSObject <MCSessionDelegate, MCNearbyServiceBrowserDelegate>{
+@interface THClientConnectionController : NSObject <MCSessionDelegate, MCNearbyServiceBrowserDelegate>{
     
     THClientReceivingState receivingState;
 }

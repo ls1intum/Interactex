@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import "THClientConnectionController2.h"
+#import "THClientConnectionController.h"
 #import "THAssetCollection.h"
 
-@interface THClientConnectionController2()
+@interface THClientConnectionController()
 
 @property (retain, nonatomic) MCNearbyServiceBrowser * browser;
 
 @end
 
-@implementation THClientConnectionController2
+@implementation THClientConnectionController
 
 #pragma mark - MCSessionDelegate methods
 
@@ -34,8 +34,7 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [_browser stopBrowsingForPeers];
     [_session disconnect];
 }
@@ -44,6 +43,7 @@
 #pragma mark - Browser methods
 
 -(void) startClient{
+    
     [self.browser startBrowsingForPeers];
 }
 
@@ -74,6 +74,8 @@
     _session.delegate = self;
     
     [browser invitePeer:peerID toSession:self.session withContext:nil timeout:0];
+    
+    NSLog(@"invited peer");
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID{
@@ -85,7 +87,7 @@
 // Override this method to handle changes to peer session state
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
-    //NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
+    NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
     /*
     NSString *adminMessage = [NSString stringWithFormat:@"'%@' is %@", peerID.displayName, [self stringForPeerConnectionState:state]];
     NSLog(@"%@",adminMessage);*/

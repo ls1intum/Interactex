@@ -21,7 +21,7 @@
 
 - (id)init {
     if (self = [super init]) {
-
+        
         _localPeerId = [[MCPeerID alloc] initWithDisplayName:[[UIDevice currentDevice] name]];
 
         _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.localPeerId discoveryInfo:nil serviceType:kConnectionServiceType];
@@ -55,8 +55,6 @@
     
     NSLog(@"received invitation");
     
-    //[self.invitationHandlers addObject:invitationHandler];
-     
     _session = [[MCSession alloc] initWithPeer:self.localPeerId];
     _session.delegate = self;
     
