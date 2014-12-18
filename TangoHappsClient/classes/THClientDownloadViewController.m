@@ -175,17 +175,14 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 
 -(void) appendStatusMessage:(NSString *)msg {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
-        //Your code goes in here
-        [self.statusTextView setText:[NSString stringWithFormat:@"%@ \n%@",self.statusTextView.text, msg]];
+
+        [self.statusTextView setText:[NSString stringWithFormat:@"%@",msg]];
         self.statusTextView.showsVerticalScrollIndicator = YES;
         
-        // Refresh user Interface
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CoreDataUpdatedNotification"
                                                             object:self];
     }];
     
-    NSLog(@"From ClientDowloadViewController %@",msg);;
-    //[self.statusTextView setNeedsDisplay];
 }
 
 @end

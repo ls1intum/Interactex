@@ -17,26 +17,24 @@
 
 @implementation THClientConnectionController
 
+NSString * const kNotConnectedText = @"Browsing for peers...";
+
 #pragma mark - MCSessionDelegate methods
 
-// Session container designated initializer
 - (id)init{
     if (self = [super init]) {
         
         _localPeerID = [[MCPeerID alloc] initWithDisplayName:[[UIDevice currentDevice] name]];
+        self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_localPeerID serviceType:kConnectionServiceType];
+        self.browser.delegate = self;
         
-        _browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_localPeerID serviceType:kConnectionServiceType];
-        
-        _browser.delegate = self;
-        
-        //self.foundPeers = [NSMutableArray array];
     }
     return self;
 }
 
 - (void)dealloc {
-    [_browser stopBrowsingForPeers];
-    [_session disconnect];
+    [self.browser stopBrowsingForPeers];
+    [self.session disconnect];
 }
 
 
@@ -44,13 +42,14 @@
 
 -(void) startClient{
     
-    [self.delegate appendStatusMessage:@"Started browsing for peers..."];
+    [self.delegate appendStatusMessage:kNotConnectedText];
     [self.browser startBrowsingForPeers];
 }
 
 -(void) stopClient{
     [self.browser stopBrowsingForPeers];
     [self.session disconnect];
+    self.remotePeerID = nil;
 }
 
 //delete this method
@@ -60,10 +59,10 @@
             return @"Connected";
             
         case MCSessionStateConnecting:
-            return @"Connecting";
+            return @"Connecting...";
             
         case MCSessionStateNotConnected:
-            return @"Not Connected";
+            return kNotConnectedText;
     }
 }
 
@@ -73,97 +72,83 @@
     
     _session = [[MCSession alloc] initWithPeer:_localPeerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
     _session.delegate = self;
+    self.remotePeerID = peerID;
     
-    [browser invitePeer:peerID toSession:self.session withContext:nil timeout:0];
-    
-    NSLog(@"invited peer");
-    
-    [self.delegate appendStatusMessage:@"Invited peer..."];
+    [self inviteCurrentPeer];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID{
-    //[self.foundPeers removeObject:peerID];
+    self.remotePeerID = nil;
+    
+    //NSLog(@"lost peer");
+}
+
+-(void) browser:(MCNearbyServiceBrowser *)browser didNotStartBrowsingForPeers:(NSError *)error{
+    //NSLog(@"failed to browse");
+}
+
+-(void) inviteCurrentPeer{
+    [self.browser invitePeer:self.remotePeerID toSession:self.session withContext:nil timeout:0];
+    [self.delegate appendStatusMessage:@"Invited peer..."];
 }
 
 #pragma mark - MCSessionDelegate methods
 
 // Override this method to handle changes to peer session state
-- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
-{
-    NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
+- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
     
-    [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Peer [%@] changed state to %@...", peerID.displayName, [self stringForPeerConnectionState:state]]];
-    /*
-    NSString *adminMessage = [NSString stringWithFormat:@"'%@' is %@", peerID.displayName, [self stringForPeerConnectionState:state]];
-    NSLog(@"%@",adminMessage);*/
+    //NSLog(@"%@",[self stringForPeerConnectionState:state]);
     
-    /*
-    // Create an local transcript
-    Transcript *transcript = [[Transcript alloc] initWithPeerID:peerID message:adminMessage direction:TRANSCRIPT_DIRECTION_LOCAL];
+    [self.delegate appendStatusMessage:[self stringForPeerConnectionState:state]];
     
-    // Notify the delegate that we have received a new chunk of data from a peer
-    [self.delegate receivedTranscript:transcript];*/
+    if(state == MCSessionStateNotConnected && session.connectedPeers.count == 0 && self.remotePeerID != nil){
+        
+        [self inviteCurrentPeer];
+    }
 }
 
 // MCSession Delegate callback when receiving data from a peer in a given session
-- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
-{
-    if(receivingState == kReceivingStateNone){
-        
-        NSString *projectName = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(receivingState == kReceivingStateNone){
+            
+            NSString *projectName = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
+            
             [self.delegate didStartReceivingProjectNamed:projectName];
-        });
-                       
-        receivingState = kReceivingStateShouldReceiveProject;
-        
-    } else if(receivingState == kReceivingStateShouldReceiveAssets){
-        /*
-        THAssetCollection * assets = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        [self.delegate didReceiveAssets:assets];
-         */
-        receivingState = kReceivingStateShouldReceiveProject;
-        
-    } else if(receivingState == kReceivingStateShouldReceiveProject){
-        
-        THClientProject * project = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate didFinishReceivingProject:project];
-        });
-        
-        receivingState = kReceivingStateNone;
-    }
-    
-    /*
-    // Create an received transcript
-    Transcript *transcript = [[Transcript alloc] initWithPeerID:peerID message:receivedMessage direction:TRANSCRIPT_DIRECTION_RECEIVE];
-    
-    // Notify the delegate that we have received a new chunk of data from a peer
-    [self.delegate receivedTranscript:transcript];*/
+            
+            receivingState = kReceivingStateShouldReceiveProject;
+            
+        } else if(receivingState == kReceivingStateShouldReceiveAssets){
+            /*
+             THAssetCollection * assets = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+             [self.delegate didReceiveAssets:assets];
+             */
+            receivingState = kReceivingStateShouldReceiveProject;
+            
+        } else if(receivingState == kReceivingStateShouldReceiveProject){
+            
+            THClientProject * project = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            
+            [self.delegate didFinishReceivingProject:project];
+            
+            receivingState = kReceivingStateNone;
+        }
+    });
 }
 
 // MCSession delegate callback when we start to receive a resource from a peer in a given session
-- (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
-{
+- (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress {
     
     NSLog(@"Start receiving resource [%@] from peer %@ with progress [%@]", resourceName, peerID.displayName, progress);
     [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Start receiving resource [%@] from peer %@ with progress [%@]...", resourceName, peerID.displayName, progress]];
-    /*
-    // Create a resource progress transcript
-    Transcript *transcript = [[Transcript alloc] initWithPeerID:peerID imageName:resourceName progress:progress direction:TRANSCRIPT_DIRECTION_RECEIVE];
-    // Notify the UI delegate
-    [self.delegate receivedTranscript:transcript];*/
 }
 
 
 // MCSession delegate callback when a incoming resource transfer ends (possibly with error)
-- (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error
-{
+- (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error {
     // If error is not nil something went wrong
-    if (error)
-    {
+    if (error) {
         NSLog(@"Error [%@] receiving resource from peer %@ ", [error localizedDescription], peerID.displayName);
         [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Error [%@] receiving resource from peer %@ ", [error localizedDescription], peerID.displayName]];
     }  else  {
@@ -177,13 +162,6 @@
             [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Error copying resource to documents directory"]];
         }
         else {
-            /*
-            // Get a URL for the path we just copied the resource to
-            NSURL *imageUrl = [NSURL fileURLWithPath:copyPath];
-            
-            // Create an image transcript for this received image resource
-            Transcript *transcript = [[Transcript alloc] initWithPeerID:peerID imageUrl:imageUrl direction:TRANSCRIPT_DIRECTION_RECEIVE];
-            [self.delegate updateTranscript:transcript];*/
         }
     }
 }
