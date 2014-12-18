@@ -104,7 +104,7 @@ float const kUiViewOpacityEditor = 0.5f;
 NSInteger const kCompassMin = 1000;
 NSInteger const kAnalogInMin = 1000;
 
-NSString * kNotifyBehaviorsText[kMaxNumNotifyBehaviors] = {@"the value will be notified always when it changed",@"the value will be notified always when it changed whithin the range", @"the value will be notified once when the range is entered"};
+NSString * kNotifyBehaviorsText[kMaxNumNotifyBehaviors] = {@"the potentiometer's value will be notified always when it changes", @"the potentiometer's value will be notified always when it changes whithin the range you specify below", @"the potentiometer's value will be notified once after it enters the range you specify below"};
 
 NSString * kSimulatorDefaultBoldFont = @"Arial Rounded MT Bold";
 NSString * kSimulatorDefaultFont = @"Arial";
