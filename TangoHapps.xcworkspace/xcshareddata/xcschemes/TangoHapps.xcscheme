@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "253DEC4A19F0184500318D7B"
+               BlueprintIdentifier = "25B05DAB19FA95C00019E431"
                BuildableName = "TangoHappsUnitTests.xctest"
                BlueprintName = "TangoHappsUnitTests"
                ReferencedContainer = "container:TangoHapps.xcodeproj">
@@ -60,7 +60,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "253DEC4A19F0184500318D7B"
+               BlueprintIdentifier = "25B05DAB19FA95C00019E431"
                BuildableName = "TangoHappsUnitTests.xctest"
                BlueprintName = "TangoHappsUnitTests"
                ReferencedContainer = "container:TangoHapps.xcodeproj">
