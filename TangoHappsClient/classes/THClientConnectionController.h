@@ -23,6 +23,7 @@ typedef enum{
 -(void) didMakeProgressForCurrentProject:(float) progress;
 -(void) didFinishReceivingProject:(THClientProject*) project;
 -(void) didReceiveAssets:(THAssetCollection*) assets;
+-(void) appendStatusMessage:(NSString *)msg;
 @end
 
 @interface THClientConnectionController : NSObject <MCSessionDelegate, MCNearbyServiceBrowserDelegate>{

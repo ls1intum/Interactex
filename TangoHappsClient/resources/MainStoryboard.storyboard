@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dCN-sI-2fp">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Projects-->
@@ -237,60 +239,73 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-7S-GLF">
-                                <rect key="frame" x="34" y="342" width="250" height="2"/>
+                                <rect key="frame" x="34" y="207" width="250" height="2"/>
                             </progressView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Open a project in the Interactex Designer and tap the upload Button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-9u-4u8">
-                                <rect key="frame" x="20" y="18" width="280" height="92"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="92" id="hq4-Q2-ss4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Open a project in the Interactex Designer and tap the upload Button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-9u-4u8">
+                                <rect key="frame" x="20" y="19" width="280" height="92"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZEC-ub-RIq">
-                                <rect key="frame" x="150" y="201" width="20" height="20"/>
+                                <rect key="frame" x="150" y="126" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="0i9-WF-iln"/>
+                                </constraints>
                             </activityIndicatorView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name: XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfo-uh-eh0">
-                                <rect key="frame" x="117" y="160" width="87" height="21"/>
+                                <rect key="frame" x="16" y="100" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="fakeSceneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="fcY-1u-pdw">
-                                <rect key="frame" x="142" y="193" width="35" height="35"/>
+                                <rect key="frame" x="142" y="133" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="15Q-xj-n7F"/>
-                                    <constraint firstAttribute="height" constant="35" id="GMo-eB-3OZ"/>
+                                    <constraint firstAttribute="width" constant="35" id="iwv-Dk-0mM"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Downloading assets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWU-ka-8A2">
-                                <rect key="frame" x="35" y="236" width="250" height="21"/>
+                                <rect key="frame" x="35" y="176" width="250" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="ZbN-1a-ch6"/>
+                                    <constraint firstAttribute="height" constant="21" id="hK8-ZK-8Ft"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Connection status:" translatesAutoresizingMaskIntoConstraints="NO" id="Nu8-5f-z8b">
+                                <rect key="frame" x="9" y="217" width="300" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fcY-1u-pdw" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="142" id="3VB-JZ-sU8"/>
-                            <constraint firstItem="yWU-ka-8A2" firstAttribute="top" secondItem="fcY-1u-pdw" secondAttribute="bottom" constant="8" symbolic="YES" id="51E-XA-2Vp"/>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" id="EaG-dZ-tB9"/>
-                            <constraint firstItem="N5K-7S-GLF" firstAttribute="top" secondItem="yWU-ka-8A2" secondAttribute="bottom" constant="85" id="JWx-hK-7Zk"/>
-                            <constraint firstItem="N5K-7S-GLF" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="34" id="Sd4-cq-Efk"/>
-                            <constraint firstItem="fcY-1u-pdw" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="193" id="VBx-uI-V7B"/>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="160" id="W0E-vG-3XF"/>
-                            <constraint firstItem="N5K-7S-GLF" firstAttribute="centerX" secondItem="fcY-1u-pdw" secondAttribute="centerX" id="XH6-6E-YDv"/>
-                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" id="aDi-NL-zWw"/>
-                            <constraint firstAttribute="trailing" secondItem="UkX-9u-4u8" secondAttribute="trailing" constant="20" symbolic="YES" id="dd7-O4-7hk"/>
-                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="20" symbolic="YES" id="dsS-MI-2AR"/>
-                            <constraint firstItem="yWU-ka-8A2" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" id="hMZ-5K-gOX"/>
-                            <constraint firstItem="UkX-9u-4u8" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="18" id="iBH-Ko-Q73"/>
-                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="top" constant="201" id="mcs-Jg-KrF"/>
-                            <constraint firstItem="yWU-ka-8A2" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leading" constant="35" id="rE2-5Q-TX0"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="top" secondItem="3zz-49-gW5" secondAttribute="bottom" constant="36" id="2Ap-ZU-tGC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nu8-5f-z8b" secondAttribute="trailing" constant="-5" id="49m-hC-mZU"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="trailing" secondItem="fM8-1D-3jL" secondAttribute="trailingMargin" id="4Fj-8E-CDj"/>
+                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="UkX-9u-4u8" secondAttribute="bottom" constant="15" id="9A1-Ib-GjZ"/>
+                            <constraint firstItem="ZEC-ub-RIq" firstAttribute="top" secondItem="Kfo-uh-eh0" secondAttribute="bottom" constant="5" id="Fxn-VB-Ya9"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leadingMargin" constant="19" id="PWe-jJ-NdS"/>
+                            <constraint firstItem="N5K-7S-GLF" firstAttribute="top" secondItem="yWU-ka-8A2" secondAttribute="bottom" constant="10" id="QXF-KJ-dJm"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leadingMargin" constant="4" id="Qe5-BB-LBf"/>
+                            <constraint firstItem="N5K-7S-GLF" firstAttribute="centerX" secondItem="Nu8-5f-z8b" secondAttribute="centerX" id="R9f-19-VLc"/>
+                            <constraint firstItem="UkX-9u-4u8" firstAttribute="top" secondItem="fM8-1D-3jL" secondAttribute="topMargin" constant="19" id="S2d-Yw-WAp"/>
+                            <constraint firstItem="N5K-7S-GLF" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leadingMargin" constant="18" id="aLj-5A-BUX"/>
+                            <constraint firstItem="LnC-u9-0g0" firstAttribute="top" secondItem="Nu8-5f-z8b" secondAttribute="bottom" constant="113" id="ahv-Cu-hcn"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="top" secondItem="fcY-1u-pdw" secondAttribute="bottom" constant="8" symbolic="YES" id="bhn-Df-n3p"/>
+                            <constraint firstItem="Nu8-5f-z8b" firstAttribute="top" secondItem="N5K-7S-GLF" secondAttribute="bottom" constant="8" symbolic="YES" id="hIy-pq-tZY"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="UkX-9u-4u8" secondAttribute="centerX" id="kCr-DZ-cGe"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" id="kMv-Mk-yGP"/>
+                            <constraint firstItem="Kfo-uh-eh0" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leadingMargin" id="lMc-e3-T7c"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="centerX" secondItem="ZEC-ub-RIq" secondAttribute="centerX" id="pHq-Hl-psx"/>
+                            <constraint firstItem="fcY-1u-pdw" firstAttribute="centerX" secondItem="N5K-7S-GLF" secondAttribute="centerX" id="rGf-Ls-y3X"/>
+                            <constraint firstItem="fcY-1u-pdw" firstAttribute="top" secondItem="Kfo-uh-eh0" secondAttribute="bottom" constant="12" id="uKR-hd-bkX"/>
+                            <constraint firstItem="yWU-ka-8A2" firstAttribute="top" secondItem="ZEC-ub-RIq" secondAttribute="bottom" constant="30" id="vWW-hy-1Wi"/>
+                            <constraint firstItem="Nu8-5f-z8b" firstAttribute="leading" secondItem="fM8-1D-3jL" secondAttribute="leadingMargin" constant="-7" id="zbr-PL-SYh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Download Project" id="tEk-Xf-QMl"/>
@@ -301,6 +316,7 @@
                         <outlet property="descriptionLabel" destination="Kfo-uh-eh0" id="sqV-am-Vyu"/>
                         <outlet property="instructionsLabel" destination="UkX-9u-4u8" id="BMc-3z-XNK"/>
                         <outlet property="progressBar" destination="N5K-7S-GLF" id="fXK-IY-VtD"/>
+                        <outlet property="statusTextView" destination="Nu8-5f-z8b" id="cql-82-VKs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tdg-QX-o3R" userLabel="First Responder" sceneMemberID="firstResponder"/>

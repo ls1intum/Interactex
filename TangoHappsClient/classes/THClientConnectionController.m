@@ -44,6 +44,7 @@
 
 -(void) startClient{
     
+    [self.delegate appendStatusMessage:@"Started browsing for peers..."];
     [self.browser startBrowsingForPeers];
 }
 
@@ -76,6 +77,8 @@
     [browser invitePeer:peerID toSession:self.session withContext:nil timeout:0];
     
     NSLog(@"invited peer");
+    
+    [self.delegate appendStatusMessage:@"Invited peer..."];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID{
@@ -88,6 +91,8 @@
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
     NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
+    
+    [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Peer [%@] changed state to %@...", peerID.displayName, [self stringForPeerConnectionState:state]]];
     /*
     NSString *adminMessage = [NSString stringWithFormat:@"'%@' is %@", peerID.displayName, [self stringForPeerConnectionState:state]];
     NSLog(@"%@",adminMessage);*/
@@ -142,7 +147,9 @@
 // MCSession delegate callback when we start to receive a resource from a peer in a given session
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
 {
+    
     NSLog(@"Start receiving resource [%@] from peer %@ with progress [%@]", resourceName, peerID.displayName, progress);
+    [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Start receiving resource [%@] from peer %@ with progress [%@]...", resourceName, peerID.displayName, progress]];
     /*
     // Create a resource progress transcript
     Transcript *transcript = [[Transcript alloc] initWithPeerID:peerID imageName:resourceName progress:progress direction:TRANSCRIPT_DIRECTION_RECEIVE];
@@ -158,6 +165,7 @@
     if (error)
     {
         NSLog(@"Error [%@] receiving resource from peer %@ ", [error localizedDescription], peerID.displayName);
+        [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Error [%@] receiving resource from peer %@ ", [error localizedDescription], peerID.displayName]];
     }  else  {
         // No error so this is a completed transfer.  The resources is located in a temporary location and should be copied to a permenant locatation immediately.
         // Write to documents directory
@@ -166,6 +174,7 @@
         if (![[NSFileManager defaultManager] copyItemAtPath:[localURL path] toPath:copyPath error:nil])
         {
             NSLog(@"Error copying resource to documents directory");
+            [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Error copying resource to documents directory"]];
         }
         else {
             /*
@@ -183,6 +192,7 @@
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"Received data over stream with name %@ from peer %@", streamName, peerID.displayName);
+    [self.delegate appendStatusMessage:[NSString stringWithFormat:@"Received data over stream with name %@ from peer %@...", streamName, peerID.displayName]];
 }
 
 - (void) session:(MCSession *)session didReceiveCertificate:(NSArray *)certificate fromPeer:(MCPeerID *)peerID certificateHandler:(void (^)(BOOL accept))certificateHandler

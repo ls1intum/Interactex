@@ -29,6 +29,8 @@
 		25981C8419D6BCC600DE4131 /* zoomPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8019D6BCC600DE4131 /* zoomPlus.png */; };
 		25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25981C8119D6BCC600DE4131 /* zoomPlus@2x.png */; };
 		25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B05DB019FA95C10019E431 /* TangoHappsUnitTests.m */; };
+		25D5EE371A4331C300FBCA47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */; };
+		25D5EE421A4331D000FBCA47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */; };
 		25E57B1519C077C6006B61A8 /* playicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1319C077C6006B61A8 /* playicon.png */; };
 		25E57B1619C077C6006B61A8 /* playicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B1419C077C6006B61A8 /* playicon@2x.png */; };
 		25E57B5319C0824A006B61A8 /* stopicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E57B5119C0824A006B61A8 /* stopicon.png */; };
@@ -329,7 +331,6 @@
 		9A6B285618AA08A0009AAE31 /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B284F18AA08A0009AAE31 /* test.pd */; };
 		9A6B28AD18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
-		9A777D7B1A2F5944006D1FBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2CAD8D182C47FC002AB9E8 /* Images.xcassets */; };
 		9A7B65131834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B65171834D830009D0103 /* THCompassProperties.xib */; };
 		9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
@@ -3648,7 +3649,7 @@
 				9AA4D74C18AE17F900A43433 /* THBoardProperties.xib in Resources */,
 				9A94F41A16A0192700AF52AB /* THClotheObjectProperties.xib in Resources */,
 				9A94F41C16A0192700AF52AB /* THComparatorEditableProperties.xib in Resources */,
-				9A777D7B1A2F5944006D1FBA /* Images.xcassets in Resources */,
+				25D5EE421A4331D000FBCA47 /* Images.xcassets in Resources */,
 				9A94F41E16A0192700AF52AB /* THGrouperEditableProperties.xib in Resources */,
 				9AFB7E1B1833BBDD00694CCE /* THMonitorProperties.xib in Resources */,
 				9A94F42016A0192700AF52AB /* THImageViewProperties.xib in Resources */,
@@ -3927,6 +3928,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AFB7E4E1833D89800694CCE /* temperatureSensor.png in Resources */,
+				25D5EE371A4331C300FBCA47 /* Images.xcassets in Resources */,
 				9AFB7E5C1833DBCC00694CCE /* button.png in Resources */,
 				9A2EA8BB19DB2CF200E30E2D /* musicPlay.png in Resources */,
 				9AFB7E461833D89800694CCE /* lightSensor.png in Resources */,

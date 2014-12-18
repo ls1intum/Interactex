@@ -63,6 +63,7 @@ const float kIconInstallationUpdateFrequency;
 @property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentActivityLabel;
+@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *checkImageView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
