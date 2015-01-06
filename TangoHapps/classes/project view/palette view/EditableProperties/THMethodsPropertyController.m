@@ -87,9 +87,10 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) highlightOrDeHighlightForMethod:(TFMethod*) method highlighted:(BOOL) highlighted{
-    /*
-    TFProject * project = [TFDirector sharedDirector].currentProject;
-    NSMutableArray * actions = [project actionsForTarget:(EditableObject*)target];
+    // nazmus Jan 06 '15 uncommented following code and did some small fixes
+    THProject * project = [THDirector sharedDirector].currentProject;
+    TFEditableObject * editable = (TFEditableObject*) self.editableObject;
+    NSMutableArray * actions = [project actionsForTarget:editable];
     for (TFEventActionPair * pair in actions) {
         TFMethodInvokeAction * action = (TFMethodInvokeAction*) pair.action;
         TFEditableObject * source = action.source;
@@ -98,7 +99,8 @@ You should have received a copy of the GNU General Public License along with thi
                 [self changeObjectHighlighting:source highlighted:highlighted];
             }
         }
-    }*/
+    }
+    ////
 }
 
 -(void) dehighlightForMethod:(TFMethod*) method{
