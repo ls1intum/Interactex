@@ -57,8 +57,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id) init{
     self = [super init];
-    if(self){/*
-        self.isTouchEnabled = YES;
+    if(self){
+        self.touchEnabled = YES;/*
         self.isAccelerometerEnabled = YES;*/
         
         CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 252)];

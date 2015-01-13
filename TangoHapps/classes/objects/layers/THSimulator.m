@@ -64,7 +64,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         _zoomableLayer = [CCLayer node];
         [self addChild:_zoomableLayer z:-1];
-        
+
         _accelerometerObjects = [NSMutableArray array];
 	}
 	return self;

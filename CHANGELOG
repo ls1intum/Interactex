@@ -48,6 +48,7 @@ Fixed bug: opengl draw errors after random combinations of actions in the canvas
 - iphone with white backhground cannot be distinghuished from canvas image. Add a black border
 - added new Ineractex designer icons
 - added icon & splash screen
+- improved potentiometer’s explanation text
 
 ———Interactex Client v1.80———
 
