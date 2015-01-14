@@ -299,6 +299,9 @@ BOOL enterNotified = NO;
     if(!_locationManager){
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
+        
+        [_locationManager requestWhenInUseAuthorization];
+        [_locationManager requestAlwaysAuthorization];
     }
     
     return _locationManager;

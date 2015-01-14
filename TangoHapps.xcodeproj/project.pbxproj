@@ -16,6 +16,8 @@
 		02A7960D1A6716B1000027A9 /* palette_iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */; };
 		02A796101A671730000027A9 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960E1A671730000027A9 /* iBeacon.png */; };
 		02A796111A671730000027A9 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960F1A671730000027A9 /* iBeacon@2x.png */; };
+		02FF44231A672DCE00FB2C0E /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44211A672DCE00FB2C0E /* iBeacon.png */; };
+		02FF44241A672DCE00FB2C0E /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */; };
 		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
 		251F674419C48F5300EF9807 /* iphoneBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674219C48F5300EF9807 /* iphoneBg.png */; };
 		251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674319C48F5300EF9807 /* iphoneBg@2x.png */; };
@@ -939,6 +941,8 @@
 		02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_iBeacon@2x.png"; sourceTree = "<group>"; };
 		02A7960E1A671730000027A9 /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
 		02A7960F1A671730000027A9 /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
+		02FF44211A672DCE00FB2C0E /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
+		02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
 		2517683419FB9EF30060FF83 /* THTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestsHelper.h; sourceTree = "<group>"; };
 		2517683519FB9EF30060FF83 /* THTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestsHelper.m; sourceTree = "<group>"; };
 		251F674219C48F5300EF9807 /* iphoneBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneBg.png; sourceTree = "<group>"; };
@@ -2103,6 +2107,8 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				02FF44211A672DCE00FB2C0E /* iBeacon.png */,
+				02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */,
 				6778EA0318F6AC980080B1C9 /* palette_gesture.png */,
 				6778EA0418F6AC980080B1C9 /* palette_gesture@2x.png */,
 				9A95FB6C18CF593A009A724F /* palette_powerSupply.png */,
@@ -3870,6 +3876,7 @@
 				9A41460F17DE7A060061EDF8 /* sewed.png in Resources */,
 				9ABC27751809985900B39D72 /* palette_lilypadBig.png in Resources */,
 				02A7960D1A6716B1000027A9 /* palette_iBeacon@2x.png in Resources */,
+				02FF44231A672DCE00FB2C0E /* iBeacon.png in Resources */,
 				9A41461117DE7A060061EDF8 /* sewed@2x.png in Resources */,
 				02A7960C1A6716B1000027A9 /* palette_iBeacon.png in Resources */,
 				25981C8419D6BCC600DE4131 /* zoomPlus.png in Resources */,
@@ -3898,6 +3905,7 @@
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
+				02FF44241A672DCE00FB2C0E /* iBeacon@2x.png in Resources */,
 				9A95FB7218CF593A009A724F /* palette_powerSupply@2x.png in Resources */,
 				9A41462F17DE7A060061EDF8 /* vibeBoard.png in Resources */,
 				257730321A17858800F038D1 /* segBgSelected@2x.png in Resources */,
