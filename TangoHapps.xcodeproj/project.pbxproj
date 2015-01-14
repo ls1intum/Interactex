@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02980B711A66DDDE00E59BE2 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
+		02980B741A66DE8F00E59BE2 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */; };
+		02980B791A66DF6D00E59BE2 /* THiBeaconPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B781A66DF6D00E59BE2 /* THiBeaconPaletteItem.m */; };
+		02980B7B1A66DFCE00E59BE2 /* THiBeaconProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B7A1A66DFCE00E59BE2 /* THiBeaconProperties.m */; };
+		02980B7E1A66E93F00E59BE2 /* THiBeaconProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02980B7D1A66E93F00E59BE2 /* THiBeaconProperties.xib */; };
 		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
 		251F674419C48F5300EF9807 /* iphoneBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674219C48F5300EF9807 /* iphoneBg.png */; };
 		251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 251F674319C48F5300EF9807 /* iphoneBg@2x.png */; };
@@ -917,6 +922,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02980B701A66DDDE00E59BE2 /* THiBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeacon.m; sourceTree = "<group>"; };
+		02980B721A66DE2200E59BE2 /* THiBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiBeacon.h; sourceTree = "<group>"; };
+		02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeaconEditable.m; sourceTree = "<group>"; };
+		02980B761A66DECE00E59BE2 /* THiBeaconEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiBeaconEditable.h; sourceTree = "<group>"; };
+		02980B771A66DF5C00E59BE2 /* THiBeaconPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiBeaconPaletteItem.h; sourceTree = "<group>"; };
+		02980B781A66DF6D00E59BE2 /* THiBeaconPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeaconPaletteItem.m; sourceTree = "<group>"; };
+		02980B7A1A66DFCE00E59BE2 /* THiBeaconProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeaconProperties.m; sourceTree = "<group>"; };
+		02980B7C1A66DFD900E59BE2 /* THiBeaconProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiBeaconProperties.h; sourceTree = "<group>"; };
+		02980B7D1A66E93F00E59BE2 /* THiBeaconProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THiBeaconProperties.xib; sourceTree = "<group>"; };
 		2517683419FB9EF30060FF83 /* THTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestsHelper.h; sourceTree = "<group>"; };
 		2517683519FB9EF30060FF83 /* THTestsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTestsHelper.m; sourceTree = "<group>"; };
 		251F674219C48F5300EF9807 /* iphoneBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneBg.png; sourceTree = "<group>"; };
@@ -2547,6 +2561,7 @@
 		9A94F3FF16A0192700AF52AB /* properties */ = {
 			isa = PBXGroup;
 			children = (
+				02980B7D1A66E93F00E59BE2 /* THiBeaconProperties.xib */,
 				9AA4D76118AE1DDA00A43433 /* THBLELilyPadProperties.xib */,
 				9AA4D74A18AE17F900A43433 /* THBoardProperties.xib */,
 				9AA4D74B18AE17F900A43433 /* THSimpleLilypadProperties.xib */,
@@ -2694,6 +2709,8 @@
 				679857A618EC61CC0037B366 /* THFlexSensorPaletteItem.m */,
 				9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */,
 				9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */,
+				02980B771A66DF5C00E59BE2 /* THiBeaconPaletteItem.h */,
+				02980B781A66DF6D00E59BE2 /* THiBeaconPaletteItem.m */,
 			);
 			name = hardware;
 			sourceTree = "<group>";
@@ -2971,6 +2988,10 @@
 				679857E318EC64510037B366 /* THFlexSensorEditable.m */,
 				679857E518EC66310037B366 /* THFlexSensor.h */,
 				679857E618EC66310037B366 /* THFlexSensor.m */,
+				02980B701A66DDDE00E59BE2 /* THiBeacon.m */,
+				02980B721A66DE2200E59BE2 /* THiBeacon.h */,
+				02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */,
+				02980B761A66DECE00E59BE2 /* THiBeaconEditable.h */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -3200,6 +3221,8 @@
 				9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */,
 				9A95FB9418D0FDEF009A724F /* THHardwareComponentProperties.h */,
 				9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */,
+				02980B7A1A66DFCE00E59BE2 /* THiBeaconProperties.m */,
+				02980B7C1A66DFD900E59BE2 /* THiBeaconProperties.h */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -3814,6 +3837,7 @@
 				9A4145ED17DE7A060061EDF8 /* palette_string@2x.png in Resources */,
 				9A4145EF17DE7A060061EDF8 /* palette_switch.png in Resources */,
 				9A4145F117DE7A060061EDF8 /* palette_switch@2x.png in Resources */,
+				02980B7E1A66E93F00E59BE2 /* THiBeaconProperties.xib in Resources */,
 				9A4145F317DE7A060061EDF8 /* palette_threeColorLed.png in Resources */,
 				9A4145F517DE7A060061EDF8 /* palette_threeColorLed@2x.png in Resources */,
 				9A4145F717DE7A060061EDF8 /* palette_timer.png in Resources */,
@@ -4017,6 +4041,7 @@
 				9AF50372167B84B40020241C /* THElementPin.m in Sources */,
 				9AF50373167B84B40020241C /* THElementPinEditable.m in Sources */,
 				9AF50374167B84B40020241C /* THPin.m in Sources */,
+				02980B711A66DDDE00E59BE2 /* THiBeacon.m in Sources */,
 				9AF50375167B84B40020241C /* THPinEditable.m in Sources */,
 				9AF50376167B84B40020241C /* THPinValue.m in Sources */,
 				9A4DF91819CAAE8800D75C38 /* THServerController.m in Sources */,
@@ -4065,6 +4090,7 @@
 				9A6B283618AA079E009AAE31 /* THPureDataProperties.m in Sources */,
 				9AF5039C167B84B40020241C /* THMusicPlayer.m in Sources */,
 				9AF5039D167B84B40020241C /* THMusicPlayerEditableObject.m in Sources */,
+				02980B7B1A66DFCE00E59BE2 /* THiBeaconProperties.m in Sources */,
 				9AF5039E167B84B40020241C /* THTouchpad.m in Sources */,
 				9AF5039F167B84B40020241C /* THTouchPadEditableObject.m in Sources */,
 				9AF503A0167B84B40020241C /* THView.m in Sources */,
@@ -4087,6 +4113,7 @@
 				9AF503AC167B84B40020241C /* THLabelPaletteItem.m in Sources */,
 				9AF503AD167B84B40020241C /* THLedPaletteItem.m in Sources */,
 				9AF503AE167B84B40020241C /* THLightSensorPaletteItem.m in Sources */,
+				02980B791A66DF6D00E59BE2 /* THiBeaconPaletteItem.m in Sources */,
 				9AF503AF167B84B40020241C /* THMusicPlayerPaletteItem.m in Sources */,
 				9AF503B0167B84B40020241C /* THPotentiometerPaletteItem.m in Sources */,
 				9AC06D7E19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m in Sources */,
@@ -4126,6 +4153,7 @@
 				9AA4D73618AE171D00A43433 /* THLipoBattery.m in Sources */,
 				9AF503CE167B84B40020241C /* THToneGenerator.m in Sources */,
 				9A95FB8218CF5B5D009A724F /* THPowerSupplyEditable.m in Sources */,
+				02980B741A66DE8F00E59BE2 /* THiBeaconEditable.m in Sources */,
 				9AF503CF167B84B40020241C /* THUtils.m in Sources */,
 				9A8BB9A2167C815D00FBABFB /* THPinsController.m in Sources */,
 				9A8BB9A4167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
@@ -4654,6 +4682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -4673,6 +4702,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -4693,6 +4723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";

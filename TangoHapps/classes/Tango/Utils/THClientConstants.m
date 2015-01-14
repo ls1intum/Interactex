@@ -78,6 +78,10 @@ NSString * const kNotificationPinAttached = @"notificationPinAttached";
 NSString * const kNotificationPinDeattached = @"notificationPinDeattached";
 NSString * const kNotificationPinValueChanged = @"notificationPinValueChanged";
 
+NSString * const KNotificationiBeaconRegionEntered = @"iBeaconRegionEntered";
+NSString * const KNotificationiBeaconRegionExited = @"iBeaconRegionExited";
+NSString * const KNotificationiBeaconRangingStatus = @"iBeaconRangingStatus";
+
 //events
 NSString * const kEventTurnedOn = @"turnedOn";
 NSString * const kEventTurnedOff = @"turnedOff";

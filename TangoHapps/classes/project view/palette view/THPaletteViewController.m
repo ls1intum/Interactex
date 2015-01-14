@@ -91,6 +91,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
 #import "THPureDataPaletteItem.h"
+#import "THiBeaconPaletteItem.h"
 
 @implementation THPaletteViewController
 
@@ -475,6 +476,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  [THVibrationBoardPaletteItem paletteItemWithName:@"vibeBoard" imageName:@"palette_vibeBoard" displayName:@"vibration board"],[THTemperatureSensorPaletteItem paletteItemWithName:@"temperatureSensor" imageName:@"palette_temperatureSensor" displayName:@"temperature sensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                  [THFlexSensorPaletteItem paletteItemWithName:@"flexSensor" imageName:@"palette_flexSensor" displayName:@"flex sensor"],
+                                 [[THiBeaconPaletteItem alloc] initWithName:@"iBeacon"],
                                  nil];
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:

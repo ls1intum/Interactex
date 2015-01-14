@@ -180,7 +180,7 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
         self.statusTextView.showsVerticalScrollIndicator = YES;
         
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"CoreDataUpdatedNotification"
-                                                            object:self];
+         //                                                   object:self];
     //}];
     
 }
