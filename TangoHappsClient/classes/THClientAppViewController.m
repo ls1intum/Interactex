@@ -483,13 +483,7 @@ float const kConnectingTimeout = 7.0f;
     }
     
     [self.firmataController sendDigitalOutputForPort:port value:value];
-    
 }
-/*
--(void) sendDigitalOutputForPin:(THBoardPin*) pin{
-
-    [self.firmataController sendDigitalOutputForPin:pin.number value:pin.value];
-}*/
 
 -(void) sendAnalogOutputForPin:(THBoardPin*) pin{
     [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
@@ -642,7 +636,6 @@ float const kConnectingTimeout = 7.0f;
         
         if(reg){
             
-            
             [component setValuesFromBuffer:buffer+6 length:length-6];
             
             //NSData * data = [NSData dataWithBytes:values length:size];
@@ -654,6 +647,9 @@ float const kConnectingTimeout = 7.0f;
 #pragma mark UI Interaction
 
 -(IBAction)startButtonTapped:(id)sender {
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    NSLog(@"%@",project);
     
     if([BLEDiscovery sharedInstance].connectedService){
         

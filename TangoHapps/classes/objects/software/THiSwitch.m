@@ -58,8 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
     TFProperty * property = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
     self.properties = [NSMutableArray arrayWithObject:property];
     
-    TFEvent * event1 = [TFEvent eventNamed:@"switchOn"];
-    TFEvent * event2 = [TFEvent eventNamed:@"switchOff"];
+    TFEvent * event1 = [TFEvent eventNamed:kEventSwitchedOn];
+    TFEvent * event2 = [TFEvent eventNamed:kEventSwitchedOff];
     TFEvent * event3 = [TFEvent eventNamed:kEventOnChanged];
     event3.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     self.events = [NSMutableArray arrayWithObjects:event1,event2,event3, nil];

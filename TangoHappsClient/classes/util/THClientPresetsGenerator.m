@@ -59,6 +59,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMonitor.h"
 #import "THMusicPlayer.h"
 #import "THPureData.h"
+#import "THThreeColorLed.h"
+#import "THSlider.h"
+#import "THiSwitch.h"
 
 @implementation THClientPresetsGenerator
 
@@ -71,6 +74,7 @@ NSString * const kMCUCompassProjectName = @"MCU";
 NSString * const kLSMCompassProjectName = @"LSM";
 NSString * const kMusicPlayerProjectName = @"Music Player";
 NSString * const kPureDataProjectName = @"PureData";
+NSString * const kThreeColorLEDProjectName = @"Three Color LED";
 
 -(id) init{
     
@@ -90,6 +94,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [array addObject:[self digitalInputProject]];
     [array addObject:[self buzzerProject]];
     [array addObject:[self analogInputProject]];
+    [array addObject:[self threeColorLEDProject]];
     [array addObject:[self lsmProject]];
     //[array addObject:[self mpuProject]];
     [array addObject:[self musicPlayerProject]];
@@ -101,6 +106,7 @@ NSString * const kPureDataProjectName = @"PureData";
     [imagesArray addObject:[UIImage imageNamed:@"button.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"buzzer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"lightSensor.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"threeColorLed.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
     //[imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
@@ -381,6 +387,107 @@ NSString * const kPureDataProjectName = @"PureData";
     THElementPin * lightSensorPin = [lightSensor.pins objectAtIndex:1];
     [lilypinLightSensor attachPin:lightSensorPin];
     [lightSensorPin attachToPin:lilypinLightSensor];
+    
+    return project;
+}
+
+-(THClientProject*) threeColorLEDProject{
+    THClientProject * project = [self defaultClientProject];
+    
+    project.name = kThreeColorLEDProjectName;
+    
+    THLilyPad * lilypad = [[THLilyPad alloc] init];
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    THThreeColorLed * threeColorLED = [[THThreeColorLed alloc] init];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:threeColorLED,nil];
+    
+    THLabel * redLabel = [[THLabel alloc] init];
+    redLabel.backgroundColor = [UIColor redColor];
+    redLabel.position = CGPointMake(150, 120);
+    
+    THLabel * greenLabel = [[THLabel alloc] init];
+    greenLabel.backgroundColor = [UIColor greenColor];
+    greenLabel.position = CGPointMake(150, 220);
+    
+    THLabel * blueLabel = [[THLabel alloc] init];
+    blueLabel.backgroundColor = [UIColor blueColor];
+    blueLabel.position = CGPointMake(150, 320);
+    
+    THLabel * label = [[THLabel alloc] init];
+    label.text = @"connect a Three Color LED to pins: 9 10 11";
+    label.position = CGPointMake(160, 50);
+    label.width = 300;
+    ((UILabel*) label.view).font = [UIFont systemFontOfSize:15];
+    
+    THSlider * redSlider = [[THSlider alloc] init];
+    redSlider.position = CGPointMake(150,170);
+    THSlider * greenSlider = [[THSlider alloc] init];
+    greenSlider.position = CGPointMake(150,270);
+    THSlider * blueSlider = [[THSlider alloc] init];
+    blueSlider.position = CGPointMake(150,370);
+    
+    THiSwitch * iSwitch = [[THiSwitch alloc] init];
+    iSwitch.position = CGPointMake(250,200);
+    
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,redLabel, greenLabel, blueLabel, redSlider,greenSlider,blueSlider, iSwitch, nil];
+    
+    //turn on action
+    TFEvent * switchOnEvent = [iSwitch eventNamed:kEventSwitchedOn];
+    TFMethod * turnOnMethod = [threeColorLED methodNamed:kMethodTurnOn];
+    TFMethodInvokeAction * turnOnAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:turnOnMethod];
+    [project registerAction:turnOnAction forEvent:switchOnEvent];
+    
+    //turn off action
+    TFEvent * switchOffEvent = [iSwitch eventNamed:kEventSwitchedOff];
+    TFMethod * turnOffMethod = [threeColorLED methodNamed:kMethodTurnOff];
+    TFMethodInvokeAction * turnOffAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:turnOffMethod];
+    [project registerAction:turnOffAction forEvent:switchOffEvent];
+    
+    //red action
+    TFEvent * redEvent = [redSlider eventNamed:kEventValueChanged];
+    TFMethod * redMethod = [threeColorLED methodNamed:kMethodSetRed];
+    TFMethodInvokeAction * redAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:redMethod];
+    TFProperty * redValueProperty = [redSlider.properties objectAtIndex:0];
+    redAction.firstParam = [TFPropertyInvocation invocationWithProperty:redValueProperty target:redSlider];
+    [project registerAction:redAction forEvent:redEvent];
+    
+    //green action
+    TFEvent * greenEvent = [greenSlider eventNamed:kEventValueChanged];
+    TFMethod * greenMethod = [threeColorLED methodNamed:kMethodSetGreen];
+    TFMethodInvokeAction * greenAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:greenMethod];
+    TFProperty * greenValueProperty = [greenSlider.properties objectAtIndex:0];
+    greenAction.firstParam = [TFPropertyInvocation invocationWithProperty:greenValueProperty target:greenSlider];
+    [project registerAction:greenAction forEvent:greenEvent];
+    
+    //blue action
+    TFEvent * blueEvent = [blueSlider eventNamed:kEventValueChanged];
+    TFMethod * blueMethod = [threeColorLED methodNamed:kMethodSetBlue];
+    TFMethodInvokeAction * blueAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:blueMethod];
+    TFProperty * blueValueProperty = [blueSlider.properties objectAtIndex:0];
+    blueAction.firstParam = [TFPropertyInvocation invocationWithProperty:blueValueProperty target:blueSlider];
+    [project registerAction:blueAction forEvent:blueEvent];
+    
+    //red pin
+    THBoardPin * redPinBoard = [lilypad digitalPinWithNumber:11];
+    redPinBoard.mode = kPinModePWM;
+    [redPinBoard attachPin:threeColorLED.redPin];
+    [threeColorLED.redPin attachToPin:redPinBoard];
+    
+    
+    //green pin
+    THBoardPin * greenPinBoard = [lilypad digitalPinWithNumber:9];
+    greenPinBoard.mode = kPinModePWM;
+    [greenPinBoard attachPin:threeColorLED.greenPin];
+    [threeColorLED.greenPin attachToPin:greenPinBoard];
+    
+    
+    //blue pin
+    THBoardPin * bluePinBoard = [lilypad digitalPinWithNumber:10];
+    bluePinBoard.mode = kPinModePWM;
+    [bluePinBoard attachPin:threeColorLED.bluePin];
+    [threeColorLED.bluePin attachToPin:bluePinBoard];
     
     return project;
 }

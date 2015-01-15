@@ -121,9 +121,9 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     if(self){
         self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
-        self.red = [decoder decodeIntegerForKey:@"red"];
-        self.green = [decoder decodeIntegerForKey:@"green"];
-        self.blue = [decoder decodeIntegerForKey:@"blue"];
+        _red = [decoder decodeIntegerForKey:@"red"];
+        _green = [decoder decodeIntegerForKey:@"green"];
+        _blue = [decoder decodeIntegerForKey:@"blue"];
         
         [self loadThreeColorLed];
     }
@@ -181,15 +181,18 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) updatePinValue {
+    
     if(self.on){
-        self.redPin.attachedToPin.value = 255 - self.red;
-        self.greenPin.attachedToPin.value = 255 - self.green;
-        self.bluePin.attachedToPin.value = 255 - self.blue;
+        
+        [self.redPin.attachedToPin setValueWithoutNotifications:255 - self.red];
+        [self.greenPin.attachedToPin setValueWithoutNotifications:255 - self.green];
+        [self.bluePin.attachedToPin setValueWithoutNotifications:255 - self.blue];
+        
     } else {
         
-        self.redPin.attachedToPin.value = 255 - self.red;
-        self.greenPin.attachedToPin.value = 255 - self.green;
-        self.bluePin.attachedToPin.value = 255 - self.blue;
+        [self.redPin.attachedToPin setValueWithoutNotifications:255];
+        [self.greenPin.attachedToPin setValueWithoutNotifications:255];
+        [self.bluePin.attachedToPin setValueWithoutNotifications:255];
     }
 }
 
@@ -226,7 +229,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) varyIntensity:(NSInteger) di {
-    self.red = self.red + di;
+    //self.red = self.red + di;
     [self updatePinValue];
 }
 
@@ -234,18 +237,21 @@ You should have received a copy of the GNU General Public License along with thi
     
     _red = [self clampColor:red];
     [self triggerEventNamed:kEventColorChanged];
+    [self updatePinValue];
 }
 
 -(void) setGreen:(NSInteger)green {
     
     _green = [self clampColor:green];
     [self triggerEventNamed:kEventColorChanged];
+    [self updatePinValue];
 }
 
 -(void) setBlue:(NSInteger)blue {
     
     _blue = [self clampColor:blue];
     [self triggerEventNamed:kEventColorChanged];
+    [self updatePinValue];
 }
 
 -(void) didStartSimulating{

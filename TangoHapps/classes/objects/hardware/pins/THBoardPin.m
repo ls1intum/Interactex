@@ -170,7 +170,7 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Pin Observing & Value Notification
 
 -(void) removePinObserver{
-        
+
     [self removeObserver:self forKeyPath:@"value"];
 }
 
@@ -179,6 +179,8 @@ You should have received a copy of the GNU General Public License along with thi
     [self addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+//important: if you set the value directly, the hardware will be notified. This should happen for input coming from the real hardware.
+//if the hardware itself is setting the value, use the setValueWithoutNotifications, otherwise you will get an infinite recursive loops and stack overflow
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if([keyPath isEqualToString:@"value"]){
         [self notifyNewValue];

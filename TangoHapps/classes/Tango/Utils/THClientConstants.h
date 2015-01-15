@@ -178,6 +178,8 @@ extern NSString * const kNotificationPinDeattached;
 extern NSString * const kEventTurnedOn;
 extern NSString * const kEventTurnedOff;
 extern NSString * const kEventOnChanged;
+extern NSString * const kEventSwitchedOn;
+extern NSString * const kEventSwitchedOff;
 extern NSString * const kEventIntensityChanged;
 extern NSString * const kEventFrequencyChanged;
 extern NSString * const kEventValueChanged;
