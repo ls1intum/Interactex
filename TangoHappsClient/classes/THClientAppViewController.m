@@ -590,6 +590,7 @@ float const kConnectingTimeout = 7.0f;
     NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
     
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
+    NSLog(@"%d %d",port,value);
     
     int mask = 1;
     int pinNumber = port * 8;
@@ -601,6 +602,7 @@ float const kConnectingTimeout = 7.0f;
                 uint32_t val = (value & mask) ? 1 : 0;
                 if (pinObj.value != val) {
                     [pinObj removeObserver:self forKeyPath:@"value"];
+                    
                     pinObj.value = val;
                     [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
                 }

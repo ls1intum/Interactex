@@ -592,6 +592,17 @@ You should have received a copy of the GNU General Public License along with thi
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
         }
         
+        
+        CGRect canvasBox = self.zoomableLayer.boundingBox;
+        CGRect oldBoundingBox = self.currentObject.boundingBox;
+        CGRect newBoundingBox = oldBoundingBox;
+        if(CGRectGetMinX(newBoundingBox) < CGRectGetMinX(canvasBox) || CGRectGetMaxX(newBoundingBox) > CGRectGetMaxX(canvasBox)){
+            d.x = 0;
+        }
+        if(CGRectGetMinY(newBoundingBox) < CGRectGetMinY(canvasBox) || CGRectGetMaxY(newBoundingBox) > CGRectGetMaxY(canvasBox)){
+            d.y = 0;
+        }
+        
         [self.currentObject displaceBy:d];
         
         [self reLayoutConnectionLinesForObject:self.currentObject];

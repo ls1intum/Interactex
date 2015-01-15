@@ -318,6 +318,7 @@ static NSInteger objectCount = 1;
 
 -(void)displaceBy:(CGPoint)displacement {
     self.position = ccpAdd(self.position, displacement);
+    
 }
 
 -(void) setPosition:(CGPoint)position{
@@ -398,16 +399,7 @@ static NSInteger objectCount = 1;
         return NO;
     }
     
-    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    
-    CGRect canvasBox = editor.zoomableLayer.boundingBox;
-    CGRect oldBoundingBox = self.boundingBox;
-    CGRect newBoundingBox = oldBoundingBox;
-    newBoundingBox.origin = ccpAdd(newBoundingBox.origin,d);
-    if(!CGRectContainsRect(canvasBox, oldBoundingBox) || CGRectContainsRect(canvasBox, newBoundingBox)){
-        return YES;
-    }
-    return NO;
+    return YES;
 }
 
 -(void) handleTouchBegan{
