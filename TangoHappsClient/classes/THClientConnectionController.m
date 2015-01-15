@@ -42,8 +42,11 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
 
 -(void) startClient{
     
-    [self.delegate appendStatusMessage:kNotConnectedText];
-    [self.browser startBrowsingForPeers];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate appendStatusMessage:kNotConnectedText];
+        [self.browser startBrowsingForPeers];
+        
+    });
 }
 
 -(void) stopClient{

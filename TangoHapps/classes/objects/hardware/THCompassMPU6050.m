@@ -59,6 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadMPU6050];
         [self loadMethods];
         [self loadPins];
+        [self loadI2CComponent];
     }
     return self;
 }
@@ -109,7 +110,6 @@ You should have received a copy of the GNU General Public License along with thi
     event2.param1 = [TFPropertyInvocation invocationWithProperty:property2 target:self];
     TFEvent * event3 = [TFEvent eventNamed:kEventZChanged];
     event3.param1 = [TFPropertyInvocation invocationWithProperty:property3 target:self];
-    
     TFEvent * event4 = [TFEvent eventNamed:kEventHeadingChanged];
     event4.param1 = [TFPropertyInvocation invocationWithProperty:property4 target:self];
     
@@ -133,7 +133,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self.pins addObject:plusPin];
 }
 
--(THI2CComponent*) loadI2CComponent{
+-(void) loadI2CComponent{
     
     self.i2cComponent = [[THI2CComponent alloc] init];
     self.i2cComponent.address = 104;
@@ -141,8 +141,6 @@ You should have received a copy of the GNU General Public License along with thi
     THI2CRegister * reg = [[THI2CRegister alloc] init];
     reg.number = 0x3B;
     [self.i2cComponent addRegister:reg];
-    
-    return self.i2cComponent;
 }
 
 #pragma mark - Methods

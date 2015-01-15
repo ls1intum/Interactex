@@ -309,6 +309,17 @@ You should have received a copy of the GNU General Public License along with thi
             [self autoroutePin:pin];
         }
     }
+    
+    if(self.isI2CComponent){
+        
+        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+        if(project.boards.count == 1){
+            THBoardEditable * board = [project.boards objectAtIndex:0];
+            if(![board.i2cComponents containsObject:self]){
+                [board addI2CComponent:self];
+            };
+        }
+    }
 }
 
 -(void) addToLayer:(TFLayer*) layer{
