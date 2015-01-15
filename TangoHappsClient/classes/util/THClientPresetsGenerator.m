@@ -523,12 +523,12 @@ NSString * const kPureDataProjectName = @"PureData";
     project.boards = [NSMutableArray arrayWithObject:lilypad];
     
     //lilypad
-    THButton * lilybutton = [[THButton alloc] init];
+    THSwitch * lilybutton = [[THButton alloc] init];
     project.hardwareComponents = [NSMutableArray arrayWithObjects:lilybutton,nil];
     
     //iphone objects
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a Button pin to 5";
+    label.text = @"connect a Switch pin to 8";
     label.position = CGPointMake(150, 100);
     label.width = 200;
     label.numLines = 2;
@@ -540,13 +540,17 @@ NSString * const kPureDataProjectName = @"PureData";
     
     //play action
     TFMethod * playMethod = [musicPlayer.methods objectAtIndex:0];
+    TFMethod * stopMethod = [musicPlayer.methods objectAtIndex:1];
     TFMethodInvokeAction * playAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:playMethod];
-    TFEvent * event = [lilybutton.events objectAtIndex:0];
+    TFMethodInvokeAction * stopAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:stopMethod];
+    TFEvent * switchOnEvent = [lilybutton.events objectAtIndex:0];
+    TFEvent * switchOffEvent = [lilybutton.events objectAtIndex:1];
     playAction.source = lilybutton;
-    [project registerAction:playAction forEvent:event];
+    [project registerAction:playAction forEvent:switchOnEvent];
+    [project registerAction:stopAction forEvent:switchOffEvent];
     
     //pins
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:5];
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:8];
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
