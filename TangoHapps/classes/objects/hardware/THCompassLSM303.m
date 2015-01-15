@@ -56,11 +56,18 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        
+        [self loadLSM303Compass];
         [self loadMethods];
         [self loadPins];
+        [self loadI2CComponent];
     }
     return self;
+}
+
+-(void) loadLSM303Compass{
+    self.isI2CComponent = YES;
+    
+    self.i2cComponent = [[THI2CComponent alloc] init];
 }
 
 #pragma mark - Archiving
@@ -69,6 +76,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self = [super initWithCoder:decoder];
     if(self){
+        [self loadLSM303Compass];
         [self loadMethods];
         [self loadI2CComponent];
     }
@@ -83,6 +91,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone *)zone{
     
     THCompassLSM303 * copy = [super copyWithZone:zone];
+    copy.i2cComponent = [self.i2cComponent copy];
+    copy.type = self.type;
     
     return copy;
 }
@@ -132,7 +142,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self.pins addObject:sdaPin];
 }
 
--(THI2CComponent*) loadI2CComponent{
+-(void) loadI2CComponent{
     
     self.i2cComponent = [[THI2CComponent alloc] init];
     self.i2cComponent.address = 24;
@@ -145,8 +155,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self.i2cComponent addRegister:reg1];
     [self.i2cComponent addRegister:reg2];
-    
-    return self.i2cComponent;
 }
 
 
