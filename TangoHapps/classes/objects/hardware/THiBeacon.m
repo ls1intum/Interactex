@@ -91,7 +91,7 @@ BOOL enterNotified = NO;
     if (self.beaconRegion)
         return;
     
-    NSUUID *proximityUUID = [[NSUUID alloc] initWithUUIDString:kUUID];
+    //NSUUID *proximityUUID = [[NSUUID alloc] initWithUUIDString:kUUID];
     self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:self.uuid identifier:kIdentifier];
     //self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:proximityUUID identifier:kIdentifier];
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
@@ -237,7 +237,8 @@ BOOL enterNotified = NO;
         return;
     }
     
-    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) {
+   // if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedAlways) {
+     if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse) {
         NSLog(@"Location services not authorised.");
         //       notification.alertBody = [NSString stringWithFormat:@"Location services not authorised."];
         //      [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
@@ -300,7 +301,14 @@ BOOL enterNotified = NO;
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
         
+        //[_locationManager requestWhenInUseAuthorization];
+        //[_locationManager requestAlwaysAuthorization];
+        }
+    
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [_locationManager requestWhenInUseAuthorization];
+    }
+    if ([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [_locationManager requestAlwaysAuthorization];
     }
     
