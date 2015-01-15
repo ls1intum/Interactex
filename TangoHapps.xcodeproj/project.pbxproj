@@ -16,6 +16,7 @@
 		02A7960D1A6716B1000027A9 /* palette_iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */; };
 		02A796101A671730000027A9 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960E1A671730000027A9 /* iBeacon.png */; };
 		02A796111A671730000027A9 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960F1A671730000027A9 /* iBeacon@2x.png */; };
+		02CD4D961A673563007C7BB0 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
 		02FF44231A672DCE00FB2C0E /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44211A672DCE00FB2C0E /* iBeacon.png */; };
 		02FF44241A672DCE00FB2C0E /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */; };
 		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
@@ -4319,6 +4320,7 @@
 				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
 				9AF5044E167B84D90020241C /* THBoardPin.m in Sources */,
 				9AFB7E691833DE6400694CCE /* THBLECommunicationModule.m in Sources */,
+				02CD4D961A673563007C7BB0 /* THiBeacon.m in Sources */,
 				9AF5044F167B84D90020241C /* THElementPin.m in Sources */,
 				9AF50450167B84D90020241C /* THPin.m in Sources */,
 				9AF50451167B84D90020241C /* THPinValue.m in Sources */,

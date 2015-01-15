@@ -174,14 +174,14 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 }
 
 -(void) appendStatusMessage:(NSString *)msg {
-    //[[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
 
         [self.statusTextView setText:[NSString stringWithFormat:@"%@",msg]];
         self.statusTextView.showsVerticalScrollIndicator = YES;
         
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"CoreDataUpdatedNotification"
-         //                                                   object:self];
-    //}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CoreDataUpdatedNotification"
+                                                            object:self];
+    }];
     
 }
 
