@@ -84,7 +84,7 @@ You should have received a copy of the GNU General Public License along with thi
         _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 0)];
         _zoomableLayer.contentSize = kDefaultCanvasSize;
         [self resetZoomableLayerPosition];
-        [self addChild:_zoomableLayer z:-10];
+        [self addChild:_zoomableLayer z:-30]; //Nazmus (15 Jan) changed from -10 to -30 to show the selection of iPhone elements (which has z:-20)
         
         CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
         [bg setPosition:ccp(_zoomableLayer.contentSize.width / 2.0f, _zoomableLayer.contentSize.height / 2.0f)];
