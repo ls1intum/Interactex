@@ -190,6 +190,7 @@ You should have received a copy of the GNU General Public License along with thi
                 }
             }
             if (previousConnectionToSameAction) {
+                [project deregisterAction:self.action1];
                 [project removeInvocationConnection:previousConnectionToSameAction];
             }
         }
@@ -206,6 +207,7 @@ You should have received a copy of the GNU General Public License along with thi
                 }
             }
             if (previousConnectionToSameAction) {
+                [project deregisterAction:self.action2];
                 [project removeInvocationConnection:previousConnectionToSameAction];
             }
         }
