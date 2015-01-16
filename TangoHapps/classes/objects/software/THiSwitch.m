@@ -78,27 +78,27 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadSwitch];
-    self.on = [decoder decodeBoolForKey:@"on"];
-    
+    if(self){
+        [self loadSwitch];
+        
+        self.on = [decoder decodeBoolForKey:@"isOn"];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeBool:self.on forKey:@"on"];
+    [coder encodeBool:self.on forKey:@"isOn"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THiSwitch * copy = [super copyWithZone:zone];
     
+    copy.on = self.on;
+
     return copy;
 }
 
@@ -136,11 +136,12 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) didStartSimulating{
+    self.enabled = YES;
     [self triggerEventNamed:kEventOnChanged];
 }
 
 -(NSString*) description{
-    return @"ibutton";
+    return @"iswitch";
 }
 
 @end

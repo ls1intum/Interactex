@@ -62,6 +62,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THThreeColorLed.h"
 #import "THSlider.h"
 #import "THiSwitch.h"
+#import "THAccelerometer.h"
 
 @implementation THClientPresetsGenerator
 
@@ -70,8 +71,9 @@ NSString * const kDigitalInputProjectName = @"Digital Input";
 NSString * const kBuzzerProjectName = @"Buzzer";
 NSString * const kAnalogOutputProjectName = @"Analog Output";
 NSString * const kAnalogInputProjectName = @"Analog Input";
-NSString * const kMCUCompassProjectName = @"MCU";
-NSString * const kLSMCompassProjectName = @"LSM";
+NSString * const kMPUCompassProjectName = @"MPU6050";
+NSString * const kLSMCompassProjectName = @"LSM303";
+NSString * const kAccelerometerProjectName = @"Accelerometer";
 NSString * const kMusicPlayerProjectName = @"Music Player";
 NSString * const kPureDataProjectName = @"PureData";
 NSString * const kThreeColorLEDProjectName = @"Three Color LED";
@@ -96,7 +98,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [array addObject:[self analogInputProject]];
     [array addObject:[self threeColorLEDProject]];
     [array addObject:[self lsmProject]];
-    //[array addObject:[self mpuProject]];
+    [array addObject:[self accelerometerProject]];
     [array addObject:[self musicPlayerProject]];
     [array addObject:[self pureDataProject]];
     
@@ -108,7 +110,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [imagesArray addObject:[UIImage imageNamed:@"lightSensor.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"threeColorLed.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
-    //[imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
     
@@ -469,7 +471,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     blueAction.firstParam = [TFPropertyInvocation invocationWithProperty:blueValueProperty target:blueSlider];
     [project registerAction:blueAction forEvent:blueEvent];
     
-    //red pin
+    //red pin*
     THBoardPin * redPinBoard = [lilypad digitalPinWithNumber:11];
     redPinBoard.mode = kPinModePWM;
     [redPinBoard attachPin:threeColorLED.redPin];
@@ -492,12 +494,77 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     return project;
 }
 
+
+-(THClientProject*) accelerometerProject{
+    THClientProject * project = [self defaultClientProject];
+    
+    project.name = kAccelerometerProjectName;
+    
+    THLilyPad * lilypad = [[THLilyPad alloc] init];
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    THAccelerometer * accelerometer = [[THAccelerometer alloc] init];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:accelerometer,nil];
+    
+    THMonitor * monitor = [[THMonitor alloc] init];
+    monitor.position = CGPointMake(160, 250);
+    monitor.minValue = 0;
+    monitor.maxValue = 1024;
+    
+    THLabel * label = [[THLabel alloc] init];
+    label.text = @"connect an accelerometer to pins A0 A1 and A2";
+    label.position = CGPointMake(160, 50);
+    label.width = 300;
+    ((UILabel*) label.view).font = [UIFont systemFontOfSize:15];
+
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,monitor,nil];
+    
+    
+    //x action
+    TFEvent * xEvent = [accelerometer eventNamed:kEventXChanged];
+    TFMethod * xMethod = [monitor methodNamed:kMethodAddValue1];
+    TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:monitor method:xMethod];
+    TFProperty * xValueProperty = [accelerometer.properties objectAtIndex:0];
+    xAction.firstParam = [TFPropertyInvocation invocationWithProperty:xValueProperty target:accelerometer];
+    [project registerAction:xAction forEvent:xEvent];
+
+    //y action
+    TFEvent * yEvent = [accelerometer eventNamed:kEventYChanged];
+    TFMethod * yMethod = [monitor methodNamed:kMethodAddValue2];
+    TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:monitor method:yMethod];
+    TFProperty * yValueProperty = [accelerometer.properties objectAtIndex:1];
+    yAction.firstParam = [TFPropertyInvocation invocationWithProperty:yValueProperty target:accelerometer];
+    [project registerAction:yAction forEvent:yEvent];
+    
+    
+    //red pin
+    THBoardPin * xPinBoard = [lilypad analogPinWithNumber:0];
+    xPinBoard.mode = kPinModeAnalogInput;
+    [xPinBoard attachPin:[accelerometer.pins objectAtIndex:0]];
+    [[accelerometer.pins objectAtIndex:0] attachToPin:xPinBoard];
+    
+    //red pin
+    THBoardPin * yPinBoard = [lilypad analogPinWithNumber:1];
+    yPinBoard.mode = kPinModeAnalogInput;
+    [yPinBoard attachPin:[accelerometer.pins objectAtIndex:1]];
+    [[accelerometer.pins objectAtIndex:1] attachToPin:yPinBoard];
+    
+    //red pin
+    THBoardPin * zPinBoard = [lilypad analogPinWithNumber:2];
+    zPinBoard.mode = kPinModeAnalogInput;
+    [zPinBoard attachPin:[accelerometer.pins objectAtIndex:2]];
+    [[accelerometer.pins objectAtIndex:2] attachToPin:zPinBoard];
+    
+    return project;
+}
+
 /*
 -(THClientProject*) mpuProject{
     
     THClientProject * project = [self defaultClientProject];
     
-    project.name = kMCUCompassProjectName;
+    project.name = kMPUCompassProjectName;
     
     THCompassMPU6050 * compass = [[THCompassMPU6050 alloc] init];
     

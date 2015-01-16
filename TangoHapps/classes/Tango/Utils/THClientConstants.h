@@ -146,7 +146,7 @@ extern float const kiphoneFrameYMargin;
 
 typedef enum{
     kI2CComponentTypeLSM,
-    kI2CComponentTypeMCU
+    kI2CComponentTypeMPU
     
 }THI2CComponentType;
 
@@ -208,6 +208,8 @@ extern NSString * const kMethodTurnOn;
 extern NSString * const kMethodTurnOff;
 extern NSString * const kMethodSetValue1;
 extern NSString * const kMethodSetValue2;
+extern NSString * const kMethodAddValue1;
+extern NSString * const kMethodAddValue2;
 extern NSString * const kMethodSetRed;
 extern NSString * const kMethodSetGreen;
 extern NSString * const kMethodSetBlue;

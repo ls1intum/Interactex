@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     UIButton * button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.bounds = CGRectMake(0, 0, self.width, self.height);
     self.view = button;
-    self.enabled = NO;
+    button.enabled = NO;
 
     [button addTarget:self action:@selector(handleStartedPressing) forControlEvents:UIControlEventTouchDown];
     [button addTarget:self action:@selector(handleStoppedPressing) forControlEvents:UIControlEventTouchUpInside];

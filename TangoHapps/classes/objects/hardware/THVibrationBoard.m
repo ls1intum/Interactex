@@ -143,9 +143,9 @@ You should have received a copy of the GNU General Public License along with thi
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     if(lilypadPin.mode == kPinModeDigitalOutput){
-        lilypadPin.value = self.on;
+        [lilypadPin setValueWithoutNotifications:self.on];
     } else {
-        lilypadPin.value = self.frequency;
+        [lilypadPin setValueWithoutNotifications:self.frequency];
     }
 }
 

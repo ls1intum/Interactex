@@ -18,6 +18,18 @@
 
 -(void) reloadState {
     [self updateNameTextField];
+    
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    THProject * project = [THDirector sharedDirector].currentProject;
+    
+    if(editor.isLilypadMode && project.boards.count > 0){
+        
+        self.autorouteButton.enabled = YES;
+        
+    } else {
+        
+        self.autorouteButton.enabled = NO;
+    }
 }
 
 -(void) updateNameTextField {
@@ -31,8 +43,7 @@
     object.objectName = self.nameTextField.text;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -42,6 +53,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -- Methods
 
 - (IBAction)nameChanged:(id)sender {
     THHardwareComponentEditableObject * object = (THHardwareComponentEditableObject*) self.editableObject;
