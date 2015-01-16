@@ -68,8 +68,8 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self loadButton];
         
-        self.text = @"Button";
         self.enabled = NO;
+        self.text = @"Button";
     }
     return self;
 }

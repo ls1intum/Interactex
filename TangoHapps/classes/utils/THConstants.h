@@ -134,7 +134,6 @@ extern NSString * const kNotificationSimulationEnded;
 
 extern NSString * const kNotificationPropertiesChanged;
 
-
 extern float const kWifiCellHeightCollapsed;
 extern float const kWifiCellHeightExtended;
 

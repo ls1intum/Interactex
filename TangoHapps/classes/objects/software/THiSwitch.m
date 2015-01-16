@@ -72,7 +72,6 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadSwitch];
         self.on = YES;
         self.enabled = NO;
-        //self.onAtStart = YES;
     }
     return self;
 }
@@ -85,7 +84,6 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadSwitch];
         
         self.on = [decoder decodeBoolForKey:@"isOn"];
-        //self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
     }
     return self;
 }
@@ -94,7 +92,6 @@ You should have received a copy of the GNU General Public License along with thi
     [super encodeWithCoder:coder];
     
     [coder encodeBool:self.on forKey:@"isOn"];
-    //[coder encodeBool:self.onAtStart forKey:@"onAtStart"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -106,12 +103,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
-/*
--(void) setOnAtStart:(BOOL)onAtStart{
-    self.on = onAtStart;
-    _onAtStart = onAtStart;
-}*/
-
 
 -(BOOL) on{
     UISwitch * iswitch = (UISwitch*) self.view;
@@ -146,7 +137,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) didStartSimulating{
     self.enabled = YES;
-    //self.on = self.onAtStart;
     [self triggerEventNamed:kEventOnChanged];
 }
 

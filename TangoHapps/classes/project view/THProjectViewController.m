@@ -825,6 +825,7 @@ float const kToolsTabMargin = 5;
         
     } else {
         [editor startLilypadMode];
+        
         [self addLilypadButtons];
     }
     
