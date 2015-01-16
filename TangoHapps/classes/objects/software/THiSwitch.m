@@ -71,38 +71,47 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self loadSwitch];
         self.on = YES;
-        self.enabled = YES;
+        self.enabled = NO;
+        //self.onAtStart = YES;
     }
     return self;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadSwitch];
-    self.on = [decoder decodeBoolForKey:@"on"];
-    
+    if(self){
+        [self loadSwitch];
+        
+        self.on = [decoder decodeBoolForKey:@"isOn"];
+        //self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeBool:self.on forKey:@"on"];
+    [coder encodeBool:self.on forKey:@"isOn"];
+    //[coder encodeBool:self.onAtStart forKey:@"onAtStart"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THiSwitch * copy = [super copyWithZone:zone];
     
+    copy.on = self.on;
+
     return copy;
 }
 
 #pragma mark - Methods
+/*
+-(void) setOnAtStart:(BOOL)onAtStart{
+    self.on = onAtStart;
+    _onAtStart = onAtStart;
+}*/
+
 
 -(BOOL) on{
     UISwitch * iswitch = (UISwitch*) self.view;
@@ -136,11 +145,13 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) didStartSimulating{
+    self.enabled = YES;
+    //self.on = self.onAtStart;
     [self triggerEventNamed:kEventOnChanged];
 }
 
 -(NSString*) description{
-    return @"ibutton";
+    return @"iswitch";
 }
 
 @end

@@ -45,5 +45,6 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THiSwitch : THiPhoneControl
 
 @property (nonatomic) BOOL on;
+//@property (nonatomic) BOOL onAtStart;
 
 @end

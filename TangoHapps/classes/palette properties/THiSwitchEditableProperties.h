@@ -43,7 +43,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THEditableObjectProperties.h"
 
 @interface THiSwitchEditableProperties : THEditableObjectProperties
+
 @property (weak, nonatomic) IBOutlet UISwitch *onSwitch;
+
 - (IBAction)onSwitchChanged:(id)sender;
 
 @end

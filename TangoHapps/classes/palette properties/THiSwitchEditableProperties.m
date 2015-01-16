@@ -45,19 +45,16 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THiSwitchEditableProperties
 
--(NSString *)title
-{
+-(NSString *)title {
     return @"Switch";
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -75,6 +72,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (IBAction)onSwitchChanged:(id)sender {
     THiSwitchEditableObject * iswitch = (THiSwitchEditableObject*) self.editableObject;
+    //iswitch.onAtStart = self.onSwitch.on;
     iswitch.on = self.onSwitch.on;
 }
 
