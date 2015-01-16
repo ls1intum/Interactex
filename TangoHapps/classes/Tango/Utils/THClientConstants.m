@@ -116,6 +116,8 @@ NSString * const kMethodTurnOn = @"turnOn";
 NSString * const kMethodTurnOff = @"turnOff";
 NSString * const kMethodSetValue1 = @"setValue1";
 NSString * const kMethodSetValue2 = @"setValue2";
+NSString * const kMethodAddValue1 = @"addValue1";
+NSString * const kMethodAddValue2 = @"addValue2";
 
 NSString * const kMethodSetRed = @"setRed";
 NSString * const kMethodSetGreen = @"setGreen";

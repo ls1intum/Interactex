@@ -122,6 +122,41 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
+-(THElementPin*) xPin{
+    return [self.pins objectAtIndex:0];
+}
+
+-(THElementPin*) yPin{
+    return [self.pins objectAtIndex:1];
+}
+
+-(THElementPin*) zPin{
+    return [self.pins objectAtIndex:2];
+}
+
+-(THElementPin*) firstPinConnectedToBoardPin:(THBoardPin*) boardPin{
+    
+    for (THElementPin * elementPin in boardPin.attachedElementPins) {
+        if([self.pins containsObject:elementPin]){
+            return elementPin;
+        }
+    }
+    return nil;
+}
+
+-(void) handlePin:(THPin *)pin changedValueTo:(NSInteger)newValue{
+    
+    THElementPin * elementPin = [self firstPinConnectedToBoardPin:(THBoardPin*) pin];
+    
+    if(elementPin == self.xPin){
+        self.accelerometerX = newValue;
+    } else if(elementPin == self.yPin){
+        self.accelerometerY = newValue;
+    } else if(elementPin == self.zPin){
+        self.accelerometerZ = newValue;
+    }
+}
+
 -(void) setValuesFromBuffer:(uint8_t*) buffer length:(NSInteger) length{
     
     self.accelerometerX = ((int16_t)(buffer[1] << 8 | buffer[0])) >> 4;

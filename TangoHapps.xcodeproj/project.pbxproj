@@ -67,6 +67,7 @@
 		9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
 		9A09777D17268EF40028A6B4 /* THSoundProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A09777C17268EF30028A6B4 /* THSoundProperties.xib */; };
 		9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
+		9A0ACE951A695F7500FA47F6 /* THFlexSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 679857E618EC66310037B366 /* THFlexSensor.m */; };
 		9A0F687B1886B9AC00B589DC /* THCompassMPU6050.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F687A1886B9AC00B589DC /* THCompassMPU6050.m */; };
 		9A0F687C1886B9AC00B589DC /* THCompassMPU6050.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F687A1886B9AC00B589DC /* THCompassMPU6050.m */; };
 		9A0F68801886BB2B00B589DC /* THCompassMPU6050Editable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F687F1886BB2B00B589DC /* THCompassMPU6050Editable.m */; };
@@ -4262,6 +4263,7 @@
 				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AA4D72F18AE16EE00A43433 /* THBLELilyPad.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
+				9A0ACE951A695F7500FA47F6 /* THFlexSensor.m in Sources */,
 				9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
 				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,

@@ -45,6 +45,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THAccelerometer : THHardwareComponent
 
+@property (nonatomic, readonly) THPin * xPin;
+@property (nonatomic, readonly) THPin * yPin;
+@property (nonatomic, readonly) THPin * zPin;
+
 @property (nonatomic) NSInteger accelerometerX;
 @property (nonatomic) NSInteger accelerometerY;
 @property (nonatomic) NSInteger accelerometerZ;
