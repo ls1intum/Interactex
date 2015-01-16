@@ -49,6 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     UISwitch * iswitch = [[UISwitch alloc] init];
     self.view = iswitch;
+    iswitch.enabled = NO;
     
     self.width = iswitch.frame.size.width;
     self.height = iswitch.frame.size.height;
@@ -71,7 +72,6 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self loadSwitch];
         self.on = YES;
-        self.enabled = YES;
     }
     return self;
 }
