@@ -176,39 +176,45 @@ You should have received a copy of the GNU General Public License along with thi
     //[super handleEditableObjectRemoved:notification];
 }
 
--(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
+-(THInvocationConnectionLine*) invocationConnectionWithActionNamed:(NSString*) methodName{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THInvocationConnectionLine * previousConnectionToSameAction = nil;
+    
+    for (THInvocationConnectionLine * connection in project.invocationConnections) {
+        if(connection.obj1 == self || connection.obj2 == self){
+            if ([connection.action.method.name isEqualToString:methodName]) {
+                return connection;
+            }
+        }
+    }
+    return nil;
+}
+
+-(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
+    
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    
     if ([action.method.name isEqualToString:kMethodSetValue1]) {
         if(self.action1 != nil) {
-            for (THInvocationConnectionLine * connection in project.invocationConnections) {
-                if(connection.obj1 == self || connection.obj2 == self){
-                    if ([connection.action.method.name isEqualToString:kMethodSetValue1]) {
-                        previousConnectionToSameAction = connection;
-                    }
-                }
-            }
-            if (previousConnectionToSameAction) {
+            
+            THInvocationConnectionLine * connection = [self invocationConnectionWithActionNamed:kMethodSetValue1];
+            if(connection){
                 [project deregisterAction:self.action1];
-                [project removeInvocationConnection:previousConnectionToSameAction];
+                [project removeInvocationConnection:connection];
             }
         }
         self.action1 = action;
         self.obj1 = action.source;
         self.propertyName1 = action.firstParam.property.name;
+        
     } else {
         if(self.action2 != nil) {
-            for (THInvocationConnectionLine * connection in project.invocationConnections) {
-                if(connection.obj1 == self || connection.obj2 == self){
-                    if ([connection.action.method.name isEqualToString:kMethodSetValue2]) {
-                        previousConnectionToSameAction = connection;
-                    }
-                }
-            }
-            if (previousConnectionToSameAction) {
+            THInvocationConnectionLine * connection = [self invocationConnectionWithActionNamed:kMethodSetValue2];
+            if(connection){
+                
                 [project deregisterAction:self.action2];
-                [project removeInvocationConnection:previousConnectionToSameAction];
+                [project removeInvocationConnection:connection];
             }
         }
         self.action2 = action;

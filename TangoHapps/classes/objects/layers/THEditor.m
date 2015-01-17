@@ -67,7 +67,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoard.h"
 #import "THHardwareComponent.h"
 
-#import <QuartzCore/QuartzCore.h>
+//remove
+#import "THGrouperConditionEditable.h"
 
 @implementation THEditor
 
@@ -384,6 +385,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+
 #pragma mark - Property Selection Popup
 
 -(void) propertySelectionPopup:(THPropertySelectionPopup*) popup didSelectProperty:(TFProperty*) property{
@@ -391,6 +393,12 @@ You should have received a copy of the GNU General Public License along with thi
     popup.connection.state = THInvocationConnectionLineStateComplete;
     popup.connection.action.firstParam = [TFPropertyInvocation invocationWithProperty:property target:popup.object];
     [popup.connection reloadSprite];
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    
+    TFAction * action1 = popup.connection.action;
+    THGrouperConditionEditable * grouper = [project.visualProgrammingObjects objectAtIndex:0];
+    TFAction * action2 = grouper.action1;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInvocationCompleted object:popup.connection.action.firstParam];
 }
@@ -441,7 +449,8 @@ You should have received a copy of the GNU General Public License along with thi
     [project registerAction:(TFAction*)action forEvent:event];
     
     THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
-    invocationConnection.action = [TFMethodInvokeAction actionWithAction:action];
+    //invocationConnection.action = [TFMethodInvokeAction actionWithAction:action];//why do we need acopy here instead of the real?
+    invocationConnection.action = action;
     invocationConnection.numParameters = action.method.numParams;
     
     if(action.method.numParams > 0){
@@ -591,7 +600,6 @@ You should have received a copy of the GNU General Public License along with thi
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
         }
-        
         
         CGRect canvasBox = self.zoomableLayer.boundingBox;
         CGRect oldBoundingBox = self.currentObject.boundingBox;
