@@ -309,7 +309,7 @@ You should have received a copy of the GNU General Public License along with thi
 
             NSString * className = object.description;
             NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
-           // NSLog(@"%d",classCount.integerValue);
+            NSLog(@"class name: %@",className);
             
             hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
         }
@@ -622,6 +622,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event{
+    NSAssert(action, @"cannot register nil action");
+    NSAssert(event, @"cannot register nil event");
     
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
     pair.action = action;

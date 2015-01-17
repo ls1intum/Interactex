@@ -147,7 +147,7 @@ extern float const kiphoneFrameYMargin;
 
 typedef enum{
     kI2CComponentTypeLSM,
-    kI2CComponentTypeMCU
+    kI2CComponentTypeMPU
     
 }THI2CComponentType;
 
@@ -179,6 +179,8 @@ extern NSString * const kNotificationPinDeattached;
 extern NSString * const kEventTurnedOn;
 extern NSString * const kEventTurnedOff;
 extern NSString * const kEventOnChanged;
+extern NSString * const kEventSwitchedOn;
+extern NSString * const kEventSwitchedOff;
 extern NSString * const kEventIntensityChanged;
 extern NSString * const kEventFrequencyChanged;
 extern NSString * const kEventValueChanged;
@@ -188,6 +190,8 @@ extern NSString * const kEventDyChanged;
 extern NSString * const kEventLightChanged;
 extern NSString * const kEventStartedPressing;
 extern NSString * const kEventStoppedPressing;
+extern NSString * const kEventButtonDown;
+extern NSString * const kEventButtonUp;
 extern NSString * const kEventConditionIsTrue;
 extern NSString * const kEventConditionIsFalse;
 extern NSString * const kEventConditionChanged;
@@ -207,10 +211,14 @@ extern NSString * const KEventiBeaconRangingStatusChanged;
 extern NSString * const kEventPressureChanged;
 
 //methods
+extern NSString * const kMethodSetIntensity;
+extern NSString * const kMethodVaryIntensity;
 extern NSString * const kMethodTurnOn;
 extern NSString * const kMethodTurnOff;
 extern NSString * const kMethodSetValue1;
 extern NSString * const kMethodSetValue2;
+extern NSString * const kMethodAddValue1;
+extern NSString * const kMethodAddValue2;
 extern NSString * const kMethodSetRed;
 extern NSString * const kMethodSetGreen;
 extern NSString * const kMethodSetBlue;

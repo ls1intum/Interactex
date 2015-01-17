@@ -62,11 +62,11 @@ float const kMonitorNewValueX = 75.0f;
 
 -(void) addMethods{
     
-    TFMethod * method1 =[TFMethod methodWithName:@"addValue1"];
+    TFMethod * method1 =[TFMethod methodWithName:kMethodAddValue1];
     method1.firstParamType = kDataTypeFloat;
     method1.numParams = 1;
     
-    TFMethod * method2 =[TFMethod methodWithName:@"addValue2"];
+    TFMethod * method2 =[TFMethod methodWithName:kMethodAddValue2];
     method2.firstParamType = kDataTypeFloat;
     method2.numParams = 1;
     

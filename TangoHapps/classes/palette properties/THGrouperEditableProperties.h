@@ -47,8 +47,8 @@ You should have received a copy of the GNU General Public License along with thi
     BOOL button1Down;
     BOOL button2Down;
     
-    TFConnectionLine * connection1;
-    TFConnectionLine * connection2;
+    //TFConnectionLine * connection1;
+    //TFConnectionLine * connection2;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;

@@ -89,7 +89,7 @@ You should have received a copy of the GNU General Public License along with thi
             }
             
             text = [text stringByAppendingString:[self textObject2]];
-            text = [text stringByAppendingString:@":\n"];
+            text = [text stringByAppendingString:@"the following actions will happen:\n"];
 
             BOOL negativeConditions = NO;
             for (TFEventActionPair * pair in actions) {
@@ -109,12 +109,14 @@ You should have received a copy of the GNU General Public License along with thi
                 }
             }
             
+            text = [text stringByAppendingFormat:@"This will be triggered by either %@ or %@",condition.obj1, condition.obj2];
+            
         } else {
-            text = @"Conditions set, but actions not set yet";
+            text = @"Conditions set, but actions are missing. Drag a line from the grouper to some other object to add an action";
         }
     
     } else {
-        text = @"Conditions are not set and therefore nothing will happen";
+        text = @"Conditions are not set";
     }
     
     self.descriptionLabel.text = text;
@@ -129,13 +131,29 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSString*) textObject1{
     
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
-    return [NSString stringWithFormat:@"%@ is %@ ",condition.obj1,condition.propertyName1];
+    TFEditableObject * object1 = condition.action1.firstParam.target;
+    if(condition.action1.firstParam.property.type == kDataTypeInteger || condition.action1.firstParam.property.type == kDataTypeFloat){
+        
+        return [NSString stringWithFormat:@"%@'s %@ is different than 0 ",object1,condition.propertyName1];
+        
+    } else {
+        
+        return [NSString stringWithFormat:@"%@ is %@ ",object1,condition.propertyName1];
+    }
 }
 
 -(NSString*) textObject2{
     
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
-    return [NSString stringWithFormat:@"%@ is %@ ",condition.obj2,condition.propertyName2];
+    TFEditableObject * object2 = condition.action2.firstParam.target;
+    
+    if(condition.action2.firstParam.property.type == kDataTypeInteger || condition.action2.firstParam.property.type == kDataTypeFloat){
+        
+        return [NSString stringWithFormat:@"%@'s %@ is different than 0 ",object2,condition.propertyName2];
+        
+    } else {
+        return [NSString stringWithFormat:@"%@ is %@ ",object2,condition.propertyName2];
+    }
 }
 
 -(void) updateButtonTexts{
@@ -143,8 +161,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSString * title = @"";
     
-    if(condition.obj1){
-        title = [NSString stringWithFormat:@"%@ (%@)",condition.obj1,condition.propertyName1];
+    if(condition.obj1 && condition.propertyName1){
+        TFEditableObject * object1 = condition.action1.firstParam.target;
+        title = [NSString stringWithFormat:@"%@ (%@)",object1,condition.propertyName1];
         self.obj1Button.enabled = YES;
     } else{
         self.obj1Button.enabled = NO;
@@ -152,8 +171,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self.obj1Button setTitle:title forState:UIControlStateNormal];
     
-    if(condition.obj2){
-        title = [NSString stringWithFormat:@"%@ (%@)",condition.obj2,condition.propertyName2];
+    if(condition.obj2 && condition.propertyName2){
+        TFEditableObject * object2 = condition.action2.firstParam.target;
+        title = [NSString stringWithFormat:@"%@ (%@)",object2,condition.propertyName2];
         self.obj2Button.enabled = YES;
     }else{
         title = @"";
@@ -162,7 +182,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self.obj2Button setTitle:title forState:UIControlStateNormal];
 }
-
+/*
 -(TFConnectionLine*) createConnectionLineFor:(TFEditableObject*) object{
     
     TFConnectionLine * connection = [TFConnectionLine connectionLine];
@@ -181,67 +201,58 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeConnection:(TFConnectionLine*) connection{
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor removeConnectionLine:connection];
-}
+}*/
 
--(void) selectionChanged{
-    
-    // Nazmus updated this method
+-(void) updateButton1Selection{
     
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
     
-    TFEditableObject * object1 = condition.action1.firstParam.target;
-    TFEditableObject * object2 = condition.action2.firstParam.target;
-    
-    //if it was a simulable object, then the event source is the same as the parameter source
-    if([object1 isKindOfClass:[TFSimulableObject class]]){
-        object1 = condition.action1.source;
-    }
-    
-    if([object2 isKindOfClass:[TFSimulableObject class]]){
-        object2 = condition.action2.source;
-    }
+    TFEditableObject * object = condition.action1.firstParam.target;
     
     if(button1Down){
-        object1.highlighted = YES;
-        connection1 = [self createConnectionLineFor:object1];
-        [self addConnection:connection1];
+        
+        object.highlighted = YES;
         
     } else {
-        object1.highlighted = NO;
-        [self removeConnection:connection1];
+        
+        object.highlighted = NO;
     }
+}
+
+-(void) updateButton2Selection{
+    
+    THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
+    
+    TFEditableObject * object2 = condition.action2.firstParam.target;
     
     if(button2Down){
         
         object2.highlighted = YES;
-        connection2 = [self createConnectionLineFor:object2];
-        [self addConnection:connection2];
         
     } else {
         
         object2.highlighted = NO;
-        [self removeConnection:connection2];
     }
 }
 
 - (IBAction)button1Up:(id)sender {
     button1Down = NO;
-    [self selectionChanged];
+    [self updateButton1Selection];
 }
 
 - (IBAction)button1Down:(id)sender {
     button1Down = YES;
-    [self selectionChanged];
+    [self updateButton1Selection];
 }
 
 - (IBAction)button2Up:(id)sender {
     button2Down = NO;
-    [self selectionChanged];
+    [self updateButton2Selection];
 }
 
 - (IBAction)button2Down:(id)sender {
     button2Down = YES;
-    [self selectionChanged];
+    [self updateButton2Selection];
 }
 
 - (IBAction)grouperTypeChanged:(id)sender {
@@ -251,24 +262,15 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateLabelText];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setDescriptionLabel:nil];
     [self setObj1Button:nil];
     [self setObj2Button:nil];
     [self setGrouperTypeControl:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 

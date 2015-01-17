@@ -199,6 +199,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     THInvocationConnectionLine * previousConnectionToSameAction = nil;
     if ([action.method.name isEqualToString:kMethodSetValue1]) {
         if(self.action1 != nil) {
+            
             for (THInvocationConnectionLine * connection in project.invocationConnections) {
                 if(connection.obj1 == self || connection.obj2 == self){
                     if ([connection.action.method.name isEqualToString:kMethodSetValue1]) {
@@ -207,12 +208,14 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
                 }
             }
             if (previousConnectionToSameAction) {
+                [project deregisterAction:self.action1];
                 [project removeInvocationConnection:previousConnectionToSameAction];
             }
         }
         self.action1 = action;
     } else {
         if(self.action2 != nil) {
+            
             for (THInvocationConnectionLine * connection in project.invocationConnections) {
                 if(connection.obj1 == self || connection.obj2 == self){
                     if ([connection.action.method.name isEqualToString:kMethodSetValue2]) {
@@ -221,6 +224,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
                 }
             }
             if (previousConnectionToSameAction) {
+                [project deregisterAction:self.action2];
                 [project removeInvocationConnection:previousConnectionToSameAction];
             }
         }

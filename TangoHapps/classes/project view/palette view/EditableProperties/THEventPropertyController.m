@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "TFEditableObject.h"
 #import "TFAction.h"
 #import "TFConnectionLine.h"
+#import "THInvocationConnectionLine.h"
 #import "TFMethodInvokeAction.h"
 #import "TFEventActionPair.h"
 #import "TFMethod.h"
@@ -101,8 +102,12 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = [THDirector sharedDirector].currentProject;
     NSArray * connections = [project invocationConnectionsFrom:editable to: object];
-    for (TFConnectionLine * connection in connections) {
+    for (THInvocationConnectionLine * connection in connections) {
         connection.selected = highlighted;
+        //Nazmus added - to highlight the external parameter
+        if (connection.action.firstParam) {
+            [(TFEditableObject*)connection.action.firstParam.target setHighlighted:highlighted];
+        }
     }
 }
 

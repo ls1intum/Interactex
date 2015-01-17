@@ -26,11 +26,11 @@
 #import "THClientProject.h"
 #import "TFEventActionPair.h"
 
-@interface TangoHappsUniTests : XCTestCase
+@interface TangoHappsUnitTests : XCTestCase
 
 @end
 
-@implementation TangoHappsUniTests
+@implementation TangoHappsUnitTests
 
 - (void)setUp {
     [super setUp];
@@ -109,7 +109,9 @@
     [testProject addiPhoneObject:iSwitch3];
     
     [THTestsHelper registerActionForObject:iSwitch3 target:led3 event:@"switchOn" method:@"varyIntensity"];
-    [THTestsHelper registerPropertyForObject:light3 connection:(THInvocationConnectionLine*)[testProject.invocationConnections objectAtIndex:0] property:@"light"];
+    THInvocationConnectionLine* connectionLine = [testProject.invocationConnections objectAtIndex:0];
+    
+    [THTestsHelper registerPropertyForObject:light3 connection:connectionLine property:@"light"];
     ////
     
     THClientProject * testClientProject = [testProject nonEditableProject];
