@@ -55,11 +55,11 @@ You should have received a copy of the GNU General Public License along with thi
     TFProperty * property2 = [TFProperty propertyWithName:@"intensity" andType:kDataTypeInteger];
     self.properties = [NSMutableArray arrayWithObjects:property1,property2,nil];
     
-    TFMethod * method1 =[TFMethod methodWithName:@"varyIntensity"];
+    TFMethod * method1 =[TFMethod methodWithName:kMethodVaryIntensity];
     method1.numParams = 1;
     method1.firstParamType = kDataTypeInteger;
     
-    TFMethod * method2 =[TFMethod methodWithName:@"setIntensity"];
+    TFMethod * method2 =[TFMethod methodWithName:kMethodSetIntensity];
     method2.numParams = 1;
     method2.firstParamType = kDataTypeInteger;
     

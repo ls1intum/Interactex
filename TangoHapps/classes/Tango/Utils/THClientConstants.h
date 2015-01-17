@@ -189,6 +189,8 @@ extern NSString * const kEventDyChanged;
 extern NSString * const kEventLightChanged;
 extern NSString * const kEventStartedPressing;
 extern NSString * const kEventStoppedPressing;
+extern NSString * const kEventButtonDown;
+extern NSString * const kEventButtonUp;
 extern NSString * const kEventConditionIsTrue;
 extern NSString * const kEventConditionIsFalse;
 extern NSString * const kEventConditionChanged;
@@ -204,6 +206,8 @@ extern NSString * const kEventColorChanged;
 extern NSString * const kEventTriggered;
 
 //methods
+extern NSString * const kMethodSetIntensity;
+extern NSString * const kMethodVaryIntensity;
 extern NSString * const kMethodTurnOn;
 extern NSString * const kMethodTurnOff;
 extern NSString * const kMethodSetValue1;

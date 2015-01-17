@@ -486,6 +486,7 @@
 		9AB29C03167F89B900F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
 		9AB29C04167F89C100F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
 		9AB490391886E54500BCB1C6 /* THAutorouteProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */; };
+		9AB49B061A6AA8E5006B22E5 /* THIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB49B051A6AA8E5006B22E5 /* THIntegrationTests.m */; };
 		9AB777F417E5FF4100F82424 /* THInvocationConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB777F317E5FF4100F82424 /* THInvocationConnectionLine.m */; };
 		9AB7783E17E6643000F82424 /* THPropertySelectionPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7783D17E6643000F82424 /* THPropertySelectionPopup.m */; };
 		9AB7784317E66A2300F82424 /* THInvocationConnectionProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7784117E66A2300F82424 /* THInvocationConnectionProperties.m */; };
@@ -1485,6 +1486,7 @@
 		9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgrammingElement.h; sourceTree = "<group>"; };
 		9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgrammingElement.m; sourceTree = "<group>"; };
 		9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THAutorouteProperties.xib; sourceTree = "<group>"; };
+		9AB49B051A6AA8E5006B22E5 /* THIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THIntegrationTests.m; sourceTree = "<group>"; };
 		9AB777F217E5FF4100F82424 /* THInvocationConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THInvocationConnectionLine.h; sourceTree = "<group>"; };
 		9AB777F317E5FF4100F82424 /* THInvocationConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THInvocationConnectionLine.m; sourceTree = "<group>"; };
 		9AB7783C17E6643000F82424 /* THPropertySelectionPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPropertySelectionPopup.h; sourceTree = "<group>"; };
@@ -1904,6 +1906,7 @@
 			isa = PBXGroup;
 			children = (
 				25B05DB019FA95C10019E431 /* TangoHappsUnitTests.m */,
+				9AB49B051A6AA8E5006B22E5 /* THIntegrationTests.m */,
 				25B05DAE19FA95C10019E431 /* Supporting Files */,
 			);
 			path = TangoHappsUnitTests;
@@ -3988,6 +3991,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB49B061A6AA8E5006B22E5 /* THIntegrationTests.m in Sources */,
 				25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */,
 				2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */,
 			);

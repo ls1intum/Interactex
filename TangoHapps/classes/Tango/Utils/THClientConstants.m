@@ -91,8 +91,11 @@ NSString * const kEventMapperValueChanged = @"mapperValueChanged";
 NSString * const kEventDxChanged = @"dxChanged";
 NSString * const kEventDyChanged = @"dyChanged";
 NSString * const kEventLightChanged = @"lightChanged";
-NSString * const kEventStartedPressing = @"startedPressing";
+NSString * const kEventStartedPressing = @"startedPressing";//this is for the hardware button
 NSString * const kEventStoppedPressing = @"stoppedPressing";
+NSString * const kEventButtonDown = @"buttonDown";//this is for the iOS button
+NSString * const kEventButtonUp = @"buttonUp";
+
 NSString * const kEventConditionIsTrue = @"conditionTrue";
 NSString * const kEventConditionIsFalse = @"conditionFalse";
 NSString * const kEventConditionChanged = @"conditionChanged";
@@ -112,6 +115,10 @@ NSString * const kEventColorChanged = @"eventColorChanged";
 NSString * const kEventTriggered = @"triggered";
 
 //methods
+
+
+NSString * const kMethodSetIntensity = @"setIntensity";
+NSString * const kMethodVaryIntensity = @"varyIntensity";
 NSString * const kMethodTurnOn = @"turnOn";
 NSString * const kMethodTurnOff = @"turnOff";
 NSString * const kMethodSetValue1 = @"setValue1";

@@ -394,12 +394,6 @@ You should have received a copy of the GNU General Public License along with thi
     popup.connection.action.firstParam = [TFPropertyInvocation invocationWithProperty:property target:popup.object];
     [popup.connection reloadSprite];
     
-    THProject * project = [THDirector sharedDirector].currentProject;
-    
-    TFAction * action1 = popup.connection.action;
-    THGrouperConditionEditable * grouper = [project.visualProgrammingObjects objectAtIndex:0];
-    TFAction * action2 = grouper.action1;
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInvocationCompleted object:popup.connection.action.firstParam];
 }
 

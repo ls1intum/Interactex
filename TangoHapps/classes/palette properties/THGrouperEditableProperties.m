@@ -109,6 +109,8 @@ You should have received a copy of the GNU General Public License along with thi
                 }
             }
             
+            text = [text stringByAppendingFormat:@"This will be triggered by either %@ or %@",condition.obj1, condition.obj2];
+            
         } else {
             text = @"Conditions set, but actions are missing. Drag a line from the grouper to some other object to add an action";
         }

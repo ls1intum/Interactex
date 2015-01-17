@@ -622,6 +622,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event{
+    NSAssert(action, @"cannot register nil action");
+    NSAssert(event, @"cannot register nil event");
     
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
     pair.action = action;

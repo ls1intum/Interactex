@@ -54,8 +54,8 @@ You should have received a copy of the GNU General Public License along with thi
     [button addTarget:self action:@selector(handleStartedPressing) forControlEvents:UIControlEventTouchDown];
     [button addTarget:self action:@selector(handleStoppedPressing) forControlEvents:UIControlEventTouchUpInside];
     
-    TFEvent * event1 = [TFEvent eventNamed:@"touchDown"];
-    TFEvent * event2 = [TFEvent eventNamed:@"touchUp"];
+    TFEvent * event1 = [TFEvent eventNamed:kEventButtonDown];
+    TFEvent * event2 = [TFEvent eventNamed:kEventButtonUp];
     self.events = [NSMutableArray arrayWithObjects:event1, event2, nil];
 }
 
