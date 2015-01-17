@@ -17,6 +17,5 @@
 @property (assign, nonatomic) CLBeaconMinorValue *minorValue;
 @property (nonatomic) NSString * status;
 
-//@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 @end

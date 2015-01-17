@@ -15,7 +15,7 @@
 - (instancetype)initWithName:(NSString *)name
                         uuid:(NSUUID *)uuid
                        major:(CLBeaconMajorValue)major
-                       minor:(CLBeaconMinorValue)mvinor{
+                       minor:(CLBeaconMinorValue)minor{
     return self;
 }
 
@@ -55,6 +55,8 @@
         self.uuid = [decoder decodeObjectForKey:@"uuid"];
         self.beaconRegion = [decoder decodeObjectForKey:@"beaconRegion"];
         self.status = [decoder decodeObjectForKey:@"status"];
+        self.minorValue = [decoder decodeIntegerForKey:@"minorValue"];
+        self.majorValue = [decoder decodeIntegerForKey:@"majorValue"];
         
         // [self loadLabels];
         [self loadiBeacon];
@@ -69,6 +71,8 @@
     [coder encodeObject:self.name forKey:@"name"];
     [coder encodeObject:self.beaconRegion forKey:@"beaconRegion"];
     [coder encodeObject:self.status forKey:@"status"];
+    [coder encodeInteger:self.majorValue forKey:@"majorValue"];
+    [coder encodeInteger:self.minorValue forKey:@"minorValue"];
     //    [coder encodeObject:self.majorValue forKey:@"majorValue"];
     //  [coder encodeObject:self.minorValue forKey:@"minorValue"];
 }
@@ -79,14 +83,13 @@
 
 -(id)copyWithZone:(NSZone *)zone{
     THiBeaconEditable * copy = [super copyWithZone:zone];
-    /*
-     THiBeacon * copy = [super copyWithZone:zone];
-     copy.uuid = self.uuid;
-     copy.name = self.name;
-     copy.status = self.status;
-     
-     return copy;
-     */
+ 
+    copy.uuid = self.uuid;
+    copy.name = self.name;
+    copy.status = self.status;
+    copy.majorValue = self.majorValue;
+    copy.minorValue = self.minorValue;
+
     return copy;
 }
 

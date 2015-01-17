@@ -23,16 +23,10 @@ BOOL enterNotified = NO;
 
 #pragma mark - Creation and Initialization
 
--(void) initLabels{
-    
-    self.uuid =[[NSUUID alloc] initWithUUIDString:kUUID];
-    self.status = @"Not Started";
-    
-}
 - (instancetype)initWithName:(NSString *)name
                         uuid:(NSUUID *)uuid
                        major:(CLBeaconMajorValue)major
-                       minor:(CLBeaconMinorValue)mvinor{
+                       minor:(CLBeaconMinorValue)minor{
     return self;
 }
 
@@ -49,16 +43,6 @@ BOOL enterNotified = NO;
     return self;
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
-    THiBeacon * copy = [super copyWithZone:zone];
-    copy.uuid = self.uuid;
-    copy.name = self.name;
-    copy.status = self.status;
-    
-    return copy;
-}
-
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
@@ -67,6 +51,8 @@ BOOL enterNotified = NO;
         self.uuid = [decoder decodeObjectForKey:@"uuid"];
         self.beaconRegion = [decoder decodeObjectForKey:@"beaconRegion"];
         self.status = [decoder decodeObjectForKey:@"status"];
+        self.minorValue = [decoder decodeIntegerForKey:@"minorValue"];
+        self.majorValue = [decoder decodeIntegerForKey:@"majorValue"];
         
         // [self loadLabels];
         [self createBeaconRegion];
@@ -82,8 +68,27 @@ BOOL enterNotified = NO;
     [coder encodeObject:self.name forKey:@"name"];
     [coder encodeObject:self.beaconRegion forKey:@"beaconRegion"];
     [coder encodeObject:self.status forKey:@"status"];
-    //    [coder encodeObject:self.majorValue forKey:@"majorValue"];
-    //  [coder encodeObject:self.minorValue forKey:@"minorValue"];
+    [coder encodeInteger:self.majorValue forKey:@"majorValue"];
+    [coder encodeInteger:self.minorValue forKey:@"minorValue"];
+}
+
+-(void) initLabels{
+    
+    self.uuid =[[NSUUID alloc] initWithUUIDString:kUUID];
+    self.status = @"Not Started";
+    
+}
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    THiBeacon * copy = [super copyWithZone:zone];
+    copy.uuid = self.uuid;
+    copy.name = self.name;
+    copy.status = self.status;
+    copy.majorValue = self.majorValue;
+    copy.minorValue = self.minorValue;
+    
+    return copy;
 }
 
 - (void)createBeaconRegion
@@ -93,7 +98,6 @@ BOOL enterNotified = NO;
     
     //NSUUID *proximityUUID = [[NSUUID alloc] initWithUUIDString:kUUID];
     self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:self.uuid identifier:kIdentifier];
-    //self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:proximityUUID identifier:kIdentifier];
     self.beaconRegion.notifyEntryStateOnDisplay = YES;
 }
 
@@ -106,9 +110,9 @@ BOOL enterNotified = NO;
     TFMethod * method2 = [TFMethod methodWithName:@"turnOff"];
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
     
-    TFEvent * event1 = [TFEvent eventNamed:KNotificationiBeaconRegionEntered];
-    TFEvent * event2 = [TFEvent eventNamed:KNotificationiBeaconRegionExited];
-    TFEvent * event3 = [TFEvent eventNamed:KNotificationiBeaconRangingStatus];
+    TFEvent * event1 = [TFEvent eventNamed:KEventiBeaconRegionEntered];
+    TFEvent * event2 = [TFEvent eventNamed:KEventiBeaconRegionExited];
+    TFEvent * event3 = [TFEvent eventNamed:KEventiBeaconRangingStatusChanged];
     event3.param1 =[TFPropertyInvocation invocationWithProperty:property1 target:self];
     
     self.events = [NSMutableArray arrayWithObjects:event1,event2,event3,nil];
@@ -134,9 +138,9 @@ BOOL enterNotified = NO;
 #pragma mark - Functionality
 
 -(void) didStartSimulating{
-    [self triggerEventNamed:KNotificationiBeaconRegionEntered];
-    [self triggerEventNamed:KNotificationiBeaconRegionExited];
-    [self triggerEventNamed:KNotificationiBeaconRangingStatus];
+    [self triggerEventNamed:KEventiBeaconRegionEntered];
+    [self triggerEventNamed:KEventiBeaconRegionExited];
+    [self triggerEventNamed:KEventiBeaconRangingStatusChanged];
     [super didStartSimulating];
 }
 
@@ -161,7 +165,8 @@ BOOL enterNotified = NO;
     
     //    NSString *format = @"%@,%@•%@•%f•%li";
     //    return [NSString stringWithFormat:format, beacon.major, beacon.minor, proximity, beacon.accuracy, beacon.rssi];
-    NSString *format = @"%@--%@--%f--%li";
+   // NSString *format = @"%@--%@--%f--%li";
+     NSString *format = @"Maj:%@-Min:%@-Acc:%f-RSSI:%li";
     return [NSString stringWithFormat:format, beacon.major, beacon.minor, beacon.accuracy, beacon.rssi];
 }
 
@@ -268,14 +273,14 @@ BOOL enterNotified = NO;
     //NSLog(@"Beacon Found");
     //[self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     NSLog(@"You are inside region %@", region.identifier);
-    [self triggerEventNamed:KNotificationiBeaconRegionEntered];
+    [self triggerEventNamed:KEventiBeaconRegionEntered];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     //NSLog(@"Left Region");
     //[self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
     NSLog(@"You are outside of  region %@", region.identifier);
-    [self triggerEventNamed:KNotificationiBeaconRegionExited];
+    [self triggerEventNamed:KEventiBeaconRegionExited];
     
 }
 
@@ -325,12 +330,12 @@ BOOL enterNotified = NO;
     NSLog(@"Status set%@",status);
     //TODO change of string
     [self releaseStateChangedEvent];
-    [self triggerEventNamed:KNotificationiBeaconRangingStatus];
+    [self triggerEventNamed:KEventiBeaconRangingStatusChanged];
 }
 
 -(void) releaseStateChangedEvent{
     TFProperty * property = [TFProperty propertyWithName:@"status" andType:kDataTypeString];
-    TFEvent * event = [TFEvent eventNamed:KNotificationiBeaconRangingStatus];
+    TFEvent * event = [TFEvent eventNamed:KEventiBeaconRangingStatusChanged];
     event.param1 =[TFPropertyInvocation invocationWithProperty:property target:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:event.name  object:self];
 }

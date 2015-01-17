@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024F6AEB1A685B6600E73792 /* pressureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AE71A685B6600E73792 /* pressureSensor@2x.png */; };
+		024F6AEC1A685B6600E73792 /* pressureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AE81A685B6600E73792 /* pressureSensor.png */; };
+		024F6AED1A685B6600E73792 /* palette_pressureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AE91A685B6600E73792 /* palette_pressureSensor@2x.png */; };
+		024F6AEE1A685B6600E73792 /* palette_pressureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AEA1A685B6600E73792 /* palette_pressureSensor.png */; };
+		024F6AFB1A685B9000E73792 /* pressureSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AF91A685B9000E73792 /* pressureSensor@2x.png */; };
+		024F6AFC1A685B9000E73792 /* pressureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AFA1A685B9000E73792 /* pressureSensor.png */; };
+		024F6AFF1A68604000E73792 /* THPressureSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 024F6AFE1A68604000E73792 /* THPressureSensor.m */; };
+		024F6B021A6860A900E73792 /* THPressureSensorEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 024F6B011A6860A900E73792 /* THPressureSensorEditableObject.m */; };
 		02980B711A66DDDE00E59BE2 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
 		02980B741A66DE8F00E59BE2 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */; };
 		02980B791A66DF6D00E59BE2 /* THiBeaconPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B781A66DF6D00E59BE2 /* THiBeaconPaletteItem.m */; };
@@ -929,6 +937,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		024F6AE71A685B6600E73792 /* pressureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pressureSensor@2x.png"; sourceTree = "<group>"; };
+		024F6AE81A685B6600E73792 /* pressureSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pressureSensor.png; sourceTree = "<group>"; };
+		024F6AE91A685B6600E73792 /* palette_pressureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_pressureSensor@2x.png"; sourceTree = "<group>"; };
+		024F6AEA1A685B6600E73792 /* palette_pressureSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_pressureSensor.png; sourceTree = "<group>"; };
+		024F6AF91A685B9000E73792 /* pressureSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pressureSensor@2x.png"; sourceTree = "<group>"; };
+		024F6AFA1A685B9000E73792 /* pressureSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pressureSensor.png; sourceTree = "<group>"; };
+		024F6AFD1A68604000E73792 /* THPressureSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPressureSensor.h; sourceTree = "<group>"; };
+		024F6AFE1A68604000E73792 /* THPressureSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPressureSensor.m; sourceTree = "<group>"; };
+		024F6B001A6860A900E73792 /* THPressureSensorEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPressureSensorEditableObject.h; sourceTree = "<group>"; };
+		024F6B011A6860A900E73792 /* THPressureSensorEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPressureSensorEditableObject.m; sourceTree = "<group>"; };
 		02980B701A66DDDE00E59BE2 /* THiBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeacon.m; sourceTree = "<group>"; };
 		02980B721A66DE2200E59BE2 /* THiBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiBeacon.h; sourceTree = "<group>"; };
 		02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeaconEditable.m; sourceTree = "<group>"; };
@@ -2108,6 +2126,10 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				024F6AE71A685B6600E73792 /* pressureSensor@2x.png */,
+				024F6AE81A685B6600E73792 /* pressureSensor.png */,
+				024F6AE91A685B6600E73792 /* palette_pressureSensor@2x.png */,
+				024F6AEA1A685B6600E73792 /* palette_pressureSensor.png */,
 				02FF44211A672DCE00FB2C0E /* iBeacon.png */,
 				02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */,
 				6778EA0318F6AC980080B1C9 /* palette_gesture.png */,
@@ -3009,6 +3031,10 @@
 				02980B721A66DE2200E59BE2 /* THiBeacon.h */,
 				02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */,
 				02980B761A66DECE00E59BE2 /* THiBeaconEditable.h */,
+				024F6AFD1A68604000E73792 /* THPressureSensor.h */,
+				024F6AFE1A68604000E73792 /* THPressureSensor.m */,
+				024F6B001A6860A900E73792 /* THPressureSensorEditableObject.h */,
+				024F6B011A6860A900E73792 /* THPressureSensorEditableObject.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -3371,6 +3397,8 @@
 		9AFB7E291833D89800694CCE /* presets */ = {
 			isa = PBXGroup;
 			children = (
+				024F6AF91A685B9000E73792 /* pressureSensor@2x.png */,
+				024F6AFA1A685B9000E73792 /* pressureSensor.png */,
 				9A39649F18AE6ABA0061E44B /* pureData.png */,
 				9A3964A018AE6ABA0061E44B /* pureData@2x.png */,
 				9A84C1E21837820500848972 /* musicPlayer.png */,
@@ -3699,11 +3727,13 @@
 				9A94F42416A0192700AF52AB /* THiPhoneProperties.xib in Resources */,
 				9A94F42616A0192700AF52AB /* THiPhoneViewProperties.xib in Resources */,
 				9A94F42816A0192700AF52AB /* THiSwitchEditableProperties.xib in Resources */,
+				024F6AEC1A685B6600E73792 /* pressureSensor.png in Resources */,
 				9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */,
 				9A94F42A16A0192700AF52AB /* THLabelProperties.xib in Resources */,
 				9AA4D6E918AE169100A43433 /* BLE-LilyPad.png in Resources */,
 				9A94F42C16A0192700AF52AB /* THLedProperties.xib in Resources */,
 				251F678619C4A1A300EF9807 /* vpmode.png in Resources */,
+				024F6AED1A685B6600E73792 /* palette_pressureSensor@2x.png in Resources */,
 				9A8942AD1836241C00B8CA0E /* jennic.png in Resources */,
 				257730341A17858800F038D1 /* segDivider@2x.png in Resources */,
 				9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */,
@@ -3767,6 +3797,7 @@
 				251F674419C48F5300EF9807 /* iphoneBg.png in Resources */,
 				9A41456B17DE7A060061EDF8 /* compassCircle@2x.png in Resources */,
 				9A41456D17DE7A060061EDF8 /* condition.png in Resources */,
+				024F6AEB1A685B6600E73792 /* pressureSensor@2x.png in Resources */,
 				9A41456F17DE7A060061EDF8 /* condition@2x.png in Resources */,
 				9A41457117DE7A060061EDF8 /* contactBook.png in Resources */,
 				9A41457317DE7A060061EDF8 /* contactBook@2x.png in Resources */,
@@ -3822,6 +3853,7 @@
 				9A4145C317DE7A060061EDF8 /* palette_iphone.png in Resources */,
 				9A4145C517DE7A060061EDF8 /* palette_iphone@2x.png in Resources */,
 				9A4145C717DE7A060061EDF8 /* palette_iswitch.png in Resources */,
+				024F6AEE1A685B6600E73792 /* palette_pressureSensor.png in Resources */,
 				9A4145C917DE7A060061EDF8 /* palette_iswitch@2x.png in Resources */,
 				9A4145CB17DE7A060061EDF8 /* palette_label.png in Resources */,
 				9A4145CD17DE7A060061EDF8 /* palette_label@2x.png in Resources */,
@@ -3992,6 +4024,7 @@
 				9AF50036167B83140020241C /* removeButton.png in Resources */,
 				9A84C1E61837820500848972 /* musicPlayer@2x.png in Resources */,
 				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
+				024F6AFC1A685B9000E73792 /* pressureSensor.png in Resources */,
 				9A2EA8BD19DB2CF200E30E2D /* pause.png in Resources */,
 				9AFB7E561833D89800694CCE /* vibeBoard.png in Resources */,
 				9A3964A118AE6ABA0061E44B /* pureData.png in Resources */,
@@ -3999,6 +4032,7 @@
 				9A2EA8B719DB2CF200E30E2D /* backwards.png in Resources */,
 				9AFB7E541833D89800694CCE /* threeColorLed@2x.png in Resources */,
 				9A5D046D18844ADC006E9348 /* peer_connected.mp3 in Resources */,
+				024F6AFB1A685B9000E73792 /* pressureSensor@2x.png in Resources */,
 				9AF5003B167B83140020241C /* virtualmode.png in Resources */,
 				9A2EA8B819DB2CF200E30E2D /* backwards@2x.png in Resources */,
 				9A2EA8B919DB2CF200E30E2D /* forward.png in Resources */,
@@ -4111,6 +4145,7 @@
 				9AF50398167B84B40020241C /* THiSwitch.m in Sources */,
 				9AF50399167B84B40020241C /* THiSwitchEditableObject.m in Sources */,
 				9AF5039A167B84B40020241C /* THLabel.m in Sources */,
+				024F6AFF1A68604000E73792 /* THPressureSensor.m in Sources */,
 				9AF5039B167B84B40020241C /* THLabelEditableObject.m in Sources */,
 				9A6B283618AA079E009AAE31 /* THPureDataProperties.m in Sources */,
 				9AF5039C167B84B40020241C /* THMusicPlayer.m in Sources */,
@@ -4189,6 +4224,7 @@
 				9AB29B46167F4DF800F5AF62 /* THImageViewEditable.m in Sources */,
 				9AB29B4A167F4F2600F5AF62 /* THImageViewProperties.m in Sources */,
 				9AB29B59167F78C300F5AF62 /* THHelper.m in Sources */,
+				024F6B021A6860A900E73792 /* THPressureSensorEditableObject.m in Sources */,
 				9A3165A1182795D000CB3E59 /* THMonitor.m in Sources */,
 				9AB29B5E167F824300F5AF62 /* THMapper.m in Sources */,
 				9AB29B5F167F824300F5AF62 /* THMapperEditable.m in Sources */,
