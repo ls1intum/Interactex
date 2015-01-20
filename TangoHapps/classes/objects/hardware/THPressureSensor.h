@@ -9,8 +9,14 @@
 #import "THHardwareComponent.h"
 
 @interface THPressureSensor : THHardwareComponent
+{
+    BOOL _insideRange;
+}
 
 @property (nonatomic) NSInteger pressure;
+@property (nonatomic) NSInteger minValueNotify;
+@property (nonatomic) NSInteger maxValueNotify;
+@property (nonatomic) THSensorNotifyBehavior notifyBehavior;
 
 @property (nonatomic, readonly) THElementPin * minusPin;
 @property (nonatomic, readonly) THElementPin * analogPin;

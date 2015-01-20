@@ -15,6 +15,7 @@
 		024F6AFC1A685B9000E73792 /* pressureSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 024F6AFA1A685B9000E73792 /* pressureSensor.png */; };
 		024F6AFF1A68604000E73792 /* THPressureSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 024F6AFE1A68604000E73792 /* THPressureSensor.m */; };
 		024F6B021A6860A900E73792 /* THPressureSensorEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 024F6B011A6860A900E73792 /* THPressureSensorEditableObject.m */; };
+		0282D3541A6DD2A600BC8A8D /* THPressureSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0282D3531A6DD2A600BC8A8D /* THPressureSensorPaletteItem.m */; };
 		02980B711A66DDDE00E59BE2 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
 		02980B741A66DE8F00E59BE2 /* THiBeaconEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */; };
 		02980B791A66DF6D00E59BE2 /* THiBeaconPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B781A66DF6D00E59BE2 /* THiBeaconPaletteItem.m */; };
@@ -949,6 +950,8 @@
 		024F6AFE1A68604000E73792 /* THPressureSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPressureSensor.m; sourceTree = "<group>"; };
 		024F6B001A6860A900E73792 /* THPressureSensorEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPressureSensorEditableObject.h; sourceTree = "<group>"; };
 		024F6B011A6860A900E73792 /* THPressureSensorEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPressureSensorEditableObject.m; sourceTree = "<group>"; };
+		0282D3521A6DD2A600BC8A8D /* THPressureSensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPressureSensorPaletteItem.h; sourceTree = "<group>"; };
+		0282D3531A6DD2A600BC8A8D /* THPressureSensorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPressureSensorPaletteItem.m; sourceTree = "<group>"; };
 		02980B701A66DDDE00E59BE2 /* THiBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeacon.m; sourceTree = "<group>"; };
 		02980B721A66DE2200E59BE2 /* THiBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiBeacon.h; sourceTree = "<group>"; };
 		02980B731A66DE8F00E59BE2 /* THiBeaconEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiBeaconEditable.m; sourceTree = "<group>"; };
@@ -2754,6 +2757,8 @@
 				9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */,
 				02980B771A66DF5C00E59BE2 /* THiBeaconPaletteItem.h */,
 				02980B781A66DF6D00E59BE2 /* THiBeaconPaletteItem.m */,
+				0282D3521A6DD2A600BC8A8D /* THPressureSensorPaletteItem.h */,
+				0282D3531A6DD2A600BC8A8D /* THPressureSensorPaletteItem.m */,
 			);
 			name = hardware;
 			sourceTree = "<group>";
@@ -4209,6 +4214,7 @@
 				9AF503C3167B84B40020241C /* THSwitchProperties.m in Sources */,
 				9AF503C4167B84B40020241C /* THTouchpadProperties.m in Sources */,
 				9AF503C5167B84B40020241C /* THValueProperties.m in Sources */,
+				0282D3541A6DD2A600BC8A8D /* THPressureSensorPaletteItem.m in Sources */,
 				9AA4D72D18AE16E600A43433 /* THBLELilyPad.m in Sources */,
 				9AD7046C18AA98F00080CD2E /* THGraphTextView.m in Sources */,
 				9AF503CA167B84B40020241C /* THColorPicker.m in Sources */,

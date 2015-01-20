@@ -16,7 +16,10 @@
 }
 
 @property (nonatomic) NSInteger pressure;
-
+@property (nonatomic) NSInteger isDown;
+@property (nonatomic) NSInteger minValueNotify;
+@property (nonatomic) NSInteger maxValueNotify;
+@property (nonatomic) THSensorNotifyBehavior notifyBehavior;
 @property (nonatomic, readonly) THElementPinEditable * minusPin;
 @property (nonatomic, readonly) THElementPinEditable * analogPin;
 @property (nonatomic, readonly) THElementPinEditable * plusPin;

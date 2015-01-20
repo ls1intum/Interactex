@@ -11,7 +11,7 @@
 
 @implementation THiBeaconPaletteItem
 
-
+/*
 - (void)dropAt:(CGPoint)location {
     
     THiBeaconEditable* iBeacon = [[THiBeaconEditable alloc] init];
@@ -20,5 +20,10 @@
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addOtherHardwareComponent:iBeacon];
 }
+*/
 
+- (void)dropAt:(CGPoint)location {
+    THiBeaconEditable * iBeacon = [[THiBeaconEditable alloc] init];
+    [self addHardwareComponentToProject:iBeacon atLocation:location];
+}
 @end

@@ -92,6 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THStringValuePaletteItem.h"
 #import "THPureDataPaletteItem.h"
 #import "THiBeaconPaletteItem.h"
+#import "THPressureSensorPaletteItem.h"
 
 @implementation THPaletteViewController
 
@@ -477,6 +478,8 @@ You should have received a copy of the GNU General Public License along with thi
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                  [THFlexSensorPaletteItem paletteItemWithName:@"flexSensor" imageName:@"palette_flexSensor" displayName:@"flex sensor"],
                                  [[THiBeaconPaletteItem alloc] initWithName:@"iBeacon"],
+                                 [THPressureSensorPaletteItem paletteItemWithName:@"pressureSensor"
+                                        imageName:@"palette_pressureSensor" displayName:@"pressure sensor"],
                                  nil];
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:

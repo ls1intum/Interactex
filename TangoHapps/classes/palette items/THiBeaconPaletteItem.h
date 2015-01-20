@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Technische Universität München. All rights reserved.
 //
 
-#import "THPaletteItem.h"
+//#import "THPaletteItem.h"
+#import <Foundation/Foundation.h>
+#import "THHardwareComponentPaletteItem.h"
 
-@interface THiBeaconPaletteItem : THPaletteItem
+@interface THiBeaconPaletteItem : THHardwareComponentPaletteItem
 
 @end

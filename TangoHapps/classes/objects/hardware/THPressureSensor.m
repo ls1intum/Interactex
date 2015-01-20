@@ -23,7 +23,8 @@ static NSInteger kInitialPressure = 0;
         
         [self load];
         [self loadPins];
-        
+        self.minValueNotify = 0;
+        self.maxValueNotify = 255;
         self.pressure = kInitialPressure;
     }
     return self;
@@ -61,6 +62,9 @@ static NSInteger kInitialPressure = 0;
     if(self){
         
         self.pressure = [decoder decodeIntegerForKey:@"pressure"];
+        self.notifyBehavior = [decoder decodeIntegerForKey:@"notifyBehavior"];
+        self.minValueNotify = [decoder decodeIntegerForKey:@"minValueNotify"];
+        self.maxValueNotify = [decoder decodeIntegerForKey:@"maxValueNotify"];
         
         [self load];
         [self loadPins];
@@ -71,11 +75,17 @@ static NSInteger kInitialPressure = 0;
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     [coder encodeInteger:self.pressure forKey:@"pressure"];
+    [coder encodeInteger:self.notifyBehavior forKey:@"notifyBehavior"];
+    [coder encodeInteger:self.minValueNotify forKey:@"minValueNotify"];
+    [coder encodeInteger:self.maxValueNotify forKey:@"maxValueNotify"];
 }
 
 -(id)copyWithZone:(NSZone *)zone{
     THPressureSensor * copy = [super copyWithZone:zone];
     copy.pressure = self.pressure;
+    copy.notifyBehavior = self.notifyBehavior;
+    copy.minValueNotify = self.minValueNotify;
+    copy.maxValueNotify = self.maxValueNotify;
     
     return copy;
 }
@@ -102,12 +112,14 @@ static NSInteger kInitialPressure = 0;
 
 -(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue{
     self.pressure = newValue;
+    [self checkNotifyValueChanged];
 }
 
 -(void) setPressure:(NSInteger)pressure{
+    pressure = [THClientHelper Constrain:pressure min:0 max:kMaxAnalogValue];
     if(_pressure!=pressure){
         _pressure=pressure;
-        [self triggerEventNamed:kEventPressureChanged];
+        [self checkNotifyValueChanged];
         [self updatePinValue];
     }
 }
@@ -117,7 +129,33 @@ static NSInteger kInitialPressure = 0;
     [super didStartSimulating];
 }
 
+-(void) checkNotifyValueChanged{
+
+    if(self.notifyBehavior == kSensorNotifyBehaviorAlways){
+        [self triggerEventNamed:kEventPressureChanged];
+    } else if(self.notifyBehavior == kSensorNotifyBehaviorWhenInRange){
+        if(_pressure >= self.minValueNotify && _pressure <= self.maxValueNotify){
+            [self triggerEventNamed:kEventPressureChanged];
+        }
+    } else {
+        BOOL newInsideRange;
+        if(_pressure >= self.minValueNotify && _pressure <= self.maxValueNotify){
+            newInsideRange = YES;
+        } else {
+            newInsideRange = NO;
+        }
+        
+        if(newInsideRange != _insideRange){
+            _insideRange = newInsideRange;
+            if(newInsideRange){
+                [self triggerEventNamed:kEventPressureChanged];
+            }
+        }
+    }
+
+}
+
 -(NSString*) description{
-    return @"pressure sensor";
+    return @"Pressure sensor";
 }
 @end
