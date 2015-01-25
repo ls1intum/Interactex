@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPin.h"
 #import "THBoard.h"
 #import "THHardwareComponent.h"
+#import "THiPhoneControlEditableObject.h"
 
 //remove
 #import "THGrouperConditionEditable.h"
@@ -282,6 +283,13 @@ You should have received a copy of the GNU General Public License along with thi
     
     editableObject.selected = YES;
     self.currentObject = editableObject;
+    
+    //nazmus added 21 Jan - to bring the selected object in front (not working for iPhone controls)
+    if ([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]] && [(THHardwareComponentEditableObject*) self.currentObject attachedToClothe]) {
+        [(THClothe*)[(THHardwareComponentEditableObject*) self.currentObject attachedToClothe] reorderChild:self.currentObject z:1];
+    } else {
+        [self.zoomableLayer reorderChild:self.currentObject z:self.currentObject.z];
+    }
     
     if(self.isLilypadMode){
         //[self showWiresForCurrentObject];
@@ -590,7 +598,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) moveCurrentObject:(CGPoint) d{
     if([self.currentObject canBeMovedBy:d]){
-
+        
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
         }
