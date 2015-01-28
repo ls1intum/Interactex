@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTemperatureSensorPaletteItem.h"
 #import "THAccelerometerPaletteItem.h"
 #import "THFlexSensorPaletteItem.h"
+#import "THRecorderPaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -456,6 +457,7 @@ You should have received a copy of the GNU General Public License along with thi
                            [THImageViewPaletteItem paletteItemWithName:@"imageview" imageName:@"palette_imageview" displayName:@"image"],
                            [THContactBookPaletteItem paletteItemWithName:@"contactBook" imageName:@"palette_contactBook" displayName:@"contact book"],
                            [THMonitorPaletteItem paletteItemWithName:@"monitor" imageName:@"palette_monitor" displayName:@"graph"],
+                           [THRecorderPaletteItem paletteItemWithName:@"recorder" imageName:@"palette_recording" displayName:@"recorder"],
                            nil];
     
     self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
