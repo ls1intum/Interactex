@@ -35,6 +35,8 @@
 		02A796101A671730000027A9 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960E1A671730000027A9 /* iBeacon.png */; };
 		02A796111A671730000027A9 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960F1A671730000027A9 /* iBeacon@2x.png */; };
 		02CD4D961A673563007C7BB0 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
+		02D4E0D91A796E520094F377 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D71A796E520094F377 /* send@2x.png */; };
+		02D4E0DA1A796E520094F377 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D81A796E520094F377 /* send.png */; };
 		02FF44231A672DCE00FB2C0E /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44211A672DCE00FB2C0E /* iBeacon.png */; };
 		02FF44241A672DCE00FB2C0E /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */; };
 		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
@@ -987,6 +989,8 @@
 		02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_iBeacon@2x.png"; sourceTree = "<group>"; };
 		02A7960E1A671730000027A9 /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
 		02A7960F1A671730000027A9 /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
+		02D4E0D71A796E520094F377 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
+		02D4E0D81A796E520094F377 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
 		02FF44211A672DCE00FB2C0E /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
 		02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
 		2517683419FB9EF30060FF83 /* THTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestsHelper.h; sourceTree = "<group>"; };
@@ -2140,6 +2144,8 @@
 		9A4144AC17DE7A060061EDF8 /* software */ = {
 			isa = PBXGroup;
 			children = (
+				02D4E0D71A796E520094F377 /* send@2x.png */,
+				02D4E0D81A796E520094F377 /* send.png */,
 				9A4144AD17DE7A060061EDF8 /* backwards.png */,
 				9A4144AE17DE7A060061EDF8 /* backwards@2x.png */,
 				9A4144AF17DE7A060061EDF8 /* forward.png */,
@@ -3755,6 +3761,7 @@
 				9A94F3EA16A00EA400AF52AB /* ipadFrame@2x.png in Resources */,
 				9ABC27291809526C00B39D72 /* lilypadComplex.png in Resources */,
 				9A94F3EC16A00EA400AF52AB /* removeButton.png in Resources */,
+				02D4E0DA1A796E520094F377 /* send.png in Resources */,
 				9A94F3EE16A00EA400AF52AB /* removeButton@2x.png in Resources */,
 				9ABC27791809985900B39D72 /* palette_lilypadSmall.png in Resources */,
 				9A94F41616A0192700AF52AB /* THButtonProperties.xib in Resources */,
@@ -3827,6 +3834,7 @@
 				9A41455517DE7A060061EDF8 /* button.png in Resources */,
 				9A41455717DE7A060061EDF8 /* button@2x.png in Resources */,
 				9A41455917DE7A060061EDF8 /* buzzer.png in Resources */,
+				02D4E0D91A796E520094F377 /* send@2x.png in Resources */,
 				9A41455B17DE7A060061EDF8 /* buzzer@2x.png in Resources */,
 				9A41455D17DE7A060061EDF8 /* call.png in Resources */,
 				9A41455F17DE7A060061EDF8 /* call@2x.png in Resources */,

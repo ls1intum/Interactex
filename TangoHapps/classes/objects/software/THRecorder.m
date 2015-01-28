@@ -11,13 +11,11 @@
 @implementation THRecorder
 
 @synthesize buffer = _buffer;
-@synthesize recording = _recording;
-@synthesize isRecordDone = _isRecordDone;
+//@synthesize recording = _recording;
+//@synthesize isRecordDone = _isRecordDone;
 
 float const kRecorderButtonWidth = 30;
 float const kRecorderButtonHeight = 30;
-float const kRecorderVolumeViewWidth = 150;
-float const kRecorderVolumeViewHeight = 30;
 float const kRecorderLabelHeight = 40;
 float const kRecorderInnerPadding = 10;
 
@@ -30,10 +28,8 @@ NSString * const kStopImageName = @"pause.png";
     
     self = [super init];
     if(self){
-        self.width = 260;
-        self.height = 140;
-        
-        [self initVariables];
+        self.width = 250;
+        self.height = 100;
         
         [self loadRecorder];
         
@@ -47,10 +43,8 @@ NSString * const kStopImageName = @"pause.png";
     _recording = NO;
     _isRecordDone = NO;
     
-    self.text = @"";
-
+    [self updateLabel];
 }
-
 
 -(void) loadRecorderViews{
     UIView * containerView = [[UIView alloc] init];
@@ -76,13 +70,13 @@ NSString * const kStopImageName = @"pause.png";
     
     CGRect startButtonFrame = CGRectMake(120, _label.frame.origin.y + _label.frame.size.height + kRecorderInnerPadding, kRecorderButtonWidth, kRecorderButtonHeight);
     _startButton = [self buttonWithFrame:startButtonFrame imageName:kStartImageName];
-    [_startButton addTarget:self action:@selector(togglePlay) forControlEvents:UIControlEventTouchDown];
+    [_startButton addTarget:self action:@selector(toggleStart) forControlEvents:UIControlEventTouchDown];
+    //_startButton.enabled = YES;
     
     CGRect sendButtonFrame = CGRectMake(180, _label.frame.origin.y + _label.frame.size.height + kRecorderInnerPadding, kRecorderButtonWidth, kRecorderButtonHeight);
-    _sendButoon = [self buttonWithFrame:sendButtonFrame imageName:@"forward.png"];
-    [_sendButoon addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchDown];
-    _sendButoon.userInteractionEnabled = NO; // ****
-    [_sendButoon setAlpha:0.5];
+    _sendButoon = [self buttonWithFrame:sendButtonFrame imageName:@"send.png"];
+    [_sendButoon addTarget:self action:@selector(send) forControlEvents:UIControlEventTouchDown];
+    [self disableSend];
     
     [self.view addSubview:_startButton];
     [self.view addSubview:_sendButoon];
@@ -107,6 +101,8 @@ NSString * const kStopImageName = @"pause.png";
     
     
     [self registerEvents];
+    
+    [self initVariables];
     
 }
 
@@ -150,13 +146,10 @@ NSString * const kStopImageName = @"pause.png";
 
 
 #pragma mark - Method
-/*
--(void) addValue:(NSInteger) value{
-    [self.buffer addObject:[NSNumber numberWithInt:value]];
-}*/
 
--(void) appendData:(id)data{
-    [self.buffer addObject:[NSNumber numberWithInt:data]];
+-(void) appendData:(NSInteger)data{
+    if(_recording)
+        [self.buffer addObject:[NSNumber numberWithInt:data]];
 }
 
 -(NSMutableArray *) buffer{
@@ -188,11 +181,10 @@ NSString * const kStopImageName = @"pause.png";
     }
 }
 
-
 -(void) stop{
     _recording = NO;
     _isRecordDone = YES;
-    _sendButoon.userInteractionEnabled = YES;
+    [self enableSend];
     
     [self updateLabel];
     
@@ -202,14 +194,26 @@ NSString * const kStopImageName = @"pause.png";
     }
 }
 
+-(void) enableSend{
+    _sendButoon.userInteractionEnabled = YES;
+    [_sendButoon setAlpha:1.0];
+}
+
+-(void) disableSend{
+    _sendButoon.userInteractionEnabled = NO;
+    [_sendButoon setAlpha:0.1];
+}
 
 -(void) send{
     if(_isRecordDone){
         _isRecordDone = NO;
-        _sendButoon.userInteractionEnabled = NO;
+        [self disableSend];
         [self updateLabel];
-        
+        [self sendInformation];
     }
+}
+
+-(void) sendInformation{ //TODO
 }
 
 -(void) updateLabel{
@@ -226,20 +230,18 @@ NSString * const kStopImageName = @"pause.png";
 -(void) willStartSimulating{
     _startButton.enabled = YES;
     _sendButoon.enabled = YES;
-    _sendButoon.userInteractionEnabled = YES;
     [self updateLabel];
-    [_sendButoon setAlpha:1.0];
 }
 
 -(void) stopSimulating{
+    _startButton.enabled = NO;
+    _sendButoon.enabled = NO;
     [self stop];
     [super stopSimulating];
 }
 
 -(void) prepareToDie{
     
-#if !(TARGET_IPHONE_SIMULATOR)
-#endif
     [super prepareToDie];
 }
 -(void) dealloc{

@@ -13,14 +13,15 @@
     UILabel * _label;
     UIButton * _startButton;
     UIButton * _sendButoon;
+    
+    BOOL _recording;
+    BOOL _isRecordDone;
 }
 
 @property (nonatomic) NSMutableArray* buffer;
-@property (nonatomic,readonly) BOOL recording;
-@property (nonatomic,readonly) BOOL isRecordDone;
 
 -(void) start;
 -(void) stop;
 -(void) send;
--(void) appendData:(id) data;
+-(void) appendData:(NSInteger) data;
 @end

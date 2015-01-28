@@ -13,6 +13,6 @@
 -(void) start;
 -(void) stop;
 -(void) send;
--(void) appendData:(id) data;
+-(void) appendData:(NSInteger) data;
 
 @end

@@ -31,14 +31,11 @@
 
 #pragma mark - Archiving
 
-
 -(id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
     [self load];
-    
-    //[self initVariables];
-    
+
     return self;
 }
 
@@ -58,9 +55,10 @@
 }
 
 #pragma mark - Method
-
+/*
 -(void) updateBoudingBox{
 }
+*/
 
 -(void) start{
     THRecorder * recorder = (THRecorder * ) self.simulableObject;
@@ -77,22 +75,10 @@
     [recorder send];
 }
 
--(void) appendData:(id)data{
+-(void) appendData:(NSInteger)data{
     THRecorder * recorder = (THRecorder * ) self.simulableObject;
     [recorder appendData:data];
 }
-
-/*
--(BOOL) recording{
-    THRecorder * recorder = (THRecorder * ) self.simulableObject;
-    return recorder.recording;
-}
-
--(void) setRecording:(BOOL)recording{
-    THRecorder * recorder = (THRecorder * ) self.simulableObject;
-    recorder.recording = recording;
-}
-*/
 
 -(NSString*) description{
     return @"Recorder";
