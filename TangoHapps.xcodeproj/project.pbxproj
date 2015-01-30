@@ -34,6 +34,8 @@
 		02A7960D1A6716B1000027A9 /* palette_iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */; };
 		02A796101A671730000027A9 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960E1A671730000027A9 /* iBeacon.png */; };
 		02A796111A671730000027A9 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960F1A671730000027A9 /* iBeacon@2x.png */; };
+		02A848FC1A7BEC7600F26234 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */; };
+		02A848FD1A7BEC8500F26234 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */; };
 		02CD4D961A673563007C7BB0 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
 		02D4E0D91A796E520094F377 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D71A796E520094F377 /* send@2x.png */; };
 		02D4E0DA1A796E520094F377 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D81A796E520094F377 /* send.png */; };
@@ -782,6 +784,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		02A848F91A7BEB9400F26234 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
 		25B05DB219FA95C10019E431 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A351180167B7A6800C7484B /* Project object */;
@@ -989,6 +998,7 @@
 		02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_iBeacon@2x.png"; sourceTree = "<group>"; };
 		02A7960E1A671730000027A9 /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
 		02A7960F1A671730000027A9 /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
+		02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "Frameworks/CorePlot/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		02D4E0D71A796E520094F377 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		02D4E0D81A796E520094F377 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
 		02FF44211A672DCE00FB2C0E /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
@@ -1925,6 +1935,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A848FD1A7BEC8500F26234 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				9AAEC66A1A40A5A300D11BFD /* libcocos2d.a in Frameworks */,
 				9AAEC66B1A40A5A300D11BFD /* libCocosDenshion.a in Frameworks */,
 				9A2EA8E619DB4A1800E30E2D /* libpd-ios.a in Frameworks */,
@@ -1953,6 +1964,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A848FC1A7BEC7600F26234 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				9A2EA8DD19DB2EA400E30E2D /* libpd-ios.a in Frameworks */,
 				9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */,
 				9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */,
@@ -1976,6 +1988,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02A848F21A7BEB9400F26234 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		25B05DAD19FA95C00019E431 /* TangoHappsUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2058,6 +2078,7 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */,
 				9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */,
 				9AF50162167B83AD0020241C /* libz.dylib */,
 				9A2EA8D219DB2E8F00E30E2D /* libpd.xcodeproj */,
@@ -3564,6 +3585,7 @@
 				TargetAttributes = {
 					25B05DAB19FA95C00019E431 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = WCM2L8RG39;
 						TestTargetID = 9A351188167B7A6800C7484B;
 					};
 					9A351188167B7A6800C7484B = {
@@ -3595,6 +3617,10 @@
 					ProjectRef = 9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */;
 				},
 				{
+					ProductGroup = 02A848F21A7BEB9400F26234 /* Products */;
+					ProjectRef = 02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A1FBD6B187ED71900699B61 /* Products */;
 					ProjectRef = 9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */;
 				},
@@ -3613,6 +3639,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = 02A848F91A7BEB9400F26234 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A1FBD6F187ED71900699B61 /* libFirmata.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4564,6 +4597,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -4600,6 +4634,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4633,6 +4668,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
