@@ -89,7 +89,7 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-23,-12},{0,26},{25,-12}},//5 - potentiometer
     {{-23,-12},{0,26},{25,-12}},//light sensor
     {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
-    {{0,25},{-26,-11},{0,-25},{26,-11}},//three color led
+    {{0,25},{-26,-11},{26,-11},{0,-25}},//three color led
     {{-24,15},{24,15}},//vibeBoard
     {{-23,-12},{0,26},{25,-12}},//10 - temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
