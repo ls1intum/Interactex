@@ -96,41 +96,41 @@ The Interactex Applications are constructed by drag and dropping objects. Here i
 
 
 UI Element | Name | Description | Methods |
-:---------:| ---- |:----------- |
-![](Documentation/icons/ui/ibutton.png)     | Button          | A button that can be pressed. Generates events when pressed and when released.				| turnOn, turnOff
-![](Documentation/icons/ui/label.png)       | Label           | Displays text and numbers.
-![](Documentation/icons/ui/iswitch.png)     | Switch          | Generates events when switched on or off.
-![](Documentation/icons/ui/slider.png)      | Slider          | Delivers a value which can be used as input for other objects (ex. Frequency of a buzzer).
-![](Documentation/icons/ui/touchpad.png)    | Touchpad        | Generates events when user performs following gestures on it: tap, double tap, pinch, pan, long press.
-![](Documentation/icons/ui/musicplayer.png) | Music Player    | Accesses user’s music library and offers methods such as: play, stop, next and previous.
-![](Documentation/icons/ui/imageview.png)   | Image View      | Displays an image.
-![](Documentation/icons/ui/contactBook.png) | Contact Book    | Accesses user’s contact book and offers functionality to iterate through contacts and make calls.
-![](Documentation/icons/ui/monitor.png)     | Monitor         | Displays sensor readings over time. At the moment it offers two methods: setValue1 and setValue2. Value1 will be displayed as a blue line and Value2 red.
+:---------:| ---- |:----------- | ---- |
+![](Documentation/icons/ui/ibutton.png)     | Button          | A button that can be pressed. Generates events when pressed and when released.	| 
+![](Documentation/icons/ui/label.png)       | Label           | Displays text and numbers.	| setText
+![](Documentation/icons/ui/iswitch.png)     | Switch          | Generates events when switched on or off.	| 
+![](Documentation/icons/ui/slider.png)      | Slider          | Delivers a value which can be used as input for other objects (ex. Frequency of a buzzer).	| 
+![](Documentation/icons/ui/touchpad.png)    | Touchpad        | Generates events when user performs following gestures on it: tap, double tap, pinch, pan, long press.	| 
+![](Documentation/icons/ui/musicplayer.png) | Music Player    | Accesses user’s music library and offers methods such as: play, stop, next and previous.	| next, previous, play, pause
+![](Documentation/icons/ui/imageview.png)   | Image View      | Displays an image.	| 
+![](Documentation/icons/ui/contactBook.png) | Contact Book    | Accesses user’s contact book and offers functionality to iterate through contacts and make calls.	| next, previous, call
+![](Documentation/icons/ui/monitor.png)     | Monitor         | Displays sensor readings over time. At the moment it offers two methods: setValue1 and setValue2. Value1 will be displayed as a blue line and Value2 red.	| setX, setY
 
 
-Hardware Elements | Name | Description |
-:----------------:| ----- |:---------- |
-![](Documentation/icons/hardware/led.png) | LED | Can be turned on or off and its intensity can be set (be sure to set the corresponding pin to PWM mode)
-![](Documentation/icons/hardware/button.png)            | Button              | A Lilypad button that can be pressed. Generates events when pressed and when released.
-![](Documentation/icons/hardware/switch.png)            | Switch              | A Lilypad switch. Generates events when switched on or off.
-![](Documentation/icons/hardware/buzzer.png)            | Buzzer              | Represents a Lilypad Buzzer. It can be turned on, turned off , and its frequency can be set.
-![](Documentation/icons/hardware/LSMCompass.png)        | LSMCompass          | Represents the LSM303 Accelerometer and Magnetometer. Should be connected to the SCL and SDA pins for I2C communication.
-![](Documentation/icons/hardware/lightSensor.png)       | Light Sensor        | Represents a Lilypad Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.
-![](Documentation/icons/hardware/temperatureSensor.png) | Temperature Sensor  | Represents a Lilypad Temperature Sensor. It works similar to the Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.
-![](Documentation/icons/hardware/potentiometer.png)     | Potentiometer       | Generates events according to three modes: always, InRange and Once. The Always mode will trigger an event whenever the hardware value changed. The InRange mode generates an event when the hardware value changed and this value lies within a certain range, which can be configured in the object’s properties. The Once mode will trigger an event once when the value lies within a certain range.
-![](Documentation/icons/hardware/threeColorLed.png)     | Three-Color LED     | Not supported yet on the hardware side.
-![](Documentation/icons/hardware/vibeBoard.png)         | Vibe Board          | Represents a vibration board. It works similar  to the Buzzer, It can be turned on, turned off , and its frequency can be set.
-![](Documentation/icons/hardware/accelerometer.png)     | Accelerometer       | It offers methods for reading x, y and z. Should be connected to three analog input pins.
+Hardware Elements | Name | Description | Methods |
+:----------------:| ----- |:---------- | ---- |
+![](Documentation/icons/hardware/led.png) | LED | Can be turned on or off and its intensity can be set (be sure to set the corresponding pin to PWM mode)	| turnOn, turnOff, setItensity
+![](Documentation/icons/hardware/button.png)            | Button              | A Lilypad button that can be pressed. Generates events when pressed and when released.	| 
+![](Documentation/icons/hardware/switch.png)            | Switch              | A Lilypad switch. Generates events when switched on or off.	| 
+![](Documentation/icons/hardware/buzzer.png)            | Buzzer              | Represents a Lilypad Buzzer. It can be turned on, turned off , and its frequency can be set.	| turnOn, turnOff, setFrequency
+![](Documentation/icons/hardware/LSMCompass.png)        | LSMCompass          | Represents the LSM303 Accelerometer and Magnetometer. Should be connected to the SCL and SDA pins for I2C communication.	| 
+![](Documentation/icons/hardware/lightSensor.png)       | Light Sensor        | Represents a Lilypad Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.	| 
+![](Documentation/icons/hardware/temperatureSensor.png) | Temperature Sensor  | Represents a Lilypad Temperature Sensor. It works similar to the Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.	| 
+![](Documentation/icons/hardware/potentiometer.png)     | Potentiometer       | Generates events according to three modes: always, InRange and Once. The Always mode will trigger an event whenever the hardware value changed. The InRange mode generates an event when the hardware value changed and this value lies within a certain range, which can be configured in the object’s properties. The Once mode will trigger an event once when the value lies within a certain range.	| 
+![](Documentation/icons/hardware/threeColorLed.png)     | Three-Color LED     | A lilypad three-color-led	| turnOn, turnOff, setRed, setGreen, setBlue
+![](Documentation/icons/hardware/vibeBoard.png)         | Vibe Board          | Represents a vibration board. It works similar  to the Buzzer, It can be turned on, turned off , and its frequency can be set.	| turnOn, turnOff, setFrequency
+![](Documentation/icons/hardware/accelerometer.png)     | Accelerometer       | It offers methods for reading x, y and z. Should be connected to three analog input pins.	| 
 
 
-Programming Elements  | Name   | Description |
-:--------------------: |--------|:-------------|
-![](Documentation/icons/programming/comparator.png)     | Comparator          | Compares two numbers A and B and generates an event depending on its configuration. If A is bigger than B and the Comparator is in ‘bigger’ mode, then the ‘conditionIsTrue’ even gets triggered. This event can, like any other event, be connected to other object’s methods. In order to set the values A and B that should be compared, connect an event that delivers a number value (such as the intensityChanged event of the Light Sensor) to the setValue1 method of the Comparator. To do this, a line should be drawn starting at the Light Sensor and ending on the Comparator. 
-![](Documentation/icons/programming/grouper.png) | Grouper               | Compares two Boolean values (values that can be either true or false) and generates an event depending on whether both of them are true or only one of them is true. It is connected in a similar way to the Comparator.
-![](Documentation/icons/programming/number.png) | Number Value          | Represents a number (equivalent to a variable in programming). Can be used for example together with the comparator in order to detect when a specific object’s property (such as the buzzer’s frequency or the LED’s intensity) reaches a specific value. Generates an event when its value changes. This is the event that can be connected to the comparator.
-![](Documentation/icons/programming/boolean.png) | Boolean Value         | Represents a Boolean value (equivalent to a variable in programming).  It can be used for example together with a grouper condition.
-![](Documentation/icons/programming/string.png) | String Value          | Represents a constant String (equivalent to a constant variable in programming). It can be used to set the text of a label. In the future, it will be formateable such that users can mix text and numbers, while these numbers could be sensor values.
-![](Documentation/icons/programming/mapper.png) | Mapper                | Scales and constrains a value. Can be used to make numbers fit within a certain range. For example, the slider produces by default values between 0 and 255 and the buzzer produces frequencies between 0 and 20000. The mapper can be used to make such range conversions. Its current implementation offers a linear function y = ax + b which means that incoming values x get multiplied by a and added b. Values are clamped to the range [min max]. Generates an event whenever the value changes.
-![](Documentation/icons/programming/timer.png) |  Timer                | Generates an event after x time.
-![](Documentation/icons/programming/sound.png) |  Sound                | Represents a sound. It offers a single method to play it.
+Programming Elements  | Name   | Description | Methods |
+:--------------------: |--------|:-------------| ----  |
+![](Documentation/icons/programming/comparator.png)     | Comparator          | Compares two numbers A and B and generates an event depending on its configuration. If A is bigger than B and the Comparator is in ‘bigger’ mode, then the ‘conditionIsTrue’ even gets triggered. This event can, like any other event, be connected to other object’s methods. In order to set the values A and B that should be compared, connect an event that delivers a number value (such as the intensityChanged event of the Light Sensor) to the setValue1 method of the Comparator. To do this, a line should be drawn starting at the Light Sensor and ending on the Comparator.	| setValue1, setValue2
+![](Documentation/icons/programming/grouper.png) | Grouper               | Compares two Boolean values (values that can be either true or false) and generates an event depending on whether both of them are true or only one of them is true. It is connected in a similar way to the Comparator.	| setValue1, setValue2
+![](Documentation/icons/programming/number.png) | Number Value          | Represents a number (equivalent to a variable in programming). Can be used for example together with the comparator in order to detect when a specific object’s property (such as the buzzer’s frequency or the LED’s intensity) reaches a specific value. Generates an event when its value changes. This is the event that can be connected to the comparator.	| setValue
+![](Documentation/icons/programming/boolean.png) | Boolean Value         | Represents a Boolean value (equivalent to a variable in programming).  It can be used for example together with a grouper condition.	| setValue
+![](Documentation/icons/programming/string.png) | String Value          | Represents a constant String (equivalent to a constant variable in programming). It can be used to set the text of a label. In the future, it will be formateable such that users can mix text and numbers, while these numbers could be sensor values.	| setValue
+![](Documentation/icons/programming/mapper.png) | Mapper                | Scales and constrains a value. Can be used to make numbers fit within a certain range. For example, the slider produces by default values between 0 and 255 and the buzzer produces frequencies between 0 and 20000. The mapper can be used to make such range conversions. Its current implementation offers a linear function y = ax + b which means that incoming values x get multiplied by a and added b. Values are clamped to the range [min max]. Generates an event whenever the value changes.	| setMin1, setMax1, setMin2, setMax2, setValue
+![](Documentation/icons/programming/timer.png) |  Timer                | Generates an event after x time.	| start, stop
+![](Documentation/icons/programming/sound.png) |  Sound                | Represents a sound. It offers a single method to play it.	| play
 
