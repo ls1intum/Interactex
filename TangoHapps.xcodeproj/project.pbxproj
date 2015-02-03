@@ -34,11 +34,15 @@
 		02A7960D1A6716B1000027A9 /* palette_iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */; };
 		02A796101A671730000027A9 /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960E1A671730000027A9 /* iBeacon.png */; };
 		02A796111A671730000027A9 /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A7960F1A671730000027A9 /* iBeacon@2x.png */; };
-		02A848FC1A7BEC7600F26234 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */; };
-		02A848FD1A7BEC8500F26234 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */; };
 		02CD4D961A673563007C7BB0 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
 		02D4E0D91A796E520094F377 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D71A796E520094F377 /* send@2x.png */; };
 		02D4E0DA1A796E520094F377 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D81A796E520094F377 /* send.png */; };
+		02DDB0081A7D4FE1009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */; };
+		02DDB0131A7D4FE5009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */; };
+		02DDB0191A7D5D44009C98EB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDB0181A7D5D44009C98EB /* Accelerate.framework */; };
+		02DDB01A1A7D5D4E009C98EB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDB0181A7D5D44009C98EB /* Accelerate.framework */; };
+		02DDB0221A7D65B0009C98EB /* THLinePlotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DDB0201A7D65B0009C98EB /* THLinePlotController.m */; };
+		02DDB0251A7D669D009C98EB /* THLinePlotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DDB0201A7D65B0009C98EB /* THLinePlotController.m */; };
 		02FF44231A672DCE00FB2C0E /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44211A672DCE00FB2C0E /* iBeacon.png */; };
 		02FF44241A672DCE00FB2C0E /* iBeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */; };
 		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
@@ -784,11 +788,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02A848F91A7BEB9400F26234 /* PBXContainerItemProxy */ = {
+		02A84B501A7D339000F26234 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */;
+			containerPortal = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		02DDB0141A7D5C90009C98EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		02DDB0161A7D5C9D009C98EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
 			remoteInfo = "CorePlot-CocoaTouch";
 		};
 		25B05DB219FA95C10019E431 /* PBXContainerItemProxy */ = {
@@ -998,9 +1016,12 @@
 		02A7960B1A6716B1000027A9 /* palette_iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_iBeacon@2x.png"; sourceTree = "<group>"; };
 		02A7960E1A671730000027A9 /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
 		02A7960F1A671730000027A9 /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
-		02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "Frameworks/CorePlot/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
+		02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "Frameworks/CorePlot/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		02D4E0D71A796E520094F377 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		02D4E0D81A796E520094F377 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
+		02DDB0181A7D5D44009C98EB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		02DDB01F1A7D65B0009C98EB /* THLinePlotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLinePlotController.h; path = ../objects/software/THLinePlotController.h; sourceTree = "<group>"; };
+		02DDB0201A7D65B0009C98EB /* THLinePlotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLinePlotController.m; path = ../objects/software/THLinePlotController.m; sourceTree = "<group>"; };
 		02FF44211A672DCE00FB2C0E /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
 		02FF44221A672DCE00FB2C0E /* iBeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBeacon@2x.png"; sourceTree = "<group>"; };
 		2517683419FB9EF30060FF83 /* THTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTestsHelper.h; sourceTree = "<group>"; };
@@ -1935,7 +1956,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02A848FD1A7BEC8500F26234 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				02DDB0191A7D5D44009C98EB /* Accelerate.framework in Frameworks */,
+				02DDB0131A7D4FE5009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */,
 				9AAEC66A1A40A5A300D11BFD /* libcocos2d.a in Frameworks */,
 				9AAEC66B1A40A5A300D11BFD /* libCocosDenshion.a in Frameworks */,
 				9A2EA8E619DB4A1800E30E2D /* libpd-ios.a in Frameworks */,
@@ -1964,7 +1986,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02A848FC1A7BEC7600F26234 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				02DDB01A1A7D5D4E009C98EB /* Accelerate.framework in Frameworks */,
+				02DDB0081A7D4FE1009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */,
 				9A2EA8DD19DB2EA400E30E2D /* libpd-ios.a in Frameworks */,
 				9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */,
 				9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */,
@@ -1988,10 +2011,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02A848F21A7BEB9400F26234 /* Products */ = {
+		02A84B4B1A7D339000F26234 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */,
+				02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2078,7 +2101,8 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */,
+				02DDB0181A7D5D44009C98EB /* Accelerate.framework */,
+				02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */,
 				9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */,
 				9AF50162167B83AD0020241C /* libz.dylib */,
 				9A2EA8D219DB2E8F00E30E2D /* libpd.xcodeproj */,
@@ -3372,6 +3396,8 @@
 				9A85721B172804B600510D23 /* THSoundPicker.m */,
 				9A5D046F18844B50006E9348 /* THSoundEffect.h */,
 				9A5D047018844B50006E9348 /* THSoundEffect.m */,
+				02DDB01F1A7D65B0009C98EB /* THLinePlotController.h */,
+				02DDB0201A7D65B0009C98EB /* THLinePlotController.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -3543,6 +3569,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				02DDB0151A7D5C90009C98EB /* PBXTargetDependency */,
 				9AAEC6671A40A59500D11BFD /* PBXTargetDependency */,
 				9AAEC6691A40A59500D11BFD /* PBXTargetDependency */,
 				9A2EA8E519DB4A0B00E30E2D /* PBXTargetDependency */,
@@ -3564,6 +3591,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				02DDB0171A7D5C9D009C98EB /* PBXTargetDependency */,
 				9A2EA8DC19DB2E9B00E30E2D /* PBXTargetDependency */,
 				9A1FBD74187ED74600699B61 /* PBXTargetDependency */,
 				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
@@ -3617,8 +3645,8 @@
 					ProjectRef = 9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */;
 				},
 				{
-					ProductGroup = 02A848F21A7BEB9400F26234 /* Products */;
-					ProjectRef = 02A848F11A7BEB9400F26234 /* CorePlot-CocoaTouch.xcodeproj */;
+					ProductGroup = 02A84B4B1A7D339000F26234 /* Products */;
+					ProjectRef = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A1FBD6B187ED71900699B61 /* Products */;
@@ -3639,11 +3667,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		02A848FA1A7BEB9400F26234 /* libCorePlot-CocoaTouch.a */ = {
+		02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libCorePlot-CocoaTouch.a";
-			remoteRef = 02A848F91A7BEB9400F26234 /* PBXContainerItemProxy */;
+			remoteRef = 02A84B501A7D339000F26234 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A1FBD6F187ED71900699B61 /* libFirmata.a */ = {
@@ -4364,6 +4392,7 @@
 				9AD7050318AC1EF40080CD2E /* THGraphViewSegmentGroup.m in Sources */,
 				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
+				02DDB0221A7D65B0009C98EB /* THLinePlotController.m in Sources */,
 				9A5D047118844B50006E9348 /* THSoundEffect.m in Sources */,
 				9A85721C172804B600510D23 /* THSoundPicker.m in Sources */,
 				9A8572B7172AD64C00510D23 /* THAsset.m in Sources */,
@@ -4505,6 +4534,7 @@
 				9A8572B8172AD64C00510D23 /* THAsset.m in Sources */,
 				9A8572BD172AD6D900510D23 /* THSoundAsset.m in Sources */,
 				9A8572C2172AD7F500510D23 /* THAssetCollection.m in Sources */,
+				02DDB0251A7D669D009C98EB /* THLinePlotController.m in Sources */,
 				9A801B9619D955450001B6F9 /* THClientConnectionController.m in Sources */,
 				9A8426B317564A80009495AB /* TFAction.m in Sources */,
 				9A8426B617564A80009495AB /* TFEvent.m in Sources */,
@@ -4536,6 +4566,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		02DDB0151A7D5C90009C98EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 02DDB0141A7D5C90009C98EB /* PBXContainerItemProxy */;
+		};
+		02DDB0171A7D5C9D009C98EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = 02DDB0161A7D5C9D009C98EB /* PBXContainerItemProxy */;
+		};
 		25B05DB319FA95C10019E431 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9A351188167B7A6800C7484B /* TangoHapps */;
@@ -4762,12 +4802,17 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
-				USER_HEADER_SEARCH_PATHS = " Frameworks/libpd/**  Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4785,12 +4830,17 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
-				USER_HEADER_SEARCH_PATHS = " Frameworks/libpd/**  Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4836,12 +4886,17 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
-				USER_HEADER_SEARCH_PATHS = " Frameworks/libpd/**  Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/**";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4858,11 +4913,15 @@
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -4878,11 +4937,15 @@
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4899,11 +4962,15 @@
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
