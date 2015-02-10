@@ -58,8 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        self.isTouchEnabled = YES;
-        self.isAccelerometerEnabled = YES;
+        self.touchEnabled = YES;/*
+        self.isAccelerometerEnabled = YES;*/
         
         CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 252)];
         //CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
@@ -158,13 +158,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 #pragma mark - Lifecycle
 
 -(void) willDisappear{
-    self.isAccelerometerEnabled = NO;
+    //self.isAccelerometerEnabled = NO;
     [self removeGestureRecognizers];
 }
 
 -(void) willAppear{
     
-    self.isAccelerometerEnabled = YES;
+    //self.isAccelerometerEnabled = YES;
     [self addGestureRecognizers];
 }
 

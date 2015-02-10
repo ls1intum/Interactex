@@ -110,7 +110,7 @@ www.interactex.org
         buf[len++] = 1;
     }
     
-    [self.communicationModule sendData:buf count:3];
+    [self.communicationModule sendData:buf count:6];
 }
 
 -(void) sendPinQueryForPinNumbers:(NSInteger*) pinNumbers length:(NSInteger) length{
@@ -189,28 +189,8 @@ www.interactex.org
 		buf[1] = value & 0x7F;
 		buf[2] = (value >> 7) & 0x7F;
         
-        
         [self.communicationModule sendData:buf count:3];
-//        [self.bleService sendData:buf count:3];
-        
 	}
-    
-    //no extended analog support yet
-    /*else {
-     uint8_t buf[9];
-     int len=4;
-     buf[0] = START_SYSEX;
-     buf[1] = 0x6F;
-     buf[2] = pin.number;
-     buf[3] = pin.value & 0x7F;
-     if (pin.value > 0x00000080) buf[len++] = (pin.value >> 7) & 0x7F;
-     if (pin.value > 0x00004000) buf[len++] = (pin.value >> 14) & 0x7F;
-     if (pin.value > 0x00200000) buf[len++] = (pin.value >> 21) & 0x7F;
-     if (pin.value > 0x10000000) buf[len++] = (pin.value >> 28) & 0x7F;
-     buf[len++] = 0xF7;
-     
-     [self.bleService sendData:buf count:9];
-     }*/
 }
 
 -(void) sendReportRequestsForDigitalPin:(NSInteger) pin reports:(BOOL) reports{

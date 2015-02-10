@@ -54,7 +54,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLilypadEditable.h"
 #import "THNumberValueEditable.h"
 #import "THTimerEditable.h"
-#import "THActionEditable.h"
 #import "THWire.h"
 #import "THTabbarViewController.h"
 #import "THProjectViewController.h"
@@ -67,8 +66,10 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPin.h"
 #import "THBoard.h"
 #import "THHardwareComponent.h"
+#import "THiPhoneControlEditableObject.h"
 
-#import <QuartzCore/QuartzCore.h>
+//remove
+#import "THGrouperConditionEditable.h"
 
 @implementation THEditor
 
@@ -85,7 +86,7 @@ You should have received a copy of the GNU General Public License along with thi
         _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 0)];
         _zoomableLayer.contentSize = kDefaultCanvasSize;
         [self resetZoomableLayerPosition];
-        [self addChild:_zoomableLayer z:-10];
+        [self addChild:_zoomableLayer z:-30]; //Nazmus (15 Jan) changed from -10 to -30 to show the selection of iPhone elements (which has z:-20)
         
         CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
         [bg setPosition:ccp(_zoomableLayer.contentSize.width / 2.0f, _zoomableLayer.contentSize.height / 2.0f)];
@@ -283,6 +284,13 @@ You should have received a copy of the GNU General Public License along with thi
     editableObject.selected = YES;
     self.currentObject = editableObject;
     
+    //nazmus added 21 Jan - to bring the selected object in front (not working for iPhone controls)
+    if ([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]] && [(THHardwareComponentEditableObject*) self.currentObject attachedToClothe]) {
+        [(THClothe*)[(THHardwareComponentEditableObject*) self.currentObject attachedToClothe] reorderChild:self.currentObject z:1];
+    } else {
+        [self.zoomableLayer reorderChild:self.currentObject z:self.currentObject.z];
+    }
+    
     if(self.isLilypadMode){
         //[self showWiresForCurrentObject];
     } else {
@@ -385,6 +393,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+
 #pragma mark - Property Selection Popup
 
 -(void) propertySelectionPopup:(THPropertySelectionPopup*) popup didSelectProperty:(TFProperty*) property{
@@ -442,7 +451,8 @@ You should have received a copy of the GNU General Public License along with thi
     [project registerAction:(TFAction*)action forEvent:event];
     
     THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
-    invocationConnection.action = [TFMethodInvokeAction actionWithAction:action];
+    //invocationConnection.action = [TFMethodInvokeAction actionWithAction:action];//why do we need acopy here instead of the real?
+    invocationConnection.action = action;
     invocationConnection.numParameters = action.method.numParams;
     
     if(action.method.numParams > 0){
@@ -588,9 +598,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) moveCurrentObject:(CGPoint) d{
     if([self.currentObject canBeMovedBy:d]){
-
+        
         if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
+        }
+        
+        CGRect canvasBox = self.zoomableLayer.boundingBox;
+        CGRect oldBoundingBox = self.currentObject.boundingBox;
+        CGRect newBoundingBox = oldBoundingBox;
+        if(CGRectGetMinX(newBoundingBox) < CGRectGetMinX(canvasBox) || CGRectGetMaxX(newBoundingBox) > CGRectGetMaxX(canvasBox)){
+            d.x = 0;
+        }
+        if(CGRectGetMinY(newBoundingBox) < CGRectGetMinY(canvasBox) || CGRectGetMaxY(newBoundingBox) > CGRectGetMaxY(canvasBox)){
+            d.y = 0;
         }
         
         [self.currentObject displaceBy:d];
@@ -1103,9 +1123,9 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     
-    if([editableObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+    /*if([editableObject isKindOfClass:[THHardwareComponentEditableObject class]]){
     NSLog(@"ed obj addded at: %f %f",editableObject.position.x,editableObject.position.y);
-    }
+    }*/
 }
 
 -(void) showVisualProgrammingObjects{

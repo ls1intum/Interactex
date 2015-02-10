@@ -440,42 +440,42 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadPaletteData {
     
-    self.clothesSectionArray  = [NSMutableArray arrayWithObjects:[[THClothePaletteItem alloc] initWithName:@"tshirt"], nil];
+    self.clothesSectionArray  = [NSMutableArray arrayWithObjects:
+                                 [THClothePaletteItem paletteItemWithName:@"tshirt" imageName:@"palette_tshirt" displayName:@"eTextile"],
+                                 nil];
     
-    self.uiSectionArray = [NSMutableArray arrayWithObjects://[[THiPhonePaletteItem alloc] initWithName:@"iphone"], //nazmus commented
-                           [[THiPhoneButtonPaletteItem alloc] initWithName:@"ibutton"],
+    self.uiSectionArray = [NSMutableArray arrayWithObjects:
+                           [THiPhoneButtonPaletteItem paletteItemWithName:@"ibutton" imageName:@"palette_ibutton" displayName:@"button"],
                            [[THLabelPaletteItem alloc] initWithName:@"label"],
-                           [[THiSwitchPaletteItem alloc] initWithName:@"iswitch"],
+                           [THiSwitchPaletteItem paletteItemWithName:@"iswitch" imageName:@"palette_iswitch" displayName:@"switch"],
                            [[THSliderPaletteItem alloc] initWithName:@"slider"],
                            [[THTouchpadPaletteItem alloc] initWithName:@"touchpad"],
-                           [[THMusicPlayerPaletteItem alloc] initWithName:@"musicplayer"],
-                           [[THImageViewPaletteItem alloc] initWithName:@"imageview"],
-                           [[THContactBookPaletteItem alloc] initWithName:@"contactBook"],
-                           [[THMonitorPaletteItem alloc] initWithName:@"monitor"],
+                           [THMusicPlayerPaletteItem paletteItemWithName:@"musicplayer" imageName:@"palette_musicplayer" displayName:@"music player"],
+                           [THImageViewPaletteItem paletteItemWithName:@"imageview" imageName:@"palette_imageview" displayName:@"image"],
+                           [THContactBookPaletteItem paletteItemWithName:@"contactBook" imageName:@"palette_contactBook" displayName:@"contact book"],
+                           [THMonitorPaletteItem paletteItemWithName:@"monitor" imageName:@"palette_monitor" displayName:@"graph"],
                            nil];
-    
     
     self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
                                 [[THBLELilyPadPaletteItem alloc] initWithName:@"BLE-LilyPad"],
-                                [[THLilypadPaletteItem alloc] initWithName:@"lilypadBig"],
-                                [[THSimpleLilypadPaletteItem alloc] initWithName:@"lilypadSmall"],
+                                [THLilypadPaletteItem paletteItemWithName:@"lilypadBig" imageName:@"palette_lilypadBig" displayName:@"lilypad"],
+                                [THSimpleLilypadPaletteItem paletteItemWithName:@"lilypadSmall" imageName:@"palette_lilypadSmall" displayName:@"lilypad simple"],
                                 [[THJennicPaletteItem alloc] initWithName:@"jennic"],nil];
+    
     
     self.hardwareSectionArray = [NSMutableArray arrayWithObjects:
                                  [[THLedPaletteItem alloc] initWithName:@"led"],
                                  [[THButtonPaletteItem alloc] initWithName:@"button"],
                                  [[THSwitchPaletteItem alloc] initWithName:@"switch"],
                                  [[THBuzzerPaletteItem alloc] initWithName:@"buzzer"],
-                                 [[THLSMCompassPaletteItem alloc] initWithName:@"LSMCompass"],
-                                 [[THLightSensorPaletteItem alloc] initWithName:@"lightSensor"],
+                                 [THLSMCompassPaletteItem paletteItemWithName:@"LSMCompass" imageName:@"palette_LSMCompass" displayName:@"LSM compass"],
+                                 [THLightSensorPaletteItem paletteItemWithName:@"lightSensor" imageName:@"palette_lightSensor" displayName:@"light sensor"],
                                  [[THPotentiometerPaletteItem alloc] initWithName:@"potentiometer"],
-                                 [[THThreeColorLedPaletteItem alloc] initWithName:@"threeColorLed"],
-                                 [[THVibrationBoardPaletteItem alloc] initWithName:@"vibeBoard"],
-                                 [[THTemperatureSensorPaletteItem alloc] initWithName:@"temperatureSensor"],
+                                 [THThreeColorLedPaletteItem paletteItemWithName:@"threeColorLed" imageName:@"palette_threeColorLed" displayName:@"3-color led"],
+                                 [THVibrationBoardPaletteItem paletteItemWithName:@"vibeBoard" imageName:@"palette_vibeBoard" displayName:@"vibration board"],[THTemperatureSensorPaletteItem paletteItemWithName:@"temperatureSensor" imageName:@"palette_temperatureSensor" displayName:@"temperature sensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
-                                 [[THFlexSensorPaletteItem alloc] initWithName:@"flexSensor"],
+                                 [THFlexSensorPaletteItem paletteItemWithName:@"flexSensor" imageName:@"palette_flexSensor" displayName:@"flex sensor"],
                                  nil];
-    
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
                                      [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
@@ -487,19 +487,11 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
-                                     
                                      nil];
     
     self.otherHardwareSectionArray  = [NSMutableArray arrayWithObjects:
                                        [[THPowerSupplyPaletteItem alloc] initWithName:@"powerSupply"],
-                                       //[[THLipoBatteryPaletteItem alloc] initWithName:@"lipoBattery"],
-                                       nil
-                                       ];
-    /*
-    self.gesturesSectionArray = [NSMutableArray arrayWithObjects:
-                                  [[THGesturePaletteItem alloc] initWithName:@"gesture"],
-                                  nil
-                                 ];*/
+                                       nil];
                                      
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";
@@ -507,7 +499,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Visual Programming";
     self.otherHardwareSectionName = @"Other Hardware";
-    //self.gesturesSectionName = @"Gestures";
 }
 
 -(void) tabBar:(THTabbarView*) tabBar didAddSection:(THTabbarSection*) section{

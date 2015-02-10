@@ -78,8 +78,6 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     self = [super initWithCoder:decoder];
     [self loadSprite];
     
-    self.action1 = [decoder decodeObjectForKey:@"action1"];
-    self.action2 = [decoder decodeObjectForKey:@"action2"];
     
     /* Juan check
     if(self.obj1 != nil){
@@ -95,17 +93,11 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 -(void)encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    
-    [coder encodeObject:self.action1 forKey:@"action1"];
-    [coder encodeObject:self.action2 forKey:@"action2"];
 }
 
 -(id)copyWithZone:(NSZone *)zone
 {
     THComparisonConditionEditable * copy = [super copyWithZone:zone];
-    
-    copy.action1 = self.action1;
-    copy.action2 = self.action2;
     
     return copy;
 }
@@ -202,20 +194,44 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
     
-    if(self.action1 == nil){
-        
+    //Nazmus added
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    THInvocationConnectionLine * previousConnectionToSameAction = nil;
+    if ([action.method.name isEqualToString:kMethodSetValue1]) {
+        if(self.action1 != nil) {
+            
+            for (THInvocationConnectionLine * connection in project.invocationConnections) {
+                if(connection.obj1 == self || connection.obj2 == self){
+                    if ([connection.action.method.name isEqualToString:kMethodSetValue1]) {
+                        previousConnectionToSameAction = connection;
+                    }
+                }
+            }
+            if (previousConnectionToSameAction) {
+                [project deregisterAction:self.action1];
+                [project removeInvocationConnection:previousConnectionToSameAction];
+            }
+        }
         self.action1 = action;
-        
-    } else if(self.action2 == nil){
-        
-        self.action2 = action;
-        
     } else {
-        
-        self.action1 = action;
+        if(self.action2 != nil) {
+            
+            for (THInvocationConnectionLine * connection in project.invocationConnections) {
+                if(connection.obj1 == self || connection.obj2 == self){
+                    if ([connection.action.method.name isEqualToString:kMethodSetValue2]) {
+                        previousConnectionToSameAction = connection;
+                    }
+                }
+            }
+            if (previousConnectionToSameAction) {
+                [project deregisterAction:self.action2];
+                [project removeInvocationConnection:previousConnectionToSameAction];
+            }
+        }
         self.action2 = action;
     }
-
+    ////
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleObjectRemoved:) name:kNotificationObjectRemoved object:action.source];
     
     [_currentComparatorProperties reloadState];
@@ -239,8 +255,6 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(void) prepareToDie{
     _currentComparatorProperties = nil;
-    self.action1 = nil;
-    self.action2 = nil;
     [super prepareToDie];
 }
 

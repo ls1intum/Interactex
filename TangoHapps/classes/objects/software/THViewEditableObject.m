@@ -124,6 +124,8 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(BOOL) canBeMovedBy:(CGPoint)d{
+    return self.canBeMoved;
+    /*
     if(!self.canBeMoved){
         return NO;
     }
@@ -136,7 +138,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(!CGRectContainsRect(rootView.boundingBox, currentBoundingBox) || CGRectContainsRect(rootViewRect, newBoundingBox)){
         return YES;
     }
-    return NO;
+    return NO;*/
 }
 
 -(void) setVisible:(BOOL)visible{
@@ -225,10 +227,26 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) displaceBy:(CGPoint)displacement{
-    if(!self.canBeRootView){
-        displacement = [TFHelper ConvertToCocos2d:displacement];
-        self.position = ccpAdd(self.position, displacement);
+    
+    THViewEditableObject * rootView = [THDirector sharedDirector].currentProject.iPhone.currentView;
+    CGRect currentBoundingBox = self.boundingBox;
+    CGRect newBoundingBox = currentBoundingBox;
+    newBoundingBox.origin = ccpAdd(currentBoundingBox.origin, displacement);
+    CGRect rootViewRect = rootView.boundingBox;
+    
+    if(CGRectContainsRect(rootViewRect, currentBoundingBox)){//only apply this if it was inside (to prevent it to leave the root views canvas. If it was outside (in case it was dropped half outside from the palette, just move it freely)
+        
+        if(CGRectGetMinX(rootViewRect) > CGRectGetMinX(newBoundingBox) || CGRectGetMaxX(rootViewRect) < CGRectGetMaxX(newBoundingBox)){
+            displacement.x = 0;
+        }
+        
+        if(CGRectGetMinY(rootViewRect) > CGRectGetMinY(newBoundingBox) || CGRectGetMaxY(rootViewRect) < CGRectGetMaxY(newBoundingBox)){
+            displacement.y = 0;
+        }
     }
+    
+    displacement = [TFHelper ConvertToCocos2d:displacement];
+    self.position = ccpAdd(self.position, displacement);
 }
 
 -(void) scaleBy:(float)scale{

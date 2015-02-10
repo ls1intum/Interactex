@@ -49,6 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     UISwitch * iswitch = [[UISwitch alloc] init];
     self.view = iswitch;
+    iswitch.enabled = NO;
     
     self.width = iswitch.frame.size.width;
     self.height = iswitch.frame.size.height;
@@ -58,8 +59,8 @@ You should have received a copy of the GNU General Public License along with thi
     TFProperty * property = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
     self.properties = [NSMutableArray arrayWithObject:property];
     
-    TFEvent * event1 = [TFEvent eventNamed:@"switchOn"];
-    TFEvent * event2 = [TFEvent eventNamed:@"switchOff"];
+    TFEvent * event1 = [TFEvent eventNamed:kEventSwitchedOn];
+    TFEvent * event2 = [TFEvent eventNamed:kEventSwitchedOff];
     TFEvent * event3 = [TFEvent eventNamed:kEventOnChanged];
     event3.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     self.events = [NSMutableArray arrayWithObjects:event1,event2,event3, nil];
@@ -71,34 +72,33 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self loadSwitch];
         self.on = YES;
-        self.enabled = YES;
     }
     return self;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadSwitch];
-    self.on = [decoder decodeBoolForKey:@"on"];
-    
+    if(self){
+        [self loadSwitch];
+        
+        self.on = [decoder decodeBoolForKey:@"isOn"];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeBool:self.on forKey:@"on"];
+    [coder encodeBool:self.on forKey:@"isOn"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THiSwitch * copy = [super copyWithZone:zone];
     
+    copy.on = self.on;
+
     return copy;
 }
 
@@ -136,11 +136,12 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) didStartSimulating{
+    self.enabled = YES;
     [self triggerEventNamed:kEventOnChanged];
 }
 
 -(NSString*) description{
-    return @"ibutton";
+    return @"iswitch";
 }
 
 @end

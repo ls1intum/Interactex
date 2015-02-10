@@ -160,16 +160,28 @@ CGImageRef UIGetScreenImage(void);
 
 +(UIImage*) takeScreenshot
 {
-    CGImageRef screen = UIGetScreenImage();
-    UIImage * image = [UIImage imageWithCGImage:screen];
-    CGImageRelease(screen);
+    //Nazmus commented
+    //CGImageRef screen = UIGetScreenImage(); // this method is probably removed in ios 7
+    //UIImage * image = [UIImage imageWithCGImage:screen];
+    //CGImageRelease(screen);
+    //
+    
+    UIScreen *screen = [UIScreen mainScreen] ;
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    //UIView *view = [screen snapshotViewAfterScreenUpdates:YES];
+    UIGraphicsBeginImageContextWithOptions(screen.bounds.size, NO, 0);
+    [keyWindow drawViewHierarchyInRect:keyWindow.bounds afterScreenUpdates:YES];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     return image;
 }
 
 
 +(UIImage*) screenshot{
     UIImage *image = [self takeScreenshot];
-    CGFloat navigationBarHeight = 44;
+    
+    //Nazmus commented - because device orientation is not supported in the app
+    /*CGFloat navigationBarHeight = 44;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width - navigationBarHeight;
@@ -192,7 +204,7 @@ CGImageRef UIGetScreenImage(void);
     }
     
     image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    UIGraphicsEndImageContext();*/
     
     return image;
 }

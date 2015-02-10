@@ -82,6 +82,17 @@ You should have received a copy of the GNU General Public License along with thi
     [self.textField resignFirstResponder];
 }
 
+- (UITableView *)getParentTableView {
+    id view = [self superview];
+    
+    while (view && [view isKindOfClass:[UITableView class]] == NO) {
+        view = [view superview];
+    }
+    
+    UITableView *parentTableView = (UITableView *)view;
+    return parentTableView;
+}
+
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
         
     [self.textField resignFirstResponder];

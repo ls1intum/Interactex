@@ -40,14 +40,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 
-#import "THTrigger.h"
+#import "THProgrammingElement.h"
 
 typedef enum{
     kTimerTypeOnce,
     kTimerTypeAlways
 }THTimerType;
 
-@interface THTimer : THTrigger
+@interface THTimer : THProgrammingElement
 {
     NSTimer * _timer;
 }

@@ -47,7 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id) init{
     self = [super init];
     if(self){
-        
+        self.enabled = NO;
     }
     return self;
 }
@@ -56,9 +56,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    self.enabled = [decoder decodeBoolForKey:@"enabled"];
-    
+    if(self){
+        self.enabled = [decoder decodeBoolForKey:@"enabled"];
+    }
     return self;
 }
 

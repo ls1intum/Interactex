@@ -113,7 +113,7 @@ enum zPositions{
     kYannicZ = -30,
     kLilypadZ = -25,
     kDefaultZ = -20,
-    kClotheZ = -20,
+    kClotheZ = -22, //Nazmus 21 Jan 15- change from -20 to -22 so that the cloth is at behind even when it is selected
     kClotheObjectZ = -10,
     kGestureZ = -18,
     kGestureObjectZ = -9,
@@ -133,7 +133,6 @@ extern NSString * const kNotificationSimulationStarted;
 extern NSString * const kNotificationSimulationEnded;
 
 extern NSString * const kNotificationPropertiesChanged;
-
 
 extern float const kWifiCellHeightCollapsed;
 extern float const kWifiCellHeightExtended;

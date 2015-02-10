@@ -151,7 +151,6 @@ float const kToolsTabMargin = 5;
     [self updateEditingButtonsTint];
     
     [self reloadContent];
-    [self startWithEditor];
     
     [self addPalettePull];
     [self updatePalettePullVisibility];
@@ -161,6 +160,12 @@ float const kToolsTabMargin = 5;
     self.title = project.name;
     
     _currentProjectName = [THDirector sharedDirector].currentProject.name;
+    
+    [self startWithEditor];
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -820,8 +825,11 @@ float const kToolsTabMargin = 5;
         
     } else {
         [editor startLilypadMode];
+        
         [self addLilypadButtons];
     }
+    
+    [self.tabController showTab:0];
     
     [self updateLilypadTint];
 }

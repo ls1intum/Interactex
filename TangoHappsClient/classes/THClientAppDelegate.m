@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientAppDelegate.h"
 #import "THClientScene.h"
 #import "THClientProjectProxy.h"
-#import "THClientConnectionController2.h"
+#import "THClientConnectionController.h"
 
 @implementation THClientAppDelegate
 
@@ -60,7 +60,7 @@ You should have received a copy of the GNU General Public License along with thi
         
     }
     
-    self.connectionController = [[THClientConnectionController2 alloc] init];
+    self.connectionController = [[THClientConnectionController alloc] init];
 
     //[self generateRandomScenes];
     

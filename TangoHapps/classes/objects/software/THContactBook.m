@@ -124,12 +124,16 @@ NSString * const kCallImageName = @"call.png";
     [containerView addSubview:imageView];
     
     _label = [[UILabel alloc] init];
-    _label.layer.borderWidth = 1.0f;
+    //_label.layer.borderWidth = 1.0f;
+    _label.clipsToBounds = YES;
+    _label.layer.cornerRadius = 5.0f;
+    _label.backgroundColor = [UIColor colorWithRed:50/255.0f green:50/255.0f blue:50/255.0f alpha:0.5];
     CGRect imageFrame = imageView.frame;
     float x = imageFrame.origin.x + imageFrame.size.width + kContactBookInnerPadding;
     _label.frame = CGRectMake(x, 5, self.width - imageFrame.size.width - 20, kContactBookLabelHeight);
     _label.textAlignment = NSTextAlignmentCenter;
     _label.font = [UIFont systemFontOfSize:12];
+    [_label setTextColor:[UIColor whiteColor]];
     [containerView addSubview:_label];
     
     CGRect previousButtonFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kContactBookInnerPadding, kContactBookButtonWidth, kContactBookButtonHeight);
@@ -229,7 +233,7 @@ NSString * const kCallImageName = @"call.png";
 -(void) call{
     THContact * contact = self.currentContact;
     if(contact){
-        NSLog(@"calling %@",contact.number);
+        NSLog(@"Calling %@",contact.number);
         [THClientHelper MakeCallTo:contact.number];
     }
 }
@@ -237,7 +241,13 @@ NSString * const kCallImageName = @"call.png";
 -(void) updateCurrentContact{
     THContact * contact = self.currentContact;
     if(contact){
-        _label.text = [NSString stringWithFormat:@"%@ - %@", contact.name, contact.number];
+        NSString *labelText = @"Unknown";
+        if (contact.name) labelText = contact.name;
+        if (contact.number) {
+            labelText = [labelText stringByAppendingString:@" : "];
+            labelText = [labelText stringByAppendingString:contact.number];
+        }
+        _label.text = labelText;
     } else {
         _label.text = [NSString stringWithFormat:@"No contacts in book"];
     }

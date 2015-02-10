@@ -60,12 +60,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoolValue.h"
 #import "THStringValue.h"
 
-#import "THMapperEditable.h"
-#import "THMapper.h"
-#import "THTriggerEditable.h"
-#import "THTrigger.h"
-#import "THActionEditable.h"
-
 #import "THElementPin.h"
 #import "THLilyPad.h"
 
@@ -79,6 +73,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THInvocationConnectionLine.h"
 #import "THBoard.h"
 #import "THElementPinEditable.h"
+
+#import "THComparisonConditionEditable.h"
 
 @implementation THProject
 
@@ -313,7 +309,7 @@ You should have received a copy of the GNU General Public License along with thi
 
             NSString * className = object.description;
             NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
-           // NSLog(@"%d",classCount.integerValue);
+            NSLog(@"class name: %@",className);
             
             hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
         }
@@ -626,6 +622,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event{
+    NSAssert(action, @"cannot register nil action");
+    NSAssert(event, @"cannot register nil event");
     
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
     pair.action = action;
@@ -909,14 +907,14 @@ enum zPositions{
     if([editable isKindOfClass:[THHardwareComponentEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.hardwareComponents];
         return [project.hardwareComponents objectAtIndex:idx];
-    }else if ([editable isKindOfClass:[THViewEditableObject class]]){
+    } else if ([editable isKindOfClass:[THViewEditableObject class]]){
         NSInteger idx = [self idxOfEditable:editable inArray:self.iPhoneObjects];
         return [project.iPhoneObjects objectAtIndex:idx];
-    } else if ([editable isKindOfClass:[THNumberValueEditable class]] || [editable isKindOfClass:[THBoolValueEditable class]] || [editable isKindOfClass:[THStringValueEditable class]] || [editable isKindOfClass:[THMapperEditable class]]){
-        NSInteger idx = [self idxOfEditable:editable inArray:self.visualProgrammingObjects];
-        return [project.visualProgrammingObjects objectAtIndex:idx];
     } else if ([editable isKindOfClass:[THiPhoneEditableObject class]]){
         return (TFSimulableObject*) project.iPhone;
+    } else if ([editable isKindOfClass:[THProgrammingElementEditable class]]){
+        NSInteger idx = [self idxOfEditable:editable inArray:self.visualProgrammingObjects];
+        return [project.visualProgrammingObjects objectAtIndex:idx];
     } else {
         NSAssert(NO, @"returning nil in simulableForEditable for %@",editable);
         return nil;
@@ -1012,17 +1010,19 @@ enum zPositions{
     }
 }
 
+-(void) printProject:(THClientProject*) project{
+    for (TFEventActionPair * pair in project.actionPairs) {
+        
+        NSLog(@"event target: %@", pair.event.param1.target);
+        NSLog(@"action source: %@", pair.action.source);
+        NSLog(@"action target: %@", pair.action.target);
+        NSLog(@"action invoke: %@", ((TFMethodInvokeAction*)pair.action).firstParam.target);
+    }
+}
+
 -(THClientProject*) nonEditableProject{
     
     THClientProject * project = [[THClientProject alloc] initWithName:self.name];
-    
-    /*
-    NSMutableDictionary * objectMapping = [NSMutableDictionary dictionary];
-    TFEditableObject * testObj = [self.boards objectAtIndex:0];
-    [objectMapping setObject:testObj.simulableObject forKey:testObj];
-    TFSimulableObject * retobj = [objectMapping objectForKey:testObj];
-    NSLog(@"%@",retobj);*/
-    
     
     project.boards = [self nonEditableElementsForArray:self.boards forProject:project];
     project.hardwareComponents = [self nonEditableElementsForArray:self.hardwareComponents forProject:project];
@@ -1033,6 +1033,8 @@ enum zPositions{
     [self cleanBoardPinsFor:project];
     [self cleanI2CComponentsFor:project];
     [self addNonEditableActionPairsTo:project];
+    
+    [self printProject:project];
     
     return project;
 }

@@ -49,15 +49,49 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 @dynamic center;
 @synthesize image = _image;
-//@dynamic image;
 
 +(id) paletteItemWithName:(NSString*) name{
-    return [[THPaletteItem alloc] initWithName:name];
+    return [[self alloc] initWithName:name];
 }
 
 +(id) paletteItemWithName:(NSString*) name imageName:(NSString*) imageName{
-    return [[THPaletteItem alloc] initWithName:name imageName:imageName];
+    return [[self alloc] initWithName:name imageName:imageName];
 }
+
++(id) paletteItemWithName:(NSString*) name imageName:(NSString*) imageName displayName:(NSString *)displayName{
+    return [[self alloc] initWithName:name imageName:imageName displayName:displayName];
+}
+
+-(void) loadPaletteItem{
+    
+    [self addViews];
+    [self addGestureRecognizers];
+    
+    self.userInteractionEnabled = YES;
+}
+
+-(id)initWithName:(NSString*) name imageName:(NSString*) imageName displayName:(NSString*) displayName{
+    self = [super init];
+    if(self){
+        self.name = name;
+        self.imageName = imageName;
+        self.image = [UIImage imageNamed:self.imageName];
+        self.displayName = displayName;
+        [self loadPaletteItem];
+    }
+    return self;
+}
+
+-(id)initWithName:(NSString*) name imageName:(NSString*) imageName{
+    return [self initWithName:name imageName:imageName displayName:name];
+}
+
+-(id)initWithName:(NSString*) name {
+    NSString * imageName = [NSString stringWithFormat:@"palette_%@.png",name];
+    return [self initWithName:name imageName:imageName];
+}
+
+#pragma mark - Loading UI
 
 -(void) addViews{
     
@@ -78,9 +112,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     //image view
     float diffx = kPaletteItemWidth - kPaletteItemImageSize.width;
-    //float diffy = kPaletteItemHeight - kPaletteItemImageSize.height; //nazmus commented
-    //CGRect imageFrame = CGRectMake(diffx/2.0f, diffy/2.0f, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus commented
-    CGRect imageFrame = CGRectMake(diffx/2.0f, kPaletteItemPaddingTop, kPaletteItemImageSize.width, kPaletteItemImageSize.height);// nazmus added
+    CGRect imageFrame = CGRectMake(diffx/2.0f, kPaletteItemPaddingTop, kPaletteItemImageSize.width, kPaletteItemImageSize.height);
     
     _imageView = [[UIImageView alloc] initWithImage:self.image];
     _imageView.clipsToBounds = YES;
@@ -89,20 +121,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [_container addSubview:_imageView];
     
     //label
-    //CGRect labelFrame = CGRectMake(2, 49, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height);
-    //CGRect labelFrame = CGRectMake(2, 40, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height); // Nazmus commented 24 Aug 14
-    CGRect labelFrame = CGRectMake(0, kPaletteItemLabelVerticalPosition, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height); // Nazmus Added 24 Aug 14
+    CGRect labelFrame = CGRectMake(0, kPaletteItemLabelVerticalPosition, kPaletteItemLabelSize.width, kPaletteItemLabelSize.height);
     _label = [[UILabel alloc] initWithFrame:labelFrame];
     _label.numberOfLines = 2;
-    _label.lineBreakMode = NSLineBreakByCharWrapping;
-    _label.text = self.name;
+    _label.lineBreakMode = NSLineBreakByWordWrapping;
+    _label.text = (self.displayName == nil) ? self.name : self.displayName;
     _label.backgroundColor = [UIColor clearColor];
-    //_label.textColor = [UIColor whiteColor]; // Nazmus commented 24 Aug 14
-    _label.textColor = [UIColor darkGrayColor]; // Nazmus added 24 Aug 14
-    //_label.font = [UIFont boldSystemFontOfSize:8]; //nazmus commented
-    _label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:9.0]; // nazmus added
+    _label.textColor = [UIColor darkGrayColor];
+    _label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:9.0];
     _label.textAlignment = NSTextAlignmentCenter;
-    
     [_container addSubview:_label];
     
     //delete button
@@ -113,14 +140,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     _deleteButton.hidden = YES;
     [_deleteButton addTarget:self action:@selector(removeButtonTapped) forControlEvents:UIControlEventTouchDown];
     
-    /*
-    //text field
-    labelFrame = CGRectMake(2, 49, 30, kPaletteItemLabelSize.height);
-    _textField = [[UITextField alloc] initWithFrame:labelFrame];
-    _textField.layer.borderColor = [UIColor whiteColor].CGColor;
-    _textField.delegate = self;
-    [_container addSubview:_textField];
-    */
     
     [self addSubview:_deleteButton];
 }
@@ -132,36 +151,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //[self addGestureRecognizer:tapRecognizer];
 }
 
--(void) loadPaletteItem{
-    
-    [self addViews];
-    [self addGestureRecognizers];
-    
-    self.userInteractionEnabled = YES;
-}
-
--(id)initWithName:(NSString*) name imageName:(NSString*) imageName{
-    self = [super init];
-    if(self){
-        self.name = name;
-        self.imageName = imageName;
-        self.image = [UIImage imageNamed:self.imageName];
-        [self loadPaletteItem];
-    }
-    return self;
-}
-
--(id)initWithName:(NSString*) name {
-    self = [super init];
-    if(self){
-        self.name = name;
-        self.imageName = [NSString stringWithFormat:@"palette_%@.png",name];
-        self.image = [UIImage imageNamed:self.imageName];
-        [self loadPaletteItem];
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
@@ -169,7 +158,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     self = [super init];
     if(self){
         self.name = [decoder decodeObjectForKey:@"name"];
-        //self.imageName = [decoder decodeObjectForKey:@"imageName"];
         self.image = [decoder decodeObjectForKey:@"image"];
         self.isEditable = YES;
         [self loadPaletteItem];
@@ -180,7 +168,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(void) encodeWithCoder:(NSCoder *)aCoder{
     
     [aCoder encodeObject:self.name forKey:@"name"];
-    //[aCoder encodeObject:self.imageName forKey:@"imageName"];
     [aCoder encodeObject:self.image forKey:@"image"];
 }
 
@@ -190,10 +177,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     return [NSArray arrayWithObject:[THPaletteItemProperties properties]];
 }
 
--(void) dealloc
-{
-    [_imageView removeFromSuperview];
-}
 
 #pragma mark Getters/Setters
 
@@ -214,10 +197,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 -(UIImage*) image{
     return _image;
-    //return _imageView.image;
 }
-
-#pragma mark Getters/Setters
 
 -(BOOL) testHit:(CGPoint) location{
     
@@ -340,6 +320,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (void) dropAt:(CGPoint)location
 {
     NSAssert(NO, @"Do not call drop at from abstract class");
+}
+
+
+#pragma mark Lifecycle
+
+-(void) dealloc
+{
+    [_imageView removeFromSuperview];
 }
 
 @end

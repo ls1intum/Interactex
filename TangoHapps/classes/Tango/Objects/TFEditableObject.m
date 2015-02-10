@@ -169,12 +169,23 @@ static NSInteger objectCount = 1;
 }
 
 -(TFMethod*) methodNamed:(NSString*) methodName{
-    return [self.simulableObject methodNamed:methodName];
+    for (TFMethod * method in self.methods) {
+        if([method.name isEqualToString:methodName]){
+            return method;
+        }
+    }
+    return nil;
 }
 
 -(TFEvent*) eventNamed:(NSString*) eventName{
-    return [self.simulableObject eventNamed:eventName];
+    for (TFEvent * event in self.events) {
+        if([event.name isEqualToString:eventName]){
+            return event;
+        }
+    }
+    return nil;
 }
+
 
 #pragma mark - Connections
 
@@ -307,6 +318,7 @@ static NSInteger objectCount = 1;
 
 -(void)displaceBy:(CGPoint)displacement {
     self.position = ccpAdd(self.position, displacement);
+    
 }
 
 -(void) setPosition:(CGPoint)position{
@@ -387,16 +399,7 @@ static NSInteger objectCount = 1;
         return NO;
     }
     
-    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    
-    CGRect canvasBox = editor.zoomableLayer.boundingBox;
-    CGRect oldBoundingBox = self.boundingBox;
-    CGRect newBoundingBox = oldBoundingBox;
-    newBoundingBox.origin = ccpAdd(newBoundingBox.origin,d);
-    if(!CGRectContainsRect(canvasBox, oldBoundingBox) || CGRectContainsRect(canvasBox, newBoundingBox)){
-        return YES;
-    }
-    return NO;
+    return YES;
 }
 
 -(void) handleTouchBegan{
@@ -412,7 +415,7 @@ static NSInteger objectCount = 1;
         glLineWidth(1);
         
         if(self.highlighted){
-            
+            glLineWidth(2);
             ccDrawColor4B(self.highlightColor.r, self.highlightColor.g, self.highlightColor.b, self.highlightColor.a);
             
         } else {
@@ -434,7 +437,7 @@ static NSInteger objectCount = 1;
 
 -(void) addSelectionLabel{
     
-    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter];
     
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];

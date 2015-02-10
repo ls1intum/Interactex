@@ -45,4 +45,5 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THiSwitchEditableObject : THiPhoneControlEditableObject
 
 @property (nonatomic) BOOL on;
+
 @end

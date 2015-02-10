@@ -483,13 +483,7 @@ float const kConnectingTimeout = 7.0f;
     }
     
     [self.firmataController sendDigitalOutputForPort:port value:value];
-    
 }
-/*
--(void) sendDigitalOutputForPin:(THBoardPin*) pin{
-
-    [self.firmataController sendDigitalOutputForPin:pin.number value:pin.value];
-}*/
 
 -(void) sendAnalogOutputForPin:(THBoardPin*) pin{
     [self.firmataController sendAnalogOutputForPin:pin.number value:pin.value];
@@ -589,6 +583,7 @@ float const kConnectingTimeout = 7.0f;
     NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
     
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
+    NSLog(@"%d %d",port,value);
     
     int mask = 1;
     int pinNumber = port * 8;
@@ -600,6 +595,7 @@ float const kConnectingTimeout = 7.0f;
                 uint32_t val = (value & mask) ? 1 : 0;
                 if (pinObj.value != val) {
                     [pinObj removeObserver:self forKeyPath:@"value"];
+                    
                     pinObj.value = val;
                     [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
                 }
@@ -609,7 +605,7 @@ float const kConnectingTimeout = 7.0f;
 }
 
 -(void) firmataController:(IFFirmata *)firmataController didReceiveAnalogMessageOnChannel:(NSInteger)channel value:(NSInteger)value{
-    
+
     NSLog(@"analog msg for pin: %d %d",channel,value);
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
@@ -636,10 +632,9 @@ float const kConnectingTimeout = 7.0f;
         
         id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
         
-        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber];
+        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber - 128];
         
         if(reg){
-            
             
             [component setValuesFromBuffer:buffer+6 length:length-6];
             
@@ -652,6 +647,9 @@ float const kConnectingTimeout = 7.0f;
 #pragma mark UI Interaction
 
 -(IBAction)startButtonTapped:(id)sender {
+    
+    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
+    NSLog(@"%@",project);
     
     if([BLEDiscovery sharedInstance].connectedService){
         

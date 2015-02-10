@@ -41,7 +41,7 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <UIKit/UIKit.h>
-#import "THClientConnectionController2.h"
+#import "THClientConnectionController.h"
 
 const NSTimeInterval kMinInstallationDuration;
 const float kIconInstallationUpdateFrequency;
@@ -63,12 +63,13 @@ const float kIconInstallationUpdateFrequency;
 @property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentActivityLabel;
+@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *checkImageView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 
-@property (nonatomic, weak) THClientConnectionController2 * connectionController;
+@property (nonatomic, weak) THClientConnectionController * connectionController;
 
 @property (weak, nonatomic) id<THClientDownloadViewControllerDelegate> delegate;
 @end

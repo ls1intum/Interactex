@@ -63,9 +63,10 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 @property (nonatomic, readonly) CGPoint center;
-@property (nonatomic,copy) NSString * name;
+@property (nonatomic, copy) NSString * name;
 @property (nonatomic, copy) NSString * saveName;
-@property (nonatomic,copy) NSString * imageName;
+@property (nonatomic, copy) NSString * imageName;
+@property (nonatomic, copy) NSString * displayName;
 @property (nonatomic) UIImage * image;
 @property (nonatomic) BOOL editing;
 @property (nonatomic) BOOL isEditable;
@@ -76,8 +77,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 +(id) paletteItemWithName:(NSString*) name;
 +(id) paletteItemWithName:(NSString*) name imageName:(NSString*) imageName;
++(id) paletteItemWithName:(NSString*) name imageName:(NSString*) imageName displayName:(NSString*) displayName;
 
 -(id)initWithName:(NSString*) name;
 -(id)initWithName:(NSString*) name imageName:(NSString*) imageName;
+-(id)initWithName:(NSString*) name imageName:(NSString*) imageName displayName:(NSString*) displayName;
 
 @end

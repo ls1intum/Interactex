@@ -44,6 +44,10 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THConditionEditableObject.h"
 #import "THComparisonCondition.h"
 
+#import "THProject.h"
+#import "THInvocationConnectionLine.h"
+#import "TFMethodInvokeAction.h"
+
 @class THComparisonCondition;
 @class THComparatorEditableProperties;
 @class TFMethodInvokeAction;
@@ -55,9 +59,6 @@ extern NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes];
 {
     THComparatorEditableProperties * _currentComparatorProperties;
 }
-
-@property (nonatomic, weak) TFMethodInvokeAction * action1;
-@property (nonatomic, weak) TFMethodInvokeAction * action2;
 
 @property (nonatomic, readonly) NSString * propertyName1;
 @property (nonatomic, readonly) NSString * propertyName2;

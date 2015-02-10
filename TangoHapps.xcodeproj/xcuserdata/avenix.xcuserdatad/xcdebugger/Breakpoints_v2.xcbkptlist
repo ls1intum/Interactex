@@ -32,32 +32,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TangoHapps/classes/Tango/Meta Programming/TFMethodInvokeAction.m"
-            timestampString = "434482910.188721"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-startAction"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TangoHappsClient/classes/THClientAppViewController.m"
-            timestampString = "434487411.944422"
+            filePath = "TangoHapps/classes/project view/palette view/THPaletteItem.m"
+            timestampString = "439481378.746057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "589"
-            endingLineNumber = "589"
-            landmarkName = "-firmataController:didReceiveDigitalMessageForPort:value:"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
+            landmarkName = "-dropAt:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

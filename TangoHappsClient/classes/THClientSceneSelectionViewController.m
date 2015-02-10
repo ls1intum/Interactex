@@ -215,7 +215,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(self.editingScenes || self.editingOneScene) return NO;
+    if(self.editingScenes || self.editingOneScene || !self.showingCustomApps) return NO;
     
     THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
     [self showDuplicateMenuForCell:cell];
@@ -284,6 +284,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 //
 -(BOOL) tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(!self.showingCustomApps) return NO;
+    
     UIMenuItem * menuItem = [[UIMenuItem alloc] initWithTitle:@"Duplicate" action:@selector(duplicate:)];
     [[UIMenuController sharedMenuController] setMenuItems: @[menuItem]];
     [[UIMenuController sharedMenuController] update];
@@ -503,20 +505,21 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) pressedLong:(UILongPressGestureRecognizer*) recognizer{
-
-    if(recognizer.state == UIGestureRecognizerStateBegan){
-        if(self.showingIcons &&  !(self.editingScenes || self.editingOneScene)){
-            
-            CGPoint position = [recognizer locationInView:self.collectionView];
-            NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
-            THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
-            
-            if(cell){
-                [cell scaleEffect];
-                currentProjectCell = cell;
-                [NSTimer scheduledTimerWithTimeInterval:kProjectCellScaleEffectDuration target:self selector:@selector(startEditingScene) userInfo:nil repeats:NO];
+    if(self.showingCustomApps){
+        if(recognizer.state == UIGestureRecognizerStateBegan){
+            if(self.showingIcons &&  !(self.editingScenes || self.editingOneScene)){
                 
-                //[self showDuplicateMenuForCell:cell];
+                CGPoint position = [recognizer locationInView:self.collectionView];
+                NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+                THClientCollectionProjectCell * cell = (THClientCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath: indexPath];
+                
+                if(cell){
+                    [cell scaleEffect];
+                    currentProjectCell = cell;
+                    [NSTimer scheduledTimerWithTimeInterval:kProjectCellScaleEffectDuration target:self selector:@selector(startEditingScene) userInfo:nil repeats:NO];
+                    
+                    //[self showDuplicateMenuForCell:cell];
+                }
             }
         }
     }
@@ -633,7 +636,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) updateEditButtonEnabledState{
-    if(self.currentProxiesArray.count == 0){
+    
+    if(!self.showingCustomApps || self.currentProxiesArray.count == 0){
         self.editButton.enabled = NO;
     } else{
         self.editButton.enabled = YES;
@@ -676,7 +680,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void) editButtonTapped:(id)sender {
-    [self startEditingScenes];
+    if(!self.showingCustomApps){
+        [self startEditingScenes];
+    }
 }
 
 - (void) doneButtonTapped:(id)sender {

@@ -80,32 +80,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) NSArray * simulatingTools;
 @property (strong, nonatomic) NSArray * lilypadTools;
 
-// nazmus commented
-/*
-//edition tools
-@property (strong, nonatomic) UIBarButtonItem * connectButton;
-@property (strong, nonatomic) UIBarButtonItem * duplicateButton;
-@property (strong, nonatomic) UIBarButtonItem * removeButton;
-@property (strong, nonatomic) UIBarButtonItem * pushButton;
-@property (strong, nonatomic) UIBarButtonItem * playButton;
-
-//lilypad tools
-@property (strong, nonatomic) UIBarButtonItem * lilypadButton;
-@property (strong, nonatomic) UIBarButtonItem * hideiPhoneButton;
-
-//simulation tools
-@property (strong, nonatomic) UIBarButtonItem * pinsModeButton;
-@property (strong, nonatomic) UIBarButtonItem * stopButton;
- 
-//other tools
-@property (strong, nonatomic) UIBarButtonItem * divider;
-@property (strong, nonatomic) UIBarButtonItem * divider2;
-@property (strong, nonatomic) UIBarButtonItem * emptyItem1;
-@property (strong, nonatomic) UIBarButtonItem * emptyItem2;
-
-*/
-////
-//namus added
 //edition tools
 @property (strong, nonatomic) UIButton * connectButton;
 @property (strong, nonatomic) UIButton * duplicateButton;

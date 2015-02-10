@@ -176,7 +176,9 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.nameLabel){
         [self.nameLabel removeFromParentAndCleanup:YES];
     }
-    self.nameLabel = [CCLabelTTF labelWithString:self.objectName dimensions:kEditableObjectNameLabelSize hAlignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:9];
+    
+    self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultFont fontSize:9 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    
     self.nameLabel.color = ccBLACK;
     self.nameLabel.position = ccp(self.contentSize.width/2,-20);
     [self addChild:self.nameLabel];
@@ -305,6 +307,17 @@ You should have received a copy of the GNU General Public License along with thi
     for (THElementPinEditable * pin in self.pins) {
         if(!pin.attachedToPin){
             [self autoroutePin:pin];
+        }
+    }
+    
+    if(self.isI2CComponent){
+        
+        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+        if(project.boards.count == 1){
+            THBoardEditable * board = [project.boards objectAtIndex:0];
+            if(![board.i2cComponents containsObject:self]){
+                [board addI2CComponent:self];
+            };
         }
     }
 }

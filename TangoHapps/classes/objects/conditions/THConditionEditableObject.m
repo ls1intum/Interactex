@@ -62,55 +62,51 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-        
+    
+    self.action1 = [decoder decodeObjectForKey:@"action1"];
+    self.action2 = [decoder decodeObjectForKey:@"action2"];
+    
     [self loadCondition];
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
+    [coder encodeObject:self.action1 forKey:@"action1"];
+    [coder encodeObject:self.action2 forKey:@"action2"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THConditionEditableObject * copy = [super copyWithZone:zone];
+    
+    copy.action1 = self.action1;
+    copy.action2 = self.action2;
     
     return copy;
 }
 
 #pragma mark - Methods
 
+-(BOOL) isTrue{
+    THConditionObject * condition = (THConditionObject*) self.simulableObject;
+    
+    return condition.isTrue;
+}
+
 -(BOOL) testCondition{
     THConditionObject * condition = (THConditionObject*) self.simulableObject;
     return [condition testCondition];
 }
 
--(void) addToLayer:(TFLayer *)layer{
-    [layer addEditableObject:self];
-}
-
--(void) removeFromLayer:(TFLayer *)layer{
-    [layer removeEditableObject:self];
-}
-
--(void) addToWorld{
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addVisualProgrammingObject:self];
-}
-
--(void) removeFromWorld{
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeVisualProgrammingObject:self];
-    [super removeFromWorld];
-}
-
 -(void) prepareToDie{
     _currentProperties = nil;
+    
+    self.action1 = nil;
+    self.action2 = nil;
     
     [super prepareToDie];
 }

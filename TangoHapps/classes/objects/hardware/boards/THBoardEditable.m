@@ -86,6 +86,8 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     
     self.minusPin.highlightColor = kMinusPinHighlightColor;
     self.plusPin.highlightColor = kPlusPinHighlightColor;
+    
+    self.i2cComponents = [NSMutableArray array];
 }
 
 -(void) addPins{
@@ -143,7 +145,6 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     [coder encodeBool:self.showsWires forKey:@"showsWires"];
     [coder encodeObject:self.i2cComponents forKey:@"i2cComponents"];
 }
-
 
 -(id)copyWithZone:(NSZone *)zone {
     THBoardEditable * copy = [super copyWithZone:zone];

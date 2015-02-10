@@ -102,13 +102,10 @@ CGSize const kLabelSize = {80,30};
     [_label removeFromParentAndCleanup:YES];
     NSString * text = [NSString stringWithFormat:@"%.2f",self.value];
     
-    _label = [CCLabelTTF labelWithString:text dimensions:kLabelSize hAlignment:kCCVerticalTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
+    _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:15 dimensions:kLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
     
-    //_label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultFont fontSize:15 dimensions:kLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
-    
-    //_label = [CCLabelTTF labelWithString:text dimensions:kLabelSize alignment:NSTextAlignmentCenter fontName:kSimulatorDefaultFont fontSize:15];
-    
-    _label.position = ccp(25,20);
+    _label.position = ccp(33,26);
+    [_label setColor:ccc3(6/255.0f, 76/255.0f, 120/255.0f)];
     [self addChild:_label];
     
     _displayedValue = self.value;

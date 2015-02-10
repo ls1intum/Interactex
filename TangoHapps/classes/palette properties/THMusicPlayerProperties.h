@@ -46,11 +46,13 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) IBOutlet UISwitch *playSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *nextSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *previousSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *volumeSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *visibleSwitch;
 
 - (IBAction)playChanged:(id)sender;
 - (IBAction)nextChanged:(id)sender;
 - (IBAction)previousChanged:(id)sender;
+- (IBAction)volumeChanged:(id)sender;
 - (IBAction)visibleChanged:(id)sender;
 
 @end

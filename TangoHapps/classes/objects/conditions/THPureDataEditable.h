@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Technische Universität München. All rights reserved.
 //
 
-#import "THActionEditable.h"
+#import "THProgrammingElementEditable.h"
 
-@interface THPureDataEditable : THActionEditable
+@interface THPureDataEditable : THProgrammingElementEditable
 
 @property (nonatomic, readonly) BOOL on;
 @property (nonatomic) NSInteger variable1;

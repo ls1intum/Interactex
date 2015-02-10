@@ -129,6 +129,8 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
     
     NSLog(@"started receiving a project %@",name);
     
+    [self appendStatusMessage:[NSString stringWithFormat:@"Started receiving a project named '%@'",name]];
+    
     timeWhenInstallationStarted = CACurrentMediaTime();
     
     [self.activityIndicator startAnimating];
@@ -144,6 +146,8 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 -(void) didFinishReceivingProject:(THClientProject *)project {
     
     NSLog(@"received a project");
+    
+    [self appendStatusMessage:[NSString stringWithFormat:@"Received project '%@'",project.name]];
     
     self.progressBar.hidden = YES;
     
@@ -166,6 +170,17 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 }
 
 -(void) didReceiveAssets:(THAssetCollection *)assets{
+    
+}
+
+-(void) appendStatusMessage:(NSString *)msg {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+
+        [self.statusTextView setText:msg];
+        self.statusTextView.showsVerticalScrollIndicator = YES;
+        
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"CoreDataUpdatedNotification"                                                             object:self];
+    }];
     
 }
 

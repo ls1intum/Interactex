@@ -82,6 +82,8 @@ NSString * const kNotificationPinValueChanged = @"notificationPinValueChanged";
 NSString * const kEventTurnedOn = @"turnedOn";
 NSString * const kEventTurnedOff = @"turnedOff";
 NSString * const kEventOnChanged = @"onChanged";
+NSString * const kEventSwitchedOn = @"switchOn";
+NSString * const kEventSwitchedOff = @"switchOff";
 NSString * const kEventIntensityChanged = @"intensityChanged";
 NSString * const kEventFrequencyChanged = @"frequencyChanged";
 NSString * const kEventValueChanged = @"valueChanged";
@@ -89,8 +91,11 @@ NSString * const kEventMapperValueChanged = @"mapperValueChanged";
 NSString * const kEventDxChanged = @"dxChanged";
 NSString * const kEventDyChanged = @"dyChanged";
 NSString * const kEventLightChanged = @"lightChanged";
-NSString * const kEventStartedPressing = @"startedPressing";
+NSString * const kEventStartedPressing = @"startedPressing";//this is for the hardware button
 NSString * const kEventStoppedPressing = @"stoppedPressing";
+NSString * const kEventButtonDown = @"buttonDown";//this is for the iOS button
+NSString * const kEventButtonUp = @"buttonUp";
+
 NSString * const kEventConditionIsTrue = @"conditionTrue";
 NSString * const kEventConditionIsFalse = @"conditionFalse";
 NSString * const kEventConditionChanged = @"conditionChanged";
@@ -110,10 +115,16 @@ NSString * const kEventColorChanged = @"eventColorChanged";
 NSString * const kEventTriggered = @"triggered";
 
 //methods
+
+
+NSString * const kMethodSetIntensity = @"setIntensity";
+NSString * const kMethodVaryIntensity = @"varyIntensity";
 NSString * const kMethodTurnOn = @"turnOn";
 NSString * const kMethodTurnOff = @"turnOff";
 NSString * const kMethodSetValue1 = @"setValue1";
 NSString * const kMethodSetValue2 = @"setValue2";
+NSString * const kMethodAddValue1 = @"addValue1";
+NSString * const kMethodAddValue2 = @"addValue2";
 
 NSString * const kMethodSetRed = @"setRed";
 NSString * const kMethodSetGreen = @"setGreen";

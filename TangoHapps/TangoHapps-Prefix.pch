@@ -4,6 +4,7 @@
 
 #import <Availability.h>
 
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
@@ -40,3 +41,5 @@
 #import "TFAction.h"
 
 #import <CoreMotion/CoreMotion.h>
+
+#define COCOS2D_DEBUG 0

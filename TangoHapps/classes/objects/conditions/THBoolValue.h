@@ -41,8 +41,9 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "TFSimulableObject.h"
+#import "THProgrammingElement.h"
 
-@interface THBoolValue : TFSimulableObject
+@interface THBoolValue : THProgrammingElement
 
 @property (nonatomic) BOOL value;
 

@@ -1,0 +1,96 @@
+———Interactex v2.35———
+
+**Bug Fixing**
+- explanation text in the grouper's property pane is incorrect for third party connections.
+- method highlighting in the property pane is not working anymore. When a method is selected in the method's 
+table, the object connected to that method should be highlighted, together with its connection.
+- the Autoroute option in the property's pane of a hardware element should only be enabled in the hardware mode
+- dragging iOS objects slow when they collide with the iPhone's walls
+- contact Book shows null when names are not provided
+- switch's label in canvas says "button"
+- hardware switch naming not counting properly when a iphone switch in project
+- when iphone selected and switched to hardware mode, the palette looks blank.
+- LSM Compass not working on client when project transferred from the Designer
+- i2c components not added to board when wired automatically
+- grouper highlighting not working for third party connections
+
+———Interactex v2.25 and v2.30———
+
+**Bug Fixing**
+Fixed bug: some elements not displaying selection box when selected
+Fixed bug: sometimes long tap on a palette item cause the app to crash.
+Fixed bug: connection between a String and a Number cause the app to crash when simulating it. MethodInvokeAction
+Fixed bug: connections between object 2 and object 1 overlap
+Fixed bug: volume in THMusicPlayer not working in iOS 7 anymore. Check MPVolumeView
+Fixed bug: UI delays to update the upload button's image after a connection has been received and the pushButton has been set to enabled in the THProjectViewController
+Fixed bug: Projects in selection screen are deleted when moving them
+Fixed bug: Connection Nodes at wrong position after creation
+Fixed bug: Connections between objects and comparator object not removed automatically when connecting third object to the comparator. (might be same problem for the grouper) 
+Fixed bug: crashes when connecting grouper to label. Is it because the method is missing in the EditableObject? Check the bug fixing from me and Timm
+Fixed bug: project images not shown on project selection screen
+Fixed bug: display connection and highlight elements from the grouper properties pane
+Fixed bug: highlight elements from the comparison properties pane (not only connection)
+Fixed bug: fix bug when adding more than two elements to the grouper
+Fixed bug: hardware elements not updating name in canvas (check name field in the properties pane)
+Fixed bug: crashes when contactBook call method is invoked
+Fixed bug: monitoring element is wider than the iPhone's screen, make few pixels smaller
+Fixed bug: temperatureSensor paletteItem label text wrapped (maybe make few pixels wider)
+Fixed bug: opengl draw errors after random combinations of actions in the canvas (Selecting elements, adding elements)
+
+**New Features**
+- hidding palette automatically when moving it to the left and only a small enough portion of it would be visible if left in that state.
+- implemented 3d rotation animation for the palette when changing from items view and properties view.
+- upgraded project to iOS 7 and switch to the multipeer connectivity framework: http://stackoverflow.com/questions/18939472/gksession-is-deprecated-in-ios7-what-should-i-use-now
+- made iPhone hiddable and remove iPhone button from toolbar and iPhone Palette Item
+- made palette items a bit bigger when they start to be dragged
+- made vibration board shake while turned on during simulation mode instead of showing a light sprite
+- changed pin label color when dragging wire from hardware component to lilypad
+- made iPhone non movable and implement the new design for hidding it. 
+- iOS palette items can now only be dropped on iPhone
+- removed the pins controller and its tool icon (which appear only in simulation mode)
+- changed label colors since they could not be seen with white background 
+- automatically switching to properties view when element selected
+- removed iphone from palette
+- functionality to select palette items with a border color slightly stronger than the background color and some pixels offset and some corner radius
+- change iPhone to original size
+- hide menu bar in simulation mode
+- reorder the number palette item so blue and green visual programming palette items are aligned
+- fixed flex sensor image and pins
+- check hardware sensor value limits. Analog objects limit should be 1023 and pwm objects should be 255 
+- added slider to implement zoom
+- created Unit Testing environment
+- fixed warnings when archiving
+- visual programming palette items dont match instantiated objects. USe the same icons
+- iphone with white backhground cannot be distinghuished from canvas image. Add a black border
+- added new Ineractex designer icons
+- added icon & splash screen
+- improved potentiometer’s explanation text
+
+
+
+////////////
+
+
+
+———Interactex Client v1.85———
+
+**Bug Fixing**
+- client crashes when pressing buttons on the UI without being connected to bluetooth device. Buttons (and every other UI element) - fixed - - UI elements should not be enabled before starting the connection
+- client crashes when connecting because text set not on main queue
+- prevent client presets from being edited / removed
+- LSM Compass not working when transferred from the designer
+- Three color LED not working when transferred from the designer
+- switch on property not transferred to client
+- vibration board crashes when starting as pwm
+- accelerometer not working when transferred from designer
+- crashes in client when uploading flex sensor
+
+———Interactex Client v1.80———
+
+**Bug Fixing**
+Fixed bug: client crashes when home button is pressed after it had entered the download view
+Fixed bug: Digital input on Client not working. Use last version of iFirmata.
+
+**New Features**
+- added icon
+- added Label to indicate a connection status on the client
