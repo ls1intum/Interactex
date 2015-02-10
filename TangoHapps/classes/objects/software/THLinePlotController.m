@@ -11,7 +11,7 @@
 
 @interface THLinePlotController ()
 @property (nonatomic, readonly) NSMutableArray *annotations;
-@property (nonatomic, readwrite, strong) NSArray *plotData;
+@property (nonatomic, readwrite, strong) NSMutableArray *plotData;
 @end
 
 @implementation THLinePlotController
@@ -37,7 +37,14 @@
     _inView = view;
     
     if ( data != nil ) {
-        [plotData copy:data];
+        NSMutableArray *contentArray = [[NSMutableArray array] init];
+        for ( NSUInteger i = 0; i < data.count; i++ ) {
+            NSNumber *x = @(1.0 + i * 0.05);
+            NSNumber *y = [NSNumber numberWithInt:data[i]];
+            [contentArray addObject:@{ @"x": x, @"y": y }
+             ];
+        }
+        plotData = contentArray;
     }
 
     return [self init];
@@ -404,7 +411,6 @@
         }
         _graph = nil;
         _inView = nil;
-        _backButton = nil;
     }
 }
 
@@ -415,8 +421,8 @@
 
 -(void)generateData
 {
-    if ( self.plotData == nil ) {
-        NSMutableArray *contentArray = [NSMutableArray array];
+    if ( self.plotData == nil ||self.plotData.count ==0) {
+        NSMutableArray *contentArray = [[NSMutableArray array] init];
         for ( NSUInteger i = 0; i < 10; i++ ) {
             NSNumber *x = @(1.0 + i * 0.05);
             NSNumber *y = @(1.2 * arc4random() / (double)UINT32_MAX + 0.5);
@@ -426,6 +432,8 @@
         self.plotData = contentArray;
     }
 }
+
+
 
 #pragma mark - Navigation
 /*

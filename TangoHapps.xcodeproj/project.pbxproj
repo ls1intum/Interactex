@@ -37,6 +37,14 @@
 		02CD4D961A673563007C7BB0 /* THiBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 02980B701A66DDDE00E59BE2 /* THiBeacon.m */; };
 		02D4E0D91A796E520094F377 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D71A796E520094F377 /* send@2x.png */; };
 		02D4E0DA1A796E520094F377 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D81A796E520094F377 /* send.png */; };
+		02D809B21A80CC4E009DDB4C /* threshold.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809B01A80CC4E009DDB4C /* threshold.png */; };
+		02D809B41A80CC4E009DDB4C /* threshold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809B11A80CC4E009DDB4C /* threshold@2x.png */; };
+		02D809C21A80CC6A009DDB4C /* threshold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809B11A80CC4E009DDB4C /* threshold@2x.png */; };
+		02D809C31A80CC6C009DDB4C /* threshold.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809B01A80CC4E009DDB4C /* threshold.png */; };
+		02D809C61A80CFDB009DDB4C /* graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C41A80CFDB009DDB4C /* graph.png */; };
+		02D809C71A80CFDB009DDB4C /* graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C41A80CFDB009DDB4C /* graph.png */; };
+		02D809C81A80CFDB009DDB4C /* graph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C51A80CFDB009DDB4C /* graph@2x.png */; };
+		02D809C91A80CFDB009DDB4C /* graph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C51A80CFDB009DDB4C /* graph@2x.png */; };
 		02DDB0081A7D4FE1009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */; };
 		02DDB0131A7D4FE5009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */; };
 		02DDB0191A7D5D44009C98EB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDB0181A7D5D44009C98EB /* Accelerate.framework */; };
@@ -1019,6 +1027,10 @@
 		02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "Frameworks/CorePlot/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		02D4E0D71A796E520094F377 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		02D4E0D81A796E520094F377 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
+		02D809B01A80CC4E009DDB4C /* threshold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threshold.png; sourceTree = "<group>"; };
+		02D809B11A80CC4E009DDB4C /* threshold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threshold@2x.png"; sourceTree = "<group>"; };
+		02D809C41A80CFDB009DDB4C /* graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph.png; sourceTree = "<group>"; };
+		02D809C51A80CFDB009DDB4C /* graph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graph@2x.png"; sourceTree = "<group>"; };
 		02DDB0181A7D5D44009C98EB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		02DDB01F1A7D65B0009C98EB /* THLinePlotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLinePlotController.h; path = ../objects/software/THLinePlotController.h; sourceTree = "<group>"; };
 		02DDB0201A7D65B0009C98EB /* THLinePlotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLinePlotController.m; path = ../objects/software/THLinePlotController.m; sourceTree = "<group>"; };
@@ -2189,6 +2201,10 @@
 		9A4144AC17DE7A060061EDF8 /* software */ = {
 			isa = PBXGroup;
 			children = (
+				02D809C41A80CFDB009DDB4C /* graph.png */,
+				02D809C51A80CFDB009DDB4C /* graph@2x.png */,
+				02D809B01A80CC4E009DDB4C /* threshold.png */,
+				02D809B11A80CC4E009DDB4C /* threshold@2x.png */,
 				02D4E0D71A796E520094F377 /* send@2x.png */,
 				02D4E0D81A796E520094F377 /* send.png */,
 				9A4144AD17DE7A060061EDF8 /* backwards.png */,
@@ -3811,6 +3827,8 @@
 				9AF50441167B84B40020241C /* song2.mp3 in Resources */,
 				9ABC27941809B2A500B39D72 /* temperatureSensor@2x.png in Resources */,
 				9AF50442167B84B40020241C /* song3.mp3 in Resources */,
+				02D809B41A80CC4E009DDB4C /* threshold@2x.png in Resources */,
+				02D809B21A80CC4E009DDB4C /* threshold.png in Resources */,
 				9A8BB90E167C7D6400FBABFB /* buzzerPlay.png in Resources */,
 				9A8BB910167C7D6400FBABFB /* buzzerStop.png in Resources */,
 				9A8BB911167C7D6400FBABFB /* buzzerStop@2x.png in Resources */,
@@ -3930,6 +3948,7 @@
 				9A8942A31836215300B8CA0E /* THJennicProperties.xib in Resources */,
 				9A41458517DE7A060061EDF8 /* led@2x.png in Resources */,
 				9A41458717DE7A060061EDF8 /* light.png in Resources */,
+				02D809C81A80CFDB009DDB4C /* graph@2x.png in Resources */,
 				9A41458917DE7A060061EDF8 /* light@2x.png in Resources */,
 				9A41458B17DE7A060061EDF8 /* lightSensor.png in Resources */,
 				9A41458D17DE7A060061EDF8 /* lightSensor@2x.png in Resources */,
@@ -4037,6 +4056,7 @@
 				9A3165A81827989D00CB3E59 /* palette_monitor.png in Resources */,
 				9A5BD74B1860C52E00842833 /* starFilled@2x.png in Resources */,
 				9A41461717DE7A060061EDF8 /* switch.png in Resources */,
+				02D809C61A80CFDB009DDB4C /* graph.png in Resources */,
 				9A41461917DE7A060061EDF8 /* switch@2x.png in Resources */,
 				25E57B5419C0824A006B61A8 /* stopicon@2x.png in Resources */,
 				9A41461B17DE7A060061EDF8 /* switchOn.png in Resources */,
@@ -4124,6 +4144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D809C71A80CFDB009DDB4C /* graph.png in Resources */,
 				9AFB7E4E1833D89800694CCE /* temperatureSensor.png in Resources */,
 				25D5EE371A4331C300FBCA47 /* Images.xcassets in Resources */,
 				9AFB7E5C1833DBCC00694CCE /* button.png in Resources */,
@@ -4140,6 +4161,7 @@
 				9AFB7E421833D89800694CCE /* led.png in Resources */,
 				9A5D046E18844ADC006E9348 /* peer_disconnected.mp3 in Resources */,
 				9AF50036167B83140020241C /* removeButton.png in Resources */,
+				02D809C91A80CFDB009DDB4C /* graph@2x.png in Resources */,
 				9A84C1E61837820500848972 /* musicPlayer@2x.png in Resources */,
 				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
 				024F6AFC1A685B9000E73792 /* pressureSensor.png in Resources */,
@@ -4153,6 +4175,7 @@
 				024F6AFB1A685B9000E73792 /* pressureSensor@2x.png in Resources */,
 				9AF5003B167B83140020241C /* virtualmode.png in Resources */,
 				9A2EA8B819DB2CF200E30E2D /* backwards@2x.png in Resources */,
+				02D809C31A80CC6C009DDB4C /* threshold.png in Resources */,
 				9A2EA8B919DB2CF200E30E2D /* forward.png in Resources */,
 				9A2EA8BE19DB2CF200E30E2D /* pause@2x.png in Resources */,
 				9AFB7E3A1833D89800694CCE /* accelerometer.png in Resources */,
@@ -4172,6 +4195,7 @@
 				9AF50475167B86490020241C /* Default-568h@2x.png in Resources */,
 				9AFB7E581833D89800694CCE /* vibeBoard@2x.png in Resources */,
 				9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
+				02D809C21A80CC6A009DDB4C /* threshold@2x.png in Resources */,
 				9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */,
 				9AFB7E3C1833D89800694CCE /* accelerometer@2x.png in Resources */,
 				9A2EA8BA19DB2CF200E30E2D /* forward@2x.png in Resources */,

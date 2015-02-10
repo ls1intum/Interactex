@@ -9,10 +9,11 @@
 #import "THViewEditableObject.h"
 
 @interface THRecorderEditableObject : THViewEditableObject
-
+/*
 -(void) start;
 -(void) stop;
 -(void) send;
+*/
 -(void) appendData:(NSInteger) data;
 
 @end

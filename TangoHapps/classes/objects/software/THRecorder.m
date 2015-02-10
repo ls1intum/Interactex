@@ -7,8 +7,24 @@
 //
 
 #import "THRecorder.h"
+#import "THLinePlotController.h"
 
 @implementation THRecorder
+
+
+UIImageView * imageView;
+UILabel * label;
+UIButton * startButton;
+UIButton * openGraphButton;
+UIButton * deleteButton;
+UIButton * sendButton;
+UIButton * thresholdButton;
+
+BOOL recording;
+BOOL isRecordDone;
+THLinePlotController * plot;
+
+NSMutableArray* processedBuffer;
 
 @synthesize buffer = _buffer;
 
@@ -21,8 +37,9 @@ NSString * const kStartImageName = @"musicPlay.png";
 NSString * const kStopImageName = @"pause.png";
 NSString * const kRecordImageName = @"recording";
 NSString * const kPushImageName = @"push.png";
-NSString * const kOpenGraphImageName = @"duplicate@2x.png";
+NSString * const kOpenGraphImageName = @"graph.png";
 NSString * const kDeleteImageName = @"delete.png";
+NSString * const kThresholdImageName = @"threshold.png";
 
 #pragma mark - Initializing
 
@@ -42,8 +59,8 @@ NSString * const kDeleteImageName = @"delete.png";
 
 -(void) initVariables{
     
-    _recording = NO;
-    _isRecordDone = NO;
+    recording = NO;
+    isRecordDone = NO;
     
     [self updateLabel];
 }
@@ -56,47 +73,51 @@ NSString * const kDeleteImageName = @"delete.png";
     self.view = containerView;
     
     UIImage * image =  [UIImage imageNamed:kRecordImageName];
-    _imageView = [[UIImageView alloc] initWithImage:image];
-    _imageView.frame= CGRectMake(5, 5, image.size.width, image.size.height);
-    [self.view addSubview:_imageView];
+    imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame= CGRectMake(5, 5, image.size.width, image.size.height);
+    [self.view addSubview:imageView];
     
-    _label = [[UILabel alloc] init];
-    _label.layer.borderWidth = 1.0f;
-    CGRect imageFrame = _imageView.frame;
+    label = [[UILabel alloc] init];
+    label.layer.borderWidth = 1.0f;
+    CGRect imageFrame = imageView.frame;
     float x = imageFrame.origin.x + imageFrame.size.width + kRecorderInnerPadding;
-    _label.frame = CGRectMake(x, 5, self.width - imageFrame.size.width - 20, kRecorderLabelHeight);
-    _label.textAlignment = NSTextAlignmentCenter;
-    _label.font = [UIFont systemFontOfSize:12];
-    _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:_label];
+    label.frame = CGRectMake(x, 5, self.width - imageFrame.size.width - 20, kRecorderLabelHeight);
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:12];
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
+    [self.view addSubview:label];
     
-    CGRect deleteButtonFrame = CGRectMake(110+kRecorderButtonWidth+kRecorderInnerPadding, _label.frame.origin.y -10, 3*kRecorderButtonWidth, 3*kRecorderButtonHeight);
-    _deleteButton = [self buttonWithFrame:deleteButtonFrame imageName:kDeleteImageName];
-    [_deleteButton addTarget:self action:@selector(deleteGraph) forControlEvents:UIControlEventTouchDown];
+    CGRect deleteButtonFrame = CGRectMake(50+kRecorderButtonWidth+kRecorderInnerPadding, label.frame.origin.y-10, 3*kRecorderButtonWidth, 3*kRecorderButtonHeight);
+    deleteButton = [self buttonWithFrame:deleteButtonFrame imageName:kDeleteImageName];
+    [deleteButton addTarget:self action:@selector(deleteGraph) forControlEvents:UIControlEventTouchDown];
     
-    CGRect sendButtonFrame = CGRectMake(30, _label.frame.origin.y -10, 3*kRecorderButtonWidth, 3*kRecorderButtonHeight);
-    _sendButton = [self buttonWithFrame:sendButtonFrame imageName:kPushImageName];
-    [_sendButton addTarget:self action:@selector(sendGraph) forControlEvents:UIControlEventTouchDown];
+    CGRect sendButtonFrame = CGRectMake(20, label.frame.origin.y -10, 3*kRecorderButtonWidth, 3*kRecorderButtonHeight);
+    sendButton = [self buttonWithFrame:sendButtonFrame imageName:kPushImageName];
+    [sendButton addTarget:self action:@selector(sendGraph) forControlEvents:UIControlEventTouchDown];
     
-    CGRect startButtonFrame = CGRectMake(120, _label.frame.origin.y + _label.frame.size.height + kRecorderInnerPadding, kRecorderButtonWidth, kRecorderButtonHeight);
-    _startButton = [self buttonWithFrame:startButtonFrame imageName:kStartImageName];
-    [_startButton addTarget:self action:@selector(toggleStart) forControlEvents:UIControlEventTouchDown];
+    CGRect thresholdButtonFrame = CGRectMake(185, label.frame.origin.y +20,kRecorderButtonWidth, kRecorderButtonHeight);
+    thresholdButton = [self buttonWithFrame:thresholdButtonFrame imageName:kThresholdImageName];
+    [thresholdButton addTarget:self action:@selector(applyThreshold) forControlEvents:UIControlEventTouchDown];
     
-    CGRect openGraphButtonFrame = CGRectMake(170, _label.frame.origin.y + _label.frame.size.height + kRecorderInnerPadding, kRecorderButtonWidth, kRecorderButtonHeight);
-    _openGraphButton = [self buttonWithFrame:openGraphButtonFrame imageName:kOpenGraphImageName];
-    [_openGraphButton addTarget:self action:@selector(openGraph) forControlEvents:UIControlEventTouchDown];
+    CGRect startButtonFrame = CGRectMake(120, label.frame.origin.y + label.frame.size.height + kRecorderInnerPadding, kRecorderButtonWidth, kRecorderButtonHeight);
+    startButton = [self buttonWithFrame:startButtonFrame imageName:kStartImageName];
+    [startButton addTarget:self action:@selector(toggleStart) forControlEvents:UIControlEventTouchDown];
+    
+    CGRect openGraphButtonFrame = CGRectMake(170, label.frame.origin.y + label.frame.size.height + kRecorderInnerPadding, kRecorderButtonWidth, kRecorderButtonHeight);
+    openGraphButton = [self buttonWithFrame:openGraphButtonFrame imageName:kOpenGraphImageName];
+    [openGraphButton addTarget:self action:@selector(openGraph) forControlEvents:UIControlEventTouchDown];
 
    /* _plotView = [[UIView alloc] init];
-    _plotView.bounds = CGRectMake(-125, -180, self.width+15, self.height-kRecorderButtonHeight-_label.frame.size.height+10);
+    _plotView.bounds = CGRectMake(-125, -180, self.width+15, self.height-kRecorderButtonHeight-label.frame.size.height+10);
     */
     [self setFirstPage];
-    _startButton.enabled = NO;
+    startButton.enabled = NO;
     
-    //[self.view addSubview:_plotView];
-    [self.view addSubview:_deleteButton];
-    [self.view addSubview:_sendButton];
-    [self.view addSubview:_startButton];
-    [self.view addSubview:_openGraphButton];
+    [self.view addSubview:thresholdButton];
+    [self.view addSubview:deleteButton];
+    [self.view addSubview:sendButton];
+    [self.view addSubview:startButton];
+    [self.view addSubview:openGraphButton];
     
 }
 
@@ -150,9 +171,32 @@ NSString * const kDeleteImageName = @"delete.png";
 
 #pragma mark - UI functions
 
+-(void)applyThreshold{
+    if(!plot)
+        return;
+    
+    NSMutableArray * selected = [plot getMarkedPoints];
+    if(selected.count !=1)
+        return;
+    
+    int threshold = [selected objectAtIndex:0];
+    processedBuffer = [[NSMutableArray alloc] init];
+    
+    for(int i = 0; i<self.buffer.count; i++){
+        if(threshold >= (NSInteger )self.buffer[i])
+            [processedBuffer addObject:self.buffer[i]];
+    }
+    
+    plot = nil;
+    
+    plot = [[THLinePlotController alloc] initWithView:self.view withData:processedBuffer];
+    [self setSecondPage];
+    
+}
+
 -(void) toggleStart{
     
-    if(_recording){
+    if(recording){
         [self stop];
     } else {
         [self start];
@@ -160,37 +204,37 @@ NSString * const kDeleteImageName = @"delete.png";
 }
 
 -(void) start{
-    _recording = YES;
-    _isRecordDone = NO;
+    recording = YES;
+    isRecordDone = NO;
     
     [self updateLabel];
     
     [self setFirstPage];
     
-    if(_startButton != nil){
+    if(startButton != nil){
         UIImage * playImage = [UIImage imageNamed:kStopImageName];
-        [_startButton setBackgroundImage:playImage forState:UIControlStateNormal];
+        [startButton setBackgroundImage:playImage forState:UIControlStateNormal];
     }
 }
 
 -(void) stop{
-    _recording = NO;
-    _isRecordDone = YES;
+    recording = NO;
+    isRecordDone = YES;
     
     [self updateLabel];
     
-    _openGraphButton.enabled = YES;
-    [_openGraphButton setAlpha:1.0];
+    openGraphButton.enabled = YES;
+    [openGraphButton setAlpha:1.0];
     
-    if(_startButton != nil){
+    if(startButton != nil){
         UIImage * playImage = [UIImage imageNamed:kStartImageName];
-        [_startButton setBackgroundImage:playImage forState:UIControlStateNormal];
+        [startButton setBackgroundImage:playImage forState:UIControlStateNormal];
     }
 }
 
 -(void) openGraph{
 
-    //plot = [[THLinePlotController alloc] initWithView:self.view withData:buffer];
+    //plot = [[THLinePlotController alloc] initWithView:self.view withData:self.buffer];
     plot = [[THLinePlotController alloc] initWithView:self.view withData:nil];
     
     [self setSecondPage];
@@ -202,14 +246,17 @@ NSString * const kDeleteImageName = @"delete.png";
         plot =nil;
     
     [self setFirstPage];
+    
+    openGraphButton.enabled = YES;
+    [openGraphButton setAlpha:1.0];
 }
 
 -(void) sendGraph{
     /*
      [self openGraph];
      
-     if(_isRecordDone){
-     _isRecordDone = NO;
+     if(isRecordDone){
+     isRecordDone = NO;
      [_openGraph setAlpha:0.0];
      [self updateLabel];
      [self sendInformation];
@@ -228,7 +275,7 @@ NSString * const kDeleteImageName = @"delete.png";
 #pragma mark - Method
 
 -(void) appendData:(NSInteger)data{
-    if(_recording)
+    if(recording)
         [self.buffer addObject:[NSNumber numberWithInt:data]];
 }
 
@@ -245,41 +292,49 @@ NSString * const kDeleteImageName = @"delete.png";
 }
 
 -(void) setFirstPage{
-    _openGraphButton.enabled = NO;
-    [_openGraphButton setAlpha:0.0];
     
-    _startButton.enabled = YES;
-    [_startButton setAlpha:1.0];
+    thresholdButton.enabled = NO;
+    [thresholdButton setAlpha:0.0];
     
-    _label.enabled = YES;
-    [_label setAlpha:1.0];
+    openGraphButton.enabled = NO;
+    [openGraphButton setAlpha:0.0];
     
-    _deleteButton.enabled = NO;
-    [_deleteButton setAlpha:0.0];
+    startButton.enabled = YES;
+    [startButton setAlpha:1.0];
     
-    _sendButton.enabled = NO;
-    [_sendButton setAlpha:0.0];
+    label.enabled = YES;
+    [label setAlpha:1.0];
     
-    [_imageView setAlpha:1.0];
+    deleteButton.enabled = NO;
+    [deleteButton setAlpha:0.0];
+    
+    sendButton.enabled = NO;
+    [sendButton setAlpha:0.0];
+    
+    [imageView setAlpha:1.0];
 }
 
 -(void) setSecondPage{
-    _openGraphButton.enabled = NO;
-    [_openGraphButton setAlpha:0.0];
     
-    _startButton.enabled = NO;
-    [_startButton setAlpha:0.0];
+    thresholdButton.enabled = YES;
+    [thresholdButton setAlpha:1.0];
     
-    _label.enabled = NO;
-    [_label setAlpha:0.0];
+    openGraphButton.enabled = NO;
+    [openGraphButton setAlpha:0.0];
     
-    _deleteButton.enabled = YES;
-    [_deleteButton setAlpha:1.0];
+    startButton.enabled = NO;
+    [startButton setAlpha:0.0];
     
-    _sendButton.enabled = YES;
-    [_sendButton setAlpha:1.0];
+    label.enabled = NO;
+    [label setAlpha:0.0];
     
-    [_imageView setAlpha:0.0];
+    deleteButton.enabled = YES;
+    [deleteButton setAlpha:1.0];
+    
+    sendButton.enabled = YES;
+    [sendButton setAlpha:1.0];
+    
+    [imageView setAlpha:0.0];
 }
 
 -(void) sendInformation{ //TODO
@@ -287,9 +342,9 @@ NSString * const kDeleteImageName = @"delete.png";
 
 -(void) updateLabel{
     
-    if(_recording){
+    if(recording){
         [self setText:@"Recording!"];
-    } else if(_isRecordDone){
+    } else if(isRecordDone){
         [self setText:@"Send?"];
     } else {
         [self setText:@"Not Recording."];
@@ -317,11 +372,11 @@ NSString * const kDeleteImageName = @"delete.png";
 }
 
 -(void) setText:(NSString *)text{
-    _label.text = text;
+    label.text = text;
 }
 
 -(NSString*) text{
-    return _label.text;
+    return label.text;
 }
 
 -(NSString*) description{
@@ -329,16 +384,16 @@ NSString * const kDeleteImageName = @"delete.png";
 }
 
 -(void) willStartSimulating{
-    _startButton.enabled = YES;
-    _openGraphButton.enabled = YES;
+    startButton.enabled = YES;
+    openGraphButton.enabled = YES;
     [self updateLabel];
 }
 
 -(void) stopSimulating{
-    _startButton.enabled = NO;
-    _openGraphButton.enabled = NO;
-    _sendButton.enabled = NO;
-    _deleteButton.enabled = NO;
+    startButton.enabled = NO;
+    openGraphButton.enabled = NO;
+    sendButton.enabled = NO;
+    deleteButton.enabled = NO;
     [self stop];
     [super stopSimulating];
 }

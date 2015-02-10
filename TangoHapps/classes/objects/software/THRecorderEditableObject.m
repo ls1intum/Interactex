@@ -59,7 +59,7 @@
 -(void) updateBoudingBox{
 }
 */
-
+/*
 -(void) start{
     THRecorder * recorder = (THRecorder * ) self.simulableObject;
     [recorder start];
@@ -74,7 +74,7 @@
     THRecorder * recorder = (THRecorder * ) self.simulableObject;
     [recorder send];
 }
-
+*/
 -(void) appendData:(NSInteger)data{
     THRecorder * recorder = (THRecorder * ) self.simulableObject;
     [recorder appendData:data];

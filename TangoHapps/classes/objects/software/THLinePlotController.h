@@ -14,7 +14,6 @@
 @interface THLinePlotController : THView<CPTPlotAreaDelegate,CPTPlotSpaceDelegate,CPTPlotDataSource,CPTScatterPlotDelegate>
 {
     CPTGraphHostingView *_hostingView;
-    UIButton *_backButton;
     CPTXYGraph *_graph;
     UIView * _inView;
 }
