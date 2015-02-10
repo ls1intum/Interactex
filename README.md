@@ -96,7 +96,7 @@ The Interactex Applications are constructed by drag and dropping objects. Here i
 
 
 UI Element | Name | Description | Methods |
-:---------:| ---- |:----------- | ---- |
+:---------:| ---- |:----------- | ——————— |
 ![](Documentation/icons/ui/ibutton.png)     | Button          | A button that can be pressed. Generates events when pressed and when released.	| 
 ![](Documentation/icons/ui/label.png)       | Label           | Displays text and numbers.	| setText
 ![](Documentation/icons/ui/iswitch.png)     | Switch          | Generates events when switched on or off.	| 
@@ -109,7 +109,7 @@ UI Element | Name | Description | Methods |
 
 
 Hardware Elements | Name | Description | Methods |
-:----------------:| ----- |:---------- | ---- |
+:----------------:| ---- |:——————————— | ——————— |
 ![](Documentation/icons/hardware/led.png) | LED | Can be turned on or off and its intensity can be set (be sure to set the corresponding pin to PWM mode)	| turnOn, turnOff, setItensity
 ![](Documentation/icons/hardware/button.png)            | Button              | A Lilypad button that can be pressed. Generates events when pressed and when released.	| 
 ![](Documentation/icons/hardware/switch.png)            | Switch              | A Lilypad switch. Generates events when switched on or off.	| 
