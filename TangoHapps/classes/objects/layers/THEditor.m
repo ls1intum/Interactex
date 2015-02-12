@@ -188,8 +188,11 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) unselectAndDeleteEditableObject:(TFEditableObject*) editableObject{
     if(self.currentObject == editableObject){
         [self unselectCurrentObject];
+        THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+        [[projectController tabController] showTab:0];
     }
     [editableObject removeFromWorld];
+    
 }
 
 -(THWireNode*) wireNodeAtPosition:(CGPoint) position{
@@ -775,14 +778,20 @@ You should have received a copy of the GNU General Public License along with thi
         
         THProject * project = [THDirector sharedDirector].currentProject;
         TFEditableObject * object = [project objectAtLocation:location];
+        THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+        
         if(object){
             [self unselectAndDeleteEditableObject:object];
-        
         } else {
             
             THWire * wire = (THWire*) [project wireAtLocation:location];
             if(wire.nodes.count == 1){
+                if (wire.selected) {
+                    [self unselectCurrentObject];
+                    [[projectController tabController] showTab:0];
+                }
                 [self removeEditableObject:wire];
+                
                 [wire.obj2 deattachPin:wire.obj1];
                 
                 if(wire){
@@ -795,6 +804,7 @@ You should have received a copy of the GNU General Public License along with thi
             
             
         }
+        
     } else {
         [self selectObjectAtPosition:location];
     }
