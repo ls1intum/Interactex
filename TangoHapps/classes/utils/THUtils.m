@@ -69,8 +69,10 @@ CGImageRef UIGetScreenImage(void);
 
 +(UIImage*)screenshot
 {
-    CGImageRef screen = UIGetScreenImage();
-    UIImage * image = [UIImage imageWithCGImage:screen];
+    //CGImageRef screen = UIGetScreenImage();
+    //UIImage * image = [UIImage imageWithCGImage:screen];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     //CGImageRelease(screen);
     return image;
 }

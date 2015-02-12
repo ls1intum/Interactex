@@ -78,6 +78,7 @@ NSString * const kNotificationPinAttached = @"notificationPinAttached";
 NSString * const kNotificationPinDeattached = @"notificationPinDeattached";
 NSString * const kNotificationPinValueChanged = @"notificationPinValueChanged";
 
+
 //events
 NSString * const kEventTurnedOn = @"turnedOn";
 NSString * const kEventTurnedOff = @"turnedOff";
@@ -113,6 +114,11 @@ NSString * const kEventHeadingChanged = @"eventHeadingChanged";
 NSString * const kEventColorChanged = @"eventColorChanged";
 
 NSString * const kEventTriggered = @"triggered";
+
+NSString * const KEventiBeaconRegionEntered = @"iBeaconRegionEntered";
+NSString * const KEventiBeaconRegionExited = @"iBeaconRegionExited";
+NSString * const KEventiBeaconRangingStatusChanged = @"iBeaconRangingStatusChanged";
+NSString * const kEventPressureChanged = @"pressureChanged";
 
 //methods
 

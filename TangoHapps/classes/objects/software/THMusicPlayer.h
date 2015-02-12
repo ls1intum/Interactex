@@ -27,7 +27,7 @@ github.com/gabriel/gh-unit
 Interactex also implements the Firmata protocol. Its software serial library is based on the original Arduino Firmata library.
 www.firmata.org
 
-All hardware part graphics in Interactex Designer are reproduced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
+All hardware part graphics in Interactex Designer are reproduxced with kind permission from Fritzing. Fritzing is an open-source hardware initiative to support designers, artists, researchers and hobbyists to work creatively with interactive electronics.
 www.frizting.org
 
 Martijn ten Bhömer from TU Eindhoven contributed PureData support. Contact: m.t.bhomer@tue.nl.
@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     NSInteger _currentSongIdx;
     
     UILabel * _label;
-    MPMusicPlayerController * _musicPlayer;
+   // MPMusicPlayerController * _musicPlayer;
     
     UIButton * _playButton;
     UIButton * _nextButton;
@@ -66,6 +66,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic,readonly) NSString * currentSong;
 @property (nonatomic) float volume;
+@property (nonatomic, strong) MPMusicPlayerController * musicPlayer;
+
+
 
 @property (nonatomic, readonly) BOOL playing;
 @property (nonatomic) BOOL showPlayButton;

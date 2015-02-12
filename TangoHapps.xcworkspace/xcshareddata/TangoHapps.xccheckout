@@ -12,6 +12,8 @@
 	<dict>
 		<key>84410F66CAD3859283F4388870B4C7B8079BC454</key>
 		<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
+		<key>8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5</key>
+		<string>https://github.com/core-plot/core-plot.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TangoHapps.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>84410F66CAD3859283F4388870B4C7B8079BC454</key>
 		<string>..</string>
+		<key>8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5</key>
+		<string>../../core-plot</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
@@ -28,6 +32,14 @@
 	<string>84410F66CAD3859283F4388870B4C7B8079BC454</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>core-plot</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

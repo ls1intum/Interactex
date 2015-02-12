@@ -77,7 +77,9 @@ typedef enum{
     kHardwareTypeMPUCompass,
     kHardwareTypeLipoBattery,
     kHardwareTypePowerSupply,
-    kHardwareTypeFlexSensor//15
+    kHardwareTypeFlexSensor,//15
+    kHardwareTypeiBeacon,
+    kHardwareTypePressureSensor
 }THHardwareType;
 
 #define kNumPinTypes 4
@@ -204,6 +206,10 @@ extern NSString * const kEventScaleChanged;
 extern NSString * const kEventLongPressed;
 extern NSString * const kEventColorChanged;
 extern NSString * const kEventTriggered;
+extern NSString * const KEventiBeaconRegionEntered;
+extern NSString * const KEventiBeaconRegionExited;
+extern NSString * const KEventiBeaconRangingStatusChanged;
+extern NSString * const kEventPressureChanged;
 
 //methods
 extern NSString * const kMethodSetIntensity;

@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTemperatureSensorPaletteItem.h"
 #import "THAccelerometerPaletteItem.h"
 #import "THFlexSensorPaletteItem.h"
+#import "THRecorderPaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -91,6 +92,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
 #import "THPureDataPaletteItem.h"
+#import "THiBeaconPaletteItem.h"
+#import "THPressureSensorPaletteItem.h"
 
 @implementation THPaletteViewController
 
@@ -454,6 +457,7 @@ You should have received a copy of the GNU General Public License along with thi
                            [THImageViewPaletteItem paletteItemWithName:@"imageview" imageName:@"palette_imageview" displayName:@"image"],
                            [THContactBookPaletteItem paletteItemWithName:@"contactBook" imageName:@"palette_contactBook" displayName:@"contact book"],
                            [THMonitorPaletteItem paletteItemWithName:@"monitor" imageName:@"palette_monitor" displayName:@"graph"],
+                           [THRecorderPaletteItem paletteItemWithName:@"recorder" imageName:@"palette_recording" displayName:@"recorder"],
                            nil];
     
     self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
@@ -475,6 +479,9 @@ You should have received a copy of the GNU General Public License along with thi
                                  [THVibrationBoardPaletteItem paletteItemWithName:@"vibeBoard" imageName:@"palette_vibeBoard" displayName:@"vibration board"],[THTemperatureSensorPaletteItem paletteItemWithName:@"temperatureSensor" imageName:@"palette_temperatureSensor" displayName:@"temperature sensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                  [THFlexSensorPaletteItem paletteItemWithName:@"flexSensor" imageName:@"palette_flexSensor" displayName:@"flex sensor"],
+                                 [[THiBeaconPaletteItem alloc] initWithName:@"iBeacon"],
+                                 [THPressureSensorPaletteItem paletteItemWithName:@"pressureSensor"
+                                        imageName:@"palette_pressureSensor" displayName:@"pressure sensor"],
                                  nil];
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
