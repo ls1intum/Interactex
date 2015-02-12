@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
     NSInteger _currentSongIdx;
     
     UILabel * _label;
-    MPMusicPlayerController * _musicPlayer;
+   // MPMusicPlayerController * _musicPlayer;
     
     UIButton * _playButton;
     UIButton * _nextButton;
@@ -66,6 +66,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic,readonly) NSString * currentSong;
 @property (nonatomic) float volume;
+@property (nonatomic, strong) MPMusicPlayerController * musicPlayer;
+
+
 
 @property (nonatomic, readonly) BOOL playing;
 @property (nonatomic) BOOL showPlayButton;
