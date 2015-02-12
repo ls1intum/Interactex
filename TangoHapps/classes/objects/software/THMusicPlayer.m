@@ -199,12 +199,12 @@ NSString * const kPauseImageName = @"pause.png";
     _songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
 #else
     
-    _musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+    self.musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
     MPMediaQuery * songsQuery = [MPMediaQuery songsQuery];
     [songsQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
     
-    [_musicPlayer setQueueWithQuery:songsQuery];
-    [_musicPlayer setRepeatMode:MPMusicRepeatModeAll];
+    [self.musicPlayer setQueueWithQuery:songsQuery];
+    [self.musicPlayer setRepeatMode:MPMusicRepeatModeAll];
     _songs = songsQuery.items;
 #endif
 
@@ -255,7 +255,7 @@ NSString * const kPauseImageName = @"pause.png";
 }
 
 -(void) handleCurrentPlayerStateChanged{
-    if(_musicPlayer.playbackState == MPMusicPlaybackStatePlaying){
+    if(self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying){
         //NSLog(@"playing");
         _playing = YES;
     } else {
@@ -336,7 +336,7 @@ NSString * const kPauseImageName = @"pause.png";
     
     //MPMediaQuery * songsQuery = [MPMediaQuery songsQuery];
     //MPMediaItem * song = [songsQuery.items objectAtIndex:_currentSongIdx];
-    MPMediaItem * song = _musicPlayer.nowPlayingItem;
+    MPMediaItem * song = self.musicPlayer.nowPlayingItem;
     if(song){
         return [song valueForProperty: MPMediaItemPropertyTitle];
     } else {
@@ -350,9 +350,9 @@ NSString * const kPauseImageName = @"pause.png";
 #if (TARGET_IPHONE_SIMULATOR)
     return _playing;
 #else
-    NSLog(@"state: %d",_musicPlayer.playbackState);
+    NSLog(@"state: %d",self.musicPlayer.playbackState);
     
-    return _musicPlayer.playbackState == MPMusicPlaybackStatePlaying;
+    return self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying;
 #endif
 }
            
@@ -388,7 +388,7 @@ NSString * const kPauseImageName = @"pause.png";
     //[[CDAudioManager sharedManager] stopBackgroundMusic];
     _playing = NO;
 #else
-    [_musicPlayer pause];
+    [self.musicPlayer pause];
 #endif
     
     if(_playButton != nil){
@@ -402,7 +402,7 @@ NSString * const kPauseImageName = @"pause.png";
 #if (TARGET_IPHONE_SIMULATOR)
     //[self pause];
 #else
-    [_musicPlayer stop];
+    [self.musicPlayer stop];
 #endif
     
     [self updateLabel];
@@ -416,7 +416,7 @@ NSString * const kPauseImageName = @"pause.png";
     }
     //[self play];
 #else
-    [_musicPlayer skipToNextItem];
+    [self.musicPlayer skipToNextItem];
 #endif
 }
 
@@ -428,7 +428,7 @@ NSString * const kPauseImageName = @"pause.png";
     }
     [self play];
 #else
-    [_musicPlayer skipToPreviousItem];
+    [self.musicPlayer skipToPreviousItem];
 #endif
     
 }
@@ -461,8 +461,8 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) prepareToDie{
     
 #if !(TARGET_IPHONE_SIMULATOR)
-    [_musicPlayer stop];
-    _musicPlayer = nil;
+    [self.musicPlayer stop];
+    self.musicPlayer = nil;
 #endif
     [super prepareToDie];
 }
