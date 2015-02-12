@@ -526,7 +526,7 @@ float const kToolsTabMargin = 5;
         self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
         //[self updatePalettePullVisibility]; //Nazmus 12 Feb commented
-        [self removePalettePullRecognizer];
+        //[self removePalettePullRecognizer];
         [self updateHideIphoneButtonTint];
     }
 }
@@ -611,8 +611,6 @@ float const kToolsTabMargin = 5;
     UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
     if ([imageName isEqualToString:@"vpmode.png"]) {
         [retButton setFrame:CGRectMake(0, 0, 330, 73)];
-    } else if ([imageName isEqualToString:@"palettePull.png"]) {
-        [retButton setFrame:CGRectMake(0, 0, 60, 64)];
     }
     [retButton setImage:connectButtonImage forState:UIControlStateNormal];
     [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
@@ -725,11 +723,16 @@ float const kToolsTabMargin = 5;
     
     float totalWidth = [[self.menuController.view viewWithTag:1] frame].size.width;
     float offset = 0;
+    float xPos = 0;
     
     for (int i = 0; i < tools.count; i++) {
         CGRect itemFrame = [[tools objectAtIndex:i] frame];
         offset += itemFrame.size.width;
-        [[tools objectAtIndex:i] setFrame:CGRectMake(totalWidth - offset,
+        xPos = totalWidth - offset;
+        if ([[tools objectAtIndex:i] isEqual:self.hidePaletteButton]) {
+            xPos = self.tabController.view.frame.origin.x + self.tabController.view.frame.size.width;
+        }
+        [[tools objectAtIndex:i] setFrame:CGRectMake(xPos,
                                                                  itemFrame.origin.y,
                                                                  itemFrame.size.width,
                                                                  itemFrame.size.height)];
