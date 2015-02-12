@@ -87,6 +87,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (strong, nonatomic) UIButton * pushButton;
 @property (strong, nonatomic) UIBarButtonItem * playButton;
 
+@property (strong, nonatomic) UIButton * hidePaletteButton;
+
 //lilypad tools
 @property (strong, nonatomic) UIButton * lilypadButton;
 @property (strong, nonatomic) UIButton * hideiPhoneButton;

@@ -152,8 +152,8 @@ float const kToolsTabMargin = 5;
     
     [self reloadContent];
     
-    [self addPalettePull];
-    [self updatePalettePullVisibility];
+    //[self addPalettePull]; //Nazmus 12 Feb commented
+    //[self updatePalettePullVisibility];
     
     THProject * project = [THDirector sharedDirector].currentProject;
     self.navigationItem.title = project.name;
@@ -318,7 +318,7 @@ float const kToolsTabMargin = 5;
     
     [self.view addSubview:self.palettePullImageView];
     
-    [self addPalettePullGestureRecognizer];
+    //[self addPalettePullGestureRecognizer]; // Nazmus commented 12 Feb - to remove palette pull functionality
 }
 
 -(void) moved:(UIPanGestureRecognizer*) sender{
@@ -493,8 +493,8 @@ float const kToolsTabMargin = 5;
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         project.iPhone.visible = YES;
 
-        [self updatePalettePullVisibility];
-        [self addPalettePullGestureRecognizer];
+        //[self updatePalettePullVisibility]; //Nazmus 12 Feb commented
+        //[self addPalettePullGestureRecognizer]; // Nazmus commented 12 Feb - to remove palette pull functionality
         [self updatePinsModeItemTint];
     }
 }
@@ -525,7 +525,7 @@ float const kToolsTabMargin = 5;
         
         self.editingTools = self.editingToolsWithVPmode;
         [self addEditionButtons];
-        [self updatePalettePullVisibility];
+        //[self updatePalettePullVisibility]; //Nazmus 12 Feb commented
         [self removePalettePullRecognizer];
         [self updateHideIphoneButtonTint];
     }
@@ -611,6 +611,8 @@ float const kToolsTabMargin = 5;
     UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
     if ([imageName isEqualToString:@"vpmode.png"]) {
         [retButton setFrame:CGRectMake(0, 0, 330, 73)];
+    } else if ([imageName isEqualToString:@"palettePull.png"]) {
+        [retButton setFrame:CGRectMake(0, 0, 60, 64)];
     }
     [retButton setImage:connectButtonImage forState:UIControlStateNormal];
     [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
@@ -633,6 +635,7 @@ float const kToolsTabMargin = 5;
     self.lilypadButton = [self createItemWithImageName:@"lilypadmode.png" action:@selector(lilypadPressed:)];
     self.pinsModeButton = [self createItemWithImageName:@"pinsmode.png" action:@selector(pinsModePressed:)];
     self.hideiPhoneButton = [self createItemWithImageName:@"hideVPmode.png" action:@selector(hideiPhonePressed:)];
+    self.hidePaletteButton = [self createItemWithImageName:@"palettePull.png" action:@selector(hidePalettePressed:)];
     self.vpmodeButton = [self createItemWithImageName:@"vpmode.png" action:nil];
     [self.vpmodeButton setUserInteractionEnabled:NO];
     
@@ -661,16 +664,16 @@ float const kToolsTabMargin = 5;
     */
     ////
     // nazmus added
-    self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
-    self.editingToolsWithoutVPmode = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.editingToolsWithoutVPmode = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
     self.editingTools = self.editingToolsWithVPmode;
     
     //self.simulatingTools = [NSArray arrayWithObjects: self.pinsModeButton, nil];
     self.simulatingTools = [[NSArray alloc ] init];
     
-    self.lilypadTools = [NSArray arrayWithObjects: self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, nil];
+    self.lilypadTools = [NSArray arrayWithObjects: self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
     self.highlightedItemTintColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
     self.hideiPhoneButton.backgroundColor = self.highlightedItemTintColor;
@@ -866,6 +869,25 @@ float const kToolsTabMargin = 5;
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
+}
+
+- (void) hidePalettePressed:(id)sender {
+    CGRect paletteFrame = self.tabController.view.frame;
+    CGRect imageViewFrame = self.hidePaletteButton.frame;
+    
+    if(paletteFrame.origin.x < 0)
+    {
+        paletteFrame.origin.x = 0;
+        imageViewFrame.origin.x = paletteFrame.size.width;
+    }
+    else
+    {
+        paletteFrame.origin.x = -paletteFrame.size.width;
+        imageViewFrame.origin.x = 0;
+    }
+    
+    self.tabController.view.frame = paletteFrame;
+    self.hidePaletteButton.frame = imageViewFrame;
 }
 
 //zoom slider
