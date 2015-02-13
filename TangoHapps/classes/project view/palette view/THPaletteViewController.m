@@ -496,16 +496,16 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
                                      nil];
     
-    self.otherHardwareSectionArray  = [NSMutableArray arrayWithObjects:
+    /*self.otherHardwareSectionArray  = [NSMutableArray arrayWithObjects:
                                        [[THPowerSupplyPaletteItem alloc] initWithName:@"powerSupply"],
-                                       nil];
+                                       nil];*/
                                      
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";
     self.boardsSectionName = @"Boards";
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Visual Programming";
-    self.otherHardwareSectionName = @"Other Hardware";
+    //self.otherHardwareSectionName = @"Other Hardware";
 }
 
 -(void) tabBar:(THTabbarView*) tabBar didAddSection:(THTabbarSection*) section{
