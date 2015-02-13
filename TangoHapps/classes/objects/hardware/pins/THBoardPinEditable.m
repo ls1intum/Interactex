@@ -252,10 +252,10 @@ You should have received a copy of the GNU General Public License along with thi
         
         THBoardPin * pin = (THBoardPin*) self.simulableObject;
         [pin deattachPin:(THElementPin*)pinEditable.simulableObject];
-        [pinEditable dettachFromPin];
+        //[pinEditable dettachFromPin]; // Nazmus commented on Feb 13: Causing error: because pinEditable has already been deattached within "deattachPin" above function
     }
     
-    [_attachedPins removeAllObjects];
+    //[_attachedPins removeAllObjects]; // Nazmus commented on Feb 13: also not necessary, already done within deattachPin function
 }
 
 -(BOOL) isClotheObjectAttached:(THHardwareComponentEditableObject*) object{
