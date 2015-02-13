@@ -85,7 +85,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadPins{
     
-    THElementPin * minusPin = [THElementPin pinWithType:kElementPintypeMinus];
+    THElementPin * minusPin = [THElementPin pinWithType:kElementPintypePlus];
     minusPin.hardware = self;
     
     THElementPin * redPin = [THElementPin pinWithType:kElementPintypeDigital];
