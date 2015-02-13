@@ -70,8 +70,12 @@ CGPoint const offset = {40,10};
         } else {
             self.pinInfoLabel.text = @"Analog input";
         }
-    } else {
-        self.pinInfoLabel.text = @"Digital input";
+    } else { // digital
+        if(self.boardPin.mode == kPinModeDigitalInput){
+            self.pinInfoLabel.text = @"Digital input";
+        } else if(self.boardPin.mode == kPinModeDigitalOutput) {
+            self.pinInfoLabel.text = @"Digital output";
+        }
     }
     
     if(self.boardPin.isPWM){
