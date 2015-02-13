@@ -64,13 +64,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateMinText {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
-    self.minText.text = [NSString stringWithFormat:@"%d", monitor.minValue];
+    self.minText.text = [NSString stringWithFormat:@"%ld", (long)monitor.minValue];
 }
 
 -(void) updateMaxText {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
-    self.maxText.text = [NSString stringWithFormat:@"%d", monitor.maxValue];
+    self.maxText.text = [NSString stringWithFormat:@"%ld", (long)monitor.maxValue];
 }
 
 -(void) reloadState {

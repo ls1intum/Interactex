@@ -126,7 +126,7 @@ existsInDirectory:(NSString*)subfolder
     NSString * name = [NSString stringWithString:originalName];
     NSInteger i = 2;
     while([TFFileUtils isProjectNameOccupied:name]){
-        name = [NSString stringWithFormat:@"%@%d",originalName,i++];
+        name = [NSString stringWithFormat:@"%@%ld",originalName,(long)i++];
     }
     
     return name;
@@ -136,7 +136,7 @@ existsInDirectory:(NSString*)subfolder
     NSString * name = [NSString stringWithString:originalName];
     NSInteger i = 2;
     while([TFFileUtils isPaletteNameOccupied:name]){
-        name = [NSString stringWithFormat:@"%@%d",originalName,i++];
+        name = [NSString stringWithFormat:@"%@%ld",originalName,(long)i++];
     }
     
     return name;

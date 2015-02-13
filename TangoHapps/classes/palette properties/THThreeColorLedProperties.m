@@ -51,17 +51,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) updateRedLabel{
     THThreeColorLedEditable * led = (THThreeColorLedEditable*) self.editableObject;
-    self.redLabel.text = [NSString stringWithFormat:@"%d",led.red];
+    self.redLabel.text = [NSString stringWithFormat:@"%ld",(long)led.red];
 }
 
 -(void) updateGreenLabel{
     THThreeColorLedEditable * led = (THThreeColorLedEditable*) self.editableObject;
-    self.greenLabel.text = [NSString stringWithFormat:@"%d",led.green];
+    self.greenLabel.text = [NSString stringWithFormat:@"%ld",(long)led.green];
 }
 
 -(void) updateBlueLabel{
     THThreeColorLedEditable * led = (THThreeColorLedEditable*) self.editableObject;
-    self.blueLabel.text = [NSString stringWithFormat:@"%d",led.blue];
+    self.blueLabel.text = [NSString stringWithFormat:@"%ld",(long)led.blue];
 }
 
 -(void) updateRedSlider{

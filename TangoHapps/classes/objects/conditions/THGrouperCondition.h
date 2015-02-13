@@ -47,7 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 extern NSString * const kGrouperTypeStrings[kNumGrouperTypes];
 
-typedef enum{
+typedef enum THGrouperType : NSUInteger{
     kGrouperTypeAnd,
     kGrouperTypeOr
 } THGrouperType;

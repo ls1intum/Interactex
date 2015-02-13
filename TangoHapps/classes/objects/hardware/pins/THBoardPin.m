@@ -200,7 +200,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.type == kPintypeMinus || self.type == kPintypePlus){
         text = [NSString stringWithFormat:@"(%@) pin",kPinTexts[self.type]];
     } else {
-        text = [NSString stringWithFormat:@"pin %d (%@)",self.number, kPinTexts[self.type]];
+        text = [NSString stringWithFormat:@"pin %ld (%@)",(long)self.number, kPinTexts[self.type]];
     }
     
     return text;

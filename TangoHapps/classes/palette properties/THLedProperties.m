@@ -54,7 +54,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateIntensityLabel{
     
     THLedEditableObject * led = (THLedEditableObject*) self.editableObject;
-    self.intensityLabel.text = [NSString stringWithFormat: @"%d", led.intensity];
+    self.intensityLabel.text = [NSString stringWithFormat: @"%ld", (long)led.intensity];
 }
 
 -(void) reloadState{

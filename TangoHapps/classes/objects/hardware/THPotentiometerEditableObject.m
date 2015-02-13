@@ -148,7 +148,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
     potentiometer.value = _touchDownIntensity;
-    _valueLabel.string = [NSString stringWithFormat:@"%d",potentiometer.value];
+    _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)potentiometer.value];
 }
 
 -(NSInteger) value{

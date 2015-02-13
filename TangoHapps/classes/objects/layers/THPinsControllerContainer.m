@@ -73,7 +73,7 @@ float const kPinControllerInnerPadding = 5;
     UILabel * label = [[UILabel alloc] initWithFrame:labelFrame];
     label.font = [UIFont systemFontOfSize:13];
     NSString * pintype = [NSString stringWithFormat:@"%@ - ",kPinTexts[realPin.type]];
-    label.text = [NSString stringWithFormat:@"%@ %d",pintype,realPin.number];
+    label.text = [NSString stringWithFormat:@"%@ %ld",pintype,(long)realPin.number];
     [self addSubview:label];
     
     CGRect typeLabelFrame = CGRectMake(labelFrame.origin.x + kPinControllerLabelSize.width + kPinControllerInnerPadding, 5, kPinControllerTypeLabelSize.width, kPinControllerTypeLabelSize.height);
@@ -120,7 +120,7 @@ float const kPinControllerInnerPadding = 5;
             
             CGRect valueLabelFrame = CGRectMake(typeLabelFrame.origin.x + kPinControllerTypeLabelSize.width + kPinControllerInnerPadding, kPinControllerInnerPadding, kPinControllerSegmentedSize.width, kPinControllerSegmentedSize.height);
             
-            NSString * text = [NSString stringWithFormat:@"%d",pin.value];
+            NSString * text = [NSString stringWithFormat:@"%ld",(long)pin.value];
             _valueLabel = [self labelWithFrame:valueLabelFrame text:text];
             
             [self addSubview:_valueLabel];
@@ -152,7 +152,7 @@ float const kPinControllerInnerPadding = 5;
 
         _slider.value = pin.value;
     } else if(pin.mode == kPinModeAnalogInput){
-        _valueLabel.text = [NSString stringWithFormat:@"%d",pin.value];
+        _valueLabel.text = [NSString stringWithFormat:@"%ld",(long)pin.value];
     }
 }
 

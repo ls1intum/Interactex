@@ -52,7 +52,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateFrequencyLabel{
     
     THVibrationBoardEditable * vibrationBoard = (THVibrationBoardEditable*) self.editableObject;
-    self.frequencyLabel.text = [NSString stringWithFormat: @"%d", vibrationBoard.frequency];
+    self.frequencyLabel.text = [NSString stringWithFormat: @"%ld", (long)vibrationBoard.frequency];
 }
 
 -(void) reloadState{

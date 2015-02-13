@@ -276,7 +276,7 @@ NSString * const kThresholdImageName = @"threshold.png";
 
 -(void) appendData:(NSInteger)data{
     if(recording)
-        [self.buffer addObject:[NSNumber numberWithInt:data]];
+        [self.buffer addObject:[NSNumber numberWithInt:(int)data]];
 }
 
 -(UIButton*) buttonWithFrame:(CGRect) frame imageName:(NSString*) name{

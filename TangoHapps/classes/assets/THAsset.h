@@ -42,7 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <Foundation/Foundation.h>
 
-typedef enum{
+typedef enum THAssetType : NSUInteger{
     kAssetTypeSound,
     kAssetTypeImage
 } THAssetType;

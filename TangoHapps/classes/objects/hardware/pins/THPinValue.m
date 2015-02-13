@@ -75,6 +75,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(NSString*) description{
-    return [NSString stringWithFormat:@"%d (%d) = %d",self.number,self.type,self.value];
+    return [NSString stringWithFormat:@"%ld (%u) = %ld",(long)self.number,self.type,(long)self.value];
 }
 @end

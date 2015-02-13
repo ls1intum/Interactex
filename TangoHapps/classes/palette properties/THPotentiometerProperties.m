@@ -66,12 +66,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) updateMinLabel{
     THPotentiometerEditableObject * potentiometer = (THPotentiometerEditableObject*)self.editableObject;
-    self.minLabel.text = [NSString stringWithFormat:@"%d",potentiometer.minValueNotify];
+    self.minLabel.text = [NSString stringWithFormat:@"%ld",(long)potentiometer.minValueNotify];
 }
 
 -(void) updateMaxLabel{
     THPotentiometerEditableObject * potentiometer = (THPotentiometerEditableObject*)self.editableObject;
-    self.maxLabel.text = [NSString stringWithFormat:@"%d",potentiometer.maxValueNotify];
+    self.maxLabel.text = [NSString stringWithFormat:@"%ld",(long)potentiometer.maxValueNotify];
 }
 
 -(void) updateMinSlider{
