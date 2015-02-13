@@ -99,7 +99,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         if(self.type == kPintypeAnalog || self.type == kPintypeDigital){
 
-            text = [text stringByAppendingFormat:@" %d",self.number];
+            text = [text stringByAppendingFormat:@" %ld",(long)self.number];
         }
         
         _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:24 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];

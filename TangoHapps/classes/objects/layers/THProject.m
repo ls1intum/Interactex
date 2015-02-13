@@ -311,7 +311,7 @@ You should have received a copy of the GNU General Public License along with thi
             NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
             NSLog(@"class name: %@",className);
             
-            hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %d",className,classCount.integerValue];
+            hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %ld",className,(long)classCount.integerValue];
         }
     }
 
@@ -334,7 +334,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(!number){
         number = [NSNumber numberWithInt:0];
     }
-    number = [NSNumber numberWithInt:number.integerValue + addValue];
+    number = [NSNumber numberWithLong:number.integerValue + addValue];
     [self.objectCountPerClass setValue:number forKey:className];
 }
 

@@ -46,7 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define kNumDataTypes 5
 
-typedef enum{
+typedef enum TFDataType : NSUInteger{
     kDataTypeBoolean,
     kDataTypeInteger,
     kDataTypeFloat,
@@ -54,7 +54,7 @@ typedef enum{
     kDataTypeAny
 } TFDataType;
 
-typedef enum {
+typedef enum THDigitalPinValue : NSUInteger{
     kDigitalPinValueLow = 0,
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
@@ -62,7 +62,7 @@ typedef enum {
 #define kNumHardwareTypes 15
 #define kMaxNumPinsPerElement 5
 
-typedef enum{
+typedef enum THHardwareType : NSUInteger{
     kHardwareTypeLed,
     kHardwareTypeBuzzer,
     kHardwareTypeButton,
@@ -84,7 +84,7 @@ typedef enum{
 
 #define kNumPinTypes 4
 
-typedef enum{
+typedef enum THPinType : NSUInteger{
     kPintypeDigital,
     kPintypeAnalog,
     kPintypeMinus,
@@ -104,7 +104,7 @@ typedef enum{
     kPinModeUndefined = 6
 } THPinMode;*/
 
-typedef enum{
+typedef enum THPinMode : NSUInteger{
     kPinModeDigitalInput = 0x00,
     kPinModeDigitalOutput,
     kPinModeAnalogInput,
@@ -117,7 +117,7 @@ typedef enum{
 
 
 #define kNumElementPinTypes 6
-typedef enum{
+typedef enum THElementPinType : NSUInteger{
     kElementPintypeDigital,
     kElementPintypeAnalog,
     kElementPintypePlus,
@@ -137,7 +137,7 @@ typedef struct{
 
 #define kNumiPhoneTypes 2
 
-typedef enum{
+typedef enum THIPhoneType : NSUInteger{
     kiPhoneType4S,
     kiPhoneType5
 } THIPhoneType;
@@ -146,7 +146,7 @@ extern CGRect const kiPhoneFrames[kNumiPhoneTypes];
 extern float const kiphoneFrameXMargin;
 extern float const kiphoneFrameYMargin;
 
-typedef enum{
+typedef enum THI2CComponentType : NSUInteger{
     kI2CComponentTypeLSM,
     kI2CComponentTypeMPU
     
@@ -226,7 +226,7 @@ extern NSString * const kMethodSetBlue;
 
 #define kMaxNumNotifyBehaviors 3
 
-typedef enum {
+typedef enum THSensorNotifyBehavior : NSUInteger{
     kSensorNotifyBehaviorAlways,
     kSensorNotifyBehaviorWhenInRange,
     kSensorNotifyBehaviorOncePerPeak,
@@ -268,7 +268,7 @@ extern float const kGraphViewAxisLineWidth;
 
 extern NSString * const kConnectionServiceType;
 
-typedef enum {
+typedef enum THCommunicationMsg : NSUInteger{
     THCommunicationMsgTransferProjectName,
     THCommunicationMsgTransferProject,
     THCommunicationMsgTransferAsset

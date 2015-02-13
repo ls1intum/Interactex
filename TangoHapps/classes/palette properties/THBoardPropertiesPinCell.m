@@ -58,7 +58,7 @@ CGPoint const offset = {40,10};
 
 -(void) reloadUI {
     
-    self.pinLabel.text = [NSString stringWithFormat:@"PIN %d - ",self.boardPin.number];
+    self.pinLabel.text = [NSString stringWithFormat:@"PIN %ld - ",(long)self.boardPin.number];
     NSString * pintype = [NSString stringWithFormat:@"%@",kPinTexts[self.boardPin.type]];
     self.pinInfoLabel.text = pintype;
     

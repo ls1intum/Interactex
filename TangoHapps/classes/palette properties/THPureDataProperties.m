@@ -18,8 +18,8 @@
 -(void) updateVarLabels{
     
     THPureDataEditable * pureData = (THPureDataEditable*) self.editableObject;
-    self.var1Label.text = [NSString stringWithFormat: @"%d", pureData.variable1];
-    self.var2Label.text = [NSString stringWithFormat: @"%d", pureData.variable2];
+    self.var1Label.text = [NSString stringWithFormat: @"%ld", (long)pureData.variable1];
+    self.var2Label.text = [NSString stringWithFormat: @"%ld", (long)pureData.variable2];
 }
 
 -(void) reloadState{

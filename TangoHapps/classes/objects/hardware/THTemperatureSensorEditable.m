@@ -146,7 +146,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THTemperatureSensor * temperatureSensor = (THTemperatureSensor*) self.simulableObject;
     temperatureSensor.value = _touchDownIntensity;
-    _valueLabel.string = [NSString stringWithFormat:@"%d",temperatureSensor.value];
+    _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)temperatureSensor.value];
 }
 
 -(NSInteger) value{

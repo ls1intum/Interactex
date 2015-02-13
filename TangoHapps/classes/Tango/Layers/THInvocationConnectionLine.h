@@ -46,7 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define THInvocationConnectionLineNumStates 2
 
-typedef enum  {
+typedef enum  THInvocationConnectionLineState : NSUInteger{
     THInvocationConnectionLineStateIncomplete,
     THInvocationConnectionLineStateComplete
 } THInvocationConnectionLineState;

@@ -49,10 +49,10 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THHelper
 
 +(ccColor3B) color3BFromUIColor:(UIColor*) color{
-    float red;
-    float green;
-    float blue;
-    float alpha;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
     
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
     return ccc3(red * 255, green * 255, blue * 255);

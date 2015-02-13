@@ -303,7 +303,7 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Layer Lifecycle
 
 
--(void) update:(float) dt{
+-(void) update:(CGFloat) dt{
     THProject * project = [THDirector sharedDirector].currentProject;
     for (TFEditableObject * object in project.allObjects) {
         [object update];

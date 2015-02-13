@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define kNumConditionTypes 3
 
-typedef enum{
+typedef enum THProperty : NSUInteger{
     kConditionTypeSmallerThan,
     kConditionTypeEquals,
     kConditionTypeBiggerThan

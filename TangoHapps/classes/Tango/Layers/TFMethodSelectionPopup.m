@@ -90,7 +90,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kMethodSelectionPopupRowHeight;
 }
 

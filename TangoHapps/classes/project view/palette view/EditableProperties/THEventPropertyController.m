@@ -198,7 +198,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
     NSMutableArray * actions = [project actionsForSource:editable];
-    self.connectionCountLabel.text = [NSString stringWithFormat:@"%d connections",actions.count];
+    self.connectionCountLabel.text = [NSString stringWithFormat:@"%lu connections",(unsigned long)actions.count];
     
     if(actions.count == 0){
         self.removeButton.enabled = NO;

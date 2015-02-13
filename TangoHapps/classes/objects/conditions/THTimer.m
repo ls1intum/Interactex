@@ -67,7 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     if(self){
         _frequency = [decoder decodeDoubleForKey:@"frequency"];
-        _type = [decoder decodeIntegerForKey:@"type"];
+        _type = (uint32_t)[decoder decodeIntegerForKey:@"type"];
         
         [self loadTimer];
     }

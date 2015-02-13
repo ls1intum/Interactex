@@ -111,7 +111,7 @@
     
     THFlexSensor * flexSensor = (THFlexSensor*) self.simulableObject;
     flexSensor.value = _bendIntensity;
-    _valueLabel.string = [NSString stringWithFormat:@"%d",flexSensor.value];
+    _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)flexSensor.value];
 }
 
 -(NSInteger) value{

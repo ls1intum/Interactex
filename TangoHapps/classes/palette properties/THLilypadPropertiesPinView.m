@@ -75,7 +75,7 @@ float const kLilypadPropertyInnerPadding = 5;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:13];
     NSString * pintype = [NSString stringWithFormat:@"%@ - ",kPinTexts[realPin.type]];
-    label.text = [NSString stringWithFormat:@"%@ %d",pintype,realPin.number];
+    label.text = [NSString stringWithFormat:@"%@ %ld",pintype,(long)realPin.number];
     [self addSubview:label];
     
     CGRect typeLabelFrame = CGRectMake(labelFrame.origin.x + labelFrame.size.width + kLilypadPropertyInnerPadding, 5, kLilypadPropertyTypeLabelSize.width, kLilypadPropertyTypeLabelSize.height);

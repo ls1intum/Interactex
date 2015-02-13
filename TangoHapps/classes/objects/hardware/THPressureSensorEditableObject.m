@@ -122,7 +122,7 @@
     
     THPressureSensor * pressureSensor = (THPressureSensor*) self.simulableObject;
     pressureSensor.pressure = _pressureIntensity;
-    _pressureLabel.string = [NSString stringWithFormat:@"%d",pressureSensor.pressure];
+    _pressureLabel.string = [NSString stringWithFormat:@"%ld",(long)pressureSensor.pressure];
 }
 
 -(NSInteger) pressure{

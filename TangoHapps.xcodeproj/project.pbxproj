@@ -4949,6 +4949,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
@@ -4974,6 +4975,7 @@
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				VALIDATE_PRODUCT = NO;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4998,6 +5000,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
