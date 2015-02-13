@@ -107,6 +107,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THViewEditableObject * copy = [super copyWithZone:zone];
+    copy.width = self.width;
+    copy.height = self.height;
+    copy.backgroundColor = self.backgroundColor;
     
     return copy;
 }
