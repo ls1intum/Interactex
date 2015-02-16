@@ -4682,7 +4682,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -4716,7 +4716,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};
@@ -4750,7 +4750,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
 				USER_HEADER_SEARCH_PATHS = "../cocos2d-iphone-2.0/** ../cocos2d-iphone-2.0/CocosDenshion/** Frameworks/libpd/**";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = AddHoc;
 		};
@@ -4832,7 +4832,7 @@
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4857,7 +4857,7 @@
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -4909,7 +4909,7 @@
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AddHoc;
