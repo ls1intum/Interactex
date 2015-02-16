@@ -171,9 +171,7 @@ You should have received a copy of the GNU General Public License along with thi
              
             CGPoint editorLocation = [recognizer locationInView:self.view.superview];
             editorLocation = [[CCDirector sharedDirector] convertToGL: editorLocation];
-            
-            //CGPoint editorLocation = [recognizer locationInView: [[CCDirector sharedDirector] openGLView]];
-            
+                        
             if([item canBeDroppedAt:editorLocation])
                 [item dropAt:editorLocation];
         }

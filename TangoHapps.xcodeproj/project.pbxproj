@@ -4661,7 +4661,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -4699,7 +4698,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4734,7 +4732,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4783,7 +4780,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = armv7;
@@ -4809,7 +4805,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -4823,8 +4818,6 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4836,7 +4829,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
@@ -4851,8 +4843,6 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4864,7 +4854,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
@@ -4893,7 +4882,6 @@
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -4907,8 +4895,6 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4920,7 +4906,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
@@ -4934,7 +4919,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -4946,7 +4930,6 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				VALID_ARCHS = "armv7 arm64";
@@ -4959,7 +4942,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan Haladjian (SUQV2CYVSH)";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -4971,7 +4954,6 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				VALIDATE_PRODUCT = NO;
@@ -4985,7 +4967,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Güven Candoğan (SGNRU457JE)";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -4997,7 +4978,6 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
 				VALID_ARCHS = "armv7 arm64";

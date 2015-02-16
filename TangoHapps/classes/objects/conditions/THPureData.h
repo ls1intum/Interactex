@@ -23,7 +23,7 @@
 -(void) turnOn;
 -(void) turnOff;
 
-@property (strong, nonatomic, readonly) PdAudioController *audioController;
-@property (nonatomic) PdDispatcher *dispatcher;
+@property (strong, nonatomic) PdAudioController *audioController;
+@property (strong, nonatomic) PdDispatcher *dispatcher;
 
 @end

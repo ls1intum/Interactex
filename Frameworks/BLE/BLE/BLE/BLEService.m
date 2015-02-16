@@ -112,14 +112,14 @@ const NSTimeInterval kFlushInterval = 1.0f/10.0f;
     
 	for (CBService *service in services) {
         
-        NSLog(@"service found is: %@", [BLEHelper UUIDToString:service.UUID]);
+        //NSLog(@"service found is: %@", [BLEHelper UUIDToString:service.UUID]);
         
         for (int i = 0; i < [BLEDiscovery sharedInstance].supportedServiceUUIDs.count; i++) {
             CBUUID * serviceUUID = [[BLEDiscovery sharedInstance].supportedServiceUUIDs objectAtIndex:i];
             
             if([service.UUID isEqual:serviceUUID]){
                 
-                NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
+                //NSLog(@"service connected is: %@", [BLEHelper UUIDToString:service.UUID]);
                 self.deviceType = i;
                 
                 NSArray * characteristicUUIDs = [BLEDiscovery sharedInstance].supportedCharacteristicUUIDs;
@@ -157,7 +157,7 @@ const NSTimeInterval kFlushInterval = 1.0f/10.0f;
     
 	for (CBCharacteristic *characteristic in service.characteristics) {
         
-        NSLog(@"discovered characteristic %@",[characteristic UUID]);
+        //NSLog(@"discovered characteristic %@",[characteristic UUID]);
         
         if ([[characteristic UUID] isEqual:self.currentCharacteristicUUIDs[0]]) {
             
@@ -195,12 +195,12 @@ const NSTimeInterval kFlushInterval = 1.0f/10.0f;
         } else {
             [_peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithoutResponse];
         }
-        
+        /*
         printf("Sending:\n");
         for (int i = 0; i < data.length; i++) {
             printf("%X ",((uint8_t*)data.bytes)[i]);
         }
-        printf("\n");
+        printf("\n");*/
     }
 }
 

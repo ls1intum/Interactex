@@ -12,7 +12,6 @@
 
 //I don't know exactly what this synthesize line here is used for, it's taken from here:
 //http://createdigitalmusic.com/files/2012/03/MakingMusicalAppsExcerpt.pdf
-@synthesize audioController = audioController_;
 
 -(id) init {
     self = [super init];
@@ -47,7 +46,7 @@
     
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,method3,method4,nil];
 
-    audioController_ = [[PdAudioController alloc] init];
+    self.audioController = [[PdAudioController alloc] init];
     if ([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:NO mixingEnabled:NO] != PdAudioOK) {
         NSLog(@"failed to initialize pureData audio components");
     }
@@ -73,8 +72,6 @@
     
     [coder encodeInteger:self.variable1 forKey:@"variable1"];
     [coder encodeInteger:self.variable2 forKey:@"variable2"];
-    
-    [self loadPureData];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -122,6 +119,15 @@
 
 - (void)receivePrint:(NSString *)message {
 	NSLog(@"Msg %@", message);
+}
+
+-(void) prepareToDie{
+    
+    
+    self.audioController = nil;
+    self.dispatcher = nil;
+    
+    [super prepareToDie];
 }
 
 -(NSString*) description{

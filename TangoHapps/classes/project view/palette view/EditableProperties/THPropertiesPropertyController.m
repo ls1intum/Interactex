@@ -81,13 +81,12 @@ You should have received a copy of the GNU General Public License along with thi
     return 30;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
     return editable.properties.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TFEditableObject * editable = (TFEditableObject*) self.editableObject;
     NSMutableArray * properties = editable.properties;

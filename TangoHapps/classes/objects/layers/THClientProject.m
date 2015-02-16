@@ -234,6 +234,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) dealloc{
+    //NSLog(@"deallocing project");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self prepareAllObjectsToDie];
 }
 

@@ -213,7 +213,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
     if(self.editingScenes || self.editingOneScene || !self.showingCustomApps) return NO;
     

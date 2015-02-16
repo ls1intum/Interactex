@@ -54,6 +54,8 @@ float const kMusicPlayerVolumeViewHeight = 30;
 float const kMusicPlayerLabelHeight = 40;
 float const kMusicPlayerInnerPadding = 10;
 
+float const kVolumeViewDefaultAlpha = 0.5;
+
 NSString * const kPlayImageName = @"musicPlay.png";
 NSString * const kPauseImageName = @"pause.png";
 
@@ -114,9 +116,9 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) checkAddRemoveVolumeView{
     if(self.showVolumeView){
-        [self.view addSubview:_volumeView];
+        [self.view addSubview:self.volumeView];
     } else {
-        [_volumeView removeFromSuperview];
+        [self.volumeView removeFromSuperview];
     }
 }
 
@@ -143,7 +145,6 @@ NSString * const kPauseImageName = @"pause.png";
     _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
     [containerView addSubview:_label];
     
-    
     CGRect previousButtonFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerButtonWidth, kMusicPlayerButtonHeight);
     _previousButton = [self buttonWithFrame:previousButtonFrame imageName:@"backwards.png"];
     [_previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchDown];
@@ -156,13 +157,11 @@ NSString * const kPauseImageName = @"pause.png";
     _nextButton = [self buttonWithFrame:nextButtonFrame imageName:@"forward.png"];
     [_nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchDown];
     
-    //nazmus
     CGRect volumeViewFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding + kMusicPlayerButtonHeight + kMusicPlayerInnerPadding, kMusicPlayerVolumeViewWidth, kMusicPlayerVolumeViewHeight);
-    _volumeView = [[MPVolumeView alloc] initWithFrame:volumeViewFrame];
-    _volumeView.showsRouteButton = NO;
-    [_volumeView setAlpha:0.5];
-    _volumeView.userInteractionEnabled = NO;
-    ////
+    self.volumeView = [[MPVolumeView alloc] initWithFrame:volumeViewFrame];
+    self.volumeView.showsRouteButton = NO;
+    self.volumeView.alpha =kVolumeViewDefaultAlpha;
+    self.volumeView.userInteractionEnabled = NO;
     
     [self checkAddRemovePreviousButton];
     [self checkAddRemovePlayButton];
@@ -170,44 +169,7 @@ NSString * const kPauseImageName = @"pause.png";
     [self checkAddRemoveVolumeView];
 }
 
--(void) reloadView{
-    [self loadMusicPlayerViews];
-}
-
--(void) registerEvents{
-#if !(TARGET_IPHONE_SIMULATOR)
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
-    [notificationCenter addObserver: self selector:@selector (handleCurrentSongChanged) name:      MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-     object: _musicPlayer];
-    
-    [notificationCenter addObserver: self selector:@selector (handleCurrentPlayerStateChanged) name:      MPMusicPlayerControllerPlaybackStateDidChangeNotification
-                             object: _musicPlayer];    
-    
-    [_musicPlayer beginGeneratingPlaybackNotifications];
-#endif
-}
-
--(void) deregisterEvents{
-    
-}
-
--(void) loadMusicPlayer{
-    [self loadMusicPlayerViews];
-    
-#if (TARGET_IPHONE_SIMULATOR)
-    _songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
-#else
-    
-    self.musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
-    MPMediaQuery * songsQuery = [MPMediaQuery songsQuery];
-    [songsQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
-    
-    [self.musicPlayer setQueueWithQuery:songsQuery];
-    [self.musicPlayer setRepeatMode:MPMusicRepeatModeAll];
-    _songs = songsQuery.items;
-#endif
-
+-(void) loadMusicPlayerEventAndMethods{
     TFProperty * property1 = [TFProperty propertyWithName:@"volume" andType:kDataTypeFloat];
     self.properties = [NSMutableArray arrayWithObject:property1];
     
@@ -223,17 +185,74 @@ NSString * const kPauseImageName = @"pause.png";
     [self registerEvents];
 }
 
+-(void) loadMusicPlayer{
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [self loadMusicPlayerViews];
+    
+#if (TARGET_IPHONE_SIMULATOR)
+        self.songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
+#else
+    
+    self.musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
+    
+    self.songsQuery = [MPMediaQuery songsQuery];
+    [self.songsQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
+    
+    [self.musicPlayer setQueueWithQuery:self.songsQuery];
+    [self.musicPlayer setRepeatMode:MPMusicRepeatModeAll];
+    self.songs = self.songsQuery.items;
+    
+#endif
+    
+    [self loadMusicPlayerEventAndMethods];
+}
+
+-(void) registerEvents{
+    
+#if !(TARGET_IPHONE_SIMULATOR)
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter addObserver: self selector:@selector(handleCurrentSongChanged) name:      MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+     object:nil];
+    
+    [notificationCenter addObserver: self selector:@selector(handleCurrentPlayerStateChanged) name:      MPMusicPlayerControllerPlaybackStateDidChangeNotification
+                             object:nil];
+    
+    [self.musicPlayer beginGeneratingPlaybackNotifications];
+#endif
+}
+
+-(void) deregisterEvents{
+    
+#if !(TARGET_IPHONE_SIMULATOR)
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
+    [notificationCenter removeObserver:self.musicPlayer];
+    
+    [self.musicPlayer endGeneratingPlaybackNotifications];
+    
+#endif
+}
+
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    _showPlayButton = [decoder decodeBoolForKey:@"showPlayButton"];
-    _showNextButton = [decoder decodeBoolForKey:@"showNextButton"];
-    _showPreviousButton = [decoder decodeBoolForKey:@"showPreviousButton"];
-    _showVolumeView = [decoder decodeBoolForKey:@"showVolumeView"];
-    
-    [self loadMusicPlayer];
+    if(self){
+        _showPlayButton = [decoder decodeBoolForKey:@"showPlayButton"];
+        _showNextButton = [decoder decodeBoolForKey:@"showNextButton"];
+        _showPreviousButton = [decoder decodeBoolForKey:@"showPreviousButton"];
+        _showVolumeView = [decoder decodeBoolForKey:@"showVolumeView"];
+        
+        [self loadMusicPlayer];
+    }
     
     return self;
 }
@@ -248,6 +267,14 @@ NSString * const kPauseImageName = @"pause.png";
     [coder encodeBool:_showVolumeView forKey:@"showVolumeView"];
 }
 
+#pragma mark - Notification handling
+
+-(void) applicationWillResignActive:(NSNotification*) notification{
+    if(self.playing){
+        [self stop];
+    }
+}
+
 #pragma mark - Music player events
 
 -(void) handleCurrentSongChanged{
@@ -256,12 +283,13 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) handleCurrentPlayerStateChanged{
     if(self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying){
-        //NSLog(@"playing");
         _playing = YES;
     } else {
         _playing = NO;
-        //NSLog(@"stopped");
     }
+    
+    [self updateLabel];
+    [self updatePlayButtonImage];
 }
 
 #pragma mark - Methods
@@ -295,9 +323,9 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
-//nazmus
 -(void) setVolume:(float)volume{
-    for (UIView *view in [_volumeView subviews]){
+    
+    for (UIView *view in [self.volumeView subviews]){
         if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
             [(UISlider*)view setValue:volume];
             break;
@@ -306,7 +334,9 @@ NSString * const kPauseImageName = @"pause.png";
 }
 
 -(float) volume{
-    for (UIView *view in [_volumeView subviews]){
+    
+    for (UIView *view in [self.volumeView subviews]){
+        
         if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
             self.volume = [(UISlider*)view value];
             break;
@@ -314,7 +344,7 @@ NSString * const kPauseImageName = @"pause.png";
     }
     return self.volume;
 }
-//
+
 -(void) setText:(NSString *)text{
     
     _label.text = text;
@@ -329,33 +359,26 @@ NSString * const kPauseImageName = @"pause.png";
 }
 
 -(NSString*) currentSong{
-#if (TARGET_IPHONE_SIMULATOR)
     
-    return [_songs objectAtIndex:_currentSongIdx];
+#if (TARGET_IPHONE_SIMULATOR)
+    return [self.songs objectAtIndex:_currentSongIdx];
 #else
     
-    //MPMediaQuery * songsQuery = [MPMediaQuery songsQuery];
-    //MPMediaItem * song = [songsQuery.items objectAtIndex:_currentSongIdx];
     MPMediaItem * song = self.musicPlayer.nowPlayingItem;
     if(song){
         return [song valueForProperty: MPMediaItemPropertyTitle];
     } else {
         return nil;
     }
-    
+    return nil;
 #endif
 }
 
 -(BOOL) playing{
-#if (TARGET_IPHONE_SIMULATOR)
-    return _playing;
-#else
-    NSLog(@"state: %d",self.musicPlayer.playbackState);
     
-    return self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying;
-#endif
+    return _playing;
 }
-           
+
 -(void) togglePlay{
     
     if(self.playing){
@@ -366,55 +389,53 @@ NSString * const kPauseImageName = @"pause.png";
 }
 
 -(void) play{
+    
 #if (TARGET_IPHONE_SIMULATOR)
-    //NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
-    //[[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
-    _playing = YES;
-
-#else
-    [_musicPlayer play];
-#endif
+    NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
+    [[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
     
     [self updateLabel];
+    [self updatePlayButtonImage];
+#else
+
+    [self.musicPlayer play];
+#endif
     
-    if(_playButton != nil){
-        UIImage * playImage = [UIImage imageNamed:kPauseImageName];
-        [_playButton setBackgroundImage:playImage forState:UIControlStateNormal];
-    }
+    _playing = YES;
 }
 
 -(void) pause{
 #if (TARGET_IPHONE_SIMULATOR)
-    //[[CDAudioManager sharedManager] stopBackgroundMusic];
-    _playing = NO;
+    [[CDAudioManager sharedManager] stopBackgroundMusic];
+    [self updateLabel];
+    [self updatePlayButtonImage];
 #else
     [self.musicPlayer pause];
 #endif
+    _playing = NO;
     
-    if(_playButton != nil){
-        UIImage * playImage = [UIImage imageNamed:kPlayImageName];
-        [_playButton setBackgroundImage:playImage forState:UIControlStateNormal];
-    }
 }
 
 -(void) stop{
     
 #if (TARGET_IPHONE_SIMULATOR)
-    //[self pause];
+    [self pause];
+    [self updateLabel];
+    [self updatePlayButtonImage];
 #else
     [self.musicPlayer stop];
 #endif
     
-    [self updateLabel];
 }
 
 -(void) next{
 #if (TARGET_IPHONE_SIMULATOR)
+    //in simulator, iterate to next song and play it
     _currentSongIdx ++;
-    if(_currentSongIdx >= _songs.count){
+    if(_currentSongIdx >= self.songs.count){
         _currentSongIdx = 0;
     }
-    //[self play];
+    [self play];
 #else
     [self.musicPlayer skipToNextItem];
 #endif
@@ -424,7 +445,7 @@ NSString * const kPauseImageName = @"pause.png";
 #if (TARGET_IPHONE_SIMULATOR)
     _currentSongIdx --;
     if(_currentSongIdx < 0){
-        _currentSongIdx = _songs.count - 1;
+        _currentSongIdx = self.songs.count - 1;
     }
     [self play];
 #else
@@ -442,13 +463,28 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
+-(void) updatePlayButtonImage{
+    
+    UIImage * playImage;
+    
+    if(self.playing){
+        playImage = [UIImage imageNamed:kPauseImageName];
+    } else {
+        playImage = [UIImage imageNamed:kPlayImageName];
+    }
+    
+    [_playButton setBackgroundImage:playImage forState:UIControlStateNormal];
+}
+
 -(void) willStartSimulating{
-    if(_songs.count > 0){
+    if(self.songs.count > 0){
+        
         _playButton.enabled = YES;
         _nextButton.enabled = YES;
         _previousButton.enabled = YES;
-        _volumeView.userInteractionEnabled = YES;
-        [_volumeView setAlpha:1.0];
+        self.volumeView.userInteractionEnabled = YES;
+        self.volumeView.alpha = 1.0f;
+        
         [self updateLabel];
     }
 }
@@ -456,18 +492,24 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) stopSimulating{
     [self stop];
     [super stopSimulating];
+    
+    _playButton.enabled = NO;
+    _nextButton.enabled = NO;
+    _previousButton.enabled = NO;
+    self.volumeView.userInteractionEnabled = NO;
+    self.volumeView.alpha = kVolumeViewDefaultAlpha;
 }
 
 -(void) prepareToDie{
+    
+    [self deregisterEvents];
     
 #if !(TARGET_IPHONE_SIMULATOR)
     [self.musicPlayer stop];
     self.musicPlayer = nil;
 #endif
+    
     [super prepareToDie];
-}
--(void) dealloc{
-    [self stop];
 }
 
 @end

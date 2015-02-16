@@ -63,6 +63,12 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THI2CMessage.h"
 #import "THiBeacon.h"
 
+
+//remove
+#import "THSwitch.h"
+#import "THMusicPlayer.h"
+#import "THButton.h"
+
 float const kScanningTimeout = 3.0f;
 float const kConnectingTimeout = 7.0f;
 
@@ -134,9 +140,6 @@ float const kConnectingTimeout = 7.0f;
     for (THView * object in self.currentProject.iPhoneObjects) {
 
         if(!self.showingPreset){
-/*
-            NSLog(@"pos y: %f",object.position.y);
-            NSLog(@"iphone pos y: %f",iPhone.position.y);*/
             
             float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
             float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
@@ -208,12 +211,6 @@ float const kConnectingTimeout = 7.0f;
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
-    /*
-    if(!self.showingPreset){
-        UIImage * image = [THUtils screenshot];
-        THClientProjectProxy * proxy = [THSimulableWorldController sharedInstance].currentProjectProxy;
-        proxy.image = image;
-    }*/
     
     [self removePinObservers];
     [self disconnectFromBle];
@@ -298,7 +295,6 @@ float const kConnectingTimeout = 7.0f;
     [connectingTimer invalidate];
     connectingTimer = nil;
     
-    NSLog(@"stopping connection");
     isConnecting = NO;
     
     if([BLEDiscovery sharedInstance].currentPeripheral){
@@ -336,8 +332,6 @@ float const kConnectingTimeout = 7.0f;
     [self updateStartButtonToStart];
     
     //[self updateStartButton];
-    
-    //[[LeDiscovery sharedInstance] connectPeripheral:peripheral];
 }
 
 - (void) discoveryStatePoweredOff {
@@ -385,12 +379,10 @@ float const kConnectingTimeout = 7.0f;
 }
 
 -(void) bleServiceDidConnect:(BLEService*) service{
-    NSLog(@"connected");
     service.delegate = self;
 }
 
 -(void) bleServiceDidDisconnect:(BLEService*) service{
-    NSLog(@"disconnected");
     
     //[self startScanningDevices];
     
@@ -418,7 +410,6 @@ float const kConnectingTimeout = 7.0f;
 }
 
 -(void) bleServiceIsReady:(BLEService*) service{
-    NSLog(@"is ready");
     
     [self updateStartButtonToStop];
     
@@ -442,7 +433,7 @@ float const kConnectingTimeout = 7.0f;
 }
 
 -(void) bleServiceDidReset {
-    //_bleService = nil;
+   //_bleService = nil;
 }
 
 #pragma mark Sending
@@ -584,7 +575,6 @@ float const kConnectingTimeout = 7.0f;
     NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
     
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
-    NSLog(@"%d %d",port,value);
     
     int mask = 1;
     int pinNumber = port * 8;
@@ -596,7 +586,6 @@ float const kConnectingTimeout = 7.0f;
                 uint32_t val = (value & mask) ? 1 : 0;
                 if (pinObj.value != val) {
                     [pinObj removeObserver:self forKeyPath:@"value"];
-                    
                     pinObj.value = val;
                     [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
                 }
@@ -607,7 +596,7 @@ float const kConnectingTimeout = 7.0f;
 
 -(void) firmataController:(IFFirmata *)firmataController didReceiveAnalogMessageOnChannel:(NSInteger)channel value:(NSInteger)value{
 
-    NSLog(@"analog msg for pin: %d %d",channel,value);
+   // NSLog(@"analog msg for pin: %d %d",channel,value);
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     THBoardPin * pinObj = [project.currentBoard analogPinWithNumber:channel];//TODO do the mapping channel - pin
@@ -650,7 +639,6 @@ float const kConnectingTimeout = 7.0f;
 -(IBAction)startButtonTapped:(id)sender {
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    NSLog(@"%@",project);
     
     if([BLEDiscovery sharedInstance].connectedService){
         

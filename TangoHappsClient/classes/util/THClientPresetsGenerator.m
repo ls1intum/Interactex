@@ -242,7 +242,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:12];
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:8];//juan change
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
@@ -703,12 +703,12 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     //iphone objects
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect a Switch pin to 8";
-    label.position = CGPointMake(150, 100);
+    label.position = CGPointMake(160, 100);
     label.width = 200;
     label.numLines = 2;
     
     THMusicPlayer * musicPlayer = [[THMusicPlayer alloc] init];
-    musicPlayer.position = CGPointMake(160, 400);
+    musicPlayer.position = CGPointMake(160, 250);
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,musicPlayer, nil];
     
