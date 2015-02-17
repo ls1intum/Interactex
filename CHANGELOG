@@ -1,3 +1,21 @@
+
+———Interactex v2.40———
+
+**Bug Fixing**
+- switch to library mode when an element in the canvas gets removed
+- crashed when removing a hardware connection from the properties pane (go to harware mode and select the lilypad, its conncetions show in a table, try to remove one)
+- LED shown as input element on the lilypad's properties. wire an LED to a lilypad, select the lilypad and you will see a list of its connected elements. The LED should be an output element
+- RGB LED goes to minus instead of plus
+- slider copy does not copy its width
+- palette properties empty when selecting element and switching to library mode and back to properties mode
+
+**New Features**
+- add description contact Katharina for custom designed lilypads
+- remove palette dragging functionality. Make it exactly the same as the iphone hide (with a tap hide, with a tap - show). Change the icon to make it <> like the iPhone hide
+- remove flex sensor
+- remove Jennic microcontroller
+- remove power supply
+
 ———Interactex v2.35———
 
 **Bug Fixing**
@@ -68,8 +86,15 @@ Fixed bug: opengl draw errors after random combinations of actions in the canvas
 
 
 
-////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+———Interactex Client v1.90———
+**Bug Fixing**
+- music player causing crashes in client
+- music player buttons enabled even though not connected
+- music player buttons not updating properly when playing & ipod going to background mode
+- fixed warnings when compiling for 64 bit architecture
 
 
 ———Interactex Client v1.85———

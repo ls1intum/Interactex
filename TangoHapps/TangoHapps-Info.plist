@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Would you like to let the app use location?</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Would you like to let the app use location?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -31,11 +27,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.35</string>
+	<string>2.40</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Would you like to let the app use location?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Would you like to let the app use location?</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
