@@ -121,7 +121,7 @@ static NSInteger objectCount = 1;
     [coder encodeFloat:self.rotation forKey:@"rotation"];
     [coder encodeCGPoint:self.position forKey:@"position"];
     [coder encodeCGSize:self.size forKey:@"size"];
-    [coder encodeInt:self.z forKey:@"z"];
+    [coder encodeInteger:self.z forKey:@"z"];
     [coder encodeObject:self.simulableObject forKey:@"object"];
     [coder encodeBool:self.acceptsConnections forKey:@"acceptsConnections"];
 }

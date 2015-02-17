@@ -84,7 +84,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removePaletteItem:(THPaletteItem*) paletteItem;
 -(void)removeAllPaletteItems;
 
--(int) getSize;
+-(NSUInteger) getSize;
 
 //temporary palette item
 -(void) temporaryAddPaletteItem:(THPaletteItem*) paletteItem;
