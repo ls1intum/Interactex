@@ -100,7 +100,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [array addObject:[self lsmProject]];
     [array addObject:[self accelerometerProject]];
     [array addObject:[self musicPlayerProject]];
-    [array addObject:[self pureDataProject]];
+    //[array addObject:[self pureDataProject]];
     
     
     NSMutableArray * imagesArray = [NSMutableArray array];
@@ -112,7 +112,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
-    [imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
+    //[imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
     
     for (int i = 0 ; i < array.count ; i++) {
         

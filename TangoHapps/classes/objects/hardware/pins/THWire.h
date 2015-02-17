@@ -48,7 +48,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THWireNode : TFEditableObject
 
-    @property (nonatomic, weak) THWire * wire;
+@property (nonatomic, weak) THWire * wire;
+@property (nonatomic) BOOL visible;
 
 @end
 
@@ -60,6 +61,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property(nonatomic) CGPoint p1;
 @property(nonatomic) CGPoint p2;
 @property(nonatomic) BOOL selected;
+@property(nonatomic) BOOL showsNodes;
 @property(nonatomic) ccColor3B color;
 @property(nonatomic, readonly) BOOL canColorBeChanged;
 @property(nonatomic, strong) NSMutableArray * nodes;

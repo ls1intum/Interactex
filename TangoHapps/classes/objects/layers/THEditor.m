@@ -68,9 +68,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponent.h"
 #import "THiPhoneControlEditableObject.h"
 
-//remove
-#import "THGrouperConditionEditable.h"
-
 @implementation THEditor
 
 -(id) init{
@@ -268,6 +265,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) unselectCurrentObject{
     if(_currentObject){
         
+        if([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+            //[self setShowWiresForObject:(THHardwareComponentEditableObject*) self.currentObject showsWires:YES];
+        }
+        
         self.currentObject.selected = NO;
         
         if(self.state != kEditorStateConnect){
@@ -295,7 +296,9 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     if(self.isLilypadMode){
-        //[self showWiresForCurrentObject];
+        if([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+            //[self setShowWiresForObject:(THHardwareComponentEditableObject*) self.currentObject showsWires:YES];
+        }
     } else {
         
         [self reLayoutConnectionLinesForObject:self.currentObject];
@@ -1045,12 +1048,14 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
 }
-
--(void) showWiresForCurrentObject{
-    if([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+/*
+-(void) setShowWiresForObject:(THHardwareComponentEditableObject*) object showsWires:(BOOL) showsWires{
+        NSArray * wires = [[THDirector sharedDirector].currentProject wiresForHardwareElement:self.currentObject];
         
-    }
-}
+        for (THWire * wire in wires) {
+            wires.showsNodes = showsWires;
+        }
+}*/
 
 -(void) showConnectionsForCurrentObject{
     THProject * project = [THDirector sharedDirector].currentProject;

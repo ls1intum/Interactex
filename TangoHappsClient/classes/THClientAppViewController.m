@@ -456,12 +456,12 @@ float const kConnectingTimeout = 7.0f;
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
     NSInteger firstPinIdx = firstPin.number;
     
-    int port = pin.number / 8;
-    int value = 0;
-    for (int i=0; i < 8; i++) {
-        int pinIdx = port * 8 + i - firstPinIdx;
+    NSInteger port = pin.number / 8;
+    NSInteger value = 0;
+    for (NSInteger i = 0; i < 8; i++) {
+        NSInteger pinIdx = port * 8 + i - firstPinIdx;
 
-        if(pinIdx >= (int)digitalPins.count){
+        if(pinIdx >= (NSInteger)digitalPins.count){
             break;
         }
         if(pinIdx >= 0){
@@ -566,7 +566,7 @@ float const kConnectingTimeout = 7.0f;
 
 -(void) firmataController:(IFFirmata*) firmataController didReceivePinStateResponseForPin:(NSInteger) pin mode:(IFPinMode) mode{
     
-    NSLog(@"received mode %d %d",pin,mode);
+    NSLog(@"received mode %ld %d",(long)pin,mode);
 }
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) port value:(NSInteger) value{
@@ -577,9 +577,9 @@ float const kConnectingTimeout = 7.0f;
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
     
     int mask = 1;
-    int pinNumber = port * 8;
+    NSInteger pinNumber = port * 8;
     for (mask <<= firstPin.number; pinNumber < digitalPins.count; mask <<= 1, pinNumber++) {
-        int pinIdx = pinNumber - firstPin.number;
+        NSInteger pinIdx = pinNumber - firstPin.number;
         if(pinIdx > 0){
             THBoardPin * pinObj = [digitalPins objectAtIndex:pinIdx];
             if (pinObj.mode == IFPinModeInput) {
@@ -638,12 +638,9 @@ float const kConnectingTimeout = 7.0f;
 
 -(IBAction)startButtonTapped:(id)sender {
     
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    
     if([BLEDiscovery sharedInstance].connectedService){
         
         [self.currentProject stopSimulating];
-        //[self.firmataController sendResetRequest];
         
         [self disconnectFromBle];
         

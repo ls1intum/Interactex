@@ -282,7 +282,7 @@ NSString * const kCallImageName = @"call.png";
     CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(_addressBook);
     _contacts = CFArrayCreateMutableCopy(kCFAllocatorDefault,CFArrayGetCount(people), people);
     
-    CFArraySortValues(_contacts, CFRangeMake(0, CFArrayGetCount(_contacts)), (CFComparatorFunction)ABPersonComparePeopleByName, (void*) ABPersonGetSortOrdering());
+    CFArraySortValues(_contacts, CFRangeMake(0, CFArrayGetCount(_contacts)), (CFComparatorFunction)ABPersonComparePeopleByName, (void*) (NSInteger) ABPersonGetSortOrdering());
     
     CFRelease(people);
     

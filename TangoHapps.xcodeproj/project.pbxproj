@@ -586,6 +586,10 @@
 		9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD221800255400363CD2 /* CoreText.framework */; };
 		9ACBC5EC18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
 		9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */; };
+		9ACE30B61A9277570089D669 /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035D167B84B40020241C /* song2.mp3 */; };
+		9ACE30B71A9277570089D669 /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
+		9ACE30C51A92790A0089D669 /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACE30C41A92790A0089D669 /* song1.mp3 */; };
+		9ACE30C61A92790A0089D669 /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACE30C41A92790A0089D669 /* song1.mp3 */; };
 		9AD5980819E5959900369464 /* THBoardsPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD5980719E5959900369464 /* THBoardsPaletteItem.m */; };
 		9AD7046C18AA98F00080CD2E /* THGraphTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7046B18AA98F00080CD2E /* THGraphTextView.m */; };
 		9AD7046D18AA98F00080CD2E /* THGraphTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD7046B18AA98F00080CD2E /* THGraphTextView.m */; };
@@ -712,7 +716,6 @@
 		9AF5043D167B84B40020241C /* data_pushed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50359167B84B40020241C /* data_pushed.mp3 */; };
 		9AF5043E167B84B40020241C /* peer_connected.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035A167B84B40020241C /* peer_connected.mp3 */; };
 		9AF5043F167B84B40020241C /* peer_disconnected.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035B167B84B40020241C /* peer_disconnected.mp3 */; };
-		9AF50440167B84B40020241C /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035C167B84B40020241C /* song1.mp3 */; };
 		9AF50441167B84B40020241C /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035D167B84B40020241C /* song2.mp3 */; };
 		9AF50442167B84B40020241C /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
 		9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50208167B84B40020241C /* THComparisonCondition.m */; };
@@ -1673,6 +1676,7 @@
 		9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditableObjectCommonProperties.h; sourceTree = "<group>"; };
 		9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditableObjectCommonProperties.m; sourceTree = "<group>"; };
 		9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THEditableObjectCommonProperties.xib; sourceTree = "<group>"; };
+		9ACE30C41A92790A0089D669 /* song1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song1.mp3; sourceTree = "<group>"; };
 		9AD5980619E5959900369464 /* THBoardsPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardsPaletteItem.h; sourceTree = "<group>"; };
 		9AD5980719E5959900369464 /* THBoardsPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardsPaletteItem.m; sourceTree = "<group>"; };
 		9AD7046A18AA98F00080CD2E /* THGraphTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGraphTextView.h; sourceTree = "<group>"; };
@@ -1899,7 +1903,6 @@
 		9AF50359167B84B40020241C /* data_pushed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = data_pushed.mp3; sourceTree = "<group>"; };
 		9AF5035A167B84B40020241C /* peer_connected.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = peer_connected.mp3; sourceTree = "<group>"; };
 		9AF5035B167B84B40020241C /* peer_disconnected.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = peer_disconnected.mp3; sourceTree = "<group>"; };
-		9AF5035C167B84B40020241C /* song1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song1.mp3; sourceTree = "<group>"; };
 		9AF5035D167B84B40020241C /* song2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song2.mp3; sourceTree = "<group>"; };
 		9AF5035E167B84B40020241C /* song3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song3.mp3; sourceTree = "<group>"; };
 		9AF50466167B855C0020241C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -3478,7 +3481,7 @@
 				9AF50359167B84B40020241C /* data_pushed.mp3 */,
 				9AF5035A167B84B40020241C /* peer_connected.mp3 */,
 				9AF5035B167B84B40020241C /* peer_disconnected.mp3 */,
-				9AF5035C167B84B40020241C /* song1.mp3 */,
+				9ACE30C41A92790A0089D669 /* song1.mp3 */,
 				9AF5035D167B84B40020241C /* song2.mp3 */,
 				9AF5035E167B84B40020241C /* song3.mp3 */,
 				9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */,
@@ -3823,7 +3826,6 @@
 				9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */,
 				9AF5043E167B84B40020241C /* peer_connected.mp3 in Resources */,
 				9AF5043F167B84B40020241C /* peer_disconnected.mp3 in Resources */,
-				9AF50440167B84B40020241C /* song1.mp3 in Resources */,
 				9AF50441167B84B40020241C /* song2.mp3 in Resources */,
 				9ABC27941809B2A500B39D72 /* temperatureSensor@2x.png in Resources */,
 				9AF50442167B84B40020241C /* song3.mp3 in Resources */,
@@ -4113,6 +4115,7 @@
 				9A5931CA17E5CD4500B20D99 /* paletteIcon.png in Resources */,
 				9A5931CC17E5CD4500B20D99 /* paletteIcon@2x.png in Resources */,
 				9AA4D6F018AE169100A43433 /* palette_lipoBattery@2x.png in Resources */,
+				9ACE30C51A92790A0089D669 /* song1.mp3 in Resources */,
 				251F678419C4A1A300EF9807 /* hideVPmode.png in Resources */,
 				9A5931CE17E5CD4500B20D99 /* paletteIconSelected.png in Resources */,
 				9A5931D017E5CD4500B20D99 /* paletteIconSelected@2x.png in Resources */,
@@ -4148,9 +4151,11 @@
 				9AFB7E4E1833D89800694CCE /* temperatureSensor.png in Resources */,
 				25D5EE371A4331C300FBCA47 /* Images.xcassets in Resources */,
 				9AFB7E5C1833DBCC00694CCE /* button.png in Resources */,
+				9ACE30B61A9277570089D669 /* song2.mp3 in Resources */,
 				9A2EA8BB19DB2CF200E30E2D /* musicPlay.png in Resources */,
 				9AFB7E461833D89800694CCE /* lightSensor.png in Resources */,
 				9AFB7E521833D89800694CCE /* threeColorLed.png in Resources */,
+				9ACE30C61A92790A0089D669 /* song1.mp3 in Resources */,
 				9A51101A1837DD5800EB25FA /* projectIcon@2x.png in Resources */,
 				9AF50032167B83140020241C /* iphoneFrame.png in Resources */,
 				9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */,
@@ -4191,6 +4196,7 @@
 				9A3964A218AE6ABA0061E44B /* pureData@2x.png in Resources */,
 				9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */,
 				9A2EA8BC19DB2CF200E30E2D /* musicPlay@2x.png in Resources */,
+				9ACE30B71A9277570089D669 /* song3.mp3 in Resources */,
 				9AFB7E4C1833D89800694CCE /* potentiometer@2x.png in Resources */,
 				9AF50475167B86490020241C /* Default-568h@2x.png in Resources */,
 				9AFB7E581833D89800694CCE /* vibeBoard@2x.png in Resources */,
@@ -4822,10 +4828,6 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
@@ -4847,10 +4849,6 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
@@ -4899,10 +4897,6 @@
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
@@ -4924,14 +4918,10 @@
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4948,14 +4938,10 @@
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
@@ -4972,14 +4958,10 @@
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/build/Debug-iphoneos",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
-				USER_HEADER_SEARCH_PATHS = "./Frameworks/** ./Frameworks/CorePlot/**";
+				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};

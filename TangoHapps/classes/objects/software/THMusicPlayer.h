@@ -60,6 +60,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic,readonly) NSString * currentSong;
 @property (nonatomic) float volume;
+
+@property (nonatomic, strong) AVAudioPlayer * audioPlayer;
+
 @property (nonatomic, strong) MPMusicPlayerController * musicPlayer;
 @property (nonatomic, strong) NSArray * songs;
 @property (nonatomic, strong) MPMediaQuery * songsQuery;

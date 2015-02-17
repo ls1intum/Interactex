@@ -58,9 +58,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeInt:self.number forKey:@"number"];
-    [coder encodeInt:self.type forKey:@"type"];
-    [coder encodeInt:self.value forKey:@"value"];
+    [coder encodeInteger:self.number forKey:@"number"];
+    [coder encodeInteger:self.type forKey:@"type"];
+    [coder encodeInteger:self.value forKey:@"value"];
 }
 
 -(id)copyWithZone:(NSZone *)zone
@@ -75,6 +75,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(NSString*) description{
-    return [NSString stringWithFormat:@"%ld (%u) = %ld",(long)self.number,self.type,(long)self.value];
+    return [NSString stringWithFormat:@"%ld (%ld) = %ld",(long)self.number,(long)self.type,(long)self.value];
 }
 @end

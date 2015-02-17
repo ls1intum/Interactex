@@ -391,8 +391,15 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) play{
     
 #if (TARGET_IPHONE_SIMULATOR)
-    NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
-    [[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
+    //NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
+    //[[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
+    
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/song1.mp3", [[NSBundle mainBundle] resourcePath]]];
+    
+    NSError *error;
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.audioPlayer.numberOfLoops = -1;
+    [self.audioPlayer play];//this line crashes in simulator
     
     [self updateLabel];
     [self updatePlayButtonImage];
@@ -406,7 +413,7 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) pause{
 #if (TARGET_IPHONE_SIMULATOR)
-    [[CDAudioManager sharedManager] stopBackgroundMusic];
+    //[[CDAudioManager sharedManager] stopBackgroundMusic];
     [self updateLabel];
     [self updatePlayButtonImage];
 #else
