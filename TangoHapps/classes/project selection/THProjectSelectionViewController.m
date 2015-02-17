@@ -813,6 +813,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         
         CGPoint position = [recognizer locationInView:self.collectionView];
         
+        position.x += 50;
+        position.y = 350;
         if(recognizer.state == UIGestureRecognizerStateBegan){
             self.currentDraggableCellIndex = -1;
             insertedTemporaryProject = NO;

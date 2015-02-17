@@ -50,6 +50,13 @@ You should have received a copy of the GNU General Public License along with thi
 {
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     //if([project.iPhone testPoint:location]){ //nazmus commented
+    
+    /*CGRect rect2 = CGRectMake(location.x, location.y, 50, 50);
+    if (CGRectContainsRect(project.iPhone.currentView.boundingBox,rect2)) {
+        return YES;
+    }
+    printf("X: %f",location.x);
+    printf("y: %f",location.y);*/
     if([project.iPhone.currentView testPoint:location]){ //nazmus added
         return YES;
     }
@@ -60,10 +67,18 @@ You should have received a copy of the GNU General Public License along with thi
     THiPhoneButtonEditableObject * iPhoneButton = [[THiPhoneButtonEditableObject alloc] init];
 
     CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    iPhoneButton.position = locationTransformed;
+    //iPhoneButton.position = locationTransformed;
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project addiPhoneObject:iPhoneButton];
+    
+    CGRect objectRect = CGRectMake(locationTransformed.x, locationTransformed.y, 50, 50);
+    if (CGRectContainsRect(project.iPhone.currentView.boundingBox,objectRect)) {
+        iPhoneButton.position = locationTransformed;
+        [project addiPhoneObject:iPhoneButton];
+    }
+    
+    
+    
 }
 
 @end

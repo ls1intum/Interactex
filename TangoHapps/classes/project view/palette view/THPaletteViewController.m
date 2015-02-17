@@ -174,6 +174,9 @@ You should have received a copy of the GNU General Public License along with thi
             
             //CGPoint editorLocation = [recognizer locationInView: [[CCDirector sharedDirector] openGLView]];
             
+            //New location depends on the with and heigh of each element
+            //editorLocation = [item getPossitionTodrop:editorLocation];
+            
             if([item canBeDroppedAt:editorLocation])
                 [item dropAt:editorLocation];
         }
@@ -321,6 +324,12 @@ You should have received a copy of the GNU General Public License along with thi
         
         CGFloat navigationBarHeight = 44;
         location.y -= navigationBarHeight;
+        
+        //test drag completly inside of iphone
+        //location.x += 100;
+        //location.y += 100;
+        
+        //location.x += 44;
         
         [self removeCurrentDragView];
         

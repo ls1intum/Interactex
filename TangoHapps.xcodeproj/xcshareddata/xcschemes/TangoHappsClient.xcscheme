@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "Interactex Client.app"
-            BlueprintName = "TangoHappsClient"
+            BlueprintIdentifier = "9A351188167B7A6800C7484B"
+            BuildableName = "Interactex Designer.app"
+            BlueprintName = "TangoHapps"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "Interactex Client.app"
-            BlueprintName = "TangoHappsClient"
+            BlueprintIdentifier = "9A351188167B7A6800C7484B"
+            BuildableName = "Interactex Designer.app"
+            BlueprintName = "TangoHapps"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
