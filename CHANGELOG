@@ -1,4 +1,13 @@
 
+———Interactex v2.45———
+
+**Bug Fixing**
+- fixed crashes when moving connection node
+
+**New Features**
+- functionality to hide connection nodes of non selected hardware elements
+
+
 ———Interactex v2.40———
 
 **Bug Fixing**
