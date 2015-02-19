@@ -205,15 +205,26 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+-(THWireNode*) wireNodeFromObject:(THHardwareComponentEditableObject*) hardwareObject atPosition:(CGPoint) position{
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    NSArray * wires = [project wiresForHardwareElement:hardwareObject];
+    
+    for (THWire * wire in wires) {
+        THWireNode * node = [wire nodeAtPosition:position];
+        if(node){
+            return node;
+        }
+    }
+    
+    return nil;
+}
+
 -(TFEditableObject*) objectAtPosition:(CGPoint) position{
     
     THProject * project = [THDirector sharedDirector].currentProject;
     
     TFEditableObject * object;
-    
-    if(self.isLilypadMode){
-        object = [self wireNodeAtPosition:position];
-    }
     
     if(!object){
         object = [project objectAtLocation:position];
@@ -244,12 +255,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) selectObjectAtPosition:(CGPoint) position{
     
+    TFEditableObject * previousObject = self.currentObject;
+    
+    TFEditableObject * newObject = nil;
+    if(self.isLilypadMode && [previousObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+        newObject = [self wireNodeFromObject:(THHardwareComponentEditableObject*) previousObject atPosition:position];
+    }
+    
     [self unselectCurrentObject];
+
+    if(!newObject){
+        newObject = [self objectAtPosition:position];
+    }
     
-    TFEditableObject * object = [self objectAtPosition:position];
-    
-    if(object){
-        [self selectObject:object];
+    if(newObject){
+        [self selectObject:newObject];
     } else {
         THProjectViewController *projectController = [THDirector sharedDirector].projectController;
         [[projectController tabController] showTab:0];

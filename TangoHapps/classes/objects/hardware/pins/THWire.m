@@ -78,6 +78,7 @@ You should have received a copy of the GNU General Public License along with thi
 @synthesize p1 = _p1;
 @synthesize p2 = _p2;
 @synthesize showsNodes = _showsNodes;
+@synthesize selected = _selected;
 
 -(void) loadWire{
     
@@ -215,12 +216,23 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Properties
 
+-(void) updateNodesVisibility{
+    for (THWireNode * node in self.nodes) {
+        node.visible = _showsNodes || self.selected;
+    }
+}
+
 -(void) setShowsNodes:(BOOL)showsNodes{
     if(_showsNodes != showsNodes){
        _showsNodes = showsNodes;
-        for (THWireNode * node in self.nodes) {
-            node.visible = _showsNodes;
-        }
+        [self updateNodesVisibility];
+    }
+}
+
+-(void) setSelected:(BOOL)selected{
+    if(_selected != selected){
+        _selected = selected;
+        [self updateNodesVisibility];
     }
 }
 
