@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProject.h"
 #import "THiPhoneEditableObject.h"
 #import "THSliderEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THSliderPaletteItem
 
@@ -58,10 +59,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THSliderEditableObject * slider = [[THSliderEditableObject alloc] init];
-    slider.position = location;
     
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    slider.position = locationTransformed;
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    slider.position = [clase dropAt:location withSize: kDefaultSliderSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:slider];

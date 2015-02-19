@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THImageViewPaletteItem.h"
 #import "THImageViewEditable.h"
 #import "THiPhoneEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THImageViewPaletteItem
 
@@ -58,10 +59,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THImageViewEditable * imageView = [[THImageViewEditable alloc] init];
-    imageView.position = location;
     
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    imageView.position = locationTransformed;
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    imageView.position = [clase dropAt:location withSize: kDefaultImageSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:imageView];

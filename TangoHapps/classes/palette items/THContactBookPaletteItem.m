@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THContactBookPaletteItem.h"
 #import "THContactBookEditable.h"
 #import "THiPhoneEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THContactBookPaletteItem
 
@@ -57,10 +58,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THContactBookEditable * contactBook = [[THContactBookEditable alloc] init];
-    contactBook.position = location;
     
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    contactBook.position = locationTransformed;
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    contactBook.position = [clase dropAt:location withSize: kDefaultContactBookSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:contactBook];

@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMusicPlayerPaletteItem.h"
 #import "THMusicPlayerEditableObject.h"
 #import "THiPhoneEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THMusicPlayerPaletteItem
 
@@ -59,8 +60,8 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)dropAt:(CGPoint)location {
     THMusicPlayerEditableObject * musicPlayer = [[THMusicPlayerEditableObject alloc] init];
     
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    musicPlayer.position = locationTransformed;
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    musicPlayer.position = [clase dropAt:location withSize: KDefaultMusicPlayerSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:musicPlayer];

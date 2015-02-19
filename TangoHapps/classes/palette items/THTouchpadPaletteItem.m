@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTouchpadPaletteItem.h"
 #import "THTouchPadEditableObject.h"
 #import "THiPhoneEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THTouchpadPaletteItem
 
@@ -59,8 +60,8 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)dropAt:(CGPoint)location {
     THTouchPadEditableObject * iPhoneButton = [[THTouchPadEditableObject alloc] init];
     
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    iPhoneButton.position = locationTransformed;
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    iPhoneButton.position = [clase dropAt:location withSize: kDefaultTouchpadSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:iPhoneButton];

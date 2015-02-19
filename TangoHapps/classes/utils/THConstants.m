@@ -168,5 +168,5 @@ CGSize const kDefaultSliderSize = {150,30};
 CGSize const kDefaultTouchpadSize = {260,200};
 CGSize const KDefaultMusicPlayerSize = {260,140};
 CGSize const kDefaultImageSize = {200,200};
-CGSize const kDefaultContactBookSize = {100,260};
-CGSize const kDefaultGraphSize = {130,260};
+CGSize const kDefaultContactBookSize = {260,100};
+CGSize const kDefaultGraphSize = {260,130};

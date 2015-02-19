@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMonitorEditable.h"
 #import "THProject.h"
 #import "THiPhoneEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THMonitorPaletteItem
 
@@ -58,10 +59,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THMonitorEditable * monitor = [[THMonitorEditable alloc] init];
-    //monitor.position = location;
     
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    monitor.position = locationTransformed;
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    monitor.position = [clase dropAt:location withSize: kDefaultImageSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:monitor];
