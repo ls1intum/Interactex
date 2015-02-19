@@ -241,11 +241,12 @@ NSString * const kCallImageName = @"call.png";
 -(void) updateCurrentContact{
     THContact * contact = self.currentContact;
     if(contact){
-        NSString *labelText = @"Unknown";
-        if (contact.name) labelText = contact.name;
+        NSString *labelText = contact.name;
+        labelText = [labelText stringByAppendingString:@" : "];
         if (contact.number) {
-            labelText = [labelText stringByAppendingString:@" : "];
             labelText = [labelText stringByAppendingString:contact.number];
+        } else {
+            labelText = [labelText stringByAppendingString:@"(No Phone)"];
         }
         _label.text = labelText;
     } else {
@@ -262,7 +263,28 @@ NSString * const kCallImageName = @"call.png";
         ABMutableMultiValueRef multi = ABRecordCopyValue(record, kABPersonPhoneProperty);
         
         THContact * contact = [[THContact alloc] init];
-        contact.name = [NSString stringWithFormat:@"%@ %@",name1,name2];
+        NSString *displayName = @"";
+        //if first name exists
+        if (name1 && ![name1 isEqualToString:@"null"]) {
+            displayName = name1;
+            //if last name also exists
+            if (name2 && ![name2 isEqualToString:@"null"]) {
+                displayName = [displayName stringByAppendingString:@" "];
+                displayName = [displayName stringByAppendingString:name2];
+            }
+        } else {
+            //if only last name exists
+            if (![name2 isEqualToString:@"null"]) {
+                displayName = name2;
+            }
+        }
+        //if no name exists
+        if (displayName.length < 1) {
+            displayName = @"Unknown";
+        }
+        
+        //contact.name = [NSString stringWithFormat:@"%@ %@",name1,name2];
+        contact.name = displayName;
         
         if(ABMultiValueGetCount(multi) > 0){
             NSString * phoneRef = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(multi, 0));
