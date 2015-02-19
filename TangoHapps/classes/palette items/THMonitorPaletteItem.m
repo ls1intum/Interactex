@@ -61,7 +61,7 @@ You should have received a copy of the GNU General Public License along with thi
     THMonitorEditable * monitor = [[THMonitorEditable alloc] init];
     
     THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    monitor.position = [clase dropAt:location withSize: kDefaultImageSize];
+    monitor.position = [clase dropAt:location withSize: kDefaultGraphSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:monitor];
