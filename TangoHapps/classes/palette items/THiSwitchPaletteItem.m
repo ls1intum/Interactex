@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiSwitchPaletteItem.h"
 #import "THiSwitchEditableObject.h"
 #import "THiPhoneEditableObject.h"
+#import "THiPhoneScreenItem.h"
 
 @implementation THiSwitchPaletteItem
 
@@ -61,8 +62,13 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
     iswitch.position = locationTransformed;
     
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
+    iswitch.position = [clase dropAt:location withSize: kDefaultSwitchSize];
+    
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:iswitch];
+    
+    
 }
 
 @end

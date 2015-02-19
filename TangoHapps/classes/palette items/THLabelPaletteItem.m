@@ -44,6 +44,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THLabelEditableObject.h"
 #import "THiPhoneEditableObject.h"
 
+#import "THiPhoneScreenItem.h"
+#import "THConstants.h"
+
 @implementation THLabelPaletteItem
 
 - (BOOL)canBeDroppedAt:(CGPoint)location {
@@ -58,92 +61,15 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)dropAt:(CGPoint)location {
+    
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THLabelEditableObject * ilabel = [[THLabelEditableObject alloc] init];
+    
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
 
-    location = [TFHelper ConvertToCocos2dView:location];
-    
-    CGPoint topLeftPoint = CGPointMake(location.x - ilabel.width/2, location.y - ilabel.height);
-    CGPoint topRightPoint = CGPointMake(location.x + ilabel.width/2, location.y - ilabel.height);
-    CGPoint bottonLeftPoint = CGPointMake(location.x - ilabel.width/2, location.y + ilabel.height);
-    CGPoint bottonRightPoint = CGPointMake((location.x + ilabel.width/2), (location.y + ilabel.height));
-    
-    Boolean A,B,C,D = FALSE;
-
-    CGPoint newPosition = location;
-    
-    CGPoint originPoint = project.iPhone.currentView.boundingBox.origin;
-    
-    //for testing
-    CGPoint finalPoint = CGPointMake(originPoint.x + project.iPhone.currentView.boundingBox.size.width,
-                                    originPoint.y + project.iPhone.currentView.boundingBox.size.height);
-    
-    CGRect iPhoneScreen = CGRectMake(originPoint.x, originPoint.y,
-                                     project.iPhone.currentView.boundingBox.size.width,
-                                     project.iPhone.currentView.boundingBox.size.height);
-    
-    if(CGRectContainsPoint(iPhoneScreen, topLeftPoint)) {
-        A = TRUE;
-    }
-    else {
-        printf(" !A");
-        A = FALSE;
-    }
-
-    if (CGRectContainsPoint(iPhoneScreen, topRightPoint)) {
-        B = TRUE;
-    }
-    else {
-        printf(" !B");
-        B = FALSE;
-    }
-
-    if (CGRectContainsPoint(iPhoneScreen, bottonLeftPoint)) {
-        C = TRUE;
-    }
-    else {
-        printf(" !C");
-        C = FALSE;
-    }
-
-    if (CGRectContainsPoint(iPhoneScreen, bottonRightPoint)) {
-        D = TRUE;
-    }
-    else {
-        printf(" !D");
-        D = FALSE;
-    }
-
-    printf("\n");
-    
-    //according to which point of label square is out of currentView bounds, we change the position properly
-    if(!A && !B && !C && D){// operations +x +y
-        newPosition.x += ilabel.width/2;
-        newPosition.y += ilabel.height/2;
-        
-    } else if (!A && !B && C && !D){ // operations -x +y
-        newPosition.x -= ilabel.width/2;
-        newPosition.y += ilabel.height/2;
-        
-    } else if (!A && B && !C && D){ // operations +x
-        newPosition.x += ilabel.width/2;
-        
-    } else if (A && !B && C && !D){ // operations -x
-        newPosition.x -= ilabel.width/2;
-    
-    } else if (!A && B && !C && !D){ // operations +x -y
-        newPosition.x += ilabel.width/2;
-        newPosition.y -= ilabel.height/2;
-        
-    } else if (A && !B && !C && !D){ // operations -x -y
-        newPosition.x -= ilabel.width/2;
-        newPosition.y -= ilabel.height/2;
-    }
-    
-    //update object before redraw
-    ilabel.position = newPosition;
+    ilabel.position = [clase dropAt:location withSize: kDefaultLabelSize];
     [project addiPhoneObject:ilabel];
-
+    
 }
 @end
 

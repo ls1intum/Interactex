@@ -44,6 +44,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiPhoneEditableObject.h"
 #import "THiPhoneButtonEditableObject.h"
 
+#import "THiPhoneScreenItem.h"
+
 @implementation THiPhoneButtonPaletteItem
 
 - (BOOL)canBeDroppedAt:(CGPoint)location
@@ -64,19 +66,27 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)dropAt:(CGPoint)location {
-    THiPhoneButtonEditableObject * iPhoneButton = [[THiPhoneButtonEditableObject alloc] init];
-
-    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
-    //iPhoneButton.position = locationTransformed;
+//    THiPhoneButtonEditableObject * iPhoneButton = [[THiPhoneButtonEditableObject alloc] init];
+//
+//    CGPoint locationTransformed = [TFHelper ConvertToCocos2dView:location];
+//    //iPhoneButton.position = locationTransformed;
+//    
+//    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+//    
+//    CGRect objectRect = CGRectMake(locationTransformed.x, locationTransformed.y, 50, 50);
+//    if (CGRectContainsRect(project.iPhone.currentView.boundingBox,objectRect)) {
+//        iPhoneButton.position = locationTransformed;
+//        [project addiPhoneObject:iPhoneButton];
+//    }
+    
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    THiPhoneButtonEditableObject * iPhoneButton = [[THiPhoneButtonEditableObject alloc] init];
     
-    CGRect objectRect = CGRectMake(locationTransformed.x, locationTransformed.y, 50, 50);
-    if (CGRectContainsRect(project.iPhone.currentView.boundingBox,objectRect)) {
-        iPhoneButton.position = locationTransformed;
-        [project addiPhoneObject:iPhoneButton];
-    }
+    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
     
+    iPhoneButton.position = [clase dropAt:location withSize: kDefaultButtonSize];
+    [project addiPhoneObject:iPhoneButton];
     
     
 }

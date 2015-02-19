@@ -160,3 +160,13 @@ NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";
 
 CGSize const kDefaultCanvasSize = {1536, 1152};
 //CGSize const kDefaultCanvasSize = {2048, 1448};
+
+CGSize const kDefaultLabelSize = {100,50};
+CGSize const kDefaultButtonSize = {100,50};
+CGSize const kDefaultSwitchSize = {51,31};
+CGSize const kDefaultSliderSize;
+CGSize const kDefaultTouchpadSize;
+CGSize const KDefaultMusicPlayerSize;
+CGSize const kDefaultImageSize;
+CGSize const kDefaultContactBookSize;
+CGSize const kDefaultGraphSize;

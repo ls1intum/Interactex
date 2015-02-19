@@ -92,6 +92,7 @@
 		67B3130218EC8063006A9A31 /* flexSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B312FE18EC8063006A9A31 /* flexSensor@2x.png */; };
 		67B3130318EC8063006A9A31 /* palette_flexSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B312FF18EC8063006A9A31 /* palette_flexSensor.png */; };
 		67B3130418EC8063006A9A31 /* palette_flexSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B3130018EC8063006A9A31 /* palette_flexSensor@2x.png */; };
+		93778AF61A962D8200B8B1FF /* THiPhoneScreenItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 93778AF51A962D8200B8B1FF /* THiPhoneScreenItem.m */; };
 		9A06CA6817C14DD300E195FB /* THClientSceneDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */; };
 		9A06EE86169AD1D900B88519 /* THThreeColorLedPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */; };
 		9A06EE92169AD8B200B88519 /* THSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A06EE8F169AD8B200B88519 /* THSlider.m */; };
@@ -1081,6 +1082,8 @@
 		67B312FE18EC8063006A9A31 /* flexSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flexSensor@2x.png"; sourceTree = "<group>"; };
 		67B312FF18EC8063006A9A31 /* palette_flexSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_flexSensor.png; sourceTree = "<group>"; };
 		67B3130018EC8063006A9A31 /* palette_flexSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_flexSensor@2x.png"; sourceTree = "<group>"; };
+		93778AE81A962D3D00B8B1FF /* THiPhoneScreenItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiPhoneScreenItem.h; sourceTree = "<group>"; };
+		93778AF51A962D8200B8B1FF /* THiPhoneScreenItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiPhoneScreenItem.m; sourceTree = "<group>"; };
 		9A06CA6617C14DD200E195FB /* THClientSceneDraggableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneDraggableCell.h; sourceTree = "<group>"; };
 		9A06CA6717C14DD200E195FB /* THClientSceneDraggableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneDraggableCell.m; sourceTree = "<group>"; };
 		9A06EE84169AD1D900B88519 /* THThreeColorLedPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THThreeColorLedPaletteItem.h; sourceTree = "<group>"; };
@@ -2907,6 +2910,8 @@
 				9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */,
 				9A3165A3182796A200CB3E59 /* THMonitorPaletteItem.h */,
 				9A3165A4182796A200CB3E59 /* THMonitorPaletteItem.m */,
+				93778AE81A962D3D00B8B1FF /* THiPhoneScreenItem.h */,
+				93778AF51A962D8200B8B1FF /* THiPhoneScreenItem.m */,
 			);
 			name = software;
 			sourceTree = "<group>";
@@ -4410,6 +4415,7 @@
 				9A097685171866AA0028A6B4 /* THVibrationBoardProperties.m in Sources */,
 				9A09768C17186B2D0028A6B4 /* THVibrationBoardPaletteItem.m in Sources */,
 				9ABC276618098F2400B39D72 /* THSimpleLilypadEditable.m in Sources */,
+				93778AF61A962D8200B8B1FF /* THiPhoneScreenItem.m in Sources */,
 				9A09772E17267CFC0028A6B4 /* THSound.m in Sources */,
 				9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */,
 				9ABC27881809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */,
