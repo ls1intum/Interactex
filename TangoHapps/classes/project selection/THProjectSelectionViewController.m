@@ -1110,7 +1110,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Katharina Bredies</b><br>(Project Lead, Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Attila Mann</b><br>(Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Juan Haladjian</b><br>(Lead Developer)<br><br></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer</b><br>(Developer)<br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer, Aarón Pérez Martín, Güven Cadogan, Magued Farah</b><br>(Developer)<br></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];

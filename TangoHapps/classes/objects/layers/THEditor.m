@@ -266,7 +266,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(_currentObject){
         
         if([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]]){
-            //[self setShowWiresForObject:(THHardwareComponentEditableObject*) self.currentObject showsWires:YES];
+            [self setShowWiresForObject:(THHardwareComponentEditableObject*) self.currentObject showsWires:NO];
         }
         
         self.currentObject.selected = NO;
@@ -296,8 +296,9 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     if(self.isLilypadMode){
+        
         if([self.currentObject isKindOfClass:[THHardwareComponentEditableObject class]]){
-            //[self setShowWiresForObject:(THHardwareComponentEditableObject*) self.currentObject showsWires:YES];
+            [self setShowWiresForObject:(THHardwareComponentEditableObject*) self.currentObject showsWires:YES];
         }
     } else {
         
@@ -1048,14 +1049,14 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
 }
-/*
+
 -(void) setShowWiresForObject:(THHardwareComponentEditableObject*) object showsWires:(BOOL) showsWires{
-        NSArray * wires = [[THDirector sharedDirector].currentProject wiresForHardwareElement:self.currentObject];
-        
-        for (THWire * wire in wires) {
-            wires.showsNodes = showsWires;
-        }
-}*/
+    NSArray * wires = [[THDirector sharedDirector].currentProject wiresForHardwareElement:object];
+    
+    for (THWire * wire in wires) {
+        wire.showsNodes = showsWires;
+    }
+}
 
 -(void) showConnectionsForCurrentObject{
     THProject * project = [THDirector sharedDirector].currentProject;

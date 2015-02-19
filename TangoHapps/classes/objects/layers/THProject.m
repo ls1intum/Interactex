@@ -731,10 +731,18 @@ You should have received a copy of the GNU General Public License along with thi
     }
     return nil;
 }
-/*
--(NSArray*) wiresForHardwareElement:{
+
+-(NSArray*) wiresForHardwareElement:(THHardwareComponentEditableObject*) hardwareComponent{
+    NSMutableArray * wires = [NSMutableArray array];
     
-}*/
+    for (THWire * wire in self.wires) {
+        if(wire.obj1.hardware == hardwareComponent){
+            [wires addObject:wire];
+        }
+    }
+    
+    return wires;
+}
 
 #pragma mark - Invocation Connections
 

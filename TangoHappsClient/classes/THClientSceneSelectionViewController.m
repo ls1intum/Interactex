@@ -250,6 +250,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - TableView Delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [self proceedToProjectAtIndex:indexPath.row];

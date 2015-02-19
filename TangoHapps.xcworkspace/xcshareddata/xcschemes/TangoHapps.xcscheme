@@ -113,7 +113,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "printDeallocsSimulableObjects"
-            value = "YES"
+            value = "NO"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

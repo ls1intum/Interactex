@@ -153,7 +153,7 @@ You should have received a copy of the GNU General Public License along with thi
         TFEditableObject * object = [project objectAtLocation:location];
         
         if(object){
-            float rotation = sender.rotation;
+            CGFloat rotation = sender.rotation;
             [object handleRotation:rotation];
         }
         

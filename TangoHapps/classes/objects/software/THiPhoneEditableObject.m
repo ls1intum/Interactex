@@ -231,7 +231,7 @@ You should have received a copy of the GNU General Public License along with thi
     iPhone.position = [TFHelper ConvertToCocos2dView:self.position];
 }
 
--(void) scaleBy:(float)scale{
+-(void) scaleBy:(CGFloat)scale{
     
 }
 

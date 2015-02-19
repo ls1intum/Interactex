@@ -81,8 +81,8 @@ static NSInteger objectCount = 1;
     
     if(self){
         
-        self.scale = 1.0f;
-        self.rotation = 0.0f;
+        self.myScale = 1.0f;
+        self.myRotation = 0.0f;
         self.active = YES;
         
         self.z = kDefaultZ;
@@ -103,8 +103,8 @@ static NSInteger objectCount = 1;
         [self loadEditableObject];
         
         self.active = [decoder decodeBoolForKey:@"active"];
-        self.scale = [decoder decodeFloatForKey:@"scale"];
-        self.rotation = [decoder decodeFloatForKey:@"rotation"];
+        self.myScale = [decoder decodeFloatForKey:@"scale"];
+        self.myRotation = [decoder decodeFloatForKey:@"rotation"];
         self.position = [decoder decodeCGPointForKey:@"position"];
         self.size = [decoder decodeCGSizeForKey:@"size"];
         self.z = [decoder decodeIntForKey:@"z"];
@@ -117,8 +117,8 @@ static NSInteger objectCount = 1;
 -(void)encodeWithCoder:(NSCoder *)coder {
     
     [coder encodeBool:self.active forKey:@"active"];
-    [coder encodeFloat:self.scale forKey:@"scale"];
-    [coder encodeFloat:self.rotation forKey:@"rotation"];
+    [coder encodeFloat:self.myScale forKey:@"scale"];
+    [coder encodeFloat:self.myRotation forKey:@"rotation"];
     [coder encodeCGPoint:self.position forKey:@"position"];
     [coder encodeCGSize:self.size forKey:@"size"];
     [coder encodeInteger:self.z forKey:@"z"];
@@ -131,8 +131,8 @@ static NSInteger objectCount = 1;
     TFEditableObject * copy = [[[self class] alloc] init];
     
     copy.active = self.active;
-    copy.scale = self.scale;
-    copy.rotation = self.rotation;
+    copy.myScale = self.myScale;
+    copy.myRotation = self.myRotation;
     copy.position = self.position;
     
     return copy;
@@ -308,12 +308,12 @@ static NSInteger objectCount = 1;
     _size = size;
 }
 
--(void)scaleBy:(float)scaleDx {
-    self.scale *= scaleDx;
+-(void)scaleBy:(CGFloat)scaleDx {
+    self.myScale *= scaleDx;
 }
 
--(void)rotateBy:(float)aFloat {
-    self.rotation += aFloat;
+-(void)rotateBy:(CGFloat)aFloat {
+    self.myRotation += aFloat;
 }
 
 -(void)displaceBy:(CGPoint)displacement {
@@ -337,11 +337,11 @@ static NSInteger objectCount = 1;
         
     if(_sprite){
         CGPoint spriteLoc = [_sprite convertToWorldSpace:CGPointZero];
-        return CGRectMake(spriteLoc.x, spriteLoc.y, _sprite.contentSize.width * self.scale * self.parent.scale, _sprite.contentSize.height * self.scale * self.parent.scale);
+        return CGRectMake(spriteLoc.x, spriteLoc.y, _sprite.contentSize.width * self.myScale * self.parent.scale, _sprite.contentSize.height * self.myScale * self.parent.scale);
     } else {
         CGPoint spriteLoc = [self convertToWorldSpace:CGPointZero];
         
-        CGSize size = CGSizeMake(self.contentSize.width * self.scale * self.parent.scale, self.contentSize.height * self.scale * self.parent.scale);
+        CGSize size = CGSizeMake(self.contentSize.width * self.myScale * self.parent.scale, self.contentSize.height * self.myScale * self.parent.scale);
         return CGRectMake(spriteLoc.x - size.width / 2, spriteLoc.y - size.height / 2, size.width, size.height);
     }
     
@@ -459,7 +459,7 @@ static NSInteger objectCount = 1;
 
 -(void) handleTap{}
 
--(void) handleRotation:(float) degree{}
+-(void) handleRotation:(CGFloat) degree{}
 
 -(void) prepareToDie{
         

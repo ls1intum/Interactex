@@ -252,7 +252,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.position = ccpAdd(self.position, displacement);
 }
 
--(void) scaleBy:(float)scale{
+-(void) scaleBy:(CGFloat)scale{
     
     if(self.canBeResized){
         THView * iPhoneObject = (THView*) self.simulableObject;

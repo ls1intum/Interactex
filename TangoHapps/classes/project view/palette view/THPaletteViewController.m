@@ -91,7 +91,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
-#import "THPureDataPaletteItem.h"
+//#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
 //#import "THPressureSensorPaletteItem.h"
 
@@ -488,7 +488,7 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
-                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
+                                     //[[THPureDataPaletteItem alloc] initWithName:@"puredata"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
