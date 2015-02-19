@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "THiPhoneScreenItem.h"
-
-#import "THiPhoneEditableObject.h"
-
-#import "THLabelEditableObject.h"
-
-#import "THLabelPaletteItem.h"
 #import "THLabelEditableObject.h"
 #import "THiPhoneEditableObject.h"
 
@@ -23,14 +17,11 @@
 
 - (CGPoint)dropAt:(CGPoint)location withSize:(CGSize)objSize{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    //THLabelEditableObject * ilabel = [[THLabelEditableObject alloc] init];
     
     location = [TFHelper ConvertToCocos2dView:location];
     
-    //CGSize objSize = CGSizeMake(123, 123);
-    
-    CGPoint topLeftPoint = CGPointMake(location.x - objSize.width/2, location.y - (objSize.height + 20));
-    CGPoint topRightPoint = CGPointMake(location.x + objSize.width/2, location.y - (objSize.height + 20));
+    CGPoint topLeftPoint = CGPointMake(location.x - objSize.width/2, location.y - (objSize.height+ 20));
+    CGPoint topRightPoint = CGPointMake(location.x + objSize.width/2, location.y - (objSize.height+ 20));
     CGPoint bottonLeftPoint = CGPointMake(location.x - objSize.width/2, location.y + objSize.height);
     CGPoint bottonRightPoint = CGPointMake((location.x + objSize.width/2), (location.y + objSize.height));
     
@@ -46,6 +37,11 @@
     CGRect iPhoneScreen = CGRectMake(originPoint.x, originPoint.y,
                                      project.iPhone.currentView.boundingBox.size.width,
                                      project.iPhone.currentView.boundingBox.size.height);
+    
+    CGFloat minX = originPoint.x;
+    CGFloat maxX = originPoint.x + iPhoneScreen.size.width;
+    CGFloat minY = originPoint.y + 45;
+    CGFloat maxY = originPoint.y + 45 + iPhoneScreen.size.height;
     
     if(CGRectContainsPoint(iPhoneScreen, topLeftPoint)) {
         A = TRUE;
@@ -83,41 +79,39 @@
     
     //according to which point of label square is out of currentView bounds, we change the position properly
     if(!A && !B && !C && D){// operations +x +y
-        newPosition.x += objSize.width/2;
-        newPosition.y += objSize.height/2;
+        newPosition.x = minX + objSize.width/2;
+        newPosition.y = minY + objSize.height/2;
         
     } else if (!A && !B && C && !D){ // operations -x +y
-        newPosition.x -= objSize.width/2;
-        newPosition.y += objSize.height/2;
+        newPosition.x = maxX - objSize.width/2;
+        newPosition.y = minY + objSize.height/2;
         
     } else if (!A && B && !C && D){ // operations +x
-        newPosition.x += objSize.width/2;
+        newPosition.x = minX + objSize.width/2;
         
     } else if (A && !B && C && !D){ // operations -x
-        newPosition.x -= objSize.width/2;
+        newPosition.x = maxX - objSize.width/2;
         
     } else if (!A && B && !C && !D){ // operations +x -y
-        newPosition.x += objSize.width/2;
-        newPosition.y -= objSize.height/2;
+        newPosition.x = minX + objSize.width/2;
+        newPosition.y = maxY - objSize.height/2;
         
     } else if (A && !B && !C && !D){ // operations -x -y
-        newPosition.x -= objSize.width/2;
-        newPosition.y -= objSize.height/2;
+        newPosition.x = maxX - objSize.width/2;
+        newPosition.y = maxY - objSize.height/2;
         
     } else if (!A && !B && C && D){ // operation + y
-        newPosition.y += objSize.height/2;
+        newPosition.y = minY + objSize.height/2;
         
     } else if (A && B && !C && !D){ // operation - y
-        newPosition.y -= objSize.height/2;
+        newPosition.y = maxY - objSize.height/2;
         
+    } else if (!A && !B && !C && !D){
+        newPosition.x = minX + objSize.width/2;
+        newPosition.y = minY + objSize.height/2;
     }
     
-    //update object before redraw
-//    ilabel.position = newPosition;
-//    [project addiPhoneObject:ilabel];
-    
     return newPosition;
-    
 }
 
 @end
