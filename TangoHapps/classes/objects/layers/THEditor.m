@@ -258,8 +258,13 @@ You should have received a copy of the GNU General Public License along with thi
     TFEditableObject * previousObject = self.currentObject;
     
     TFEditableObject * newObject = nil;
-    if(self.isLilypadMode && [previousObject isKindOfClass:[THHardwareComponentEditableObject class]]){
-        newObject = [self wireNodeFromObject:(THHardwareComponentEditableObject*) previousObject atPosition:position];
+    if(self.isLilypadMode) {
+        if ([previousObject isKindOfClass:[THHardwareComponentEditableObject class]]){
+            newObject = [self wireNodeFromObject:(THHardwareComponentEditableObject*) previousObject atPosition:position];
+        } else if([previousObject isKindOfClass:[THWireNode class]]){
+            THWireNode * wireNode = (THWireNode*) previousObject;
+            newObject = [wireNode.wire nodeAtPosition:position];
+        }
     }
     
     [self unselectCurrentObject];
@@ -903,34 +908,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-/*-(void) checkPinGestureObject:(TFEditableObject*) gestureObject atLocation:(CGPoint) location {
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THGestureEditableObject * gesture = [project gestureAtLocation:location].firstObject;
-    if (gesture != nil) {
-        CGPoint pos = [gesture convertToNodeSpace:gestureObject.position];
-        pos = ccpAdd(pos, self.zoomableLayer.position);
-        
-        [gestureObject removeFromParentAndCleanup:YES];
-        [project pinGestureObject:gestureObject toGesture:gesture];
-        gestureObject.position = pos;
-    }
-}
-
--(void) checkUnPinGestureObject:(TFEditableObject*) gestureObject{
-    
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    
-    CGPoint position = [gestureObject convertToWorldSpace:ccp(0,0)];
-    THGestureEditableObject* gesture = [project gestureAtLocation:position].firstObject;
-    
-    if(gesture != nil){
-        [project unpinGestureObject:gestureObject];
-        
-        gestureObject.position = [gesture convertToWorldSpace:gestureObject.position];
-        [gestureObject addToLayer:self];
-    }
-}*/
-
 -(void) doubleTapped:(UITapGestureRecognizer*)sender{
     
     CGPoint location = [sender locationInView:sender.view];
@@ -967,23 +944,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)paletteItem:(THDraggedPaletteItem*)item movedTo:(CGPoint)location {
     item.center = location;
     
-    //nazmus commented
-    /*if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:location]){
-        item.state = kPaletteItemStateDroppable;
-    } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:location]){
-        item.state = kPaletteItemStateNormal;
-    }*/
-    ////
-    
-    //nazmus added - converted the location to be used in canBeDroppedAt method equally 'when dropping at item'  
     CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL: location];
     if(item.state != kPaletteItemStateDroppable && [item canBeDroppedAt:convertedLocation]){
         item.state = kPaletteItemStateDroppable;
     } else if(item.state != kPaletteItemStateNormal && ![item canBeDroppedAt:convertedLocation]){
         item.state = kPaletteItemStateNormal;
     }
-    ////
-    
 }
 
 -(void)paletteItem:(THDraggedPaletteItem*)item endedAt:(CGPoint) location{
@@ -1001,10 +967,10 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.currentObject.canBeAddedToPalette){
         if(location.x < paletteRightX){
             if(!_currentPaletteItem){
-                // nazmus added - 21 Sep 14 - to switch back to the palette(/library) view when trying to add custom palette object
+
                 THProjectViewController *projectController = [THDirector sharedDirector].projectController;
                 [[projectController tabController] showTab:0];
-                ////
+
                 [self handleItemEnteredPaletteAt:location];
             }
         } else {
@@ -1158,10 +1124,6 @@ You should have received a copy of the GNU General Public License along with thi
             [super addEditableObject:editableObject];
         }
     }
-    
-    /*if([editableObject isKindOfClass:[THHardwareComponentEditableObject class]]){
-    NSLog(@"ed obj addded at: %f %f",editableObject.position.x,editableObject.position.y);
-    }*/
 }
 
 -(void) showVisualProgrammingObjects{
@@ -1355,7 +1317,9 @@ You should have received a copy of the GNU General Public License along with thi
             [positionsArray addObject:value];
             
             CGPoint position = [hardwareComponent convertToWorldSpace:ccp(0,0)];
-            position = ccpAdd(position, ccp(hardwareComponent.contentSize.width/2,hardwareComponent.contentSize.height/2));
+            position = ccpAdd(position, ccp(hardwareComponent.contentSize.width/2 * self.zoomableLayer.scale,hardwareComponent.contentSize.height/2 * self.zoomableLayer.scale));
+            position = [self.zoomableLayer convertToNodeSpace:position];
+            
             [hardwareComponent removeFromParentAndCleanup:YES];
             hardwareComponent.attachedToClothe = nil;
             
@@ -1382,7 +1346,6 @@ You should have received a copy of the GNU General Public License along with thi
             
             CGPoint position = value.CGPointValue;
             hardwareComponent.position = position;
-            //hardwareComponent.position = [clothe convertToNodeSpace:position];
             hardwareComponent.attachedToClothe = clothe;
         }
     }
@@ -1396,13 +1359,15 @@ You should have received a copy of the GNU General Public License along with thi
     _isLilypadMode = YES;
     
     [self unselectCurrentObject];
+    [self deAttachClotheItems];
+    
     [self hideConnectionsForAllObjects];
     [self hideNonLilypadObjects];
     [self showBoards];
     [self showOtherHardware];
     [self updateWiresVisibility];
     [self hideNonLilypadPaletteSections];
-    [self deAttachClotheItems];
+
 }
 
 -(void) stopLilypadMode{
