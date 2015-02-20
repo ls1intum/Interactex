@@ -180,22 +180,6 @@ You should have received a copy of the GNU General Public License along with thi
     return paletteItem;
 }
 
--(void) draw{
-    [TFHelper drawEmptyRect:self.boundingBox];
-    [super draw];
-}
-
-/*
--(void) setPosition:(CGPoint)position{
-    
-    for (THHardwareComponentEditableObject * object in _attachments) {
-        CGPoint diff = ccpSub(object.position, self.position);
-        object.position  = ccpAdd(diff, position);
-    }
-    
-    [super setPosition:position];
-}*/
-
 -(void) objectRemoved:(NSNotification*) notification{
     TFEditableObject * object = notification.object;
     [_attachments removeObject:object];

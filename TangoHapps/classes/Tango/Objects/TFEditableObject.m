@@ -374,9 +374,6 @@ static NSInteger objectCount = 1;
 }
 
 #pragma mark - UI
-/*
--(void) handleAccelerated:(UIAcceleration*) acceleration{
-}*/
 
 -(void) handleObjectOverlapping:(TFEditableObject*) object{
     

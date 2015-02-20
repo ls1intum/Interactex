@@ -638,13 +638,15 @@ You should have received a copy of the GNU General Public License along with thi
         CGRect canvasBox = self.zoomableLayer.boundingBox;
         CGRect oldBoundingBox = self.currentObject.boundingBox;
         CGRect newBoundingBox = oldBoundingBox;
+        newBoundingBox.origin = ccpAdd(newBoundingBox.origin, d);
+        
         if(CGRectGetMinX(newBoundingBox) < CGRectGetMinX(canvasBox) || CGRectGetMaxX(newBoundingBox) > CGRectGetMaxX(canvasBox)){
             d.x = 0;
         }
         if(CGRectGetMinY(newBoundingBox) < CGRectGetMinY(canvasBox) || CGRectGetMaxY(newBoundingBox) > CGRectGetMaxY(canvasBox)){
             d.y = 0;
         }
-        
+                
         [self.currentObject displaceBy:d];
         
         [self reLayoutConnectionLinesForObject:self.currentObject];
