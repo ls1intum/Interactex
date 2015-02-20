@@ -698,11 +698,15 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 -(void) handleStartedMoving:(CGPoint) position{
     
     NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+    bool isLastObject = false;
     
     if(indexPath){
         
         self.currentProjectCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         self.currentProject = [self.projectProxies objectAtIndex:indexPath.row];
+        if (indexPath.row == [self.projectProxies indexOfObject:self.currentProject]) {
+            isLastObject = true;
+        }
         
         if(self.currentProjectCell.editing){
             
@@ -716,6 +720,15 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             
             [self.view addSubview:self.currentDraggableCell];
             
+            //Nazmus Feb 20 2015. Quick fix, not sure if it's the perfect way:
+            //When the user starts to move the last object, immediately send it to next cell,
+            //Otherwise temporaryInsertDragCellAtIndex method will not be called
+            //if this method is not called, then the project will only be deleted (in above code),
+            //the project will not be reinserted until it changes cell and consequently changes index
+            //
+            if (isLastObject) {
+                [self handleMovedToPosition: CGPointMake(position.x+self.currentDraggableCell.imageView.frame.size.width, position.y+self.currentDraggableCell.imageView.frame.size.height)];
+            }
         }
     }
 }
