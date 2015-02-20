@@ -180,6 +180,11 @@ You should have received a copy of the GNU General Public License along with thi
     return paletteItem;
 }
 
+-(void) draw{
+    [TFHelper drawEmptyRect:self.boundingBox];
+    [super draw];
+}
+
 /*
 -(void) setPosition:(CGPoint)position{
     

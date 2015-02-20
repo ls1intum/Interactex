@@ -391,7 +391,17 @@ static NSInteger objectCount = 1;
 }
 
 -(BOOL)testPoint:(CGPoint)point {
-    return (self.visible && CGRectContainsPoint(self.boundingBox, point));
+    
+    CGRect box = self.boundingBox;
+    
+    CGPoint origin = box.origin;
+    
+    CGRect rect;
+    rect.origin = origin;
+    rect.size = box.size;
+    rect.size = CGSizeMake(box.size.width * self.scale, box.size.height * self.scale);
+    
+    return (self.visible && CGRectContainsPoint(rect, point));
 }
 
 -(BOOL) canBeMovedBy:(CGPoint) d{
@@ -422,7 +432,7 @@ static NSInteger objectCount = 1;
             ccDrawColor4B(kDefaultObjectSelectionColor.r, kDefaultObjectSelectionColor.g, kDefaultObjectSelectionColor.b, kDefaultObjectSelectionColor.a);
         }
         
-        float kSelectionPadding = 5;
+        float const kSelectionPadding = 5;
         
         CGRect box = self.boundingBox;
         CGSize rectSize = CGSizeMake(self.contentSize.width + kSelectionPadding * 2, self.contentSize.height + kSelectionPadding * 2);
