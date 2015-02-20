@@ -48,6 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THEditor.h"
 #import "THiPhoneEditableObject.h"
 #import "THProjectProxy.h"
+#import "THViewEditableObject.h"
 
 @implementation THProjectViewController
 
@@ -835,7 +836,12 @@ float const kToolsTabMargin = 5;
     [self updateHideIphoneButtonTint];
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
+    if([editor.currentObject isKindOfClass:[THViewEditableObject class]] || [editor.currentObject isKindOfClass:[THiPhoneEditableObject class]]){
+        [self.tabController showTab:0];
+    }
+    
+    [editor handleIphoneVisibilityChangedTo:project.iPhone.visible];
+    
 }
 
 - (void) hidePalettePressed:(id)sender {
