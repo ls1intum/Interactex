@@ -46,5 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic) UIImageView * imageView;
 //@property (nonatomic) UITextField * textField;
+@property (nonatomic) BOOL highlighted;
 
 @end

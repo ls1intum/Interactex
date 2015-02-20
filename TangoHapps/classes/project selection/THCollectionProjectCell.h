@@ -61,7 +61,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) id<THProjectCellDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)textEditingWillBegin:(id)sender;
 - (IBAction)deleteTapped:(id)sender;
@@ -69,7 +68,5 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) startShaking;
 -(void) stopShaking;
 -(void) scaleEffect;
--(void) startActivityIndicator;
--(void) stopActivityIndicator;
 
 @end

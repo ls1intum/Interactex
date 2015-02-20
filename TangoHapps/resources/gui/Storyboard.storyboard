@@ -46,10 +46,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="220" height="192"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="d4t-7x-YwL">
-                                                    <rect key="frame" x="101" y="59" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </activityIndicatorView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="EYY-Rq-8ne">
                                                     <rect key="frame" x="0.0" y="-1" width="220" height="150"/>
                                                 </imageView>
@@ -81,7 +77,6 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="d4t-7x-YwL" id="LtE-Rk-UXv"/>
                                             <outlet property="deleteButton" destination="hbA-SG-Tw2" id="iN4-pA-qj4"/>
                                             <outlet property="imageView" destination="EYY-Rq-8ne" id="JfO-z4-fCm"/>
                                             <outlet property="nameTextField" destination="Uyb-Wt-LKk" id="wka-uu-fx8"/>

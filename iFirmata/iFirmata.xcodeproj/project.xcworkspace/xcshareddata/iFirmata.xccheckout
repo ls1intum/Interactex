@@ -10,49 +10,29 @@
 	<string>iFirmata</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
-		<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
+		<key>84410F66CAD3859283F4388870B4C7B8079BC454</key>
+		<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iFirmata/iFirmata.xcodeproj/project.xcworkspace</string>
+	<string>iFirmata/iFirmata.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4F4A5F19-DECB-458E-BCBC-2AF75607717D</key>
-		<string>../../../Frameworks/Firmata</string>
-		<key>720A638E-E4F5-413C-9006-7AAEE8B91024</key>
+		<key>84410F66CAD3859283F4388870B4C7B8079BC454</key>
 		<string>../../..</string>
-		<key>BE4B5787-3FAA-4B49-93CB-A7FBD735B28C</key>
-		<string>../../../Frameworks/BLE</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://repobruegge.in.tum.de/scm/wearm2m/wearablesm2m.git</string>
+	<string>https://repobruegge.in.tum.de:8443/scm/wearm2m/wearablesm2m.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>720A638E-E4F5-413C-9006-7AAEE8B91024</string>
+	<string>84410F66CAD3859283F4388870B4C7B8079BC454</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BE4B5787-3FAA-4B49-93CB-A7FBD735B28C</string>
-			<key>IDESourceControlWCCName</key>
-			<string>BLE</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4F4A5F19-DECB-458E-BCBC-2AF75607717D</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Firmata</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>720A638E-E4F5-413C-9006-7AAEE8B91024</string>
+			<string>84410F66CAD3859283F4388870B4C7B8079BC454</string>
 			<key>IDESourceControlWCCName</key>
 			<string>wearablesm2m</string>
 		</dict>

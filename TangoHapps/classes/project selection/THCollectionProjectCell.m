@@ -46,16 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THCollectionProjectCell
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        
-        
-    }
-    return self;
-}
-
 -(void) setEditing:(BOOL)editing{
     if(editing != _editing){
         _editing = editing;
@@ -67,21 +57,42 @@ You should have received a copy of the GNU General Public License along with thi
             self.deleteButton.hidden = NO;
             self.nameTextField.enabled = YES;
             self.nameTextField.borderStyle = UITextBorderStyleLine;
-            self.nameTextField.layer.borderWidth = 2.0;
-            self.nameTextField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-            
+            [self updateBorders];
         } else {
             
             [self stopShaking];
             
             self.deleteButton.hidden = YES;
             self.nameTextField.enabled = NO;
+            [self updateBorders];
+        }
+    }
+}
+
+-(void) updateBorders{
+    if(self.highlighted){
+        
+        UIColor * tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+        
+        self.imageView.layer.borderColor = tintColor.CGColor;
+        self.imageView.layer.borderWidth = 1.0f;
+        self.nameTextField.layer.borderColor = tintColor.CGColor;
+        self.nameTextField.layer.borderWidth = 1.0f;
+        
+    } else {
+        
+        self.imageView.layer.borderWidth = 0.0f;
+        
+        if(self.editing){
+            self.nameTextField.layer.borderWidth = 2.0;
+            self.nameTextField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        } else {
+            
             self.nameTextField.borderStyle = UITextBorderStyleNone;
             self.nameTextField.layer.borderColor = [[UIColor clearColor] CGColor];
         }
     }
 }
-
 
 #pragma mark - UI Interaction
 
@@ -174,12 +185,13 @@ You should have received a copy of the GNU General Public License along with thi
     [self.delegate didDuplicateProjectCell:self];
 }
 
--(void) startActivityIndicator{
-    [self.activityIndicator startAnimating];
-}
+-(void) setHighlighted:(BOOL)highlighted{
+    if(self.highlighted != highlighted){
+        [super setHighlighted:highlighted];
+        
+        [self updateBorders];
 
--(void) stopActivityIndicator{
-    [self.activityIndicator stopAnimating];
+    }
 }
 
 @end
