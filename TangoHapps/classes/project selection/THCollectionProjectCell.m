@@ -174,4 +174,12 @@ You should have received a copy of the GNU General Public License along with thi
     [self.delegate didDuplicateProjectCell:self];
 }
 
+-(void) startActivityIndicator{
+    [self.activityIndicator startAnimating];
+}
+
+-(void) stopActivityIndicator{
+    [self.activityIndicator stopAnimating];
+}
+
 @end

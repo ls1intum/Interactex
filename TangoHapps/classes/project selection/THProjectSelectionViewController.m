@@ -78,13 +78,13 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     CGSize viewSize = self.view.frame.size;
     
-    CGRect rect = CGRectMake(viewSize.height/2 - kProjectSelectionActivityIndicatorViewSize.width/2, viewSize.width/2 - kProjectSelectionActivityIndicatorViewSize.height/2,kProjectSelectionActivityIndicatorViewSize.width,kProjectSelectionActivityIndicatorViewSize.height);
-                                                                                                                         
+    CGRect rect = CGRectMake(viewSize.width/2 - kProjectSelectionActivityIndicatorViewSize.width/2, viewSize.height/2 - kProjectSelectionActivityIndicatorViewSize.height/2,kProjectSelectionActivityIndicatorViewSize.width,kProjectSelectionActivityIndicatorViewSize.height);
+    
     self.activityIndicatorView = [[UIView alloc] initWithFrame:rect];
-    self.activityIndicatorView.backgroundColor = [UIColor grayColor];
+    self.activityIndicatorView.backgroundColor = [UIColor whiteColor];
     self.activityIndicatorView.hidden = YES;
     [self.view addSubview:self.activityIndicatorView];
-    
+
     rect = CGRectMake(rect.size.width/2 - kProjectSelectionActivityIndicatorLabelSize.width/2, rect.size.height/2 - kProjectSelectionActivityIndicatorLabelSize.height/2 - 30,kProjectSelectionActivityIndicatorLabelSize.width,kProjectSelectionActivityIndicatorLabelSize.height);
     UILabel * label = [[UILabel alloc] initWithFrame:rect];
     label.font = [UIFont systemFontOfSize:13.0f];
@@ -92,12 +92,16 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     label.text = @"Loading project...";
     [self.activityIndicatorView addSubview:label];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGRect frame = self.activityIndicator.frame;
-                             
+    self.activityIndicator.hidesWhenStopped = YES;
+
     viewSize = self.activityIndicatorView.frame.size;
-    frame.origin = CGPointMake(viewSize.width/2 - frame.size.width/2, viewSize.height/2 - frame.size.height/2 +10);
-    self.activityIndicator.frame = frame;
+    
+    frame.origin = CGPointMake(kProjectSelectionActivityIndicatorViewSize.width/2 - frame.size.width/2, kProjectSelectionActivityIndicatorViewSize.height/2- frame.size.height/2 +10);
+    
+    self.activityIndicator.frame =  frame;
+    self.activityIndicator.hidden = NO;
     [self.activityIndicatorView addSubview: self.activityIndicator];
     
     self.activityIndicatorView.layer.borderWidth = 1.0f;
@@ -351,27 +355,31 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     [self startActivityIndicator];
     
-    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
-    THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
-    
-    //update its name since it could have been renamed while it was not loaded
-    project.name = proxy.name;
-    
-    [THDirector sharedDirector].currentProxy = proxy;
-    [THDirector sharedDirector].currentProject = project;
-    
-    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+        THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
+        
+        //update its name since it could have been renamed while it was not loaded
+        project.name = proxy.name;
+        
+        [THDirector sharedDirector].currentProxy = proxy;
+        [THDirector sharedDirector].currentProject = project;
+        
+        [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    });
 }
 
 - (void)proceedToNewProject{
     
     [self startActivityIndicator];
     
-    THProject * project = [THProject newProject];
-    
-    [THDirector sharedDirector].currentProject = project;
-    
-    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        THProject * project = [THProject newProject];
+        
+        [THDirector sharedDirector].currentProject = project;
+        
+        [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    });
 }
 
 -(void) deleteProjectAtIndex:(NSInteger) index{
@@ -380,9 +388,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.projectProxies removeObjectAtIndex:index];
     
     [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
-    /*
-    NSString * imageName = [projectProxy.name stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];*/
 }
 
 #pragma mark - Collection DataSource
