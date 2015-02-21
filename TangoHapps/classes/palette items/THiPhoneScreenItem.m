@@ -29,11 +29,7 @@
     
     CGPoint newPosition = location;
     CGPoint originPoint = project.iPhone.currentView.boundingBox.origin;
-    
-    //for testing
-//    CGPoint finalPoint = CGPointMake(originPoint.x + project.iPhone.currentView.boundingBox.size.width,
-//                                     originPoint.y + project.iPhone.currentView.boundingBox.size.height);
-//    
+       
     CGRect iPhoneScreen = CGRectMake(originPoint.x, originPoint.y,
                                      project.iPhone.currentView.boundingBox.size.width,
                                      project.iPhone.currentView.boundingBox.size.height);
@@ -43,42 +39,14 @@
     CGFloat minY = originPoint.y + 45;
     CGFloat maxY = originPoint.y + 45 + iPhoneScreen.size.height;
     
-    if(CGRectContainsPoint(iPhoneScreen, topLeftPoint)) {
-        A = TRUE;
-    }
-    else {
-        printf(" !A");
-        A = FALSE;
-    }
+    // Four corners for each item.
+    A = CGRectContainsPoint(iPhoneScreen, topLeftPoint)? TRUE : FALSE;
+    B = CGRectContainsPoint(iPhoneScreen, topRightPoint)? TRUE : FALSE;
+    C = CGRectContainsPoint(iPhoneScreen, bottonLeftPoint)? TRUE : FALSE;
+    D = CGRectContainsPoint(iPhoneScreen, bottonRightPoint)? TRUE : FALSE;
     
-    if (CGRectContainsPoint(iPhoneScreen, topRightPoint)) {
-        B = TRUE;
-    }
-    else {
-        printf(" !B");
-        B = FALSE;
-    }
-    
-    if (CGRectContainsPoint(iPhoneScreen, bottonLeftPoint)) {
-        C = TRUE;
-    }
-    else {
-        printf(" !C");
-        C = FALSE;
-    }
-    
-    if (CGRectContainsPoint(iPhoneScreen, bottonRightPoint)) {
-        D = TRUE;
-    }
-    else {
-        printf(" !D");
-        D = FALSE;
-    }
-    
-    printf("\n");
-    
-    //according to which point of label square is out of currentView bounds, we change the position properly
-    if(!A && !B && !C && D){// operations +x +y
+    //according to which point of label square is out of currentView bounds, we change the position properly.
+    if(!A && !B && !C && D){ // operations +x +y
         newPosition.x = minX + objSize.width/2;
         newPosition.y = minY + objSize.height/2;
         
