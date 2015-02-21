@@ -59,9 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THImageViewEditable * imageView = [[THImageViewEditable alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    imageView.position = [clase dropAt:location withSize: kDefaultImageSize];
+    imageView.position = [self dropAt:location withSize:kDefaultImageSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:imageView];

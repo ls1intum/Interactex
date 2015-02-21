@@ -58,9 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THContactBookEditable * contactBook = [[THContactBookEditable alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    contactBook.position = [clase dropAt:location withSize: kDefaultContactBookSize];
+    contactBook.position = [self dropAt:location withSize:kDefaultContactBookSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:contactBook];

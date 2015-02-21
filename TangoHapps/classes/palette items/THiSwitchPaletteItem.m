@@ -58,13 +58,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THiSwitchEditableObject * iswitch = [[THiSwitchEditableObject alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    iswitch.position = [clase dropAt:location withSize: kDefaultSwitchSize];
+    iswitch.position = [self dropAt:location withSize:kDefaultSwitchSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:iswitch];
-    
 }
 
 @end

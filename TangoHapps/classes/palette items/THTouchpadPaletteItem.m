@@ -59,9 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THTouchPadEditableObject * iPhoneButton = [[THTouchPadEditableObject alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    iPhoneButton.position = [clase dropAt:location withSize: kDefaultTouchpadSize];
+    iPhoneButton.position = [self dropAt:location withSize:kDefaultTouchpadSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:iPhoneButton];

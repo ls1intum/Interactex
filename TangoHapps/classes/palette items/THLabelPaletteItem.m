@@ -61,15 +61,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)dropAt:(CGPoint)location {
+    THLabelEditableObject * ilabel = [[THLabelEditableObject alloc] init];
+    ilabel.position = [self dropAt:location withSize:kDefaultLabelSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    THLabelEditableObject * ilabel = [[THLabelEditableObject alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-
-    ilabel.position = [clase dropAt:location withSize: kDefaultLabelSize];
     [project addiPhoneObject:ilabel];
-    
 }
 @end
 

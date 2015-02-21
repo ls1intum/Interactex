@@ -41,7 +41,8 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import <Foundation/Foundation.h>
+#import "THiPhoneScreenItem.h"
 
-@interface THSliderPaletteItem : THPaletteItem
+@interface THSliderPaletteItem : THiPhoneScreenItem
 
 @end

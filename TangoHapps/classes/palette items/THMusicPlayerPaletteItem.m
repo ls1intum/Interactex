@@ -59,9 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THMusicPlayerEditableObject * musicPlayer = [[THMusicPlayerEditableObject alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    musicPlayer.position = [clase dropAt:location withSize: KDefaultMusicPlayerSize];
+    musicPlayer.position = [self dropAt:location withSize:KDefaultMusicPlayerSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:musicPlayer];

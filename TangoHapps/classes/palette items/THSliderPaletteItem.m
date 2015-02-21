@@ -59,9 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)dropAt:(CGPoint)location {
     THSliderEditableObject * slider = [[THSliderEditableObject alloc] init];
-    
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    slider.position = [clase dropAt:location withSize: kDefaultSliderSize];
+    slider.position = [self dropAt:location withSize:kDefaultSliderSize];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:slider];

@@ -66,14 +66,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)dropAt:(CGPoint)location {
-    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THiPhoneButtonEditableObject * iPhoneButton = [[THiPhoneButtonEditableObject alloc] init];
+    iPhoneButton.position = [self dropAt:location withSize:kDefaultButtonSize];
     
-    THiPhoneScreenItem * clase = [[THiPhoneScreenItem alloc] init];
-    
-    iPhoneButton.position = [clase dropAt:location withSize: kDefaultButtonSize];
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     [project addiPhoneObject:iPhoneButton];
-    
 }
 
 @end
