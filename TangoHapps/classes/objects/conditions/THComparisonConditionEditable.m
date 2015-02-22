@@ -52,51 +52,41 @@ NSString * const kConditionTypeStrings[kNumConditionTypes] = {@"<",@"=",@">"};
 
 NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"smaller than",@"equals to",@"bigger than"};
 
-@dynamic type;
+@dynamic programmingElementType;
 
 #pragma mark - Init
-
--(void) loadSprite{
-    
-    self.sprite = [CCSprite spriteWithFile:@"comparator.png"];
-    [self addChild:self.sprite];
-}
 
 -(id) init{
     self = [super init];
     if(self){
-        [self loadSprite];
+        [self loadComparator];
         self.simulableObject = [[THComparisonCondition alloc] init];
     }
     return self;
 }
 
+-(void) loadComparator{
+    
+    self.programmingElementType = kProgrammingElementTypeComparator;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self loadSprite];
-    
-    
-    /* Juan check
-    if(self.obj1 != nil){
-        [self registerNotificationsFor:self.obj1];
+
+    if(self) {
+        [self loadComparator];
     }
-    if(self.obj2 != nil){
-        [self registerNotificationsFor:self.obj1];
-    }*/
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THComparisonConditionEditable * copy = [super copyWithZone:zone];
     
     return copy;
@@ -104,8 +94,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     _currentComparatorProperties = [THComparatorEditableProperties properties];
     [controllers addObject:_currentComparatorProperties];
@@ -113,38 +102,16 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     return controllers;
 }
 
-#pragma mark - Protocols
-/*
--(void) registerAction:(THAction *)action forProperty:(THProperty *)property{
-    THMethodInvokeAction * methodInvoke = (THMethodInvokeAction*) action;
-    if(self.obj1 == nil){
-        self.obj1 = action.target;
-        self.propertyName1 = methodInvoke.firstParam.property.name;
-        
-    } else if(self.obj2 == nil){
-        self.obj2 = action.target;
-        self.propertyName2 = methodInvoke.firstParam.property.name;
-        
-    } else {
-        self.obj1 = action.target;
-        self.propertyName1 = methodInvoke.firstParam.property.name;
-        self.obj2 = nil;
-    }
-    
-    [super registerAction:action forProperty:property];
-}*/
-
-
 #pragma mark - Methods
 
--(THConditionType) type{
+-(THConditionType) conditionType{
     THComparisonCondition * condition = (THComparisonCondition*) self.simulableObject;
-    return condition.type;
+    return condition.conditionType;
 }
 
--(void) setType:(THConditionType)type{
+-(void) setConditionType:(THConditionType)conditionType{
     THComparisonCondition * condition = (THComparisonCondition*) self.simulableObject;
-    condition.type = type;
+    condition.conditionType = conditionType;
 }
 
 -(void) setValue1:(float) number{
@@ -237,16 +204,9 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
     [_currentComparatorProperties reloadState];
 }
 
-/* Juan check
--(void) addConnectionTo:(TFEditableObject *)object animated:(BOOL)animated{
-    
-    [_currentComparatorProperties reloadState];
-    [super addConnectionTo:object animated:animated];
-}
-*/
 
 -(NSString*) conditionTypeString{
-    return kConditionTypeDescriptionStrings[self.type];
+    return kConditionTypeDescriptionStrings[self.programmingElementType];
 }
 
 -(NSString*) description{

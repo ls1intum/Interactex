@@ -58,11 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadLilypad{
     self.boardType = kBoardTypeLilypadSimple;
-    
     self.z = kLilypadZ;
-    
-    self.sprite = [CCSprite spriteWithFile:@"lilypadSimple.png"];
-    [self addChild:self.sprite];
 }
 
 -(id) init{

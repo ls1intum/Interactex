@@ -64,6 +64,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL value1;
 @property (nonatomic) BOOL value2;
 
-@property (nonatomic) THGrouperType type;
+@property (nonatomic) THGrouperType grouperType;
 
 @end

@@ -67,7 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     if(self){
         _frequency = [decoder decodeDoubleForKey:@"frequency"];
-        _type = (uint32_t)[decoder decodeIntegerForKey:@"type"];
+        _timerType = (uint32_t)[decoder decodeIntegerForKey:@"timerType"];
         
         [self loadTimer];
     }
@@ -78,14 +78,14 @@ You should have received a copy of the GNU General Public License along with thi
     [super encodeWithCoder:coder];
     
     [coder encodeDouble:_frequency forKey:@"frequency"];
-    [coder encodeInteger:_type forKey:@"type"];
+    [coder encodeInteger:_timerType forKey:@"timerType"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     THTimer * copy = [super copyWithZone:zone];
     
     copy.frequency = self.frequency;
-    copy.type = self.type;
+    copy.timerType = self.timerType;
     
     return copy;
 }
@@ -94,7 +94,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) start{
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:_frequency target:self selector:@selector(triggerActions) userInfo:nil repeats:(self.type == kTimerTypeAlways)];
+    _timerType = [NSTimer scheduledTimerWithTimeInterval:_frequency target:self selector:@selector(triggerActions) userInfo:nil repeats:(self.timerType == kTimerTypeAlways)];
 }
 
 -(void) stop{

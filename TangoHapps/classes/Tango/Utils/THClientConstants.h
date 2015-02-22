@@ -82,6 +82,20 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypePressureSensor
 }THHardwareType;
 
+#define kNumProgrammingElementTypes 8
+
+typedef enum THProgrammingElementType : NSUInteger{
+    kProgrammingElementTypeMapper,
+    kProgrammingElementTypeNumberValue,
+    kProgrammingElementTypeBoolValue,
+    kProgrammingElementTypeStringValue,
+    kProgrammingElementTypeSound,
+    kProgrammingElementTypeTimer,
+    kProgrammingElementTypeComparator,
+    kProgrammingElementTypeGrouper,
+} THProgrammingElementType;
+
+
 #define kNumPinTypes 4
 
 typedef enum THPinType : NSUInteger{

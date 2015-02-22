@@ -58,10 +58,6 @@ float const kLilypadPowerSupplyOverlapRadius = 40;
 
 -(void) loadLilypad{
     self.z = kLilypadZ;
-    
-    self.sprite = [CCSprite spriteWithFile:@"lilypadComplex.png"];
-    [self addChild:self.sprite z:1];
-    
     self.boardType = kBoardTypeLilypad;
 }
 

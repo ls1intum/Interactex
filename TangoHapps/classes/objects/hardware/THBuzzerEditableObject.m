@@ -52,13 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
 @synthesize on = _on;
 @dynamic frequency;
 
--(void) loadBuzzer{
-        
-    self.sprite = [CCSprite spriteWithFile:@"buzzer.png"];
-    [self addChild:self.sprite];
-    
-    self.acceptsConnections = YES;
-}
 
 -(id) init{
     self = [super init];
@@ -71,6 +64,11 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadPins];
     }
     return self;
+}
+
+-(void) loadBuzzer{
+    
+    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving
@@ -249,9 +247,7 @@ You should have received a copy of the GNU General Public License along with thi
     CCLayer * myLayer = [CCLayer node];
     myLayer.contentSize = CGSizeMake(200, 300);
     
-    
     [super addToLayer:layer];
-    
 }
 
 -(void) prepareToDie{

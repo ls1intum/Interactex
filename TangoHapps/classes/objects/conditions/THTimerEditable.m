@@ -47,8 +47,8 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THTimerEditable
 
 -(void) loadTimer{
-    self.sprite = [CCSprite spriteWithFile:@"timer.png"];
-    [self addChild:self.sprite];
+    
+    self.programmingElementType = kProgrammingElementTypeTimer;
     
     self.acceptsConnections = YES;
 }
@@ -120,14 +120,14 @@ You should have received a copy of the GNU General Public License along with thi
     timer.frequency = frequency;
 }
 
--(THTimerType) type{
+-(THTimerType) timerType{
     THTimer * timer = (THTimer*) self.simulableObject;
-    return timer.type;
+    return timer.timerType;
 }
 
--(void) setType:(THTimerType)type{
+-(void) setTimertype:(THTimerType)timerType{
     THTimer * timer = (THTimer*) self.simulableObject;
-    timer.type = type;
+    timer.timerType = timerType;
 }
 
 -(NSString*) description{

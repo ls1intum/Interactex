@@ -44,8 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THEventPropertyController;
 
-@interface THSlideSwitchEditableObject : THSwitchEditableObject
-{
+@interface THSlideSwitchEditableObject : THSwitchEditableObject {
     CCSprite * _switchOnSprite;
 }
 

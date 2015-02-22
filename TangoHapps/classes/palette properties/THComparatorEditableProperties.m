@@ -115,7 +115,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateOperatorLabel {
     THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
     
-    NSInteger idx = condition.type;
+    NSInteger idx = condition.conditionType;
     NSString * conditionString = kConditionTypeStrings[idx];
     self.operatorTypeLabel.text = conditionString;
 }
@@ -156,7 +156,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateOperatorType{
     
     THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
-    self.operatorTypeControl.selectedSegmentIndex = condition.type;
+    self.operatorTypeControl.selectedSegmentIndex = condition.programmingElementType;
 }
 
 -(TFConnectionLine*) createConnectionLineFor:(TFEditableObject*) object{
@@ -245,7 +245,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (IBAction)operationTypeChanged:(id)sender {
     
     THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
-    condition.type = self.operatorTypeControl.selectedSegmentIndex;
+    condition.programmingElementType = self.operatorTypeControl.selectedSegmentIndex;
     
     [self updateOperatorLabel];
     [self updateInfoLabel];

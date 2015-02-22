@@ -74,24 +74,24 @@ NSString * const kGrouperTypeStrings[kNumGrouperTypes] = {@"and",@"or"};
     
     self = [super initWithCoder:decoder];
     
-    self.type = [decoder decodeIntegerForKey:@"type"];
-    
-    [self loadMethods];
-    
+    if(self){
+        self.grouperType = [decoder decodeIntegerForKey:@"grouperType"];
+        
+        [self loadMethods];
+    }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder{
     
     [super encodeWithCoder:coder];
-    [coder encodeInteger:self.type forKey:@"type"];
+    [coder encodeInteger:self.grouperType forKey:@"grouperType"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THGrouperCondition * copy = [super copyWithZone:zone];
     
-    copy.type = self.type;
+    copy.grouperType = self.grouperType;
     
     return copy;
 }
@@ -115,7 +115,7 @@ NSString * const kGrouperTypeStrings[kNumGrouperTypes] = {@"and",@"or"};
 }
 
 -(BOOL) testCondition{
-    if(self.type == kGrouperTypeAnd){
+    if(self.grouperType == kGrouperTypeAnd){
         return self.value1 && self.value2;
     } else {
         return self.value1 || self.value2;

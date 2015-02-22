@@ -53,14 +53,6 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic frequency;
 
 -(void) loadVibrationBoard{
-    self.sprite = [CCSprite spriteWithFile:@"vibeBoard.png"];
-    [self addChild:self.sprite];
-    
-    /*
-    _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
-    _lightSprite.visible = NO;
-    _lightSprite.position = ccp(20,20);
-    [self.sprite addChild:_lightSprite];*/
     
     self.acceptsConnections = YES;
     

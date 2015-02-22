@@ -51,19 +51,9 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic maxValueNotify;
 @dynamic notifyBehavior;
 
+const CGSize kValueLabelSize = {75, 20};
+
 -(void) loadPotentiometer{
-    self.sprite = [CCSprite spriteWithFile:@"potentiometer.png"];
-    [self addChild:self.sprite];
-    
-    CGSize size = CGSizeMake(75, 20);
-    
-    
-    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
-    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
-    _valueLabel.color = kDefaultSimulationLabelColor;
-    _valueLabel.visible = NO;
-    [self addChild:_valueLabel z:1];
     
     self.acceptsConnections = YES;
 }
@@ -202,6 +192,15 @@ You should have received a copy of the GNU General Public License along with thi
     _valueLabel.visible = YES;
     
     [super willStartSimulation];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
+    _valueLabel.color = kDefaultSimulationLabelColor;
+    [self addChild:_valueLabel z:1];
 }
 
 -(NSString*) description{

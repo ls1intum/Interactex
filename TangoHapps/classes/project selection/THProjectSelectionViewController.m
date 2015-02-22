@@ -355,7 +355,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     [self startActivityIndicator];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
         THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
         THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
         
@@ -365,7 +366,10 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         [THDirector sharedDirector].currentProxy = proxy;
         [THDirector sharedDirector].currentProject = project;
         
-        [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self stopActivityIndicator];
+            [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+        });
     });
 }
 

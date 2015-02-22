@@ -54,13 +54,6 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic intensity;
 
 -(void) loadLed{
-    self.sprite = [CCSprite spriteWithFile:@"led.png"];
-    [self addChild:self.sprite];
-    
-    _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
-    _lightSprite.visible = NO;
-    _lightSprite.position = ccp(20,20);
-    [self.sprite addChild:_lightSprite];
     
     self.acceptsConnections = YES;
 }
@@ -206,6 +199,16 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)turnOff{    
     THLed * led = (THLed*) self.simulableObject;
     [led turnOff];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    
+    _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
+    _lightSprite.visible = NO;
+    _lightSprite.position = ccp(20,20);
+    [self.sprite addChild:_lightSprite];
 }
 
 -(NSString*) description{

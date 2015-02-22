@@ -53,7 +53,7 @@ typedef enum{
 }
 
 @property (nonatomic) double frequency;
-@property (nonatomic) THTimerType type;
+@property (nonatomic) THTimerType timerType;
 
 -(void) start;
 -(void) stop;

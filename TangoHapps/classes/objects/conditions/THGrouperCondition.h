@@ -57,7 +57,7 @@ typedef enum THGrouperType : NSUInteger{
     
 }
 
-@property (nonatomic) THGrouperType type;
+@property (nonatomic) THGrouperType grouperType;
 
 @property (nonatomic) BOOL value1set;
 @property (nonatomic) BOOL value2set;

@@ -55,9 +55,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.isI2CComponent = YES;
     
-    self.sprite = [CCSprite spriteWithFile:@"LSMCompass.png"];
-    [self addChild:self.sprite];
-    
     self.acceptsConnections = YES;
     self.isAccelerometerEnabled = YES;
     
@@ -66,6 +63,7 @@ You should have received a copy of the GNU General Public License along with thi
     _locationManager.distanceFilter = 1000;
     _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
+    /*
     _accelerometerBall = [CCSprite spriteWithFile:@"accelerometerBall.png"];
     _accelerometerBall.visible = NO;
     _accelerometerBall.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
@@ -74,7 +72,7 @@ You should have received a copy of the GNU General Public License along with thi
     _compassCircle = [CCSprite spriteWithFile:@"compassCircle.png"];
     _compassCircle.visible = NO;
     _compassCircle.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_compassCircle];
+    [self addChild:_compassCircle];*/
 }
 
 -(id) init{
@@ -139,7 +137,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(THElementPinEditable*) sdaPin{
     return [self.pins objectAtIndex:3];
 }
-
+/*
 -(void) updateBallPosition{
     float dt = 1.0f/30.0f;
     
@@ -162,7 +160,7 @@ You should have received a copy of the GNU General Public License along with thi
         [[SimpleAudioEngine sharedEngine] playEffect:@"compassHit.mp3"];
     }
     _accelerometerBall.position = newPos;
-}
+}*/
 
 -(void) update{
     
@@ -180,7 +178,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     //_compassCircle.rotation = 90 - self.heading;
     
-    [self updateBallPosition];
+    //[self updateBallPosition];
 }
 
 -(void) handleDoubleTapped{
@@ -259,8 +257,8 @@ You should have received a copy of the GNU General Public License along with thi
     manager.accelerometerUpdateInterval = 1.0f / 20.0f;
     [manager startAccelerometerUpdates];
     
-    _accelerometerBall.visible = YES;
-    _compassCircle.visible = YES;
+    //_accelerometerBall.visible = YES;
+    //_compassCircle.visible = YES;
     self.sprite.visible = NO;
 }
 
@@ -271,8 +269,8 @@ You should have received a copy of the GNU General Public License along with thi
     [manager stopAccelerometerUpdates];
     [manager stopMagnetometerUpdates];
     
-    _accelerometerBall.visible = NO;
-    _compassCircle.visible = NO;
+    //_accelerometerBall.visible = NO;
+    //_compassCircle.visible = NO;
     self.sprite.visible = YES;
 }
 

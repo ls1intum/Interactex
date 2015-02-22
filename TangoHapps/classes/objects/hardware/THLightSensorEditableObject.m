@@ -49,16 +49,8 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THLightSensorEditableObject
 
 -(void) loadLightSensor{
-    self.sprite = [CCSprite spriteWithFile:@"lightSensor.png"];
-    [self addChild:self.sprite z:kClotheObjectZ];
-    
-    _lightSprite = [CCSprite spriteWithFile: @"light.png"];
-    _lightSprite.opacity = 0;
-    _lightSprite.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_lightSprite];
     
     self.acceptsConnections = YES;
-    
 }
 
 -(id) init{
@@ -140,6 +132,7 @@ You should have received a copy of the GNU General Public License along with thi
     } else {
         _lightTouchDownIntensity -= kDefaultAnalogSimulationIncrease;
     }
+    
     THLightSensor * lightSensor = (THLightSensor*) self.simulableObject;
     _lightTouchDownIntensity = [THClientHelper Constrain:_lightTouchDownIntensity min:0 max:kMaxAnalogValue];
     
@@ -160,6 +153,16 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSInteger) light{
     THLightSensor * lightSensor = (THLightSensor*) self.simulableObject;
     return lightSensor.light;
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    
+    _lightSprite = [CCSprite spriteWithFile: @"light.png"];
+    _lightSprite.opacity = 0;
+    _lightSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+    [self addChild:_lightSprite];
 }
 
 -(NSString*) description{

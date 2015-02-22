@@ -146,7 +146,40 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//vibeBoard
     {70,65},//temperature sensor
     {70,65},//accelerometer
-    {70,65}//flex sensor
+};
+
+NSString * const kHardwareSpriteNames[kNumHardwareTypes] = {
+    @"led.png",
+    @"buzzer.png",
+    @"button.png",
+    @"switch.png",
+    @"potentiometer.png",
+    @"lightSensor.png",
+    @"LSMCompass.png",
+    @"threeColorLed.png",
+    @"vibeBoard.png",
+    @"temperatureSensor.png",
+    @"accelerometer.png"
+};
+
+/*    kProgrammingElementTypeMapper,
+ kProgrammingElementTypeNumberValue,
+ kProgrammingElementTypeBoolValue,
+ kProgrammingElementTypeStringValue,
+ kProgrammingElementTypeSound,
+ kProgrammingElementTypeTimer,
+ kProgrammingElementTypeComparator,
+ kProgrammingElementTypeGrouper,*/
+
+NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
+    @"mapper.png",
+    @"value.png",
+    @"value.png",
+    @"value.png",
+    @"sound.png",
+    @"timer.png",
+    @"comparator.png",
+    @"grouper.png"
 };
 
 float const kLayerMinScale = 0.5f;

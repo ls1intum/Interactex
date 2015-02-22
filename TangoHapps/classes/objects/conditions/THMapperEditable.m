@@ -52,8 +52,8 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic value;
 
 -(void) load{
-    self.sprite = [CCSprite spriteWithFile:@"mapper.png"];
-    [self addChild:self.sprite];
+    
+    self.programmingElementType = kProgrammingElementTypeMapper;
     
     self.acceptsConnections = YES;
 }

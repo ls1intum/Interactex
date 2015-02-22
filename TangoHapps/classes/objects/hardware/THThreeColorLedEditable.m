@@ -58,16 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic blue;
 
 -(void) loadThreeColorLed{
-    self.sprite = [CCSprite spriteWithFile:@"threeColorLed.png"];
-    [self addChild:self.sprite];
-    
-    _lightSprite = [CCSprite spriteWithFile:@"light.png"];
-    _lightSprite.visible = NO;
-    _lightSprite.position = ccp(35,40);
-    [self.sprite addChild:_lightSprite];
     
     self.acceptsConnections = YES;
-    
     self.type = kHardwareTypeThreeColorLed;
 }
 
@@ -224,6 +216,15 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)turnOff{
     THThreeColorLed * led = (THThreeColorLed*) self.simulableObject;
     [led turnOff];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    _lightSprite = [CCSprite spriteWithFile:@"light.png"];
+    _lightSprite.position = ccp(35,40);
+    _lightSprite.visible = NO;
+    [self.sprite addChild:_lightSprite];
 }
 
 -(NSString*) description{

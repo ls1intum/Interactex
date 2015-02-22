@@ -72,6 +72,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToLayer:(TFLayer *)layer{
     [layer addEditableObject:self];
+    
+    self.sprite = [CCSprite spriteWithFile:kProgrammingElementSpriteNames[self.programmingElementType]];
+    [self addChild:self.sprite];
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{
@@ -85,7 +88,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) removeFromWorld{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    [project removeVisualProgrammingObject:self]; //nazmus changed, it was addVisualProgrammingObject!!!
+    [project removeVisualProgrammingObject:self];
     [super removeFromWorld];
 }
 

@@ -61,7 +61,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) load{
     
-    [self loadSprite];
+    //[self loadSprite];
     self.z = kClotheZ;
     
     self.canBeAddedToPalette = YES;
@@ -152,6 +152,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
+    
+    [self loadSprite];
     [layer addEditableObject:self];
 }
 

@@ -60,6 +60,19 @@ You should have received a copy of the GNU General Public License along with thi
 @synthesize pins = _pins;
 @dynamic hardwareProblems;
 
+#pragma mark - Initialization
+
+-(id) init{
+    
+    self = [super init];
+    if(self){
+        _pins = [NSMutableArray array];
+
+        [self loadObject];
+    }
+    return self;
+}
+
 -(void) loadObject{
     
     self.z = kClotheObjectZ;
@@ -73,14 +86,17 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) loadSewedSprite{
-    
+-(void) loadSprites{
+    //sewed sprite
     _sewedSprite = [CCSprite spriteWithFile:@"sewed.png"];
     _sewedSprite.rotation = 45;
     _sewedSprite.position = kSewedPositions[self.type];
     _sewedSprite.visible = NO;
-    
     [self addChild:_sewedSprite z:5];
+    
+    //main sprite
+    self.sprite = [CCSprite spriteWithFile:kHardwareSpriteNames[self.type]];
+    [self addChild:self.sprite];
 }
 
 -(void) loadPins{
@@ -93,25 +109,13 @@ You should have received a copy of the GNU General Public License along with thi
         pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kPinPositions[self.type][i]);
         //NSLog(@"%f",kPinPositions[self.type][i]);
         pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
-
+        
         [_pins addObject:pinEditable];
         
         i++;
     }
     
     [self addPinChilds];
-}
-
--(id) init{
-    
-    self = [super init];
-    if(self){
-        _pins = [NSMutableArray array];
-
-        [self loadObject];
-        [self loadSewedSprite];
-    }
-    return self;
 }
 
 #pragma mark - Archiving
@@ -124,7 +128,6 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self loadObject];
         [self addPinChilds];
-        [self loadSewedSprite];
         
         self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
         _objectName = [decoder decodeObjectForKey:@"objectName"];
@@ -323,6 +326,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
+    
+    [self loadSprites];
+    
     [self updateNameLabel];
     
     [layer addEditableObject:self];

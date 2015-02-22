@@ -53,10 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.type = kHardwareTypeMPUCompass;
     self.isI2CComponent = YES;
-    
-    self.sprite = [CCSprite spriteWithFile:@"LSMCompass.png"];
-    [self addChild:self.sprite];
-    
+        
     self.acceptsConnections = YES;
     self.isAccelerometerEnabled = YES;
     
@@ -65,15 +62,6 @@ You should have received a copy of the GNU General Public License along with thi
     _locationManager.distanceFilter = 1000;
     _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
-    _accelerometerBall = [CCSprite spriteWithFile:@"accelerometerBall.png"];
-    _accelerometerBall.visible = NO;
-    _accelerometerBall.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_accelerometerBall];
-    
-    _compassCircle = [CCSprite spriteWithFile:@"compassCircle.png"];
-    _compassCircle.visible = NO;
-    _compassCircle.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_compassCircle];
 }
 
 -(id) init{
@@ -137,38 +125,6 @@ You should have received a copy of the GNU General Public License along with thi
     return [self.pins objectAtIndex:1];
 }
 
-/*
- -(void) updatePinValue{
- THElementPinEditable * analogPin = self.pin5Pin;
- THBoardPinEditable * boardPin = analogPin.attachedToPin;
- THCompass * compass = (THCompass*) self.object;
- boardPin.currentValue = compass.light;
- }*/
-
--(void) updateBallPosition{
-    float dt = 1.0f/30.0f;
-    
-    float vx = _velocity.x + self.accelerometerX * dt;
-    float vy = _velocity.y + self.accelerometerY * dt;
-    _velocity = ccp(vx,vy);
-    
-    float px = _accelerometerBall.position.x + _velocity.x * dt;
-    float py = _accelerometerBall.position.y + _velocity.y * dt;
-    CGPoint newPos = ccp(px,py);
-    
-    float radius = _compassCircle.contentSize.width / 2.0f - 5;
-    
-    float dist = ccpDistance(_accelerometerBall.position, _compassCircle.position);
-    float angle = ccpAngle(_velocity, ccpSub(_compassCircle.position,_accelerometerBall.position));
-    angle = CC_RADIANS_TO_DEGREES(angle);
-    
-    if(dist > radius && angle > 60){
-        _velocity = ccpMult(_velocity, -0.8);
-        [[SimpleAudioEngine sharedEngine] playEffect:@"compassHit.mp3"];
-    }
-    _accelerometerBall.position = newPos;
-}
-
 -(void) update{
     
     THAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
@@ -178,14 +134,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.accelerometerX = accelerometerData.acceleration.y * 300;
     self.accelerometerY = - accelerometerData.acceleration.x * 300;
     self.accelerometerZ = accelerometerData.acceleration.z * 300;
-    
-    /*
-     CMMagnetometerData * magnetometer = manager.magnetometerData;
-     NSLog(@"%f",magnetometer.magneticField.x);*/
-    
-    //_compassCircle.rotation = 90 - self.heading;
-    
-    [self updateBallPosition];
 }
 
 -(void) handleDoubleTapped{
@@ -230,19 +178,6 @@ You should have received a copy of the GNU General Public License along with thi
     return compass.heading;
 }
 
-/*
- - (void) locationManager:(CLLocationManager *)manager
- didUpdateHeading:(CLHeading *)newHeading{
- 
- if (newHeading.headingAccuracy < 0)
- return;
- 
- CLLocationDirection  heading = ((newHeading.trueHeading > 0) ?  newHeading.trueHeading : newHeading.magneticHeading);
- 
- THCompass * compass = (THCompass*) self.simulableObject;
- compass.heading = heading;
- }*/
-
 -(void) willStartSimulation{
     [super willStartSimulation];
     
@@ -258,8 +193,6 @@ You should have received a copy of the GNU General Public License along with thi
     manager.accelerometerUpdateInterval = 1.0f / 20.0f;
     [manager startAccelerometerUpdates];
     
-    _accelerometerBall.visible = YES;
-    _compassCircle.visible = YES;
     self.sprite.visible = NO;
 }
 
@@ -270,8 +203,6 @@ You should have received a copy of the GNU General Public License along with thi
     [manager stopAccelerometerUpdates];
     [manager stopMagnetometerUpdates];
     
-    _accelerometerBall.visible = NO;
-    _compassCircle.visible = NO;
     self.sprite.visible = YES;
 }
 

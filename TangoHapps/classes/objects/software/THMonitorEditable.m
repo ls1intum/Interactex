@@ -50,9 +50,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.acceptsConnections = YES;
     self.canBeRootView = NO;
     self.canBeResized = NO;
-    /*
-    self.maxSize = CGSizeMake(265, 300);
-    self.minSize = CGSizeMake(140, 80);*/
 }
 
 -(id) init{

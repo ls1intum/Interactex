@@ -71,7 +71,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)soundPicker:(THSoundPicker*)picker didPickSound:(NSString*)soundName{
-    NSLog(@"selected: %@",soundName);
+
     if(soundName){
         
         THSoundEditable * sound = (THSoundEditable*) self.editableObject;

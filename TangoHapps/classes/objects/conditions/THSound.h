@@ -44,9 +44,13 @@ You should have received a copy of the GNU General Public License along with thi
 #import <MediaPlayer/MediaPlayer.h>
 #import "THProgrammingElement.h"
 
+@class THSoundEffect;
+
 @interface THSound : THProgrammingElement
 {
 }
+
+@property (nonatomic, strong) THSoundEffect * sound;
 
 @property (nonatomic,readonly) NSString * currentSong;
 @property (nonatomic, copy) NSString * fileName;

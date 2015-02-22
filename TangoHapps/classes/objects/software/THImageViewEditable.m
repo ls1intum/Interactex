@@ -96,16 +96,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
-/*
--(void) setScaleMode:(THImageViewScaleMode)scaleMode{
-    THImageView * imageView = (THImageView*) self.simulableObject;
-    imageView.scaleMode = scaleMode;
-}
-
--(THImageViewScaleMode) scaleMode{
-    THImageView * imageView = (THImageView*) self.simulableObject;
-    return imageView.scaleMode;
-}*/
 
 -(void) setImage:(UIImage *)image{
     THImageView * imageView = (THImageView*) self.simulableObject;

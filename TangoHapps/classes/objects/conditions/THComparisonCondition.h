@@ -58,7 +58,7 @@ typedef enum THProperty : NSUInteger{
     
 }
 
-@property (nonatomic) THConditionType type;
+@property (nonatomic) THConditionType conditionType;
 
 @property (nonatomic) BOOL value1set;
 @property (nonatomic) BOOL value2set;

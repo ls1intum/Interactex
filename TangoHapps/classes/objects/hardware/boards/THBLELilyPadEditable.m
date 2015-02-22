@@ -56,11 +56,7 @@
 -(void) loadLilypad{
     
     self.boardType = kBoardTypeLilypadBLE;
-    
     self.z = kLilypadZ;
-    
-    self.sprite = [CCSprite spriteWithFile:@"BLE-LilyPad.png"];
-    [self addChild:self.sprite];
 }
 
 -(id) init{

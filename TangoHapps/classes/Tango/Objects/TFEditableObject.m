@@ -248,6 +248,10 @@ static NSInteger objectCount = 1;
 
 #pragma mark - Methods
 
+-(void) loadSprites{
+    
+}
+
 -(void) setVisible:(BOOL)visible{
     TFSimulableObject * simulable = (TFSimulableObject*) self.simulableObject;
     simulable.visible = visible;

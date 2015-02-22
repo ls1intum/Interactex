@@ -51,6 +51,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THBoardEditable
 
+NSString * const kBoardSpriteNames[kMaxNumBoards] = {
+    @"lilypadSimple.png",
+    @"lilypadComplex.png",
+    @"BLE-LilyPad.png"
+};
+
 #pragma mark - Initialization
 
 #define kBLELilypadNumberOfPins 22
@@ -247,6 +253,10 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
 
 -(void) addToLayer:(TFLayer *)layer{
     [layer addEditableObject:self];
+    
+    self.sprite = [CCSprite spriteWithFile:kBoardSpriteNames[self.boardType]];
+    [self addChild:self.sprite];
+    
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.boards.count == 1){

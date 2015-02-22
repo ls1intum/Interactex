@@ -52,27 +52,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 @dynamic on;
 
--(void) loadSlideSwitch{
-    
-    self.sprite = [CCSprite spriteWithFile:@"switch.png"];
-    [self addChild:self.sprite z:1];
-    
-    
-    _switchOnSprite = [CCSprite spriteWithFile:@"switchOn.png"];
-    _switchOnSprite.visible = NO;
-    //_switchOnSprite.anchorPoint = ccp(0,0);
-    _switchOnSprite.position = ccp(self.sprite.contentSize.width/2.0f,self.sprite.contentSize.height/2.0f);
-    [self addChild:_switchOnSprite];
-}
-
--(id) init{
+-(id) init {
     self = [super init];
     if(self){        
         self.simulableObject = [[THSlideSwitch alloc] init];
         
         self.type = kHardwareTypeSwitch;
         
-        [self loadSlideSwitch];
         [self loadPins];
     }
     return self;
@@ -80,16 +66,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self loadSlideSwitch];
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
 }
 
@@ -146,10 +129,24 @@ You should have received a copy of the GNU General Public License along with thi
     boardPin.value = clotheswitch.on;
 }
 
+-(void) loadSlideSwitchSprite{
+    
+    _switchOnSprite = [CCSprite spriteWithFile:@"switchOn.png"];
+    _switchOnSprite.visible = NO;
+    _switchOnSprite.position = ccp(self.sprite.contentSize.width/2.0f,self.sprite.contentSize.height/2.0f);
+    [self addChild:_switchOnSprite];
+}
+
 -(void) handleTouchBegan{
     THSlideSwitch * clotheSwitch = (THSlideSwitch*) self.simulableObject;
     [clotheSwitch toggle];
     [self updatePinValue];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    [self loadSlideSwitchSprite];
 }
 
 -(NSString*) description{

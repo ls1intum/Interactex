@@ -56,21 +56,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) reloadiPhoneSprite{
     self.z = kiPhoneZ;
     
-    if(self.sprite != nil){
-        [self.sprite removeFromParentAndCleanup:YES];
-    }
-    
-    // nazmus added
-    CCSprite *iphoneBgSprite = [CCSprite spriteWithFile:@"iphoneBg.png"];
-    [iphoneBgSprite setOpacity:180.0];
-    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding + kiphoneFrameXMargin, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding + kiphoneFrameYMargin)];
-    [self addChild:iphoneBgSprite z:kiPhoneZ-1];
-    ////
-    
-    NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
-    self.sprite = [CCSprite spriteWithFile:fileName];
-    [self addChild:self.sprite z:kiPhoneZ];
-    
     self.canBeMoved = NO;
 }
 
@@ -184,9 +169,25 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
-    [layer addEditableObject:self];
+    
+    [super addToLayer:layer];
     
     [(THiPhone*)self.simulableObject addToView:[CCDirector sharedDirector].view];
+    
+    if(self.sprite != nil){
+        [self.sprite removeFromParentAndCleanup:YES];
+    }
+    
+    CCSprite *iphoneBgSprite = [CCSprite spriteWithFile:@"iphoneBg.png"];
+    [iphoneBgSprite setOpacity:180.0];
+    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding + kiphoneFrameXMargin, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding + kiphoneFrameYMargin)];
+    [self addChild:iphoneBgSprite z:kiPhoneZ-1];
+    
+    NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
+    self.sprite = [CCSprite spriteWithFile:fileName];
+    [self addChild:self.sprite z:kiPhoneZ];
+    
+    [layer addEditableObject:self];
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{

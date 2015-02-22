@@ -49,19 +49,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 CGSize const kLabelSize = {80,30};
 
--(void) loadValue{
-    self.sprite = [CCSprite spriteWithFile:@"value.png"];
-    [self addChild:self.sprite];
-    
-    [self reloadLabel];
-}
-
 -(id) init{
     self = [super init];
     if(self){
+        self.programmingElementType = kProgrammingElementTypeNumberValue;
+        
         self.simulableObject = [[THNumberValue alloc] init];
 
-        [self loadValue];
     }
     return self;
 }
@@ -70,8 +64,6 @@ CGSize const kLabelSize = {80,30};
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadValue];
     
     return self;
 }
@@ -88,8 +80,7 @@ CGSize const kLabelSize = {80,30};
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THValueProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
@@ -126,6 +117,14 @@ CGSize const kLabelSize = {80,30};
 -(void) setValue:(float)v{
     THNumberValue * value = (THNumberValue*) self.simulableObject;
     value.value = v;
+    [self reloadLabel];
+}
+
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
     [self reloadLabel];
 }
 
