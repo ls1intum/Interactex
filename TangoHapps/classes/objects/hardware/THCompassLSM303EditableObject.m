@@ -51,50 +51,38 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THCompassLSM303EditableObject
 
+-(id) init{
+    self = [super init];
+    if(self){
+        self.simulableObject = [[THCompassLSM303 alloc] init];
+        
+        [self loadCompass];
+        [super loadPins];
+    }
+    return self;
+}
+
 -(void) loadCompass{
     
     self.isI2CComponent = YES;
     
-    self.acceptsConnections = YES;
+    self.type = kHardwareTypeLSMCompass;
+    
     self.isAccelerometerEnabled = YES;
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.distanceFilter = 1000;
     _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    
-    /*
-    _accelerometerBall = [CCSprite spriteWithFile:@"accelerometerBall.png"];
-    _accelerometerBall.visible = NO;
-    _accelerometerBall.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_accelerometerBall];
-    
-    _compassCircle = [CCSprite spriteWithFile:@"compassCircle.png"];
-    _compassCircle.visible = NO;
-    _compassCircle.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_compassCircle];*/
-}
-
--(id) init{
-    self = [super init];
-    if(self){
-        self.simulableObject = [[THCompassLSM303 alloc] init];
-        
-        self.type = kHardwareTypeLSMCompass;
-        
-        [self loadCompass];
-        [self loadPins];
-    }
-    return self;
 }
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadCompass];
-    
+    if(self){
+        [self loadCompass];
+    }
     return self;
 }
 
@@ -104,6 +92,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THCompassLSM303EditableObject * copy = [super copyWithZone:zone];
+    
+    copy.componentType = self.componentType;
     
     return copy;
 }
@@ -137,30 +127,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(THElementPinEditable*) sdaPin{
     return [self.pins objectAtIndex:3];
 }
-/*
--(void) updateBallPosition{
-    float dt = 1.0f/30.0f;
-    
-    float vx = _velocity.x + self.accelerometerX * dt;
-    float vy = _velocity.y + self.accelerometerY * dt;
-    _velocity = ccp(vx,vy);
-    
-    float px = _accelerometerBall.position.x + _velocity.x * dt;
-    float py = _accelerometerBall.position.y + _velocity.y * dt;
-    CGPoint newPos = ccp(px,py);
-    
-    float radius = _compassCircle.contentSize.width / 2.0f - 5;
-    
-    float dist = ccpDistance(_accelerometerBall.position, _compassCircle.position);
-    float angle = ccpAngle(_velocity, ccpSub(_compassCircle.position,_accelerometerBall.position));
-    angle = CC_RADIANS_TO_DEGREES(angle);
-    
-    if(dist > radius && angle > 60){
-        _velocity = ccpMult(_velocity, -0.8);
-        [[SimpleAudioEngine sharedEngine] playEffect:@"compassHit.mp3"];
-    }
-    _accelerometerBall.position = newPos;
-}*/
 
 -(void) update{
     
@@ -171,14 +137,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.accelerometerX = accelerometerData.acceleration.y * 300;
     self.accelerometerY = - accelerometerData.acceleration.x * 300;
     self.accelerometerZ = accelerometerData.acceleration.z * 300;
-    
-    /*
-    CMMagnetometerData * magnetometer = manager.magnetometerData;
-    NSLog(@"%f",magnetometer.magneticField.x);*/
-    
-    //_compassCircle.rotation = 90 - self.heading;
-    
-    //[self updateBallPosition];
 }
 
 -(void) handleDoubleTapped{
@@ -257,8 +215,6 @@ You should have received a copy of the GNU General Public License along with thi
     manager.accelerometerUpdateInterval = 1.0f / 20.0f;
     [manager startAccelerometerUpdates];
     
-    //_accelerometerBall.visible = YES;
-    //_compassCircle.visible = YES;
     self.sprite.visible = NO;
 }
 
@@ -269,8 +225,6 @@ You should have received a copy of the GNU General Public License along with thi
     [manager stopAccelerometerUpdates];
     [manager stopMagnetometerUpdates];
     
-    //_accelerometerBall.visible = NO;
-    //_compassCircle.visible = NO;
     self.sprite.visible = YES;
 }
 

@@ -8,7 +8,6 @@
 
 #import "THLilypadProperties.h"
 #import "THLilypadEditable.h"
-#import "THPowerSupplyEditable.h"
 
 @implementation THLilypadProperties
 

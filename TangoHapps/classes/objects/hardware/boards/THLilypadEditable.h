@@ -45,7 +45,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define kLilypadNumberOfPins 22
 
-@class THPowerSupplyEditable;
 @class THBoardPinEditable;
 @class THElementPinEditable;
 
@@ -53,7 +52,5 @@ You should have received a copy of the GNU General Public License along with thi
     THBoardPinEditable * _highlightedPin;
     
 }
-
-@property (nonatomic, strong) THPowerSupplyEditable * powerSupply;
 
 @end

@@ -64,7 +64,7 @@ typedef enum {
 @property (nonatomic) BOOL showsWires;
 @property (nonatomic, strong) NSMutableArray * i2cComponents;
 
--(void) loadBoard;
+-(void) loadPins;
 
 //pins
 -(THBoardPinEditable*) minusPin;
@@ -75,9 +75,6 @@ typedef enum {
 -(NSInteger) pinNumberAtPosition:(CGPoint) position;
 -(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
-
-//power supply
--(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location;
 
 //i2c components
 -(void) addI2CComponent:(THHardwareComponentEditableObject*) component;

@@ -52,46 +52,42 @@ You should have received a copy of the GNU General Public License along with thi
 @synthesize on = _on;
 @dynamic frequency;
 
-
 -(id) init{
     self = [super init];
     if(self){
         
         self.simulableObject = [[THBuzzer alloc] init];
-        self.type = kHardwareTypeBuzzer;
         
         [self loadBuzzer];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
 
 -(void) loadBuzzer{
     
-    self.acceptsConnections = YES;
+    self.type = kHardwareTypeBuzzer;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self loadBuzzer];
-    
-    self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
-    
+    if(self){
+        [self loadBuzzer];
+        
+        self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeBool:self.onAtStart forKey:@"onAtStart"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THBuzzerEditableObject * copy = [super copyWithZone:zone];
     
     copy.onAtStart = self.onAtStart;
@@ -102,8 +98,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THBuzzerProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

@@ -84,52 +84,26 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     }
 };
 
--(void) loadBoard{
-    
-    [self loadPins];
-    
-    self.canBeDuplicated = NO;
-    
-    self.minusPin.highlightColor = kMinusPinHighlightColor;
-    self.plusPin.highlightColor = kPlusPinHighlightColor;
-    
-    self.i2cComponents = [NSMutableArray array];
-}
-
--(void) addPins{
-    for (THPinEditable * pin in self.pins) {
-        [self addChild:pin z:1];
-    }
-}
-
--(void) loadPins{
-    int i = 0;
-    
-    THBoard * lilypad = (THBoard*) self.simulableObject;
-    for (THPin * pin in lilypad.pins) {
-        THBoardPinEditable * pinEditable = [[THBoardPinEditable alloc] init];
-        pinEditable.simulableObject = pin;
-        
-        pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kBoardPinPositions[self.boardType][i]);
-        pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
-        
-        [self.pins addObject:pinEditable];
-        i++;
-    }
-    
-    [self addPins];
-}
 
 -(id) init{
     self = [super init];
     if (self) {
         
+        self.i2cComponents = [NSMutableArray array];
+        
         self.pins = [NSMutableArray array];
         
         self.showsWires = YES;
         
+        [self loadBoard];
+        
     }
     return self;
+}
+
+-(void) loadBoard{
+    
+    self.canBeDuplicated = NO;
 }
 
 #pragma mark - Archiving
@@ -140,6 +114,9 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
         self.pins = [decoder decodeObjectForKey:@"pins"];
         self.showsWires = [decoder decodeBoolForKey:@"showsWires"];
         self.i2cComponents = [decoder decodeObjectForKey:@"i2cComponents"];
+        
+        [self loadBoard];
+        [self addPins];
     }
     return self;
 }
@@ -223,11 +200,6 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     }
 }
 
--(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location{
-    return NO;
-}
-
-
 #pragma mark - I2C Components
 
 -(void) addI2CComponent:(THHardwareComponentEditableObject*) component{
@@ -251,12 +223,60 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
 
 #pragma mark - Object's Lifecycle
 
--(void) addToLayer:(TFLayer *)layer{
-    [layer addEditableObject:self];
+
+-(void) addPins{
+    for (THPinEditable * pin in self.pins) {
+        [self addChild:pin z:1];
+    }
+}
+
+-(void) loadPins{
+    int i = 0;
+    
+    THBoard * lilypad = (THBoard*) self.simulableObject;
+    
+    for (THPin * pin in lilypad.pins) {
+        
+        THBoardPinEditable * pinEditable = [[THBoardPinEditable alloc] init];
+        pinEditable.simulableObject = pin;
+        
+        if(pinEditable.type == kPintypeMinus){
+            pinEditable.highlightColor = kMinusPinHighlightColor;
+        } else if(pinEditable.type == kPintypeMinus){
+            pinEditable.highlightColor = kPlusPinHighlightColor;
+        }
+        
+        [self.pins addObject:pinEditable];
+        i++;
+    }
+    
+    [self addPins];
+}
+
+-(void) repositionPins{//after knowing sprite size pins should be repositioned
+    
+    int i = 0;
+    for (THPinEditable * pin in self.pins) {
+        
+        pin.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kBoardPinPositions[self.boardType][i]);
+        pin.position = ccpAdd(pin.position, ccp(pin.contentSize.width/2.0f, pin.contentSize.height/2.0f));
+        i++;
+    }
+}
+
+-(void) loadSprite{
     
     self.sprite = [CCSprite spriteWithFile:kBoardSpriteNames[self.boardType]];
     [self addChild:self.sprite];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
     
+    [self loadSprite];
+    
+    [self repositionPins];
+    
+    [layer addEditableObject:self];
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.boards.count == 1){

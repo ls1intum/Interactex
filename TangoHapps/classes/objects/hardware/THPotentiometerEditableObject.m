@@ -53,22 +53,22 @@ You should have received a copy of the GNU General Public License along with thi
 
 const CGSize kValueLabelSize = {75, 20};
 
--(void) loadPotentiometer{
-    
-    self.acceptsConnections = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THPotentiometer alloc] init];
         
-        self.type = kHardwareTypePotentiometer;
-        
         [self loadPotentiometer];
-        [self loadPins];
+        [super loadPins];
+
     }
     return self;
+}
+
+-(void) loadPotentiometer{
+    
+    self.type = kHardwareTypePotentiometer;
+    
 }
 
 #pragma mark - Archiving
@@ -95,8 +95,7 @@ const CGSize kValueLabelSize = {75, 20};
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THPotentiometerProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

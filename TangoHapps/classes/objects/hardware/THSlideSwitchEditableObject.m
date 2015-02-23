@@ -57,17 +57,25 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){        
         self.simulableObject = [[THSlideSwitch alloc] init];
         
-        self.type = kHardwareTypeSwitch;
-        
-        [self loadPins];
+        [self loadSlideSwitch];
+        [super loadPins];
     }
     return self;
+}
+
+-(void) loadSlideSwitch{
+    
+    self.type = kHardwareTypeSwitch;
 }
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
+    
+    if(self){
+        [self loadSlideSwitch];
+    }
     
     return self;
 }

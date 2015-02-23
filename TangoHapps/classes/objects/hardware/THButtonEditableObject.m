@@ -57,11 +57,15 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         self.simulableObject = [[THButton alloc] init];
-        self.type = kHardwareTypeButton;
-        
-        [self loadPins];
+        [self loadButton];
+        [super loadPins];
     }
     return self;
+}
+
+-(void) loadButton{
+    
+    self.type = kHardwareTypeButton;
 }
 
 #pragma mark - Archiving
@@ -69,6 +73,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
+    if(self){
+        [self loadButton];
+    }
     
     return self;
 }

@@ -559,7 +559,7 @@ You should have received a copy of the GNU General Public License along with thi
     THProject * project = [THDirector sharedDirector].currentProject;
     TFEditableObject * object = [project objectAtLocation:location];
     
-    [self unselectCurrentObject];
+    //[self unselectCurrentObject];
     
     if(object){
         if(self.isLilypadMode){

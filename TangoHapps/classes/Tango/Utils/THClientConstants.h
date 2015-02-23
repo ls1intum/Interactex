@@ -59,7 +59,7 @@ typedef enum THDigitalPinValue : NSUInteger{
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
 
-#define kNumHardwareTypes 15
+#define kNumHardwareTypes 14
 #define kMaxNumPinsPerElement 5
 
 typedef enum THHardwareType : NSUInteger{
@@ -75,11 +75,6 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypeTemperatureSensor,//10
     kHardwareTypeAccelerometer,
     kHardwareTypeMPUCompass,
-    kHardwareTypeLipoBattery,
-    kHardwareTypePowerSupply,
-    kHardwareTypeFlexSensor,//15
-    kHardwareTypeiBeacon,
-    kHardwareTypePressureSensor
 }THHardwareType;
 
 #define kNumProgrammingElementTypes 8
@@ -107,16 +102,6 @@ typedef enum THPinType : NSUInteger{
 
 
 #define kNumPinModes 7
-/*
-typedef enum{
-    kPinModeDigitalInput = 0,
-    kPinModeDigitalOutput = 1,
-    kPinModeAnalogInput = 2,
-    kPinModePWM = 3,
-    kPinModeBuzzer = 4,
-    kPinModeCompass = 5,
-    kPinModeUndefined = 6
-} THPinMode;*/
 
 typedef enum THPinMode : NSUInteger{
     kPinModeDigitalInput = 0x00,

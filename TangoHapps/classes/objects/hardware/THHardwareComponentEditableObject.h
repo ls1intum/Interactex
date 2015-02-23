@@ -61,7 +61,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) THElementPinEditable * mainPin;
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
--(void) addPinChilds;
 -(void) loadPins;
 -(void) autoroutePlusAndMinusPins;
 -(void) autoroute;

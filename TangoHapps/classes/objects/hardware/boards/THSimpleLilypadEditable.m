@@ -56,23 +56,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 #define kSimpleLilypadNumberOfPins 11
 
--(void) loadLilypad{
-    self.boardType = kBoardTypeLilypadSimple;
-    self.z = kLilypadZ;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         
-        THSimpleLilypad * lilyPad = [[THSimpleLilypad alloc] init];
-        self.simulableObject = lilyPad;
+        self.simulableObject = [[THSimpleLilypad alloc] init];
         
         [self loadLilypad];
-        [self loadBoard];
-        
+        [super loadPins];
     }
     return self;
+}
+
+-(void) loadLilypad{
+    self.boardType = kBoardTypeLilypadSimple;
+    self.z = kLilypadZ;
 }
 
 #pragma mark - Archiving
@@ -82,7 +80,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         [self loadLilypad];
-        [self loadBoard];
     }
     return self;
 }

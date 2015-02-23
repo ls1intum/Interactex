@@ -52,32 +52,30 @@ You should have received a copy of the GNU General Public License along with thi
 
 const CGSize kTemperatureValueLabelSize = {75, 20};
 
--(void) loadTemperatureSensor{
-    
-    
-    self.acceptsConnections = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THTemperatureSensor alloc] init];
 
-        self.type = kHardwareTypeTemperatureSensor;
-        
         [self loadTemperatureSensor];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
 
+-(void) loadTemperatureSensor{
+    
+    self.type = kHardwareTypeTemperatureSensor;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadTemperatureSensor];
+    if(self){
+        [self loadTemperatureSensor];
+    }
     
     return self;
 }

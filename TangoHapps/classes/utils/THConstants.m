@@ -76,9 +76,6 @@ NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {
     3,//10 - temperature sensor
     5,//accelerometer
     4,//mpu compass
-    0,//lipo battery
-    0,//power supply
-    2//flex sensor
 };
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
@@ -94,9 +91,6 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-23,-12},{0,26},{25,-12}},//10 - temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
     {{32,-4},{32,-13},{-32,13},{-32,4}},//mpu compass
-    {},//lipo
-    {},//power supply
-    {{-145,5},{-145,-5}}//15 - flex sensor
 };
 
 float const kUiViewOpacityEditor = 0.5f;

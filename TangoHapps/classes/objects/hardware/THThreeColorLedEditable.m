@@ -57,32 +57,31 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic green;
 @dynamic blue;
 
--(void) loadThreeColorLed{
-    
-    self.acceptsConnections = YES;
-    self.type = kHardwareTypeThreeColorLed;
-}
-
--(id) init{
+-(id) init {
     self = [super init];
     if(self){
         self.simulableObject = [[THThreeColorLed alloc] init];
         
         [self loadThreeColorLed];
-        [self loadPins];
+        [super loadPins];
+
     }
     return self;
 }
 
+-(void) loadThreeColorLed {
+    
+    self.type = kHardwareTypeThreeColorLed;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadThreeColorLed];
-    [self adaptColorToLed];
-    
+    if(self){
+        [self loadThreeColorLed];
+        [self adaptColorToLed];
+    }
     return self;
 }
 

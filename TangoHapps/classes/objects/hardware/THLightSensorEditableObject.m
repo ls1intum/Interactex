@@ -48,31 +48,31 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THLightSensorEditableObject
 
--(void) loadLightSensor{
-    
-    self.acceptsConnections = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THLightSensor alloc] init];
         
-        self.type = kHardwareTypeLightSensor;
-        
         [self loadLightSensor];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
+
+
+-(void) loadLightSensor{
+    
+    self.type = kHardwareTypeLightSensor;
+}
+
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadLightSensor];
-    
+    if(self){
+        [self loadLightSensor];
+    }
     return self;
 }
 

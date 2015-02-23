@@ -46,39 +46,28 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoardPinEditable.h"
 #import "THLilypadProperties.h"
 #import "THBoardProperties.h"
-#import "THPowerSupplyEditable.h"
 
 @implementation THLilyPadEditable
 @synthesize pins = _pins;
 @dynamic numberOfDigitalPins;
 @dynamic numberOfAnalogPins;
 
-CGPoint const kLilypadPowerSupplyPosition = {189,131};
-float const kLilypadPowerSupplyOverlapRadius = 40;
-
--(void) loadLilypad{
-    self.z = kLilypadZ;
-    self.boardType = kBoardTypeLilypad;
-}
-
--(void) addPins{
-    for (THPinEditable * pin in _pins) {
-        [self addChild:pin z:1];
-    }
-}
-
 -(id) init{
     self = [super init];
     if(self){
         
-        THLilyPad * lilyPad = [[THLilyPad alloc] init];
-        self.simulableObject = lilyPad;
+        self.simulableObject = [[THLilyPad alloc] init];
         
         [self loadLilypad];
-        [self loadBoard];
+        [super loadPins];
         
     }
     return self;
+}
+
+-(void) loadLilypad{
+    self.z = kLilypadZ;
+    self.boardType = kBoardTypeLilypad;
 }
 
 #pragma mark - Archiving
@@ -88,17 +77,14 @@ float const kLilypadPowerSupplyOverlapRadius = 40;
     if(self){
         
         [self loadLilypad];
-        [self loadBoard];
-        
-        self.powerSupply = [decoder decodeObjectForKey:@"powerSupply"];
+
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    
-    [coder encodeObject:self.powerSupply forKey:@"powerSupply"];
+
 }
 
 #pragma mark - Property Controller
@@ -133,27 +119,6 @@ float const kLilypadPowerSupplyOverlapRadius = 40;
     return nil;
 }
 
--(void) setPowerSupply:(THPowerSupplyEditable*) powerSupply{
-    
-    if(powerSupply != _powerSupply){
-        if(powerSupply){
-            
-            [_powerSupply removeFromParentAndCleanup:YES];
-            _powerSupply = powerSupply;
-            self.powerSupply.position = kLilypadPowerSupplyPosition;
-            //self.powerSupply.rotation = CC_DEGREES_TO_RADIANS(90);
-            _powerSupply.canBeMoved = NO;
-            
-            [self addChild:_powerSupply z:2];
-            
-        } else {
-            
-            [_powerSupply removeFromParentAndCleanup:YES];
-            _powerSupply = nil;
-        }
-    }
-}
-
 #pragma mark - Pins
 
 -(THBoardPinEditable*) minusPin{
@@ -179,18 +144,6 @@ float const kLilypadPowerSupplyOverlapRadius = 40;
         return _pins[idx];
     }
     return nil;
-}
-
--(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location{
-    
-    //    CGPoint position = [self convertToNodeSpace:object.position];
-    
-    location = [self convertToNodeSpace:location];
-    if(ccpDistance(location, kLilypadPowerSupplyPosition) < kLilypadPowerSupplyOverlapRadius){
-        return YES;
-    }
-    
-    return NO;
 }
 
 #pragma mark - Lifecycle

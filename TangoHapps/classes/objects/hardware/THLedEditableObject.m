@@ -53,43 +53,38 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic onAtStart;
 @dynamic intensity;
 
--(void) loadLed{
-    
-    self.acceptsConnections = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THLed alloc] init];
 
-        self.type = kHardwareTypeLed;
-        
         [self loadLed];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
 
+-(void) loadLed{
+    
+    self.type = kHardwareTypeLed;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadLed];
-    [self adaptIntensityToLed];
-    
+    if(self){
+        [self loadLed];
+        [self adaptIntensityToLed];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder*) coder
-{
+-(void)encodeWithCoder:(NSCoder*) coder {
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone*) zone
-{
+-(id)copyWithZone:(NSZone*) zone {
     THLedEditableObject * copy = [super copyWithZone:zone];
     
     return copy;

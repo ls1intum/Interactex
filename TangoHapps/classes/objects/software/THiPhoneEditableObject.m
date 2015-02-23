@@ -66,7 +66,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.z = kiPhoneZ;
     self.canBeScaled = NO;
     self.canBeDuplicated = NO;
-    self.canBeAddedToGesture = NO;
 }
 
 +(id) iPhoneWithDefaultView{

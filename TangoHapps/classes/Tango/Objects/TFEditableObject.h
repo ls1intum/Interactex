@@ -43,7 +43,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import <Foundation/Foundation.h>
 
 @class TFSimulableObject;
-@class THGestureEditableObject;
 @class THEventPropertyController;
 @class THPropertiesPropertyController;
 @class THMethodsPropertyController;
@@ -68,7 +67,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL canBeAddedToPalette;
 @property (nonatomic) BOOL canBeScaled;
 @property (nonatomic) BOOL canBeMoved;
-@property (nonatomic) BOOL canBeAddedToGesture;
 
 @property (nonatomic) CGFloat myRotation;
 @property (nonatomic) CGFloat myScale;
@@ -88,8 +86,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, readonly) NSString * shortDescription;
 @property (nonatomic, strong) TFSimulableObject * simulableObject;
-
-@property (nonatomic, weak) THGestureEditableObject * attachedToGesture;
 
 @property (nonatomic) BOOL highlighted;
 @property (nonatomic) ccColor4B highlightColor;

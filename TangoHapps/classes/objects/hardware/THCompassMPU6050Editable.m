@@ -49,11 +49,22 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THCompassMPU6050Editable
 
+-(id) init{
+    self = [super init];
+    if(self){
+        self.simulableObject = [[THCompassMPU6050 alloc] init];
+        
+        [self loadCompass];
+        [super loadPins];
+    }
+    return self;
+}
+
 -(void) loadCompass{
     
     self.type = kHardwareTypeMPUCompass;
     self.isI2CComponent = YES;
-        
+    
     self.acceptsConnections = YES;
     self.isAccelerometerEnabled = YES;
     
@@ -64,24 +75,13 @@ You should have received a copy of the GNU General Public License along with thi
     
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        self.simulableObject = [[THCompassMPU6050 alloc] init];
-        
-        [self loadCompass];
-        [self loadPins];
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadCompass];
-    
+    if(self){
+        [self loadCompass];
+    }
     return self;
 }
 
