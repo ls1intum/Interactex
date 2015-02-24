@@ -75,6 +75,7 @@ const CGSize kTemperatureValueLabelSize = {75, 20};
     
     if(self){
         [self loadTemperatureSensor];
+        
     }
     
     return self;
@@ -82,10 +83,15 @@ const CGSize kTemperatureValueLabelSize = {75, 20};
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     THTemperatureSensorEditable * copy = [super copyWithZone:zone];
+    
+    copy.minValueNotify = self.minValueNotify;
+    copy.maxValueNotify = self.maxValueNotify;
+    copy.notifyBehavior = self.notifyBehavior;
     
     return copy;
 }

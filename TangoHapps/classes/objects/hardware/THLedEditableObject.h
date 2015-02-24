@@ -45,6 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THLedEditableObject : THHardwareComponentEditableObject {
     CCSprite * _lightSprite;
 }
+
 @property (nonatomic) BOOL onAtStart;
 @property (nonatomic, readonly) BOOL on;
 @property (nonatomic) NSInteger intensity;
@@ -54,7 +55,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (void)turnOn;
 - (void)turnOff;
-
--(void) varyIntensity:(NSInteger) di;
+- (void) varyIntensity:(NSInteger) di;
 
 @end

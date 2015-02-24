@@ -92,6 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     copy.onAtStart = self.onAtStart;
     copy.on = self.on;
+    copy.frequency = self.frequency;
     
     return copy;
 }

@@ -96,7 +96,6 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
         self.showsWires = YES;
         
         [self loadBoard];
-        
     }
     return self;
 }

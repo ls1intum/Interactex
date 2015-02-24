@@ -92,13 +92,17 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone*) zone {
     THThreeColorLedEditable * copy = [super copyWithZone:zone];
     
+    copy.red = self.red;
+    copy.green = self.green;
+    copy.blue = self.blue;
+    copy.onAtStart = self.onAtStart;
+    
     return copy;
 }
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THThreeColorLedProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

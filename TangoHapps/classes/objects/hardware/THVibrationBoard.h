@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THVibrationBoard : THHardwareComponent
 
+@property (nonatomic) BOOL onAtStart;
 @property (nonatomic) BOOL on;
 @property (nonatomic) NSInteger frequency;
 

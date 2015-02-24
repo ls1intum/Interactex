@@ -59,7 +59,6 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
-
 -(void) loadLightSensor{
     
     self.type = kHardwareTypeLightSensor;
@@ -82,7 +81,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THLightSensorEditableObject * copy = [super copyWithZone:zone];
-    
+
     return copy;
 }
 

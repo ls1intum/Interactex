@@ -44,9 +44,12 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THView.h"
 
 
-@interface THImageView : THView
+@interface THImageView : THView {
+}
 
-@property (nonatomic) UIImage * image;
-//@property (nonatomic) THImageViewScaleMode scaleMode;
+@property (nonatomic, strong) UIImage * image;
+@property (nonatomic, strong) UIImageView * imageView;
+
+-(void) reloadImageView;
 
 @end

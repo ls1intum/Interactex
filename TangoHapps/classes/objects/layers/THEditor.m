@@ -684,7 +684,7 @@ You should have received a copy of the GNU General Public License along with thi
             
             [self moveCurrentConnection:location];
             
-        } else if(self.isLilypadMode && sender.state == UIGestureRecognizerStateChanged){
+        } /*else if(self.isLilypadMode && sender.state == UIGestureRecognizerStateChanged){
             
             CGPoint d = [sender translationInView:sender.view];
             d.y = - d.y;
@@ -693,14 +693,16 @@ You should have received a copy of the GNU General Public License along with thi
                 [self moveCurrentObject:d];
             }
             [sender setTranslation:ccp(0,0) inView:sender.view];
-        }
+        }*/
         
     } else if(_state == kEditorStateDuplicate) {
         
         if(sender.state == UIGestureRecognizerStateBegan){
             
             TFEditableObject * copy = [self duplicateObjectAtLocation:location];
-            [self selectObject:copy];
+            if(copy){
+                [self selectObject:copy];
+            }
             
         } else if(sender.state == UIGestureRecognizerStateChanged){
             

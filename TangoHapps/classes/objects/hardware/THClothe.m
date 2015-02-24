@@ -61,7 +61,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) load{
     
-    //[self loadSprite];
     self.z = kClotheZ;
     
     self.canBeAddedToPalette = YES;
@@ -108,6 +107,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(id)copyWithZone:(NSZone *)zone {
+    
     THClothe * copy = [super copyWithZone:zone];
     copy.name = self.name;
     copy.imageFromName = self.imageFromName;

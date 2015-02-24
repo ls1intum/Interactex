@@ -87,6 +87,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone*) zone {
     THLedEditableObject * copy = [super copyWithZone:zone];
     
+    copy.onAtStart = self.onAtStart;
+    copy.intensity = self.intensity;
+    
     return copy;
 }
 

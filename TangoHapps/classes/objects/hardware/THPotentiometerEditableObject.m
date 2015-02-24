@@ -68,7 +68,6 @@ const CGSize kValueLabelSize = {75, 20};
 -(void) loadPotentiometer{
     
     self.type = kHardwareTypePotentiometer;
-    
 }
 
 #pragma mark - Archiving
@@ -89,7 +88,6 @@ const CGSize kValueLabelSize = {75, 20};
 
 -(id)copyWithZone:(NSZone *)zone {
     THPotentiometerEditableObject * copy = [super copyWithZone:zone];
-    
     return copy;
 }
 

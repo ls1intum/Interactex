@@ -69,8 +69,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
         [self loadContactBook];
@@ -78,14 +77,16 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THContactBookEditable * copy = [super copyWithZone:zone];
+    
+    copy.showCallButton = self.showCallButton;
+    copy.showPreviousButton = self.showPreviousButton;
+    copy.showNextButton = self.showNextButton;
     
     return copy;
 }

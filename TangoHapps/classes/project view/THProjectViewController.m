@@ -439,7 +439,6 @@ float const kToolsTabMargin = 5;
     THEditor * editor = [THEditor node];
     editor.dragDelegate = self.tabController.paletteController;
     _currentLayer = editor;
-    [_currentLayer willAppear];
     CCScene * scene = [CCScene node];
 
     [scene addChild:_currentLayer];
@@ -449,6 +448,8 @@ float const kToolsTabMargin = 5;
     } else {
         [[CCDirector sharedDirector] runWithScene:scene];
     }
+    
+    [_currentLayer willAppear];
     
     _tabController.paletteController.delegate = editor;
     _state = kAppStateEditor;

@@ -82,9 +82,12 @@ You should have received a copy of the GNU General Public License along with thi
     
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THSliderEditableObject * copy = [super copyWithZone:zone];
+    
+    copy.value = self.value;
+    copy.min = self.min;
+    copy.max = self.max;
     
     return copy;
 }

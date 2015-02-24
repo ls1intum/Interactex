@@ -43,16 +43,14 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THImageView.h"
 
 @implementation THImageView
-@dynamic image;
-//@dynamic scaleMode;
 
 -(void) loadImageView{
     
-    UIImageView * view = [[UIImageView alloc] init];
-    view.frame = CGRectMake(0, 0, self.width, self.height);
-    view.layer.borderWidth = 1.0f;
-    view.contentMode = UIViewContentModeScaleAspectFit;
-    self.view = view;
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.frame = CGRectMake(0, 0, self.width, self.height);
+    self.imageView.layer.borderWidth = 1.0f;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.view = self.imageView;
 }
 
 -(id) init{
@@ -61,8 +59,6 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.width = 200;
         self.height = 200;
-        
-        [self loadImageView];
     }
     return self;
 }
@@ -72,10 +68,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadImageView];
-    
-    self.image = [decoder decodeObjectForKey:@"image"];
-    
+    if(self){
+        self.image = [decoder decodeObjectForKey:@"image"];
+        
+    }
     return self;
 }
 
@@ -85,31 +81,32 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:self.image forKey:@"image"];
 }
 
-
 -(id)copyWithZone:(NSZone *)zone {
     THImageView * copy = [super copyWithZone:zone];
-    
+    copy.image = self.image;
     return copy;
 }
 
 #pragma mark - Methods
+
+-(void) reloadImageView{
+    [self loadImageView];
+    
+    self.view = self.imageView;
+    self.imageView.image = self.image;
+}
+
 /*
--(void) setScaleMode:(THImageViewScaleMode)scaleMode{
-    ((UIImageView*) self.view).contentMode = [THHelper ScaleModeForCustomScaleMode:scaleMode];
-}
-
--(THImageViewScaleMode) scaleMode{
-    return [THHelper customScaleModeForScaleMode:((UIImageView*)self.view).contentMode];
-}
-*/
-
 -(void) setImage:(UIImage *)image{
     ((UIImageView*) self.view).image = image;
+    NSLog(@"sets image");
+    
 }
 
 -(UIImage*) image{
     return ((UIImageView*) self.view).image;
 }
+*/
 
 -(NSString*) description{
     return @"imageview";

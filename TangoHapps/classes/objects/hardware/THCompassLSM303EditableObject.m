@@ -103,22 +103,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     
-    [controllers addObject:[THCompassProperties properties]];
+    //[controllers addObject:[THCompassProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
 
 #pragma mark - Methods
-
-/*
--(void) handleAccelerated:(UIAcceleration*) acceleration{
-    
-    //NSLog(@"accel: %f %f",acceleration.y,-acceleration.x);
-    
-    self.accelerometerX = acceleration.y * 300;
-    self.accelerometerY = -acceleration.x * 300;
-    //NSLog(@"accel: %d %d",self.x,self.y);
-}*/
 
 -(THElementPinEditable*) sclPin{
     return [self.pins objectAtIndex:2];
@@ -180,18 +170,6 @@ You should have received a copy of the GNU General Public License along with thi
     THCompassLSM303 * compass = (THCompassLSM303*) self.simulableObject;
     return compass.heading;
 }
-/*
-- (void) locationManager:(CLLocationManager *)manager
-        didUpdateHeading:(CLHeading *)newHeading{
-    
-    if (newHeading.headingAccuracy < 0)
-        return;
-    
-    CLLocationDirection  heading = ((newHeading.trueHeading > 0) ?  newHeading.trueHeading : newHeading.magneticHeading);
-    
-    THCompass * compass = (THCompass*) self.simulableObject;
-    compass.heading = heading;
-}*/
 
 #pragma mark - Lifecycle
 

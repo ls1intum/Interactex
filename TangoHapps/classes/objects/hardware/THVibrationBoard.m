@@ -93,6 +93,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)initWithCoder:(NSCoder *)decoder{
     self = [super initWithCoder:decoder];
+    
+    self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
     self.frequency = [decoder decodeIntegerForKey:@"frequency"];
     
     [self loadVibrationBoard];
@@ -102,6 +104,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)encodeWithCoder:(NSCoder *)coder{
     [super encodeWithCoder:coder];
+    
+    [coder encodeBool:self.onAtStart forKey:@"onAtStart"];
     [coder encodeInteger:self.frequency forKey:@"frequency"];
 }
 
@@ -109,6 +113,7 @@ You should have received a copy of the GNU General Public License along with thi
     THVibrationBoard * copy = [super copyWithZone:zone];
     
     copy.on = self.on;
+    copy.onAtStart = self.onAtStart;
     copy.frequency = self.frequency;
     
     return copy;
@@ -197,7 +202,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THElementPin * pin = [self.pins objectAtIndex:1];
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
-    if(lilypadPin.mode == kPinModePWM){
+    if(lilypadPin.mode == kPinModePWM || self.onAtStart){
         [self turnOn];
     } else {
         [self triggerEventNamed:kEventOnChanged];

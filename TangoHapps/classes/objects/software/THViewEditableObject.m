@@ -78,7 +78,6 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.canBeResized = YES;
         [self loadView];
-        //self.opacity = kUiViewOpacityEditor;
     }
     return self;
 }
@@ -88,21 +87,21 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-    [self loadView];
-    self.canChangeBackgroundColor = [decoder decodeBoolForKey:@"canChangeBackgroundColor"];
-    //self.subviews = [decoder decodeObjectForKey:@"subviews"];
-    self.canBeResized = [decoder decodeBoolForKey:@"canBeResized"];
-    
-    _subviews = [NSMutableArray array];
+        [self loadView];
+        /*
+         self.canChangeBackgroundColor = [decoder decodeBoolForKey:@"canChangeBackgroundColor"];
+         self.canBeResized = [decoder decodeBoolForKey:@"canBeResized"];*/
+        
+        _subviews = [NSMutableArray array];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    [coder encodeBool:self.canChangeBackgroundColor forKey:@"canChangeBackgroundColor"];
-    //[coder encodeObject:self.subviews forKey:@"subviews"];
-    [coder encodeBool:self.canBeResized forKey:@"canBeResized"];
+    /*
+     [coder encodeBool:self.canChangeBackgroundColor forKey:@"canChangeBackgroundColor"];
+     [coder encodeBool:self.canBeResized forKey:@"canBeResized"];*/
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -128,20 +127,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(BOOL) canBeMovedBy:(CGPoint)d{
     return self.canBeMoved;
-    /*
-    if(!self.canBeMoved){
-        return NO;
-    }
-    
-    THViewEditableObject * rootView = [THDirector sharedDirector].currentProject.iPhone.currentView;
-    CGRect currentBoundingBox = self.boundingBox;
-    CGRect newBoundingBox = currentBoundingBox;
-    newBoundingBox.origin = ccpAdd(currentBoundingBox.origin, d);
-    CGRect rootViewRect = rootView.boundingBox;
-    if(!CGRectContainsRect(rootView.boundingBox, currentBoundingBox) || CGRectContainsRect(rootViewRect, newBoundingBox)){
-        return YES;
-    }
-    return NO;*/
 }
 
 -(void) setVisible:(BOOL)visible{

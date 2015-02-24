@@ -79,6 +79,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THMonitorEditable * copy = [super copyWithZone:zone];
+    copy.minValue = self.minValue;
+    copy.maxValue = self.maxValue;
     return copy;
 }
 

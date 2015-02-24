@@ -58,7 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @synthesize type = _type;
 @synthesize pins = _pins;
-@dynamic hardwareProblems;
 
 #pragma mark - Initialization
 
@@ -127,24 +126,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THHardwareComponentEditableObject * copy = [super copyWithZone:zone];
+    
     copy.type = self.type;
     
     return copy;
 }
 
 #pragma mark - Property Controllers
-
--(NSArray*) hardwareProblems{
-    NSMutableArray * problems = [NSMutableArray array];
-    for (THElementPinEditable * pin in self.pins) {
-        if(!pin.attachedToPin){
-            THHardwareProblem * problem = [[THHardwareProblemNotConnected alloc] init];
-            problem.pin = pin;
-            [problems addObject:problem];
-        }
-    }
-    return problems;
-}
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];

@@ -1055,15 +1055,6 @@ enum zPositions{
     return (self.allObjects.count == 0);
 }
 
--(NSMutableArray*) hardwareProblems{
-    NSMutableArray * problems = [NSMutableArray array];
-    for (THHardwareComponentEditableObject * clotheObjects in self.hardwareComponents) {
-        NSArray * array = clotheObjects.hardwareProblems;
-        [problems addObjectsFromArray:array];
-    }
-    return problems;
-}
-
 #pragma mark - Project Lifecycle
 
 -(void) prepareToDie{

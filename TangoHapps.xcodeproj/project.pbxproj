@@ -78,9 +78,6 @@
 		9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
 		9A09777D17268EF40028A6B4 /* THSoundProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A09777C17268EF30028A6B4 /* THSoundProperties.xib */; };
 		9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
-		9A0F687B1886B9AC00B589DC /* THCompassMPU6050.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F687A1886B9AC00B589DC /* THCompassMPU6050.m */; };
-		9A0F687C1886B9AC00B589DC /* THCompassMPU6050.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F687A1886B9AC00B589DC /* THCompassMPU6050.m */; };
-		9A0F68801886BB2B00B589DC /* THCompassMPU6050Editable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F687F1886BB2B00B589DC /* THCompassMPU6050Editable.m */; };
 		9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A1C3AC21886DDAE007C5E94 /* palette_LSMCompass.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1C3ABC1886DDAE007C5E94 /* palette_LSMCompass.png */; };
 		9A1C3AC41886DDAE007C5E94 /* palette_LSMCompass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */; };
@@ -506,6 +503,7 @@
 		9AC3CD231800255400363CD2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3CD221800255400363CD2 /* CoreText.framework */; };
 		9ACBC5EC18B782DB002EC4DC /* THEditableObjectCommonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */; };
 		9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */; };
+		9ACD2F361A9C8CFE000AD0FE /* THCopyingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F351A9C8CFE000AD0FE /* THCopyingTests.m */; };
 		9ACE30B61A9277570089D669 /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035D167B84B40020241C /* song2.mp3 */; };
 		9ACE30B71A9277570089D669 /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
 		9ACE30C51A92790A0089D669 /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACE30C41A92790A0089D669 /* song1.mp3 */; };
@@ -964,10 +962,6 @@
 		9A09777C17268EF30028A6B4 /* THSoundProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THSoundProperties.xib; sourceTree = "<group>"; };
 		9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPaletteItem.h; sourceTree = "<group>"; };
 		9A097780172693E60028A6B4 /* THSoundPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPaletteItem.m; sourceTree = "<group>"; };
-		9A0F68791886B9AC00B589DC /* THCompassMPU6050.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCompassMPU6050.h; sourceTree = "<group>"; };
-		9A0F687A1886B9AC00B589DC /* THCompassMPU6050.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCompassMPU6050.m; sourceTree = "<group>"; };
-		9A0F687E1886BB2A00B589DC /* THCompassMPU6050Editable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCompassMPU6050Editable.h; sourceTree = "<group>"; };
-		9A0F687F1886BB2B00B589DC /* THCompassMPU6050Editable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCompassMPU6050Editable.m; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
 		9A1C3ABC1886DDAE007C5E94 /* palette_LSMCompass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_LSMCompass.png; sourceTree = "<group>"; };
 		9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_LSMCompass@2x.png"; sourceTree = "<group>"; };
@@ -1469,6 +1463,7 @@
 		9ACBC5E918B782DB002EC4DC /* THEditableObjectCommonProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditableObjectCommonProperties.h; sourceTree = "<group>"; };
 		9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEditableObjectCommonProperties.m; sourceTree = "<group>"; };
 		9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THEditableObjectCommonProperties.xib; sourceTree = "<group>"; };
+		9ACD2F351A9C8CFE000AD0FE /* THCopyingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCopyingTests.m; sourceTree = "<group>"; };
 		9ACE30C41A92790A0089D669 /* song1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song1.mp3; sourceTree = "<group>"; };
 		9AD5980619E5959900369464 /* THBoardsPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardsPaletteItem.h; sourceTree = "<group>"; };
 		9AD5980719E5959900369464 /* THBoardsPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardsPaletteItem.m; sourceTree = "<group>"; };
@@ -1570,10 +1565,10 @@
 		9AF50254167B84B40020241C /* THSlideSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSlideSwitch.m; sourceTree = "<group>"; };
 		9AF50255167B84B40020241C /* THSlideSwitchEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSlideSwitchEditableObject.h; sourceTree = "<group>"; };
 		9AF50256167B84B40020241C /* THSlideSwitchEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSlideSwitchEditableObject.m; sourceTree = "<group>"; };
-		9AF50257167B84B40020241C /* THSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSwitch.h; sourceTree = "<group>"; };
-		9AF50258167B84B40020241C /* THSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSwitch.m; sourceTree = "<group>"; };
-		9AF50259167B84B40020241C /* THSwitchEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSwitchEditableObject.h; sourceTree = "<group>"; };
-		9AF5025A167B84B40020241C /* THSwitchEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSwitchEditableObject.m; sourceTree = "<group>"; };
+		9AF50257167B84B40020241C /* THSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THSwitch.h; path = ../THSwitch.h; sourceTree = "<group>"; };
+		9AF50258167B84B40020241C /* THSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THSwitch.m; path = ../THSwitch.m; sourceTree = "<group>"; };
+		9AF50259167B84B40020241C /* THSwitchEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THSwitchEditableObject.h; path = ../THSwitchEditableObject.h; sourceTree = "<group>"; };
+		9AF5025A167B84B40020241C /* THSwitchEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THSwitchEditableObject.m; path = ../THSwitchEditableObject.m; sourceTree = "<group>"; };
 		9AF5025C167B84B40020241C /* THClientProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THClientProject.h; path = ../../TangoHapps/classes/objects/layers/THClientProject.h; sourceTree = "<group>"; };
 		9AF5025D167B84B40020241C /* THClientProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THClientProject.m; path = ../../TangoHapps/classes/objects/layers/THClientProject.m; sourceTree = "<group>"; };
 		9AF5025E167B84B40020241C /* THEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEditor.h; sourceTree = "<group>"; };
@@ -1832,6 +1827,7 @@
 			children = (
 				25B05DB019FA95C10019E431 /* TangoHappsUnitTests.m */,
 				9AB49B051A6AA8E5006B22E5 /* THIntegrationTests.m */,
+				9ACD2F351A9C8CFE000AD0FE /* THCopyingTests.m */,
 				25B05DAE19FA95C10019E431 /* Supporting Files */,
 			);
 			path = TangoHappsUnitTests;
@@ -2823,10 +2819,6 @@
 				9AF50254167B84B40020241C /* THSlideSwitch.m */,
 				9AF50255167B84B40020241C /* THSlideSwitchEditableObject.h */,
 				9AF50256167B84B40020241C /* THSlideSwitchEditableObject.m */,
-				9AF50257167B84B40020241C /* THSwitch.h */,
-				9AF50258167B84B40020241C /* THSwitch.m */,
-				9AF50259167B84B40020241C /* THSwitchEditableObject.h */,
-				9AF5025A167B84B40020241C /* THSwitchEditableObject.m */,
 				9A7DBF67169AC49900F86D71 /* THThreeColorLed.h */,
 				9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */,
 				9A7DBF6C169ACD5C00F86D71 /* THThreeColorLedEditable.h */,
@@ -2843,10 +2835,6 @@
 				9ABC27AE1809B48500B39D72 /* THAccelerometer.m */,
 				9ABC27B21809B57900B39D72 /* THAccelerometerEditable.h */,
 				9ABC27B31809B57900B39D72 /* THAccelerometerEditable.m */,
-				9A0F68791886B9AC00B589DC /* THCompassMPU6050.h */,
-				9A0F687A1886B9AC00B589DC /* THCompassMPU6050.m */,
-				9A0F687E1886BB2A00B589DC /* THCompassMPU6050Editable.h */,
-				9A0F687F1886BB2B00B589DC /* THCompassMPU6050Editable.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -2854,6 +2842,10 @@
 		9AF50219167B84B40020241C /* other */ = {
 			isa = PBXGroup;
 			children = (
+				9AF50257167B84B40020241C /* THSwitch.h */,
+				9AF50258167B84B40020241C /* THSwitch.m */,
+				9AF50259167B84B40020241C /* THSwitchEditableObject.h */,
+				9AF5025A167B84B40020241C /* THSwitchEditableObject.m */,
 				9AFB7E1F1833D60300694CCE /* THI2CComponent.h */,
 				9AFB7E201833D60300694CCE /* THI2CComponent.m */,
 				9AFB7E211833D60300694CCE /* THI2CRegister.h */,
@@ -3837,6 +3829,7 @@
 				9AB49B061A6AA8E5006B22E5 /* THIntegrationTests.m in Sources */,
 				25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */,
 				2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */,
+				9ACD2F361A9C8CFE000AD0FE /* THCopyingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3891,7 +3884,6 @@
 				9AF50390167B84B40020241C /* THProject.m in Sources */,
 				9AF50391167B84B40020241C /* THSimulableWorldController.m in Sources */,
 				9ABC276F180996C200B39D72 /* THLilypadPaletteItem.m in Sources */,
-				9A0F68801886BB2B00B589DC /* THCompassMPU6050Editable.m in Sources */,
 				9AF50392167B84B40020241C /* THiPhone.m in Sources */,
 				9AF50393167B84B40020241C /* THiPhoneButton.m in Sources */,
 				9A3165A5182796A200CB3E59 /* THMonitorPaletteItem.m in Sources */,
@@ -3996,7 +3988,6 @@
 				9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */,
 				9A5F8D8516A2C46E000DF472 /* THContactBookEditable.m in Sources */,
 				9A5F8D8A16A2C4E4000DF472 /* THContactBookProperties.m in Sources */,
-				9A0F687B1886B9AC00B589DC /* THCompassMPU6050.m in Sources */,
 				9A5F8E2A16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */,
 				9A93841A16D651D700A41BD2 /* THTimer.m in Sources */,
 				9A93846116D652EC00A41BD2 /* THTimerEditable.m in Sources */,
@@ -4153,7 +4144,6 @@
 				9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */,
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
-				9A0F687C1886B9AC00B589DC /* THCompassMPU6050.m in Sources */,
 				9AD704AC18AA9AF70080CD2E /* THGraphViewHelper.m in Sources */,
 				9A5D047218844B50006E9348 /* THSoundEffect.m in Sources */,
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,

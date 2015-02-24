@@ -53,16 +53,9 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiPhoneEditableObject
 @dynamic type;
 
--(void) reloadiPhoneSprite{
-    self.z = kiPhoneZ;
-    
-    self.canBeMoved = NO;
-}
-
 -(void) loadSprite{
     
-    [self reloadiPhoneSprite];
-    
+    self.canBeMoved = NO;
     self.z = kiPhoneZ;
     self.canBeScaled = NO;
     self.canBeDuplicated = NO;
@@ -113,9 +106,9 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:_currentView forKey:@"currentView"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {//iphone cannot be copied
     THiPhone * copy = [super copyWithZone:zone];
+    
     copy.currentView = [_currentView copy];
     copy.position = self.position;
     
@@ -147,7 +140,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setType:(THIPhoneType)type{
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.type = type;
-    [self reloadiPhoneSprite];
+
     [self adaptViewSizeToIphoneType];
 }
 
