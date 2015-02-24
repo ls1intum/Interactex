@@ -279,7 +279,9 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.boards.count == 1){
-        [self autoroutePlusAndMinusPins];
+        for (THHardwareComponentEditableObject * object in project.hardwareComponents) {
+            [object autoroute];
+        }
     }
 }
 
