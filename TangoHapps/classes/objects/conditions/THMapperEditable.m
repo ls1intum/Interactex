@@ -51,21 +51,21 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic max2;
 @dynamic value;
 
--(void) load{
-    
-    self.programmingElementType = kProgrammingElementTypeMapper;
-    
-    self.acceptsConnections = YES;
-}
 
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THMapper alloc] init];
         
-        [self load];
+        [self loadMapper];
     }
     return self;
+}
+
+-(void) loadMapper{
+    
+    self.programmingElementType = kProgrammingElementTypeMapper;
+    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving
@@ -73,7 +73,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self load];
+    if(self){
+        [self loadMapper];
+    }
     
     return self;
 }
@@ -84,15 +86,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THMapperEditable * copy = [super copyWithZone:zone];
-    
+    if(copy){
+        copy.min1 = self.min1;
+        copy.max1 = self.max1;
+        copy.min2 = self.min2;
+        copy.max2 = self.max2;
+    }
     return copy;
 }
 
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THMapperProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

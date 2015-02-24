@@ -67,17 +67,16 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self load];
-    
+    if(self){
+        [self load];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
 }
@@ -93,8 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THTouchpadProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

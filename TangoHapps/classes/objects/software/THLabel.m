@@ -41,17 +41,23 @@ You should have received a copy of the GNU General Public License along with thi
 */
 
 #import "THLabel.h"
+#import "THPaddingLabel.h"
 
 @implementation THLabel
 
 @dynamic numLines;
 @dynamic text;
 
+const CGSize kLabelPadding = {15,10};
+
 -(void) loadLabelView{
     
-    UILabel * label = [[UILabel alloc] init];
+    THPaddingLabel * label = [[THPaddingLabel alloc] init];
     label.bounds = CGRectMake(0, 0, self.width, self.height);
     label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:15];
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     self.view = label;
     
     self.view.layer.cornerRadius = 5;
@@ -73,13 +79,13 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        self.width = 100;
-        self.height = 50;
+        self.width = kDefaultLabelSize.width;
+        self.height = kDefaultLabelSize.height;
         
         [self loadLabelView];
         
-        self.backgroundColor = [UIColor colorWithRed:0.71 green:0.93 blue:0.93 alpha:1];
-        
+        self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+        self.numLines = 0;
         self.text = @"Label";
     }
     return self;
@@ -90,9 +96,11 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadLabelView];
-    
-    self.text = [decoder decodeObjectForKey:@"text"];
+    if(self){
+        [self loadLabelView];
+        
+        self.text = [decoder decodeObjectForKey:@"text"];
+    }
     
     return self;
 }
@@ -146,14 +154,18 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setText:(id)text{
     UILabel * label = (UILabel*) self.view;
-   
     NSString * string = [self convertToString:text];
+    
     label.text = string;
 }
 
 -(NSString*) text{
     UILabel * label = (UILabel*) self.view;
     return label.text;
+}
+
+-(void) reAddView{
+    [self.view setNeedsDisplay];
 }
 
 -(NSString*) description{

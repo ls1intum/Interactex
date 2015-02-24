@@ -52,18 +52,27 @@ CGSize const kLabelSize = {80,30};
 -(id) init{
     self = [super init];
     if(self){
-        self.programmingElementType = kProgrammingElementTypeNumberValue;
-        
         self.simulableObject = [[THNumberValue alloc] init];
 
+        [self loadNumberValue];
     }
     return self;
+}
+
+-(void) loadNumberValue{
+    
+    self.programmingElementType = kProgrammingElementTypeNumberValue;
 }
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
+    
+    if(self){
+        
+        [self loadNumberValue];
+    }
     
     return self;
 }
@@ -74,6 +83,8 @@ CGSize const kLabelSize = {80,30};
 
 -(id)copyWithZone:(NSZone *)zone {
     THNumberValueEditable * copy = [super copyWithZone:zone];
+    
+    copy.value = self.value;
     
     return copy;
 }

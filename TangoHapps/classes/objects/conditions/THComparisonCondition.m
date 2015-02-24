@@ -44,7 +44,15 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THComparisonCondition
 
-#pragma mark - Archiving
+#pragma mark - Initialization
+
+-(id) init{
+    self = [super init];
+    if(self){
+        [self loadMethods];
+    }
+    return self;
+}
 
 -(void) loadMethods{
     TFMethod * method1 = [TFMethod methodWithName:kMethodSetValue1];
@@ -59,34 +67,27 @@ You should have received a copy of the GNU General Public License along with thi
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        [self loadMethods];
-    }
-    return self;
-}
+#pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadMethods];
-    
-    self.conditionType = [decoder decodeIntegerForKey:@"conditionType"];
+    if(self){
+        [self loadMethods];
+        
+        self.conditionType = [decoder decodeIntegerForKey:@"conditionType"];
+    }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeInteger:self.conditionType forKey:@"conditionType"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THComparisonCondition * copy = [super copyWithZone:zone];
     
     copy.conditionType = self.conditionType;
@@ -97,17 +98,17 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(void) setValue1:(float) number{
-    _value1set = YES;
+    value1set = YES;
     _value1 = number;
-    if(_value2set){
+    if(value2set){
         [self evaluateAndTrigger];
     }
 }
 
 -(void) setValue2:(float) number{
-    _value2set = YES;
+    value2set = YES;
     _value2 = number;
-    if(_value1set){
+    if(value1set){
         [self evaluateAndTrigger];
     }
 }

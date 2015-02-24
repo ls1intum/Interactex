@@ -47,13 +47,6 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiSwitchEditableObject
 @dynamic on;
 
--(void) loadSwitch{
-    
-    self.canChangeBackgroundColor = NO;
-    self.canBeResized = NO;
-    self.enabled = NO;
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -62,6 +55,13 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadSwitch];
     }
     return self;
+}
+
+-(void) loadSwitch{
+    
+    self.canChangeBackgroundColor = NO;
+    self.canBeResized = NO;
+    self.enabled = NO;
 }
 
 #pragma mark - Archiving

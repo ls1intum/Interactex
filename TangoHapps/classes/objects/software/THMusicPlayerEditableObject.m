@@ -72,9 +72,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self load];
     
-    self.visibleDuringSimulation = [decoder decodeBoolForKey:@"visibleDuringSimulation"];
+    if(self){
+        [self load];
+        
+        self.visibleDuringSimulation = [decoder decodeBoolForKey:@"visibleDuringSimulation"];
+    }
     
     return self;
 }

@@ -53,16 +53,12 @@ typedef enum THProperty : NSUInteger{
 
 @class THProperty;
 
-@interface THComparisonCondition : THConditionObject <NSCoding>
-{
-    
+@interface THComparisonCondition : THConditionObject <NSCoding> {
+    BOOL value1set;
+    BOOL value2set;
 }
 
 @property (nonatomic) THConditionType conditionType;
-
-@property (nonatomic) BOOL value1set;
-@property (nonatomic) BOOL value2set;
-
 @property (nonatomic) float value1;
 @property (nonatomic) float value2;
 

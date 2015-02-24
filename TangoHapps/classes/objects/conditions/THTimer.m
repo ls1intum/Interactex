@@ -59,6 +59,9 @@ You should have received a copy of the GNU General Public License along with thi
     TFMethod * method1 = [TFMethod methodWithName:@"start"];
     TFMethod * method2 = [TFMethod methodWithName:@"stop"];
     self.methods = [NSMutableArray arrayWithObjects:method1, method2, nil];
+    
+    TFEvent * event1 = [TFEvent eventNamed:@"triggered"];
+    self.events = [NSMutableArray arrayWithObjects:event1, nil];
 }
 
 #pragma mark - Archiving
@@ -94,7 +97,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) start{
     
-    _timerType = [NSTimer scheduledTimerWithTimeInterval:_frequency target:self selector:@selector(triggerActions) userInfo:nil repeats:(self.timerType == kTimerTypeAlways)];
+    _timerType = [NSTimer scheduledTimerWithTimeInterval:_frequency target:self selector:@selector(trigger) userInfo:nil repeats:(self.timerType == kTimerTypeAlways)];
 }
 
 -(void) stop{
@@ -104,7 +107,7 @@ You should have received a copy of the GNU General Public License along with thi
     _timer = nil;
 }
 
--(void) triggerActions{
+-(void) trigger{
     
     [self triggerEventNamed:kEventTriggered];
 }

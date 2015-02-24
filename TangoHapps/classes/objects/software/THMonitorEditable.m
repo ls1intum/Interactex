@@ -46,12 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THMonitorEditable
 
--(void) loadMonitor{
-    self.acceptsConnections = YES;
-    self.canBeRootView = NO;
-    self.canBeResized = NO;
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -61,6 +55,12 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadMonitor];
     }
     return self;
+}
+
+-(void) loadMonitor{
+    self.acceptsConnections = YES;
+    self.canBeRootView = NO;
+    self.canBeResized = NO;
 }
 
 #pragma mark - Archiving

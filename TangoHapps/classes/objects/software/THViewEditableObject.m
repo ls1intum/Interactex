@@ -55,7 +55,8 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic backgroundColor;
 
 -(void) loadView {
-
+    
+    self.canBeResized = YES;
     self.canChangeBackgroundColor = YES;
     self.canBeScaled = NO;
     self.canBeRootView = YES;
@@ -76,7 +77,6 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        self.canBeResized = YES;
         [self loadView];
     }
     return self;

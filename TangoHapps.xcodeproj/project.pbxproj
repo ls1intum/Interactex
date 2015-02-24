@@ -21,8 +21,6 @@
 		02D809C71A80CFDB009DDB4C /* graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C41A80CFDB009DDB4C /* graph.png */; };
 		02D809C81A80CFDB009DDB4C /* graph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C51A80CFDB009DDB4C /* graph@2x.png */; };
 		02D809C91A80CFDB009DDB4C /* graph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809C51A80CFDB009DDB4C /* graph@2x.png */; };
-		02DDB0081A7D4FE1009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */; };
-		02DDB0131A7D4FE5009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */; };
 		02DDB0191A7D5D44009C98EB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDB0181A7D5D44009C98EB /* Accelerate.framework */; };
 		02DDB01A1A7D5D4E009C98EB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDB0181A7D5D44009C98EB /* Accelerate.framework */; };
 		2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2517683519FB9EF30060FF83 /* THTestsHelper.m */; };
@@ -505,6 +503,7 @@
 		9ACBC62918B782FB002EC4DC /* THEditableObjectCommonProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */; };
 		9ACD2F361A9C8CFE000AD0FE /* THCopyingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F351A9C8CFE000AD0FE /* THCopyingTests.m */; };
 		9ACD2F511A9CC097000AD0FE /* THiPhoneScreenItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F501A9CC097000AD0FE /* THiPhoneScreenItem.m */; };
+		9ACD2F7A1A9CEAB4000AD0FE /* THPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */; };
 		9ACE30B61A9277570089D669 /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035D167B84B40020241C /* song2.mp3 */; };
 		9ACE30B71A9277570089D669 /* song3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5035E167B84B40020241C /* song3.mp3 */; };
 		9ACE30C51A92790A0089D669 /* song1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACE30C41A92790A0089D669 /* song1.mp3 */; };
@@ -720,27 +719,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02A84B501A7D339000F26234 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
-		02DDB0141A7D5C90009C98EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
-		02DDB0161A7D5C9D009C98EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
 		25B05DB219FA95C10019E431 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A351180167B7A6800C7484B /* Project object */;
@@ -886,7 +864,6 @@
 		026C66C41A77BF2400860E66 /* palette_recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_recording@2x.png"; sourceTree = "<group>"; };
 		026C66C71A77BFAA00860E66 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
 		026C66C81A77BFAA00860E66 /* recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recording@2x.png"; sourceTree = "<group>"; };
-		02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "Frameworks/CorePlot/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		02D4E0D71A796E520094F377 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		02D4E0D81A796E520094F377 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
 		02D809B01A80CC4E009DDB4C /* threshold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threshold.png; sourceTree = "<group>"; };
@@ -1467,6 +1444,8 @@
 		9ACD2F351A9C8CFE000AD0FE /* THCopyingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCopyingTests.m; sourceTree = "<group>"; };
 		9ACD2F4F1A9CC097000AD0FE /* THiPhoneScreenItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THiPhoneScreenItem.h; sourceTree = "<group>"; };
 		9ACD2F501A9CC097000AD0FE /* THiPhoneScreenItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THiPhoneScreenItem.m; sourceTree = "<group>"; };
+		9ACD2F781A9CEAB4000AD0FE /* THPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPaddingLabel.h; sourceTree = "<group>"; };
+		9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPaddingLabel.m; sourceTree = "<group>"; };
 		9ACE30C41A92790A0089D669 /* song1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song1.mp3; sourceTree = "<group>"; };
 		9AD5980619E5959900369464 /* THBoardsPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardsPaletteItem.h; sourceTree = "<group>"; };
 		9AD5980719E5959900369464 /* THBoardsPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardsPaletteItem.m; sourceTree = "<group>"; };
@@ -1765,7 +1744,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02DDB0191A7D5D44009C98EB /* Accelerate.framework in Frameworks */,
-				02DDB0131A7D4FE5009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */,
 				9AAEC66A1A40A5A300D11BFD /* libcocos2d.a in Frameworks */,
 				9AAEC66B1A40A5A300D11BFD /* libCocosDenshion.a in Frameworks */,
 				9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */,
@@ -1794,7 +1772,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02DDB01A1A7D5D4E009C98EB /* Accelerate.framework in Frameworks */,
-				02DDB0081A7D4FE1009C98EB /* libCorePlot-CocoaTouch.a in Frameworks */,
 				9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */,
 				9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */,
 				9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */,
@@ -1817,14 +1794,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02A84B4B1A7D339000F26234 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		25B05DAD19FA95C00019E431 /* TangoHappsUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1900,7 +1869,6 @@
 			isa = PBXGroup;
 			children = (
 				02DDB0181A7D5D44009C98EB /* Accelerate.framework */,
-				02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */,
 				9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */,
 				9AF50162167B83AD0020241C /* libz.dylib */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
@@ -2756,10 +2724,10 @@
 		9AF50206167B84B40020241C /* programming */ = {
 			isa = PBXGroup;
 			children = (
-				9AB29BFE167F898A00F5AF62 /* THProgrammingElementEditable.h */,
-				9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */,
 				9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */,
 				9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */,
+				9AB29BFE167F898A00F5AF62 /* THProgrammingElementEditable.h */,
+				9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */,
 				9A93849116D6967800A41BD2 /* Actions */,
 				9A93847216D6744A00A41BD2 /* Triggers */,
 				9A291ACE19F8FEE800517A3A /* Conditions */,
@@ -3096,6 +3064,8 @@
 				9A85721B172804B600510D23 /* THSoundPicker.m */,
 				9A5D046F18844B50006E9348 /* THSoundEffect.h */,
 				9A5D047018844B50006E9348 /* THSoundEffect.m */,
+				9ACD2F781A9CEAB4000AD0FE /* THPaddingLabel.h */,
+				9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -3262,7 +3232,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				02DDB0151A7D5C90009C98EB /* PBXTargetDependency */,
 				9AAEC6671A40A59500D11BFD /* PBXTargetDependency */,
 				9AAEC6691A40A59500D11BFD /* PBXTargetDependency */,
 			);
@@ -3283,7 +3252,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				02DDB0171A7D5C9D009C98EB /* PBXTargetDependency */,
 				9A1FBD74187ED74600699B61 /* PBXTargetDependency */,
 				9AAF2844182B8AFE00531E3A /* PBXTargetDependency */,
 			);
@@ -3336,10 +3304,6 @@
 					ProjectRef = 9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */;
 				},
 				{
-					ProductGroup = 02A84B4B1A7D339000F26234 /* Products */;
-					ProjectRef = 02A84B4A1A7D339000F26234 /* CorePlot-CocoaTouch.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A1FBD6B187ED71900699B61 /* Products */;
 					ProjectRef = 9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */;
 				},
@@ -3354,13 +3318,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		02A84B511A7D339000F26234 /* libCorePlot-CocoaTouch.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libCorePlot-CocoaTouch.a";
-			remoteRef = 02A84B501A7D339000F26234 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9A1FBD6F187ED71900699B61 /* libFirmata.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -3876,6 +3833,7 @@
 				9AF50384167B84B40020241C /* THLightSensor.m in Sources */,
 				9AF50385167B84B40020241C /* THLightSensorEditableObject.m in Sources */,
 				9AF50388167B84B40020241C /* THPotentiometer.m in Sources */,
+				9ACD2F7A1A9CEAB4000AD0FE /* THPaddingLabel.m in Sources */,
 				9ABC27AF1809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9AF50389167B84B40020241C /* THPotentiometerEditableObject.m in Sources */,
 				9AA4D72E18AE16E600A43433 /* THBLELilyPadEditable.m in Sources */,
@@ -4173,16 +4131,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02DDB0151A7D5C90009C98EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CorePlot-CocoaTouch";
-			targetProxy = 02DDB0141A7D5C90009C98EB /* PBXContainerItemProxy */;
-		};
-		02DDB0171A7D5C9D009C98EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CorePlot-CocoaTouch";
-			targetProxy = 02DDB0161A7D5C9D009C98EB /* PBXContainerItemProxy */;
-		};
 		25B05DB319FA95C10019E431 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9A351188167B7A6800C7484B /* TangoHapps */;

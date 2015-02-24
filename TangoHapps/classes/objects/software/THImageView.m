@@ -44,15 +44,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THImageView
 
--(void) loadImageView{
-    
-    self.imageView = [[UIImageView alloc] init];
-    self.imageView.frame = CGRectMake(0, 0, self.width, self.height);
-    self.imageView.layer.borderWidth = 1.0f;
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.view = self.imageView;
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -90,23 +81,15 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(void) reloadImageView{
-    [self loadImageView];
+    
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.frame = CGRectMake(0, 0, self.width, self.height);
+    self.imageView.layer.borderWidth = 1.0f;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     self.view = self.imageView;
     self.imageView.image = self.image;
 }
-
-/*
--(void) setImage:(UIImage *)image{
-    ((UIImageView*) self.view).image = image;
-    NSLog(@"sets image");
-    
-}
-
--(UIImage*) image{
-    return ((UIImageView*) self.view).image;
-}
-*/
 
 -(NSString*) description{
     return @"imageview";

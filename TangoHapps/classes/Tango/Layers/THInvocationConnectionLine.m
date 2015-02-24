@@ -61,7 +61,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
         self.obj2 = obj2;
         
         [self loadConnectionLine];
-
     }
     return self;
 }
@@ -79,8 +78,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     self.canBeScaled = NO;
     self.canBeMoved = NO;
     self.z = kGestureObjectZ;
-    
-    [self reloadSprite];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:nil];
 }
@@ -113,8 +110,8 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     [coder encodeCGPoint:self.lineCenter forKey:@"lineCenter"];
 }
 
-#pragma mark - Property Controller
 
+#pragma mark - Property Controller
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
@@ -146,7 +143,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     }
 }
 
-
 -(void) setLineCenter:(CGPoint)lineCenter{
     _invocationStateSprite.position = lineCenter;
     _lineCenter = lineCenter;
@@ -171,7 +167,6 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     } else {
         [self startDrawingNormalLines];
     }
-    
     
     CGPoint p1 = self.obj1.center;
     CGPoint p2 = self.obj2.center;
@@ -214,6 +209,8 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 
 -(void) addToLayer:(TFLayer *)layer{
     [layer addEditableObject:self];
+    
+    [self reloadSprite];
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{
@@ -236,10 +233,14 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     return NO;
 }
 
+
+#pragma mark - Cleanup
+
 -(void) prepareToDie{
     
     [super prepareToDie];
 }
+
 -(NSString*) description{
     return @"invocation connection line";
 }

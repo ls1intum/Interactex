@@ -44,7 +44,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THMapper
 
--(void) load{
+-(id) init{
+    self = [super init];
+    if(self){
+        [self loadMapper];
+        
+        _min1 = 0;
+        _max1 = 1;
+        
+        _min2 = 0;
+        _max2 = 255;
+    }
+    return self;
+}
+
+-(void) loadMapper{
     
     TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
     self.properties = [NSMutableArray arrayWithObject:property];
@@ -77,20 +91,6 @@ You should have received a copy of the GNU General Public License along with thi
     self.events = [NSMutableArray arrayWithObject:event];
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        [self load];
-        
-        _min1 = 0;
-        _max1 = 1;
-        
-        _min2 = 0;
-        _max2 = 255;
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
@@ -101,7 +101,7 @@ You should have received a copy of the GNU General Public License along with thi
         _min2 = [decoder decodeFloatForKey:@"min2"];
         _max2 = [decoder decodeFloatForKey:@"max2"];
         
-        [self load];
+        [self loadMapper];
     }
     return self;
 }

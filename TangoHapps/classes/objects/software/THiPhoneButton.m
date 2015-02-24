@@ -63,8 +63,8 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        self.width = 100;
-        self.height = 50;
+        self.width = kDefaultButtonSize.width;
+        self.height = kDefaultButtonSize.height;
         self.position = CGPointZero;
         
         [self loadButton];

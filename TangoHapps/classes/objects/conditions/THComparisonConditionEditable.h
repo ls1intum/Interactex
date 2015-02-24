@@ -55,8 +55,7 @@ You should have received a copy of the GNU General Public License along with thi
 extern NSString * const kConditionTypeStrings[kNumConditionTypes];
 extern NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes];
 
-@interface THComparisonConditionEditable : THConditionEditableObject
-{
+@interface THComparisonConditionEditable : THConditionEditableObject {
     THComparatorEditableProperties * _currentComparatorProperties;
 }
 

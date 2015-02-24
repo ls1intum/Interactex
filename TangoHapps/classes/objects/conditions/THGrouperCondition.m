@@ -48,24 +48,24 @@ NSString * const kGrouperTypeStrings[kNumGrouperTypes] = {@"and",@"or"};
 
 #pragma mark - Init
 
--(void) loadMethods{
-    TFMethod * method1 = [TFMethod methodWithName:kMethodSetValue1];
-    method1.numParams = 1;
-    method1.firstParamType = kDataTypeBoolean;
-
-    TFMethod * method2 = [TFMethod methodWithName:kMethodSetValue2];
-    method2.numParams = 1;
-    method2.firstParamType = kDataTypeBoolean;
-    
-    self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
-}
-
 -(id) init{
     self = [super init];
     if(self){
         [self loadMethods];
     }
     return self;
+}
+
+-(void) loadMethods{
+    TFMethod * method1 = [TFMethod methodWithName:kMethodSetValue1];
+    method1.numParams = 1;
+    method1.firstParamType = kDataTypeBoolean;
+    
+    TFMethod * method2 = [TFMethod methodWithName:kMethodSetValue2];
+    method2.numParams = 1;
+    method2.firstParamType = kDataTypeBoolean;
+    
+    self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
 #pragma mark - Archiving

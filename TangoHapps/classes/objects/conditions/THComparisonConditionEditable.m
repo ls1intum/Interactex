@@ -49,7 +49,6 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THComparisonConditionEditable
 
 NSString * const kConditionTypeStrings[kNumConditionTypes] = {@"<",@"=",@">"};
-
 NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"smaller than",@"equals to",@"bigger than"};
 
 @dynamic programmingElementType;
@@ -88,6 +87,8 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 -(id)copyWithZone:(NSZone *)zone {
     THComparisonConditionEditable * copy = [super copyWithZone:zone];
+    
+    copy.conditionType = self.conditionType;
     
     return copy;
 }
@@ -206,7 +207,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 
 -(NSString*) conditionTypeString{
-    return kConditionTypeDescriptionStrings[self.programmingElementType];
+    return kConditionTypeDescriptionStrings[self.conditionType];
 }
 
 -(NSString*) description{

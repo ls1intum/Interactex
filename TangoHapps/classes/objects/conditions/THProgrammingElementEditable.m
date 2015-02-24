@@ -63,7 +63,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadProgElement];
+    if(self){
+        [self loadProgElement];
+    }
     
     return self;
 }

@@ -54,17 +54,26 @@ CGSize const kBoolValueLabelSize = {80,30};
     self = [super init];
     if(self){
         
-        self.programmingElementType = kProgrammingElementTypeBoolValue;
         self.simulableObject = [[THBoolValue alloc] init];
         
+        [self loadBoolValue];
     }
     return self;
+}
+
+-(void) loadBoolValue{
+    
+    self.programmingElementType = kProgrammingElementTypeBoolValue;
 }
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
+    
+    if(self){
+        [self loadBoolValue];
+    }
     
     return self;
 }
@@ -75,7 +84,7 @@ CGSize const kBoolValueLabelSize = {80,30};
 
 -(id)copyWithZone:(NSZone *)zone {
     THBoolValueEditable * copy = [super copyWithZone:zone];
-    
+    copy.value = self.value;
     return copy;
 }
 

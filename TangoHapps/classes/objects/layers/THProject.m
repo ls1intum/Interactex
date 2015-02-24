@@ -309,7 +309,6 @@ You should have received a copy of the GNU General Public License along with thi
 
             NSString * className = object.description;
             NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
-            NSLog(@"class name: %@",className);
             
             hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %ld",className,(long)classCount.integerValue];
         }

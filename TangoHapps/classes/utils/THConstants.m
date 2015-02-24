@@ -180,7 +180,7 @@ CGSize const kDefaultCanvasSize = {1536, 1152};
 //CGSize const kDefaultCanvasSize = {2048, 1448};
 
 CGSize const kDefaultLabelSize = {100,50};
-CGSize const kDefaultButtonSize = {100,50};
+CGSize const kDefaultButtonSize = {100,30};
 CGSize const kDefaultSwitchSize = {51,31};
 CGSize const kDefaultSliderSize = {150,30};
 CGSize const kDefaultTouchpadSize = {260,200};

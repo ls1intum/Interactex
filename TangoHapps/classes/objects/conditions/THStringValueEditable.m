@@ -54,7 +54,7 @@ CGSize const kStringValueLabelSize = {100,30};
     self = [super init];
     if(self){
         
-        self.programmingElementType = kProgrammingElementTypeStringValue;
+        [self loadStringValue];
         
         self.simulableObject = [[THStringValue alloc] init];
         
@@ -62,11 +62,18 @@ CGSize const kStringValueLabelSize = {100,30};
     return self;
 }
 
+-(void) loadStringValue{
+    
+    self.programmingElementType = kProgrammingElementTypeStringValue;
+}
+
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
+    if(self){
+        [self loadStringValue];
+    }
     return self;
 }
 
@@ -76,7 +83,7 @@ CGSize const kStringValueLabelSize = {100,30};
 
 -(id)copyWithZone:(NSZone *)zone {
     THStringValueEditable * copy = [super copyWithZone:zone];
-    
+    copy.value = self.value;
     return copy;
 }
 

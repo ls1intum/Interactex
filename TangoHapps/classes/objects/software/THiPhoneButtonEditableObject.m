@@ -59,8 +59,8 @@ You should have received a copy of the GNU General Public License along with thi
         self.simulableObject = [[THiPhoneButton alloc] init];
         
         THiPhoneButton * button = (THiPhoneButton*) self.simulableObject;
-        button.width = 100;
-        button.height = 50;
+        button.width = kDefaultButtonSize.width;
+        button.height = kDefaultButtonSize.height;
         
         [self loadButtonEditable];
         

@@ -86,8 +86,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THTimerProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

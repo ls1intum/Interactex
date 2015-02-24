@@ -47,21 +47,22 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THLabelEditableObject
 @dynamic text;
 
--(void) loadLabel{
-    
-    self.canBeRootView = NO;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         
         self.simulableObject = [[THLabel alloc] init];
-                
+
         self.text = @"Label";
+        
         [self loadLabel];
     }
     return self;
+}
+
+-(void) loadLabel{
+    
+    self.canBeRootView = NO;
 }
 
 #pragma mark - Archiving
@@ -91,8 +92,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THLabelProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
@@ -126,6 +126,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSString*) text{
     THLabel * label = (THLabel*) self.simulableObject;
     return label.text;
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    THLabel * label = (THLabel*) self.simulableObject;
+    [label reAddView];
 }
 
 -(NSString*) description{

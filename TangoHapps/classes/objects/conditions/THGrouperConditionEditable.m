@@ -89,8 +89,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone *)zone {
     THGrouperConditionEditable * copy = [super copyWithZone:zone];
     
-    copy.obj1 = self.obj1;
-    copy.obj2 = self.obj2;
+    copy.grouperType = self.grouperType;
     
     return copy;
 }
