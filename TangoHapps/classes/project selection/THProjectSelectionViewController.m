@@ -86,11 +86,11 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.view addSubview:self.activityIndicatorView];
 
     rect = CGRectMake(rect.size.width/2 - kProjectSelectionActivityIndicatorLabelSize.width/2, rect.size.height/2 - kProjectSelectionActivityIndicatorLabelSize.height/2 - 30,kProjectSelectionActivityIndicatorLabelSize.width,kProjectSelectionActivityIndicatorLabelSize.height);
-    UILabel * label = [[UILabel alloc] initWithFrame:rect];
-    label.font = [UIFont systemFontOfSize:13.0f];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"Loading project...";
-    [self.activityIndicatorView addSubview:label];
+    activityViewLabel = [[UILabel alloc] initWithFrame:rect];
+    activityViewLabel.font = [UIFont systemFontOfSize:13.0f];
+    activityViewLabel.textAlignment = NSTextAlignmentCenter;
+    activityViewLabel.numberOfLines = 2;
+    [self.activityIndicatorView addSubview:activityViewLabel];
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGRect frame = self.activityIndicator.frame;
@@ -107,6 +107,16 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     self.activityIndicatorView.layer.borderWidth = 1.0f;
     self.activityIndicatorView.layer.cornerRadius = 5.0f;
     self.activityIndicatorView.layer.masksToBounds = YES;
+}
+
+-(void) setActivityViewProjectNamed:(NSString*) name{
+    
+    activityViewLabel.text = [NSString stringWithFormat:@"Loading project \n%@...",name];
+}
+
+-(void) setActivityViewNewProjectText{
+    
+    activityViewLabel.text = @"Creating project...";
 }
 
 #pragma  mark - init cocos2d
@@ -353,11 +363,12 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 - (void)proceedToProjectAtIndex:(NSInteger) index{
     
+    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+    [self setActivityViewProjectNamed:proxy.name];
     [self startActivityIndicator];
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
         THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
         
         //update its name since it could have been renamed while it was not loaded
@@ -375,6 +386,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 - (void)proceedToNewProject{
     
+    [self setActivityViewNewProjectText];
     [self startActivityIndicator];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -431,7 +443,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         }
     }
 }
-
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
     if(self.editingScenes || self.editingOneScene) return NO;
@@ -587,9 +598,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
                 
                 cell.nameLabel.text = name;
                 proxy.name = name;
-                
-                //NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
-                //[self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
             }
         }
 
@@ -601,8 +609,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             if(success){
                 cell.nameLabel.text = name;
                 proxy.name = name;
-                //NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
-                //[self.tableViewSecond reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
             }
         }
     }
@@ -623,9 +629,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             [self duplicateProjectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
         }
     }
-    
-    //NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
-    //[self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [self.tableView reloadData];
     [self.tableViewSecond reloadData];
@@ -656,16 +659,13 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 -(void) stopEditingScenes{
     
-    //if(self.showingIcons){
-        for(int i = 0 ; i < self.projectProxies.count ; i++){
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
-            cell.editing = NO;
-        }
-    //} else {
-        [self.tableView setEditing:NO animated:YES];
-        [self.tableViewSecond setEditing:NO animated:YES];
-    //}
+    for(int i = 0 ; i < self.projectProxies.count ; i++){
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        THCollectionProjectCell * cell =  (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.editing = NO;
+    }
+    [self.tableView setEditing:NO animated:YES];
+    [self.tableViewSecond setEditing:NO animated:YES];
     
     self.editButton.title = @"Edit";
     self.editingScenes = NO;
@@ -1136,7 +1136,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Katharina Bredies</b><br>(Project Lead, Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Attila Mann</b><br>(Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Juan Haladjian</b><br>(Lead Developer)<br><br></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer, Aarón Pérez Martín, Güven Cadogan, Magued Farah</b><br>(Developer)<br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer, Aarón Pérez Martín, Güven Cadogan, Magued Farah</b><br>(Developers)<br></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];
@@ -1149,7 +1149,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'>You can use the Interactex Designer to visually create and test software for your eTextiles<br>without the need to write any code.<br><br>It supports every hardware components of the Arduino Lilypad family such as LEDs, buttons,<br>accelerometers, light sensors etc. and every iOS user interface elements such as buttons,<br>labels, switches etc.</div>"];
     body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:18px;'>This is an open source software:<br><a style='color:#007aff; text-decoration:none;' href='https://github.com/avenix/Interactex'>https://github.com/avenix/Interactex</a></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:18px;'>This is an open source software:<br><a style='color:#007aff; text-decoration:none;' href='https://github.com/AppliedSE/Interactex'>https://https://github.com/AppliedSE/Interactex</a></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];

@@ -60,6 +60,8 @@ You should have received a copy of the GNU General Public License along with thi
     BOOL didMoveViewUp;
     
     CGPoint draggableCellStartedDraggingPoint;//where a project was dragged relative to its center
+    
+    UILabel * activityViewLabel;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *labelProjects;

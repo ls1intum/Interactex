@@ -71,6 +71,7 @@
                                                     <connections>
                                                         <action selector="textChanged:" destination="4fc-WK-8YE" eventType="editingDidEnd" id="3FQ-y4-ysh"/>
                                                         <action selector="textEditingWillBegin:" destination="4fc-WK-8YE" eventType="editingDidBegin" id="vo5-Yb-Q3R"/>
+                                                        <outlet property="delegate" destination="4fc-WK-8YE" id="875-kg-0j2"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

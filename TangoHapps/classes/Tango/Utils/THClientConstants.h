@@ -278,3 +278,5 @@ typedef enum THCommunicationMsg : NSUInteger{
 extern const float kShakingEffectAngleInRadians;
 extern const float kShakingEffectRotationTime;
 extern const float kProjectCellScaleEffectDuration;
+
+extern const NSInteger kProjectNameMaxCharacters;

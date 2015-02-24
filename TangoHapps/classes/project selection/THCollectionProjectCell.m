@@ -46,6 +46,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THCollectionProjectCell
 
+
 -(void) setEditing:(BOOL)editing{
     if(editing != _editing){
         _editing = editing;
@@ -57,6 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
             self.deleteButton.hidden = NO;
             self.nameTextField.enabled = YES;
             self.nameTextField.borderStyle = UITextBorderStyleLine;
+
             [self updateBorders];
         } else {
             
@@ -192,6 +194,19 @@ You should have received a copy of the GNU General Public License along with thi
         [self updateBorders];
 
     }
+}
+
+
+#pragma mark - TextField Delegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug – see note below.
+    if(range.length + range.location > textField.text.length)     {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= kProjectNameMaxCharacters && newLength > 0;
 }
 
 @end

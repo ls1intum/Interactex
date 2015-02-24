@@ -163,3 +163,5 @@ NSString * const kConnectionServiceType = @"th-service";
 const float kShakingEffectAngleInRadians = 2.0f;
 const float kShakingEffectRotationTime = 0.10f;
 const float kProjectCellScaleEffectDuration = 0.5;
+
+const NSInteger kProjectNameMaxCharacters = 25;

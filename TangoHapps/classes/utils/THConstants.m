@@ -156,15 +156,6 @@ NSString * const kHardwareSpriteNames[kNumHardwareTypes] = {
     @"accelerometer.png"
 };
 
-/*    kProgrammingElementTypeMapper,
- kProgrammingElementTypeNumberValue,
- kProgrammingElementTypeBoolValue,
- kProgrammingElementTypeStringValue,
- kProgrammingElementTypeSound,
- kProgrammingElementTypeTimer,
- kProgrammingElementTypeComparator,
- kProgrammingElementTypeGrouper,*/
-
 NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"mapper.png",
     @"value.png",

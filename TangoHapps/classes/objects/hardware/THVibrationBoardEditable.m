@@ -76,8 +76,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         [self loadVibrationBoard];
         
-        self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
-        self.frequency = [decoder decodeFloatForKey:@"frequency"];
     }
     
     return self;
@@ -86,8 +84,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)encodeWithCoder:(NSCoder*) coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeBool:self.onAtStart forKey:@"onAtStart"];
-    [coder encodeFloat:self.frequency forKey:@"frequency"];
 }
 
 -(id)copyWithZone:(NSZone*) zone {
