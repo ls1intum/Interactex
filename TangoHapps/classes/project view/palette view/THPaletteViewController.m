@@ -46,13 +46,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THDraggedPaletteItem.h"
 #import "THCustomPaletteItem.h"
 
-#import "THLipoBatteryPaletteItem.h"
-#import "THPowerSupplyPaletteItem.h"
-
 #import "THBLELilyPadPaletteItem.h"
 #import "THLilypadPaletteItem.h"
 #import "THSimpleLilypadPaletteItem.h"
-//#import "THJennicPaletteItem.h"
 
 #import "THLedPaletteItem.h"
 #import "THButtonPaletteItem.h"
@@ -65,8 +61,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THVibrationBoardPaletteItem.h"
 #import "THTemperatureSensorPaletteItem.h"
 #import "THAccelerometerPaletteItem.h"
-//#import "THFlexSensorPaletteItem.h"
-//#import "THRecorderPaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -91,7 +85,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
-#import "THPureDataPaletteItem.h"
+//#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
 //#import "THPressureSensorPaletteItem.h"
 
@@ -171,12 +165,7 @@ You should have received a copy of the GNU General Public License along with thi
              
             CGPoint editorLocation = [recognizer locationInView:self.view.superview];
             editorLocation = [[CCDirector sharedDirector] convertToGL: editorLocation];
-            
-            //CGPoint editorLocation = [recognizer locationInView: [[CCDirector sharedDirector] openGLView]];
-            
-            //New location depends on the with and heigh of each element
-            //editorLocation = [item getPossitionTodrop:editorLocation];
-            
+                        
             if([item canBeDroppedAt:editorLocation])
                 [item dropAt:editorLocation];
         }
@@ -325,12 +314,6 @@ You should have received a copy of the GNU General Public License along with thi
         CGFloat navigationBarHeight = 44;
         location.y -= navigationBarHeight;
         
-        //test drag completly inside of iphone
-        //location.x += 100;
-        //location.y += 100;
-        
-        //location.x += 44;
-        
         [self removeCurrentDragView];
         
         THTabbarView * tabView = (THTabbarView*) self.view;
@@ -466,14 +449,12 @@ You should have received a copy of the GNU General Public License along with thi
                            [THImageViewPaletteItem paletteItemWithName:@"imageview" imageName:@"palette_imageview" displayName:@"image"],
                            [THContactBookPaletteItem paletteItemWithName:@"contactBook" imageName:@"palette_contactBook" displayName:@"contact book"],
                            [THMonitorPaletteItem paletteItemWithName:@"monitor" imageName:@"palette_monitor" displayName:@"graph"],
-                           //[THRecorderPaletteItem paletteItemWithName:@"recorder" imageName:@"palette_recording" displayName:@"recorder"],
                            nil];
     
     self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
                                 [[THBLELilyPadPaletteItem alloc] initWithName:@"BLE-LilyPad"],
                                 [THLilypadPaletteItem paletteItemWithName:@"lilypadBig" imageName:@"palette_lilypadBig" displayName:@"lilypad"],
                                 [THSimpleLilypadPaletteItem paletteItemWithName:@"lilypadSmall" imageName:@"palette_lilypadSmall" displayName:@"lilypad simple"],
-                                //[[THJennicPaletteItem alloc] initWithName:@"jennic"],
                                 nil];
     
     
@@ -488,9 +469,6 @@ You should have received a copy of the GNU General Public License along with thi
                                  [THThreeColorLedPaletteItem paletteItemWithName:@"threeColorLed" imageName:@"palette_threeColorLed" displayName:@"3-color led"],
                                  [THVibrationBoardPaletteItem paletteItemWithName:@"vibeBoard" imageName:@"palette_vibeBoard" displayName:@"vibration board"],[THTemperatureSensorPaletteItem paletteItemWithName:@"temperatureSensor" imageName:@"palette_temperatureSensor" displayName:@"temperature sensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
-                                 //[THFlexSensorPaletteItem paletteItemWithName:@"flexSensor" imageName:@"palette_flexSensor" displayName:@"flex sensor"],
-                                 //[[THiBeaconPaletteItem alloc] initWithName:@"iBeacon"],
-                                 //[THPressureSensorPaletteItem paletteItemWithName:@"pressureSensor"                                         imageName:@"palette_pressureSensor" displayName:@"pressure sensor"],
                                  nil];
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
@@ -499,15 +477,10 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
-                                     [[THPureDataPaletteItem alloc] initWithName:@"puredata"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
                                      nil];
-    
-    /*self.otherHardwareSectionArray  = [NSMutableArray arrayWithObjects:
-                                       [[THPowerSupplyPaletteItem alloc] initWithName:@"powerSupply"],
-                                       nil];*/
                                      
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";

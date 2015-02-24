@@ -155,7 +155,7 @@ You should have received a copy of the GNU General Public License along with thi
     return [_paletteItems objectAtIndex:index];
 }
 
--(int)getSize {
+-(NSUInteger)getSize {
     return _paletteItems.count;
 }
 

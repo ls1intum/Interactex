@@ -52,11 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic showPreviousButton;
 @dynamic showVolumeView;
 
--(void) load{
-    self.canBeRootView = NO;
-    self.minSize = CGSizeMake(250, 100);
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -68,10 +63,14 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
+-(void) load{
+    self.canBeRootView = NO;
+    self.minSize = CGSizeMake(250, 100);
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     [self load];
     
@@ -86,6 +85,19 @@ You should have received a copy of the GNU General Public License along with thi
     
     [coder encodeBool:_visibleDuringSimulation forKey:@"visibleDuringSimulation"];
 }
+
+-(id)copyWithZone:(NSZone *)zone {
+    THMusicPlayerEditableObject * copy = [super copyWithZone:zone];
+    
+    copy.showPlayButton = self.showPlayButton;
+    copy.showNextButton = self.showNextButton;
+    copy.showPreviousButton = self.showPreviousButton;
+    copy.showVolumeView = self.showVolumeView;
+    copy.visibleDuringSimulation = self.visibleDuringSimulation;
+    
+    return copy;
+}
+
 
 #pragma mark - Property Controller
 

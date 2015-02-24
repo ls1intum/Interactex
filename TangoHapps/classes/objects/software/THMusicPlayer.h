@@ -45,17 +45,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface THMusicPlayer : THView {
-    NSArray * _songs;
     NSInteger _currentSongIdx;
-    
     UILabel * _label;
-   // MPMusicPlayerController * _musicPlayer;
-    
     UIButton * _playButton;
     UIButton * _nextButton;
     UIButton * _previousButton;
-    
-    MPVolumeView * _volumeView;
 }
 
 -(void) play;
@@ -66,9 +60,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic,readonly) NSString * currentSong;
 @property (nonatomic) float volume;
+
+@property (nonatomic, strong) AVAudioPlayer * audioPlayer;
+
 @property (nonatomic, strong) MPMusicPlayerController * musicPlayer;
-
-
+@property (nonatomic, strong) NSArray * songs;
+@property (nonatomic, strong) MPMediaQuery * songsQuery;
+@property (nonatomic, strong) MPVolumeView * volumeView;
 
 @property (nonatomic, readonly) BOOL playing;
 @property (nonatomic) BOOL showPlayButton;

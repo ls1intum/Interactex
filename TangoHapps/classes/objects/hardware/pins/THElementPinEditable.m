@@ -65,7 +65,6 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
@@ -73,6 +72,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(self){
         _attachedToPin = [decoder decodeObjectForKey:@"attachedToPin"];
+        _hardware = [decoder decodeObjectForKey:@"hardware"];
         
         [self loadElementPin];
     }
@@ -82,6 +82,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     [coder encodeObject:_attachedToPin forKey:@"attachedToPin"];
+    [coder encodeObject:_hardware forKey:@"hardware"];
 }
 
 #pragma mark - Connectable

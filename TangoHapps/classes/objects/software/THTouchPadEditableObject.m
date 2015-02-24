@@ -82,9 +82,11 @@ You should have received a copy of the GNU General Public License along with thi
     
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THTouchPadEditableObject * copy = [super copyWithZone:zone];
+    
+    copy.xMultiplier = self.xMultiplier;
+    copy.yMultiplier = self.yMultiplier;
     
     return copy;
 }

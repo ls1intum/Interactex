@@ -67,7 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
     NSUInteger counter = 2;
     NSString *name = conflictingName;
     while ([TFFileUtils dataFile:name existsInDirectory:kProjectsDirectory]) {
-        name = [conflictingName stringByAppendingFormat:@" %i", counter];
+        name = [conflictingName stringByAppendingFormat:@" %ld", (long)counter];
         counter++;
     }
     return name;

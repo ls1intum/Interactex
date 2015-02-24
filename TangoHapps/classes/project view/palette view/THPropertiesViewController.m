@@ -64,8 +64,17 @@ You should have received a copy of the GNU General Public License along with thi
     [super didReceiveMemoryWarning];
 }
 
--(void) addEditorObserver
-{
+-(void) viewWillAppear:(BOOL)animated{
+    
+    
+    THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+    TFEditableObject * object = editor.currentObject;
+    for (THEditableObjectProperties * controller in _controllers) {
+        controller.editableObject = object;
+    }
+}
+
+-(void) addEditorObserver {
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleObjectSelected:) name:kNotificationObjectSelected object:nil];
     [c addObserver:self selector:@selector(handleObjectDeselected) name:kNotificationObjectDeselected object:nil];
@@ -73,11 +82,10 @@ You should have received a copy of the GNU General Public License along with thi
     [c addObserver:self selector:@selector(handleObjectDeselected) name:kNotificationPaletteItemDeselected object:nil];
 }
 
--(void) removeEditorObservers
-{
-    id c = [NSNotificationCenter defaultCenter];
-    [c removeObserver:self name:kNotificationObjectSelected object:nil];
-    [c removeObserver:self name:kNotificationObjectDeselected object:nil];
+-(void) removeEditorObservers {
+    NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:kNotificationObjectSelected object:nil];
+    [notificationCenter removeObserver:self name:kNotificationObjectDeselected object:nil];
 }
 
 -(void) removeAllViews{
@@ -103,14 +111,14 @@ You should have received a copy of the GNU General Public License along with thi
     [_controllers addObject:controller];
 }
 
--(void) removeAllControllers{
+-(void) removeAllControllers {
     THTabbarView *sidebar = (THTabbarView*)self.view;
     [sidebar removeAllSections];
     
     [_controllers removeAllObjects];
 }
 
--(void) handleObjectSelected:(NSNotification *) notification{
+-(void) handleObjectSelected:(NSNotification *) notification {
     [self handleObjectDeselected];
     
     TFEditableObject * object = notification.object;
@@ -119,12 +127,12 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) handleObjectDeselected{
+-(void) handleObjectDeselected {
     [self removeAllControllers];
     [self removeAllViews];
 }
 
--(void) relayoutControllers{
+-(void) relayoutControllers {
     if(_controllers.count > 0){
         THEditableObjectProperties * controller = [_controllers objectAtIndex:0];
         
@@ -181,8 +189,6 @@ You should have received a copy of the GNU General Public License along with thi
 {
     [super viewDidUnload];
     [self removeEditorObservers];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

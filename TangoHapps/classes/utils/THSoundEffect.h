@@ -42,8 +42,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import <AudioToolbox/AudioServices.h>
 
-@interface THSoundEffect : NSObject
-{
+@interface THSoundEffect : NSObject {
     SystemSoundID soundID;
 }
 

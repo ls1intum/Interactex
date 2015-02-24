@@ -46,20 +46,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THAccelerometerEditable
 
--(void) loadAccelerometer{
-    self.sprite = [CCSprite spriteWithFile:@"accelerometer.png"];
-    [self addChild:self.sprite];
-    
-    self.acceptsConnections = YES;
-    self.isAccelerometerEnabled = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THAccelerometer alloc] init];
-        
-        self.type = kHardwareTypeAccelerometer;
         
         [self loadAccelerometer];
         [self loadPins];
@@ -67,13 +57,19 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
+-(void) loadAccelerometer{
+    
+    self.type = kHardwareTypeAccelerometer;
+    self.isAccelerometerEnabled = YES;
+}
+
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadAccelerometer];
-    
+    if(self) {
+        [self loadAccelerometer];
+    }
     return self;
 }
 
@@ -97,15 +93,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
-/*
- -(void) handleAccelerated:(UIAcceleration*) acceleration{
- 
- //NSLog(@"accel: %f %f",acceleration.y,-acceleration.x);
- 
- self.accelerometerX = acceleration.y * 300;
- self.accelerometerY = -acceleration.x * 300;
- //NSLog(@"accel: %d %d",self.x,self.y);
- }*/
 
 -(THElementPinEditable*) pin5Pin{
     return [self.pins objectAtIndex:0];
@@ -114,14 +101,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(THElementPinEditable*) pin4Pin{
     return [self.pins objectAtIndex:1];
 }
-
-/*
- -(void) updatePinValue{
- THElementPinEditable * analogPin = self.pin5Pin;
- THBoardPinEditable * boardPin = analogPin.attachedToPin;
- THCompass * compass = (THCompass*) self.object;
- boardPin.currentValue = compass.light;
- }*/
 
 -(void) update{
     

@@ -49,10 +49,10 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic fileName;
 
 -(void) loadTimer{
-    self.sprite = [CCSprite spriteWithFile:@"sound.png"];
-    [self addChild:self.sprite];
     
     self.acceptsConnections = YES;
+    
+    self.programmingElementType = kProgrammingElementTypeSound;
 }
 
 -(id) init{

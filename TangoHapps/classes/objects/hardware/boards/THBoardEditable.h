@@ -44,13 +44,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THBoardPinEditable;
 
-#define kMaxNumBoards 4
+#define kMaxNumBoards 3
 
 typedef enum {
     kBoardTypeLilypadSimple = 0,
     kBoardTypeLilypad = 1,
     kBoardTypeLilypadBLE = 2,
-    kBoardTypeJennic = 3
 } THBoardType;
 
 @interface THBoardEditable : TFEditableObject
@@ -65,7 +64,7 @@ typedef enum {
 @property (nonatomic) BOOL showsWires;
 @property (nonatomic, strong) NSMutableArray * i2cComponents;
 
--(void) loadBoard;
+-(void) loadPins;
 
 //pins
 -(THBoardPinEditable*) minusPin;
@@ -76,9 +75,6 @@ typedef enum {
 -(NSInteger) pinNumberAtPosition:(CGPoint) position;
 -(THBoardPinEditable*) digitalPinWithNumber:(NSInteger) number;
 -(THBoardPinEditable*) analogPinWithNumber:(NSInteger) number;
-
-//power supply
--(BOOL) acceptsPowerSupplyAtLocation:(CGPoint) location;
 
 //i2c components
 -(void) addI2CComponent:(THHardwareComponentEditableObject*) component;

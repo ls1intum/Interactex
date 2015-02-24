@@ -42,7 +42,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THTemperatureSensorEditable.h"
 #import "THTemperatureSensor.h"
-//#import "THTemperatureSensorProperties.h"
 
 @implementation THTemperatureSensorEditable
 
@@ -51,52 +50,48 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic maxValueNotify;
 @dynamic notifyBehavior;
 
--(void) loadTemperatureSensor{
-    self.sprite = [CCSprite spriteWithFile:@"temperatureSensor.png"];
-    [self addChild:self.sprite];
-    
-    CGSize size = CGSizeMake(75, 20);
-        
-    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
-    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2 - 75);
-    _valueLabel.visible = NO;
-    _valueLabel.color = kDefaultSimulationLabelColor;
-    [self addChild:_valueLabel z:1];
-    
-    self.acceptsConnections = YES;
-}
+const CGSize kTemperatureValueLabelSize = {75, 20};
 
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THTemperatureSensor alloc] init];
 
-        self.type = kHardwareTypeTemperatureSensor;
-        
         [self loadTemperatureSensor];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
 
+-(void) loadTemperatureSensor{
+    
+    self.type = kHardwareTypeTemperatureSensor;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadTemperatureSensor];
+    if(self){
+        [self loadTemperatureSensor];
+        
+    }
     
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     THTemperatureSensorEditable * copy = [super copyWithZone:zone];
+    
+    copy.minValueNotify = self.minValueNotify;
+    copy.maxValueNotify = self.maxValueNotify;
+    copy.notifyBehavior = self.notifyBehavior;
     
     return copy;
 }
@@ -200,6 +195,21 @@ You should have received a copy of the GNU General Public License along with thi
     _valueLabel.visible = YES;
     
     [super willStartSimulation];
+}
+
+-(void) addValueLabel{
+    
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kTemperatureValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2 - 75);
+    _valueLabel.visible = NO;
+    _valueLabel.color = kDefaultSimulationLabelColor;
+    [self addChild:_valueLabel z:1];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    [self addValueLabel];
 }
 
 -(NSString*) description{

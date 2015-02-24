@@ -15,7 +15,7 @@ juan.haladjian@cs.tum.edu
 katharina.bredies@udk-berlin.de
 opensource@telekom.de
 
-    
+ 
 The first version of the software was designed and implemented as part of "Wearable M2M", a joint project of UdK Berlin and TU Munich, which was founded by Telekom Innovation Laboratories Berlin. It has been extended with funding from EIT ICT, as part of the activity "Connected Textiles".
 
 Interactex is built using the Tango framework developed by TU Munich.
@@ -65,23 +65,24 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadImageView];
+    if(self){
+        [self loadImageView];
+    }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THImageViewEditable * copy = [super copyWithZone:zone];
+    
+    copy.image = self.image;
     
     return copy;
 }
@@ -96,16 +97,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
-/*
--(void) setScaleMode:(THImageViewScaleMode)scaleMode{
-    THImageView * imageView = (THImageView*) self.simulableObject;
-    imageView.scaleMode = scaleMode;
-}
-
--(THImageViewScaleMode) scaleMode{
-    THImageView * imageView = (THImageView*) self.simulableObject;
-    return imageView.scaleMode;
-}*/
 
 -(void) setImage:(UIImage *)image{
     THImageView * imageView = (THImageView*) self.simulableObject;
@@ -115,6 +106,14 @@ You should have received a copy of the GNU General Public License along with thi
 -(UIImage*) image{
     THImageView * imageView = (THImageView*) self.simulableObject;
     return imageView.image;
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    THImageView * imageView = (THImageView*) self.simulableObject;
+    [imageView reloadImageView];
+    
+    [super addToLayer:layer];
 }
 
 -(void) prepareToDie{

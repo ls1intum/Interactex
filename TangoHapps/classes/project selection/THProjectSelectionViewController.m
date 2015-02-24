@@ -78,13 +78,13 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     CGSize viewSize = self.view.frame.size;
     
-    CGRect rect = CGRectMake(viewSize.height/2 - kProjectSelectionActivityIndicatorViewSize.width/2, viewSize.width/2 - kProjectSelectionActivityIndicatorViewSize.height/2,kProjectSelectionActivityIndicatorViewSize.width,kProjectSelectionActivityIndicatorViewSize.height);
-                                                                                                                         
+    CGRect rect = CGRectMake(viewSize.width/2 - kProjectSelectionActivityIndicatorViewSize.width/2, viewSize.height/2 - kProjectSelectionActivityIndicatorViewSize.height/2,kProjectSelectionActivityIndicatorViewSize.width,kProjectSelectionActivityIndicatorViewSize.height);
+    
     self.activityIndicatorView = [[UIView alloc] initWithFrame:rect];
-    self.activityIndicatorView.backgroundColor = [UIColor grayColor];
+    self.activityIndicatorView.backgroundColor = [UIColor whiteColor];
     self.activityIndicatorView.hidden = YES;
     [self.view addSubview:self.activityIndicatorView];
-    
+
     rect = CGRectMake(rect.size.width/2 - kProjectSelectionActivityIndicatorLabelSize.width/2, rect.size.height/2 - kProjectSelectionActivityIndicatorLabelSize.height/2 - 30,kProjectSelectionActivityIndicatorLabelSize.width,kProjectSelectionActivityIndicatorLabelSize.height);
     UILabel * label = [[UILabel alloc] initWithFrame:rect];
     label.font = [UIFont systemFontOfSize:13.0f];
@@ -92,12 +92,16 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     label.text = @"Loading project...";
     [self.activityIndicatorView addSubview:label];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGRect frame = self.activityIndicator.frame;
-                             
+    self.activityIndicator.hidesWhenStopped = YES;
+
     viewSize = self.activityIndicatorView.frame.size;
-    frame.origin = CGPointMake(viewSize.width/2 - frame.size.width/2, viewSize.height/2 - frame.size.height/2 +10);
-    self.activityIndicator.frame = frame;
+    
+    frame.origin = CGPointMake(kProjectSelectionActivityIndicatorViewSize.width/2 - frame.size.width/2, kProjectSelectionActivityIndicatorViewSize.height/2- frame.size.height/2 +10);
+    
+    self.activityIndicator.frame =  frame;
+    self.activityIndicator.hidden = NO;
     [self.activityIndicatorView addSubview: self.activityIndicator];
     
     self.activityIndicatorView.layer.borderWidth = 1.0f;
@@ -351,27 +355,35 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     
     [self startActivityIndicator];
     
-    THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
-    THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
-    
-    //update its name since it could have been renamed while it was not loaded
-    project.name = proxy.name;
-    
-    [THDirector sharedDirector].currentProxy = proxy;
-    [THDirector sharedDirector].currentProject = project;
-    
-    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
+        THProject * project = (THProject*) [THProject projectSavedWithName:proxy.name];
+        
+        //update its name since it could have been renamed while it was not loaded
+        project.name = proxy.name;
+        
+        [THDirector sharedDirector].currentProxy = proxy;
+        [THDirector sharedDirector].currentProject = project;
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self stopActivityIndicator];
+            [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+        });
+    });
 }
 
 - (void)proceedToNewProject{
     
     [self startActivityIndicator];
     
-    THProject * project = [THProject newProject];
-    
-    [THDirector sharedDirector].currentProject = project;
-    
-    [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        THProject * project = [THProject newProject];
+        
+        [THDirector sharedDirector].currentProject = project;
+        
+        [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+    });
 }
 
 -(void) deleteProjectAtIndex:(NSInteger) index{
@@ -380,9 +392,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.projectProxies removeObjectAtIndex:index];
     
     [TFFileUtils deleteDataFile:projectProxy.name fromDirectory:kProjectsDirectory];
-    /*
-    NSString * imageName = [projectProxy.name stringByAppendingString:@".png"];
-    [TFFileUtils deleteDataFile:imageName fromDirectory:kProjectImagesDirectory];*/
 }
 
 #pragma mark - Collection DataSource
@@ -539,12 +548,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     id object = [self.projectProxies objectAtIndex:actualSourceIndexPathRow];
     [self.projectProxies removeObjectAtIndex:actualSourceIndexPathRow];
     [self.projectProxies insertObject:object atIndex:actualDestinationIndexPathRow];
-    
-    //[self setupIndicesForMultipleTables];
-    //[self.tableView reloadData];
-    //[self.tableViewSecond reloadData];
-    //[self.collectionView reloadData];
-    
 }
 
 -(BOOL) tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -698,24 +701,46 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 -(void) handleStartedMoving:(CGPoint) position{
     
     NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
+    bool isLastObject = false;
     
     if(indexPath){
         
         self.currentProjectCell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         self.currentProject = [self.projectProxies objectAtIndex:indexPath.row];
+        if (indexPath.row == [self.projectProxies count]-1) {
+            isLastObject = true;
+        }
         
         if(self.currentProjectCell.editing){
             
+            draggableCellStartedDraggingPoint = ccpSub(self.currentProjectCell.center,position);
+            draggableCellStartedDraggingPoint = ccpAdd(draggableCellStartedDraggingPoint, ccp(30,60));//TODO figure out why this magic number is needed
+            
+            //add draggable cell
             self.currentDraggableCell = [[THProjectDraggableCell alloc] initWithFrame:self.currentProjectCell.frame];
             self.currentDraggableCell.imageView.image = self.currentProjectCell.imageView.image;
             self.currentDraggableCell.imageView.frame = self.currentProjectCell.imageView.frame;
+            self.currentDraggableCell.center = ccpSub(position, draggableCellStartedDraggingPoint);
+            self.currentDraggableCell.center = ccpAdd(position,draggableCellStartedDraggingPoint);
+            self.currentDraggableCell.highlighted = YES;
             
+            [self.view addSubview:self.currentDraggableCell];
+            
+            //remove actual project proxy
             [self.projectProxies removeObject:self.currentProject];
             NSArray * indexPaths = [NSArray arrayWithObjects:indexPath, nil];
             [self.collectionView deleteItemsAtIndexPaths:indexPaths];
             
-            [self.view addSubview:self.currentDraggableCell];
             
+            //Nazmus Feb 20 2015. Quick fix, not sure if it's the perfect way:
+            //When the user starts to move the last object, immediately send it to another cell, preferably far away cell (to hide flickering),
+            //Otherwise temporaryInsertDragCellAtIndex method will not be called
+            //if this method is not called, then the project will only be deleted (in above code),
+            //the project will not be reinserted until it changes cell and consequently changes index
+            //
+            if (isLastObject == true) {
+                [self handleMovedToPosition: CGPointMake(position.x+1024, position.y)];
+            }
         }
     }
 }
@@ -724,7 +749,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     NSInteger totalWidth = self.collectionView.frame.size.width;
     NSInteger cellWidth = self.currentProjectCell.frame.size.width;
     NSInteger cellHeight = self.currentProjectCell.frame.size.height;
-    
 
     float spacingX = 10;
     float spacingY = 10;
@@ -748,14 +772,15 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 }
 
 -(void) temporaryInsertDragCellAtIndex:(NSInteger) index{
-        [self.projectProxies insertObject:self.currentProject atIndex:index];
-
-        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.collectionView insertItemsAtIndexPaths:indexPaths];
-        
-        THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
-        cell.editing = YES;
+    [self.projectProxies insertObject:self.currentProject atIndex:index];
+    
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    NSArray * indexPaths = [NSArray arrayWithObject:indexPath];
+    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+    
+    THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.editing = YES;
+    cell.highlighted = YES;
 }
 
 -(void) handleStoppedMoving{
@@ -764,21 +789,21 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         
         [self.currentDraggableCell removeFromSuperview];
         
-        //NSInteger index = [self indexForPoint:self.currentDraggableCell.center];
-        //[self temporaryInsertDragCellAtIndex:index];
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.currentDraggableCellIndex inSection:0];
+        THCollectionProjectCell * cell = (THCollectionProjectCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.highlighted = NO;
         
         self.currentProject = nil;
         self.currentProjectCell = nil;
         self.currentDraggableCell = nil;
     }
-    
 }
 
 -(void) handleMovedToPosition:(CGPoint) position{
     
     if(self.currentDraggableCell){
         
-        self.currentDraggableCell.center = position;
+        self.currentDraggableCell.center = ccpAdd(position,draggableCellStartedDraggingPoint);
         
         NSInteger index = [self indexForPoint:self.currentDraggableCell.center];
         
@@ -792,29 +817,26 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             }
             
             [self temporaryInsertDragCellAtIndex:index];
-            
             insertedTemporaryProject = YES;
             
             self.currentDraggableCellIndex = index;
-            
         }
     }
 }
 
 -(void) moved:(UIPanGestureRecognizer*) recognizer{
     
-    // nazmus added to stop movement, if there is only one project
+    //dont move anything if there is only one project
     if (self.totalNumberOfProjects < 2) {
         return;
     }
-    ////
     
     if(self.editingScenes || self.editingOneScene){
         
         CGPoint position = [recognizer locationInView:self.collectionView];
         
-//        position.x += 50;
-//        position.y = 350;
+        //CGPoint position = [recognizer locationInView:self.view];
+        
         if(recognizer.state == UIGestureRecognizerStateBegan){
             self.currentDraggableCellIndex = -1;
             insertedTemporaryProject = NO;
@@ -904,11 +926,13 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     } else {
         
         CGPoint position = [recognizer locationInView:self.collectionView];
+        
         NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:position];
         
         if(indexPath){            
             [self proceedToProjectAtIndex:indexPath.row];
         }
+                
     }
 }
 
@@ -1112,7 +1136,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Katharina Bredies</b><br>(Project Lead, Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Attila Mann</b><br>(Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Juan Haladjian</b><br>(Lead Developer)<br><br></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer</b><br>(Developer)<br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer, Aarón Pérez Martín, Güven Cadogan, Magued Farah</b><br>(Developer)<br></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];

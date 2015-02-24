@@ -213,7 +213,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
     if(self.editingScenes || self.editingOneScene || !self.showingCustomApps) return NO;
     
@@ -250,6 +249,10 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - TableView Delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

@@ -47,7 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 @property (nonatomic) float frequency;
-@property (nonatomic) THTimerType type;
+@property (nonatomic) THTimerType timerType;
 
 -(void) start;
 -(void) stop;

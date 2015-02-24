@@ -87,8 +87,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
     [self loadLabelView];
@@ -98,17 +97,17 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeObject:self.text forKey:@"text"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THLabel * copy = [super copyWithZone:zone];
+    
     copy.text = self.text;
+    copy.numLines = self.numLines;
     
     return copy;
 }

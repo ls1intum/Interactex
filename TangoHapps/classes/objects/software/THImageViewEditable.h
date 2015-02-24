@@ -45,6 +45,5 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THImageViewEditable : THViewEditableObject
 
 @property (nonatomic) UIImage * image;
-//@property (nonatomic) THImageViewScaleMode scaleMode;
 
 @end

@@ -57,40 +57,31 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic green;
 @dynamic blue;
 
--(void) loadThreeColorLed{
-    self.sprite = [CCSprite spriteWithFile:@"threeColorLed.png"];
-    [self addChild:self.sprite];
-    
-    _lightSprite = [CCSprite spriteWithFile:@"light.png"];
-    _lightSprite.visible = NO;
-    _lightSprite.position = ccp(35,40);
-    [self.sprite addChild:_lightSprite];
-    
-    self.acceptsConnections = YES;
-    
-    self.type = kHardwareTypeThreeColorLed;
-}
-
--(id) init{
+-(id) init {
     self = [super init];
     if(self){
         self.simulableObject = [[THThreeColorLed alloc] init];
         
         [self loadThreeColorLed];
-        [self loadPins];
+        [super loadPins];
+
     }
     return self;
 }
 
+-(void) loadThreeColorLed {
+    
+    self.type = kHardwareTypeThreeColorLed;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadThreeColorLed];
-    [self adaptColorToLed];
-    
+    if(self){
+        [self loadThreeColorLed];
+        [self adaptColorToLed];
+    }
     return self;
 }
 
@@ -101,13 +92,17 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone*) zone {
     THThreeColorLedEditable * copy = [super copyWithZone:zone];
     
+    copy.red = self.red;
+    copy.green = self.green;
+    copy.blue = self.blue;
+    copy.onAtStart = self.onAtStart;
+    
     return copy;
 }
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THThreeColorLedProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
@@ -224,6 +219,15 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)turnOff{
     THThreeColorLed * led = (THThreeColorLed*) self.simulableObject;
     [led turnOff];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    _lightSprite = [CCSprite spriteWithFile:@"light.png"];
+    _lightSprite.position = ccp(35,40);
+    _lightSprite.visible = NO;
+    [self.sprite addChild:_lightSprite];
 }
 
 -(NSString*) description{

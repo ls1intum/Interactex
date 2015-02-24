@@ -53,30 +53,29 @@ You should have received a copy of the GNU General Public License along with thi
 
 @dynamic events;
 
--(void) loadSprite{
-    
-    self.sprite = [CCSprite spriteWithFile:@"button.png"];
-    [self addChild:self.sprite]; // nazmus  z:1
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THButton alloc] init];
-        self.type = kHardwareTypeButton;
-        
-        [self loadSprite];
-        [self loadPins];
-        //[self loadExtension];
+        [self loadButton];
+        [super loadPins];
     }
     return self;
+}
+
+-(void) loadButton{
+    
+    self.type = kHardwareTypeButton;
 }
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self loadSprite];
+    
+    if(self){
+        [self loadButton];
+    }
     
     return self;
 }

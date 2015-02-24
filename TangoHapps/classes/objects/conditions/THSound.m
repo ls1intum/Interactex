@@ -90,8 +90,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) play{
     if(self.fileName){
-        THSoundEffect * sound = [[THSoundEffect alloc] initWithSoundNamed:self.fileName];
-        [sound play];
+        self.sound = [[THSoundEffect alloc] initWithSoundNamed:self.fileName];
+        [self.sound play];
     }
 }
 

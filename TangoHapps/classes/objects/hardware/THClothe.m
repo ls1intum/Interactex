@@ -61,7 +61,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) load{
     
-    [self loadSprite];
     self.z = kClotheZ;
     
     self.canBeAddedToPalette = YES;
@@ -108,6 +107,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(id)copyWithZone:(NSZone *)zone {
+    
     THClothe * copy = [super copyWithZone:zone];
     copy.name = self.name;
     copy.imageFromName = self.imageFromName;
@@ -152,6 +152,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
+    
+    [self loadSprite];
     [layer addEditableObject:self];
 }
 
@@ -179,17 +181,6 @@ You should have received a copy of the GNU General Public License along with thi
     THClothePaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithName:self.name object:self];
     return paletteItem;
 }
-
-/*
--(void) setPosition:(CGPoint)position{
-    
-    for (THHardwareComponentEditableObject * object in _attachments) {
-        CGPoint diff = ccpSub(object.position, self.position);
-        object.position  = ccpAdd(diff, position);
-    }
-    
-    [super setPosition:position];
-}*/
 
 -(void) objectRemoved:(NSNotification*) notification{
     TFEditableObject * object = notification.object;

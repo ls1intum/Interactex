@@ -53,35 +53,12 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiPhoneEditableObject
 @dynamic type;
 
--(void) reloadiPhoneSprite{
-    self.z = kiPhoneZ;
-    
-    if(self.sprite != nil){
-        [self.sprite removeFromParentAndCleanup:YES];
-    }
-    
-    // nazmus added
-    CCSprite *iphoneBgSprite = [CCSprite spriteWithFile:@"iphoneBg.png"];
-    [iphoneBgSprite setOpacity:180.0];
-    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding + kiphoneFrameXMargin, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding + kiphoneFrameYMargin)];
-    [self addChild:iphoneBgSprite z:kiPhoneZ-1];
-    ////
-    
-    NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
-    self.sprite = [CCSprite spriteWithFile:fileName];
-    [self addChild:self.sprite z:kiPhoneZ];
-    
-    self.canBeMoved = NO;
-}
-
 -(void) loadSprite{
     
-    [self reloadiPhoneSprite];
-    
+    self.canBeMoved = NO;
     self.z = kiPhoneZ;
     self.canBeScaled = NO;
     self.canBeDuplicated = NO;
-    self.canBeAddedToGesture = NO;
 }
 
 +(id) iPhoneWithDefaultView{
@@ -129,9 +106,9 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeObject:_currentView forKey:@"currentView"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {//iphone cannot be copied
     THiPhone * copy = [super copyWithZone:zone];
+    
     copy.currentView = [_currentView copy];
     copy.position = self.position;
     
@@ -163,7 +140,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setType:(THIPhoneType)type{
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.type = type;
-    [self reloadiPhoneSprite];
+
     [self adaptViewSizeToIphoneType];
 }
 
@@ -184,9 +161,25 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer*) layer{
-    [layer addEditableObject:self];
+    
+    [super addToLayer:layer];
     
     [(THiPhone*)self.simulableObject addToView:[CCDirector sharedDirector].view];
+    
+    if(self.sprite != nil){
+        [self.sprite removeFromParentAndCleanup:YES];
+    }
+    
+    CCSprite *iphoneBgSprite = [CCSprite spriteWithFile:@"iphoneBg.png"];
+    [iphoneBgSprite setOpacity:180.0];
+    [iphoneBgSprite setPosition:CGPointMake(kiPhoneFrames[self.type].size.width /2 + kiPhoneBgPadding + kiphoneFrameXMargin, kiPhoneFrames[self.type].size.height /2 + kiPhoneBgPadding + kiphoneFrameYMargin)];
+    [self addChild:iphoneBgSprite z:kiPhoneZ-1];
+    
+    NSString * fileName = (self.type == kiPhoneType4S) ? @"iphone4.png" : @"iphone5.png";
+    self.sprite = [CCSprite spriteWithFile:fileName];
+    [self addChild:self.sprite z:kiPhoneZ];
+    
+    [layer addEditableObject:self];
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{
@@ -231,7 +224,7 @@ You should have received a copy of the GNU General Public License along with thi
     iPhone.position = [TFHelper ConvertToCocos2dView:self.position];
 }
 
--(void) scaleBy:(float)scale{
+-(void) scaleBy:(CGFloat)scale{
     
 }
 

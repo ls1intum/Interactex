@@ -63,6 +63,10 @@
 }
 
 - (void)dealloc {
+    
+    AVAudioSession *globalSession = [AVAudioSession sharedInstance];
+    globalSession.delegate = nil;
+    
 	self.audioUnit = nil;
 	[super dealloc];
 }

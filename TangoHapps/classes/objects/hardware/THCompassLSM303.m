@@ -135,7 +135,6 @@ You should have received a copy of the GNU General Public License along with thi
     sdaPin.hardware = self;
     sdaPin.defaultBoardPinMode = kPinModeI2C;
     
-    
     [self.pins addObject:minusPin];
     [self.pins addObject:plusPin];
     [self.pins addObject:sclPin];
@@ -156,7 +155,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self.i2cComponent addRegister:reg1];
     [self.i2cComponent addRegister:reg2];
 }
-
 
 #pragma mark - Methods
 

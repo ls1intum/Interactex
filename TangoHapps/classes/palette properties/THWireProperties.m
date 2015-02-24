@@ -57,14 +57,28 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateChangeButton];
 }
 
--(void) updateChangeButton{
+-(THWire*) getWire{
     
     THWire * wire = (THWire*) self.editableObject;
+    if([wire isKindOfClass:[THWireNode class]]){
+        THWireNode * wireNode = (THWireNode*) wire;
+        wire = wireNode.wire;
+    }
+    
+    return wire;
+}
+
+-(void) updateChangeButton{
+    
+    THWire * wire = [self getWire];
+
     self.changeColorButton.enabled = wire.canColorBeChanged;
 }
 
 -(void) updateColor {
-    THWire * wire = (THWire*) self.editableObject;
+    
+    THWire * wire = [self getWire];
+    
     self.colorView.backgroundColor = [THHelper uicolorFromColor3B: wire.color];
 }
 
@@ -99,7 +113,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)colorPicker:(THColorPicker *)picker didPickColor:(UIColor *)color {
     
-    THWire * wire = (THWire*) self.editableObject;
+    THWire * wire = [self getWire];
     wire.color = [THHelper color3BFromUIColor:color];
     
     [self updateColor];
@@ -108,7 +122,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 - (IBAction)addNodeTapped:(id)sender {
     
-    THWire * wire = (THWire*) self.editableObject;
+    THWire * wire = [self getWire];
     [wire addNodeInLongestEdge];
 }
 

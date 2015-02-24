@@ -116,7 +116,7 @@ float const kBoardPropertiesMinHeight = 300;
 
 -(void) updateEditButton{
     
-    self.editButton.enabled = (self.pinsArray.count > 0);
+    //self.editButton.enabled = (self.pinsArray.count > 0);
 }
 
 -(void) reloadState{
@@ -166,7 +166,7 @@ float const kBoardPropertiesMinHeight = 300;
         pinViewCell.boardPin.mode = kPinModeDigitalOutput;
     }
 }
-
+/*
 - (IBAction)editTapped:(id)sender {
     
     if(self.pinsTable.editing){
@@ -178,7 +178,7 @@ float const kBoardPropertiesMinHeight = 300;
         [self.pinsTable setEditing:YES animated:YES];
         [self.editButton setTitle:@"Done" forState:UIControlStateNormal];
     }
-}
+}*/
 
 - (IBAction)showWiresChanged:(id)sender {
     

@@ -66,18 +66,27 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    [self loadLabel];
+    
+    if(self){
+        [self loadLabel];
+    }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    THLabelEditableObject * copy = [super copyWithZone:zone];
+    copy.text = self.text;
+    copy.numLines = self.numLines;
+    
+    return copy;
 }
 
 #pragma mark - Property Controller
@@ -95,6 +104,17 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) appendText:(id) text{
     THLabel * label = (THLabel*) self.simulableObject;
     [label appendText: text];
+}
+
+-(void) setNumLines:(NSInteger) numLines{
+    
+    THLabel * label = (THLabel*) self.simulableObject;
+    label.numLines = numLines;
+}
+
+-(NSInteger) numLines{
+    THLabel * label = (THLabel*) self.simulableObject;
+    return label.numLines;
 }
 
 -(void) setText:(NSString*)text{

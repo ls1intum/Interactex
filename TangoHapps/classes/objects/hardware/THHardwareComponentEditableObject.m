@@ -58,49 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @synthesize type = _type;
 @synthesize pins = _pins;
-@dynamic hardwareProblems;
 
--(void) loadObject{
-    
-    self.z = kClotheObjectZ;
-    self.acceptsConnections = YES;
-}
-
--(void) addPinChilds{
-    
-    for (THElementPinEditable * pin in self.pins) {
-        [self addChild:pin];
-    }
-}
-
--(void) loadSewedSprite{
-    
-    _sewedSprite = [CCSprite spriteWithFile:@"sewed.png"];
-    _sewedSprite.rotation = 45;
-    _sewedSprite.position = kSewedPositions[self.type];
-    _sewedSprite.visible = NO;
-    
-    [self addChild:_sewedSprite z:5];
-}
-
--(void) loadPins{
-    int i = 0;
-    THHardwareComponent * clotheObject = (THHardwareComponent*) self.simulableObject;
-    for (THElementPin * pin in clotheObject.pins) {
-        THElementPinEditable * pinEditable = [[THElementPinEditable alloc] init];
-        pinEditable.simulableObject = pin;
-        pinEditable.hardware = self;
-        pinEditable.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kPinPositions[self.type][i]);
-        //NSLog(@"%f",kPinPositions[self.type][i]);
-        pinEditable.position = ccpAdd(pinEditable.position, ccp(pinEditable.contentSize.width/2.0f, pinEditable.contentSize.height/2.0f));
-
-        [_pins addObject:pinEditable];
-        
-        i++;
-    }
-    
-    [self addPinChilds];
-}
+#pragma mark - Initialization
 
 -(id) init{
     
@@ -109,9 +68,37 @@ You should have received a copy of the GNU General Public License along with thi
         _pins = [NSMutableArray array];
 
         [self loadObject];
-        [self loadSewedSprite];
     }
     return self;
+}
+
+-(void) loadObject{
+    
+    self.z = kClotheObjectZ;
+    self.acceptsConnections = YES;
+}
+
+-(void) addPins{
+    
+    for (THElementPinEditable * pin in self.pins) {
+        [self addChild:pin];
+    }
+}
+
+-(void) loadPins{
+    int i = 0;
+    THHardwareComponent * clotheObject = (THHardwareComponent*) self.simulableObject;
+    
+    for (THElementPin * pin in clotheObject.pins) {
+        THElementPinEditable * pinEditable = [[THElementPinEditable alloc] init];
+        pinEditable.simulableObject = pin;
+        pinEditable.hardware = self;
+        
+        [_pins addObject:pinEditable];
+        
+        i++;
+    }
+    [self addPins];
 }
 
 #pragma mark - Archiving
@@ -120,14 +107,11 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     if(self){
         _pins = [decoder decodeObjectForKey:@"pins"];
-        _type = [decoder decodeIntegerForKey:@"type"];
-        
-        [self loadObject];
-        [self addPinChilds];
-        [self loadSewedSprite];
-        
         self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
         _objectName = [decoder decodeObjectForKey:@"objectName"];
+        
+        [self loadObject];
+        [self addPins];
     }
     return self;
 }
@@ -136,7 +120,6 @@ You should have received a copy of the GNU General Public License along with thi
     [super encodeWithCoder:coder];
     
     [coder encodeObject:_pins forKey:@"pins"];
-    [coder encodeInteger:_type forKey:@"type"];
     [coder encodeObject:self.attachedToClothe forKey:@"attachedToClothe"];
     [coder encodeObject:_objectName forKey:@"objectName"];
 }
@@ -144,22 +127,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)copyWithZone:(NSZone *)zone {
     THHardwareComponentEditableObject * copy = [super copyWithZone:zone];
     
+    copy.type = self.type;
+    
     return copy;
 }
 
 #pragma mark - Property Controllers
-
--(NSArray*) hardwareProblems{
-    NSMutableArray * problems = [NSMutableArray array];
-    for (THElementPinEditable * pin in self.pins) {
-        if(!pin.attachedToPin){
-            THHardwareProblem * problem = [[THHardwareProblemNotConnected alloc] init];
-            problem.pin = pin;
-            [problems addObject:problem];
-        }
-    }
-    return problems;
-}
 
 -(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
@@ -322,7 +295,35 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) loadSprites{
+    //sewed sprite
+    _sewedSprite = [CCSprite spriteWithFile:@"sewed.png"];
+    _sewedSprite.rotation = 45;
+    _sewedSprite.position = kSewedPositions[self.type];
+    _sewedSprite.visible = NO;
+    [self addChild:_sewedSprite z:5];
+    
+    //main sprite
+    self.sprite = [CCSprite spriteWithFile:kHardwareSpriteNames[self.type]];
+    [self addChild:self.sprite];
+}
+
+-(void) repositionPins{
+    
+    NSInteger i = 0;
+    for (THElementPinEditable * pin in self.pins) {
+        pin.position = ccpAdd(ccp(self.contentSize.width/2.0f, self.contentSize.height/2.0f), kPinPositions[self.type][i]);
+        pin.position = ccpAdd(pin.position, ccp(pin.contentSize.width/2.0f, pin.contentSize.height/2.0f));
+        i++;
+    }
+}
+
 -(void) addToLayer:(TFLayer*) layer{
+    
+    [self loadSprites];
+    
+    [self repositionPins];
+    
     [self updateNameLabel];
     
     [layer addEditableObject:self];

@@ -72,7 +72,7 @@ You should have received a copy of the GNU General Public License along with thi
     [popOverController dismissPopoverAnimated:YES];
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kMethodSelectionPopupRowHeight;
 }
 

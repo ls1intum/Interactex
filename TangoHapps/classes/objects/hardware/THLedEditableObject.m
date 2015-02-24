@@ -53,51 +53,42 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic onAtStart;
 @dynamic intensity;
 
--(void) loadLed{
-    self.sprite = [CCSprite spriteWithFile:@"led.png"];
-    [self addChild:self.sprite];
-    
-    _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
-    _lightSprite.visible = NO;
-    _lightSprite.position = ccp(20,20);
-    [self.sprite addChild:_lightSprite];
-    
-    self.acceptsConnections = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THLed alloc] init];
 
-        self.type = kHardwareTypeLed;
-        
         [self loadLed];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
 
+-(void) loadLed{
+    
+    self.type = kHardwareTypeLed;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadLed];
-    [self adaptIntensityToLed];
-    
+    if(self){
+        [self loadLed];
+        [self adaptIntensityToLed];
+    }
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder*) coder
-{
+-(void)encodeWithCoder:(NSCoder*) coder {
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone*) zone
-{
+-(id)copyWithZone:(NSZone*) zone {
     THLedEditableObject * copy = [super copyWithZone:zone];
+    
+    copy.onAtStart = self.onAtStart;
+    copy.intensity = self.intensity;
     
     return copy;
 }
@@ -206,6 +197,16 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)turnOff{    
     THLed * led = (THLed*) self.simulableObject;
     [led turnOff];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    
+    _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
+    _lightSprite.visible = NO;
+    _lightSprite.position = ccp(20,20);
+    [self.sprite addChild:_lightSprite];
 }
 
 -(NSString*) description{

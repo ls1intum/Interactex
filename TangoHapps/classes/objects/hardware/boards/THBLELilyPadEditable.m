@@ -53,28 +53,22 @@
 @dynamic numberOfDigitalPins;
 @dynamic numberOfAnalogPins;
 
--(void) loadLilypad{
-    
-    self.boardType = kBoardTypeLilypadBLE;
-    
-    self.z = kLilypadZ;
-    
-    self.sprite = [CCSprite spriteWithFile:@"BLE-LilyPad.png"];
-    [self addChild:self.sprite];
-}
-
 -(id) init{
     self = [super init];
     if(self){
         
-        THLilyPad * lilyPad = [[THLilyPad alloc] init];
-        self.simulableObject = lilyPad;
+        self.simulableObject = [[THLilyPad alloc] init];
         
         [self loadLilypad];
-        [self loadBoard];
-        
+        [super loadPins];
     }
     return self;
+}
+
+-(void) loadLilypad{
+    
+    self.boardType = kBoardTypeLilypadBLE;
+    self.z = kLilypadZ;
 }
 
 #pragma mark - Archiving
@@ -84,7 +78,6 @@
     if(self){
         
         [self loadLilypad];
-        [self loadBoard];
     }
     return self;
 }

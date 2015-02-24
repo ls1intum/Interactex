@@ -52,8 +52,24 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.imageView = [[UIImageView alloc] init];
         [self addSubview:self.imageView];
+        
     }
     return self;
+}
+
+-(void) setHighlighted:(BOOL)highlighted{
+    if(highlighted != _highlighted){
+        _highlighted = highlighted;
+        if(highlighted){
+            
+            UIColor * tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+            
+            self.imageView.layer.borderColor = tintColor.CGColor;
+            self.imageView.layer.borderWidth = 1.0f;
+        } else {
+            self.imageView.layer.borderWidth = 0.0f;
+        }
+    }
 }
 
 @end

@@ -52,31 +52,20 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic onAtStart;
 @dynamic frequency;
 
--(void) loadVibrationBoard{
-    self.sprite = [CCSprite spriteWithFile:@"vibeBoard.png"];
-    [self addChild:self.sprite];
-    
-    /*
-    _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
-    _lightSprite.visible = NO;
-    _lightSprite.position = ccp(20,20);
-    [self.sprite addChild:_lightSprite];*/
-    
-    self.acceptsConnections = YES;
-    
-    self.type = kHardwareTypeVibeBoard;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THVibrationBoard alloc] init];
         
-        
         [self loadVibrationBoard];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
+}
+
+-(void) loadVibrationBoard{
+    
+    self.type = kHardwareTypeVibeBoard;
 }
 
 #pragma mark - Archiving
@@ -84,28 +73,35 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadVibrationBoard];
-    //[self adaptFrequency];
+    if(self){
+        [self loadVibrationBoard];
+        
+        self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
+        self.frequency = [decoder decodeFloatForKey:@"frequency"];
+    }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder*) coder
-{
+-(void)encodeWithCoder:(NSCoder*) coder {
     [super encodeWithCoder:coder];
+    
+    [coder encodeBool:self.onAtStart forKey:@"onAtStart"];
+    [coder encodeFloat:self.frequency forKey:@"frequency"];
 }
 
--(id)copyWithZone:(NSZone*) zone
-{
+-(id)copyWithZone:(NSZone*) zone {
     THVibrationBoardEditable * copy = [super copyWithZone:zone];
+    
+    copy.onAtStart = self.onAtStart;
+    copy.frequency = self.frequency;
     
     return copy;
 }
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THVibrationBoardProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];

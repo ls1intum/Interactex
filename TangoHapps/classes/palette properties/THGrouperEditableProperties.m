@@ -76,13 +76,13 @@ You should have received a copy of the GNU General Public License along with thi
         if(actions.count > 0){
             text = @"when ";
             
-            if(condition.type == kGrouperTypeOr) {
+            if(condition.grouperType == kGrouperTypeOr) {
                 text = [text stringByAppendingString:@"either "];
             }
             
             text = [text stringByAppendingString:[self textObject1]];
             
-            if(condition.type == kGrouperTypeAnd) {
+            if(condition.grouperType == kGrouperTypeAnd) {
                 text = [text stringByAppendingString:@"and "];
             } else {
                 text = [text stringByAppendingString:@"or "];
@@ -125,7 +125,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateGrouperType{
     
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
-    self.grouperTypeControl.selectedSegmentIndex = condition.type;
+    self.grouperTypeControl.selectedSegmentIndex = condition.grouperType;
 }
 
 -(NSString*) textObject1{
@@ -258,7 +258,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (IBAction)grouperTypeChanged:(id)sender {
     
     THGrouperConditionEditable * condition = (THGrouperConditionEditable*) self.editableObject;
-    condition.type = self.grouperTypeControl.selectedSegmentIndex;
+    condition.grouperType = self.grouperTypeControl.selectedSegmentIndex;
     [self updateLabelText];
 }
 

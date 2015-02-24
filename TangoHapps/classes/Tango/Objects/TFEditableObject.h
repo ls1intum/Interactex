@@ -43,7 +43,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import <Foundation/Foundation.h>
 
 @class TFSimulableObject;
-@class THGestureEditableObject;
 @class THEventPropertyController;
 @class THPropertiesPropertyController;
 @class THMethodsPropertyController;
@@ -68,10 +67,9 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL canBeAddedToPalette;
 @property (nonatomic) BOOL canBeScaled;
 @property (nonatomic) BOOL canBeMoved;
-@property (nonatomic) BOOL canBeAddedToGesture;
 
-@property (nonatomic) float rotation;
-@property (nonatomic) float scale;
+@property (nonatomic) CGFloat myRotation;
+@property (nonatomic) CGFloat myScale;
 @property (nonatomic) CGPoint position;
 @property (nonatomic, readonly) CGPoint absolutePosition;
 @property (nonatomic, readonly) CGPoint center;
@@ -89,8 +87,6 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) NSString * shortDescription;
 @property (nonatomic, strong) TFSimulableObject * simulableObject;
 
-@property (nonatomic, weak) THGestureEditableObject * attachedToGesture;
-
 @property (nonatomic) BOOL highlighted;
 @property (nonatomic) ccColor4B highlightColor;
 
@@ -105,12 +101,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 //transformation
 -(void) displaceBy: (CGPoint) displacement;
--(void) scaleBy:(float) scaleDx;
--(void) rotateBy: (float) rotation;
+-(void) scaleBy:(CGFloat) scaleDx;
+-(void) rotateBy: (CGFloat) rotation;
 
 //ui
 //-(void) handleAccelerated:(UIAcceleration*) acceleration;
--(void) handleRotation:(float) degree;
+-(void) handleRotation:(CGFloat) degree;
 -(void) handleTap;
 -(BOOL) testPoint:(CGPoint)point;
 -(void) handleTouchBegan;

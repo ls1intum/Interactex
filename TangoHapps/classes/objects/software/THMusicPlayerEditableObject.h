@@ -42,20 +42,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THViewEditableObject.h"
 
-@interface THMusicPlayerEditableObject : THViewEditableObject 
-
+@interface THMusicPlayerEditableObject : THViewEditableObject{
+    
+}
 
 -(void) play;
 -(void) stop;
 -(void) next;
 
 @property (nonatomic) float volume;
-
 @property (nonatomic) BOOL showPlayButton;
 @property (nonatomic) BOOL showNextButton;
 @property (nonatomic) BOOL showPreviousButton;
 @property (nonatomic) BOOL showVolumeView;
-
 @property (nonatomic) BOOL visibleDuringSimulation;
 
 @end

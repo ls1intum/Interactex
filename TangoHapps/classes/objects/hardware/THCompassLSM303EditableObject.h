@@ -44,8 +44,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import <CoreLocation/CoreLocation.h>
 
 @interface THCompassLSM303EditableObject : THHardwareComponentEditableObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
-    CCSprite * _accelerometerBall;
-    CCSprite * _compassCircle;
     CLLocationManager * _locationManager;
     
     CGPoint _velocity;

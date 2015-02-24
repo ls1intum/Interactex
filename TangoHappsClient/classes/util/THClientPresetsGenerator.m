@@ -100,7 +100,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [array addObject:[self lsmProject]];
     [array addObject:[self accelerometerProject]];
     [array addObject:[self musicPlayerProject]];
-    [array addObject:[self pureDataProject]];
+    //[array addObject:[self pureDataProject]];
     
     
     NSMutableArray * imagesArray = [NSMutableArray array];
@@ -112,7 +112,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
-    [imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
+    //[imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
     
     for (int i = 0 ; i < array.count ; i++) {
         
@@ -242,7 +242,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:12];
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:8];//juan change
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
@@ -703,12 +703,12 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     //iphone objects
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect a Switch pin to 8";
-    label.position = CGPointMake(150, 100);
+    label.position = CGPointMake(160, 100);
     label.width = 200;
     label.numLines = 2;
     
     THMusicPlayer * musicPlayer = [[THMusicPlayer alloc] init];
-    musicPlayer.position = CGPointMake(160, 400);
+    musicPlayer.position = CGPointMake(160, 250);
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,musicPlayer, nil];
     

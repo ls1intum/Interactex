@@ -58,6 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     float keyboardHeight;
     BOOL didMoveViewUp;
+    
+    CGPoint draggableCellStartedDraggingPoint;//where a project was dragged relative to its center
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *labelProjects;

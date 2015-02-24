@@ -192,7 +192,8 @@ extern CGPoint const kDefaultiPhonePosition;
 extern float const kiPhoneBgPadding; // nazmus added
 
 extern CGPoint const kSewedPositions[kNumHardwareTypes];
-
+extern NSString * const kHardwareSpriteNames[kNumHardwareTypes];
+extern NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes];
 
 extern float const kLayerMinScale;
 extern float const kLayerMaxScale;

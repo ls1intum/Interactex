@@ -50,19 +50,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 CGSize const kStringValueLabelSize = {100,30};
 
--(void) loadValue{
-    self.sprite = [CCSprite spriteWithFile:@"value.png"];
-    [self addChild:self.sprite];
-    
-    [self reloadLabel];
-}
-
 -(id) init{
     self = [super init];
     if(self){
+        
+        self.programmingElementType = kProgrammingElementTypeStringValue;
+        
         self.simulableObject = [[THStringValue alloc] init];
         
-        [self loadValue];
     }
     return self;
 }
@@ -71,8 +66,6 @@ CGSize const kStringValueLabelSize = {100,30};
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadValue];
     
     return self;
 }
@@ -133,6 +126,15 @@ CGSize const kStringValueLabelSize = {100,30};
 -(void) setValue:(NSString*) val{
     THStringValue * value = (THStringValue*) self.simulableObject;
     value.value = [val copy];
+    [self reloadLabel];
+}
+
+
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
     [self reloadLabel];
 }
 

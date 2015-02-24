@@ -48,39 +48,30 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THLightSensorEditableObject
 
--(void) loadLightSensor{
-    self.sprite = [CCSprite spriteWithFile:@"lightSensor.png"];
-    [self addChild:self.sprite z:kClotheObjectZ];
-    
-    _lightSprite = [CCSprite spriteWithFile: @"light.png"];
-    _lightSprite.opacity = 0;
-    _lightSprite.position = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_lightSprite];
-    
-    self.acceptsConnections = YES;
-    
-}
-
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THLightSensor alloc] init];
         
-        self.type = kHardwareTypeLightSensor;
-        
         [self loadLightSensor];
-        [self loadPins];
+        [super loadPins];
     }
     return self;
 }
+
+-(void) loadLightSensor{
+    
+    self.type = kHardwareTypeLightSensor;
+}
+
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadLightSensor];
-    
+    if(self){
+        [self loadLightSensor];
+    }
     return self;
 }
 
@@ -90,7 +81,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THLightSensorEditableObject * copy = [super copyWithZone:zone];
-    
+
     return copy;
 }
 
@@ -140,6 +131,7 @@ You should have received a copy of the GNU General Public License along with thi
     } else {
         _lightTouchDownIntensity -= kDefaultAnalogSimulationIncrease;
     }
+    
     THLightSensor * lightSensor = (THLightSensor*) self.simulableObject;
     _lightTouchDownIntensity = [THClientHelper Constrain:_lightTouchDownIntensity min:0 max:kMaxAnalogValue];
     
@@ -160,6 +152,16 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSInteger) light{
     THLightSensor * lightSensor = (THLightSensor*) self.simulableObject;
     return lightSensor.light;
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    
+    _lightSprite = [CCSprite spriteWithFile: @"light.png"];
+    _lightSprite.opacity = 0;
+    _lightSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+    [self addChild:_lightSprite];
 }
 
 -(NSString*) description{

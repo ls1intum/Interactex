@@ -26,6 +26,7 @@
 #import "THClientProject.h"
 #import "TFEventActionPair.h"
 
+
 @interface TangoHappsUnitTests : XCTestCase
 
 @end
@@ -198,12 +199,6 @@
     XCTAssertEqual(led.intensity, 250, @"led intensity should be 250 here");
 }
 
-/*- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}*/
 
 @end
 

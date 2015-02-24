@@ -50,19 +50,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 CGSize const kBoolValueLabelSize = {80,30};
 
--(void) loadValue{
-    self.sprite = [CCSprite spriteWithFile:@"value.png"];
-    [self addChild:self.sprite];
-    
-    [self reloadLabel];
-}
-
 -(id) init{
     self = [super init];
     if(self){
+        
+        self.programmingElementType = kProgrammingElementTypeBoolValue;
         self.simulableObject = [[THBoolValue alloc] init];
         
-        [self loadValue];
     }
     return self;
 }
@@ -71,8 +65,6 @@ CGSize const kBoolValueLabelSize = {80,30};
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
-    [self loadValue];
     
     return self;
 }
@@ -128,6 +120,14 @@ CGSize const kBoolValueLabelSize = {80,30};
 -(void) setValue:(BOOL) val{
     THBoolValue * value = (THBoolValue*) self.simulableObject;
     value.value = val;
+    [self reloadLabel];
+}
+
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
     [self reloadLabel];
 }
 

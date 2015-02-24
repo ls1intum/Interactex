@@ -46,21 +46,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THGrouperConditionEditable
 
-@dynamic type;
-
--(void) loadSprite{
-    
-    self.sprite = [CCSprite spriteWithFile:@"grouper.png"];
-    [self addChild:self.sprite];
-}
+@dynamic grouperType;
 
 -(id) init{
     self = [super init];
     if(self){
-        [self loadSprite];
+        
+        [self loadGrouper];
         self.simulableObject = [[THGrouperCondition alloc] init];
     }
     return self;
+}
+
+-(void) loadGrouper{
+    
+    self.programmingElementType = kProgrammingElementTypeGrouper;
 }
 
 #pragma mark - Archiving
@@ -68,32 +68,25 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
-    [self loadSprite];
-    
-    self.obj1 = [decoder decodeObjectForKey:@"object1"];
-    self.obj2 = [decoder decodeObjectForKey:@"object2"];
-    /*
-     Juan check
-    if(self.obj1 != nil){
-        [self registerNotificationsFor:self.obj1];
+    if(self ) {
+        
+        [self loadGrouper];
+        
+        self.obj1 = [decoder decodeObjectForKey:@"object1"];
+        self.obj2 = [decoder decodeObjectForKey:@"object2"];
     }
-    if(self.obj2 != nil){
-        [self registerNotificationsFor:self.obj1];
-    }*/
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeObject:self.obj1 forKey:@"object1"];
     [coder encodeObject:self.obj2 forKey:@"object2"];
 }
 
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THGrouperConditionEditable * copy = [super copyWithZone:zone];
     
     copy.obj1 = self.obj1;
@@ -104,8 +97,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     _currentGrouperProperties = [THGrouperEditableProperties properties];
     [controllers addObject:_currentGrouperProperties];
@@ -115,14 +107,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
--(THGrouperType) type{
+-(THGrouperType) grouperType {
     THGrouperCondition * condition = (THGrouperCondition*) self.simulableObject;
-    return condition.type;
+    return condition.grouperType;
 }
 
--(void) setType:(THGrouperType)type{
+-(void) setGrouperType:(THGrouperType)grouperType{
     THGrouperCondition * condition = (THGrouperCondition*) self.simulableObject;
-    condition.type = type;
+    condition.grouperType = grouperType;
 }
 
 -(void) setValue1:(BOOL) number{
@@ -192,7 +184,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) handleRegisteredAsTargetForAction:(TFMethodInvokeAction*) action{
     
-    
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
     if ([action.method.name isEqualToString:kMethodSetValue1]) {
@@ -231,9 +222,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addConnectionTo:(TFEditableObject *)object animated:(BOOL)animated{
     
     [_currentGrouperProperties reloadState];
-    //[super addConnectionTo:object animated:animated];
-    //Juan check
 }
+
+#pragma mark - Methods
 
 -(void) prepareToDie{
     self.obj1 = nil;

@@ -75,9 +75,11 @@
     THTouchPadEditableObject * touchpad = [[THTouchPadEditableObject alloc] init];
     [project addiPhoneObject:touchpad];
     
-    [THTestsHelper registerActionForObject:touchpad target:led event:kEventDxChanged method:kMethodSetIntensity];
+    [THTestsHelper registerActionForObject:touchpad target:led event:kEventDxChanged method:kMethodVaryIntensity];
     
     [THTestsHelper startSimulation];
+    
+    [led turnOn];
     
     XCTAssertEqual(led.intensity, 255 , @"led should have default intensity here");
     touchpad.dx = -5;

@@ -153,7 +153,7 @@ You should have received a copy of the GNU General Public License along with thi
         TFEditableObject * object = [project objectAtLocation:location];
         
         if(object){
-            float rotation = sender.rotation;
+            CGFloat rotation = sender.rotation;
             [object handleRotation:rotation];
         }
         
@@ -247,16 +247,15 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        if (object.attachedToGesture) {
-            
-        }
-        else if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
-            THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
-            if(!hardwareComponent.attachedToClothe){
+        if(![object isKindOfClass:[THBoardEditable class]]){
+            if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+                THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+                if(!hardwareComponent.attachedToClothe){//if it is attached to aclothe, it will be added by the clothe itself
+                    [object addToLayer:self];
+                }
+            } else {
                 [object addToLayer:self];
             }
-        }else {
-            [object addToLayer:self];
         }
     }
 }

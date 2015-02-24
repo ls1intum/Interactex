@@ -62,7 +62,12 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.connectionController = [[THClientConnectionController alloc] init];
 
-    //[self generateRandomScenes];
+    /*
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector:    @selector(handleInterruption:)
+                                                 name:        AVAudioSessionInterruptionNotification
+                                               object:      [AVAudioSession sharedInstance]];*/
+    
     
     // Override point for customization after application launch.
     return YES;

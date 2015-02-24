@@ -48,6 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THConditionEditableObject
 
 -(void) loadCondition{
+
     self.z = kConditionZ;
     self.acceptsConnections = YES;
 }
@@ -65,11 +66,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    self.action1 = [decoder decodeObjectForKey:@"action1"];
-    self.action2 = [decoder decodeObjectForKey:@"action2"];
-    
-    [self loadCondition];
-    
+    if(self){
+        self.action1 = [decoder decodeObjectForKey:@"action1"];
+        self.action2 = [decoder decodeObjectForKey:@"action2"];
+        
+        [self loadCondition];
+    }
     return self;
 }
 

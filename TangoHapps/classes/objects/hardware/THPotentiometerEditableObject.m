@@ -51,34 +51,23 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic maxValueNotify;
 @dynamic notifyBehavior;
 
--(void) loadPotentiometer{
-    self.sprite = [CCSprite spriteWithFile:@"potentiometer.png"];
-    [self addChild:self.sprite];
-    
-    CGSize size = CGSizeMake(75, 20);
-    
-    
-    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:size hAlignment:kCCVerticalTextAlignmentCenter];
-    
-    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
-    _valueLabel.color = kDefaultSimulationLabelColor;
-    _valueLabel.visible = NO;
-    [self addChild:_valueLabel z:1];
-    
-    self.acceptsConnections = YES;
-}
+const CGSize kValueLabelSize = {75, 20};
 
 -(id) init{
     self = [super init];
     if(self){
         self.simulableObject = [[THPotentiometer alloc] init];
         
-        self.type = kHardwareTypePotentiometer;
-        
         [self loadPotentiometer];
-        [self loadPins];
+        [super loadPins];
+
     }
     return self;
+}
+
+-(void) loadPotentiometer{
+    
+    self.type = kHardwareTypePotentiometer;
 }
 
 #pragma mark - Archiving
@@ -99,14 +88,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(id)copyWithZone:(NSZone *)zone {
     THPotentiometerEditableObject * copy = [super copyWithZone:zone];
-    
     return copy;
 }
 
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers
-{
+-(NSArray*)propertyControllers {
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObject:[THPotentiometerProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
@@ -202,6 +189,15 @@ You should have received a copy of the GNU General Public License along with thi
     _valueLabel.visible = YES;
     
     [super willStartSimulation];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
+    _valueLabel.color = kDefaultSimulationLabelColor;
+    [self addChild:_valueLabel z:1];
 }
 
 -(NSString*) description{

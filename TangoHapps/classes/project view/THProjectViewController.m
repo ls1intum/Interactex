@@ -48,6 +48,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THEditor.h"
 #import "THiPhoneEditableObject.h"
 #import "THProjectProxy.h"
+#import "THViewEditableObject.h"
 
 @implementation THProjectViewController
 
@@ -438,7 +439,6 @@ float const kToolsTabMargin = 5;
     THEditor * editor = [THEditor node];
     editor.dragDelegate = self.tabController.paletteController;
     _currentLayer = editor;
-    [_currentLayer willAppear];
     CCScene * scene = [CCScene node];
 
     [scene addChild:_currentLayer];
@@ -448,6 +448,8 @@ float const kToolsTabMargin = 5;
     } else {
         [[CCDirector sharedDirector] runWithScene:scene];
     }
+    
+    [_currentLayer willAppear];
     
     _tabController.paletteController.delegate = editor;
     _state = kAppStateEditor;
@@ -566,29 +568,6 @@ float const kToolsTabMargin = 5;
 }
 
 #pragma mark - Tools
-//Nazmus commented
-/*
--(UIBarButtonItem*) createDivider{
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 44)];
-    label.backgroundColor = [UIColor blackColor];
-    return [[UIBarButtonItem alloc] initWithCustomView:label];
-}
-
--(UIBarButtonItem*) createEmptyItem{
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    return [[UIBarButtonItem alloc] initWithCustomView:label];
-}
-
--(UIBarButtonItem*) createItemWithImageName:(NSString*) imageName action:(SEL) selector{
-    
-    UIImage * connectButtonImage = [UIImage imageNamed:imageName];
-    return [[UIBarButtonItem alloc] initWithImage:connectButtonImage style:UIBarButtonItemStylePlain target:self action:selector];
-}
-*/
-////
 
 //Nazmus added
 -(UILabel*) createDivider{
@@ -649,18 +628,6 @@ float const kToolsTabMargin = 5;
                        target:self
                        action:@selector(endSimulation)];
     
-    // nazmus commented
-    /*
-    self.editingTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.hideiPhoneButton, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
-     self.simulatingTools = [NSArray arrayWithObjects:self.stopButton, self.emptyItem1, self.pinsModeButton, nil];
-     
-     self.lilypadTools = [NSArray arrayWithObjects:self.playButton, self.pushButton, self.divider2, self.emptyItem2, self.lilypadButton, self.divider, self.removeButton, self.duplicateButton, self.connectButton, nil];
-     
-     self.highlightedItemTintColor = nil;
-     self.hideiPhoneButton.tintColor = self.highlightedItemTintColor;
-     self.unselectedTintColor = [UIColor grayColor];
-    */
-    ////
     // nazmus added
     self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
@@ -739,7 +706,6 @@ float const kToolsTabMargin = 5;
         [[self.menuController.view viewWithTag:1] addSubview:[tools objectAtIndex:i]];
     }
 }
-
 
 #pragma mark -- UI state
 
@@ -871,7 +837,12 @@ float const kToolsTabMargin = 5;
     [self updateHideIphoneButtonTint];
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
-    [editor handleIphoneVisibilityChangedTo:project.iPhone.visible ];
+    if([editor.currentObject isKindOfClass:[THViewEditableObject class]] || [editor.currentObject isKindOfClass:[THiPhoneEditableObject class]]){
+        [self.tabController showTab:0];
+    }
+    
+    [editor handleIphoneVisibilityChangedTo:project.iPhone.visible];
+    
 }
 
 - (void) hidePalettePressed:(id)sender {

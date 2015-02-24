@@ -59,14 +59,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (weak, nonatomic) IBOutlet UITextField * nameTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) id<THProjectCellDelegate> delegate;
-- (IBAction)textEditingWillBegin:(id)sender;
 
+- (IBAction)textEditingWillBegin:(id)sender;
 - (IBAction)deleteTapped:(id)sender;
 - (IBAction)textChanged:(id)sender;
-
 -(void) startShaking;
 -(void) stopShaking;
 -(void) scaleEffect;

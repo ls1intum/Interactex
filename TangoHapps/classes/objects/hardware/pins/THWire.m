@@ -49,13 +49,24 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THWireNode
 
+-(id) init{
+    self = [super init];
+    if(self){
+        self.visible = YES;
+    }
+    return self;
+}
+
 -(void) draw{
-    
-    ccDrawColor4B(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
-    ccDrawCircle(ccp(0,0), kWireNodeRadius, 0, 30, NO);
+    if(self.visible){
+        ccDrawColor4B(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
+        ccDrawCircle(ccp(0,0), kWireNodeRadius, 0, 30, NO);
+    }
 }
 
 -(BOOL) testPoint:(CGPoint)point{
+    if(!self.visible) return NO;
+    
     CGPoint global = [self convertToWorldSpace:ccp(0,0)];
     return ccpDistance(global, point) < kWireNodeRadius;
 }
@@ -66,6 +77,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @synthesize p1 = _p1;
 @synthesize p2 = _p2;
+@synthesize showsNodes = _showsNodes;
+@synthesize selected = _selected;
 
 -(void) loadWire{
     
@@ -202,6 +215,26 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Properties
+
+-(void) updateNodesVisibility{
+    for (THWireNode * node in self.nodes) {
+        node.visible = _showsNodes || self.selected;
+    }
+}
+
+-(void) setShowsNodes:(BOOL)showsNodes{
+    if(_showsNodes != showsNodes){
+       _showsNodes = showsNodes;
+        [self updateNodesVisibility];
+    }
+}
+
+-(void) setSelected:(BOOL)selected{
+    if(_selected != selected){
+        _selected = selected;
+        [self updateNodesVisibility];
+    }
+}
 
 -(CGPoint)p1{
     if(self.obj1 == nil)
