@@ -57,6 +57,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) CGPoint position;
 @property (nonatomic, strong) UIColor * backgroundColor;
 
+-(CGColorRef) defaultBorderColor;
+
 -(void) addSubview:(THView*) object;
 -(void) removeSubview:(THView*) object;
 

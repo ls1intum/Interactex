@@ -44,12 +44,13 @@ You should have received a copy of the GNU General Public License along with thi
 #import <AddressBookUI/AddressBookUI.h>
 
 @interface THContact : NSObject
-@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * firstName;
+@property (nonatomic, copy) NSString * lastName;
 @property (nonatomic, copy) NSString * number;
 @end
 
-@interface THContactBook : THView
-{
+@interface THContactBook : THView {
+    
     CFMutableArrayRef _contacts;
     ABAddressBookRef _addressBook;
     
@@ -67,6 +68,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL showPreviousButton;
 
 @property (nonatomic, readonly) THContact * currentContact;
+
+-(void) loadGui;
 
 -(void) next;
 -(void) previous;

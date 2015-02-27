@@ -131,6 +131,17 @@ You should have received a copy of the GNU General Public License along with thi
     return monitor.minValue;
 }
 
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    THMonitor * monitor = (THMonitor*) self.simulableObject;
+    [monitor loadUI];
+    
+    [super addToLayer:layer];
+}
+
+#pragma mark - Other
 
 -(NSString*) description{
     return @"Monitor";

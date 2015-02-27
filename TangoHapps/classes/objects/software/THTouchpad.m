@@ -58,9 +58,9 @@ float const kNotifyMinDistance = 10.0f;
     self.view.userInteractionEnabled = YES;
     self.view.multipleTouchEnabled = NO;
     
-    self.view.layer.cornerRadius = 5;
-    self.view.layer.borderColor = [UIColor blackColor].CGColor;
-    self.view.layer.borderWidth = 1.0f;
+    self.view.layer.cornerRadius = 15;
+    self.view.layer.borderColor = [super defaultBorderColor];
+    self.view.layer.borderWidth = 2.0f;
     
     TFProperty * dxProperty = [TFProperty propertyWithName:@"dx" andType:kDataTypeFloat];
     TFProperty * dyProperty = [TFProperty propertyWithName:@"dy" andType:kDataTypeFloat];
@@ -90,8 +90,8 @@ float const kNotifyMinDistance = 10.0f;
     self = [super init];
     if(self){
         
-        self.width = 260;
-        self.height = 200;
+        self.width = kDefaultTouchpadSize.width;
+        self.height = kDefaultTouchpadSize.height;
         
         self.xMultiplier = 1;
         self.yMultiplier = 1;

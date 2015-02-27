@@ -53,6 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     self.minSlider.value = monitor.minValue;
+    
 }
 
 -(void) updateMaxSlider{
@@ -91,12 +92,25 @@ You should have received a copy of the GNU General Public License along with thi
     // Dispose of any resources that can be recreated.
 }
 
+-(void) handleMinChanged{
+    
+    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
+    self.maxSlider.minimumValue = monitor.minValue;
+}
+
+-(void) handleMaxChanged{
+    
+    THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
+    self.minSlider.maximumValue = monitor.maxValue;
+}
+
 -(IBAction)minChanged:(id)sender {
     
     THMonitorEditable * monitor = (THMonitorEditable*) self.editableObject;
     monitor.minValue = [self.minText.text floatValue];
     
     [self updateMinSlider];
+    [self handleMinChanged];
 }
 
 -(IBAction)maxChanged:(id)sender {
@@ -104,6 +118,7 @@ You should have received a copy of the GNU General Public License along with thi
     monitor.maxValue = [self.maxText.text floatValue];
     
     [self updateMaxSlider];
+    [self handleMaxChanged];
 }
 
 -(IBAction)minSliderChanged:(id)sender {
@@ -112,6 +127,7 @@ You should have received a copy of the GNU General Public License along with thi
     monitor.minValue = self.minSlider.value;
     
     [self updateMinText];
+    [self handleMinChanged];
 }
 
 -(IBAction)maxSliderChanged:(id)sender {
@@ -119,6 +135,7 @@ You should have received a copy of the GNU General Public License along with thi
     monitor.maxValue = self.maxSlider.value;
     
     [self updateMaxText];
+    [self handleMaxChanged];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{

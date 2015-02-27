@@ -47,13 +47,14 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic volume;
 @synthesize playing = _playing;
 
-float const kMusicPlayerButtonWidth = 30;
-float const kMusicPlayerButtonHeight = 30;
-float const kMusicPlayerVolumeViewWidth = 150;
-float const kMusicPlayerVolumeViewHeight = 30;
-float const kMusicPlayerLabelHeight = 40;
-float const kMusicPlayerInnerPadding = 10;
+CGSize const kMusicPlayerButtonSize = {42, 21};
+CGSize const kMusicPlayerPlayButtonSize = {20, 21};
+CGSize const kMusicPlayerVolumeViewSize = {180, 30};
+CGSize const kMusicPlayerDurationLabelSize = {50, 20};
 
+float const kMusicPlayerLabelHeight = 30;
+float const kMusicPlayerInnerPadding = 10;
+float const kMusicPlayerButtonsMargin = 30;
 float const kVolumeViewDefaultAlpha = 0.5;
 
 NSString * const kPlayImageName = @"musicPlay.png";
@@ -63,8 +64,8 @@ NSString * const kPauseImageName = @"pause.png";
     self = [super init];
     if(self){
         
-        self.width = 260;
-        self.height = 140;
+        self.width = KDefaultMusicPlayerSize.width;
+        self.height = KDefaultMusicPlayerSize.height;
         
         _showPlayButton = YES;
         _showNextButton = YES;
@@ -72,8 +73,6 @@ NSString * const kPauseImageName = @"pause.png";
         _showVolumeView = YES;
         
         [self loadMusicPlayer];
-        
-        self.text = @"";
     }
     return self;
 }
@@ -116,57 +115,114 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) checkAddRemoveVolumeView{
     if(self.showVolumeView){
-        [self.view addSubview:self.volumeView];
+        [self.view addSubview:_volumeView];
     } else {
-        [self.volumeView removeFromSuperview];
+        [_volumeView removeFromSuperview];
     }
 }
 
-
--(void) loadMusicPlayerViews{
+-(void) loadUI{
+    
     UIView * containerView = [[UIView alloc] init];
     containerView.bounds = CGRectMake(0, 0, self.width, self.height);
     containerView.layer.cornerRadius = 5.0f;
     containerView.layer.borderWidth = 1.0f;
+    containerView.layer.borderColor = [super defaultBorderColor];
     self.view = containerView;
     
-    UIImage * image =  [UIImage imageNamed:@"music"];
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.frame= CGRectMake(5, 5, image.size.width, image.size.height);
-    [containerView addSubview:imageView];
-        
-    _label = [[UILabel alloc] init];
-    _label.layer.borderWidth = 1.0f;
-    CGRect imageFrame = imageView.frame;
-    float x = imageFrame.origin.x + imageFrame.size.width + kMusicPlayerInnerPadding;
-    _label.frame = CGRectMake(x, 5, self.width - imageFrame.size.width - 20, kMusicPlayerLabelHeight);
-    _label.textAlignment = NSTextAlignmentCenter;
-    _label.font = [UIFont systemFontOfSize:12];
-    _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
-    [containerView addSubview:_label];
+    //slider
+    _progressSlider = [[UISlider alloc] init];
+    _progressSlider.frame = CGRectMake(2 + kMusicPlayerDurationLabelSize.width + kMusicPlayerInnerPadding, kMusicPlayerInnerPadding, self.width - 2 * kMusicPlayerInnerPadding - 2 - 2 * kMusicPlayerDurationLabelSize.width, _progressSlider.frame.size.height);
+    _progressSlider.value = 0.0f;
+    _progressSlider.minimumValue = 0.0f;
+    _progressSlider.maximumValue = 1.0f;
+    _progressSlider.minimumTrackTintColor = [UIColor darkGrayColor];
+    _progressSlider.maximumTrackTintColor = [UIColor darkGrayColor];
+    UIImage * thumbImage = [UIImage imageNamed:@"musicPlayerThumbImage.png"];
+    [_progressSlider setThumbImage:thumbImage forState:UIControlStateNormal];
+    [_progressSlider addTarget:self action:@selector(progressSliderChanged) forControlEvents:UIControlEventValueChanged];
+    [_progressSlider addTarget:self action:@selector(progressSliderBeganChanging) forControlEvents:UIControlEventTouchDown];
+    [_progressSlider addTarget:self action:@selector(progressSliderEndedChanging) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
+    _progressSlider.continuous = NO;
+    [containerView addSubview:_progressSlider];
     
-    CGRect previousButtonFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerButtonWidth, kMusicPlayerButtonHeight);
+    //elapsed time label
+    _elapsedTimeLabel = [[UILabel alloc] init];
+    //_elapsedTimeLabel.layer.borderWidth = 1.0f;
+    _elapsedTimeLabel.frame = CGRectMake(kMusicPlayerInnerPadding, kMusicPlayerInnerPadding - kMusicPlayerDurationLabelSize.height/2 + _progressSlider.frame.size.height/2, kMusicPlayerDurationLabelSize.width, kMusicPlayerDurationLabelSize.height);
+    _elapsedTimeLabel.textAlignment = NSTextAlignmentCenter;
+    _elapsedTimeLabel.font = [UIFont boldSystemFontOfSize:10];
+    [containerView addSubview:_elapsedTimeLabel];
+    
+    //duration label
+    _totalDurationLabel = [[UILabel alloc] init];
+    //_totalDurationLabel.layer.borderWidth = 1.0f;
+    _totalDurationLabel.frame = CGRectMake(self.width - kMusicPlayerDurationLabelSize.width - kMusicPlayerInnerPadding, _elapsedTimeLabel.frame.origin.y, kMusicPlayerDurationLabelSize.width, kMusicPlayerDurationLabelSize.height);
+    _totalDurationLabel.textAlignment = NSTextAlignmentCenter;
+    _totalDurationLabel.font = [UIFont boldSystemFontOfSize:10];
+    [containerView addSubview:_totalDurationLabel];
+    
+    //title label
+    _titleLabel = [[UILabel alloc] init];
+    _titleLabel.frame = CGRectMake(kMusicPlayerInnerPadding, _progressSlider.frame.origin.y + _progressSlider.frame.size.height + kMusicPlayerInnerPadding, self.width - 2 * kMusicPlayerInnerPadding, kMusicPlayerLabelHeight);
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
+    [containerView addSubview:_titleLabel];
+    
+    //album label
+    _albumLabel = [[UILabel alloc] init];
+    _albumLabel.frame = CGRectMake(kMusicPlayerInnerPadding, _titleLabel.frame.origin.y + _titleLabel.frame.size.height, self.width - 2 * kMusicPlayerInnerPadding, kMusicPlayerLabelHeight);
+    _albumLabel.textAlignment = NSTextAlignmentCenter;
+    _albumLabel.font = [UIFont systemFontOfSize:16];
+    _albumLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
+    [containerView addSubview:_albumLabel];
+    
+    
+    CGRect previousButtonFrame = CGRectMake(kMusicPlayerButtonsMargin, _albumLabel.frame.origin.y + _albumLabel.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerButtonSize.width, kMusicPlayerButtonSize.height);
     _previousButton = [self buttonWithFrame:previousButtonFrame imageName:@"backwards.png"];
     [_previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchDown];
     
-    CGRect playButtonFrame = CGRectMake(120, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerButtonWidth, kMusicPlayerButtonHeight);
+    CGRect playButtonFrame = CGRectMake(self.width/2 - kMusicPlayerPlayButtonSize.width/2, _albumLabel.frame.origin.y + _albumLabel.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerPlayButtonSize.width, kMusicPlayerPlayButtonSize.height);
     _playButton = [self buttonWithFrame:playButtonFrame imageName:kPlayImageName];
     [_playButton addTarget:self action:@selector(togglePlay) forControlEvents:UIControlEventTouchDown];
     
-    CGRect nextButtonFrame = CGRectMake(180, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerButtonWidth, kMusicPlayerButtonHeight);
+    CGRect nextButtonFrame = CGRectMake(self.width - kMusicPlayerButtonsMargin - kMusicPlayerButtonSize.width, _albumLabel.frame.origin.y + _albumLabel.frame.size.height + kMusicPlayerInnerPadding, kMusicPlayerButtonSize.width, kMusicPlayerButtonSize.height);
     _nextButton = [self buttonWithFrame:nextButtonFrame imageName:@"forward.png"];
     [_nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchDown];
     
-    CGRect volumeViewFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kMusicPlayerInnerPadding + kMusicPlayerButtonHeight + kMusicPlayerInnerPadding, kMusicPlayerVolumeViewWidth, kMusicPlayerVolumeViewHeight);
-    self.volumeView = [[MPVolumeView alloc] initWithFrame:volumeViewFrame];
-    self.volumeView.showsRouteButton = NO;
-    self.volumeView.alpha =kVolumeViewDefaultAlpha;
-    self.volumeView.userInteractionEnabled = NO;
+    
+    //left volume image
+    UIImage * leftVolumeImage = [UIImage imageNamed:@"musicPlayerLeftVolume.png"];
+    CGRect leftVolumeImageFrame = CGRectMake(kMusicPlayerInnerPadding, _playButton.frame.origin.y + _playButton.frame.size.height + 2 * kMusicPlayerInnerPadding + 4, leftVolumeImage.size.width, leftVolumeImage.size.height);
+    _leftVolumeView = [[UIImageView alloc] initWithFrame:leftVolumeImageFrame];
+    _leftVolumeView.image = leftVolumeImage;
+    [containerView addSubview:_leftVolumeView];
+    
+    //volume
+    CGRect volumeViewFrame = CGRectMake(leftVolumeImageFrame.origin.x + leftVolumeImageFrame.size.width + kMusicPlayerInnerPadding, _playButton.frame.origin.y + _playButton.frame.size.height + 2 * kMusicPlayerInnerPadding, kMusicPlayerVolumeViewSize.width, kMusicPlayerVolumeViewSize.height);
+    _volumeView = [[MPVolumeView alloc] initWithFrame:volumeViewFrame];
+    _volumeView.showsRouteButton = NO;
+    _volumeView.alpha = kVolumeViewDefaultAlpha;
+    _volumeView.userInteractionEnabled = NO;
+    
+    //right volume image
+    UIImage * rightVolumeImage = [UIImage imageNamed:@"musicPlayerRightVolume.png"];
+    CGRect rightVolumeViewFrame = CGRectMake(self.width - rightVolumeImage.size.width - kMusicPlayerInnerPadding, volumeViewFrame.origin.y, rightVolumeImage.size.width, rightVolumeImage.size.height);
+    _rightVolumeView = [[UIImageView alloc] initWithFrame:rightVolumeViewFrame];
+    _rightVolumeView.image = rightVolumeImage;
+    [containerView addSubview:_rightVolumeView];
+    
+    self.height =  volumeViewFrame.size.height + volumeViewFrame.origin.y - _progressSlider.frame.origin.y + 2 * kMusicPlayerInnerPadding;
     
     [self checkAddRemovePreviousButton];
     [self checkAddRemovePlayButton];
     [self checkAddRemoveNextButton];
     [self checkAddRemoveVolumeView];
+    
+    if(isSimulating){
+        [self updateStateToEnabled:YES];
+    }
 }
 
 -(void) loadMusicPlayerEventAndMethods{
@@ -185,18 +241,9 @@ NSString * const kPauseImageName = @"pause.png";
     [self registerEvents];
 }
 
--(void) loadMusicPlayer{
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillResignActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:nil];
-    
-    [self loadMusicPlayerViews];
-    
+-(void) loadSongs{
 #if (TARGET_IPHONE_SIMULATOR)
-        self.songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
+    self.songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
 #else
     
     self.musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
@@ -204,12 +251,22 @@ NSString * const kPauseImageName = @"pause.png";
     self.songsQuery = [MPMediaQuery songsQuery];
     [self.songsQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithBool:NO] forProperty:MPMediaItemPropertyIsCloudItem]];
     
+
     [self.musicPlayer setQueueWithQuery:self.songsQuery];
     [self.musicPlayer setRepeatMode:MPMusicRepeatModeAll];
     self.songs = self.songsQuery.items;
     
 #endif
+}
+
+-(void) loadMusicPlayer{
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [self loadSongs];
     [self loadMusicPlayerEventAndMethods];
 }
 
@@ -257,8 +314,7 @@ NSString * const kPauseImageName = @"pause.png";
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeBool:_showPlayButton forKey:@"showPlayButton"];
@@ -277,8 +333,25 @@ NSString * const kPauseImageName = @"pause.png";
 
 #pragma mark - Music player events
 
+-(void) progressSliderChanged{
+    
+    self.musicPlayer.currentPlaybackTime = _progressSlider.value * [self currentSongDuration];
+}
+
+-(void) progressSliderBeganChanging{
+    if(self.playing){
+        [self stopUpdatingSongProgress];
+    }
+}
+
+-(void) progressSliderEndedChanging{
+    if(self.playing){
+        [self startUpdatingSongProgress];
+    }
+}
+
 -(void) handleCurrentSongChanged{
-    [self updateLabel];
+    [self updateLabels];
 }
 
 -(void) handleCurrentPlayerStateChanged{
@@ -288,11 +361,11 @@ NSString * const kPauseImageName = @"pause.png";
         _playing = NO;
     }
     
-    [self updateLabel];
+    [self updateLabels];
     [self updatePlayButtonImage];
 }
 
-#pragma mark - Methods
+#pragma mark - UI
 
 -(void) setShowPlayButton:(BOOL)showPlayButton{
     if(showPlayButton != self.showPlayButton){
@@ -323,9 +396,81 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
+
+#pragma mark updating song progress
+
+-(void) stopUpdatingSongProgress{
+    [_musicProgressTimer invalidate];
+    _musicProgressTimer = nil;
+}
+
+-(void) startUpdatingSongProgress{
+    _musicProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(audioProgressUpdate) userInfo:nil repeats:YES];
+}
+
+-(void) audioProgressUpdate {
+    
+    if (self.musicPlayer != nil && self.musicPlayer.currentPlaybackTime > 0.0){
+        _progressSlider.value = (self.musicPlayer.currentPlaybackTime / [self currentSongDuration]);
+    }
+}
+
+#pragma mark Methods
+
+-(NSTimeInterval) currentSongDuration{
+    NSNumber * duration = [self.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    
+    return [duration doubleValue];
+}
+
+-(NSString*) currentSong{
+    
+#if (TARGET_IPHONE_SIMULATOR)
+    return [self.songs objectAtIndex:_currentSongIdx];
+#else
+    
+    NSUInteger index = self.musicPlayer.indexOfNowPlayingItem;
+    if(index == NSNotFound){
+        index = 0;
+    }
+    MPMediaItem * song = [self.songs objectAtIndex:index];
+    
+    if(song){
+        return [song valueForProperty: MPMediaItemPropertyTitle];
+    } else {
+        return nil;
+    }
+#endif
+}
+
+-(NSString*) currentSongArtist{
+    MPMediaItem * song = self.musicPlayer.nowPlayingItem;
+    if(song){
+        return [song valueForProperty: MPMediaItemPropertyArtist];
+    } else {
+        return nil;
+    }
+}
+
+-(NSString*) currentSongAlbum{
+    MPMediaItem * song = self.musicPlayer.nowPlayingItem;
+    if(song){
+        return [song valueForProperty: MPMediaItemPropertyAlbumTitle];
+    } else {
+        return nil;
+    }
+}
+
+-(BOOL) playing{
+    
+    return _playing;
+}
+
+#pragma mark Methods
+
 -(void) setVolume:(float)volume{
     
-    for (UIView *view in [self.volumeView subviews]){
+    for (UIView *view in [_volumeView subviews]){
         if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
             [(UISlider*)view setValue:volume];
             break;
@@ -335,7 +480,7 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(float) volume{
     
-    for (UIView *view in [self.volumeView subviews]){
+    for (UIView *view in [_volumeView subviews]){
         
         if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
             self.volume = [(UISlider*)view value];
@@ -343,40 +488,6 @@ NSString * const kPauseImageName = @"pause.png";
         }
     }
     return self.volume;
-}
-
--(void) setText:(NSString *)text{
-    
-    _label.text = text;
-}
-
--(NSString*) text{
-    return _label.text;
-}
-
--(NSString*) description{
-    return @"music player";
-}
-
--(NSString*) currentSong{
-    
-#if (TARGET_IPHONE_SIMULATOR)
-    return [self.songs objectAtIndex:_currentSongIdx];
-#else
-    
-    MPMediaItem * song = self.musicPlayer.nowPlayingItem;
-    if(song){
-        return [song valueForProperty: MPMediaItemPropertyTitle];
-    } else {
-        return nil;
-    }
-    return nil;
-#endif
-}
-
--(BOOL) playing{
-    
-    return _playing;
 }
 
 -(void) togglePlay{
@@ -401,12 +512,15 @@ NSString * const kPauseImageName = @"pause.png";
     self.audioPlayer.numberOfLoops = -1;
     [self.audioPlayer play];//this line crashes in simulator
     
-    [self updateLabel];
     [self updatePlayButtonImage];
 #else
 
     [self.musicPlayer play];
+    
 #endif
+    
+    [self startUpdatingSongProgress];
+    [self updateProgressSliderState];
     
     _playing = YES;
 }
@@ -414,11 +528,13 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) pause{
 #if (TARGET_IPHONE_SIMULATOR)
     //[[CDAudioManager sharedManager] stopBackgroundMusic];
-    [self updateLabel];
     [self updatePlayButtonImage];
 #else
     [self.musicPlayer pause];
+    
 #endif
+    [self stopUpdatingSongProgress];
+    [self updateProgressSliderState];
     _playing = NO;
     
 }
@@ -427,12 +543,13 @@ NSString * const kPauseImageName = @"pause.png";
     
 #if (TARGET_IPHONE_SIMULATOR)
     [self pause];
-    [self updateLabel];
     [self updatePlayButtonImage];
 #else
     [self.musicPlayer stop];
 #endif
     
+    [self stopUpdatingSongProgress];
+    [self updateProgressSliderState];
 }
 
 -(void) next{
@@ -461,12 +578,71 @@ NSString * const kPauseImageName = @"pause.png";
     
 }
 
--(void) updateLabel{
-    NSString * currentSong  = self.currentSong;
-    if(currentSong){
-        [self setText:self.currentSong];
+#pragma mark - UI updating
+
+- (NSString *)stringFromTimeInterval:(NSTimeInterval)interval {
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600);
+    
+    if(hours == 0){
+        return [NSString stringWithFormat:@"%2ld:%02ld", (long)minutes, (long)seconds];
     } else {
-        [self setText:@"Not playing"];
+        return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+    }
+}
+
+-(void) updateElapsedTimeLabel{
+    NSInteger elapsedTime = (NSInteger) self.musicPlayer.currentPlaybackTime;
+    
+    _elapsedTimeLabel.text = [self stringFromTimeInterval:elapsedTime];
+}
+
+-(void) updateTotalDurationLabel{
+    
+    NSInteger elapsedTime = (NSInteger) self.musicPlayer.currentPlaybackTime;
+    NSInteger countDown = (NSInteger) elapsedTime - [self currentSongDuration];
+    
+    _totalDurationLabel.text = [self stringFromTimeInterval:countDown];
+}
+
+-(void) updateAlbumLabel{
+    
+    NSString * artist = self.currentSongArtist;
+    NSString * album = self.currentSongAlbum;
+    NSString * albumLabelText = @"";
+    
+    if(artist && ![artist isEqualToString:@""]){
+        albumLabelText = [albumLabelText stringByAppendingString:artist];
+    }
+    
+    if(album && ![album isEqualToString:@""]){
+        if(artist){
+            albumLabelText = [albumLabelText stringByAppendingString:@" - "];
+        }
+        albumLabelText = [albumLabelText stringByAppendingString:album];
+    }
+    
+    _albumLabel.text = albumLabelText;
+}
+
+-(void) updateLabels{
+    
+    NSString * currentSong  = self.currentSong;
+    
+    if(currentSong){
+        
+        _titleLabel.text = self.currentSong;
+        
+        [self updateAlbumLabel];
+        
+        [self updateElapsedTimeLabel];
+        [self updateTotalDurationLabel];
+        
+    } else {
+        
+        _titleLabel.text = @"Not playing";
     }
 }
 
@@ -483,16 +659,32 @@ NSString * const kPauseImageName = @"pause.png";
     [_playButton setBackgroundImage:playImage forState:UIControlStateNormal];
 }
 
+-(void) updateProgressSliderState{
+    
+    if(self.playing){
+        _progressSlider.enabled = YES;
+    } else {
+        _progressSlider.enabled = NO;
+    }
+}
+
+-(void) updateStateToEnabled:(BOOL) enabled{
+
+    _playButton.enabled = enabled;
+    _nextButton.enabled = enabled;
+    _previousButton.enabled = enabled;
+    _volumeView.userInteractionEnabled = enabled;
+    _volumeView.alpha = (enabled ? 1.0f : kVolumeViewDefaultAlpha);
+    
+    [self updateLabels];
+}
+
+#pragma mark - Lifecycle Methods
+
 -(void) willStartSimulating{
     if(self.songs.count > 0){
-        
-        _playButton.enabled = YES;
-        _nextButton.enabled = YES;
-        _previousButton.enabled = YES;
-        self.volumeView.userInteractionEnabled = YES;
-        self.volumeView.alpha = 1.0f;
-        
-        [self updateLabel];
+        isSimulating = YES;
+        [self updateStateToEnabled:YES];
     }
 }
 
@@ -500,11 +692,14 @@ NSString * const kPauseImageName = @"pause.png";
     [self stop];
     [super stopSimulating];
     
-    _playButton.enabled = NO;
-    _nextButton.enabled = NO;
-    _previousButton.enabled = NO;
-    self.volumeView.userInteractionEnabled = NO;
-    self.volumeView.alpha = kVolumeViewDefaultAlpha;
+    [self updateStateToEnabled:NO];
+    isSimulating = NO;
+}
+
+#pragma mark - Other methods
+
+-(NSString*) description{
+    return @"music player";
 }
 
 -(void) prepareToDie{

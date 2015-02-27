@@ -81,12 +81,11 @@ float const kGraphViewLeftAxisWidth = 42.0;
 
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	// Fill in the background
+
 	CGContextSetFillColorWithColor(context, graphBackgroundColor());
 	CGContextFillRect(context, self.bounds);
     
     DrawHorizontalLine(context, 0.0, kGraphViewGraphOffsetY + kGraphViewAxisLabelSize.height / 2.0f , self.bounds.size.width);
-	//DrawHorizontalLine(context, 0.0, self.bounds.size.height / 2.0f + kGraphViewAxisLabelSize.height / 2.0f, self.bounds.size.width);
 	DrawHorizontalLine(context, 0.0, self.bounds.size.height - kGraphViewGraphOffsetY - kGraphViewAxisLabelSize.height / 2.0f, self.bounds.size.width);
     StrokeLines(context);
 }

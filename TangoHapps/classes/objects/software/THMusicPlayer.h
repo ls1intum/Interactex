@@ -46,10 +46,22 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THMusicPlayer : THView {
     NSInteger _currentSongIdx;
-    UILabel * _label;
+    
+    UISlider * _progressSlider;
+    UILabel * _elapsedTimeLabel;
+    UILabel * _totalDurationLabel;
+    UIImageView * _leftVolumeView;
+    UIImageView * _rightVolumeView;
+    
+    UILabel * _titleLabel;
+    UILabel * _albumLabel;
     UIButton * _playButton;
     UIButton * _nextButton;
     UIButton * _previousButton;
+    MPVolumeView * _volumeView;
+    NSTimer * _musicProgressTimer;
+    
+    BOOL isSimulating;
 }
 
 -(void) play;
@@ -58,20 +70,26 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) next;
 -(void) previous;
 
-@property (nonatomic,readonly) NSString * currentSong;
+@property (nonatomic, readonly) NSString * currentSong;
+@property (nonatomic, readonly) NSString * currentSongArtist;
+@property (nonatomic, readonly) NSString * currentSongAlbum;
+
 @property (nonatomic) float volume;
 
+#if (TARGET_IPHONE_SIMULATOR)
 @property (nonatomic, strong) AVAudioPlayer * audioPlayer;
+#endif
 
 @property (nonatomic, strong) MPMusicPlayerController * musicPlayer;
 @property (nonatomic, strong) NSArray * songs;
 @property (nonatomic, strong) MPMediaQuery * songsQuery;
-@property (nonatomic, strong) MPVolumeView * volumeView;
 
 @property (nonatomic, readonly) BOOL playing;
 @property (nonatomic) BOOL showPlayButton;
 @property (nonatomic) BOOL showNextButton;
 @property (nonatomic) BOOL showPreviousButton;
 @property (nonatomic) BOOL showVolumeView;
+
+-(void) loadUI;
 
 @end

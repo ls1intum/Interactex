@@ -229,6 +229,14 @@ You should have received a copy of the GNU General Public License along with thi
     [super willStartSimulation];
 }
 
+-(void) addToLayer:(TFLayer *)layer{
+    
+    THMusicPlayer * player = (THMusicPlayer*) self.simulableObject;
+    [player loadUI];
+    
+    [super addToLayer:layer];
+}
+
 -(NSString*) description{
     return @"Music Player";
 }

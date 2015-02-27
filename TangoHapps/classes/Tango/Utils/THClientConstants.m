@@ -154,7 +154,7 @@ float const kMaxAnalogValue = 1023;
 
 float const kGraphViewGraphOffsetY = 5.0f;
 CGSize const kGraphViewAxisLabelSize = {36.0f, 16.0f};
-float const kGraphViewAxisLineWidth = 6.0f;
+float const kGraphViewAxisLineWidth = 1.0f;
 
 
 NSString * const kConnectionServiceType = @"th-service";

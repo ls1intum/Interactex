@@ -411,6 +411,22 @@
 		9A95FB9718D0FDEF009A724F /* THHardwareComponentProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */; };
 		9A95FBD218D10030009A724F /* THHardwareComponentProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */; };
 		9A9C419218B13EDD002C2BC9 /* THBoardPropertiesPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */; };
+		9A9CF8FE1A9F60A200C4FF1F /* musicPlayerThumbImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF8FC1A9F60A200C4FF1F /* musicPlayerThumbImage.png */; };
+		9A9CF8FF1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF8FD1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png */; };
+		9A9CF90D1A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF9091A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png */; };
+		9A9CF90E1A9F6E2F00C4FF1F /* musicPlayerLeftVolume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF90A1A9F6E2F00C4FF1F /* musicPlayerLeftVolume@2x.png */; };
+		9A9CF90F1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF90B1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png */; };
+		9A9CF9101A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF90C1A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png */; };
+		9A9CF9111A9F6E3500C4FF1F /* musicPlayerLeftVolume.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF9091A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png */; };
+		9A9CF9121A9F6E3500C4FF1F /* musicPlayerLeftVolume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF90A1A9F6E2F00C4FF1F /* musicPlayerLeftVolume@2x.png */; };
+		9A9CF9131A9F6E3500C4FF1F /* musicPlayerRightVolume.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF90B1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png */; };
+		9A9CF9141A9F6E3500C4FF1F /* musicPlayerRightVolume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF90C1A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png */; };
+		9A9CF9151A9F6E3500C4FF1F /* musicPlayerThumbImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF8FC1A9F60A200C4FF1F /* musicPlayerThumbImage.png */; };
+		9A9CF9161A9F6E3500C4FF1F /* musicPlayerThumbImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9CF8FD1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png */; };
+		9A9CF9171A9F6E5000C4FF1F /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144BD17DE7A060061EDF8 /* call.png */; };
+		9A9CF9181A9F6E5000C4FF1F /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144BE17DE7A060061EDF8 /* call@2x.png */; };
+		9A9CF9191A9F6E5600C4FF1F /* contactBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144C717DE7A060061EDF8 /* contactBook.png */; };
+		9A9CF91A1A9F6E5600C4FF1F /* contactBook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4144C817DE7A060061EDF8 /* contactBook@2x.png */; };
 		9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */; };
 		9A9FEB6417BC080C004AB8CF /* THWireProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */; };
 		9A9FEB7117BE54B3004AB8CF /* THClientDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEB7017BE54B3004AB8CF /* THClientDownloadViewController.m */; };
@@ -1318,6 +1334,12 @@
 		9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THHardwareComponentProperties.xib; sourceTree = "<group>"; };
 		9A9C419018B13EDD002C2BC9 /* THBoardPropertiesPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoardPropertiesPinCell.h; sourceTree = "<group>"; };
 		9A9C419118B13EDD002C2BC9 /* THBoardPropertiesPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoardPropertiesPinCell.m; sourceTree = "<group>"; };
+		9A9CF8FC1A9F60A200C4FF1F /* musicPlayerThumbImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicPlayerThumbImage.png; sourceTree = "<group>"; };
+		9A9CF8FD1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "musicPlayerThumbImage@2x.png"; sourceTree = "<group>"; };
+		9A9CF9091A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicPlayerLeftVolume.png; sourceTree = "<group>"; };
+		9A9CF90A1A9F6E2F00C4FF1F /* musicPlayerLeftVolume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "musicPlayerLeftVolume@2x.png"; sourceTree = "<group>"; };
+		9A9CF90B1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicPlayerRightVolume.png; sourceTree = "<group>"; };
+		9A9CF90C1A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "musicPlayerRightVolume@2x.png"; sourceTree = "<group>"; };
 		9A9FEB1A17BC06CD004AB8CF /* THWireProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWireProperties.h; sourceTree = "<group>"; };
 		9A9FEB1B17BC06CD004AB8CF /* THWireProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWireProperties.m; sourceTree = "<group>"; };
 		9A9FEB6317BC080C004AB8CF /* THWireProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THWireProperties.xib; sourceTree = "<group>"; };
@@ -1954,6 +1976,12 @@
 		9A4144AC17DE7A060061EDF8 /* software */ = {
 			isa = PBXGroup;
 			children = (
+				9A9CF9091A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png */,
+				9A9CF90A1A9F6E2F00C4FF1F /* musicPlayerLeftVolume@2x.png */,
+				9A9CF90B1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png */,
+				9A9CF90C1A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png */,
+				9A9CF8FC1A9F60A200C4FF1F /* musicPlayerThumbImage.png */,
+				9A9CF8FD1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png */,
 				02D809C41A80CFDB009DDB4C /* graph.png */,
 				02D809C51A80CFDB009DDB4C /* graph@2x.png */,
 				02D809B01A80CC4E009DDB4C /* threshold.png */,
@@ -3447,6 +3475,7 @@
 				9A8BB913167C7D8A00FBABFB /* buzzerPlay@2x.png in Resources */,
 				9A8BBA45167F2FAD00FBABFB /* compassHit.mp3 in Resources */,
 				9A94F3E816A00EA400AF52AB /* ipadFrame.png in Resources */,
+				9A9CF8FE1A9F60A200C4FF1F /* musicPlayerThumbImage.png in Resources */,
 				9A94F3EA16A00EA400AF52AB /* ipadFrame@2x.png in Resources */,
 				9ABC27291809526C00B39D72 /* lilypadComplex.png in Resources */,
 				9A94F3EC16A00EA400AF52AB /* removeButton.png in Resources */,
@@ -3560,6 +3589,7 @@
 				9A41459517DE7A060061EDF8 /* mapper@2x.png in Resources */,
 				9A41459717DE7A060061EDF8 /* music.png in Resources */,
 				9A41459917DE7A060061EDF8 /* music@2x.png in Resources */,
+				9A9CF8FF1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png in Resources */,
 				026C66CA1A77BFAA00860E66 /* recording@2x.png in Resources */,
 				257730331A17858800F038D1 /* segDivider.png in Resources */,
 				9A41459B17DE7A060061EDF8 /* palette_boolean.png in Resources */,
@@ -3593,6 +3623,7 @@
 				9A4145C917DE7A060061EDF8 /* palette_iswitch@2x.png in Resources */,
 				9A4145CB17DE7A060061EDF8 /* palette_label.png in Resources */,
 				9A4145CD17DE7A060061EDF8 /* palette_label@2x.png in Resources */,
+				9A9CF90E1A9F6E2F00C4FF1F /* musicPlayerLeftVolume@2x.png in Resources */,
 				9A5BD7471860C52E00842833 /* squareFilled@2x.png in Resources */,
 				25E57B5919C08984006B61A8 /* editorLayerBg.png in Resources */,
 				9A4145CF17DE7A060061EDF8 /* palette_led.png in Resources */,
@@ -3622,6 +3653,8 @@
 				9A4145F117DE7A060061EDF8 /* palette_switch@2x.png in Resources */,
 				9A4145F317DE7A060061EDF8 /* palette_threeColorLed.png in Resources */,
 				9A4145F517DE7A060061EDF8 /* palette_threeColorLed@2x.png in Resources */,
+				9A9CF9101A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png in Resources */,
+				9A9CF90F1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png in Resources */,
 				9A4145F717DE7A060061EDF8 /* palette_timer.png in Resources */,
 				25981C8319D6BCC600DE4131 /* zoomMinus@2x.png in Resources */,
 				9A4145F917DE7A060061EDF8 /* palette_timer@2x.png in Resources */,
@@ -3690,6 +3723,7 @@
 				2577302F1A17858800F038D1 /* segBg.png in Resources */,
 				9A41465517DE7A060061EDF8 /* push@2x.png in Resources */,
 				9A41465A17DE86E60061EDF8 /* palettePull.png in Resources */,
+				9A9CF90D1A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png in Resources */,
 				9A41469517DE93F30061EDF8 /* palettePull@2x.png in Resources */,
 				9A1C3AC41886DDAE007C5E94 /* palette_LSMCompass@2x.png in Resources */,
 				6778EA0818F6AC980080B1C9 /* palette_gesture@2x.png in Resources */,
@@ -3726,25 +3760,31 @@
 			files = (
 				02D809C71A80CFDB009DDB4C /* graph.png in Resources */,
 				9AFB7E4E1833D89800694CCE /* temperatureSensor.png in Resources */,
+				9A9CF9161A9F6E3500C4FF1F /* musicPlayerThumbImage@2x.png in Resources */,
 				25D5EE371A4331C300FBCA47 /* Images.xcassets in Resources */,
 				9AFB7E5C1833DBCC00694CCE /* button.png in Resources */,
 				9ACE30B61A9277570089D669 /* song2.mp3 in Resources */,
 				9A2EA8BB19DB2CF200E30E2D /* musicPlay.png in Resources */,
 				9AFB7E461833D89800694CCE /* lightSensor.png in Resources */,
 				9AFB7E521833D89800694CCE /* threeColorLed.png in Resources */,
+				9A9CF9171A9F6E5000C4FF1F /* call.png in Resources */,
 				9ACE30C61A92790A0089D669 /* song1.mp3 in Resources */,
 				9A51101A1837DD5800EB25FA /* projectIcon@2x.png in Resources */,
+				9A9CF9141A9F6E3500C4FF1F /* musicPlayerRightVolume@2x.png in Resources */,
 				9AF50032167B83140020241C /* iphoneFrame.png in Resources */,
 				9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */,
 				9A5110181837DD5800EB25FA /* projectIcon.png in Resources */,
 				9AFB7E481833D89800694CCE /* lightSensor@2x.png in Resources */,
 				9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */,
 				9A7E4D36183618C200657B72 /* LSMCompass@2x.png in Resources */,
+				9A9CF9131A9F6E3500C4FF1F /* musicPlayerRightVolume.png in Resources */,
+				9A9CF9111A9F6E3500C4FF1F /* musicPlayerLeftVolume.png in Resources */,
 				9AFB7E421833D89800694CCE /* led.png in Resources */,
 				9A5D046E18844ADC006E9348 /* peer_disconnected.mp3 in Resources */,
 				9AF50036167B83140020241C /* removeButton.png in Resources */,
 				02D809C91A80CFDB009DDB4C /* graph@2x.png in Resources */,
 				9A84C1E61837820500848972 /* musicPlayer@2x.png in Resources */,
+				9A9CF9151A9F6E3500C4FF1F /* musicPlayerThumbImage.png in Resources */,
 				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
 				9A2EA8BD19DB2CF200E30E2D /* pause.png in Resources */,
 				9AFB7E561833D89800694CCE /* vibeBoard.png in Resources */,
@@ -3756,7 +3796,9 @@
 				9A2EA8B819DB2CF200E30E2D /* backwards@2x.png in Resources */,
 				02D809C31A80CC6C009DDB4C /* threshold.png in Resources */,
 				9A2EA8B919DB2CF200E30E2D /* forward.png in Resources */,
+				9A9CF91A1A9F6E5600C4FF1F /* contactBook@2x.png in Resources */,
 				9A2EA8BE19DB2CF200E30E2D /* pause@2x.png in Resources */,
+				9A9CF9121A9F6E3500C4FF1F /* musicPlayerLeftVolume@2x.png in Resources */,
 				9AFB7E3A1833D89800694CCE /* accelerometer.png in Resources */,
 				9AFB7E401833D89800694CCE /* buzzer@2x.png in Resources */,
 				9AFB7E441833D89800694CCE /* led@2x.png in Resources */,
@@ -3772,11 +3814,13 @@
 				9AFB7E581833D89800694CCE /* vibeBoard@2x.png in Resources */,
 				9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
 				02D809C21A80CC6A009DDB4C /* threshold@2x.png in Resources */,
+				9A9CF9191A9F6E5600C4FF1F /* contactBook.png in Resources */,
 				9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */,
 				9AFB7E3C1833D89800694CCE /* accelerometer@2x.png in Resources */,
 				9A2EA8BA19DB2CF200E30E2D /* forward@2x.png in Resources */,
 				9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */,
 				9AFB7E3E1833D89800694CCE /* buzzer.png in Resources */,
+				9A9CF9181A9F6E5000C4FF1F /* call@2x.png in Resources */,
 				9AFB7E501833D89800694CCE /* temperatureSensor@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

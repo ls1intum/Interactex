@@ -56,5 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addValue1:(float) value;
 -(void) addValue2:(float) value;
 
+-(void) loadUI;
+
 @end
 

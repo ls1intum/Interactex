@@ -148,6 +148,14 @@ You should have received a copy of the GNU General Public License along with thi
     contactBook.showNextButton = showNextButton;
 }
 
+-(void) addToLayer:(TFLayer *)layer{
+    
+    THContactBook * contactBook = (THContactBook*) self.simulableObject;
+    [contactBook loadGui];
+    
+    [super addToLayer:layer];
+}
+
 -(NSString*) description{
     return @"ContactBook";
 }

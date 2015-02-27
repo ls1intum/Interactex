@@ -22,12 +22,11 @@
 		layer = [[CALayer alloc] init];
 		layer.delegate = self;
         
-        //layer.bounds = CGRectMake(0.0, - self.height - kGraphViewGraphOffsetY, kGraphSegmentSize, height);
-layer.bounds = CGRectMake(0.0, - self.height, kGraphSegmentSize, height);
+        layer.bounds = CGRectMake(0.0, - self.height, kGraphSegmentSize, height);
         
-		//layer.opaque = YES;
-		self.index = kGraphSegmentSize;
-	}
+        //layer.opaque = YES;
+        self.index = kGraphSegmentSize;
+    }
 	return self;
 }
 

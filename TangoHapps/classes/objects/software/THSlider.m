@@ -72,8 +72,8 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        self.width = 150;
-        self.height = 30;
+        self.width = kDefaultSliderSize.width;
+        self.height = kDefaultSliderSize.height;
         
         self.position = CGPointZero;
         

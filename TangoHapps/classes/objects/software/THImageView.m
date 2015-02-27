@@ -48,8 +48,8 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        self.width = 200;
-        self.height = 200;
+        self.width = kDefaultImageViewSize.width;
+        self.height = kDefaultImageViewSize.height;
     }
     return self;
 }
@@ -85,10 +85,10 @@ You should have received a copy of the GNU General Public License along with thi
     self.imageView = [[UIImageView alloc] init];
     self.imageView.frame = CGRectMake(0, 0, self.width, self.height);
     self.imageView.layer.borderWidth = 1.0f;
+    self.imageView.layer.borderColor = [super defaultBorderColor];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    self.view = self.imageView;
     self.imageView.image = self.image;
+    self.view = self.imageView;
 }
 
 -(NSString*) description{

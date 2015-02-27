@@ -47,17 +47,22 @@ You should have received a copy of the GNU General Public License along with thi
 //float const kMonitorUpdateFrequency = 1/20.0f; //monitor updated every 0.5 seconds
 float const kMonitorNewValueX = 75.0f;
 
--(void) loadMonitor{
+-(id) init{
     
-    CGRect frame = CGRectMake(0, 0, self.width, self.height);
+    self = [super init];
     
-    THGraphView * view = [[THGraphView alloc] initWithFrame:frame maxAxisY:self.maxValue minAxisY:self.minValue];
-    view.layer.borderWidth = 1.0f;
-    view.contentMode = UIViewContentModeScaleAspectFit;
-
-    self.view = view;
-    
-    [self addMethods];
+    if(self){
+        
+        self.width = kDefaultGraphSize.width;
+        self.height = kDefaultGraphSize.height;
+        
+        _maxValue = 255;
+        _minValue = -255;
+        
+        [self addMethods];
+        //[self loadUI];
+    }
+    return self;
 }
 
 -(void) addMethods{
@@ -73,23 +78,6 @@ float const kMonitorNewValueX = 75.0f;
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
--(id) init{
-    
-    self = [super init];
-    
-    if(self){
-        
-        self.width = 260;
-        self.height = 130;
-        
-        _maxValue = 255;
-        _minValue = -255;
-        
-        [self loadMonitor];
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
@@ -101,7 +89,8 @@ float const kMonitorNewValueX = 75.0f;
         _maxValue = [decoder decodeIntegerForKey:@"maxValue"];
         _minValue = [decoder decodeIntegerForKey:@"minValue"];
         
-        [self loadMonitor];
+        [self addMethods];
+        //[self loadUI];
     }
     
     return self;
@@ -143,10 +132,10 @@ float const kMonitorNewValueX = 75.0f;
     
     THGraphView * view = (THGraphView*)self.view;
     [view addX:value];
-    
 }
 
 -(void) addValue2:(float) value{
+    
     value = [self mapValueToGraphRange:value];
     
     THGraphView * view = (THGraphView*)self.view;
@@ -167,6 +156,18 @@ float const kMonitorNewValueX = 75.0f;
     view.minAxisY = minValue;
     
     _minValue = minValue;
+}
+
+-(void) loadUI{
+    
+    CGRect frame = CGRectMake(0, 0, self.width, self.maxValue);
+    
+    THGraphView * view = [[THGraphView alloc] initWithFrame:frame maxAxisY:self.maxValue minAxisY:self.minValue];
+    view.layer.borderWidth = 1.0f;
+    view.layer.borderColor = [super defaultBorderColor];
+    view.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.view = view;
 }
 
 #pragma mark - Lifecycle

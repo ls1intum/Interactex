@@ -9,8 +9,7 @@
 #include "THGraphViewHelper.h"
 #import "THClientConstants.h"
 
-CGColorRef CreateDeviceGrayColor(CGFloat w, CGFloat a)
-{
+CGColorRef CreateDeviceGrayColor(CGFloat w, CGFloat a) {
 	CGColorSpaceRef gray = CGColorSpaceCreateDeviceGray();
 	CGFloat comps[] = {w, a};
 	CGColorRef color = CGColorCreate(gray, comps);
@@ -18,8 +17,7 @@ CGColorRef CreateDeviceGrayColor(CGFloat w, CGFloat a)
 	return color;
 }
 
-CGColorRef CreateDeviceRGBColor(CGFloat r, CGFloat g, CGFloat b, CGFloat a)
-{
+CGColorRef CreateDeviceRGBColor(CGFloat r, CGFloat g, CGFloat b, CGFloat a) {
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
 	CGFloat comps[] = {r, g, b, a};
 	CGColorRef color = CGColorCreate(rgb, comps);
@@ -27,22 +25,18 @@ CGColorRef CreateDeviceRGBColor(CGFloat r, CGFloat g, CGFloat b, CGFloat a)
 	return color;
 }
 
-CGColorRef graphBackgroundColor()
-{
+CGColorRef graphBackgroundColor() {
 	static CGColorRef c = NULL;
-	if (c == NULL)
-	{
-		c = CreateDeviceGrayColor(0.6, 1.0);
+	if (c == NULL) 	{
+		c = CreateDeviceGrayColor(0.8, 1.0);
 	}
 	return c;
 }
 
-CGColorRef graphLineColor()
-{
+CGColorRef graphLineColor() {
 	static CGColorRef c = NULL;
-	if (c == NULL)
-	{
-		c = CreateDeviceGrayColor(0.5, 1.0);
+	if (c == NULL) 	{
+		c = CreateDeviceGrayColor(1.0, 1.0);
 	}
 	return c;
 }

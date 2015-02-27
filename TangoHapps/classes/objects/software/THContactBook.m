@@ -44,16 +44,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 @implementation THContact
-@synthesize name,number;
+@synthesize firstName, lastName, number;
+
 @end
 
 @implementation THContactBook
 
-
-float const kContactBookButtonWidth = 30;
-float const kContactBookButtonHeight = 30;
-float const kContactBookLabelHeight = 40;
-float const kContactBookInnerPadding = 10;
+CGSize const kContactBookCallButtonSize = {62,62};
+CGSize const kContactBookButtonSize = {30, 16};
+CGSize const kContactBookLabelSize = {110,40};
+float const kContactBookInnerPadding = 5;
+float const kContactBookOutterPadding = 5;
 
 NSString * const kCallImageName = @"call.png";
 
@@ -65,8 +66,8 @@ NSString * const kCallImageName = @"call.png";
         _showNextButton = YES;
         _showPreviousButton = YES;
         
-        self.width = 260;
-        self.height = 100;
+        self.width = kDefaultContactBookSize.width;
+        self.height = kDefaultContactBookSize.height;
         
         [self loadContactBook];
     }
@@ -108,51 +109,6 @@ NSString * const kCallImageName = @"call.png";
         [_nextButton removeFromSuperview];
     }
 }
-
--(void) loadGui{
-    UIView * containerView = [[UIView alloc] init];
-    containerView.bounds = CGRectMake(0, 0, self.width, self.height);
-    containerView.layer.cornerRadius = 5.0f;
-    containerView.layer.borderWidth = 1.0f;
-    //containerView.contentMode = UIViewContentModeTop;
-    self.view = containerView;
-    
-    UIImage * image =  [UIImage imageNamed:@"contactBook"];
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
-    //float heightDiff = self.height - image.size.height;
-    imageView.frame= CGRectMake(5, 5, image.size.width, image.size.height);
-    [containerView addSubview:imageView];
-    
-    _label = [[UILabel alloc] init];
-    //_label.layer.borderWidth = 1.0f;
-    _label.clipsToBounds = YES;
-    _label.layer.cornerRadius = 5.0f;
-    _label.backgroundColor = [UIColor colorWithRed:50/255.0f green:50/255.0f blue:50/255.0f alpha:0.5];
-    CGRect imageFrame = imageView.frame;
-    float x = imageFrame.origin.x + imageFrame.size.width + kContactBookInnerPadding;
-    _label.frame = CGRectMake(x, 5, self.width - imageFrame.size.width - 20, kContactBookLabelHeight);
-    _label.textAlignment = NSTextAlignmentCenter;
-    _label.font = [UIFont systemFontOfSize:12];
-    [_label setTextColor:[UIColor whiteColor]];
-    [containerView addSubview:_label];
-    
-    CGRect previousButtonFrame = CGRectMake(60, _label.frame.origin.y + _label.frame.size.height + kContactBookInnerPadding, kContactBookButtonWidth, kContactBookButtonHeight);
-    _previousButton = [self buttonWithFrame:previousButtonFrame imageName:@"backwards.png"];
-    [_previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchDown];
-    
-    CGRect playButtonFrame = CGRectMake(120, _label.frame.origin.y + _label.frame.size.height + kContactBookInnerPadding, kContactBookButtonWidth, kContactBookButtonHeight);
-    _callButton = [self buttonWithFrame:playButtonFrame imageName:kCallImageName];
-    [_callButton addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchDown];
-    
-    CGRect nextButtonFrame = CGRectMake(180, _label.frame.origin.y + _label.frame.size.height + kContactBookInnerPadding, kContactBookButtonWidth, kContactBookButtonHeight);
-    _nextButton = [self buttonWithFrame:nextButtonFrame imageName:@"forward.png"];
-    [_nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchDown];
-    
-    [self checkAddRemovePreviousButton];
-    [self checkAddRemoveCallButton];
-    [self checkAddRemoveNextButton];
-}
-
 -(void) loadMethods{
     TFMethod * method1 = [TFMethod methodWithName:@"call"];
     TFMethod * method2 = [TFMethod methodWithName:@"previous"];
@@ -162,14 +118,12 @@ NSString * const kCallImageName = @"call.png";
 
 -(void) loadContactBook{
     
-    [self loadGui];
     [self loadMethods];   
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
         _showCallButton = [decoder decodeBoolForKey:@"showCallButton"];
@@ -181,8 +135,7 @@ NSString * const kCallImageName = @"call.png";
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeBool:_showCallButton forKey:@"showCallButton"];
@@ -233,22 +186,41 @@ NSString * const kCallImageName = @"call.png";
 -(void) call{
     THContact * contact = self.currentContact;
     if(contact){
-        NSLog(@"Calling %@",contact.number);
+
         [THClientHelper MakeCallTo:contact.number];
+    }
+}
+
+-(void) updateContactBookState{
+    if(_contacts != nil){
+        _callButton.enabled = YES;
+        _nextButton.enabled = YES;
+        _previousButton.enabled = YES;
+        [self updateCurrentContact];
     }
 }
 
 -(void) updateCurrentContact{
     THContact * contact = self.currentContact;
     if(contact){
-        NSString *labelText = contact.name;
-        labelText = [labelText stringByAppendingString:@" : "];
-        if (contact.number) {
-            labelText = [labelText stringByAppendingString:contact.number];
+        
+        if(contact.firstName || contact.lastName){
+            NSString * firstName = contact.firstName;
+            if(!firstName){
+                firstName = @"";
+            }
+            
+            NSString * lastName = contact.lastName;
+            if(!lastName){
+                lastName = @"";
+            }
+            
+            _label.text = [NSString stringWithFormat:@"%@\n%@",firstName,lastName];
+            
         } else {
-            labelText = [labelText stringByAppendingString:@"(No Phone)"];
+            _label.text = @"Unknown";
         }
-        _label.text = labelText;
+        
     } else {
         _label.text = [NSString stringWithFormat:@"No contacts in book"];
     }
@@ -263,28 +235,14 @@ NSString * const kCallImageName = @"call.png";
         ABMutableMultiValueRef multi = ABRecordCopyValue(record, kABPersonPhoneProperty);
         
         THContact * contact = [[THContact alloc] init];
-        NSString *displayName = @"";
-        //if first name exists
+        
         if (name1 && ![name1 isEqualToString:@"null"]) {
-            displayName = name1;
-            //if last name also exists
-            if (name2 && ![name2 isEqualToString:@"null"]) {
-                displayName = [displayName stringByAppendingString:@" "];
-                displayName = [displayName stringByAppendingString:name2];
-            }
-        } else {
-            //if only last name exists
-            if (![name2 isEqualToString:@"null"]) {
-                displayName = name2;
-            }
-        }
-        //if no name exists
-        if (displayName.length < 1) {
-            displayName = @"Unknown";
+            contact.firstName = name1;
         }
         
-        //contact.name = [NSString stringWithFormat:@"%@ %@",name1,name2];
-        contact.name = displayName;
+        if (name2 && ![name2 isEqualToString:@"null"]) {
+            contact.lastName = name2;
+        }
         
         if(ABMultiValueGetCount(multi) > 0){
             NSString * phoneRef = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(multi, 0));
@@ -308,14 +266,60 @@ NSString * const kCallImageName = @"call.png";
     
     CFRelease(people);
     
-    _callButton.enabled = YES;
-    _nextButton.enabled = YES;
-    _previousButton.enabled = YES;
+    [self updateContactBookState];
+}
+
+
+-(void) loadGui{
     
-    [self updateCurrentContact];
+    UIView * containerView = [[UIView alloc] init];
+    containerView.bounds = CGRectMake(0, 0, self.width, self.height);
+    containerView.layer.cornerRadius = 5.0f;
+    containerView.layer.borderWidth = 1.0f;
+    containerView.layer.borderColor = [super defaultBorderColor];
+    self.view = containerView;
+    
+    CGRect callButtonFrame = CGRectMake(containerView.frame.size.width/2 - kContactBookCallButtonSize.width/2, kContactBookOutterPadding, kContactBookCallButtonSize.width, kContactBookCallButtonSize.height);
+    _callButton = [self buttonWithFrame:callButtonFrame imageName:kCallImageName];
+    [_callButton addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchDown];
+    
+    //contact book image
+    UIImage * image =  [UIImage imageNamed:@"contactBook"];
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame= CGRectMake(kContactBookOutterPadding, callButtonFrame.origin.y + callButtonFrame.size.height + kContactBookInnerPadding, image.size.width, image.size.height);
+    [containerView addSubview:imageView];
+    
+    //previous button
+    CGRect previousButtonFrame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + kContactBookInnerPadding, imageView.frame.origin.y + (imageView.frame.size.height - kContactBookButtonSize.height)/2, kContactBookButtonSize.width, kContactBookButtonSize.height);
+    _previousButton = [self buttonWithFrame:previousButtonFrame imageName:@"backwards.png"];
+    [_previousButton addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchDown];
+    
+    //label
+    _label = [[UILabel alloc] init];
+    _label.clipsToBounds = YES;
+    _label.layer.cornerRadius = 5.0f;
+    _label.frame = CGRectMake(previousButtonFrame.origin.x + previousButtonFrame.size.width + kContactBookInnerPadding, imageView.frame.origin.y + (imageView.frame.size.height - kContactBookLabelSize.height)/2, kContactBookLabelSize.width , kContactBookLabelSize.height);
+    _label.textAlignment = NSTextAlignmentCenter;
+    _label.font = [UIFont systemFontOfSize:16];
+    _label.numberOfLines = 2;
+    [containerView addSubview:_label];
+    
+    //netx button
+    CGRect nextButtonFrame = CGRectMake(_label.frame.origin.x + _label.frame.size.width + kContactBookInnerPadding, previousButtonFrame.origin.y, kContactBookButtonSize.width, kContactBookButtonSize.height);
+    _nextButton = [self buttonWithFrame:nextButtonFrame imageName:@"forward.png"];
+    [_nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchDown];
+    
+    [self checkAddRemovePreviousButton];
+    [self checkAddRemoveCallButton];
+    [self checkAddRemoveNextButton];
+    
+    self.height = imageView.frame.origin.y + imageView.frame.size.height - callButtonFrame.origin.y + 2 * kContactBookOutterPadding;
+    
+    [self updateContactBookState];
 }
 
 -(void) willStartSimulating{
+    
     CFErrorRef error;
     _addressBook = ABAddressBookCreateWithOptions(NULL, &error);
     

@@ -120,6 +120,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
+-(CGColorRef) defaultBorderColor{
+     return [UIColor darkGrayColor].CGColor;
+}
+
 -(void) setVisible:(BOOL)visible{
     if(visible != self.visible){
         self.view.hidden = !visible;
