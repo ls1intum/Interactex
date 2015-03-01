@@ -61,8 +61,11 @@ You should have received a copy of the GNU General Public License along with thi
     THViewEditableObject * view = [THViewEditableObject newView];
     view.opacity = kUiViewOpacityEditor;
     view.canBeResized = NO;
+    view.width = kiPhoneFrames[iPhone.type].size.width;
+    view.height = kiPhoneFrames[iPhone.type].size.height;
+    
     iPhone.currentView = view;
-
+    
     return iPhone;
 }
 

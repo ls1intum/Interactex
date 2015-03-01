@@ -163,6 +163,30 @@ You should have received a copy of the GNU General Public License along with thi
     iPhoneObject.backgroundColor = backgroundColor;
 }
 
+-(BOOL) canResizeToWidth:(float) width{
+    
+    THView * iPhoneObject = (THView*) self.simulableObject;
+    CGPoint center = iPhoneObject.view.center;
+    CGRect newBoundingBox = CGRectMake(center.x - width/2, center.y - self.height/2, width, self.height);
+    
+    THViewEditableObject * rootView = [THDirector sharedDirector].currentProject.iPhone.currentView;
+    CGRect rootViewRect = rootView.boundingBox;
+    
+    return (CGRectGetMinX(rootViewRect) < CGRectGetMinX(newBoundingBox) && CGRectGetMaxX(rootViewRect) > CGRectGetMaxX(newBoundingBox));
+}
+
+-(BOOL) canResizeToHeight:(float) height{
+    
+    THView * iPhoneObject = (THView*) self.simulableObject;
+    CGPoint center = iPhoneObject.view.center;
+    CGRect newBoundingBox = CGRectMake(center.x - self.width/2, center.y - height/2 - 44, self.width, height);//check here
+    
+    THViewEditableObject * rootView = [THDirector sharedDirector].currentProject.iPhone.currentView;
+    CGRect rootViewRect = rootView.boundingBox;
+    
+    return (CGRectGetMinY(rootViewRect) < CGRectGetMinY(newBoundingBox) && CGRectGetMaxY(rootViewRect) > CGRectGetMaxY(newBoundingBox));
+}
+
 -(float) width{
     
     THView * iPhoneObject = (THView*) self.simulableObject;
@@ -171,7 +195,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setWidth:(float)width{
     
+    
     THView * iPhoneObject = (THView*) self.simulableObject;
+    
     iPhoneObject.width = width;
     
     [_properties reloadState];
@@ -226,9 +252,14 @@ You should have received a copy of the GNU General Public License along with thi
         CGSize size = iPhoneObject.view.frame.size;
         size = CGSizeMake(size.width*scale, size.height*scale);
         
-        iPhoneObject.view.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
+        CGRect newFrame = CGRectMake(origin.x, origin.y, size.width, size.height);
         
+        
+       //NSLog(@"iphne %f newfr %f",iPhoneScreenFrame.size.width,newFrame.size.width);
+        
+        iPhoneObject.view.frame = newFrame;
         [super scaleBy:scale];
+        
     }
 }
 

@@ -74,11 +74,22 @@ You should have received a copy of the GNU General Public License along with thi
     self.heightSlider.maximumValue = iphoneObject.maxSize.height;    
 }
 
--(void) reloadState{
+-(void) updateWidthSlider{
     
     THViewEditableObject * iphoneObject = (THViewEditableObject*) self.editableObject;
     self.widthSlider.value = iphoneObject.width;
+}
+
+-(void) updateHeightSlider{
+    
+    THViewEditableObject * iphoneObject = (THViewEditableObject*) self.editableObject;
     self.heightSlider.value = iphoneObject.height;
+}
+
+-(void) reloadState{
+    
+    [self updateWidthSlider];
+    [self updateHeightSlider];
     [self updateValueLabels];
     [self updateColorLabels];
     [self updateCanBeResized];
@@ -101,16 +112,25 @@ You should have received a copy of the GNU General Public License along with thi
     
     THViewEditableObject * iphoneObject = (THViewEditableObject*)self.editableObject;
     float width = self.widthSlider.value;
-    iphoneObject.width = width;
-    [self updateValueLabels];
+    if([iphoneObject canResizeToWidth:width]){
+        iphoneObject.width = width;
+        [self updateValueLabels];
+    } else {
+        [self updateWidthSlider];
+    }
+    
 }
 
 - (IBAction)heightChanged:(id)sender {
     
     THViewEditableObject * iphoneObject = (THViewEditableObject*)self.editableObject;
     float height = self.heightSlider.value;
-    iphoneObject.height = height;
-    [self updateValueLabels];
+    if([iphoneObject canResizeToHeight:height]){
+        iphoneObject.height = height;
+        [self updateValueLabels];
+    } else {
+        [self updateHeightSlider];
+    }
 }
 
 - (void)presentColorPickerFromRect:(CGRect)rect {

@@ -56,8 +56,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         _subviews = [NSMutableArray array];
-        self.width = 100;
-        self.height = 50;
         self.opacity = 1.0f;
         self.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0f];
 

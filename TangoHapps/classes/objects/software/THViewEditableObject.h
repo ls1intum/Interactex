@@ -65,4 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addSubview:(THViewEditableObject*) object;
 -(void) removeSubview:(THViewEditableObject*) object;
 
+-(BOOL) canResizeToWidth:(float) width;
+-(BOOL) canResizeToHeight:(float) height;
+
 @end
