@@ -100,7 +100,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 +(BOOL) renameProjectNamed:(NSString*) name toName:(NSString*) newName{
-    if([TFFileUtils dataFile:newName existsInDirectory:kProjectsDirectory])
+    if([newName isEqualToString:@""] || [TFFileUtils dataFile:newName existsInDirectory:kProjectsDirectory])
         return NO;
     
     return [TFFileUtils renameDataFile:name to:newName inDirectory:kProjectsDirectory];

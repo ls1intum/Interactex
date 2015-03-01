@@ -314,7 +314,7 @@ NSString * const kCallImageName = @"call.png";
     [self checkAddRemoveNextButton];
     
     self.height = imageView.frame.origin.y + imageView.frame.size.height - callButtonFrame.origin.y + 2 * kContactBookOutterPadding;
-    
+        
     [self updateContactBookState];
 }
 

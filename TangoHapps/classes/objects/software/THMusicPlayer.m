@@ -136,8 +136,10 @@ NSString * const kPauseImageName = @"pause.png";
     _progressSlider.value = 0.0f;
     _progressSlider.minimumValue = 0.0f;
     _progressSlider.maximumValue = 1.0f;
-    _progressSlider.minimumTrackTintColor = [UIColor darkGrayColor];
-    _progressSlider.maximumTrackTintColor = [UIColor darkGrayColor];
+    UIImage * trackImage = [[UIImage imageNamed:@"musicPlayerTrackImage.png"] stretchableImageWithLeftCapWidth: 9 topCapHeight: 0];
+    [_progressSlider setMinimumTrackImage:trackImage forState:UIControlStateNormal];
+    [_progressSlider setMaximumTrackImage:trackImage forState:UIControlStateNormal];
+    
     UIImage * thumbImage = [UIImage imageNamed:@"musicPlayerThumbImage.png"];
     [_progressSlider setThumbImage:thumbImage forState:UIControlStateNormal];
     [_progressSlider addTarget:self action:@selector(progressSliderChanged) forControlEvents:UIControlEventValueChanged];
@@ -214,12 +216,12 @@ NSString * const kPauseImageName = @"pause.png";
     [containerView addSubview:_rightVolumeView];
     
     self.height =  volumeViewFrame.size.height + volumeViewFrame.origin.y - _progressSlider.frame.origin.y + 2 * kMusicPlayerInnerPadding;
-    
+        
     [self checkAddRemovePreviousButton];
     [self checkAddRemovePlayButton];
     [self checkAddRemoveNextButton];
     [self checkAddRemoveVolumeView];
-    
+        
     if(isSimulating){
         [self updateStateToEnabled:YES];
     }
@@ -352,17 +354,11 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) handleCurrentSongChanged{
     [self updateLabels];
+    _progressSlider.value = 0.0f;
 }
 
 -(void) handleCurrentPlayerStateChanged{
-    if(self.musicPlayer.playbackState == MPMusicPlaybackStatePlaying){
-        _playing = YES;
-    } else {
-        _playing = NO;
-    }
     
-    [self updateLabels];
-    [self updatePlayButtonImage];
 }
 
 #pragma mark - UI
@@ -412,10 +408,23 @@ NSString * const kPauseImageName = @"pause.png";
     
     if (self.musicPlayer != nil && self.musicPlayer.currentPlaybackTime > 0.0){
         _progressSlider.value = (self.musicPlayer.currentPlaybackTime / [self currentSongDuration]);
+        
+        [self updateElapsedTimeLabel];
+        [self updateTotalDurationLabel];
     }
 }
 
 #pragma mark Methods
+
+-(void) handleStoppedPlaying{
+    _playing = NO;
+    
+    [self stopUpdatingSongProgress];
+    [self updateProgressSliderState];
+    
+    [self updateLabels];
+    [self updatePlayButtonImage];
+}
 
 -(NSTimeInterval) currentSongDuration{
     NSNumber * duration = [self.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
@@ -502,8 +511,6 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) play{
     
 #if (TARGET_IPHONE_SIMULATOR)
-    //NSString * fileName = [self.currentSong stringByAppendingFormat:@".mp3"];
-    //[[CDAudioManager sharedManager] playBackgroundMusic:fileName loop:NO];
     
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/song1.mp3", [[NSBundle mainBundle] resourcePath]]];
     
@@ -519,10 +526,13 @@ NSString * const kPauseImageName = @"pause.png";
     
 #endif
     
-    [self startUpdatingSongProgress];
-    [self updateProgressSliderState];
     
     _playing = YES;
+    
+    [self startUpdatingSongProgress];
+    [self updateProgressSliderState];
+    [self updateLabels];
+    [self updatePlayButtonImage];
 }
 
 -(void) pause{
@@ -533,10 +543,8 @@ NSString * const kPauseImageName = @"pause.png";
     [self.musicPlayer pause];
     
 #endif
-    [self stopUpdatingSongProgress];
-    [self updateProgressSliderState];
-    _playing = NO;
     
+    [self handleStoppedPlaying];
 }
 
 -(void) stop{
@@ -548,8 +556,7 @@ NSString * const kPauseImageName = @"pause.png";
     [self.musicPlayer stop];
 #endif
     
-    [self stopUpdatingSongProgress];
-    [self updateProgressSliderState];
+    [self handleStoppedPlaying];
 }
 
 -(void) next{
@@ -589,7 +596,7 @@ NSString * const kPauseImageName = @"pause.png";
     if(hours == 0){
         return [NSString stringWithFormat:@"%2ld:%02ld", (long)minutes, (long)seconds];
     } else {
-        return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+        return [NSString stringWithFormat:@"%2ld:%2ld:%02ld", (long)hours, (long)minutes, (long)seconds];
     }
 }
 
@@ -602,9 +609,11 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) updateTotalDurationLabel{
     
     NSInteger elapsedTime = (NSInteger) self.musicPlayer.currentPlaybackTime;
-    NSInteger countDown = (NSInteger) elapsedTime - [self currentSongDuration];
+    NSInteger countDown = (NSInteger) [self currentSongDuration] - elapsedTime;
     
-    _totalDurationLabel.text = [self stringFromTimeInterval:countDown];
+    NSString * timeString = [self stringFromTimeInterval:countDown];
+    
+    _totalDurationLabel.text = [@"-" stringByAppendingString:timeString];
 }
 
 -(void) updateAlbumLabel{
@@ -636,7 +645,6 @@ NSString * const kPauseImageName = @"pause.png";
         _titleLabel.text = self.currentSong;
         
         [self updateAlbumLabel];
-        
         [self updateElapsedTimeLabel];
         [self updateTotalDurationLabel];
         
@@ -677,6 +685,8 @@ NSString * const kPauseImageName = @"pause.png";
     _volumeView.alpha = (enabled ? 1.0f : kVolumeViewDefaultAlpha);
     
     [self updateLabels];
+    
+    [self updateProgressSliderState];
 }
 
 #pragma mark - Lifecycle Methods

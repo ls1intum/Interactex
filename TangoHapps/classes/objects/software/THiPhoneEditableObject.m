@@ -53,13 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiPhoneEditableObject
 @dynamic type;
 
--(void) loadSprite{
-    
-    self.canBeMoved = NO;
-    self.z = kiPhoneZ;
-    self.canBeScaled = NO;
-    self.canBeDuplicated = NO;
-}
+
 
 +(id) iPhoneWithDefaultView{
     
@@ -77,15 +71,23 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         self.simulableObject = [[THiPhone alloc] init];
-        [self loadSprite];
+        [self loadiPhone];
     }
     return self;
 }
 
+-(void) loadiPhone{
+    
+    self.canBeMoved = NO;
+    self.z = kiPhoneZ;
+    self.canBeScaled = NO;
+    self.canBeDuplicated = NO;
+    self.canBeDeleted = NO;
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
         
@@ -93,14 +95,13 @@ You should have received a copy of the GNU General Public License along with thi
         _currentView.canBeDuplicated = NO;
         [self addChild:_currentView];
         
-        [self loadSprite];
+        [self loadiPhone];
     }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeObject:_currentView forKey:@"currentView"];
@@ -164,6 +165,10 @@ You should have received a copy of the GNU General Public License along with thi
     
     [super addToLayer:layer];
     
+    [(THView*)self.currentView.simulableObject loadView];
+    
+    //[self.currentView addToLayer:layer];//juan added
+    
     [(THiPhone*)self.simulableObject addToView:[CCDirector sharedDirector].view];
     
     if(self.sprite != nil){
@@ -183,6 +188,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{
+    //[self.currentView removeFromLayer:layer];//juan added
+    
     [layer removeEditableObject:self];
 }
 

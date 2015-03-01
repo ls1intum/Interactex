@@ -109,6 +109,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 
+/*
 #pragma mark - TextField Delegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -118,6 +119,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= kProjectNameMaxCharacters && newLength > 0;
-}
+}*/
 
 @end

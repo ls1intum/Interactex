@@ -75,7 +75,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         [self loadMethods];
         
-        self.conditionType = [decoder decodeIntegerForKey:@"conditionType"];
+        self.comparisonType = [decoder decodeIntegerForKey:@"comparisonType"];
     }
     
     return self;
@@ -84,13 +84,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
-    [coder encodeInteger:self.conditionType forKey:@"conditionType"];
+    [coder encodeInteger:self.comparisonType forKey:@"comparisonType"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
     THComparisonCondition * copy = [super copyWithZone:zone];
     
-    copy.conditionType = self.conditionType;
+    copy.comparisonType = self.comparisonType;
     
     return copy;
 }
@@ -115,9 +115,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(BOOL) testCondition{
     
-    if(self.conditionType == kConditionTypeBiggerThan){
+    if(self.comparisonType == kConditionTypeBiggerThan){
         return self.value1 > self.value2;
-    } else if(self.conditionType == kConditionTypeSmallerThan){
+    } else if(self.comparisonType == kConditionTypeSmallerThan){
         return self.value1 < self.value2;
     } else {
         return fabs(self.value1 - self.value2) < 0.0001;

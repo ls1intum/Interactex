@@ -49,7 +49,7 @@ typedef enum THProperty : NSUInteger{
     kConditionTypeSmallerThan,
     kConditionTypeEquals,
     kConditionTypeBiggerThan
-} THConditionType;
+} THComparisonType;
 
 @class THProperty;
 
@@ -58,7 +58,7 @@ typedef enum THProperty : NSUInteger{
     BOOL value2set;
 }
 
-@property (nonatomic) THConditionType conditionType;
+@property (nonatomic) THComparisonType comparisonType;
 @property (nonatomic) float value1;
 @property (nonatomic) float value2;
 

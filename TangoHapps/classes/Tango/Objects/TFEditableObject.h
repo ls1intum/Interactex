@@ -67,6 +67,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL canBeAddedToPalette;
 @property (nonatomic) BOOL canBeScaled;
 @property (nonatomic) BOOL canBeMoved;
+@property (nonatomic) BOOL canBeDeleted;
 
 @property (nonatomic) CGFloat myRotation;
 @property (nonatomic) CGFloat myScale;

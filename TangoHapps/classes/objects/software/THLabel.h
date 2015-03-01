@@ -43,11 +43,13 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THView.h"
 
 @interface THLabel : THView {
+    BOOL labelLoaded;
 }
 
 @property (nonatomic, copy) NSString * text;
 @property (nonatomic) NSInteger numLines;
 
 -(void) appendText:(id) text;
--(void) reAddView;
+-(void) loadLabelUI;
+
 @end

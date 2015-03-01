@@ -321,6 +321,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 }
 
 -(void) removeGestureRecognizers{
+
     [self.view removeGestureRecognizer: tapRecognizer];
     [self.view removeGestureRecognizer: panRecognizer];
     [self.view removeGestureRecognizer: longpressRecognizer];
@@ -333,7 +334,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self stopEditingScenes];
-    [self removeGestureRecognizers];
+    //[self removeGestureRecognizers];
     
     [[THDirector sharedDirector] saveProjectProxies];
     
@@ -363,6 +364,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 - (void)proceedToProjectAtIndex:(NSInteger) index{
     
+    [self removeGestureRecognizers];
+    
     THProjectProxy * proxy = [self.projectProxies objectAtIndex:index];
     [self setActivityViewProjectNamed:proxy.name];
     [self startActivityIndicator];
@@ -386,15 +389,19 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 - (void)proceedToNewProject{
     
+    [self removeGestureRecognizers];
     [self setActivityViewNewProjectText];
     [self startActivityIndicator];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         THProject * project = [THProject newProject];
         
         [THDirector sharedDirector].currentProject = project;
         
-        [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self stopActivityIndicator];
+            [self performSegueWithIdentifier:@"segueToProjectView" sender:self];
+        });
     });
 }
 
@@ -587,31 +594,36 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 
 -(void) tableProjectCell:(THTableProjectCell*) cell didChangeNameTo:(NSString*) name {
     NSIndexPath * indexPath;
+    
+    THProjectProxy * proxy;
+    
     if ([cell getParentTableView] == self.tableView) {
         indexPath = [self.tableView indexPathForCell:cell];
         if(indexPath){
-            THProjectProxy * proxy = [self.projectProxies objectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
-            //NSString * oldName = proxy.name;
-            BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
-            if(success){
-                //[TFFileUtils renameDataFile:oldName to:name inDirectory:kProjectImagesDirectory];
-                
-                cell.nameLabel.text = name;
-                proxy.name = name;
-            }
+            
+            proxy = [self.projectProxies objectAtIndex:[self.evenProjectProxyIndices[indexPath.row] integerValue]];
         }
 
     } else if ([cell getParentTableView] == self.tableViewSecond) {
         indexPath = [self.tableViewSecond indexPathForCell:cell];
         if(indexPath){
-            THProjectProxy * proxy = [self.projectProxies objectAtIndex:[self.oddProjectProxyIndices[indexPath.row] integerValue]];
-            BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
-            if(success){
-                cell.nameLabel.text = name;
-                proxy.name = name;
-            }
+            proxy = [self.projectProxies objectAtIndex:[self.oddProjectProxyIndices[indexPath.row] integerValue]];
         }
     }
+    
+    if(proxy){
+        NSString * oldName = proxy.name;
+        BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
+        
+        if(success){
+            cell.nameLabel.text = name;
+            proxy.name = name;
+        } else {
+            cell.nameLabel.text = oldName;
+            cell.textField.text = oldName;
+        }
+    }
+    
     [self.tableView reloadData];
     [self.tableViewSecond reloadData];
 }
@@ -996,25 +1008,21 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     if(indexPath){
         
         THProjectProxy * proxy = [self.projectProxies objectAtIndex:indexPath.row];
-        //NSString * oldName = [proxy.name stringByAppendingString:@".png"];
+        NSString * oldName = proxy.name;
         BOOL success = [THProject renameProjectNamed:proxy.name toName:name];
         
         if(success){
-/*
-            NSString * imageName = [name stringByAppendingString:@".png"];
-            [TFFileUtils renameDataFile:oldName to:imageName inDirectory:kProjectImagesDirectory];*/
             
             cell.nameTextField.text = name;
             proxy.name = name;
-            
-            //[self.collectionView reloadData];
-            //[self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        } else {
+            cell.nameTextField.text = oldName;
         }
     }
 }
 
 -(void) willStartEditingCellName:(THCollectionProjectCell *)cell{
-
+    
     self.currentRenamingCell = cell;
 }
 
@@ -1051,8 +1059,6 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
         self.tableViewSecond.hidden = YES;
         self.collectionView.hidden = NO;
         [self addGestureRecognizers];
-        
-        
         
     } else {
         [self.tableView reloadData];
@@ -1136,7 +1142,7 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Katharina Bredies</b><br>(Project Lead, Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Attila Mann</b><br>(Design)<br><br></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Juan Haladjian</b><br>(Lead Developer)<br><br></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer, Aarón Pérez Martín, Güven Cadogan, Magued Farah</b><br>(Developers)<br></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b>Nazmus Shaon, Michael Conrads, Timm Beckmann, Martijn ten Bhömer, Aarón Pérez Martín, Güven Cadoğan, Magued Farah</b><br>(Developers)<br></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];

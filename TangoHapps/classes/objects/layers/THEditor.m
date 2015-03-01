@@ -68,6 +68,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THHardwareComponent.h"
 #import "THiPhoneControlEditableObject.h"
 
+
+//remove
+#import "THLabelEditableObject.h"
+#import "THView.h"
+
 @implementation THEditor
 
 -(id) init{
@@ -183,12 +188,14 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) unselectAndDeleteEditableObject:(TFEditableObject*) editableObject{
-    if(self.currentObject == editableObject){
-        [self unselectCurrentObject];
-        THProjectViewController *projectController = [THDirector sharedDirector].projectController;
-        [[projectController tabController] showTab:0];
+    if(editableObject.canBeDeleted){
+        if(self.currentObject == editableObject){
+            [self unselectCurrentObject];
+            THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+            [[projectController tabController] showTab:0];
+        }
+        [editableObject removeFromWorld];
     }
-    [editableObject removeFromWorld];
     
 }
 
@@ -700,6 +707,7 @@ You should have received a copy of the GNU General Public License along with thi
         if(sender.state == UIGestureRecognizerStateBegan){
             
             TFEditableObject * copy = [self duplicateObjectAtLocation:location];
+            
             if(copy){
                 [self selectObject:copy];
             }
@@ -778,8 +786,26 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+-(void) handleExtra{//Juan remove!!
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    THLabelEditableObject * label1 = [project.iPhoneObjects objectAtIndex:0];
+    
+    NSLog(@"copyng label... %@",label1);
+    
+    
+    THLabelEditableObject * label2 =  [label1 copy];
+    [label2 addToWorld];
+    /*
+    [self addEditableObject:label2];
+    
+    THView * view = (THView*) label2.simulableObject;
+    [view addToView:[CCDirector sharedDirector].view];*/
+}
 
 -(void)tapped:(UITapGestureRecognizer*)sender {
+    //[self handleExtra];
+    //return;
     
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];

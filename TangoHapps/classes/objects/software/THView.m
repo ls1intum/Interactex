@@ -51,14 +51,6 @@ You should have received a copy of the GNU General Public License along with thi
 @synthesize backgroundColor = _backgroundColor;
 @dynamic visible;
 
--(void) loadView{
-    
-    UIView * view = [[UIView alloc] init];
-    view.bounds = CGRectMake(0, 0, self.width, self.height);
-    view.alpha = self.opacity;
-    self.view = view;
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -66,11 +58,26 @@ You should have received a copy of the GNU General Public License along with thi
         _subviews = [NSMutableArray array];
         self.width = 100;
         self.height = 50;
-        self.opacity = 1;
-        
-        [self loadView];
+        self.opacity = 1.0f;
+        self.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0f];
+
     }
     return self;
+}
+
++(id) newView{
+    THView * view = [[THView alloc] init];
+
+    return view;
+}
+
+-(void) loadView{
+    
+    UIView * view = [[UIView alloc] init];
+    view.bounds = CGRectMake(0, 0, self.width, self.height);
+    view.alpha = self.opacity;
+    view.backgroundColor = self.backgroundColor;
+    self.view = view;
 }
 
 #pragma mark - Archiving
@@ -87,7 +94,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         _subviews = [NSMutableArray array];
         
-        [self loadView];
+        //[self loadView];
     }
     return self;
 }
@@ -170,7 +177,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) setBackgroundColor:(UIColor *)backgroundColor{
-    self.view.backgroundColor = backgroundColor;
+    if(self.view){
+        self.view.backgroundColor = backgroundColor;
+    }
     _backgroundColor = backgroundColor;
 }
 

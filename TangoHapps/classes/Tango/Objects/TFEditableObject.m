@@ -72,6 +72,7 @@ static NSInteger objectCount = 1;
     self.canBeDuplicated = YES;
     self.canBeAddedToPalette = NO;
     self.canBeMoved = YES;
+    self.canBeDeleted = YES;
     objectCount++;
 }
 

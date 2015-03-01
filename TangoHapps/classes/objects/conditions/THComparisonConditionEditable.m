@@ -51,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 NSString * const kConditionTypeStrings[kNumConditionTypes] = {@"<",@"=",@">"};
 NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"smaller than",@"equals to",@"bigger than"};
 
-@dynamic programmingElementType;
+@dynamic comparisonType;
 
 #pragma mark - Init
 
@@ -88,7 +88,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 -(id)copyWithZone:(NSZone *)zone {
     THComparisonConditionEditable * copy = [super copyWithZone:zone];
     
-    copy.conditionType = self.conditionType;
+    copy.comparisonType = self.comparisonType;
     
     return copy;
 }
@@ -105,14 +105,14 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 #pragma mark - Methods
 
--(THConditionType) conditionType{
+-(THComparisonType) comparisonType{
     THComparisonCondition * condition = (THComparisonCondition*) self.simulableObject;
-    return condition.conditionType;
+    return condition.comparisonType;
 }
 
--(void) setConditionType:(THConditionType)conditionType{
+-(void) setComparisonType:(THComparisonType)comparisonType{
     THComparisonCondition * condition = (THComparisonCondition*) self.simulableObject;
-    condition.conditionType = conditionType;
+    condition.comparisonType = comparisonType;
 }
 
 -(void) setValue1:(float) number{
@@ -207,7 +207,7 @@ NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes] = {@"small
 
 
 -(NSString*) conditionTypeString{
-    return kConditionTypeDescriptionStrings[self.conditionType];
+    return kConditionTypeDescriptionStrings[self.comparisonType];
 }
 
 -(NSString*) description{

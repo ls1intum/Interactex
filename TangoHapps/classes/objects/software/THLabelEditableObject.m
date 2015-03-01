@@ -53,7 +53,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.simulableObject = [[THLabel alloc] init];
 
-        self.text = @"Label";
+        //self.text = @"Label";
         
         [self loadLabel];
     }
@@ -63,6 +63,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadLabel{
     
     self.canBeRootView = NO;
+    self.canBeResized = YES;
 }
 
 #pragma mark - Archiving
@@ -129,10 +130,10 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) addToLayer:(TFLayer *)layer{
-    [super addToLayer:layer];
-    
     THLabel * label = (THLabel*) self.simulableObject;
-    [label reAddView];
+    [label loadLabelUI];
+    
+    [super addToLayer:layer];
 }
 
 -(NSString*) description{

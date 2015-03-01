@@ -252,6 +252,7 @@
 		9A41469517DE93F30061EDF8 /* palettePull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A41469417DE93F30061EDF8 /* palettePull@2x.png */; };
 		9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
+		9A4BD44B1AA0D577000D38B7 /* musicPlayerTrackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4BD44A1AA0D577000D38B7 /* musicPlayerTrackImage.png */; };
 		9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
 		9A4DF91819CAAE8800D75C38 /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController.m */; };
 		9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5110141837D23A00EB25FA /* CoreMotion.framework */; };
@@ -1134,6 +1135,7 @@
 		9A41471517E1D3A10061EDF8 /* THProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProjectViewController.m; sourceTree = "<group>"; };
 		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
 		9A41472117E255700061EDF8 /* THTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTableProjectCell.m; sourceTree = "<group>"; };
+		9A4BD44A1AA0D577000D38B7 /* musicPlayerTrackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicPlayerTrackImage.png; sourceTree = "<group>"; };
 		9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		9A4DF91619CAAE8800D75C38 /* THServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController.h; sourceTree = "<group>"; };
 		9A4DF91719CAAE8800D75C38 /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
@@ -1996,6 +1998,7 @@
 				9A4144B217DE7A060061EDF8 /* musicPlay@2x.png */,
 				9A4144B317DE7A060061EDF8 /* pause.png */,
 				9A4144B417DE7A060061EDF8 /* pause@2x.png */,
+				9A4BD44A1AA0D577000D38B7 /* musicPlayerTrackImage.png */,
 			);
 			path = software;
 			sourceTree = "<group>";
@@ -3597,6 +3600,7 @@
 				9A41459D17DE7A060061EDF8 /* palette_boolean@2x.png in Resources */,
 				9A41459F17DE7A060061EDF8 /* palette_button.png in Resources */,
 				9A5BD7431860C52E00842833 /* circleFilled@2x.png in Resources */,
+				9A4BD44B1AA0D577000D38B7 /* musicPlayerTrackImage.png in Resources */,
 				251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */,
 				9A4145A117DE7A060061EDF8 /* palette_button@2x.png in Resources */,
 				9A4145A317DE7A060061EDF8 /* palette_buzzer.png in Resources */,

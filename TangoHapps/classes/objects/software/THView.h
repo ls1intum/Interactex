@@ -65,5 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeFromSuperview;
 -(void) addToView:(UIView*) aView;
 
++(id) newView;
+-(void) loadView;
 
 @end

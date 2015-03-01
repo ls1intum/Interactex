@@ -65,7 +65,7 @@ extern NSString * const kConditionTypeDescriptionStrings[kNumConditionTypes];
 @property (nonatomic) float value1;
 @property (nonatomic) float value2;
 
-@property (nonatomic) THConditionType conditionType;
+@property (nonatomic) THComparisonType comparisonType;
 @property (nonatomic, readonly) NSString * conditionTypeString;
 
 @end

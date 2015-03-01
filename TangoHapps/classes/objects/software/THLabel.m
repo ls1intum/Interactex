@@ -45,12 +45,27 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THLabel
 
-@dynamic numLines;
-@dynamic text;
+@synthesize numLines = _numLines;
+@synthesize text = _text;
 
 const CGSize kLabelPadding = {15,10};
 
--(void) loadLabelView{
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        self.width = kDefaultLabelSize.width;
+        self.height = kDefaultLabelSize.height;
+        
+        [self loadMethods];
+        
+        self.text = @"Label";
+        self.numLines = 0;
+    }
+    return self;
+}
+
+-(void) loadLabelUI{
     
     THPaddingLabel * label = [[THPaddingLabel alloc] init];
     label.bounds = CGRectMake(0, 0, self.width, self.height);
@@ -64,6 +79,16 @@ const CGSize kLabelPadding = {15,10};
     self.view.layer.borderColor = [UIColor blackColor].CGColor;
     self.view.layer.borderWidth = 1.0f;
     
+    //self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    
+    labelLoaded = YES;
+    
+    [self updateLabelNumLines];
+    [self updateLabelText];
+}
+
+-(void) loadMethods{
+    
     TFMethod * method1 =[TFMethod methodWithName:@"setText"];
     method1.firstParamType = kDataTypeAny;
     method1.numParams = 1;
@@ -75,31 +100,15 @@ const CGSize kLabelPadding = {15,10};
     self.methods = [NSMutableArray arrayWithObjects:method1,method2,nil];
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        
-        self.width = kDefaultLabelSize.width;
-        self.height = kDefaultLabelSize.height;
-        
-        [self loadLabelView];
-        
-        self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-        self.numLines = 0;
-        self.text = @"Label";
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
     if(self){
-        [self loadLabelView];
         
         self.text = [decoder decodeObjectForKey:@"text"];
+        self.numLines = [decoder decodeIntegerForKey:@"numLines"];
     }
     
     return self;
@@ -109,6 +118,7 @@ const CGSize kLabelPadding = {15,10};
     [super encodeWithCoder:coder];
     
     [coder encodeObject:self.text forKey:@"text"];
+    [coder encodeInteger:self.numLines forKey:@"numLines"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -122,10 +132,16 @@ const CGSize kLabelPadding = {15,10};
 
 #pragma mark - Properties
 
--(void) setNumLines:(NSInteger)numLines{
-    
+-(void) updateLabelNumLines{
     UILabel * label = (UILabel*) self.view;
-    label.numberOfLines = numLines;
+    label.numberOfLines = _numLines;
+}
+
+-(void) setNumLines:(NSInteger)numLines{
+    _numLines = numLines;
+    if(labelLoaded){
+        [self updateLabelNumLines];
+    }
 }
 
 -(NSInteger) numLines{
@@ -152,20 +168,18 @@ const CGSize kLabelPadding = {15,10};
     label.text = [label.text stringByAppendingString:string];
 }
 
--(void) setText:(id)text{
+-(void) updateLabelText{
     UILabel * label = (UILabel*) self.view;
-    NSString * string = [self convertToString:text];
-    
+    NSString * string = [self convertToString:_text];
     label.text = string;
 }
 
--(NSString*) text{
-    UILabel * label = (UILabel*) self.view;
-    return label.text;
-}
-
--(void) reAddView{
-    [self.view setNeedsDisplay];
+-(void) setText:(id)text{
+    _text = [text copy];
+    
+    if(labelLoaded){
+        [self updateLabelText];
+    }
 }
 
 -(NSString*) description{

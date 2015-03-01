@@ -54,21 +54,10 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic position;
 @dynamic backgroundColor;
 
--(void) loadView {
-    
-    self.canBeResized = YES;
-    self.canChangeBackgroundColor = YES;
-    self.canBeScaled = NO;
-    self.canBeRootView = YES;
-    _subviews = [NSMutableArray array];
-    self.minSize = kDefaultViewMinSize;
-    self.maxSize = kDefaultViewMaxSize;
-}
-
 +(id) newView{
     THViewEditableObject * view = [[THViewEditableObject alloc] init];
-    view.simulableObject = [[THView alloc] init];
-    view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
+    view.simulableObject = [THView newView];
+    //view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
     
     return view;
 }
@@ -82,15 +71,23 @@ You should have received a copy of the GNU General Public License along with thi
     return self;
 }
 
+-(void) loadView {
+    
+    self.canBeResized = NO;
+    self.canChangeBackgroundColor = YES;
+    self.canBeScaled = NO;
+    self.canBeRootView = YES;
+    _subviews = [NSMutableArray array];
+    self.minSize = kDefaultViewMinSize;
+    self.maxSize = kDefaultViewMaxSize;
+}
+
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
         [self loadView];
-        /*
-         self.canChangeBackgroundColor = [decoder decodeBoolForKey:@"canChangeBackgroundColor"];
-         self.canBeResized = [decoder decodeBoolForKey:@"canBeResized"];*/
         
         _subviews = [NSMutableArray array];
     }
@@ -99,9 +96,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    /*
-     [coder encodeBool:self.canChangeBackgroundColor forKey:@"canChangeBackgroundColor"];
-     [coder encodeBool:self.canBeResized forKey:@"canBeResized"];*/
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -155,20 +149,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     THView * view = (THView*) self.simulableObject;
     [view removeSubview:(THView*)object.simulableObject];
-}
-
--(void) addToLayer:(THEditor*) editor{
-    [editor addEditableObject:self];
-    
-    THView * view = (THView*) self.simulableObject;
-    [view addToView:[CCDirector sharedDirector].view];
-}
-
--(void) removeFromLayer:(THEditor*) editor{
-    [editor removeEditableObject:self];
-    
-    THView * view = (THView*) self.simulableObject;
-    [view removeFromSuperview];
 }
 
 -(UIColor*) backgroundColor{
@@ -301,9 +281,30 @@ You should have received a copy of the GNU General Public License along with thi
     return iPhoneObject.view.alpha;
 }
 
--(void) willStartSimulation{
-    self.opacity = 1.0f;
-    [super willStartSimulation];
+-(BOOL) canBeDeleted{
+    return !self.canBeRootView;
+}
+
+#pragma mark - Project interaction
+
+-(void) addToLayer:(TFLayer*) layer{
+    
+    THView * view = (THView*) self.simulableObject;
+    
+    [view addToView:[CCDirector sharedDirector].view];
+    
+    [layer addEditableObject:self];
+    
+    [super addToLayer:layer];
+}
+
+-(void) removeFromLayer:(THEditor*) editor{
+    
+    [editor removeEditableObject:self];
+    
+    THView * view = (THView*) self.simulableObject;
+    
+    [view removeFromSuperview];
 }
 
 -(void) addToWorld{
@@ -312,18 +313,24 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) removeFromWorld{
-    if(!self.canBeRootView){
-        
-        THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-        [project removeiPhoneObject:self];
-        
-        NSArray * copy = [NSArray arrayWithArray:_subviews];
-        for (THViewEditableObject * view in copy) {
-            [view removeFromWorld];
-        }
-        
-        [super removeFromWorld];
+    
+    THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
+    [project removeiPhoneObject:self];
+    
+    NSArray * copy = [NSArray arrayWithArray:_subviews];
+    for (THViewEditableObject * view in copy) {
+        [view removeFromWorld];
     }
+    
+    [super removeFromWorld];
+}
+
+
+#pragma mark - Lifecycle
+
+-(void) willStartSimulation{
+    self.opacity = 1.0f;
+    [super willStartSimulation];
 }
 
 -(NSString*) description{

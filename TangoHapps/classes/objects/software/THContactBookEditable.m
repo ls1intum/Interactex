@@ -50,11 +50,6 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic showNextButton;
 @dynamic showPreviousButton;
 
--(void) loadContactBook{
-    
-    self.canChangeBackgroundColor = NO;
-    self.canBeRootView = NO;
-}
 
 -(id) init{
     self = [super init];
@@ -65,6 +60,12 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadContactBook];
     }
     return self;
+}
+
+-(void) loadContactBook{
+    
+    self.canChangeBackgroundColor = NO;
+    self.canBeRootView = NO;
 }
 
 #pragma mark - Archiving

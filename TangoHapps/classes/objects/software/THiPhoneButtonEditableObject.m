@@ -47,11 +47,6 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiPhoneButtonEditableObject
 @dynamic text;
 
--(void) loadButtonEditable{
-    
-    self.contentSize = CGSizeMake(kiPhoneButtonDefaultSize.width, kiPhoneButtonDefaultSize.height);
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -68,6 +63,12 @@ You should have received a copy of the GNU General Public License along with thi
         self.canChangeBackgroundColor = NO;
     }
     return self;
+}
+
+-(void) loadButtonEditable{
+    
+    self.contentSize = CGSizeMake(kiPhoneButtonDefaultSize.width, kiPhoneButtonDefaultSize.height);
+    self.canBeResized = YES;
 }
 
 #pragma mark - Archiving

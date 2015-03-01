@@ -115,8 +115,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateOperatorLabel {
     THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
     
-    NSInteger idx = condition.conditionType;
-    NSString * conditionString = kConditionTypeStrings[idx];
+    NSString * conditionString = kConditionTypeStrings[condition.comparisonType];
     self.operatorTypeLabel.text = conditionString;
 }
 
@@ -245,7 +244,9 @@ You should have received a copy of the GNU General Public License along with thi
 - (IBAction)operationTypeChanged:(id)sender {
     
     THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
-    condition.programmingElementType = self.operatorTypeControl.selectedSegmentIndex;
+    condition.comparisonType = self.operatorTypeControl.selectedSegmentIndex;
+    
+    NSLog(@"%d",condition.comparisonType);
     
     [self updateOperatorLabel];
     [self updateInfoLabel];
@@ -284,8 +285,7 @@ You should have received a copy of the GNU General Public License along with thi
     [c removeObserver:self];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setOperatorTypeLabel:nil];
     [self setObject1Button:nil];
     [self setObject2Button:nil];
@@ -295,8 +295,7 @@ You should have received a copy of the GNU General Public License along with thi
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 

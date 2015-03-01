@@ -48,11 +48,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @dynamic image;
 
--(void) loadImageView{
-    self.acceptsConnections = YES;
-    self.canBeRootView = NO;
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -61,6 +56,12 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadImageView];
     }
     return self;
+}
+
+-(void) loadImageView{
+    self.acceptsConnections = YES;
+    self.canBeRootView = NO;
+    self.canBeResized = YES;
 }
 
 #pragma mark - Archiving
