@@ -52,8 +52,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         self.simulableObject = [[THLabel alloc] init];
-
-        //self.text = @"Label";
         
         [self loadLabel];
     }

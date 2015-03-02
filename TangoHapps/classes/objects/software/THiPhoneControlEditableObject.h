@@ -45,8 +45,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @class THEventPropertyController;
 
-@interface THiPhoneControlEditableObject : THViewEditableObject
-{
+@interface THiPhoneControlEditableObject : THViewEditableObject {
+    
 }
 
 @property (nonatomic) BOOL enabled;

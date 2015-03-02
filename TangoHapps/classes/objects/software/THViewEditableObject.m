@@ -57,7 +57,7 @@ You should have received a copy of the GNU General Public License along with thi
 +(id) newView{
     THViewEditableObject * view = [[THViewEditableObject alloc] init];
     view.simulableObject = [THView newView];
-    view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
+    //view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
     
     return view;
 }
@@ -77,9 +77,9 @@ You should have received a copy of the GNU General Public License along with thi
     self.canChangeBackgroundColor = YES;
     self.canBeScaled = NO;
     self.canBeRootView = YES;
-    _subviews = [NSMutableArray array];
     self.minSize = kDefaultViewMinSize;
     self.maxSize = kDefaultViewMaxSize;
+    _subviews = [NSMutableArray array];
 }
 
 #pragma mark - Archiving
@@ -88,8 +88,6 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     if(self){
         [self loadView];
-        
-        _subviews = [NSMutableArray array];
     }
     return self;
 }
@@ -252,9 +250,6 @@ You should have received a copy of the GNU General Public License along with thi
         size = CGSizeMake(size.width*scale, size.height*scale);
         
         CGRect newFrame = CGRectMake(origin.x, origin.y, size.width, size.height);
-        
-        
-       //NSLog(@"iphne %f newfr %f",iPhoneScreenFrame.size.width,newFrame.size.width);
         
         iPhoneObject.view.frame = newFrame;
         [super scaleBy:scale];

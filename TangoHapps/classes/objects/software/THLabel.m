@@ -65,28 +65,6 @@ const CGSize kLabelPadding = {15,10};
     return self;
 }
 
--(void) loadLabelUI{
-    
-    THPaddingLabel * label = [[THPaddingLabel alloc] init];
-    label.bounds = CGRectMake(0, 0, self.width, self.height);
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:15];
-    label.lineBreakMode = NSLineBreakByWordWrapping;
-    label.edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    self.view = label;
-    
-    self.view.layer.cornerRadius = 5;
-    self.view.layer.borderColor = [UIColor blackColor].CGColor;
-    self.view.layer.borderWidth = 1.0f;
-    
-    //self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
-    
-    labelLoaded = YES;
-    
-    [self updateLabelNumLines];
-    [self updateLabelText];
-}
-
 -(void) loadMethods{
     
     TFMethod * method1 =[TFMethod methodWithName:@"setText"];
@@ -109,6 +87,8 @@ const CGSize kLabelPadding = {15,10};
         
         self.text = [decoder decodeObjectForKey:@"text"];
         self.numLines = [decoder decodeIntegerForKey:@"numLines"];
+        
+        [self loadMethods];
     }
     
     return self;
@@ -130,7 +110,7 @@ const CGSize kLabelPadding = {15,10};
     return copy;
 }
 
-#pragma mark - Properties
+#pragma mark - Methods
 
 -(void) updateLabelNumLines{
     UILabel * label = (UILabel*) self.view;
@@ -181,6 +161,29 @@ const CGSize kLabelPadding = {15,10};
         [self updateLabelText];
     }
 }
+
+-(void) loadLabelUI{
+    
+    THPaddingLabel * label = [[THPaddingLabel alloc] init];
+    label.bounds = CGRectMake(0, 0, self.width, self.height);
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:15];
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.view = label;
+    
+    self.view.layer.cornerRadius = 5;
+    self.view.layer.borderColor = [UIColor blackColor].CGColor;
+    self.view.layer.borderWidth = 1.0f;
+    self.view.layer.masksToBounds = YES;
+    
+    labelLoaded = YES;
+    
+    [self updateLabelNumLines];
+    [self updateLabelText];
+}
+
+#pragma mark - Other
 
 -(NSString*) description{
     return @"label";

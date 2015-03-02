@@ -60,7 +60,6 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadButtonEditable];
         
         self.text = @"Button";
-        self.canChangeBackgroundColor = NO;
     }
     return self;
 }
@@ -98,6 +97,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
+-(void) addToLayer:(TFLayer *)layer{
+    THiPhoneButton * button = (THiPhoneButton*) self.simulableObject;
+    [button loadUI];
+    
+    [super addToLayer:layer];
+    
+    
+}
 -(void) setText:(NSString *)text{
     
     THiPhoneButton * button = (THiPhoneButton*) self.simulableObject;

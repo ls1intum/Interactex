@@ -45,8 +45,11 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THiPhoneButton : THiPhoneControl
 {
     
+    BOOL isSimulating;
 }
 
 @property (nonatomic,copy) NSString * text;
+
+-(void) loadUI;
 
 @end

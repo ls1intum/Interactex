@@ -48,6 +48,24 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic min;
 @dynamic max;
 
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        self.width = kDefaultSliderSize.width;
+        self.height = kDefaultSliderSize.height;
+        self.position = CGPointZero;
+        self.backgroundColor = [UIColor clearColor];
+        
+        [self loadSliderView];
+        [self loadMethods];
+        
+        self.min = 0;
+        self.max = 255;
+    }
+    return self;
+}
+
 -(void) loadSliderView{
     
     UISlider * slider = [[UISlider alloc] init];
@@ -58,31 +76,18 @@ You should have received a copy of the GNU General Public License along with thi
     self.view.userInteractionEnabled = YES;
     self.view.multipleTouchEnabled = NO;
     
+    [slider addTarget:self action:@selector(handleValueChanged) forControlEvents:UIControlEventValueChanged];
+}
+
+
+-(void) loadMethods{
+    
     TFProperty * valueProperty = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
     self.properties = [NSMutableArray arrayWithObjects:valueProperty,nil];
     
     TFEvent * event1 = [TFEvent eventNamed:kEventValueChanged];
     event1.param1 = [TFPropertyInvocation invocationWithProperty:valueProperty target:self];
     self.events = [NSMutableArray arrayWithObjects:event1, nil];
-    
-    [slider addTarget:self action:@selector(handleValueChanged) forControlEvents:UIControlEventValueChanged];
-}
-
--(id) init{
-    self = [super init];
-    if(self){
-        
-        self.width = kDefaultSliderSize.width;
-        self.height = kDefaultSliderSize.height;
-        
-        self.position = CGPointZero;
-        
-        [self loadSliderView];
-        
-        self.min = 0;
-        self.max = 255;
-    }
-    return self;
 }
 
 #pragma mark - Archiving
@@ -91,6 +96,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     
     [self loadSliderView];
+    [self loadMethods];
     
     self.value = [decoder decodeFloatForKey:@"value"];
     self.min = [decoder decodeFloatForKey:@"min"];

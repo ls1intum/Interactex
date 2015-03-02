@@ -50,18 +50,18 @@ You should have received a copy of the GNU General Public License along with thi
 
 @dynamic events;
 
--(void) load{
-    self.acceptsConnections = YES;
-    self.canBeRootView = NO;
-}
-
 -(id) init{
     self = [super init];
     if(self){
         
-        [self load];
+        [self loadiPhoneControl];
     }
     return self;
+}
+
+-(void) loadiPhoneControl{
+    self.acceptsConnections = YES;
+    self.canBeRootView = NO;
 }
 
 #pragma mark - Archiving
@@ -70,7 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     
     if(self){
-        [self load];
+        [self loadiPhoneControl];
     }
     return self;
 }
@@ -95,11 +95,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 #pragma mark - Lifecycle
-/*
--(void) addToLayer:(THCustomEditor*) editor{
-    [self willStartEdition];
-    [super addToLayer:editor];
-}*/
 
 -(void) willStartSimulation{
     self.enabled = YES;

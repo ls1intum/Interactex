@@ -53,8 +53,6 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiPhoneEditableObject
 @dynamic type;
 
-
-
 +(id) iPhoneWithDefaultView{
     
     THiPhoneEditableObject * iPhone = [[THiPhoneEditableObject alloc] init];
@@ -170,7 +168,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     [(THView*)self.currentView.simulableObject loadView];
     
-    //[self.currentView addToLayer:layer];//juan added
+    if(self.currentView.parent == nil){
+        [self.currentView addToLayer:layer];//juan added
+    }
     
     [(THiPhone*)self.simulableObject addToView:[CCDirector sharedDirector].view];
     
@@ -191,7 +191,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) removeFromLayer:(TFLayer *)layer{
-    //[self.currentView removeFromLayer:layer];//juan added
+    [self.currentView removeFromLayer:layer];//juan added
     
     [layer removeEditableObject:self];
 }

@@ -44,20 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THiPhoneButton
 
--(void) loadButton{
-    
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.bounds = CGRectMake(0, 0, self.width, self.height);
-    self.view = button;
-    button.enabled = NO;
-
-    [button addTarget:self action:@selector(handleStartedPressing) forControlEvents:UIControlEventTouchDown];
-    [button addTarget:self action:@selector(handleStoppedPressing) forControlEvents:UIControlEventTouchUpInside];
-    
-    TFEvent * event1 = [TFEvent eventNamed:kEventButtonDown];
-    TFEvent * event2 = [TFEvent eventNamed:kEventButtonUp];
-    self.events = [NSMutableArray arrayWithObjects:event1, event2, nil];
-}
+@synthesize text = _text;
 
 -(id) init{
     self = [super init];
@@ -66,37 +53,43 @@ You should have received a copy of the GNU General Public License along with thi
         self.width = kDefaultButtonSize.width;
         self.height = kDefaultButtonSize.height;
         self.position = CGPointZero;
+        self.backgroundColor = [UIColor clearColor];
         
-        [self loadButton];
+        [self loadMethods];
         
         self.text = @"Button";
     }
     return self;
 }
 
+-(void) loadMethods{
+    
+    TFEvent * event1 = [TFEvent eventNamed:kEventButtonDown];
+    TFEvent * event2 = [TFEvent eventNamed:kEventButtonUp];
+    self.events = [NSMutableArray arrayWithObjects:event1, event2, nil];
+}
+
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder
-{
+-(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadButton];
-    
-    self.text = [decoder decodeObjectForKey:@"text"];
+    if(self){
+        self.text = [decoder decodeObjectForKey:@"text"];
+        
+        [self loadMethods];
+    }
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder
-{
+-(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
     
     [coder encodeObject:self.text forKey:@"text"];
 }
 
-
--(id)copyWithZone:(NSZone *)zone
-{
+-(id)copyWithZone:(NSZone *)zone {
     THiPhoneButton * copy = [super copyWithZone:zone];
     copy.text = self.text;
     
@@ -115,23 +108,38 @@ You should have received a copy of the GNU General Public License along with thi
     [[NSNotificationCenter defaultCenter] postNotificationName:event.name  object:self];
 }
 
--(void) setBackgroundColor:(UIColor *)backgroundColor{
-}
-
--(UIColor*) backgroundColor{
-    return nil;
+-(void) updateButtonText{
+    
+    UIButton * button = (UIButton*) self.view;
+    [button setTitle:_text forState:UIControlStateNormal];
+    [button setTitle:_text forState:UIControlStateDisabled];
 }
 
 -(void) setText:(NSString *)text{
     
-    UIButton * button = (UIButton*) self.view;
-    [button setTitle:text forState:UIControlStateNormal];
-    [button setTitle:text forState:UIControlStateDisabled];
+    _text = [text copy];
+    if(self.view != nil){
+        [self updateButtonText];
+    }
 }
 
--(NSString*) text{
-    UIButton * button = (UIButton*) self.view;
-    return [button titleForState:UIControlStateNormal];
+-(void) loadUI{
+    
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.bounds = CGRectMake(0, 0, self.width, self.height);
+    button.layer.cornerRadius = 5;
+    self.view = button;
+    self.enabled = isSimulating;
+    
+    [button addTarget:self action:@selector(handleStartedPressing) forControlEvents:UIControlEventTouchDown];
+    [button addTarget:self action:@selector(handleStoppedPressing) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self updateButtonText];
+}
+
+-(void) willStartSimulating{
+    isSimulating = YES;
+    [super willStartSimulating];
 }
 
 -(NSString*) description{

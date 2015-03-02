@@ -246,7 +246,7 @@ You should have received a copy of the GNU General Public License along with thi
     THComparisonConditionEditable * condition = (THComparisonConditionEditable*) self.editableObject;
     condition.comparisonType = self.operatorTypeControl.selectedSegmentIndex;
     
-    NSLog(@"%d",condition.comparisonType);
+    NSLog(@"%ud",(NSUInteger)condition.comparisonType);
     
     [self updateOperatorLabel];
     [self updateInfoLabel];

@@ -86,6 +86,12 @@ You should have received a copy of the GNU General Public License along with thi
     self.heightSlider.value = iphoneObject.height;
 }
 
+-(void) updateColorButtonState{
+    
+    THViewEditableObject * iphoneObject = (THViewEditableObject*) self.editableObject;
+    self.changeColorButton.enabled = iphoneObject.canChangeBackgroundColor;
+}
+
 -(void) reloadState{
     
     [self updateWidthSlider];
@@ -94,12 +100,12 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateColorLabels];
     [self updateCanBeResized];
     [self updateMinMaxSizes];
+    [self updateColorButtonState];
 }
 
 -(void)updateColorLabels {
     THViewEditableObject * iphoneObject = (THViewEditableObject*)self.editableObject;
     self.colorLabel.backgroundColor = iphoneObject.backgroundColor;
-    self.changeColorButton.enabled = iphoneObject.canChangeBackgroundColor;
 }
 
 -(void)updateValueLabels {

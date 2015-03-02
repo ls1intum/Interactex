@@ -53,12 +53,11 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) IBOutlet UISlider * heightSlider;
 @property (weak, nonatomic) IBOutlet UILabel * widthLabel;
 @property (weak, nonatomic) IBOutlet UILabel * heightLabel;
+@property (weak, nonatomic) IBOutlet UIView *colorLabel;
+@property (weak, nonatomic) IBOutlet UIButton *changeColorButton;
 
 - (IBAction)widthChanged:(id)sender;
 - (IBAction)heightChanged:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIView *colorLabel;
-@property (weak, nonatomic) IBOutlet UIButton *changeColorButton;
 - (IBAction)changeColorTapped:(id)sender;
 
 @end
