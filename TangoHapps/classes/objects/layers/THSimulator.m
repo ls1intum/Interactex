@@ -62,14 +62,18 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        _zoomableLayer = [CCLayer node];
-        [self addChild:_zoomableLayer z:-1];
-
+        _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 0)];
+        _zoomableLayer.contentSize = kDefaultCanvasSize;
+        [self addChild:_zoomableLayer z:-30];
+        
+        CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
+        [bg setPosition:ccp(_zoomableLayer.contentSize.width / 2.0f, _zoomableLayer.contentSize.height / 2.0f)];
+        [_zoomableLayer addChild:bg z:-99];
+        
         _accelerometerObjects = [NSMutableArray array];
 	}
 	return self;
 }
-
 
 #pragma mark - Methods
 
@@ -121,14 +125,6 @@ You should have received a copy of the GNU General Public License along with thi
     [self handleTouchesEnded:touches];
 }
 
-/*
--(void) accelerated:(UIAcceleration*) acceleration{
-    for (TFEditableObject * object in _accelerometerObjects) {
-        [object handleAccelerated:acceleration];
-    }
-}*/
-
-
 -(void) tapped:(UITapGestureRecognizer *)sender{
     
     if(sender.state == UIGestureRecognizerStateEnded){
@@ -171,23 +167,13 @@ You should have received a copy of the GNU General Public License along with thi
     return self.zoomableLayer.scale;
 }
 
--(void) setDisplacement:(CGPoint)displacement{
-    self.zoomableLayer.position = displacement;
-}
-
--(CGPoint) displacement{
-    return self.zoomableLayer.position;
-}
-
 -(void) moveLayer:(CGPoint) d{
     self.zoomableLayer.position = ccpAdd(_zoomableLayer.position, d);
-    //self.position = ccpAdd(self.position, d);
+    
+    NSLog(@"zoom layer pos %f",self.zoomableLayer.position.x);
 }
 
 -(void)scale:(UIPinchGestureRecognizer*)sender{
-    
-    //CGPoint location = [sender locationInView:sender.view];
-    //location = [self toLayerCoords:location];
     
     float newScale = self.zoomableLayer.scale * sender.scale;
     if(newScale > kLayerMinScale && newScale < kLayerMaxScale)
@@ -259,25 +245,6 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
 }
-
-/*
--(void) removeObjects{
-    
-    THProject * project = [THDirector sharedDirector].currentProject;
-    [project.iPhone removeFromLayer:self];
-    
-    for (TFEditableObject * object in project.allObjects) {
-        
-        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
-            THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
-            if(!hardwareComponent.attachedToClothe){
-                [object removeFromLayer:self];
-            }
-        } else {
-            [object removeFromLayer:self];
-        }
-    }
-}*/
 
 -(void) removeObjects{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
@@ -358,6 +325,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self scheduleUpdate];
     [self notifyObjectsSimulationStarted];
     [self addObjects];
+    
 }
 
 -(NSString*) description{

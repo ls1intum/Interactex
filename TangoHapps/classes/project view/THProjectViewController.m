@@ -495,8 +495,6 @@ float const kToolsTabMargin = 5;
         THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
         project.iPhone.visible = YES;
 
-        //[self updatePalettePullVisibility]; //Nazmus 12 Feb commented
-        //[self addPalettePullGestureRecognizer]; // Nazmus commented 12 Feb - to remove palette pull functionality
         [self updatePinsModeItemTint];
     }
 }

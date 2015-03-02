@@ -448,7 +448,7 @@ You should have received a copy of the GNU General Public License along with thi
                            [THMusicPlayerPaletteItem paletteItemWithName:@"musicplayer" imageName:@"palette_musicplayer" displayName:@"music player"],
                            [THImageViewPaletteItem paletteItemWithName:@"imageview" imageName:@"palette_imageview" displayName:@"image"],
                            [THContactBookPaletteItem paletteItemWithName:@"contactBook" imageName:@"palette_contactBook" displayName:@"contact book"],
-                           [THMonitorPaletteItem paletteItemWithName:@"monitor" imageName:@"palette_monitor" displayName:@"graph"],
+                           //[THMonitorPaletteItem paletteItemWithName:@"monitor" imageName:@"palette_monitor" displayName:@"graph"],
                            nil];
     
     self.boardsSectionArray  = [NSMutableArray arrayWithObjects:
