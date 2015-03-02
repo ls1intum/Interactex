@@ -46,13 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THTimerEditable
 
--(void) loadTimer{
-    
-    self.programmingElementType = kProgrammingElementTypeTimer;
-    
-    self.acceptsConnections = YES;
-}
-
 -(id) init{
     self = [super init];
     if(self){
@@ -61,6 +54,13 @@ You should have received a copy of the GNU General Public License along with thi
         [self loadTimer];
     }
     return self;
+}
+
+-(void) loadTimer{
+    
+    self.programmingElementType = kProgrammingElementTypeTimer;
+    
+    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving
@@ -124,7 +124,7 @@ You should have received a copy of the GNU General Public License along with thi
     return timer.timerType;
 }
 
--(void) setTimertype:(THTimerType)timerType{
+-(void) setTimerType:(THTimerType)timerType{
     THTimer * timer = (THTimer*) self.simulableObject;
     timer.timerType = timerType;
 }

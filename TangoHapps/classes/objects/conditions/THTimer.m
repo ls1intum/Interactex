@@ -97,7 +97,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) start{
     
-    _timerType = [NSTimer scheduledTimerWithTimeInterval:_frequency target:self selector:@selector(trigger) userInfo:nil repeats:(self.timerType == kTimerTypeAlways)];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:_frequency target:self selector:@selector(trigger) userInfo:nil repeats:self.timerType];
 }
 
 -(void) stop{

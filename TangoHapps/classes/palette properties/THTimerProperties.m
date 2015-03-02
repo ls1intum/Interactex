@@ -65,7 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateRepeatsSwitch{
     
     THTimerEditable * timer = (THTimerEditable*) self.editableObject;
-    self.alwaysSwitch.on = timer.programmingElementType;
+    self.alwaysSwitch.on = timer.timerType;
 }
 
 -(void) reloadState{
@@ -104,7 +104,7 @@ You should have received a copy of the GNU General Public License along with thi
 - (IBAction)typeChanged:(id)sender {
     
     THTimerEditable * timer = (THTimerEditable*) self.editableObject;
-    timer.programmingElementType = self.alwaysSwitch.on;
+    timer.timerType = self.alwaysSwitch.on;
 }
 
 @end

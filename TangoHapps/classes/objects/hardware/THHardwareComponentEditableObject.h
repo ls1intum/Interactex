@@ -64,6 +64,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) autoroutePlusAndMinusPins;
 -(void) autoroute;
 -(void) handleBoardRemoved:(THBoardEditable *)board;
+-(void) refreshUI;
 
 @property (nonatomic, strong) CCLabelTTF * nameLabel;
 

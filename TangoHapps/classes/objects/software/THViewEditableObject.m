@@ -57,7 +57,7 @@ You should have received a copy of the GNU General Public License along with thi
 +(id) newView{
     THViewEditableObject * view = [[THViewEditableObject alloc] init];
     view.simulableObject = [THView newView];
-    //view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
+    view.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
     
     return view;
 }
@@ -194,7 +194,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) setWidth:(float)width{
-    
     
     THView * iPhoneObject = (THView*) self.simulableObject;
     

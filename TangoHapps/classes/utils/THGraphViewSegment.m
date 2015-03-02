@@ -63,7 +63,7 @@
 
 - (void)drawLayer:(CALayer*)l inContext:(CGContextRef)context{
     
-    CGColorRef color = CreateDeviceRGBColor(1, 1, 1, 0);
+    CGColorRef color = CreateDeviceRGBColor(1, 1, 1, 0.5);
     
 	CGContextSetFillColorWithColor(context, color);
 	CGContextFillRect(context, layer.bounds);

@@ -401,7 +401,7 @@ static NSInteger objectCount = 1;
     CGRect rect;
     rect.origin = origin;
     rect.size = box.size;
-    rect.size = CGSizeMake(box.size.width * self.scale, box.size.height * self.scale);
+    rect.size = CGSizeMake(rect.size.width, rect.size.height);
     
     return (self.visible && CGRectContainsPoint(rect, point));
 }

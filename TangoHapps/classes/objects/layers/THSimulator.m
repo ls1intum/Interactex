@@ -260,6 +260,25 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+/*
+-(void) removeObjects{
+    
+    THProject * project = [THDirector sharedDirector].currentProject;
+    [project.iPhone removeFromLayer:self];
+    
+    for (TFEditableObject * object in project.allObjects) {
+        
+        if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+            THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
+            if(!hardwareComponent.attachedToClothe){
+                [object removeFromLayer:self];
+            }
+        } else {
+            [object removeFromLayer:self];
+        }
+    }
+}*/
+
 -(void) removeObjects{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     if(project.iPhone != nil){

@@ -48,25 +48,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THClothe
 
--(void) loadSprite{
-    if(_imageFromName){
-        NSString * fileName = [NSString stringWithFormat:@"%@.png",self.name];
-        _image = [UIImage imageNamed:fileName];
-        self.sprite = [CCSprite spriteWithFile:fileName];
-    } else {
-        self.sprite = [CCSprite spriteWithCGImage:_image.CGImage key:nil];
-    }
-    [self addChild:self.sprite];
-}
-
--(void) load{
-    
-    self.z = kClotheZ;
-    
-    self.canBeAddedToPalette = YES;
-    
-    _attachments = [NSMutableArray array];
-}
 
 -(id) initWithName:(NSString*) name{
     self = [super init];
@@ -76,6 +57,15 @@ You should have received a copy of the GNU General Public License along with thi
         [self load];
     }
     return self;
+}
+
+-(void) load{
+    
+    self.z = kClotheZ;
+    
+    self.canBeAddedToPalette = YES;
+    
+    _attachments = [NSMutableArray array];
 }
 
 #pragma mark - Archiving
@@ -89,9 +79,12 @@ You should have received a copy of the GNU General Public License along with thi
         
         [self load];
         
-        NSArray * attachments = [decoder decodeObjectForKey:@"attachments"];
-        for (THHardwareComponentEditableObject * attachment in attachments) {
-            [self attachClotheObject:attachment];
+        _attachments = [decoder decodeObjectForKey:@"attachments"];
+        
+        for (THHardwareComponentEditableObject * attachment in _attachments) {
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectRemoved:) name:kNotificationObjectRemoved object:attachment];
+            attachment.attachedToClothe = self;
         }
     }
     return self;
@@ -151,14 +144,34 @@ You should have received a copy of the GNU General Public License along with thi
     [super removeFromWorld];
 }
 
+-(void) loadSprite{
+    if(_imageFromName){
+        NSString * fileName = [NSString stringWithFormat:@"%@.png",self.name];
+        _image = [UIImage imageNamed:fileName];
+        self.sprite = [CCSprite spriteWithFile:fileName];
+    } else {
+        self.sprite = [CCSprite spriteWithCGImage:_image.CGImage key:nil];
+    }
+    [self addChild:self.sprite];
+}
+
 -(void) addToLayer:(TFLayer*) layer{
     
     [self loadSprite];
     [layer addEditableObject:self];
+    
+    for (THHardwareComponentEditableObject * attachment in self.attachments) {
+        if(attachment.parent == nil){
+            [attachment refreshUI];
+            [self addChild:attachment z:1];
+            //[self attachClotheObject:attachment];
+        }
+    }
 }
 
 -(void) removeFromLayer:(TFLayer*) layer{
     [layer removeEditableObject:self];
+    
 }
 
 #pragma mark - Methods

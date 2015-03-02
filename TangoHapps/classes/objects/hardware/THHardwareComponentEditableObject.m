@@ -296,16 +296,17 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) loadSprites{
-    //sewed sprite
-    _sewedSprite = [CCSprite spriteWithFile:@"sewed.png"];
-    _sewedSprite.rotation = 45;
-    _sewedSprite.position = kSewedPositions[self.type];
-    _sewedSprite.visible = NO;
-    [self addChild:_sewedSprite z:5];
     
     //main sprite
     self.sprite = [CCSprite spriteWithFile:kHardwareSpriteNames[self.type]];
     [self addChild:self.sprite];
+    
+    //sewed sprite
+    _sewedSprite = [CCSprite spriteWithFile:@"sewed.png"];
+    _sewedSprite.rotation = 45;
+    _sewedSprite.position = kSewedPositions[self.type];
+    _sewedSprite.visible = (self.attachedToClothe != nil);
+    [self addChild:_sewedSprite z:5];
 }
 
 -(void) repositionPins{
@@ -318,13 +319,18 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) addToLayer:(TFLayer*) layer{
+-(void) refreshUI{
     
     [self loadSprites];
     
     [self repositionPins];
     
     [self updateNameLabel];
+}
+
+-(void) addToLayer:(TFLayer*) layer{
+    
+    [self refreshUI];
     
     [layer addEditableObject:self];
     

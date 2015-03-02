@@ -906,33 +906,38 @@ You should have received a copy of the GNU General Public License along with thi
     sender.scale = 1.0f;
 }
 
--(void) checkPinClotheObject:(THHardwareComponentEditableObject*) clotheObject atLocation:(CGPoint) location{
+-(void) checkPinClotheObject:(THHardwareComponentEditableObject*) hardwareComponent atLocation:(CGPoint) location{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     THClothe * clothe = [project clotheAtLocation:location];
     if(clothe != nil){
-        CGPoint pos = [clothe convertToNodeSpace:clotheObject.position];
-        pos = ccpAdd(pos, self.zoomableLayer.position);
+        CGPoint position = [hardwareComponent convertToWorldSpace:ccp(0,0)];
+        position = [clothe convertToNodeSpace:position];
+        position = ccpAdd(position, ccp(hardwareComponent.contentSize.width/2,hardwareComponent.contentSize.height/2));
         
-        [clotheObject removeFromParentAndCleanup:YES];
-        [project pinClotheObject:clotheObject toClothe:clothe];
-        clotheObject.position = pos;
+        [hardwareComponent removeFromParentAndCleanup:YES];
+        [project pinClotheObject:hardwareComponent toClothe:clothe];
+        hardwareComponent.position = position;
+        
         [[SimpleAudioEngine sharedEngine] playEffect:@"sewed.mp3"];
     }
 }
 
--(void) checkUnPinClotheObject:(THHardwareComponentEditableObject*) clotheObject{
+-(void) checkUnPinClotheObject:(THHardwareComponentEditableObject*) hardwareComponent{
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
-    CGPoint position = [clotheObject convertToWorldSpace:ccp(0,0)];
+    CGPoint position = [hardwareComponent convertToWorldSpace:ccp(0,0)];
     THClothe * clothe = [project clotheAtLocation:position];
     
     if(clothe != nil){
-        [project unpinClotheObject:clotheObject];
+        [project unpinClotheObject:hardwareComponent];
         
-        clotheObject.position = [clothe convertToWorldSpace:clotheObject.position];
-        [clotheObject addToLayer:self];
+        position = [self.zoomableLayer convertToNodeSpace:position];
+        position = ccpAdd(position, ccp(hardwareComponent.contentSize.width/2,hardwareComponent.contentSize.height/2));
+        hardwareComponent.position = position;
+        
+        [hardwareComponent addToLayer:self];
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"sewed.mp3"];
     }
@@ -1295,7 +1300,6 @@ You should have received a copy of the GNU General Public License along with thi
     } else {
         [self hideAllLilypadWires];
     }
-    
 }
 
 -(void) hideAllLilypadWires{
