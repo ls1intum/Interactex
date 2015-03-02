@@ -1,4 +1,46 @@
 
+———Interactex v2.50———
+
+**Bug Fixing**
+
+- dragging a hardware element attached to a clothe object is displayed behind other attached objects 
+- Elements attached to an eTextile change their position when switching to the hardware mode
+- iOS UI elements can be dropped outside the iPhone. Solution: consider its default size according to the type of object (button vs music player)
+- project selection view controller cell moves 50 pixels up when starts dragging (check project view controller)
+- return to library mode after hiding iphone when having iphone object selected
+- objects cannot be moved anymore when they reach the canvas boundaries
+- clothe bounding box not working properly when zoomed
+- fixed flickering while dragging projects in selection screen
+- fixed bug project shortly showing up at wrong position while being dragged in selection screen
+- bug activity indicator not always showing
+- changed sound names for the sound object
+- when starting project from hardware mode, the hardware objects (boards) are not hidden
+- object properties become white after started dragging connection
+- board autoroutes only plus and minus
+- selected object gets moved in hardware mode when connection mode is on
+- bug crashes when duplicating board
+- imageview does not restore image after project reopened
+- timer had no event
+- bug allowing multiple projects to have the same name
+- bug comparator not changing comparison property
+- ui elements' bounding boxes are not removed from the background view
+- bug background view could be resized
+- iphone view objects can be scaled beyond iPhone limits
+- bug hardware objects attached to garment dissappear after simulation mode
+- bug detacching objects change position
+- timer images disappear
+- attached hardware elements bounding box does not scale when layer zoomed
+- iphone screen does not hide with iphone after restarting the editor
+- connections cannot be seen behind iphone view
+- fixed bug timer not working anymore
+- bug button not changing background color
+
+**New Features**
+- it takes too long to start a project. Add an activity monitor. Would it be posible to optimize the loading time?
+- change text "loading project" to "starting new project" 
+- added highlight color to quickly determine which project cell is being dragged
+- copying functionality for every object
+
 ———Interactex v2.45———
 
 **Bug Fixing**
