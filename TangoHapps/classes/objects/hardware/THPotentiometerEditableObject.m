@@ -191,13 +191,23 @@ const CGSize kValueLabelSize = {75, 20};
     [super willStartSimulation];
 }
 
--(void) addToLayer:(TFLayer *)layer{
-    [super addToLayer:layer];
+-(void) addValueLabel{
     
     _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
     _valueLabel.color = kDefaultSimulationLabelColor;
     [self addChild:_valueLabel z:1];
+}
+
+-(void) refreshUI{
+    [super refreshUI];
+    [self addValueLabel];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    [self addValueLabel];
 }
 
 -(NSString*) description{

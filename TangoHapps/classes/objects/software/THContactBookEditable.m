@@ -152,7 +152,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addToLayer:(TFLayer *)layer{
     
     THContactBook * contactBook = (THContactBook*) self.simulableObject;
-    [contactBook loadGui];
+    [contactBook loadView];
     
     [super addToLayer:layer];
 }

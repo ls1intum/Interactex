@@ -155,6 +155,12 @@ You should have received a copy of the GNU General Public License along with thi
     [self triggerEventNamed:kEventValueChanged];
 }
 
+-(void) loadView{
+    
+}
+
+#pragma mark - Other
+
 -(void) didStartSimulating{
     ((UISlider*) self.view).enabled = YES;
     

@@ -112,7 +112,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addToLayer:(TFLayer *)layer{
     
     THImageView * imageView = (THImageView*) self.simulableObject;
-    [imageView reloadImageView];
+    [imageView loadView];
     
     [super addToLayer:layer];
 }

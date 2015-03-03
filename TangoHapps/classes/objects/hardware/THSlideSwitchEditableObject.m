@@ -151,9 +151,13 @@ You should have received a copy of the GNU General Public License along with thi
     [self updatePinValue];
 }
 
+-(void) refreshUI{
+    [super refreshUI];
+    [self loadSlideSwitchSprite];
+}
+
 -(void) addToLayer:(TFLayer *)layer{
     [super addToLayer:layer];
-    
     [self loadSlideSwitchSprite];
 }
 

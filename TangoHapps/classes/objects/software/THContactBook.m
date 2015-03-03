@@ -270,7 +270,7 @@ NSString * const kCallImageName = @"call.png";
 }
 
 
--(void) loadGui{
+-(void) loadView{
     
     UIView * containerView = [[UIView alloc] init];
     containerView.bounds = CGRectMake(0, 0, self.width, self.height);

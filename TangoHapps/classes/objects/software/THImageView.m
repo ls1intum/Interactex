@@ -80,7 +80,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
--(void) reloadImageView{
+-(void) loadView{
     
     self.imageView = [[UIImageView alloc] init];
     self.imageView.frame = CGRectMake(0, 0, self.width, self.height);

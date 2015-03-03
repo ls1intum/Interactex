@@ -129,7 +129,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToLayer:(TFLayer *)layer{
     THLabel * label = (THLabel*) self.simulableObject;
-    [label loadLabelUI];
+    [label loadView];
     
     [super addToLayer:layer];
 }

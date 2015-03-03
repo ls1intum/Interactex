@@ -199,14 +199,24 @@ You should have received a copy of the GNU General Public License along with thi
     [led turnOff];
 }
 
--(void) addToLayer:(TFLayer *)layer{
-    
-    [super addToLayer:layer];
+
+-(void) loadLightSprite{
     
     _lightSprite = [CCSprite spriteWithFile:@"yellowLight.png"];
     _lightSprite.visible = NO;
     _lightSprite.position = ccp(20,20);
     [self.sprite addChild:_lightSprite];
+}
+
+-(void) refreshUI{
+    [super refreshUI];
+    [self loadLightSprite];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    [self loadLightSprite];
 }
 
 -(NSString*) description{

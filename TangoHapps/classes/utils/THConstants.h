@@ -205,13 +205,3 @@ extern ccColor3B const kDefaultSimulationLabelColor;
 extern NSString * const kNotificationEditorZoomReset;
 
 extern CGSize const kDefaultCanvasSize;
-
-extern CGSize const kDefaultLabelSize;
-extern CGSize const kDefaultButtonSize;
-extern CGSize const kDefaultSwitchSize;
-extern CGSize const kDefaultSliderSize;
-extern CGSize const kDefaultTouchpadSize;
-extern CGSize const KDefaultMusicPlayerSize;
-extern CGSize const kDefaultImageViewSize;
-extern CGSize const kDefaultContactBookSize;
-extern CGSize const kDefaultGraphSize;

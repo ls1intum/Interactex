@@ -162,7 +162,7 @@ const CGSize kLabelPadding = {15,10};
     }
 }
 
--(void) loadLabelUI{
+-(void) loadView{
     
     THPaddingLabel * label = [[THPaddingLabel alloc] init];
     label.bounds = CGRectMake(0, 0, self.width, self.height);

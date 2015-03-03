@@ -69,8 +69,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, readonly) THContact * currentContact;
 
--(void) loadGui;
-
 -(void) next;
 -(void) previous;
 -(void) call;

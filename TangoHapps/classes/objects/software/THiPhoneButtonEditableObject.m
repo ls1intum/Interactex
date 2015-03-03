@@ -99,12 +99,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addToLayer:(TFLayer *)layer{
     THiPhoneButton * button = (THiPhoneButton*) self.simulableObject;
-    [button loadUI];
+    [button loadView];
     
     [super addToLayer:layer];
     
-    
 }
+
 -(void) setText:(NSString *)text{
     
     THiPhoneButton * button = (THiPhoneButton*) self.simulableObject;

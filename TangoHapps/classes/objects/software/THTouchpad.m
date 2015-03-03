@@ -228,6 +228,11 @@ float const kNotifyMinDistance = 10.0f;
     [self triggerEventNamed:kEventDyChanged];
 }
 
+-(void) loadView{
+}
+
+#pragma mark - Other
+
 -(NSString*) description{
     return @"touchpad";
 }

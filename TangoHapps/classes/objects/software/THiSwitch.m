@@ -136,6 +136,13 @@ You should have received a copy of the GNU General Public License along with thi
     [self triggerEventNamed:kEventOnChanged];
 }
 
+-(void) loadView{
+    
+}
+
+
+#pragma mark - Other
+
 -(void) didStartSimulating{
     self.enabled = YES;
     [self triggerEventNamed:kEventOnChanged];

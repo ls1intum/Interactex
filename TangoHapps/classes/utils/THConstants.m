@@ -175,14 +175,4 @@ ccColor3B const kDefaultSimulationLabelColor = {0,0,0};//black
 NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";
 
 CGSize const kDefaultCanvasSize = {1536, 1152};
-//CGSize const kDefaultCanvasSize = {2048, 1448};
 
-CGSize const kDefaultLabelSize = {100,50};
-CGSize const kDefaultButtonSize = {100,30};
-CGSize const kDefaultSwitchSize = {51,31};
-CGSize const kDefaultSliderSize = {150,30};
-CGSize const kDefaultTouchpadSize = {260,200};
-CGSize const KDefaultMusicPlayerSize = {260,205};
-CGSize const kDefaultImageViewSize = {200,200};
-CGSize const kDefaultContactBookSize = {260,140};
-CGSize const kDefaultGraphSize = {260,130};

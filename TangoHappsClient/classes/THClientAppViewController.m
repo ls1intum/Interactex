@@ -58,11 +58,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 #import "THLabel.h"
 #import "THBLECommunicationModule.h"
-#import "THJennic.h"
 #import "IFFirmata.h"
 #import "THI2CMessage.h"
-#import "THiBeacon.h"
-
 
 //remove
 #import "THSwitch.h"
@@ -73,47 +70,6 @@ float const kScanningTimeout = 3.0f;
 float const kConnectingTimeout = 7.0f;
 
 @implementation THClientAppViewController
-/*
--(void) pushLilypadStateToAllVirtualClients{
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    NSArray * lilypins = project.lilypad.pins;
-    NSMutableArray * pins = [NSMutableArray array];
-    
-    for (THBoardPin * pin in lilypins) {
-        if(pin.mode == kPinModeDigitalOutput && pin.hasChanged){
-            THPinValue * pinValue = [[THPinValue alloc] init];
-            pinValue.type = pin.type;
-            pinValue.value = pin.currentValue;
-            pinValue.number = pin.number;
- 
-            //dont send if value is reserved for protocol (change protocol in future)
-            [pins addObject:pinValue];
-            pin.hasChanged = NO;
-            
-            NSLog(@"iPad sending %d %d",pin.number,pin.currentValue);
-        }
-    }
-    
-    [_transferAgent queueAction:kTransferActionPinState withObject:pins];
-}*/
-
-/*
--(void) pushLilypadStateToRealClient{
-    THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
-    NSArray * lilypins = project.lilypad.pins;
-    
-    for (THBoardPin * pin in lilypins) {
-        if((pin.mode == kPinModeDigitalOutput || pin.mode == kPinModePWM || pin.mode == kPinModeBuzzer) && pin.hasChanged){
-            NSLog(@"ble sending %d %d",pin.number,pin.currentValue);
-            
-            //if(pin.currentValue != kMsgPinValueStarted && pin.currentValue != kMsgPinModeStarted){
-                [_bleService outputPin:pin.number value:pin.currentValue];
-            //}
-            pin.hasChanged = NO;
-        }
-    }
-}
-*/
 
 -(NSString*) title{
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
@@ -124,9 +80,13 @@ float const kConnectingTimeout = 7.0f;
         
     THiPhone * iPhone = self.currentProject.iPhone;
     
+    [iPhone.currentView loadView];
+    
     CGSize size = iPhone.currentView.view.frame.size;
     
     self.view = iPhone.currentView.view;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.alpha = 1.0f;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -135,28 +95,29 @@ float const kConnectingTimeout = 7.0f;
     THIPhoneType type = screenHeight < 500;
     CGFloat viewHeight = self.view.bounds.size.height;
     
-    //CGFloat navigationBarOffset = screenHeight - viewHeight;
-    
     for (THView * object in self.currentProject.iPhoneObjects) {
-
+        
+        float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
+        float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
+        
+        CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
+        
+        if(object.view == nil){
+            [object loadView];
+            [object addToView:self.view];
+        }
+        
         if(!self.showingPreset){
-            
-            float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
-            float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
-            
-            CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
             
             object.position = translatedPos;
         }
-        
-        [object addToView:self.view];
     }
 }
 
 -(void) stopActivityIndicator {
     
     self.view.userInteractionEnabled = YES;
-    self.view.alpha = 1.0f;
+    //self.view.alpha = 1.0f;
     if(_activityIndicator != nil){
         [_activityIndicator removeFromSuperview];
         _activityIndicator = nil;
@@ -167,7 +128,7 @@ float const kConnectingTimeout = 7.0f;
     
     self.view.userInteractionEnabled = NO;
     
-    self.view.alpha = 0.5f;
+    //self.view.alpha = 0.5f;
     
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
@@ -575,6 +536,8 @@ float const kConnectingTimeout = 7.0f;
     NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
     
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
+    
+    NSLog(@"received msg: %d %d",port,value);
     
     int mask = 1;
     NSInteger pinNumber = port * 8;

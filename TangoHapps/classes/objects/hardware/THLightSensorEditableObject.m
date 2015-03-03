@@ -90,7 +90,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(NSArray*)propertyControllers
 {
     NSMutableArray *controllers = [NSMutableArray array];
-    //[controllers addObject:[THLightSensorProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
     return controllers;
 }
@@ -154,14 +153,23 @@ You should have received a copy of the GNU General Public License along with thi
     return lightSensor.light;
 }
 
--(void) addToLayer:(TFLayer *)layer{
-    
-    [super addToLayer:layer];
+-(void) loadLightSprite{
     
     _lightSprite = [CCSprite spriteWithFile: @"light.png"];
     _lightSprite.opacity = 0;
     _lightSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
     [self addChild:_lightSprite];
+}
+
+-(void) refreshUI{
+    [super refreshUI];
+    [self loadLightSprite];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    [self loadLightSprite];
 }
 
 -(NSString*) description{

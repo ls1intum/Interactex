@@ -58,7 +58,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THI2CRegister.h"
 #import "THMonitor.h"
 #import "THMusicPlayer.h"
-#import "THPureData.h"
 #import "THThreeColorLed.h"
 #import "THSlider.h"
 #import "THiSwitch.h"
@@ -242,7 +241,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [lilypinled attachPin:ledpin];
     [ledpin attachToPin:lilypinled];
     
-    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:8];//juan change
+    THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:12];//juan change
     lilypinButton.mode = kPinModeDigitalInput;
     THElementPin * buttonpin = [lilybutton.pins objectAtIndex:0];
     [lilypinButton attachPin:buttonpin];
@@ -733,7 +732,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     return project;
 }
 
-
+/*
 -(THClientProject*) pureDataProject{
     
     THClientProject * project = [self defaultClientProject];
@@ -770,7 +769,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
 
     
     return project;
-}
+}*/
 
 -(NSInteger) numFakeScenes{
     return _presets.count;

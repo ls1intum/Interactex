@@ -50,6 +50,4 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, strong) UIImage * image;
 @property (nonatomic, strong) UIImageView * imageView;
 
--(void) reloadImageView;
-
 @end

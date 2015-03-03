@@ -478,6 +478,7 @@
 		9AB778A517E6C25700F82424 /* triangleEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7789717E6C25700F82424 /* triangleEmpty.png */; };
 		9AB778A717E6C25700F82424 /* triangleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7789817E6C25700F82424 /* triangleFilled.png */; };
 		9AB7791F17E7055500F82424 /* THSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7791E17E7055500F82424 /* THSimulator.m */; };
+		9AB80EB71AA5F5B900A76379 /* THPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */; };
 		9ABC27291809526C00B39D72 /* lilypadComplex.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27251809526C00B39D72 /* lilypadComplex.png */; };
 		9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27261809526C00B39D72 /* lilypadComplex@2x.png */; };
 		9ABC272D1809526C00B39D72 /* lilypadSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABC27271809526C00B39D72 /* lilypadSimple.png */; };
@@ -4116,6 +4117,7 @@
 				9AF5045B167B84F50020241C /* THSwitch.m in Sources */,
 				9AF5045C167B850D0020241C /* THClientProject.m in Sources */,
 				9ABC276418098F2400B39D72 /* THSimpleLilypad.m in Sources */,
+				9AB80EB71AA5F5B900A76379 /* THPaddingLabel.m in Sources */,
 				9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
 				9AF5045D167B850D0020241C /* THSimulableWorldController.m in Sources */,
 				9AF5045E167B852F0020241C /* THiPhone.m in Sources */,
@@ -4478,6 +4480,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4496,6 +4499,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4514,6 +4518,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};

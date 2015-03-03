@@ -164,7 +164,6 @@ You should have received a copy of the GNU General Public License along with thi
         if(attachment.parent == nil){
             [attachment refreshUI];
             [self addChild:attachment z:1];
-            //[self attachClotheObject:attachment];
         }
     }
 }

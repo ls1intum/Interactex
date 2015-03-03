@@ -123,7 +123,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) loadUI{
+-(void) loadView{
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.bounds = CGRectMake(0, 0, self.width, self.height);

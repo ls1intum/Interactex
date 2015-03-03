@@ -158,7 +158,7 @@ float const kMonitorNewValueX = 75.0f;
     _minValue = minValue;
 }
 
--(void) loadUI{
+-(void) loadView{
     
     CGRect frame = CGRectMake(0, 0, self.width, self.maxValue);
     

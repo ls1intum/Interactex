@@ -280,3 +280,13 @@ extern const float kShakingEffectRotationTime;
 extern const float kProjectCellScaleEffectDuration;
 
 extern const NSInteger kProjectNameMaxCharacters;
+
+extern CGSize const kDefaultLabelSize;
+extern CGSize const kDefaultButtonSize;
+extern CGSize const kDefaultSwitchSize;
+extern CGSize const kDefaultSliderSize;
+extern CGSize const kDefaultTouchpadSize;
+extern CGSize const KDefaultMusicPlayerSize;
+extern CGSize const kDefaultImageViewSize;
+extern CGSize const kDefaultContactBookSize;
+extern CGSize const kDefaultGraphSize;

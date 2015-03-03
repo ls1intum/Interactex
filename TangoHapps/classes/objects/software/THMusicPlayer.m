@@ -121,7 +121,7 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
--(void) loadUI{
+-(void) loadView{
     
     UIView * containerView = [[UIView alloc] init];
     containerView.bounds = CGRectMake(0, 0, self.width, self.height);
