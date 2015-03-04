@@ -167,9 +167,9 @@ const float kProjectCellScaleEffectDuration = 0.5;
 const NSInteger kProjectNameMaxCharacters = 25;
 
 CGSize const kDefaultLabelSize = {100,50};
-CGSize const kDefaultButtonSize = {100,30};
-CGSize const kDefaultSwitchSize = {51,31};
-CGSize const kDefaultSliderSize = {150,30};
+CGSize const kDefaultButtonSize = {100,50};//30
+CGSize const kDefaultSwitchSize = {55,40};//51,31
+CGSize const kDefaultSliderSize = {150,40};//30
 CGSize const kDefaultTouchpadSize = {260,200};
 CGSize const KDefaultMusicPlayerSize = {260,205};
 CGSize const kDefaultImageViewSize = {200,200};
