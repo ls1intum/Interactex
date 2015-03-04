@@ -153,6 +153,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.sprite = [CCSprite spriteWithCGImage:_image.CGImage key:nil];
     }
     [self addChild:self.sprite];
+    
 }
 
 -(void) addToLayer:(TFLayer*) layer{
@@ -216,6 +217,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     object.attachedToClothe = nil;
 }
+
+#pragma mark - Other
 
 -(NSString*) description{
     return @"Clothe";

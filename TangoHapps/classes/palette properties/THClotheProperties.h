@@ -46,10 +46,6 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THClotheProperties : THEditableObjectProperties <TFImagePickerDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UILabel * scaleLabel;
-@property (weak, nonatomic) IBOutlet UISlider *scaleSlider;
-- (IBAction)scaleChanged:(id)sender;
-
 @property (nonatomic, strong) THImagePickerController * imagePicker;
 @property (nonatomic, strong) UIPopoverController * imagePickerPopover;
 @property (weak, nonatomic) IBOutlet UIImageView * imageView;

@@ -58,14 +58,15 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL isI2CComponent;
 @property (nonatomic, weak) THClothe * attachedToClothe;
 @property (nonatomic, readonly) THElementPinEditable * mainPin;
+@property (nonatomic, strong) CCLabelTTF * nameLabel;
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
 -(void) loadPins;
 -(void) autoroutePlusAndMinusPins;
+-(void) autoroutePin:(THElementPinEditable*) pin;
 -(void) autoroute;
 -(void) handleBoardRemoved:(THBoardEditable *)board;
 -(void) refreshUI;
 
-@property (nonatomic, strong) CCLabelTTF * nameLabel;
 
 @end

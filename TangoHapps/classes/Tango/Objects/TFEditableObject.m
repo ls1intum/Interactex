@@ -349,24 +349,6 @@ static NSInteger objectCount = 1;
         CGSize size = CGSizeMake(self.contentSize.width * self.myScale * self.parent.scale, self.contentSize.height * self.myScale * self.parent.scale);
         return CGRectMake(spriteLoc.x - size.width / 2, spriteLoc.y - size.height / 2, size.width, size.height);
     }
-    
-    
-    CGPoint pos = self.position;
-    pos = ccpAdd(pos, self.parent.position);
-    
-    CGSize spriteSize;
-    if(_sprite){
-        
-        spriteSize = CGSizeMake(_sprite.contentSize.width * _sprite.scaleX,_sprite.contentSize.height * _sprite.scaleY);
-        
-    } else {
-        spriteSize = CGSizeMake(_size.width,_size.height);
-    }
-    
-    CGPoint halfSize = ccp(spriteSize.width/2,spriteSize.height/2);
-    pos = ccpSub(pos, halfSize);
-    CGRect spriteRect = CGRectMake(pos.x, pos.y, spriteSize.width, spriteSize.height);
-    return spriteRect;
 }
 
 -(CGPoint) absolutePosition{
@@ -403,8 +385,6 @@ static NSInteger objectCount = 1;
     rect.origin = origin;
     rect.size = box.size;
     rect.size = CGSizeMake(rect.size.width, rect.size.height);
-    
-    NSLog(@"%@ %f",self,rect.size.width);
     
     return CGRectContainsPoint(rect, point);
 }

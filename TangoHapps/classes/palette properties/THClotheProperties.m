@@ -45,25 +45,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THClotheProperties
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
--(NSString *)title
-{
+-(NSString *)title {
     return @"Button";
-}
-
--(void) updateLabel{
-    THClothe * clothe = (THClothe*) self.editableObject;
-    self.scaleLabel.text = [NSString stringWithFormat:@"%.2f",clothe.scale];
-}
-
--(void) updateSlider{
-    
-    THClothe * clothe = (THClothe*) self.editableObject;
-    self.scaleSlider.value = clothe.scale;
 }
 
 -(void) updateImageView{
@@ -81,8 +68,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) reloadState{
-    [self updateLabel];
-    [self updateSlider];
     
     [self updateImageView];
 }
@@ -94,17 +79,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void)viewDidUnload {
-    [self setScaleLabel:nil];
-    [self setScaleSlider:nil];
     [super viewDidUnload];
-}
-
-- (IBAction)scaleChanged:(id)sender {
-    
-    THClothe * clothe = (THClothe*) self.editableObject;
-    clothe.scale = self.scaleSlider.value;
-    
-    [self updateLabel];
 }
 
 - (void)imagePicker:(THImagePickerController*) picker didSelectImage:(UIImage*)image imageName:(NSString *)imageName{

@@ -301,7 +301,6 @@ CGPoint kBoardPinPositions[kMaxNumBoards][kBLELilypadNumberOfPins] = {
     [super removeFromWorld];
 }
 
-
 -(void) prepareToDie{
     
     for (THElementPinEditable * pin in self.pins) {

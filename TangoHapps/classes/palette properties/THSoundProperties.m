@@ -59,9 +59,15 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) updateEnabledState{
+    THSoundEditable * sound = (THSoundEditable*) self.editableObject;
+    self.playButton.enabled = !(sound.fileName == nil || [sound.fileName isEqualToString:@""]);
+}
+
 -(void) reloadState{
     
     [self updateNameLabel];
+    [self updateEnabledState];
 }
 
 - (IBAction)playTapped:(id)sender {
@@ -77,6 +83,7 @@ You should have received a copy of the GNU General Public License along with thi
         THSoundEditable * sound = (THSoundEditable*) self.editableObject;
         sound.fileName = soundName;
         [self updateNameLabel];
+        [self updateEnabledState];
         [self.soundPickerPopover dismissPopoverAnimated:YES];
     }
 }

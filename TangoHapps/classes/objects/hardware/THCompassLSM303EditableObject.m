@@ -173,9 +173,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Lifecycle
 
--(void) addToLayer:(TFLayer *)layer{
-    [super addToLayer:layer];
-    [self autoroute];
+-(void) autoroute{
+    [super autoroute];
+    
+    [self autoroutePin:self.sclPin];
+    [self autoroutePin:self.sdaPin];
 }
 
 -(void) willStartSimulation{

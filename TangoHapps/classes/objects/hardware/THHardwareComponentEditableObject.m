@@ -242,6 +242,9 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
+    NSLog(@"adding wire from %@ to %@",elementPin,boardPin);
+    NSLog(@"%d",project.wires.count);
+    
     [boardPin attachPin:elementPin];
     [elementPin attachToPin:boardPin animated:NO];
     [project addWireFrom:elementPin to:boardPin];
@@ -276,12 +279,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) autoroute{
-
-    for (THElementPinEditable * pin in self.pins) {
-        if(!pin.attachedToPin){
-            [self autoroutePin:pin];
-        }
-    }
+    
+    [self autoroutePlusAndMinusPins];
     
     if(self.isI2CComponent){
         
@@ -334,7 +333,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     [layer addEditableObject:self];
     
-    [self autoroutePlusAndMinusPins];
+    [self autoroute];
     
     [super addToLayer:layer];
 }

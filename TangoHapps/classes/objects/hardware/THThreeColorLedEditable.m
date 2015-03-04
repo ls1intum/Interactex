@@ -111,7 +111,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
--(THElementPinEditable*) minusPin{
+-(THElementPinEditable*) plusPin{
     return [self.pins objectAtIndex:0];
 }
 

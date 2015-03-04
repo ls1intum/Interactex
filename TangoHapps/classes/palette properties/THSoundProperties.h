@@ -51,6 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *changeButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @property (nonatomic, strong) UIPopoverController * soundPickerPopover;
 @property (nonatomic, strong) THSoundPicker * soundPicker;

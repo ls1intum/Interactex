@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic redPin;
 @dynamic greenPin;
 @dynamic bluePin;
-@dynamic minusPin;
+@dynamic plusPin;
 
 -(void) loadThreeColorLed{
     
@@ -152,7 +152,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
--(THElementPin*) minusPin{
+-(THElementPin*) plusPin{
     return [self.pins objectAtIndex:0];
 }
 

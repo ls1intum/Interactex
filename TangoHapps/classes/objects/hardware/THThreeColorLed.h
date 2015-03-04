@@ -51,7 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) NSInteger green;
 @property (nonatomic) NSInteger blue;
 
-@property (nonatomic) THElementPin * minusPin;
+@property (nonatomic) THElementPin * plusPin;
 @property (nonatomic) THElementPin * redPin;
 @property (nonatomic) THElementPin * greenPin;
 @property (nonatomic) THElementPin * bluePin;

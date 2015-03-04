@@ -637,7 +637,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) moveCurrentObject:(CGPoint) d{
     if([self.currentObject canBeMovedBy:d]){
         
-        if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){
+        if((self.currentObject.parent == self.zoomableLayer) || (self.currentObject.parent.parent == self.zoomableLayer)){//Juan! recheck this. Leads to bugs when attached to tshirt.
             d = ccpMult(d, 1.0f/_zoomableLayer.scale);
         }
         
@@ -690,16 +690,7 @@ You should have received a copy of the GNU General Public License along with thi
             
             [self moveCurrentConnection:location];
             
-        } /*else if(self.isLilypadMode && sender.state == UIGestureRecognizerStateChanged){
-            
-            CGPoint d = [sender translationInView:sender.view];
-            d.y = - d.y;
-            if(self.currentObject){
-                
-                [self moveCurrentObject:d];
-            }
-            [sender setTranslation:ccp(0,0) inView:sender.view];
-        }*/
+        }
         
     } else if(_state == kEditorStateDuplicate) {
         
