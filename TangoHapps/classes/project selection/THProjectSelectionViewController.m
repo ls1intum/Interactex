@@ -1153,9 +1153,9 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
     body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'><b><span style=' letter-spacing:1px;'>Interactex Designer</span></b><br>Version 1.0<br>www.interactex.de</div>"];
     body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'>You can use the Interactex Designer to visually create and test software for your eTextiles<br>without the need to write any code.<br><br>It supports every hardware components of the Arduino Lilypad family such as LEDs, buttons,<br>accelerometers, light sensors etc. and every iOS user interface elements such as buttons,<br>labels, switches etc.</div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:20px;'>You can use the Interactex Designer to visually create and test software for your eTextiles<br>without the need to write any code.<br><br>It supports every hardware components of the Arduino Lilypad family such as LEDs, buttons,<br>accelerometers, light sensors and most iOS user interface elements such as buttons,<br>labels, switches etc.</div>"];
     body = [body stringByAppendingString:@"<div style='height:1px; margin:15px auto; width:30px; background-color:#302e2a;'></div>"];
-    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:18px;'>This is an open source software:<br><a style='color:#007aff; text-decoration:none;' href='https://github.com/AppliedSE/Interactex'>https://https://github.com/AppliedSE/Interactex</a></div>"];
+    body = [body stringByAppendingString:@"<div style='font-size:13px; line-height:18px;'>This is an open source software:<br><a style='color:#007aff; text-decoration:none;' href='https://github.com/AppliedSE/Interactex'>https://github.com/AppliedSE/Interactex</a></div>"];
     body = [body stringByAppendingString:@"</body></html>"];
     
     [self showSimplePopoverWebview:body];

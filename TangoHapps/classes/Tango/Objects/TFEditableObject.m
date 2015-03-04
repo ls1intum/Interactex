@@ -393,6 +393,7 @@ static NSInteger objectCount = 1;
 }
 
 -(BOOL)testPoint:(CGPoint)point {
+    if(!self.visible) return NO;
     
     CGRect box = self.boundingBox;
     
@@ -403,7 +404,9 @@ static NSInteger objectCount = 1;
     rect.size = box.size;
     rect.size = CGSizeMake(rect.size.width, rect.size.height);
     
-    return (self.visible && CGRectContainsPoint(rect, point));
+    NSLog(@"%@ %f",self,rect.size.width);
+    
+    return CGRectContainsPoint(rect, point);
 }
 
 -(BOOL) canBeMovedBy:(CGPoint) d{

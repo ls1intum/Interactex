@@ -143,7 +143,6 @@ const CGSize kTemperatureValueLabelSize = {75, 20};
     temperatureSensor.value = _touchDownIntensity;
     _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)temperatureSensor.value];
     
-    NSLog(@"%d",temperatureSensor.value);
 }
 
 -(NSInteger) value{
@@ -203,7 +202,6 @@ const CGSize kTemperatureValueLabelSize = {75, 20};
     
     _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kTemperatureValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2 - 75);
-    _valueLabel.visible = NO;
     _valueLabel.color = kDefaultSimulationLabelColor;
     [self addChild:_valueLabel z:1];
 }

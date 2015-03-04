@@ -1329,8 +1329,8 @@ You should have received a copy of the GNU General Public License along with thi
     
     THPaletteViewController * paletteController = [THDirector sharedDirector].projectController.tabController.paletteController;
     
-    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.clothesSectionArray, paletteController.boardsSectionArray, paletteController.hardwareSectionArray, nil];
-    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.clothesSectionName, paletteController.boardsSectionName, paletteController.hardwareSectionName, nil];
+    paletteController.sections = [NSMutableArray arrayWithObjects:paletteController.boardsSectionArray, paletteController.hardwareSectionArray, nil];
+    paletteController.sectionNames = [NSMutableArray arrayWithObjects:paletteController.boardsSectionName, paletteController.hardwareSectionName, nil];
     
     [paletteController reloadPalettes];
 }

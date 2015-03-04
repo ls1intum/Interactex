@@ -74,7 +74,7 @@ NSString * const kMPUCompassProjectName = @"MPU6050";
 NSString * const kLSMCompassProjectName = @"LSM303";
 NSString * const kAccelerometerProjectName = @"Accelerometer";
 NSString * const kMusicPlayerProjectName = @"Music Player";
-NSString * const kPureDataProjectName = @"PureData";
+//NSString * const kPureDataProjectName = @"PureData";
 NSString * const kThreeColorLEDProjectName = @"Three Color LED";
 
 -(id) init{

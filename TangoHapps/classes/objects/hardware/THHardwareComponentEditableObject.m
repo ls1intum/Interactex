@@ -349,6 +349,26 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
+-(BOOL)testPoint:(CGPoint)point {
+    if(!self.visible) return NO;
+    
+    CGRect box = self.boundingBox;
+    
+    CGPoint origin = box.origin;
+    
+    CGRect rect;
+    rect.origin = origin;
+    rect.size = box.size;
+    rect.size = CGSizeMake(rect.size.width, rect.size.height);
+    
+    THEditor * currentLayer = (THEditor*) [THDirector sharedDirector].currentLayer;
+    if(self.attachedToClothe){
+        rect.size = CGSizeMake(rect.size.width * currentLayer.zoomableLayer.scale, rect.size.height * currentLayer.zoomableLayer.scale);
+    }
+    
+    return CGRectContainsPoint(rect, point);
+}
+
 -(void) prepareToDie{
     
     for (THElementPinEditable * pin in _pins) {
