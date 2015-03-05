@@ -474,7 +474,6 @@ You should have received a copy of the GNU General Public License along with thi
     CGPoint currentPos = ccpAdd(ccpMult(ccpAdd(p1, p2),0.5f),offset);
     CGPoint addition = ccpMult(orthog,kEditorInvocationLinesDistance);
     
-    //NSLog(@"%f %f",currentPos.x,currentPos.y);
     for (THInvocationConnectionLine * connectionLine in invocationConnections) {
         currentPos = ccpAdd(currentPos, addition);
         connectionLine.lineCenter = currentPos;
@@ -489,7 +488,6 @@ You should have received a copy of the GNU General Public License along with thi
     [project registerAction:(TFAction*)action forEvent:event];
     
     THInvocationConnectionLine * invocationConnection = [[THInvocationConnectionLine alloc] initWithObj1:popup.object1  obj2:popup.object2];
-    //invocationConnection.action = [TFMethodInvokeAction actionWithAction:action];//why do we need acopy here instead of the real?
     invocationConnection.action = action;
     invocationConnection.numParameters = action.method.numParams;
     

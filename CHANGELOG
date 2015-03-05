@@ -1,3 +1,23 @@
+———Interactex v2.55———
+
+**Bug Fixing**
+
+- bug button not changing background color
+- Zoom Layer positioned wrong after starting simulation mode when zoomed in
+- T-Shirt palette item visible in Hardware mode
+- led, light sensor, etc. not turning on after started simulation mode twice when attached to tshirt
+- temperatureSensor and potentiometer touch area is smaller when zoomed in and attached to tshirt
+- objects not displaying sprites when deattached from tshirt
+- some pins automatically wired wrong
+- clothe bounding box is wrong when zooming
+- objects attached to tshirt are displaced very rapidly when tshirt is scaled
+- tshirt does not remember its scale
+- fixed bug inconsistent auto routing of pins depending on what is added first (hardware component or microcontroller)
+
+**New Features**
+
+- functionality to disable sound playing in the sound properties when no sound is selected
+
 
 ———Interactex v2.50———
 
@@ -138,6 +158,12 @@ Fixed bug: opengl draw errors after random combinations of actions in the canvas
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+———Interactex Client v1.95———
+
+- client background view too dark
+- client bug items positioned wrong
 
 
 ———Interactex Client v1.90———
