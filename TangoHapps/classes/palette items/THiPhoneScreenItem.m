@@ -37,7 +37,7 @@
     CGFloat minX = originPoint.x;
     CGFloat maxX = originPoint.x + iPhoneScreen.size.width;
     CGFloat minY = originPoint.y + 45;
-    CGFloat maxY = originPoint.y + 45 + iPhoneScreen.size.height;
+    CGFloat maxY = originPoint.y + 44 + iPhoneScreen.size.height;
     
     // Four corners for each item.
     A = CGRectContainsPoint(iPhoneScreen, topLeftPoint)? TRUE : FALSE;
