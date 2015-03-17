@@ -139,6 +139,18 @@ You should have received a copy of the GNU General Public License along with thi
     self.currentView.height = kiPhoneFrames[self.type].size.height;
 }
 
+-(void) setEmergencyNumber:(NSString*)emergencyNumber{
+    THiPhone * iPhone = (THiPhone*) self.simulableObject;
+    iPhone.emergencyNumber = emergencyNumber;
+    
+}
+
+-(NSString*) emergencyNumber{
+    THiPhone * iPhone = (THiPhone*) self.simulableObject;
+    return iPhone.emergencyNumber;
+}
+
+
 -(void) setType:(THIPhoneType)type{
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.type = type;

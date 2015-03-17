@@ -88,6 +88,13 @@ NSString * const kEventSwitchedOff = @"switchOff";
 NSString * const kEventIntensityChanged = @"intensityChanged";
 NSString * const kEventFrequencyChanged = @"frequencyChanged";
 NSString * const kEventValueChanged = @"valueChanged";
+NSString * const kEventDeviationChanged = @"deviationChanged";
+
+NSString * const kEventStanding = @"standing";
+NSString * const kEventWalking = @"walking";
+NSString * const kEventRunning = @"running";
+NSString * const kEventUnconscious = @"unconscious";
+
 NSString * const kEventMapperValueChanged = @"mapperValueChanged";
 NSString * const kEventDxChanged = @"dxChanged";
 NSString * const kEventDyChanged = @"dyChanged";
@@ -103,6 +110,8 @@ NSString * const kEventConditionChanged = @"conditionChanged";
 NSString * const kEventXChanged = @"xChanged";
 NSString * const kEventYChanged = @"yChanged";
 NSString * const kEventZChanged = @"zChanged";
+//NSString * const kEventAccelerometerChanged = @"accelerometerChanged";
+NSString * const kEventNewValue = @"newValue";
 
 NSString * const kEventTapped = @"tapped";
 NSString * const kEventDoubleTapped = @"doubleTapped";
@@ -135,6 +144,9 @@ NSString * const kMethodAddValue2 = @"addValue2";
 NSString * const kMethodSetRed = @"setRed";
 NSString * const kMethodSetGreen = @"setGreen";
 NSString * const kMethodSetBlue = @"setBlue";
+
+NSString * const kMethodSetText = @"setText";
+
 
 NSString * const kGameKitSessionId = @"tangoSession";
 

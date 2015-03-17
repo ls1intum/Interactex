@@ -51,6 +51,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) CGPoint position;
 @property (nonatomic) THIPhoneType type;
 @property (nonatomic, strong) THView * currentView;
+@property (nonatomic, copy) NSString * emergencyNumber;
 
 -(void) makeEmergencyCall;
 

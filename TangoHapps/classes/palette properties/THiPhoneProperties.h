@@ -45,6 +45,10 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THiPhoneProperties : THEditableObjectProperties
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegment;
+
 - (IBAction)typeSegmentChanged:(UISegmentedControl*)sender;
+@property (weak, nonatomic) IBOutlet UITextField *numberTextField;
+
+- (IBAction)numberChanged:(id)sender;
 
 @end

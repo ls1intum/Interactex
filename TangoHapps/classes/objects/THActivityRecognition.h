@@ -7,7 +7,22 @@
 //
 
 #import "THProgrammingElement.h"
+#import "THAccelerometerData.h"
 
-@interface THActivityRecognition : THProgrammingElement
+#define kActivityRecognitionNumSamples 30
 
+typedef enum : NSUInteger {
+    kActivityStateStanding,
+    kActivityStateWalking,
+    kActivityStateRunning,
+    kActivityStateUnconscious
+} ActivityState;
+
+@interface THActivityRecognition : THProgrammingElement {
+    
+    THAccelerometerData* buffer[kActivityRecognitionNumSamples];
+    NSInteger count;
+}
+
+-(void) addSample:(THAccelerometerData*) sample;
 @end

@@ -43,6 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THAppDelegate.h"
 #import "THDirector.h"
 #import "THProjectViewController.h"
+#import "QTouchposeApplication.h"
 
 @implementation THAppDelegate
 
@@ -59,6 +60,10 @@ You should have received a copy of the GNU General Public License along with thi
     [director.serverController startServer];
     
     self.motionManager = [[CMMotionManager alloc] init];
+    
+    
+    QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
+    touchposeApplication.alwaysShowTouches = YES;
     
     return YES;
 }

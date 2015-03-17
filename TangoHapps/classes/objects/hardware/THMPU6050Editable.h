@@ -8,6 +8,22 @@
 
 #import "THHardwareComponentEditableObject.h"
 
-@interface THMPU6050Editable : THHardwareComponentEditableObject
+#import <CoreLocation/CoreLocation.h>
+
+@class THAccelerometerData;
+
+@interface THMPU6050Editable : THHardwareComponentEditableObject <UIAccelerometerDelegate>{
+        }
+/*
+@property (nonatomic) float accelerometerX;
+@property (nonatomic) float accelerometerY;
+ @property (nonatomic) float accelerometerZ;*/
+
+@property (nonatomic) THAccelerometerData* accelerometer;
+
+@property (nonatomic, readonly) THElementPinEditable * sclPin;
+@property (nonatomic, readonly) THElementPinEditable * sdaPin;
+
+@property (nonatomic) THI2CComponentType componentType;
 
 @end

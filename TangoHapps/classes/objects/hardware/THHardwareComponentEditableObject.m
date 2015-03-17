@@ -242,9 +242,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
     
-    NSLog(@"adding wire from %@ to %@",elementPin,boardPin);
-    NSLog(@"%d",project.wires.count);
-    
     [boardPin attachPin:elementPin];
     [elementPin attachToPin:boardPin animated:NO];
     [project addWireFrom:elementPin to:boardPin];

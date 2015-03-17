@@ -10,4 +10,20 @@
 
 @implementation THAccelerometerData
 
+-(id)copyWithZone:(NSZone *)zone{
+    
+    THAccelerometerData * copy = [super init];
+    copy.x = self.x;
+    copy.y = self.y;
+    copy.z = self.z;
+    
+    return copy;
+}
+
+-(NSString*) description{
+    return [NSString stringWithFormat:@"%.3f %.3f %.3f",self.x,self.y,self.z];
+}
+
 @end
+
+

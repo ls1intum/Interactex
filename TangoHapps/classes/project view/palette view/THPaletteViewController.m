@@ -61,6 +61,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THVibrationBoardPaletteItem.h"
 #import "THTemperatureSensorPaletteItem.h"
 #import "THAccelerometerPaletteItem.h"
+#import "THMPU6050PaletteItem.h"
 
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
@@ -85,6 +86,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
+#import "THSignalDeviationPaletteItem.h"
+#import "THActivityRecognitionPaletteItem.h"
+
 //#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
 //#import "THPressureSensorPaletteItem.h"
@@ -469,17 +473,20 @@ You should have received a copy of the GNU General Public License along with thi
                                  [THThreeColorLedPaletteItem paletteItemWithName:@"threeColorLed" imageName:@"palette_threeColorLed" displayName:@"3-color led"],
                                  [THVibrationBoardPaletteItem paletteItemWithName:@"vibeBoard" imageName:@"palette_vibeBoard" displayName:@"vibration board"],[THTemperatureSensorPaletteItem paletteItemWithName:@"temperatureSensor" imageName:@"palette_temperatureSensor" displayName:@"temperature sensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
+                                 [[THMPU6050PaletteItem alloc] initWithName:@"MPU-6050"],
                                  nil];
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
                                      [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
                                      [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
+                                     [[THSignalDeviationPaletteItem alloc] initWithName:@"signalDeviation"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
+                                     [[THActivityRecognitionPaletteItem alloc] initWithName:@"activity"],
                                      nil];
                                      
     self.clothesSectionName = @"Textiles";

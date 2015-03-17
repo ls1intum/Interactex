@@ -67,7 +67,7 @@ const CGSize kLabelPadding = {15,10};
 
 -(void) loadMethods{
     
-    TFMethod * method1 =[TFMethod methodWithName:@"setText"];
+    TFMethod * method1 =[TFMethod methodWithName:kMethodSetText];
     method1.firstParamType = kDataTypeAny;
     method1.numParams = 1;
     
@@ -136,6 +136,8 @@ const CGSize kLabelPadding = {15,10};
     } else if([text isKindOfClass:[NSNumber class]]){
         NSNumber * number = text;
         string = [number stringValue];
+    } else if([text isKindOfClass:[NSObject class]]){
+        string = ((NSObject*)text).description;
     }
     return string;
 }
@@ -155,6 +157,7 @@ const CGSize kLabelPadding = {15,10};
 }
 
 -(void) setText:(id)text{
+    
     _text = [text copy];
     
     if(labelLoaded){

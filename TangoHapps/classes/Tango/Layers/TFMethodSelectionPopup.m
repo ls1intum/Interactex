@@ -135,17 +135,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadTables{
     
-    CGRect frame = CGRectMake(0, 0, 200, 200);
+    CGRect frame = CGRectMake(0, 0, 350, 200);
     self.view = [[UIView alloc] initWithFrame:frame];
     
-    CGRect frame1 = CGRectMake(0, 0, 200, 200);
+    CGRect frame1 = CGRectMake(0, 0, 350, 200);
     self.table1 = [[UITableView alloc] initWithFrame:frame1 style:UITableViewStylePlain];
     self.table1.delegate = self;
     self.table1.dataSource = self;
     self.table1.contentMode = UIViewContentModeLeft;
     self.table1.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    CGRect frame2 = CGRectMake(200, 0, 200, 200);
+    CGRect frame2 = CGRectMake(200, 0, 350, 200);
     self.table2 = [[UITableView alloc] initWithFrame:frame2 style:UITableViewStylePlain];
     self.table2.delegate = self;
     self.table2.dataSource = self;

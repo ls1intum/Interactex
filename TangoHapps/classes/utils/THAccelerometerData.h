@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THAccelerometerData : NSObject
+@interface THAccelerometerData : NSObject <NSCopying>
+
+@property (nonatomic) float x;
+@property (nonatomic) float y;
+@property (nonatomic) float z;
 
 @end

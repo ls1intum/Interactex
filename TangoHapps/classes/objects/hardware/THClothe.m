@@ -177,6 +177,17 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(void) setImage:(UIImage *)image{
+    
+    [self.sprite removeFromParentAndCleanup:YES];
+    self.name = @"jacke";
+    
+    //NSString * fileName = [NSString stringWithFormat:@"%@.png",self.name];
+    //_image = [UIImage imageNamed:fileName];
+    //self.sprite = [CCSprite spriteWithFile:fileName];
+    
+    [self loadSprite];
+    
+    /*
     if(image != _image){
         [self.sprite removeFromParentAndCleanup:YES];
         
@@ -187,7 +198,7 @@ You should have received a copy of the GNU General Public License along with thi
         _image = image;
         
         _imageFromName = NO;
-    }
+    }*/
 }
 
 -(THPaletteItem*) paletteItem{

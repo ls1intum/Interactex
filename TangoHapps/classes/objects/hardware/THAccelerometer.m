@@ -188,10 +188,10 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
--(void) didStartSimulating{
+-(void) didStartSimulating{/*
     [self triggerEventNamed:kEventXChanged];
     [self triggerEventNamed:kEventYChanged];
-    [self triggerEventNamed:kEventZChanged];
+    [self triggerEventNamed:kEventZChanged];*/
     
     [super didStartSimulating];
 }

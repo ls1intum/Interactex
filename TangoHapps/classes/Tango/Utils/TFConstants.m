@@ -86,8 +86,8 @@ ccColor4B const kDefaultObjectSelectionColor = {10, 10, 50, 255};
 
 float const kLineAcceptedShinningTime = 0.9f;
 
-float const kLineWidthNormal = 1.0f;
-float const kLineWidthSelected = 2.0f;
+float const kLineWidthNormal = 3.0f;
+float const kLineWidthSelected = 4.0f;
 
 float const kDragViewDefaultOpacity = 0.8f;
 

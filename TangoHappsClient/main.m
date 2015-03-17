@@ -43,10 +43,11 @@ You should have received a copy of the GNU General Public License along with thi
 #import <UIKit/UIKit.h>
 
 #import "THClientAppDelegate.h"
+#import "QTouchposeApplication.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([THClientAppDelegate class]));
+        return UIApplicationMain(argc, argv, NSStringFromClass([QTouchposeApplication class]),NSStringFromClass([THClientAppDelegate class]));
     }
 }

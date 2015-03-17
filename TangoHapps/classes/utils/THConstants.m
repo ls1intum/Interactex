@@ -90,7 +90,7 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-24,15},{24,15}},//vibeBoard
     {{-23,-12},{0,26},{25,-12}},//10 - temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
-    {{32,-4},{32,-13},{-32,13},{-32,4}},//mpu compass
+    {{-26,24},{-26,32},{-26,15},{-26,6}},//mpu compass
 };
 
 float const kUiViewOpacityEditor = 0.5f;
@@ -151,7 +151,8 @@ NSString * const kHardwareSpriteNames[kNumHardwareTypes] = {
     @"threeColorLed.png",
     @"vibeBoard.png",
     @"temperatureSensor.png",
-    @"accelerometer.png"
+    @"accelerometer.png",
+    @"MPU-6050.png"
 };
 
 NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
@@ -162,7 +163,9 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"sound.png",
     @"timer.png",
     @"comparator.png",
-    @"grouper.png"
+    @"grouper.png",
+    @"signalDeviation.png",
+    @"activityRecognition.png"
 };
 
 float const kLayerMinScale = 0.5f;

@@ -49,7 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THElementPinEditable.h"
 
 @implementation THBuzzerEditableObject
-@synthesize on = _on;
+@dynamic on;
 @dynamic frequency;
 
 -(id) init{
@@ -116,6 +116,17 @@ You should have received a copy of the GNU General Public License along with thi
     return [self.pins objectAtIndex:0];
 }
 
+-(BOOL) on{
+    THBuzzer * buzzer = (THBuzzer*)self.simulableObject;
+    return buzzer.on;
+}
+
+-(void) setOn:(BOOL)on{
+    
+    THBuzzer * buzzer = (THBuzzer*)self.simulableObject;
+    buzzer.on = on;
+}
+
 -(float) frequency{
     THBuzzer * buzzer = (THBuzzer*)self.simulableObject;
     return buzzer.frequency;
@@ -139,9 +150,9 @@ You should have received a copy of the GNU General Public License along with thi
     THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
     
     if(lilypadPin.type == kPintypeDigital){
-        if(lilypadPin.value == kDigitalPinValueHigh && !self.on){
+        if(lilypadPin.value == kDigitalPinValueHigh && !isPlaying){
             [self turnOn];
-        } else if(lilypadPin.value == kDigitalPinValueLow && self.on){
+        } else if(lilypadPin.value == kDigitalPinValueLow && isPlaying){
             [self turnOff];
         }
     } else if(lilypadPin.type == kPintypeAnalog){
@@ -153,9 +164,9 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) update{
     THBuzzer * buzzer = (THBuzzer*) self.simulableObject;
     
-    if(buzzer.on && !self.on){
+    if(buzzer.on && !isPlaying){
         [self handleBuzzerOn];
-    } else if(!buzzer.on &&self.on){
+    } else if(!buzzer.on && isPlaying){
         [self handleBuzzerOff];
     }
     [self adaptFrequencyToBuzzer];
@@ -206,13 +217,13 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) handleBuzzerOn{
     [self shake];
     [self playSound];
-    self.on = YES;
+    isPlaying = YES;
 }
 
 -(void) handleBuzzerOff{
     [self stopShaking];
     [self stopPlayingSound];
-    self.on = NO;
+    isPlaying = NO;
 }
 
 - (void)turnOn{

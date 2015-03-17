@@ -59,7 +59,7 @@ typedef enum THDigitalPinValue : NSUInteger{
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
 
-#define kNumHardwareTypes 14
+#define kNumHardwareTypes 12
 #define kMaxNumPinsPerElement 5
 
 typedef enum THHardwareType : NSUInteger{
@@ -74,10 +74,10 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypeVibeBoard,
     kHardwareTypeTemperatureSensor,//10
     kHardwareTypeAccelerometer,
-    kHardwareTypeMPUCompass,
+    kHardwareTypeMPU6050
 }THHardwareType;
 
-#define kNumProgrammingElementTypes 8
+#define kNumProgrammingElementTypes 10
 
 typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeMapper,
@@ -88,6 +88,8 @@ typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeTimer,
     kProgrammingElementTypeComparator,
     kProgrammingElementTypeGrouper,
+    kProgrammingElementTypeSignalDeviation,
+    kProgrammingElementTypeActivityRecognition
 } THProgrammingElementType;
 
 
@@ -184,6 +186,13 @@ extern NSString * const kEventSwitchedOff;
 extern NSString * const kEventIntensityChanged;
 extern NSString * const kEventFrequencyChanged;
 extern NSString * const kEventValueChanged;
+extern NSString * const kEventDeviationChanged;
+
+extern NSString * const kEventStanding;
+extern NSString * const kEventWalking;
+extern NSString * const kEventRunning;
+extern NSString * const kEventUnconscious;
+
 extern NSString * const kEventMapperValueChanged;
 extern NSString * const kEventDxChanged;
 extern NSString * const kEventDyChanged;
@@ -198,6 +207,10 @@ extern NSString * const kEventConditionChanged;
 extern NSString * const kEventXChanged;
 extern NSString * const kEventYChanged;
 extern NSString * const kEventZChanged;
+
+//extern NSString * const kEventAccelerometerChanged;
+extern NSString * const kEventNewValue;
+
 extern NSString * const kEventHeadingChanged;
 extern NSString * const kEventTapped;
 extern NSString * const kEventDoubleTapped;
@@ -222,6 +235,7 @@ extern NSString * const kMethodAddValue2;
 extern NSString * const kMethodSetRed;
 extern NSString * const kMethodSetGreen;
 extern NSString * const kMethodSetBlue;
+extern NSString * const kMethodSetText;
 
 #define kMaxNumNotifyBehaviors 3
 

@@ -42,4 +42,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 +(void) valueAsTwo7bitBytes:(NSInteger) value buffer:(uint8_t[2]) buf;
 
++(NSInteger) intFromTwoBytes:(uint8_t*) buffer offset:(NSInteger) offset;
+
 @end

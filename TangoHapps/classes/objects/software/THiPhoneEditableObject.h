@@ -57,5 +57,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic, strong) THViewEditableObject * currentView;
 @property (nonatomic) THIPhoneType type;
+@property (nonatomic, copy) NSString * emergencyNumber;
 
 @end

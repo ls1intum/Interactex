@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) load{
     self.canBeRootView = NO;
     self.minSize = CGSizeMake(250, 100);
+    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving

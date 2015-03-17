@@ -10,4 +10,8 @@
 
 @interface THSignalDeviationEditable : THProgrammingElementEditable
 
+@property (nonatomic) float deviation;
+
+-(void) addSample:(float)value;
+
 @end

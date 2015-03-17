@@ -56,6 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         [self loadiPhone];
+        self.emergencyNumber = @"015777795645";
     }
     return self;
 }
@@ -112,8 +113,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) makeEmergencyCall{
+    
     //NSString *phoneNumber = [@"tel://" stringByAppendingString:@"015777795645"];//Juan
-    NSString *phoneNumber = [@"tel://" stringByAppendingString:@"015112617548"];//Katharina
+    
+    NSString * phoneNumber = [@"tel://" stringByAppendingString:self.emergencyNumber];
+    
     NSURL * url = [NSURL URLWithString:phoneNumber];
     
     //CanOpenUrl always returning NO after iOS 6

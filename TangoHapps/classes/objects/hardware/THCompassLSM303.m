@@ -172,7 +172,7 @@ You should have received a copy of the GNU General Public License along with thi
     NSInteger bufCount = 0;
     uint8_t values[size];
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {//firmata sends as two seven bit bytes
         uint8_t byte1 = buffer[bufCount++];
         uint8_t value = byte1 + (buffer[bufCount++] << 7);
         values[i] = value;

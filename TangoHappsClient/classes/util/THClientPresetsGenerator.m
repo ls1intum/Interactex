@@ -62,6 +62,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THSlider.h"
 #import "THiSwitch.h"
 #import "THAccelerometer.h"
+#import "THMPU6050.h"
 
 @implementation THClientPresetsGenerator
 
@@ -74,8 +75,8 @@ NSString * const kMPUCompassProjectName = @"MPU6050";
 NSString * const kLSMCompassProjectName = @"LSM303";
 NSString * const kAccelerometerProjectName = @"Accelerometer";
 NSString * const kMusicPlayerProjectName = @"Music Player";
-//NSString * const kPureDataProjectName = @"PureData";
 NSString * const kThreeColorLEDProjectName = @"Three Color LED";
+NSString * const kMPU6050ProjectName = @"MPU-6050";
 
 -(id) init{
     
@@ -100,6 +101,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [array addObject:[self accelerometerProject]];
     [array addObject:[self musicPlayerProject]];
     //[array addObject:[self pureDataProject]];
+    [array addObject:[self MPU6050Project]];
     
     
     NSMutableArray * imagesArray = [NSMutableArray array];
@@ -111,7 +113,7 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     [imagesArray addObject:[UIImage imageNamed:@"LSMCompass.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"accelerometer.png"]];
     [imagesArray addObject:[UIImage imageNamed:@"musicPlayer.png"]];
-    //[imagesArray addObject:[UIImage imageNamed:@"pureData.png"]];
+    [imagesArray addObject:[UIImage imageNamed:@"MPU-6050.png"]];
     
     for (int i = 0 ; i < array.count ; i++) {
         
@@ -554,6 +556,76 @@ NSString * const kThreeColorLEDProjectName = @"Three Color LED";
     zPinBoard.mode = kPinModeAnalogInput;
     [zPinBoard attachPin:[accelerometer.pins objectAtIndex:2]];
     [[accelerometer.pins objectAtIndex:2] attachToPin:zPinBoard];
+    
+    return project;
+}
+
+-(THClientProject*) MPU6050Project{
+    THClientProject * project = [self defaultClientProject];
+    
+    project.name = kAccelerometerProjectName;
+    
+    THLilyPad * lilypad = [[THLilyPad alloc] init];
+    project.boards = [NSMutableArray arrayWithObject:lilypad];
+    
+    THMPU6050 * mpu6050 = [[THMPU6050 alloc] init];
+    project.hardwareComponents = [NSMutableArray arrayWithObjects:mpu6050,nil];
+    
+    THLabel * label1 = [[THLabel alloc] init];
+    label1.position = CGPointMake(160, 220);
+    
+    THLabel * label2 = [[THLabel alloc] init];
+    label2.position = CGPointMake(160, 270);
+    
+    THLabel * label3 = [[THLabel alloc] init];
+    label3.position = CGPointMake(160, 340);
+    
+    THLabel * label = [[THLabel alloc] init];
+    label.text = @"connect an MPU6050 accelerometer";
+    label.position = CGPointMake(160, 50);
+    label.width = 300;
+    ((UILabel*) label.view).font = [UIFont systemFontOfSize:15];
+    
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,label1,label2,label3,nil];
+    
+    //x action
+    TFEvent * xEvent = [mpu6050 eventNamed:kEventXChanged];
+    TFMethod * xMethod = [label1 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:label1 method:xMethod];
+    TFProperty * xValueProperty = [mpu6050.properties objectAtIndex:0];
+    xAction.firstParam = [TFPropertyInvocation invocationWithProperty:xValueProperty target:mpu6050];
+    [project registerAction:xAction forEvent:xEvent];
+    
+    //y action
+    TFEvent * yEvent = [mpu6050 eventNamed:kEventYChanged];
+    TFMethod * yMethod = [label2 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:label2 method:yMethod];
+    TFProperty * yValueProperty = [mpu6050.properties objectAtIndex:1];
+    yAction.firstParam = [TFPropertyInvocation invocationWithProperty:yValueProperty target:mpu6050];
+    [project registerAction:yAction forEvent:yEvent];
+    
+    //z action
+    TFEvent * zEvent = [mpu6050 eventNamed:kEventYChanged];
+    TFMethod * zMethod = [label3 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * zAction = [TFMethodInvokeAction actionWithTarget:label3 method:zMethod];
+    TFProperty * zValueProperty = [mpu6050.properties objectAtIndex:2];
+    zAction.firstParam = [TFPropertyInvocation invocationWithProperty:zValueProperty target:mpu6050];
+    [project registerAction:zAction forEvent:zEvent];
+    
+    //SCL pin
+    THBoardPin * sclPinBoard = lilypad.sclPin;
+    sclPinBoard.mode = kPinModeI2C;
+    [sclPinBoard attachPin:mpu6050.sclPin];
+    [mpu6050.sclPin attachToPin:sclPinBoard];
+    
+    //SDA pin
+    THBoardPin * sdaPinBoard = lilypad.sdaPin;
+    sdaPinBoard.mode = kPinModeI2C;
+    [sdaPinBoard attachPin:mpu6050.sdaPin];
+    [mpu6050.sdaPin attachToPin:sdaPinBoard];
+    
+    [lilypad addI2CComponent:mpu6050];
     
     return project;
 }

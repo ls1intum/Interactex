@@ -64,14 +64,12 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateiPhoneType];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -79,6 +77,12 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)viewDidUnload {
     [self setTypeSegment:nil];
     [super viewDidUnload];
+}
+
+- (IBAction)numberChanged:(id)sender {
+    
+    THiPhoneEditableObject * iPhone = (THiPhoneEditableObject*) self.editableObject;
+    iPhone.emergencyNumber = self.numberTextField.text;
 }
 
 @end

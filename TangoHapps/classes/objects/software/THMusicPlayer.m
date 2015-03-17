@@ -240,6 +240,10 @@ NSString * const kPauseImageName = @"pause.png";
     method5.numParams = 1;
     self.methods = [NSMutableArray arrayWithObjects:method1, method2, method3, method4, method5, nil];
     
+    TFEvent * event1 = [TFEvent eventNamed:@"started"];
+    TFEvent * event2 = [TFEvent eventNamed:@"stopped"];
+    self.events = [NSMutableArray arrayWithObjects:event1, event2, nil];
+    
     [self registerEvents];
 }
 
@@ -416,16 +420,6 @@ NSString * const kPauseImageName = @"pause.png";
 
 #pragma mark Methods
 
--(void) handleStoppedPlaying{
-    _playing = NO;
-    
-    [self stopUpdatingSongProgress];
-    [self updateProgressSliderState];
-    
-    [self updateLabels];
-    [self updatePlayButtonImage];
-}
-
 -(NSTimeInterval) currentSongDuration{
     NSNumber * duration = [self.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
     
@@ -508,6 +502,31 @@ NSString * const kPauseImageName = @"pause.png";
     }
 }
 
+-(void) setPlaying:(BOOL)playing{
+    if(_playing != playing){
+        _playing = playing;
+        
+        if(playing){
+            [self startUpdatingSongProgress];
+            [self updateProgressSliderState];
+            [self updateLabels];
+            [self updatePlayButtonImage];
+            
+            [self triggerEventNamed:@"started"];
+            
+        } else {
+            
+            [self stopUpdatingSongProgress];
+            [self updateProgressSliderState];
+            
+            [self updateLabels];
+            [self updatePlayButtonImage];
+            
+            [self triggerEventNamed:@"stopped"];
+        }
+    }
+}
+
 -(void) play{
     
 #if (TARGET_IPHONE_SIMULATOR)
@@ -527,12 +546,8 @@ NSString * const kPauseImageName = @"pause.png";
 #endif
     
     
-    _playing = YES;
+    self.playing = YES;
     
-    [self startUpdatingSongProgress];
-    [self updateProgressSliderState];
-    [self updateLabels];
-    [self updatePlayButtonImage];
 }
 
 -(void) pause{
@@ -544,7 +559,7 @@ NSString * const kPauseImageName = @"pause.png";
     
 #endif
     
-    [self handleStoppedPlaying];
+    self.playing = NO;
 }
 
 -(void) stop{
@@ -556,7 +571,7 @@ NSString * const kPauseImageName = @"pause.png";
     [self.musicPlayer stop];
 #endif
     
-    [self handleStoppedPlaying];
+    self.playing = NO;
 }
 
 -(void) next{
@@ -696,6 +711,8 @@ NSString * const kPauseImageName = @"pause.png";
         isSimulating = YES;
         [self updateStateToEnabled:YES];
     }
+    
+    [super willStartSimulating];
 }
 
 -(void) stopSimulating{
@@ -704,6 +721,8 @@ NSString * const kPauseImageName = @"pause.png";
     
     [self updateStateToEnabled:NO];
     isSimulating = NO;
+    
+    [super stopSimulating];
 }
 
 #pragma mark - Other methods

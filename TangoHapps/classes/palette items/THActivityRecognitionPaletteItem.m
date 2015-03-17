@@ -7,7 +7,13 @@
 //
 
 #import "THActivityRecognitionPaletteItem.h"
+#import "THActivityRecognitionEditable.h"
 
 @implementation THActivityRecognitionPaletteItem
+
+- (void)dropAt:(CGPoint)location {
+    THActivityRecognitionEditable * activityRecognition = [[THActivityRecognitionEditable alloc] init];
+    [self handleObjectDropped:activityRecognition atLocation:location];
+}
 
 @end

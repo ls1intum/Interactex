@@ -683,7 +683,7 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 - (void) editButtonTapped:(id)sender {
-    if(!self.showingCustomApps){
+    if(self.showingCustomApps){
         [self startEditingScenes];
     }
 }

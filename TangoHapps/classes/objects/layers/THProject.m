@@ -1045,7 +1045,7 @@ enum zPositions{
     [self cleanI2CComponentsFor:project];
     [self addNonEditableActionPairsTo:project];
     
-    [self printProject:project];
+    //[self printProject:project];
     
     return project;
 }

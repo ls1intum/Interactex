@@ -112,4 +112,12 @@ You should have received a copy of the GNU General Public License along with thi
     buf[1] = value >> 7 & 0b01111111;
 }
 
++(NSInteger) intFromTwoBytes:(uint8_t*) buffer offset:(NSInteger) offset{
+    
+    uint8_t low = buffer[offset];
+    uint8_t high = buffer[offset+1];
+    int val = (high << 8 | low);
+    return val;
+}
+
 @end

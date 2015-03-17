@@ -537,7 +537,7 @@ float const kConnectingTimeout = 7.0f;
     
     THBoardPin * firstPin = [digitalPins objectAtIndex:0];
     
-    NSLog(@"received msg: %d %d",port,value);
+    //NSLog(@"received msg: %ld %ld",(long)port,(long)value);
     
     int mask = 1;
     NSInteger pinNumber = port * 8;
@@ -572,7 +572,7 @@ float const kConnectingTimeout = 7.0f;
 -(void) firmataController:(IFFirmata*) firmataController didReceiveI2CReply:(uint8_t*) buffer length:(NSInteger) length{
     
     uint8_t address = buffer[2] + (buffer[3] << 7);
-    NSInteger registerNumber = buffer[4] + 128;
+    NSInteger registerNumber = buffer[4];
     
     THClientProject * project = [THSimulableWorldController sharedInstance].currentProject;
     
@@ -585,9 +585,11 @@ float const kConnectingTimeout = 7.0f;
         
         id<THI2CProtocol> component = [project.currentBoard I2CComponentWithAddress:address];
         
-        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber - 128];
-        
+        THI2CRegister * reg = [component.i2cComponent registerWithNumber:registerNumber];
+                
         if(reg){
+            /*
+            NSLog(@"%d %d %d %d %d %d %d %d",buffer[0],buffer[1],buffer[2],buffer[3],buffer[4],buffer[5],buffer[6],buffer[7]);*/
             
             [component setValuesFromBuffer:buffer+6 length:length-6];
             

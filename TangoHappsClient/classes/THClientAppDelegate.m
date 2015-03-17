@@ -44,6 +44,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientScene.h"
 #import "THClientProjectProxy.h"
 #import "THClientConnectionController.h"
+#import "QTouchposeApplication.h"
 
 @implementation THClientAppDelegate
 
@@ -68,6 +69,8 @@ You should have received a copy of the GNU General Public License along with thi
                                                  name:        AVAudioSessionInterruptionNotification
                                                object:      [AVAudioSession sharedInstance]];*/
     
+    QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
+    touchposeApplication.alwaysShowTouches = YES;
     
     // Override point for customization after application launch.
     return YES;

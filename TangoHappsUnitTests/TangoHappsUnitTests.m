@@ -18,6 +18,7 @@
 #import "THLabelEditableObject.h"
 #import "THiSwitchEditableObject.h"
 #import "THLightSensorEditableObject.h"
+#import "THSignalDeviationEditable.h"
 
 #import "THEditor.h"
 #import "THProjectViewController.h"
@@ -197,6 +198,23 @@
     XCTAssertEqual(led.intensity, 255 , @"led should have default intensity here");
     touchpad.dx = -5;
     XCTAssertEqual(led.intensity, 250, @"led intensity should be 250 here");
+}
+
+-(void) testSignalDeviation{
+    
+    THSignalDeviationEditable * signalDeviation = [[THSignalDeviationEditable alloc] init];
+    
+    for(int i = 0 ; i < 30 ; i++){
+        [signalDeviation addSample:15.6f];
+    }
+    
+    XCTAssertEqualWithAccuracy(signalDeviation.deviation, 0.0f ,0.00001, @"signalDeviation should be 15.6");
+    
+    for(int i = 0 ; i < 30 ; i++){
+        [signalDeviation addSample:12.0f];
+    }
+    
+    XCTAssertEqualWithAccuracy(signalDeviation.deviation, 0.0f,0.00001, @"signalDeviation should be 12.");
 }
 
 

@@ -91,7 +91,6 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 #pragma mark - ConnectionController Delegate
 
 -(void) increaseInstallationProgress{
-    NSLog(@"progress to %f",self.progressBar.progress);
     
     if(self.progressBar.progress >= 1.0f){
 
@@ -110,11 +109,8 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 -(void) animateProjectInstallationWithDuration:(float) duration{
     installationUpdateRate = kIconInstallationUpdateFrequency / duration;
     
-    NSLog(@"firign after %f secs",installationUpdateRate);
-    
     installationProgressTimer = [NSTimer scheduledTimerWithTimeInterval:installationUpdateRate target:self selector:@selector(increaseInstallationProgress) userInfo:nil repeats:YES];
     
-//    [installationProgressTimer fire];
 }
 
 -(void) handleFinishedInstallingProject{
@@ -126,8 +122,6 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 }
 
 -(void) didStartReceivingProjectNamed:(NSString *)name {
-    
-    NSLog(@"started receiving a project %@",name);
     
     [self appendStatusMessage:[NSString stringWithFormat:@"Started receiving a project named '%@'",name]];
     
@@ -144,8 +138,6 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 }
 
 -(void) didFinishReceivingProject:(THClientProject *)project {
-    
-    NSLog(@"received a project");
     
     [self appendStatusMessage:[NSString stringWithFormat:@"Received project '%@'",project.name]];
     
