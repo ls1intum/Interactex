@@ -145,14 +145,17 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(void) updateNameLabel{
+    
     CGSize const kEditableObjectNameLabelSize = {100,20};
+    
     if(self.nameLabel){
         [self.nameLabel removeFromParentAndCleanup:YES];
     }
     
-    self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultFont fontSize:9 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultBoldFont fontSize:11 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
     
-    self.nameLabel.color = ccBLACK;
+    //self.nameLabel.color = ccBLACK;
+    self.nameLabel.color = ccWHITE;
     self.nameLabel.position = ccp(self.contentSize.width/2,-20);
     [self addChild:self.nameLabel];
 }

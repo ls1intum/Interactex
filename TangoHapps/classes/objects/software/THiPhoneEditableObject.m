@@ -142,7 +142,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) setEmergencyNumber:(NSString*)emergencyNumber{
     THiPhone * iPhone = (THiPhone*) self.simulableObject;
     iPhone.emergencyNumber = emergencyNumber;
-    
 }
 
 -(NSString*) emergencyNumber{

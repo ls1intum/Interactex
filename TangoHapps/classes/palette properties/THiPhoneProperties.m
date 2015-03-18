@@ -60,8 +60,15 @@ You should have received a copy of the GNU General Public License along with thi
     self.typeSegment.selectedSegmentIndex = iPhone.type;
 }
 
+-(void) updateEmergencyNumber{
+    
+    THiPhoneEditableObject * iPhone = (THiPhoneEditableObject*) self.editableObject;
+    self.numberTextField.text = iPhone.emergencyNumber;
+}
+
 -(void) reloadState{
     [self updateiPhoneType];
+    [self updateEmergencyNumber];
 }
 
 - (void)viewDidLoad {

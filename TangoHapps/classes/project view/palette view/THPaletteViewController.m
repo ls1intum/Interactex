@@ -480,7 +480,7 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
                                      [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
-                                     [[THSignalDeviationPaletteItem alloc] initWithName:@"signalDeviation"],
+                                     [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
@@ -493,7 +493,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.uiSectionArrayName = @"UI Elements";
     self.boardsSectionName = @"Boards";
     self.hardwareSectionName = @"Hardware Elements";
-    self.programmingSectionName = @"Visual Programming";
+    self.programmingSectionName = @"Programming Elements";
     //self.otherHardwareSectionName = @"Other Hardware";
 }
 

@@ -45,6 +45,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THiPhone
 
+NSString * kDefaultEmergencyNumber = @"015777795645";
+
 -(void) loadiPhone{
     
     TFMethod * method = [TFMethod methodWithName:@"makeEmergencyCall"];
@@ -56,7 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         
         [self loadiPhone];
-        self.emergencyNumber = @"015777795645";
+        self.emergencyNumber = kDefaultEmergencyNumber;
     }
     return self;
 }
@@ -70,6 +72,7 @@ You should have received a copy of the GNU General Public License along with thi
     [self loadiPhone];
     
     self.position = [decoder decodeCGPointForKey:@"position"];
+    self.emergencyNumber = [decoder decodeObjectForKey:@"emergencyNumber"];
     self.type = [decoder decodeIntegerForKey:@"type"];
     _currentView = [decoder decodeObjectForKey:@"currentView"];
     
@@ -80,6 +83,7 @@ You should have received a copy of the GNU General Public License along with thi
     [coder encodeCGPoint:self.position forKey:@"position"];
     [coder encodeInteger:self.type forKey:@"type"];
     [coder encodeObject:_currentView forKey:@"currentView"];
+    [coder encodeObject:self.emergencyNumber forKey:@"emergencyNumber"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -114,20 +118,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) makeEmergencyCall{
     
-    //NSString *phoneNumber = [@"tel://" stringByAppendingString:@"015777795645"];//Juan
-    
     NSString * phoneNumber = [@"tel://" stringByAppendingString:self.emergencyNumber];
     
     NSURL * url = [NSURL URLWithString:phoneNumber];
-    
-    //CanOpenUrl always returning NO after iOS 6
-    /*
-    if([[UIApplication sharedApplication] canOpenURL:url]){
-        NSLog(@"Call cannot be made. Does your device support making calls?");
-    } else {
-        [[UIApplication sharedApplication] openURL:url];
-        NSLog(@"making emergency call");
-    }*/
     
     [[UIApplication sharedApplication] openURL:url];
 }

@@ -192,7 +192,7 @@
     
     [super willStartSimulation];
     
-    self.sprite.visible = NO;
+    //self.sprite.visible = NO;
 }
 
 -(void) willStartEdition{
@@ -201,7 +201,7 @@
     CMMotionManager * manager = appDelegate.motionManager;
     [manager stopAccelerometerUpdates];
     
-    self.sprite.visible = YES;
+    //self.sprite.visible = YES;
 }
 
 -(NSString*) description{

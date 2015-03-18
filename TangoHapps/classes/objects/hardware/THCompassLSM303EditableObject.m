@@ -195,7 +195,7 @@ You should have received a copy of the GNU General Public License along with thi
     manager.accelerometerUpdateInterval = 1.0f / 20.0f;
     [manager startAccelerometerUpdates];
     
-    self.sprite.visible = NO;
+    //self.sprite.visible = NO;
 }
 
 -(void) willStartEdition{
@@ -205,7 +205,7 @@ You should have received a copy of the GNU General Public License along with thi
     [manager stopAccelerometerUpdates];
     [manager stopMagnetometerUpdates];
     
-    self.sprite.visible = YES;
+    //self.sprite.visible = YES;
 }
 
 -(NSString*) description{

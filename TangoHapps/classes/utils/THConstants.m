@@ -164,8 +164,8 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"timer.png",
     @"comparator.png",
     @"grouper.png",
-    @"signalDeviation.png",
-    @"activityRecognition.png"
+    @"deviation.png",
+    @"activity.png"
 };
 
 float const kLayerMinScale = 0.5f;
