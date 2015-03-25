@@ -180,12 +180,12 @@ You should have received a copy of the GNU General Public License along with thi
     
     [self.sprite removeFromParentAndCleanup:YES];
     self.name = @"jacke";
+    [self loadSprite];
     
     //NSString * fileName = [NSString stringWithFormat:@"%@.png",self.name];
     //_image = [UIImage imageNamed:fileName];
     //self.sprite = [CCSprite spriteWithFile:fileName];
     
-    [self loadSprite];
     
     /*
     if(image != _image){
