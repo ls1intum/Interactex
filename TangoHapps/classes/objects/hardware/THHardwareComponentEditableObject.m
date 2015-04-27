@@ -298,6 +298,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     //main sprite
     self.sprite = [CCSprite spriteWithFile:kHardwareSpriteNames[self.type]];
+
     [self addChild:self.sprite];
     
     //sewed sprite

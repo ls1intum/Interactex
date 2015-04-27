@@ -512,7 +512,7 @@ float const kConnectingTimeout = 7.0f;
     }
 }
 
-#pragma mark - GMP Message Handles
+#pragma mark - Firmata Message Handles
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveFirmwareName:(NSString*) name{
     

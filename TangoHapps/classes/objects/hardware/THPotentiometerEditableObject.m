@@ -135,6 +135,8 @@ const CGSize kValueLabelSize = {75, 20};
     
     THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
     potentiometer.value = _touchDownIntensity;
+    
+    
     _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)potentiometer.value];
 }
 

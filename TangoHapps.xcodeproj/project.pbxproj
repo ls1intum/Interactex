@@ -2355,13 +2355,13 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		9A801BD219D9568A0001B6F9 /* connection */ = {
+		9A801BD219D9568A0001B6F9 /* communication */ = {
 			isa = PBXGroup;
 			children = (
 				9A801B9419D955450001B6F9 /* THClientConnectionController.h */,
 				9A801B9519D955450001B6F9 /* THClientConnectionController.m */,
 			);
-			name = connection;
+			name = communication;
 			sourceTree = "<group>";
 		};
 		9A84265017564A80009495AB /* Tango */ = {
@@ -2759,7 +2759,7 @@
 		9AF5000C167B83140020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				9A801BD219D9568A0001B6F9 /* connection */,
+				9A801BD219D9568A0001B6F9 /* communication */,
 				9AFB7E641833DE6400694CCE /* util */,
 				9AF5000D167B83140020241C /* THClientAppDelegate.h */,
 				9AF5000E167B83140020241C /* THClientAppDelegate.m */,
@@ -4528,6 +4528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4547,6 +4548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
@@ -4593,6 +4595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
