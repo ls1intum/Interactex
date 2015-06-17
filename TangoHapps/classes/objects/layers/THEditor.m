@@ -686,6 +686,9 @@ You should have received a copy of the GNU General Public License along with thi
             
         } else if(_currentConnection.state == kConnectionStateDrawing) {
             
+            TFEditableObject * object = [self objectAtPosition:location];
+            NSLog(@"on top of: %@",object);
+            
             [self moveCurrentConnection:location];
             
         }

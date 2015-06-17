@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-               BuildableName = "Interactex Client.app"
-               BlueprintName = "TangoHappsClient"
+               BlueprintIdentifier = "9A351188167B7A6800C7484B"
+               BuildableName = "Interactex Designer.app"
+               BlueprintName = "TangoHapps"
+               ReferencedContainer = "container:TangoHapps.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25B05DAB19FA95C00019E431"
+               BuildableName = "TangoHappsUnitTests.xctest"
+               BlueprintName = "TangoHappsUnitTests"
                ReferencedContainer = "container:TangoHapps.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +42,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25B05DAB19FA95C00019E431"
+               BuildableName = "TangoHappsUnitTests.xctest"
+               BlueprintName = "TangoHappsUnitTests"
+               ReferencedContainer = "container:TangoHapps.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "Interactex Client.app"
-            BlueprintName = "TangoHappsClient"
+            BlueprintIdentifier = "9A351188167B7A6800C7484B"
+            BuildableName = "Interactex Designer.app"
+            BlueprintName = "TangoHapps"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,9 +76,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "Interactex Client.app"
-            BlueprintName = "TangoHappsClient"
+            BlueprintIdentifier = "9A351188167B7A6800C7484B"
+            BuildableName = "Interactex Designer.app"
+            BlueprintName = "TangoHapps"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -65,15 +89,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AF5FFF0167B82F70020241C"
-            BuildableName = "Interactex Client.app"
-            BlueprintName = "TangoHappsClient"
+            BlueprintIdentifier = "9A351188167B7A6800C7484B"
+            BuildableName = "Interactex Designer.app"
+            BlueprintName = "TangoHapps"
             ReferencedContainer = "container:TangoHapps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

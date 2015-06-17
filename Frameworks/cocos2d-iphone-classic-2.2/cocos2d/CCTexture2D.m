@@ -524,8 +524,8 @@ static CCTexture2DPixelFormat defaultAlphaPixel_format = kCCTexture2DPixelFormat
     
     if ( [definition shadowEnabled] )
     {
-        shadowStrokePaddingX = max(shadowStrokePaddingX, (float)abs([definition shadowOffset].width));
-        shadowStrokePaddingY = max(shadowStrokePaddingY, (float)abs([definition shadowOffset].height));
+        shadowStrokePaddingX = max(shadowStrokePaddingX, (float)fabs([definition shadowOffset].width));
+        shadowStrokePaddingY = max(shadowStrokePaddingY, (float)fabs([definition shadowOffset].height));
     }
     
     // add the padding (this could be 0 if no shadow and no stroke)

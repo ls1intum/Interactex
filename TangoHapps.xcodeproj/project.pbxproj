@@ -1963,11 +1963,11 @@
 		9A35118C167B7A6800C7484B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				02DDB0181A7D5D44009C98EB /* Accelerate.framework */,
 				9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */,
 				9AF50162167B83AD0020241C /* libz.dylib */,
 				9AAF283A182B88EF00531E3A /* BLE.xcodeproj */,
 				9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */,
+				02DDB0181A7D5D44009C98EB /* Accelerate.framework */,
 				9A2EA89C19DB1F0500E30E2D /* GHUnitIOS.framework */,
 				9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */,
 				9A5110141837D23A00EB25FA /* CoreMotion.framework */,

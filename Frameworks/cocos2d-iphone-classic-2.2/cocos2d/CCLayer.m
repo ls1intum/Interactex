@@ -714,7 +714,7 @@
 
 	// Compressed Interpolation mode
 	if( _compressedInterpolation ) {
-		float h2 = 1 / ( fabsf(u.x) + fabsf(u.y) );
+		float h2 = 1 / ( fabs(u.x) + fabs(u.y) );
 		u = ccpMult(u, h2 * (float)c);
 	}
 
