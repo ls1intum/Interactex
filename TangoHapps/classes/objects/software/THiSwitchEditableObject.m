@@ -104,6 +104,16 @@ You should have received a copy of the GNU General Public License along with thi
     iswitch.on = on;
 }
 
+
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    THiSwitch * iswitch = (THiSwitch*) self.simulableObject;
+    [iswitch loadView];
+    
+    [super addToLayer:layer];
+}
+
 -(NSString*) description{
     return @"iSwitch";
 }

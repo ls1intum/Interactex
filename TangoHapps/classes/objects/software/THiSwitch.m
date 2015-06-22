@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THiSwitch.h"
 
 @implementation THiSwitch
-@dynamic on;
+@synthesize on = _on;
 
 -(void) loadSwitch{
     
@@ -70,7 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         
-        [self loadSwitch];
+        //[self loadSwitch];
         self.on = YES;
         self.backgroundColor = [UIColor clearColor];
     }
@@ -82,7 +82,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-        [self loadSwitch];
+        //[self loadSwitch];
         
         self.on = [decoder decodeBoolForKey:@"isOn"];
     }
@@ -106,17 +106,21 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(BOOL) on{
+    return _on;
+    /*
     UISwitch * iswitch = (UISwitch*) self.view;
-    return iswitch.on;
+    return iswitch.on;*/
 }
 
 -(void) setOn:(BOOL)on{
-    UISwitch * iswitch = (UISwitch*) self.view;
-    iswitch.on = on;
+    _on = on;
+    if(self.view){
+        [self updateSwitch];
+    }
 }
 
 -(void) setEnabled:(BOOL) enabled{
-    
+
     ((UISwitch*)self.view).enabled = enabled;
     [super setEnabled:enabled];
 }
@@ -136,8 +140,14 @@ You should have received a copy of the GNU General Public License along with thi
     [self triggerEventNamed:kEventOnChanged];
 }
 
+-(void) updateSwitch{
+    UISwitch * iswitch = (UISwitch*) self.view;
+    iswitch.on = self.on;
+}
+
 -(void) loadView{
-    
+    [self loadSwitch];
+    [self updateSwitch];
 }
 
 

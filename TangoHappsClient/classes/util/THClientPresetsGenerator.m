@@ -418,7 +418,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     blueLabel.position = CGPointMake(150, 320);
     
     THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect a Three Color LED to pins: 9 10 11";
+    label.text = @"connect a ThreeColorLed to pins: 9 10 11";
     label.position = CGPointMake(160, 50);
     label.width = 300;
     ((UILabel*) label.view).font = [UIFont systemFontOfSize:15];
@@ -432,7 +432,6 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     
     THiSwitch * iSwitch = [[THiSwitch alloc] init];
     iSwitch.position = CGPointMake(250,200);
-    
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,redLabel, greenLabel, blueLabel, redSlider,greenSlider,blueSlider, iSwitch, nil];
     
@@ -495,7 +494,6 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     return project;
 }
 
-
 -(THClientProject*) accelerometerProject{
     THClientProject * project = [self defaultClientProject];
     
@@ -520,7 +518,6 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
 
     
     project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,monitor,nil];
-    
     
     //x action
     TFEvent * xEvent = [accelerometer eventNamed:kEventXChanged];
@@ -630,71 +627,6 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     return project;
 }
 
-/*
--(THClientProject*) mpuProject{
-    
-    THClientProject * project = [self defaultClientProject];
-    
-    project.name = kMPUCompassProjectName;
-    
-    THCompassMPU6050 * compass = [[THCompassMPU6050 alloc] init];
-    
-    compass.i2cComponent = [[THI2CComponent alloc] init];
-    THI2CRegister * reg = [[THI2CRegister alloc] init];
-    
-    compass.i2cComponent.address = 104;
-    reg.number = 0x3B;
-    
-    [compass.i2cComponent addRegister:reg];
-    
-    THLilyPad * lilypad = [[THLilyPad alloc] init];
-    
-    [lilypad addI2CComponent:compass];
-    
-    project.boards = [NSMutableArray arrayWithObject:lilypad];
-    
-    project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
-    
-    THMonitor * monitor = [[THMonitor alloc] init];
-    monitor.position = CGPointMake(160, 250);
-    monitor.maxValue = 5000;
-    monitor.minValue = -5000;
-    
-    THLabel * label = [[THLabel alloc] init];
-    label.text = @"connect an MCU Compass";
-    label.position = CGPointMake(160, 50);
-    label.width = 300;
-    
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:monitor,label,nil];
-    
-    //method x
-    TFEvent * xEvent = [compass.events objectAtIndex:0];
-    TFMethod * addValue1Method = [monitor.methods objectAtIndex:0];
-    TFMethodInvokeAction * methodInvoke1 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue1Method];
-    TFProperty * property1 = [compass.properties objectAtIndex:0];
-    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property1 target:compass];
-    methodInvoke1.source = compass;
-    [project registerAction:methodInvoke1 forEvent:xEvent];
-    
-    //method y
-    TFEvent * yEvent = [compass.events objectAtIndex:1];
-    TFMethod * addValue2Method = [monitor.methods objectAtIndex:1];
-    TFMethodInvokeAction * methodInvoke2 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue2Method];
-    TFProperty * property2 = [compass.properties objectAtIndex:1];
-    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property2 target:compass];
-    methodInvoke1.source = compass;
-    [project registerAction:methodInvoke2 forEvent:yEvent];
-    
-    //pins
-    [lilypad.sclPin attachPin:compass.sclPin];
-    [lilypad.sdaPin attachPin:compass.sdaPin];
-    
-    [compass.sclPin attachToPin:lilypad.sclPin];
-    [compass.sdaPin attachToPin:lilypad.sdaPin];
-    
-    return project;
-}*/
-
 -(THClientProject*) lsmProject{
     
     THClientProject * project = [self defaultClientProject];
@@ -719,33 +651,48 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     
     project.hardwareComponents = [NSMutableArray arrayWithObjects:compass,nil];
     
-    THMonitor * monitor = [[THMonitor alloc] init];
-    monitor.position = CGPointMake(160, 250);
-    
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect a LSM303 Compass over I2C";
     label.position = CGPointMake(160, 50);
     label.width = 300;
     
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:monitor,label,nil];
+    THLabel * label1 = [[THLabel alloc] init];
+    label1.position = CGPointMake(160, 220);
     
-    //method x
-    TFEvent * xEvent = [compass.events objectAtIndex:0];
-    TFMethod * addValue1Method = [monitor.methods objectAtIndex:0];
-    TFMethodInvokeAction * methodInvoke1 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue1Method];
-    TFProperty * property1 = [compass.properties objectAtIndex:0];
-    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property1 target:compass];
-    methodInvoke1.source = compass;
-    [project registerAction:methodInvoke1 forEvent:xEvent];
+    THLabel * label2 = [[THLabel alloc] init];
+    label2.position = CGPointMake(160, 270);
     
-    //method y
-    TFEvent * yEvent = [compass.events objectAtIndex:1];
-    TFMethod * addValue2Method = [monitor.methods objectAtIndex:1];
-    TFMethodInvokeAction * methodInvoke2 = [TFMethodInvokeAction actionWithTarget:monitor method:addValue2Method];
-    TFProperty * property2 = [compass.properties objectAtIndex:1];
-    methodInvoke1.firstParam = [TFPropertyInvocation invocationWithProperty:property2 target:compass];
-    methodInvoke1.source = compass;
-    [project registerAction:methodInvoke2 forEvent:yEvent];
+    THLabel * label3 = [[THLabel alloc] init];
+    label3.position = CGPointMake(160, 340);
+    
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,nil];
+     
+    
+    //x action
+    TFEvent * xEvent = [compass eventNamed:kEventXChanged];
+    TFMethod * xMethod = [label1 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:label1 method:xMethod];
+    TFProperty * xValueProperty = [compass.properties objectAtIndex:0];
+    xAction.firstParam = [TFPropertyInvocation invocationWithProperty:xValueProperty target:compass];
+    [project registerAction:xAction forEvent:xEvent];
+    
+    //y action
+    TFEvent * yEvent = [compass eventNamed:kEventYChanged];
+    TFMethod * yMethod = [label2 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:label2 method:yMethod];
+    TFProperty * yValueProperty = [compass.properties objectAtIndex:1];
+    yAction.firstParam = [TFPropertyInvocation invocationWithProperty:yValueProperty target:compass];
+    [project registerAction:yAction forEvent:yEvent];
+    
+    //z action
+    TFEvent * zEvent = [compass eventNamed:kEventYChanged];
+    TFMethod * zMethod = [label3 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * zAction = [TFMethodInvokeAction actionWithTarget:label3 method:zMethod];
+    TFProperty * zValueProperty = [compass.properties objectAtIndex:2];
+    zAction.firstParam = [TFPropertyInvocation invocationWithProperty:zValueProperty target:compass];
+    [project registerAction:zAction forEvent:zEvent];
+    
+    
     
     //pins
     [lilypad.sclPin attachPin:compass.sclPin];

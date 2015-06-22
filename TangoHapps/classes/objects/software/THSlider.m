@@ -44,9 +44,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THSlider
 
-@dynamic value;
-@dynamic min;
-@dynamic max;
+@synthesize min = _min;
+@synthesize max = _max;
+@synthesize value = _value;
 
 -(id) init{
     self = [super init];
@@ -57,7 +57,7 @@ You should have received a copy of the GNU General Public License along with thi
         self.position = CGPointZero;
         self.backgroundColor = [UIColor clearColor];
         
-        [self loadSliderView];
+        //[self loadSliderView];
         [self loadMethods];
         
         self.min = 0;
@@ -69,7 +69,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadSliderView{
     
     UISlider * slider = [[UISlider alloc] init];
-    //view.backgroundColor = [UIColor colorWithRed:0.88 green:0.69 blue:0.48 alpha:1];
+    //slider.backgroundColor = [UIColor colorWithRed:0.88 green:0.69 blue:0.48 alpha:1];
     slider.frame = CGRectMake(0, 0, self.width, self.height);
     self.view = slider;
     slider.enabled = NO;
@@ -95,7 +95,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    [self loadSliderView];
+    //[self loadSliderView];
     [self loadMethods];
     
     self.value = [decoder decodeFloatForKey:@"value"];
@@ -126,29 +126,66 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Methods
 
 -(float) value{
-    return ((UISlider*)self.view).value;
+    return _value;
+    
+    //return ((UISlider*)self.view).value;
 }
 
 -(void) setValue:(float)value{
-    ((UISlider*)self.view).value = value;
+    _value = value;
+    
+    if(self.view){
+        ((UISlider*)self.view).value = value;
+    }
 }
 
 -(float) min{
-    return ((UISlider*)self.view).minimumValue;
+    return _min;
+    
+    //return ((UISlider*)self.view).minimumValue;
 }
 
 -(void) setMin:(float)min{
-    ((UISlider*)self.view).minimumValue = min;
+    _min = min;
+    if(self.view != nil){
+        [self updateSliderMin];
+    }
 }
 
 -(float) max{
-    return ((UISlider*)self.view).maximumValue;
+    return _max;
+    //return ((UISlider*)self.view).maximumValue;
 }
 
 -(void) setMax:(float)max{
-    ((UISlider*)self.view).maximumValue = max;
+    _max = max;
+    if(self.view != nil){
+        [self updateSliderMax];
+    }
+    //    ((UISlider*)self.view).maximumValue = max;
 }
 
+
+-(void) updateSliderMin{
+    
+    ((UISlider*)self.view).minimumValue = self.min;
+}
+
+-(void) updateSliderMax{
+    
+    ((UISlider*)self.view).maximumValue = self.max;
+}
+
+-(void) updateSliderValue{
+    
+    ((UISlider*)self.view).value = self.value;
+}
+
+-(void) updateSliderView{
+    [self updateSliderMin];
+    [self updateSliderMax];
+    [self updateSliderValue];
+}
 
 -(void) handleValueChanged{
 
@@ -156,7 +193,8 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) loadView{
-    
+    [self loadSliderView];
+    [self updateSliderView];
 }
 
 #pragma mark - Other

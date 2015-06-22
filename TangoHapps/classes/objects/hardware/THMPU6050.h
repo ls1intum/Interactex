@@ -49,10 +49,10 @@
 @interface THMPU6050 : THHardwareComponent <THI2CProtocol>
 
 @property (nonatomic) THAccelerometerData* accelerometer;
-/*
+
 @property (nonatomic) float accelerometerX;
 @property (nonatomic) float accelerometerY;
-@property (nonatomic) float accelerometerZ;*/
+@property (nonatomic) float accelerometerZ;
 
 @property (nonatomic) THElementPin * sclPin;
 @property (nonatomic) THElementPin * sdaPin;

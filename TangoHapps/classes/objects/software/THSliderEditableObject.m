@@ -133,6 +133,13 @@ You should have received a copy of the GNU General Public License along with thi
     object.max = max;
 }
 
+-(void) addToLayer:(TFLayer *)layer{
+    THSlider * slider = (THSlider*) self.simulableObject;
+    [slider loadView];
+    
+    [super addToLayer:layer];
+}
+
 
 -(NSString*) description{
     return @"Slider";

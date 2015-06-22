@@ -45,7 +45,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THiPhone
 
-NSString * kDefaultEmergencyNumber = @"015777795645";
+NSString * kDefaultEmergencyNumber = @"112";
 
 -(void) loadiPhone{
     

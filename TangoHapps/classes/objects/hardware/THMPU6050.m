@@ -219,6 +219,36 @@ NSInteger const kMPU6050Register = 0x3B;
     [super didStartSimulating];
 }
 
+
+ -(float) accelerometerX{
+     return self.accelerometer.x;
+ }
+ 
+ -(void) setAccelerometerX:(float)accelerometerX{
+     
+ self.accelerometer.x = accelerometerX;
+ }
+ 
+-(float) accelerometerY{
+    return self.accelerometer.y;
+ }
+ 
+ -(void) setAccelerometerY:(float)accelerometerY{
+ 
+     
+     self.accelerometer.y = accelerometerY;
+ }
+ 
+-(float) accelerometerZ{
+    return self.accelerometer.z;
+ }
+ 
+ -(void) setAccelerometerZ:(float)accelerometerZ{
+     
+  self.accelerometer.z = accelerometerZ;
+ }
+
+
 -(NSString*) description{
     return @"mpu6050";
 }
