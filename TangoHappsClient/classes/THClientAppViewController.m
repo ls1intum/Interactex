@@ -97,8 +97,8 @@ float const kConnectingTimeout = 7.0f;
     
     for (THView * object in self.currentProject.iPhoneObjects) {
         
-        float relx = (object.position.x - iPhone.position.x + size.width/2) / kiPhoneFrames[type].size.width;
-        float rely = (object.position.y - iPhone.position.y + size.height/2) / kiPhoneFrames[type].size.height;
+        float relx = (object.position.x - iPhone.position.x + size.width/2.0f) / kiPhoneFrames[type].size.width;
+        float rely = (object.position.y - iPhone.position.y + size.height/2.0f) / kiPhoneFrames[type].size.height;
         
         CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
         

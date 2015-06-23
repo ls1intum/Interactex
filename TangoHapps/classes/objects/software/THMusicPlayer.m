@@ -247,7 +247,7 @@ NSString * const kPauseImageName = @"pause.png";
     [self registerEvents];
 }
 
--(void) loadSongs{/*
+-(void) loadSongs{
 #if (TARGET_IPHONE_SIMULATOR)
     self.songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
 #else
@@ -263,7 +263,7 @@ NSString * const kPauseImageName = @"pause.png";
     self.songs = self.songsQuery.items;
     
 #endif
-                   */
+
 }
 
 -(void) loadMusicPlayer{
