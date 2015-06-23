@@ -125,6 +125,7 @@ You should have received a copy of the GNU General Public License along with thi
             return method;
         }
     }
+    NSAssert(NO, @"looking for non-existing method");
     return nil;
 }
 
@@ -134,6 +135,7 @@ You should have received a copy of the GNU General Public License along with thi
             return event;
         }
     }
+    NSAssert(NO, @"looking for non-existing event");
     return nil;
 }
 

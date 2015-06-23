@@ -56,7 +56,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THClientProject.h"
 #import "THClientProjectProxy.h"
 #import "THI2CRegister.h"
-#import "THMonitor.h"
+//#import "THMonitor.h"
 #import "THMusicPlayer.h"
 #import "THThreeColorLed.h"
 #import "THSlider.h"
@@ -272,6 +272,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     
     THTouchpad * touchpad = [[THTouchpad alloc] init];
     touchpad.position = CGPointMake(150, 300);
+    touchpad.backgroundColor = [UIColor grayColor];
     
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect a Buzzer to pin 5";
@@ -433,18 +434,20 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     THiSwitch * iSwitch = [[THiSwitch alloc] init];
     iSwitch.position = CGPointMake(250,200);
     
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,redLabel, greenLabel, blueLabel, redSlider,greenSlider,blueSlider, iSwitch, nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label, redLabel, greenLabel, blueLabel, redSlider, greenSlider,blueSlider, iSwitch, nil];
     
     //turn on action
     TFEvent * switchOnEvent = [iSwitch eventNamed:kEventSwitchedOn];
     TFMethod * turnOnMethod = [threeColorLED methodNamed:kMethodTurnOn];
     TFMethodInvokeAction * turnOnAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:turnOnMethod];
+    turnOnAction.source = iSwitch;
     [project registerAction:turnOnAction forEvent:switchOnEvent];
     
     //turn off action
     TFEvent * switchOffEvent = [iSwitch eventNamed:kEventSwitchedOff];
     TFMethod * turnOffMethod = [threeColorLED methodNamed:kMethodTurnOff];
     TFMethodInvokeAction * turnOffAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:turnOffMethod];
+    turnOffAction.source = iSwitch;
     [project registerAction:turnOffAction forEvent:switchOffEvent];
     
     //red action
@@ -453,6 +456,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * redAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:redMethod];
     TFProperty * redValueProperty = [redSlider.properties objectAtIndex:0];
     redAction.firstParam = [TFPropertyInvocation invocationWithProperty:redValueProperty target:redSlider];
+    redAction.source = redSlider;
     [project registerAction:redAction forEvent:redEvent];
     
     //green action
@@ -461,6 +465,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * greenAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:greenMethod];
     TFProperty * greenValueProperty = [greenSlider.properties objectAtIndex:0];
     greenAction.firstParam = [TFPropertyInvocation invocationWithProperty:greenValueProperty target:greenSlider];
+    greenAction.source = greenSlider;
     [project registerAction:greenAction forEvent:greenEvent];
     
     //blue action
@@ -469,7 +474,9 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * blueAction = [TFMethodInvokeAction actionWithTarget:threeColorLED method:blueMethod];
     TFProperty * blueValueProperty = [blueSlider.properties objectAtIndex:0];
     blueAction.firstParam = [TFPropertyInvocation invocationWithProperty:blueValueProperty target:blueSlider];
+    blueAction.source = blueSlider;
     [project registerAction:blueAction forEvent:blueEvent];
+    
     
     //red pin*
     THBoardPin * redPinBoard = [lilypad digitalPinWithNumber:11];
@@ -505,10 +512,12 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     THAccelerometer * accelerometer = [[THAccelerometer alloc] init];
     project.hardwareComponents = [NSMutableArray arrayWithObjects:accelerometer,nil];
     
-    THMonitor * monitor = [[THMonitor alloc] init];
-    monitor.position = CGPointMake(160, 250);
-    monitor.minValue = 0;
-    monitor.maxValue = 1024;
+    
+    THLabel * label1 = [[THLabel alloc] init];
+    label1.position = CGPointMake(160, 220);
+    
+    THLabel * label2 = [[THLabel alloc] init];
+    label2.position = CGPointMake(160, 270);
     
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect an accelerometer to pins A0 A1 and A2";
@@ -517,22 +526,24 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     ((UILabel*) label.view).font = [UIFont systemFontOfSize:15];
 
     
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,monitor,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,label1,label2,nil];
     
     //x action
     TFEvent * xEvent = [accelerometer eventNamed:kEventXChanged];
-    TFMethod * xMethod = [monitor methodNamed:kMethodAddValue1];
-    TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:monitor method:xMethod];
+    TFMethod * xMethod = [label1 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:label1 method:xMethod];
     TFProperty * xValueProperty = [accelerometer.properties objectAtIndex:0];
     xAction.firstParam = [TFPropertyInvocation invocationWithProperty:xValueProperty target:accelerometer];
+    xAction.source = accelerometer;
     [project registerAction:xAction forEvent:xEvent];
-
+    
     //y action
     TFEvent * yEvent = [accelerometer eventNamed:kEventYChanged];
-    TFMethod * yMethod = [monitor methodNamed:kMethodAddValue2];
-    TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:monitor method:yMethod];
+    TFMethod * yMethod = [label2 methodNamed:kMethodSetText];
+    TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:label2 method:yMethod];
     TFProperty * yValueProperty = [accelerometer.properties objectAtIndex:1];
     yAction.firstParam = [TFPropertyInvocation invocationWithProperty:yValueProperty target:accelerometer];
+    yAction.source = accelerometer;
     [project registerAction:yAction forEvent:yEvent];
     
     
@@ -560,7 +571,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
 -(THClientProject*) MPU6050Project{
     THClientProject * project = [self defaultClientProject];
     
-    project.name = kAccelerometerProjectName;
+    project.name = kMPU6050ProjectName;
     
     THLilyPad * lilypad = [[THLilyPad alloc] init];
     project.boards = [NSMutableArray arrayWithObject:lilypad];
@@ -568,38 +579,41 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     THMPU6050 * mpu6050 = [[THMPU6050 alloc] init];
     project.hardwareComponents = [NSMutableArray arrayWithObjects:mpu6050,nil];
     
-    THLabel * label1 = [[THLabel alloc] init];
-    label1.position = CGPointMake(160, 220);
-    
-    THLabel * label2 = [[THLabel alloc] init];
-    label2.position = CGPointMake(160, 270);
-    
-    THLabel * label3 = [[THLabel alloc] init];
-    label3.position = CGPointMake(160, 340);
-    
     THLabel * label = [[THLabel alloc] init];
     label.text = @"connect an MPU6050 accelerometer";
     label.position = CGPointMake(160, 50);
     label.width = 300;
     ((UILabel*) label.view).font = [UIFont systemFontOfSize:15];
     
+    THLabel * label1 = [[THLabel alloc] init];
+    label1.position = CGPointMake(160, 220);
+    label1.width = 300;
+    /*
+     THLabel * label2 = [[THLabel alloc] init];
+     label2.position = CGPointMake(160, 270);
+     
+     THLabel * label3 = [[THLabel alloc] init];
+     label3.position = CGPointMake(160, 340);
+     */
     
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,label1,label2,label3,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,label1,nil];
     
     //x action
-    TFEvent * xEvent = [mpu6050 eventNamed:kEventXChanged];
+    TFEvent * xEvent = [mpu6050 eventNamed:kEventNewValue];
     TFMethod * xMethod = [label1 methodNamed:kMethodSetText];
     TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:label1 method:xMethod];
     TFProperty * xValueProperty = [mpu6050.properties objectAtIndex:0];
     xAction.firstParam = [TFPropertyInvocation invocationWithProperty:xValueProperty target:mpu6050];
+    xAction.source = mpu6050;
     [project registerAction:xAction forEvent:xEvent];
-    
+    /*
     //y action
     TFEvent * yEvent = [mpu6050 eventNamed:kEventYChanged];
     TFMethod * yMethod = [label2 methodNamed:kMethodSetText];
     TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:label2 method:yMethod];
     TFProperty * yValueProperty = [mpu6050.properties objectAtIndex:1];
     yAction.firstParam = [TFPropertyInvocation invocationWithProperty:yValueProperty target:mpu6050];
+    yAction.source = mpu6050;
     [project registerAction:yAction forEvent:yEvent];
     
     //z action
@@ -608,7 +622,9 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * zAction = [TFMethodInvokeAction actionWithTarget:label3 method:zMethod];
     TFProperty * zValueProperty = [mpu6050.properties objectAtIndex:2];
     zAction.firstParam = [TFPropertyInvocation invocationWithProperty:zValueProperty target:mpu6050];
+    zAction.source = mpu6050;
     [project registerAction:zAction forEvent:zEvent];
+    */
     
     //SCL pin
     THBoardPin * sclPinBoard = lilypad.sclPin;
@@ -665,7 +681,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     THLabel * label3 = [[THLabel alloc] init];
     label3.position = CGPointMake(160, 340);
     
-    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,nil];
+    project.iPhoneObjects = [NSMutableArray arrayWithObjects:label,label1,label2,label3, nil];
      
     
     //x action
@@ -674,6 +690,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * xAction = [TFMethodInvokeAction actionWithTarget:label1 method:xMethod];
     TFProperty * xValueProperty = [compass.properties objectAtIndex:0];
     xAction.firstParam = [TFPropertyInvocation invocationWithProperty:xValueProperty target:compass];
+    xAction.source = compass;
     [project registerAction:xAction forEvent:xEvent];
     
     //y action
@@ -682,6 +699,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * yAction = [TFMethodInvokeAction actionWithTarget:label2 method:yMethod];
     TFProperty * yValueProperty = [compass.properties objectAtIndex:1];
     yAction.firstParam = [TFPropertyInvocation invocationWithProperty:yValueProperty target:compass];
+    yAction.source = compass;
     [project registerAction:yAction forEvent:yEvent];
     
     //z action
@@ -690,8 +708,8 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     TFMethodInvokeAction * zAction = [TFMethodInvokeAction actionWithTarget:label3 method:zMethod];
     TFProperty * zValueProperty = [compass.properties objectAtIndex:2];
     zAction.firstParam = [TFPropertyInvocation invocationWithProperty:zValueProperty target:compass];
+    zAction.source = compass;
     [project registerAction:zAction forEvent:zEvent];
-    
     
     
     //pins
@@ -715,7 +733,7 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     project.boards = [NSMutableArray arrayWithObject:lilypad];
     
     //lilypad
-    THSwitch * lilybutton = [[THButton alloc] init];
+    THButton * lilybutton = [[THButton alloc] init];
     project.hardwareComponents = [NSMutableArray arrayWithObjects:lilybutton,nil];
     
     //iphone objects
@@ -732,14 +750,10 @@ NSString * const kMPU6050ProjectName = @"MPU-6050";
     
     //play action
     TFMethod * playMethod = [musicPlayer.methods objectAtIndex:0];
-    TFMethod * stopMethod = [musicPlayer.methods objectAtIndex:1];
     TFMethodInvokeAction * playAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:playMethod];
-    TFMethodInvokeAction * stopAction = [[TFMethodInvokeAction alloc] initWithTarget:musicPlayer method:stopMethod];
     TFEvent * switchOnEvent = [lilybutton.events objectAtIndex:0];
-    TFEvent * switchOffEvent = [lilybutton.events objectAtIndex:1];
     playAction.source = lilybutton;
     [project registerAction:playAction forEvent:switchOnEvent];
-    [project registerAction:stopAction forEvent:switchOffEvent];
     
     //pins
     THBoardPin * lilypinButton = [lilypad digitalPinWithNumber:8];

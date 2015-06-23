@@ -162,7 +162,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.view != nil){
         [self updateSliderMax];
     }
-    //    ((UISlider*)self.view).maximumValue = max;
 }
 
 
@@ -188,7 +187,9 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) handleValueChanged{
-
+    NSLog(@"slider new value %f",self.value);
+    _value = ((UISlider*)self.view).value;
+    
     [self triggerEventNamed:kEventValueChanged];
 }
 

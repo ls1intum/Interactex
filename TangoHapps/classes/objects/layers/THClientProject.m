@@ -168,10 +168,16 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) registerAction:(TFAction*) action forEvent:(TFEvent*) event {
     
+    //NSLog(@"registering: %@ %@ %@",action.source, event.name, action.target);
+    
     TFEventActionPair * pair = [[TFEventActionPair alloc] init];
     pair.action = action;
     pair.event = event;
     [_actionPairs addObject:pair];
+    
+    NSAssert(action.source != nil, @"trying to register a nil action source for %@",action);
+    NSAssert(action.target != nil, @"trying to register a nil action target for %@",action);
+    NSAssert(event.name != nil, @"trying to register a nil event name for %@",action);
     
     [[NSNotificationCenter defaultCenter] addObserver:action selector:@selector(startAction) name:event.name object:action.source];
 }

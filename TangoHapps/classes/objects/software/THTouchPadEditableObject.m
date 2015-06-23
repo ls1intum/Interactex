@@ -146,6 +146,15 @@ You should have received a copy of the GNU General Public License along with thi
     object.dy = dy;
 }
 
+#pragma mark - Lifecycle
+
+-(void) addToLayer:(TFLayer *)layer{
+    THTouchpad * touchpad = (THTouchpad*) self.simulableObject;
+    [touchpad loadView];
+    
+    [super addToLayer:layer];
+}
+
 -(void) prepareToDie{
     [super prepareToDie];
 }

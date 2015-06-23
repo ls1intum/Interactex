@@ -45,6 +45,18 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THiSwitch
 @synthesize on = _on;
 
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        [self loadMethods];
+        
+        self.on = YES;
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
 -(void) loadSwitch{
     
     UISwitch * iswitch = [[UISwitch alloc] init];
@@ -55,6 +67,9 @@ You should have received a copy of the GNU General Public License along with thi
     self.height = iswitch.frame.size.height;
     
     [iswitch addTarget:self action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void) loadMethods{
     
     TFProperty * property = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
     self.properties = [NSMutableArray arrayWithObject:property];
@@ -66,24 +81,13 @@ You should have received a copy of the GNU General Public License along with thi
     self.events = [NSMutableArray arrayWithObjects:event1,event2,event3, nil];
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        
-        //[self loadSwitch];
-        self.on = YES;
-        self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
         //[self loadSwitch];
-        
+        [self loadMethods];
         self.on = [decoder decodeBoolForKey:@"isOn"];
     }
     return self;
@@ -130,12 +134,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(void) stateChanged:(id) sender{
-    TFEvent * event;
-    if(self.on){
-        event = [self.events objectAtIndex:0];
-    } else {
-        event = [self.events objectAtIndex:1];
-    }
+    UISwitch * iswitch = (UISwitch*) self.view;
+    _on = iswitch.on;
+    
+    TFEvent * event = [self.events objectAtIndex:!_on];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:event.name  object:self];
     [self triggerEventNamed:kEventOnChanged];
 }

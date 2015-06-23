@@ -228,11 +228,6 @@ You should have received a copy of the GNU General Public License along with thi
     return color;
 }
 
--(void) varyIntensity:(NSInteger) di {
-    //self.red = self.red + di;
-    [self updatePinValue];
-}
-
 -(void) setRed:(NSInteger)red {
     
     _red = [self clampColor:red];

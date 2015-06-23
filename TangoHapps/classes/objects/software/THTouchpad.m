@@ -49,6 +49,24 @@ float const kNotifyMinDistance = 10.0f;
 @synthesize dx = _dx;
 @synthesize dy = _dy;
 
+-(id) init{
+    self = [super init];
+    if(self){
+        
+        self.width = kDefaultTouchpadSize.width;
+        self.height = kDefaultTouchpadSize.height;
+        
+        self.xMultiplier = 1;
+        self.yMultiplier = 1;
+        
+        //[self loadTouchpadView];
+        [self loadMethodsAndEvents];
+        
+    }
+    return self;
+}
+
+
 -(void) loadTouchpadView{
     
     UIView * view = [[UIView alloc] init];
@@ -61,6 +79,10 @@ float const kNotifyMinDistance = 10.0f;
     self.view.layer.cornerRadius = 15;
     self.view.layer.borderColor = [super defaultBorderColor];
     self.view.layer.borderWidth = 2.0f;
+    
+}
+
+-(void) loadMethodsAndEvents{
     
     TFProperty * dxProperty = [TFProperty propertyWithName:@"dx" andType:kDataTypeFloat];
     TFProperty * dyProperty = [TFProperty propertyWithName:@"dy" andType:kDataTypeFloat];
@@ -86,22 +108,6 @@ float const kNotifyMinDistance = 10.0f;
     
 }
 
--(id) init{
-    self = [super init];
-    if(self){
-        
-        self.width = kDefaultTouchpadSize.width;
-        self.height = kDefaultTouchpadSize.height;
-        
-        self.xMultiplier = 1;
-        self.yMultiplier = 1;
-        
-        [self loadTouchpadView];
-        
-    }
-    return self;
-}
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
@@ -110,8 +116,10 @@ float const kNotifyMinDistance = 10.0f;
     self.xMultiplier = [decoder decodeFloatForKey:@"xMultiplier"];
     self.yMultiplier = [decoder decodeFloatForKey:@"yMultiplier"];
     
-    [self loadTouchpadView];
-        
+    //[self loadTouchpadView];
+    
+    [self loadMethodsAndEvents];
+    
     return self;
 }
 
@@ -229,6 +237,7 @@ float const kNotifyMinDistance = 10.0f;
 }
 
 -(void) loadView{
+    [self loadTouchpadView];
 }
 
 #pragma mark - Other
