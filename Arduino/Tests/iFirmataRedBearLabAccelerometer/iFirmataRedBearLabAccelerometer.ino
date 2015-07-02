@@ -3,6 +3,9 @@
 #include <Wire.h>
 #include "BLEFirmata.h"
 #include "ble_mini.h"
+#include "I2Cdev.h"
+#include "MPU6050.h"
+
 /*
  * Firmata is a generic protocol for communicating with microcontrollers
  * from software on a host computer. It is intended to work with
@@ -83,12 +86,45 @@ boolean isI2CEnabled = false;
 signed char queryIndex = -1;
 unsigned int i2cReadDelayTime = 0;  // default delay time between i2c read request and Wire.requestFrom()
 
+MPU6050 accelgyro;
+bool initializedAccelGyro = false;
+int16_t ax, ay, az;
+uint16_t x, y, z;
+
+
 Servo servos[MAX_SERVOS];
 /*==============================================================================
  * FUNCTIONS
  *============================================================================*/
 
 void readAndReportData(byte address, int theRegister, byte numBytes) {
+  
+    if(address == 0x68){
+    
+    //accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+    accelgyro.getAcceleration(&ax, &ay, &az);
+    
+    x = ax + 32768;
+    y = ay + 32768;
+    z = az + 32768;
+    
+    i2cRxData[0] = address;
+    i2cRxData[1] = theRegister;
+    
+    i2cRxData[2] = lowByte(x);
+    i2cRxData[3] = highByte(x);
+    
+    i2cRxData[4] = lowByte(y);
+    i2cRxData[5] = highByte(y);
+    
+    i2cRxData[6] = lowByte(z);
+    i2cRxData[7] = highByte(z);
+    
+    numBytes = 6;
+    
+  } else {
+    
+    
   // allow I2C requests that don't require a register read
   // for example, some devices using an interrupt pin to signify new data available
   // do not always require the register read so upon interrupt you call Wire.requestFrom()  
@@ -126,7 +162,8 @@ void readAndReportData(byte address, int theRegister, byte numBytes) {
       BleFirmata.sendString("I2C Read Error: Too few bytes received"); 
     }
   }
-
+  }
+  
   // send slave address, register and received bytes
   BleFirmata.sendSysex(SYSEX_I2C_REPLY, numBytes + 2, i2cRxData);
 }
@@ -377,6 +414,14 @@ void sysexCallback(byte command, byte argc, byte *argv)
       }
       break;
     case I2C_READ_CONTINUOUSLY:
+    
+        //Juan remove!
+    if(slaveAddress == 0x68 && !initializedAccelGyro){
+      initializedAccelGyro = true;
+      accelgyro.initialize();
+    }
+    
+    
       if ((queryIndex + 1) >= MAX_QUERIES) {
         // too many queries, just ignore
         BleFirmata.sendString("too many queries");
@@ -595,6 +640,11 @@ void systemResetCallback()
     outputPort(i, readPort(i, portConfigInputs[i]), true);
   }
   */
+  
+  
+  accelgyro.reset();
+  initializedAccelGyro = false;
+  accelgyro = MPU6050();
 }
 
 void setup() 

@@ -4783,6 +4783,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
@@ -4805,6 +4806,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;
@@ -4827,6 +4829,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./Frameworks/**";
 				WRAPPER_EXTENSION = app;

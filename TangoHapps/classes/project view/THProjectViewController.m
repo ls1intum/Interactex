@@ -786,14 +786,15 @@ float const kToolsTabMargin = 5;
 }
 
 - (void) lilypadPressed:(id)sender {
-    
+    /*
     THCustomComponent * customComponent = [[THCustomComponent alloc] init];
     customComponent.name = @"my cool component";
     customComponent.code = @"function myFunction(sideHops){var filter = RCFilter.new();var filteredSignal = filter.filter(sideHops,60,5); return 5;} myFunction(data);";
     
     [[THDirector sharedDirector] didFinishReceivingObject:customComponent];
+    */
     
-    /*
+    
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     if(editor.isLilypadMode){
         [editor stopLilypadMode];
@@ -810,7 +811,7 @@ float const kToolsTabMargin = 5;
     
     [self.tabController showTab:0];
     
-    [self updateLilypadTint];*/
+    [self updateLilypadTint];
 }
 
 - (void) pinsModePressed:(id)sender {

@@ -52,7 +52,7 @@
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    THCustomComponent * copy = [super copyWithZone:zone];
+    THDataRecordingSession * copy = [super copyWithZone:zone];
     return copy;
 }
 
