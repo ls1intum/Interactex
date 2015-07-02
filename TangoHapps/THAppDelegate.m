@@ -86,6 +86,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     THDirector * director = [THDirector sharedDirector];
     [director saveProjectProxies];
+    [director saveProjectProxies];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

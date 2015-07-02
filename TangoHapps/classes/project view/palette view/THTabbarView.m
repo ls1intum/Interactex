@@ -84,6 +84,27 @@ You should have received a copy of the GNU General Public License along with thi
     [self relayoutSections];
 }
 
+-(void) reloadSectionWithIndex:(NSInteger) sectionIndex{
+    
+    THPalette * palette = [self emptyPalette];
+    NSInteger numItems = [self.dataSource numPaletteItemsForSection:sectionIndex palette:self];
+    
+    for (int j = 0; j < numItems; j++) {
+        NSIndexPath * indexPath = [NSIndexPath indexPathForItem:j inSection:sectionIndex];
+        
+        THPaletteItem * item = [self.dataSource paletteItemForIndexPath:indexPath palette:self];
+        [palette addDragablePaletteItem:item];
+        
+    }
+    
+    NSString * title = [self.dataSource titleForSection:sectionIndex palette:self];
+    THTabbarSection * section = [THTabbarSection sectionWithTitle:title];
+    [section addPalette:palette];
+    
+    //section.sizeDelegate = self;
+    [self addPaletteSection:section];
+}
+
 -(void) reloadData{
     [self removeAllSections];
     
@@ -91,23 +112,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     for (int i = 0; i < numSections; i++) {
         
-        THPalette * palette = [self emptyPalette];
-        NSInteger numItems = [self.dataSource numPaletteItemsForSection:i palette:self];
-        
-        for (int j = 0; j < numItems; j++) {
-            NSIndexPath * indexPath = [NSIndexPath indexPathForItem:j inSection:i];
-            
-            THPaletteItem * item = [self.dataSource paletteItemForIndexPath:indexPath palette:self];
-            [palette addDragablePaletteItem:item];
-            
-        }
-        
-        NSString * title = [self.dataSource titleForSection:i palette:self];
-        THTabbarSection * section = [THTabbarSection sectionWithTitle:title];
-        [section addPalette:palette];
-        
-        //section.sizeDelegate = self;
-        [self addPaletteSection:section];
+        [self reloadSectionWithIndex:i];
     }
     
     [self relayoutSections];
@@ -149,12 +154,23 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
--(THTabbarSection*) sectionNamed:(NSString*) name {
+-(NSInteger) idxOfSectionNamed:(NSString*) name {
+    NSInteger idx = 0;
     for (THTabbarSection * section in _sections) {
         if([section.title isEqualToString:name]){
-            return section;
+            break;
         }
+        idx++;
     }
+    return idx;
+}
+
+-(THTabbarSection*) sectionNamed:(NSString*) name {
+    NSInteger idx = [self idxOfSectionNamed:name];
+    if(idx < self.sections.count){
+        return [self.sections objectAtIndex:idx];
+    }
+    
     return nil;
 }
 
@@ -171,6 +187,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(section != nil){
         [_sections removeObject:section];
         [section removeFromSuperview];
+        _currentY -= section.frame.size.height;
     }
 }
 

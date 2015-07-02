@@ -88,6 +88,10 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THStringValuePaletteItem.h"
 #import "THSignalDeviationPaletteItem.h"
 #import "THActivityRecognitionPaletteItem.h"
+#import "THDataRecordingSessionPaletteItem.h"
+
+#import "THCustomComponentPaletteItem.h"
+#import "THCustomComponent.h"
 
 //#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
@@ -433,8 +437,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) useDefaultPaletteSections{
     
-    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, nil];
-    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, nil];
+    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, self.customComponentsSectionArray, nil];
+    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, self.customComponentsSectionName, nil];
 }
 
 -(void) loadPaletteData {
@@ -480,26 +484,48 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
                                      [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
                                      [[THMapperPaletteItem alloc] initWithName:@"mapper"],
-                                     [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
                                      [[THTimerPaletteItem alloc] initWithName:@"timer"],
                                      [[THSoundPaletteItem alloc] initWithName:@"sound"],
+                                     [[THDataRecordingSessionPaletteItem alloc] initWithName:@"recorder"],
                                      [[THValuePaletteItem alloc] initWithName:@"number"],
                                      [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
                                      [[THActivityRecognitionPaletteItem alloc] initWithName:@"activity"],
+                                     [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
                                      nil];
-                                     
+   
+    
+    self.customComponentsSectionArray = [NSMutableArray array];
+    [self reloadCustomProgrammingObjects];
+    
     self.clothesSectionName = @"Textiles";
     self.uiSectionArrayName = @"UI Elements";
     self.boardsSectionName = @"Boards";
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Programming Elements";
-    //self.otherHardwareSectionName = @"Other Hardware";
+    self.customComponentsSectionName = @"Custom Elements";
 }
 
 -(void) tabBar:(THTabbarView*) tabBar didAddSection:(THTabbarSection*) section{
     section.palette.dragDelegate = self;
     section.palette.editionDelegate = self;
+}
+
+-(void) reloadCustomProgrammingObjects{
+    [self.customComponentsSectionArray removeAllObjects];
+    
+    NSArray * customComponents = [THDirector sharedDirector].customComponents;
+    for (THCustomComponent * component in customComponents) {
+        THCustomComponentPaletteItem * componentPaletteItem = [[THCustomComponentPaletteItem alloc] initWithName:component.name imageName:kCustomComponentPaletteName];
+        [self.customComponentsSectionArray addObject:componentPaletteItem];
+    }
+    
+    NSInteger idx = [self.tabView idxOfSectionNamed:self.customComponentsSectionName];
+    if(idx < self.tabView.sections.count){
+        THTabbarSection * section = [self.tabView.sections objectAtIndex:idx];
+        [self.tabView removeSection:section];
+    }
+    [self.tabView reloadSectionWithIndex:idx];
 }
 
 -(void) prepareToDie{

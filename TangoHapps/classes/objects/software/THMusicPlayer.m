@@ -546,15 +546,14 @@ NSString * const kPauseImageName = @"pause.png";
     
 #endif
     
-    
     self.playing = YES;
-    
 }
 
 -(void) pause{
 #if (TARGET_IPHONE_SIMULATOR)
     //[[CDAudioManager sharedManager] stopBackgroundMusic];
     [self updatePlayButtonImage];
+    [self.audioPlayer pause];
 #else
     [self.musicPlayer pause];
     
@@ -566,7 +565,7 @@ NSString * const kPauseImageName = @"pause.png";
 -(void) stop{
     
 #if (TARGET_IPHONE_SIMULATOR)
-    [self pause];
+    [self.audioPlayer stop];
     [self updatePlayButtonImage];
 #else
     [self.musicPlayer stop];
@@ -736,10 +735,9 @@ NSString * const kPauseImageName = @"pause.png";
     
     [self deregisterEvents];
     
-#if !(TARGET_IPHONE_SIMULATOR)
-    [self.musicPlayer stop];
+    [self stop];
+    
     self.musicPlayer = nil;
-#endif
     
     [super prepareToDie];
 }

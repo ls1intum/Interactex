@@ -95,6 +95,9 @@ NSString * const kEventWalking = @"walking";
 NSString * const kEventRunning = @"running";
 NSString * const kEventUnconscious = @"unconscious";
 
+NSString * const kEventExecutionFinished = @"executionFinished";
+NSString * const kEventRecordingFinished = @"recordingFinished";
+
 NSString * const kEventMapperValueChanged = @"mapperValueChanged";
 NSString * const kEventDxChanged = @"dxChanged";
 NSString * const kEventDyChanged = @"dyChanged";
@@ -129,6 +132,8 @@ NSString * const KEventiBeaconRegionExited = @"iBeaconRegionExited";
 NSString * const KEventiBeaconRangingStatusChanged = @"iBeaconRangingStatusChanged";
 NSString * const kEventPressureChanged = @"pressureChanged";
 
+NSString * const kEventNameStopped = @"stopped";
+
 //methods
 
 
@@ -161,6 +166,7 @@ NSString * const kPresetsDirectory = @"presets";
 
 NSString * const kProjectImagesDirectory = @"projectImages";
 NSString * const kProjectProxiesFileName = @"projectProxies";
+NSString * const kCustomComponentsFileName = @"customComponents";
 
 float const kMaxAnalogValue = 1023;
 
@@ -170,6 +176,7 @@ float const kGraphViewAxisLineWidth = 1.0f;
 
 
 NSString * const kConnectionServiceType = @"th-service";
+NSString * const kTextITConnectionServiceType = @"textit-service";
 
 
 const float kShakingEffectAngleInRadians = 2.0f;

@@ -164,7 +164,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-
 -(void) updateSliderMin{
     
     ((UISlider*)self.view).minimumValue = self.min;
@@ -184,10 +183,10 @@ You should have received a copy of the GNU General Public License along with thi
     [self updateSliderMin];
     [self updateSliderMax];
     [self updateSliderValue];
+    ((UISlider*)self.view).enabled = self.enabled;
 }
 
 -(void) handleValueChanged{
-    NSLog(@"slider new value %f",self.value);
     _value = ((UISlider*)self.view).value;
     
     [self triggerEventNamed:kEventValueChanged];

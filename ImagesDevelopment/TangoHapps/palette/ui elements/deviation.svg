@@ -27,16 +27,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
+     inkscape:zoom="0.9899495"
      inkscape:cx="375"
-     inkscape:cy="277.56339"
+     inkscape:cy="398.78169"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="903"
      inkscape:window-height="713"
-     inkscape:window-x="1778"
-     inkscape:window-y="188"
+     inkscape:window-x="1531"
+     inkscape:window-y="229"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -56,14 +56,17 @@
      id="layer1"
      transform="translate(0,-352.36218)">
     <path
-       style="fill:none;stroke:#ff0000;stroke-width:25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
-       d="M 79.342379,869.98426 C 249.13193,863.65706 173.25448,470.99 327.26571,485.45132 482.19999,476.34753 461.83513,893.65506 583.31769,864.56826"
+       style="fill:none;stroke:#ff8e00;stroke-width:25;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 137.93122,560.87759 c 0.15932,39.72604 77.71563,158.0582 142.86747,157.91897 49.77665,0.46399 96.57533,-156.58441 148.19042,-154.86373 56.7288,1.89115 100.11379,157.48356 131.09507,158.20393"
        id="path2985"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc" />
+       sodipodi:nodetypes="ccsc"
+       inkscape:export-filename="/Users/avenix/Desktop/deviation.png"
+       inkscape:export-xdpi="21.738098"
+       inkscape:export-ydpi="21.738098" />
     <path
-       style="fill:none;stroke:#ff0000;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 32.324881,771.53977 603.017109,0"
+       style="fill:none;stroke:#ff8e00;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 57.578694,642.24025 603.017106,0"
        id="path3755"
        inkscape:connector-curvature="0" />
   </g>

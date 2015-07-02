@@ -47,8 +47,13 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THDirector.h"
 #import "THProjectProxy.h"
 #import "THProjectViewController.h"
-//#import "THEditorToolsDataSource.h"
 #import "THServerController.h"
+#import "THCustomComponent.h"
+#import "THTextITConnectionController.h"
+#import "THTabbarViewController.h"
+#import "THPaletteViewController.h"
+#import "THCustomComponentEditable.h"
+#import "Interactex_Designer-Swift.h"
 
 @implementation THDirector
 
@@ -87,9 +92,19 @@ static THDirector * _sharedInstance = nil;
         
         [self loadProjectProxies];
         
+        //server
         self.serverController = [[THServerController alloc] init];
         self.serverController.delegate = self;
         [self.serverController startServer];
+        
+        //textIT client
+        self.textITClientController = [[THTextITConnectionController alloc] init];
+        self.textITClientController.delegate = self;
+        [self.textITClientController startClient];
+        
+        self.javascriptRunner = [[THJavascriptRunner alloc] init];
+        
+        [self loadCustomComponents];
         
         [self preload];
         
@@ -102,30 +117,37 @@ static THDirector * _sharedInstance = nil;
 -(NSMutableArray*) loadProjectProxies {
     
     if([TFFileUtils dataFile:kProjectProxiesFileName existsInDirectory:@""]){
-        
         NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
         self.projectProxies = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     } else {
         self.projectProxies = [NSMutableArray array];
-        
     }
     
     return self.projectProxies;
+}
+
+-(NSMutableArray*) loadCustomComponents {
     
-    /*
-    NSString * directory = [TFFileUtils dataDirectory:kProjectsDirectory];
-    NSArray * files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:nil];
-    self.projectProxies = [[NSMutableArray alloc] init];
-    for(NSString *archivePath in files){
-        THProjectProxy * proxy = [THProjectProxy proxyWithName:[archivePath lastPathComponent]];
-        [self.projectProxies addObject:proxy];
-    }*/
+    if([TFFileUtils dataFile:kCustomComponentsFileName existsInDirectory:@""]){
+        NSString *filePath = [TFFileUtils dataFile:kCustomComponentsFileName inDirectory:@""];
+        self.customComponents = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    } else {
+        self.customComponents = [NSMutableArray array];
+    }
+    
+    return self.customComponents;
 }
 
 -(void) saveProjectProxies{
     
     NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
     [NSKeyedArchiver archiveRootObject:self.projectProxies toFile:filePath];
+}
+
+-(void) saveCustomComponents{
+    
+    NSString *filePath = [TFFileUtils dataFile:kCustomComponentsFileName inDirectory:@""];
+    [NSKeyedArchiver archiveRootObject:self.customComponents toFile:filePath];
 }
 
 #pragma mark - Layer
@@ -163,6 +185,59 @@ static THDirector * _sharedInstance = nil;
 
 - (void) server:(THServerController*)controller isRunning:(BOOL)running{
     //[self updateWirelessButtonTo:running];
+}
+
+
+#pragma Mark - Client Delegate
+
+-(BOOL) doesComponentExistWithName:(NSString*) name{
+    return ([self idxOfSoftwareComponentWithName:name] >= self.customComponents.count);
+}
+
+-(NSInteger) idxOfSoftwareComponentWithName:(NSString*) name{
+    NSInteger idx = 0;
+    for (THCustomComponent * component in self.customComponents) {
+        if([component.name isEqualToString:name]){
+            return idx;
+        }
+        idx++;
+    }
+    return idx;
+}
+
+-(THCustomComponent*) softwareComponentWithName:(NSString*) name{
+    NSInteger idx = [self idxOfSoftwareComponentWithName:name];
+    if(idx < self.customComponents.count){
+        return [self.customComponents objectAtIndex:idx];
+    }
+    return nil;
+}
+
+-(void) didStartReceivingProjectNamed:(NSString*) name{
+    NSLog(@"received project: %@",name);
+}
+
+-(void) didMakeProgressForCurrentProject:(float) progress{
+    NSLog(@"%f",progress);
+}
+
+-(void) didFinishReceivingObject:(THCustomComponent*) component{
+    
+    NSLog(@"received object: %@",component);
+    
+    NSInteger idx = [self idxOfSoftwareComponentWithName:component.name];
+
+    if(idx < self.customComponents.count){
+        [self.customComponents replaceObjectAtIndex:idx withObject:component];
+    } else {
+        [self.customComponents addObject:component];
+    }
+    
+    [self.projectController.tabController.paletteController reloadCustomProgrammingObjects];
+}
+
+-(void) appendStatusMessage:(NSString*) msg{
+    NSLog(@"%@",msg);
 }
 
 @end

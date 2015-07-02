@@ -50,6 +50,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THProjectProxy.h"
 #import "THViewEditableObject.h"
 
+#import "THCustomComponent.h"
+
 @implementation THProjectViewController
 
 float const kPalettePullY = 0;
@@ -785,6 +787,13 @@ float const kToolsTabMargin = 5;
 
 - (void) lilypadPressed:(id)sender {
     
+    THCustomComponent * customComponent = [[THCustomComponent alloc] init];
+    customComponent.name = @"my cool component";
+    customComponent.code = @"function myFunction(sideHops){var filter = RCFilter.new();var filteredSignal = filter.filter(sideHops,60,5); return 5;} myFunction(data);";
+    
+    [[THDirector sharedDirector] didFinishReceivingObject:customComponent];
+    
+    /*
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     if(editor.isLilypadMode){
         [editor stopLilypadMode];
@@ -801,7 +810,7 @@ float const kToolsTabMargin = 5;
     
     [self.tabController showTab:0];
     
-    [self updateLilypadTint];
+    [self updateLilypadTint];*/
 }
 
 - (void) pinsModePressed:(id)sender {
@@ -874,7 +883,6 @@ float const kToolsTabMargin = 5;
     THEditor * editor = (THEditor*) self.currentLayer;
     self.zoomSlider.value = editor.zoomLevel;
 }
-
 
 -(NSString*) description{
     return @"ProjectController";

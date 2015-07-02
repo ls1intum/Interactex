@@ -54,10 +54,6 @@ HActivityRecognition.m
 }
 
 -(void) loadActivityRecognition{
-    /*
-    TFProperty * property = [TFProperty propertyWithName:@"deviation" andType:kDataTypeFloat];
-    self.properties = [NSMutableArray arrayWithObject:property];*/
-    
     
     TFMethod * method = [TFMethod methodWithName:@"addSample"];
     method.numParams = 1;
@@ -148,17 +144,12 @@ HActivityRecognition.m
     THAccelerometerData * mean = [self computeMean];
     THAccelerometerData * deviation = [self computeDeviationUsingMena:mean];
     
-    //NSLog(@"mean: %f %f %f",mean.x,mean.y,mean.z);
-    //NSLog(@"deviation: %f %f %f",deviation.x,deviation.y,deviation.z);
-    
     if(mean.z > 0.67 || mean.z < 0.3){
         return kActivityStateUnconscious;
     }
     
     double magnitude = sqrt(deviation.x * deviation.x + deviation.y * deviation.y + deviation.z * deviation.z);
-    
-    //NSLog(@"magnitude: %f",magnitude);
-    
+        
     if(magnitude < 0.02){
         
         return kActivityStateStanding;

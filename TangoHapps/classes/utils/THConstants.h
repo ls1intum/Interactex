@@ -204,4 +204,6 @@ extern ccColor3B const kDefaultSimulationLabelColor;
 
 extern NSString * const kNotificationEditorZoomReset;
 
+extern NSString * const kCustomComponentPaletteName;
+
 extern CGSize const kDefaultCanvasSize;

@@ -165,7 +165,9 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"comparator.png",
     @"grouper.png",
     @"deviation.png",
-    @"activity.png"
+    @"activity.png",
+    @"customComponent.png",
+    @"recorder.png"
 };
 
 float const kLayerMinScale = 0.5f;
@@ -176,6 +178,8 @@ float const kDefaultAnalogSimulationIncrease = 5.0f;
 ccColor3B const kDefaultSimulationLabelColor = {0,0,0};//black
 
 NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";
+
+NSString * const kCustomComponentPaletteName = @"palette_customComponent.png";
 
 CGSize const kDefaultCanvasSize = {1536, 1152};
 

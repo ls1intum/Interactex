@@ -531,26 +531,26 @@ float const kConnectingTimeout = 7.0f;
 }
 
 -(void) firmataController:(IFFirmata*) firmataController didReceiveDigitalMessageForPort:(NSInteger) port value:(NSInteger) value{
-    
-    THBoard * board = [self.currentProject.boards objectAtIndex:0];
-    NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
-    
-    THBoardPin * firstPin = [digitalPins objectAtIndex:0];
-    
-    //NSLog(@"received msg: %ld %ld",(long)port,(long)value);
-    
-    int mask = 1;
-    NSInteger pinNumber = port * 8;
-    for (mask <<= firstPin.number; pinNumber < digitalPins.count; mask <<= 1, pinNumber++) {
-        NSInteger pinIdx = pinNumber - firstPin.number;
-        if(pinIdx > 0){
-            THBoardPin * pinObj = [digitalPins objectAtIndex:pinIdx];
-            if (pinObj.mode == IFPinModeInput) {
-                uint32_t val = (value & mask) ? 1 : 0;
-                if (pinObj.value != val) {
-                    [pinObj removeObserver:self forKeyPath:@"value"];
-                    pinObj.value = val;
-                    [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    if(self.currentProject.boards.count > 0){
+        THBoard * board = [self.currentProject.boards objectAtIndex:0];
+        NSMutableArray * digitalPins = [self digitalPinsForBoard:board];
+        if(digitalPins.count > 0){
+            THBoardPin * firstPin = [digitalPins objectAtIndex:0];
+            
+            int mask = 1;
+            NSInteger pinNumber = port * 8;
+            for (mask <<= firstPin.number; pinNumber < digitalPins.count; mask <<= 1, pinNumber++) {
+                NSInteger pinIdx = pinNumber - firstPin.number;
+                if(pinIdx > 0){
+                    THBoardPin * pinObj = [digitalPins objectAtIndex:pinIdx];
+                    if (pinObj.mode == IFPinModeInput) {
+                        uint32_t val = (value & mask) ? 1 : 0;
+                        if (pinObj.value != val) {
+                            [pinObj removeObserver:self forKeyPath:@"value"];
+                            pinObj.value = val;
+                            [pinObj addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+                        }
+                    }
                 }
             }
         }

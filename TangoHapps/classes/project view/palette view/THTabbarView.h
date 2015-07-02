@@ -73,8 +73,10 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) removeAllSections;
 -(void) relayoutSections;
 -(void) reloadData;
+-(void) reloadSectionWithIndex:(NSInteger) sectionIndex;
 
 -(THTabbarSection*) sectionForPalette:(THPalette*) palette;
+-(NSInteger) idxOfSectionNamed:(NSString*) name;
 -(THTabbarSection*) sectionNamed:(NSString*) name;
 -(THTabbarSection*) sectionAtLocation:(CGPoint) location;
 

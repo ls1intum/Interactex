@@ -71,7 +71,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic) CGFloat myRotation;
 @property (nonatomic) CGFloat myScale;
-@property (nonatomic) CGPoint position;
+//@property (nonatomic) CGPoint position;
 @property (nonatomic, readonly) CGPoint absolutePosition;
 @property (nonatomic, readonly) CGPoint center;
 

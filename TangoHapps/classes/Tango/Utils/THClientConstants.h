@@ -77,7 +77,7 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypeMPU6050
 }THHardwareType;
 
-#define kNumProgrammingElementTypes 10
+#define kNumProgrammingElementTypes 12
 
 typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeMapper,
@@ -89,7 +89,9 @@ typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeComparator,
     kProgrammingElementTypeGrouper,
     kProgrammingElementTypeSignalDeviation,
-    kProgrammingElementTypeActivityRecognition
+    kProgrammingElementTypeActivityRecognition,
+    kProgrammingElementTypeCustomComponent,
+    kProgrammingElementTypeDataRecordingSession,
 } THProgrammingElementType;
 
 
@@ -193,6 +195,9 @@ extern NSString * const kEventWalking;
 extern NSString * const kEventRunning;
 extern NSString * const kEventUnconscious;
 
+extern NSString * const kEventExecutionFinished;
+extern NSString * const kEventRecordingFinished;
+
 extern NSString * const kEventMapperValueChanged;
 extern NSString * const kEventDxChanged;
 extern NSString * const kEventDyChanged;
@@ -222,6 +227,8 @@ extern NSString * const KEventiBeaconRegionEntered;
 extern NSString * const KEventiBeaconRegionExited;
 extern NSString * const KEventiBeaconRangingStatusChanged;
 extern NSString * const kEventPressureChanged;
+
+extern NSString * const kEventNameStopped;
 
 //methods
 extern NSString * const kMethodSetIntensity;
@@ -263,6 +270,7 @@ extern NSString * const kPresetsDirectory;
 
 extern NSString * const kProjectImagesDirectory;
 extern NSString * const kProjectProxiesFileName;
+extern NSString * const kCustomComponentsFileName;
 
 extern float const kMaxAnalogValue;
 
@@ -280,6 +288,7 @@ extern CGSize const kGraphViewAxisLabelSize;
 extern float const kGraphViewAxisLineWidth;
 
 extern NSString * const kConnectionServiceType;
+extern NSString * const kTextITConnectionServiceType;
 
 typedef enum THCommunicationMsg : NSUInteger{
     THCommunicationMsgTransferProjectName,

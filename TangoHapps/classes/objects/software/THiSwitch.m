@@ -129,10 +129,6 @@ You should have received a copy of the GNU General Public License along with thi
     [super setEnabled:enabled];
 }
 
--(BOOL) enabled{
-    return ((UISwitch*)self.view).enabled;
-}
-
 -(void) stateChanged:(id) sender{
     UISwitch * iswitch = (UISwitch*) self.view;
     _on = iswitch.on;
@@ -146,6 +142,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) updateSwitch{
     UISwitch * iswitch = (UISwitch*) self.view;
     iswitch.on = self.on;
+    iswitch.enabled = self.enabled;
 }
 
 -(void) loadView{

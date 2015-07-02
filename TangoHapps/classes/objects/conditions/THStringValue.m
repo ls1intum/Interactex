@@ -72,9 +72,12 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     
-    _value = [decoder decodeObjectForKey:@"value"];
-    
-    [self load];
+    if(self){
+        _value = [decoder decodeObjectForKey:@"value"];
+        
+        [self load];
+        
+    }
     
     return self;
 }

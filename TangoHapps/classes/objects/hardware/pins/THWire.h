@@ -49,7 +49,6 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THWireNode : TFEditableObject
 
 @property (nonatomic, weak) THWire * wire;
-@property (nonatomic) BOOL visible;
 
 @end
 

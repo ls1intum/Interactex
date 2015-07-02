@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPaletteViewController.h"
 #import "THTabbarView.h"
 #import "THServerController.h"
+#import "THTextITConnectionController.h"
 
 @class THProjectViewController;
 @class THProjectProxy;
@@ -54,19 +55,9 @@ You should have received a copy of the GNU General Public License along with thi
 @class THEditorToolsDataSource;
 @class TFLayer;
 @class THProject;
-/*
-@protocol THEditorToolsDataSource <NSObject>
--(NSInteger) numberOfToolbarButtonsForState:(TFAppState) state;
--(UIBarButtonItem*) toolbarButtonAtIdx:(NSInteger) idx forState:(TFAppState) state;
-@end*/
+@class THJavascriptRunner;
 
-/*
-typedef enum {
-    kDirectorStateProjectSelection,
-    kDirectorStateProjectEdition
-} TFDirectorState;*/
-
-@interface THDirector : NSObject <THServerControllerDelegate>
+@interface THDirector : NSObject <THServerControllerDelegate, THTextITConnectionControllerDelegate>
 {
     BOOL _alreadyStartedEditor;
 }
@@ -77,9 +68,14 @@ typedef enum {
 @property (nonatomic, weak) THProjectProxy * currentProxy;
 @property (nonatomic, strong) NSMutableArray * projectProxies;
 @property (nonatomic, strong) THServerController * serverController;
+@property (nonatomic, strong) THTextITConnectionController * textITClientController;
+@property (nonatomic, strong) NSMutableArray * customComponents;
+@property (nonatomic, strong) THJavascriptRunner * javascriptRunner;
 
 +(THDirector*)sharedDirector;
 
+-(THCustomComponent*) softwareComponentWithName:(NSString*) name;
+-(BOOL) doesComponentExistWithName:(NSString*) name;
 -(NSMutableArray*) loadProjectProxies;
 -(void) saveProjectProxies;
 

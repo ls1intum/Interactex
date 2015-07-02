@@ -117,7 +117,7 @@ float const kMonitorNewValueX = 75.0f;
 
 -(float) mapValueToGraphRange:(float) value{
     float range = (self.maxValue - self.minValue);
-    value = (value + abs(self.minValue)) / range;
+    value = (value + labs(self.minValue)) / range;
     
     float offset = (kGraphViewGraphOffsetY + kGraphViewAxisLabelSize.height / 2.0f);
     value *= (self.view.frame.size.height - 2 * offset);

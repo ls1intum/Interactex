@@ -80,6 +80,14 @@
 		9A1C3AC21886DDAE007C5E94 /* palette_LSMCompass.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1C3ABC1886DDAE007C5E94 /* palette_LSMCompass.png */; };
 		9A1C3AC41886DDAE007C5E94 /* palette_LSMCompass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */; };
 		9A1C3B001886E4D8007C5E94 /* THAutorouteProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1C3AFE1886E4D8007C5E94 /* THAutorouteProperties.m */; };
+		9A1D0AFF1B39A4E4005012F2 /* THCustomComponentEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D0AFE1B39A4E4005012F2 /* THCustomComponentEditable.m */; };
+		9A1D0B0B1B39A58E005012F2 /* THCustomComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D0B0A1B39A58E005012F2 /* THCustomComponent.m */; };
+		9A1D0B101B39A72B005012F2 /* customComponent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1D0B0C1B39A72B005012F2 /* customComponent.png */; };
+		9A1D0B111B39A72B005012F2 /* customComponent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1D0B0D1B39A72B005012F2 /* customComponent@2x.png */; };
+		9A1D0B121B39A72B005012F2 /* palette_customComponent.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1D0B0E1B39A72B005012F2 /* palette_customComponent.png */; };
+		9A1D0B131B39A72B005012F2 /* palette_customComponent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1D0B0F1B39A72B005012F2 /* palette_customComponent@2x.png */; };
+		9A1D0B161B39A7B6005012F2 /* THCustomComponentPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D0B151B39A7B6005012F2 /* THCustomComponentPaletteItem.m */; };
+		9A1D0B191B39AD41005012F2 /* THTextITConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D0B181B39AD41005012F2 /* THTextITConnectionController.m */; };
 		9A1FBDAD187ED75400699B61 /* libFirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1FBD6F187ED71900699B61 /* libFirmata.a */; };
 		9A1FBE08187F208400699B61 /* THI2CMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FBE07187F208400699B61 /* THI2CMessage.m */; };
 		9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FBE07187F208400699B61 /* THI2CMessage.m */; };
@@ -320,6 +328,11 @@
 		9A5F8E2A16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
 		9A6B28AD18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
+		9A6E33D91B452E52003DBC90 /* THJavascriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B31B42C89500D7C0D5 /* THJavascriptRunner.swift */; };
+		9A6E33DA1B452E56003DBC90 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B71B42C99800D7C0D5 /* Component.swift */; };
+		9A6E33DB1B452E56003DBC90 /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B11B42C89500D7C0D5 /* LowPassFilter.swift */; };
+		9A6E33DC1B452E56003DBC90 /* RCFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B21B42C89500D7C0D5 /* RCFilter.swift */; };
+		9A6E33DD1B452E56003DBC90 /* THBandageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04C01B44257C00D7C0D5 /* THBandageData.swift */; };
 		9A7B65131834D809009D0103 /* THCompassProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B65111834D809009D0103 /* THCompassProperties.m */; };
 		9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B65171834D830009D0103 /* THCompassProperties.xib */; };
 		9A7DBF69169AC49900F86D71 /* THThreeColorLed.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DBF68169AC49900F86D71 /* THThreeColorLed.m */; };
@@ -735,6 +748,27 @@
 		9AF60BBF16A04BDB00178439 /* connectionMade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */; };
 		9AF60BC616A04D9F00178439 /* THTabbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BC416A04D9F00178439 /* THTabbar.xib */; };
 		9AF60BC816A04D9F00178439 /* THTabbarViewSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */; };
+		9AFA049F1B42A19400D7C0D5 /* THCustomComponentProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA049D1B42A19400D7C0D5 /* THCustomComponentProperties.m */; };
+		9AFA04A01B42A19400D7C0D5 /* THCustomComponentProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA049E1B42A19400D7C0D5 /* THCustomComponentProperties.xib */; };
+		9AFA04B41B42C89500D7C0D5 /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B11B42C89500D7C0D5 /* LowPassFilter.swift */; };
+		9AFA04B51B42C89500D7C0D5 /* RCFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B21B42C89500D7C0D5 /* RCFilter.swift */; };
+		9AFA04B61B42C89500D7C0D5 /* THJavascriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B31B42C89500D7C0D5 /* THJavascriptRunner.swift */; };
+		9AFA04B81B42C99800D7C0D5 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B71B42C99800D7C0D5 /* Component.swift */; };
+		9AFA04C11B44257C00D7C0D5 /* THBandageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04C01B44257C00D7C0D5 /* THBandageData.swift */; };
+		9AFA04C61B44324F00D7C0D5 /* THDataRecordingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04C51B44324F00D7C0D5 /* THDataRecordingSession.m */; };
+		9AFA04C91B4433FE00D7C0D5 /* THDataRecordingSessionEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04C81B4433FE00D7C0D5 /* THDataRecordingSessionEditable.m */; };
+		9AFA04CC1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04CB1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.m */; };
+		9AFA04D11B443CFA00D7C0D5 /* palette_recorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA04CD1B443CFA00D7C0D5 /* palette_recorder.png */; };
+		9AFA04D21B443CFA00D7C0D5 /* palette_recorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA04CE1B443CFA00D7C0D5 /* palette_recorder@2x.png */; };
+		9AFA04D31B443CFA00D7C0D5 /* recorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA04CF1B443CFA00D7C0D5 /* recorder.png */; };
+		9AFA04D41B443CFA00D7C0D5 /* recorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA04D01B443CFA00D7C0D5 /* recorder@2x.png */; };
+		9AFA04D51B44505600D7C0D5 /* THCustomComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D0B0A1B39A58E005012F2 /* THCustomComponent.m */; };
+		9AFA04D61B44505600D7C0D5 /* THDataRecordingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04C51B44324F00D7C0D5 /* THDataRecordingSession.m */; };
+		9AFA04D81B44574700D7C0D5 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B71B42C99800D7C0D5 /* Component.swift */; };
+		9AFA04D91B44574700D7C0D5 /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B11B42C89500D7C0D5 /* LowPassFilter.swift */; };
+		9AFA04DA1B44574700D7C0D5 /* RCFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B21B42C89500D7C0D5 /* RCFilter.swift */; };
+		9AFA04DB1B44574700D7C0D5 /* THJavascriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04B31B42C89500D7C0D5 /* THJavascriptRunner.swift */; };
+		9AFA04DC1B44574700D7C0D5 /* THBandageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA04C01B44257C00D7C0D5 /* THBandageData.swift */; };
 		9AFB7DC61832A91500694CCE /* THClientSceneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */; };
 		9AFB7DCC1832AAD100694CCE /* THClientCollectionProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DC91832AAD100694CCE /* THClientCollectionProjectCell.m */; };
 		9AFB7DCE1832AAD100694CCE /* THClientProjectDraggableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB7DCB1832AAD100694CCE /* THClientProjectDraggableCell.m */; };
@@ -995,6 +1029,18 @@
 		9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_LSMCompass@2x.png"; sourceTree = "<group>"; };
 		9A1C3AFD1886E4D8007C5E94 /* THAutorouteProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THAutorouteProperties.h; sourceTree = "<group>"; };
 		9A1C3AFE1886E4D8007C5E94 /* THAutorouteProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THAutorouteProperties.m; sourceTree = "<group>"; };
+		9A1D0AFD1B39A4E4005012F2 /* THCustomComponentEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCustomComponentEditable.h; sourceTree = "<group>"; };
+		9A1D0AFE1B39A4E4005012F2 /* THCustomComponentEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCustomComponentEditable.m; sourceTree = "<group>"; };
+		9A1D0B091B39A58E005012F2 /* THCustomComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCustomComponent.h; sourceTree = "<group>"; };
+		9A1D0B0A1B39A58E005012F2 /* THCustomComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCustomComponent.m; sourceTree = "<group>"; };
+		9A1D0B0C1B39A72B005012F2 /* customComponent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customComponent.png; sourceTree = "<group>"; };
+		9A1D0B0D1B39A72B005012F2 /* customComponent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customComponent@2x.png"; sourceTree = "<group>"; };
+		9A1D0B0E1B39A72B005012F2 /* palette_customComponent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_customComponent.png; sourceTree = "<group>"; };
+		9A1D0B0F1B39A72B005012F2 /* palette_customComponent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_customComponent@2x.png"; sourceTree = "<group>"; };
+		9A1D0B141B39A7B6005012F2 /* THCustomComponentPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCustomComponentPaletteItem.h; sourceTree = "<group>"; };
+		9A1D0B151B39A7B6005012F2 /* THCustomComponentPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCustomComponentPaletteItem.m; sourceTree = "<group>"; };
+		9A1D0B171B39AD41005012F2 /* THTextITConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTextITConnectionController.h; sourceTree = "<group>"; };
+		9A1D0B181B39AD41005012F2 /* THTextITConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTextITConnectionController.m; sourceTree = "<group>"; };
 		9A1FBD6A187ED71900699B61 /* Firmata.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Firmata.xcodeproj; path = Frameworks/Firmata/Firmata.xcodeproj; sourceTree = "<group>"; };
 		9A1FBE06187F208400699B61 /* THI2CMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THI2CMessage.h; sourceTree = "<group>"; };
 		9A1FBE07187F208400699B61 /* THI2CMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THI2CMessage.m; sourceTree = "<group>"; };
@@ -1785,6 +1831,25 @@
 		9AF60BBE16A04BDB00178439 /* connectionMade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = connectionMade.mp3; sourceTree = "<group>"; };
 		9AF60BC416A04D9F00178439 /* THTabbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbar.xib; sourceTree = "<group>"; };
 		9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THTabbarViewSection.xib; sourceTree = "<group>"; };
+		9AFA049C1B42A19400D7C0D5 /* THCustomComponentProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCustomComponentProperties.h; sourceTree = "<group>"; };
+		9AFA049D1B42A19400D7C0D5 /* THCustomComponentProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCustomComponentProperties.m; sourceTree = "<group>"; };
+		9AFA049E1B42A19400D7C0D5 /* THCustomComponentProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THCustomComponentProperties.xib; path = "../../../classes/palette properties/THCustomComponentProperties.xib"; sourceTree = "<group>"; };
+		9AFA04AD1B42C49600D7C0D5 /* TangoHapps-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TangoHapps-Bridging-Header.h"; sourceTree = "<group>"; };
+		9AFA04B11B42C89500D7C0D5 /* LowPassFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowPassFilter.swift; sourceTree = "<group>"; };
+		9AFA04B21B42C89500D7C0D5 /* RCFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCFilter.swift; sourceTree = "<group>"; };
+		9AFA04B31B42C89500D7C0D5 /* THJavascriptRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THJavascriptRunner.swift; sourceTree = "<group>"; };
+		9AFA04B71B42C99800D7C0D5 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		9AFA04C01B44257C00D7C0D5 /* THBandageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THBandageData.swift; sourceTree = "<group>"; };
+		9AFA04C41B44324F00D7C0D5 /* THDataRecordingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDataRecordingSession.h; sourceTree = "<group>"; };
+		9AFA04C51B44324F00D7C0D5 /* THDataRecordingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDataRecordingSession.m; sourceTree = "<group>"; };
+		9AFA04C71B4433FE00D7C0D5 /* THDataRecordingSessionEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDataRecordingSessionEditable.h; sourceTree = "<group>"; };
+		9AFA04C81B4433FE00D7C0D5 /* THDataRecordingSessionEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDataRecordingSessionEditable.m; sourceTree = "<group>"; };
+		9AFA04CA1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDataRecordingSessionPaletteItem.h; sourceTree = "<group>"; };
+		9AFA04CB1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDataRecordingSessionPaletteItem.m; sourceTree = "<group>"; };
+		9AFA04CD1B443CFA00D7C0D5 /* palette_recorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_recorder.png; sourceTree = "<group>"; };
+		9AFA04CE1B443CFA00D7C0D5 /* palette_recorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_recorder@2x.png"; sourceTree = "<group>"; };
+		9AFA04CF1B443CFA00D7C0D5 /* recorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recorder.png; sourceTree = "<group>"; };
+		9AFA04D01B443CFA00D7C0D5 /* recorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recorder@2x.png"; sourceTree = "<group>"; };
 		9AFB7DC41832A91500694CCE /* THClientSceneSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientSceneSelectionViewController.h; sourceTree = "<group>"; };
 		9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientSceneSelectionViewController.m; sourceTree = "<group>"; };
 		9AFB7DC81832AAD100694CCE /* THClientCollectionProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientCollectionProjectCell.h; sourceTree = "<group>"; };
@@ -2077,6 +2142,14 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9AFA04CD1B443CFA00D7C0D5 /* palette_recorder.png */,
+				9AFA04CE1B443CFA00D7C0D5 /* palette_recorder@2x.png */,
+				9AFA04CF1B443CFA00D7C0D5 /* recorder.png */,
+				9AFA04D01B443CFA00D7C0D5 /* recorder@2x.png */,
+				9A1D0B0C1B39A72B005012F2 /* customComponent.png */,
+				9A1D0B0D1B39A72B005012F2 /* customComponent@2x.png */,
+				9A1D0B0E1B39A72B005012F2 /* palette_customComponent.png */,
+				9A1D0B0F1B39A72B005012F2 /* palette_customComponent@2x.png */,
 				9A325C801AB778790018687E /* jacke.png */,
 				9A325C811AB778790018687E /* jacke@2x.png */,
 				9ADCE1B71AB7481F007895AA /* activity.png */,
@@ -2564,6 +2637,7 @@
 				9A7B65171834D830009D0103 /* THCompassProperties.xib */,
 				9ACBC62818B782FB002EC4DC /* THEditableObjectCommonProperties.xib */,
 				9A95FBD118D10030009A724F /* THHardwareComponentProperties.xib */,
+				9AFA049E1B42A19400D7C0D5 /* THCustomComponentProperties.xib */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -2694,6 +2768,10 @@
 				9AB984E01AB60BBB00A6AB83 /* THSignalDeviationPaletteItem.m */,
 				9ADCE1AD1AB7379D007895AA /* THActivityRecognitionPaletteItem.h */,
 				9ADCE1AE1AB7379D007895AA /* THActivityRecognitionPaletteItem.m */,
+				9A1D0B141B39A7B6005012F2 /* THCustomComponentPaletteItem.h */,
+				9A1D0B151B39A7B6005012F2 /* THCustomComponentPaletteItem.m */,
+				9AFA04CA1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.h */,
+				9AFA04CB1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.m */,
 			);
 			name = "visual programming";
 			sourceTree = "<group>";
@@ -2810,6 +2888,7 @@
 		9AF501F4167B84B40020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				9AFA04B01B42C89500D7C0D5 /* TextIT */,
 				9A84265017564A80009495AB /* Tango */,
 				9AF502D6167B84B40020241C /* utils */,
 				9AF501F5167B84B40020241C /* communication */,
@@ -2826,6 +2905,8 @@
 		9AF501F5167B84B40020241C /* communication */ = {
 			isa = PBXGroup;
 			children = (
+				9A1D0B171B39AD41005012F2 /* THTextITConnectionController.h */,
+				9A1D0B181B39AD41005012F2 /* THTextITConnectionController.m */,
 				9A4DF91619CAAE8800D75C38 /* THServerController.h */,
 				9A4DF91719CAAE8800D75C38 /* THServerController.m */,
 			);
@@ -2877,6 +2958,14 @@
 				9ADCE1A21AB7357F007895AA /* THActivityRecognition.m */,
 				9ADCE1B01AB7381D007895AA /* THActivityRecognitionEditable.h */,
 				9ADCE1B11AB7381D007895AA /* THActivityRecognitionEditable.m */,
+				9A1D0B091B39A58E005012F2 /* THCustomComponent.h */,
+				9A1D0B0A1B39A58E005012F2 /* THCustomComponent.m */,
+				9A1D0AFD1B39A4E4005012F2 /* THCustomComponentEditable.h */,
+				9A1D0AFE1B39A4E4005012F2 /* THCustomComponentEditable.m */,
+				9AFA04C41B44324F00D7C0D5 /* THDataRecordingSession.h */,
+				9AFA04C51B44324F00D7C0D5 /* THDataRecordingSession.m */,
+				9AFA04C71B4433FE00D7C0D5 /* THDataRecordingSessionEditable.h */,
+				9AFA04C81B4433FE00D7C0D5 /* THDataRecordingSessionEditable.m */,
 			);
 			name = programming;
 			path = conditions;
@@ -3163,6 +3252,8 @@
 				9ACBC5EA18B782DB002EC4DC /* THEditableObjectCommonProperties.m */,
 				9A95FB9418D0FDEF009A724F /* THHardwareComponentProperties.h */,
 				9A95FB9518D0FDEF009A724F /* THHardwareComponentProperties.m */,
+				9AFA049C1B42A19400D7C0D5 /* THCustomComponentProperties.h */,
+				9AFA049D1B42A19400D7C0D5 /* THCustomComponentProperties.m */,
 			);
 			path = "palette properties";
 			sourceTree = "<group>";
@@ -3204,6 +3295,7 @@
 				9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */,
 				9ADCE1B41AB73FB1007895AA /* THAccelerometerData.h */,
 				9ADCE1B51AB73FB1007895AA /* THAccelerometerData.m */,
+				9AFA04AD1B42C49600D7C0D5 /* TangoHapps-Bridging-Header.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -3296,6 +3388,18 @@
 				9AF50472167B860E0020241C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AFA04B01B42C89500D7C0D5 /* TextIT */ = {
+			isa = PBXGroup;
+			children = (
+				9AFA04B71B42C99800D7C0D5 /* Component.swift */,
+				9AFA04B11B42C89500D7C0D5 /* LowPassFilter.swift */,
+				9AFA04B21B42C89500D7C0D5 /* RCFilter.swift */,
+				9AFA04B31B42C89500D7C0D5 /* THJavascriptRunner.swift */,
+				9AFA04C01B44257C00D7C0D5 /* THBandageData.swift */,
+			);
+			path = TextIT;
 			sourceTree = "<group>";
 		};
 		9AFB7E291833D89800694CCE /* presets */ = {
@@ -3605,6 +3709,7 @@
 				9A94F41A16A0192700AF52AB /* THClotheObjectProperties.xib in Resources */,
 				9A94F41C16A0192700AF52AB /* THComparatorEditableProperties.xib in Resources */,
 				25D5EE421A4331D000FBCA47 /* Images.xcassets in Resources */,
+				9A1D0B121B39A72B005012F2 /* palette_customComponent.png in Resources */,
 				9A94F41E16A0192700AF52AB /* THGrouperEditableProperties.xib in Resources */,
 				9AFB7E1B1833BBDD00694CCE /* THMonitorProperties.xib in Resources */,
 				9A94F42016A0192700AF52AB /* THImageViewProperties.xib in Resources */,
@@ -3685,6 +3790,7 @@
 				9A41456B17DE7A060061EDF8 /* compassCircle@2x.png in Resources */,
 				9A41456D17DE7A060061EDF8 /* condition.png in Resources */,
 				9A41456F17DE7A060061EDF8 /* condition@2x.png in Resources */,
+				9A1D0B101B39A72B005012F2 /* customComponent.png in Resources */,
 				9A41457117DE7A060061EDF8 /* contactBook.png in Resources */,
 				9A41457317DE7A060061EDF8 /* contactBook@2x.png in Resources */,
 				9A41457517DE7A060061EDF8 /* grouper.png in Resources */,
@@ -3697,6 +3803,7 @@
 				9A41457917DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457B17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
 				9ABC277B1809985900B39D72 /* palette_lilypadSmall@2x.png in Resources */,
+				9A1D0B131B39A72B005012F2 /* palette_customComponent@2x.png in Resources */,
 				9A41457D17DE7A060061EDF8 /* iphone5.png in Resources */,
 				9A41457F17DE7A060061EDF8 /* iphone5@2x.png in Resources */,
 				9A41458117DE7A060061EDF8 /* iphoneFrameSimulator.xcf in Resources */,
@@ -3743,6 +3850,7 @@
 				9A4145C117DE7A060061EDF8 /* palette_imageview@2x.png in Resources */,
 				9A4145C317DE7A060061EDF8 /* palette_iphone.png in Resources */,
 				9A4145C517DE7A060061EDF8 /* palette_iphone@2x.png in Resources */,
+				9AFA04D31B443CFA00D7C0D5 /* recorder.png in Resources */,
 				9A4145C717DE7A060061EDF8 /* palette_iswitch.png in Resources */,
 				9A4145C917DE7A060061EDF8 /* palette_iswitch@2x.png in Resources */,
 				9A4145CB17DE7A060061EDF8 /* palette_label.png in Resources */,
@@ -3785,12 +3893,14 @@
 				25981C8319D6BCC600DE4131 /* zoomMinus@2x.png in Resources */,
 				9A4145F917DE7A060061EDF8 /* palette_timer@2x.png in Resources */,
 				9A4145FB17DE7A060061EDF8 /* palette_touchpad.png in Resources */,
+				9AFA04D11B443CFA00D7C0D5 /* palette_recorder.png in Resources */,
 				9A4145FD17DE7A060061EDF8 /* palette_touchpad@2x.png in Resources */,
 				9A4145FF17DE7A060061EDF8 /* palette_tshirt.png in Resources */,
 				9A41460117DE7A060061EDF8 /* palette_tshirt@2x.png in Resources */,
 				9A5BD74D1860C52E00842833 /* triangleEmpty@2x.png in Resources */,
 				9A41460317DE7A060061EDF8 /* palette_number.png in Resources */,
 				9A41460517DE7A060061EDF8 /* palette_number@2x.png in Resources */,
+				9AFA04D21B443CFA00D7C0D5 /* palette_recorder@2x.png in Resources */,
 				9A41460717DE7A060061EDF8 /* palette_vibeBoard.png in Resources */,
 				9ABC27901809B2A500B39D72 /* palette_temperatureSensor@2x.png in Resources */,
 				9A41460917DE7A060061EDF8 /* palette_vibeBoard@2x.png in Resources */,
@@ -3823,6 +3933,7 @@
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
 				9A41462F17DE7A060061EDF8 /* vibeBoard.png in Resources */,
+				9AFA04A01B42A19400D7C0D5 /* THCustomComponentProperties.xib in Resources */,
 				257730321A17858800F038D1 /* segBgSelected@2x.png in Resources */,
 				9A41463117DE7A060061EDF8 /* vibeBoard@2x.png in Resources */,
 				9A41463317DE7A060061EDF8 /* yellowLight.png in Resources */,
@@ -3832,6 +3943,7 @@
 				9A41463B17DE7A060061EDF8 /* delete.png in Resources */,
 				9A41463D17DE7A060061EDF8 /* delete@2x.png in Resources */,
 				9A41463F17DE7A060061EDF8 /* duplicate.png in Resources */,
+				9A1D0B111B39A72B005012F2 /* customComponent@2x.png in Resources */,
 				9A41464117DE7A060061EDF8 /* duplicate@2x.png in Resources */,
 				9A41464317DE7A060061EDF8 /* editormode.png in Resources */,
 				9A41464517DE7A060061EDF8 /* editormode@2x.png in Resources */,
@@ -3861,6 +3973,7 @@
 				9A5931CE17E5CD4500B20D99 /* paletteIconSelected.png in Resources */,
 				9A5931D017E5CD4500B20D99 /* paletteIconSelected@2x.png in Resources */,
 				251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */,
+				9AFA04D41B443CFA00D7C0D5 /* recorder@2x.png in Resources */,
 				25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */,
 				9A5931D217E5CD4500B20D99 /* propertiesIcon.png in Resources */,
 				9A5BD74F1860C52E00842833 /* triangleFilled@2x.png in Resources */,
@@ -3962,8 +4075,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AB49B061A6AA8E5006B22E5 /* THIntegrationTests.m in Sources */,
+				9A6E33DB1B452E56003DBC90 /* LowPassFilter.swift in Sources */,
+				9A6E33DA1B452E56003DBC90 /* Component.swift in Sources */,
 				25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */,
+				9A6E33DC1B452E56003DBC90 /* RCFilter.swift in Sources */,
+				9A6E33DD1B452E56003DBC90 /* THBandageData.swift in Sources */,
 				2517683619FB9EF30060FF83 /* THTestsHelper.m in Sources */,
+				9A6E33D91B452E52003DBC90 /* THJavascriptRunner.swift in Sources */,
 				9ACD2F361A9C8CFE000AD0FE /* THCopyingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3983,6 +4101,7 @@
 				9AF5036A167B84B40020241C /* THGrouperCondition.m in Sources */,
 				9AB984D11AB59BE700A6AB83 /* THMPU6050PaletteItem.m in Sources */,
 				9AF5036B167B84B40020241C /* THGrouperConditionEditable.m in Sources */,
+				9A1D0B161B39A7B6005012F2 /* THCustomComponentPaletteItem.m in Sources */,
 				9AF5036C167B84B40020241C /* THNumberValue.m in Sources */,
 				9AF5036D167B84B40020241C /* THNumberValueEditable.m in Sources */,
 				9AF5036E167B84B40020241C /* THHardwareProblem.m in Sources */,
@@ -4000,8 +4119,10 @@
 				9AF5037A167B84B40020241C /* THBuzzerEditableObject.m in Sources */,
 				9AF5037B167B84B40020241C /* THClothe.m in Sources */,
 				9AF5037C167B84B40020241C /* THHardwareComponent.m in Sources */,
+				9AFA04B81B42C99800D7C0D5 /* Component.swift in Sources */,
 				9AF5037D167B84B40020241C /* THHardwareComponentEditableObject.m in Sources */,
 				9AF50380167B84B40020241C /* THCompassLSM303.m in Sources */,
+				9AFA04C91B4433FE00D7C0D5 /* THDataRecordingSessionEditable.m in Sources */,
 				9AF50381167B84B40020241C /* THCompassLSM303EditableObject.m in Sources */,
 				9AF50382167B84B40020241C /* THLed.m in Sources */,
 				9AF50383167B84B40020241C /* THLedEditableObject.m in Sources */,
@@ -4033,6 +4154,7 @@
 				9AF50399167B84B40020241C /* THiSwitchEditableObject.m in Sources */,
 				9AF5039A167B84B40020241C /* THLabel.m in Sources */,
 				9AF5039B167B84B40020241C /* THLabelEditableObject.m in Sources */,
+				9AFA04B51B42C89500D7C0D5 /* RCFilter.swift in Sources */,
 				9AF5039C167B84B40020241C /* THMusicPlayer.m in Sources */,
 				9AF5039D167B84B40020241C /* THMusicPlayerEditableObject.m in Sources */,
 				9AF5039E167B84B40020241C /* THTouchpad.m in Sources */,
@@ -4054,9 +4176,11 @@
 				9AF503A9167B84B40020241C /* THiPhoneButtonPaletteItem.m in Sources */,
 				9AF503AA167B84B40020241C /* THiPhonePaletteItem.m in Sources */,
 				9AF503AB167B84B40020241C /* THiSwitchPaletteItem.m in Sources */,
+				9A1D0AFF1B39A4E4005012F2 /* THCustomComponentEditable.m in Sources */,
 				9AF503AC167B84B40020241C /* THLabelPaletteItem.m in Sources */,
 				9AF503AD167B84B40020241C /* THLedPaletteItem.m in Sources */,
 				9AF503AE167B84B40020241C /* THLightSensorPaletteItem.m in Sources */,
+				9AFA049F1B42A19400D7C0D5 /* THCustomComponentProperties.m in Sources */,
 				9AF503AF167B84B40020241C /* THMusicPlayerPaletteItem.m in Sources */,
 				9AF503B0167B84B40020241C /* THPotentiometerPaletteItem.m in Sources */,
 				9AC06D7E19E57DEA0052F197 /* THVisualProgrammingObjectPaletteItem.m in Sources */,
@@ -4095,6 +4219,7 @@
 				9AF503CC167B84B40020241C /* THClientHelper.m in Sources */,
 				9AF503CD167B84B40020241C /* THConstants.m in Sources */,
 				9AF503CE167B84B40020241C /* THToneGenerator.m in Sources */,
+				9AFA04C61B44324F00D7C0D5 /* THDataRecordingSession.m in Sources */,
 				9AF503CF167B84B40020241C /* THUtils.m in Sources */,
 				9A8BB9A2167C815D00FBABFB /* THPinsController.m in Sources */,
 				9A8BB9A4167C815D00FBABFB /* THPinsControllerContainer.m in Sources */,
@@ -4147,6 +4272,8 @@
 				9A09777517268C2E0028A6B4 /* THSoundEditable.m in Sources */,
 				9ABC27881809B1E500B39D72 /* THTemperatureSensorPaletteItem.m in Sources */,
 				9AD7050318AC1EF40080CD2E /* THGraphViewSegmentGroup.m in Sources */,
+				9AFA04CC1B44360500D7C0D5 /* THDataRecordingSessionPaletteItem.m in Sources */,
+				9AFA04C11B44257C00D7C0D5 /* THBandageData.swift in Sources */,
 				9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */,
 				9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */,
 				9A5D047118844B50006E9348 /* THSoundEffect.m in Sources */,
@@ -4171,6 +4298,7 @@
 				9A8426D317564A80009495AB /* TFSimulableObject.m in Sources */,
 				9ABC276B1809960D00B39D72 /* THSimpleLilypadPaletteItem.m in Sources */,
 				9A84270C17564A80009495AB /* TFConstants.m in Sources */,
+				9AFA04B61B42C89500D7C0D5 /* THJavascriptRunner.swift in Sources */,
 				9A84270F17564A80009495AB /* TFFileUtils.m in Sources */,
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
 				9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */,
@@ -4179,6 +4307,7 @@
 				9A56CD4D17D88790001021B2 /* THBoolValueProperties.m in Sources */,
 				9A56CD5617D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */,
 				9A56CDAC17D8EDA2001021B2 /* THStringValue.m in Sources */,
+				9A1D0B191B39AD41005012F2 /* THTextITConnectionController.m in Sources */,
 				9A56CDB117D8EE11001021B2 /* THStringValueEditable.m in Sources */,
 				9A56CDB717D8EF31001021B2 /* THStringValueProperties.m in Sources */,
 				9A56CDC617D8F357001021B2 /* THStringValuePaletteItem.m in Sources */,
@@ -4190,6 +4319,7 @@
 				9A41443317DE63A70061EDF8 /* THClientConstants.m in Sources */,
 				9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9AA4D73E18AE174C00A43433 /* THBLELilyPadPaletteItem.m in Sources */,
+				9A1D0B0B1B39A58E005012F2 /* THCustomComponent.m in Sources */,
 				9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */,
 				9ACF4E3A1AA9FC030049D2DD /* QTouchposeApplication.m in Sources */,
 				9A59314317E50DA200B20D99 /* THWire.m in Sources */,
@@ -4208,6 +4338,7 @@
 				9ABC275D18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AFB7E261833D60300694CCE /* THI2CRegister.m in Sources */,
 				9AFB7E231833D60300694CCE /* THI2CComponent.m in Sources */,
+				9AFA04B41B42C89500D7C0D5 /* LowPassFilter.swift in Sources */,
 				9A59324A17E5D58300B20D99 /* THPaletteItem.m in Sources */,
 				9A59324C17E5D58300B20D99 /* THPaletteViewController.m in Sources */,
 				9A59324E17E5D58300B20D99 /* THPropertiesViewController.m in Sources */,
@@ -4226,6 +4357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFA04D51B44505600D7C0D5 /* THCustomComponent.m in Sources */,
 				9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */,
 				9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */,
 				9AF5002D167B83140020241C /* THClientScene.m in Sources */,
@@ -4241,12 +4373,16 @@
 				9AF5044F167B84D90020241C /* THElementPin.m in Sources */,
 				9AF50450167B84D90020241C /* THPin.m in Sources */,
 				9AF50451167B84D90020241C /* THPinValue.m in Sources */,
+				9AFA04DA1B44574700D7C0D5 /* RCFilter.swift in Sources */,
 				9AF50452167B84F50020241C /* THButton.m in Sources */,
+				9AFA04D81B44574700D7C0D5 /* Component.swift in Sources */,
 				9A39645C18AE5A080061E44B /* THGraphViewSegmentGroup.m in Sources */,
 				9AF50453167B84F50020241C /* THBuzzer.m in Sources */,
+				9AFA04D61B44505600D7C0D5 /* THDataRecordingSession.m in Sources */,
 				9AF50455167B84F50020241C /* THCompassLSM303.m in Sources */,
 				9AF50456167B84F50020241C /* THLed.m in Sources */,
 				9ADCE1BF1AB75BA6007895AA /* THActivityRecognition.m in Sources */,
+				9AFA04D91B44574700D7C0D5 /* LowPassFilter.swift in Sources */,
 				9AF50457167B84F50020241C /* THLightSensor.m in Sources */,
 				9AF50459167B84F50020241C /* THPotentiometer.m in Sources */,
 				9AFB7DD61832B0B100694CCE /* THClientProjectProxy.m in Sources */,
@@ -4259,6 +4395,7 @@
 				9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
 				9AF5045D167B850D0020241C /* THSimulableWorldController.m in Sources */,
 				9AF5045E167B852F0020241C /* THiPhone.m in Sources */,
+				9AFA04DC1B44574700D7C0D5 /* THBandageData.swift in Sources */,
 				9AF5045F167B852F0020241C /* THiPhoneButton.m in Sources */,
 				9AF50460167B852F0020241C /* THiPhoneControl.m in Sources */,
 				9AFB7E6B1833DE6400694CCE /* THClientPresetsGenerator.m in Sources */,
@@ -4269,6 +4406,7 @@
 				9AF50464167B852F0020241C /* THTouchpad.m in Sources */,
 				9AF50465167B852F0020241C /* THView.m in Sources */,
 				9AF5046B167B85710020241C /* THClientHelper.m in Sources */,
+				9AFA04DB1B44574700D7C0D5 /* THJavascriptRunner.swift in Sources */,
 				9ADCE1C01AB75D39007895AA /* THAccelerometerData.m in Sources */,
 				9AF5046D167B85710020241C /* THUtils.m in Sources */,
 				9AF5046E167B85A00020241C /* THHardwareComponent.m in Sources */,
@@ -4372,6 +4510,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -4409,6 +4548,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4443,6 +4583,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4493,6 +4634,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Interactex-Swift.h";
 				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
@@ -4518,6 +4660,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Interactex-Swift.h";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm64";
 			};
@@ -4528,15 +4671,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
 				WRAPPER_EXTENSION = app;
@@ -4548,15 +4696,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
 				WRAPPER_EXTENSION = app;
@@ -4585,6 +4737,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Interactex-Swift.h";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm64";
 			};
@@ -4595,15 +4748,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TangoHappsIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = TangoHappsLaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHapps/TangoHapps-Prefix.pch";
 				INFOPLIST_FILE = "TangoHapps/TangoHapps-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
 				WRAPPER_EXTENSION = app;
@@ -4616,11 +4773,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
@@ -4636,11 +4795,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
@@ -4656,11 +4817,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
 				INFOPLIST_FILE = "TangoHappsClient/TangoHappsClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;

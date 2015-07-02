@@ -44,6 +44,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 @implementation THiPhoneControl
 
+@synthesize enabled = _enabled;
+
 -(id) init{
     self = [super init];
     if(self){
@@ -79,13 +81,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) setEnabled:(BOOL)enabled{
     UIControl * control = (UIControl*) self.view;
-    
     control.enabled = enabled;
+    _enabled = enabled;
 }
 
 -(BOOL) enabled{
-    UIControl * control = (UIControl*) self.view;
-    return control.enabled;
+    return _enabled;
 }
 
 -(void) willStartSimulating{
