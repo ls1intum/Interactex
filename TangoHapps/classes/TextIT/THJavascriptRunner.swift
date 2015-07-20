@@ -67,6 +67,7 @@ class THJavascriptRunner: NSObject {
         // export JS class
         self.context.setObject(LowPassFilter.self, forKeyedSubscript: "LowPassFilter")
         self.context.setObject(RCFilter.self, forKeyedSubscript: "RCFilter")
+        self.context.setObject(PeakDetection.self, forKeyedSubscript: "PeakDetection")
     }
 
 }

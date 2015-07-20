@@ -402,13 +402,13 @@ www.interactex.org
     }
     
     NSInteger length = originalLength;
-    /*
+    
     printf("receiving:\n");
     for (int i = 0 ; i < length; i++) {
         int value = buffer[i];
         printf("%d ",value);
     }
-    printf("\n");*/
+    printf("\n");
     
     for (int i = 0 ; i < length; i++) {
         uint8_t value = buffer[i];

@@ -79,6 +79,15 @@ You should have received a copy of the GNU General Public License along with thi
         [self addGestureRecognizers];
     }
     
+    if([BLEDiscovery sharedInstance].currentPeripheral.state == CBPeripheralStateConnected){
+        [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
+    }
+    
+    
+    [THSimulableWorldController sharedInstance].currentProjectProxy = nil;
+    [THSimulableWorldController sharedInstance].currentProject = nil;
+    
+    
     [self.collectionView reloadData];
     [self.tableView reloadData];
     

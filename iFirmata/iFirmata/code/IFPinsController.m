@@ -273,6 +273,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.firmataName = name;
     [self.delegate firmata:self didUpdateTitle:self.firmataName];
     if(self.digitalPins.count == 0 && self.analogPins.count == 0){
+        NSLog(@"sending analog msg");
         [self.firmataController sendAnalogMappingRequest];
     }
 }

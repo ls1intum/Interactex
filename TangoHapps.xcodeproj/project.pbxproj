@@ -76,6 +76,8 @@
 		9A09777A17268CDF0028A6B4 /* THSoundProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A09777917268CDF0028A6B4 /* THSoundProperties.m */; };
 		9A09777D17268EF40028A6B4 /* THSoundProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A09777C17268EF30028A6B4 /* THSoundProperties.xib */; };
 		9A097781172693E60028A6B4 /* THSoundPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A097780172693E60028A6B4 /* THSoundPaletteItem.m */; };
+		9A0B54751B4582C000CD9CA4 /* PeakDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B54741B4582C000CD9CA4 /* PeakDetection.swift */; };
+		9A0B54761B4582C000CD9CA4 /* PeakDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B54741B4582C000CD9CA4 /* PeakDetection.swift */; };
 		9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */; };
 		9A1C3AC21886DDAE007C5E94 /* palette_LSMCompass.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1C3ABC1886DDAE007C5E94 /* palette_LSMCompass.png */; };
 		9A1C3AC41886DDAE007C5E94 /* palette_LSMCompass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */; };
@@ -266,8 +268,6 @@
 		9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
 		9A4DF91819CAAE8800D75C38 /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController.m */; };
 		9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5110141837D23A00EB25FA /* CoreMotion.framework */; };
-		9A5110181837DD5800EB25FA /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110161837DD5800EB25FA /* projectIcon.png */; };
-		9A51101A1837DD5800EB25FA /* projectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5110171837DD5800EB25FA /* projectIcon@2x.png */; };
 		9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
 		9A56CD0117D885F9001021B2 /* THBoolValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CCFF17D885F9001021B2 /* THBoolValue.m */; };
 		9A56CD4717D886A6001021B2 /* THBoolValueEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CD4617D886A6001021B2 /* THBoolValueEditable.m */; };
@@ -343,6 +343,22 @@
 		9A7F673C175658F500E04BC8 /* TFFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8426A317564A80009495AB /* TFFileUtils.m */; };
 		9A801B9619D955450001B6F9 /* THClientConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A801B9519D955450001B6F9 /* THClientConnectionController.m */; };
 		9A801BD119D956260001B6F9 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
+		9A82821D1B5CEB4B00605698 /* THDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A82821C1B5CEB4B00605698 /* THDeviceCell.m */; };
+		9A82822B1B5CED7C00605698 /* THDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A82822A1B5CED7C00605698 /* THDeviceViewController.m */; };
+		9A82823D1B5D138900605698 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A82822D1B5D138900605698 /* fakeSceneImage.png */; };
+		9A82823E1B5D138900605698 /* fakeSceneImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A82822E1B5D138900605698 /* fakeSceneImage@2x.png */; };
+		9A82823F1B5D138900605698 /* iphoneFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A82822F1B5D138900605698 /* iphoneFrame.png */; };
+		9A8282401B5D138900605698 /* iphoneFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282301B5D138900605698 /* iphoneFrame@2x.png */; };
+		9A8282411B5D138900605698 /* projectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282311B5D138900605698 /* projectIcon.png */; };
+		9A8282421B5D138900605698 /* projectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282321B5D138900605698 /* projectIcon@2x.png */; };
+		9A8282431B5D138900605698 /* removeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282331B5D138900605698 /* removeButton.png */; };
+		9A8282441B5D138900605698 /* removeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282341B5D138900605698 /* removeButton@2x.png */; };
+		9A8282451B5D138900605698 /* virtualmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282351B5D138900605698 /* virtualmode.png */; };
+		9A8282461B5D138900605698 /* virtualmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282361B5D138900605698 /* virtualmode@2x.png */; };
+		9A8282471B5D138900605698 /* pullDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282381B5D138900605698 /* pullDown.wav */; };
+		9A8282481B5D138900605698 /* pullUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A8282391B5D138900605698 /* pullUp.wav */; };
+		9A8282491B5D138900605698 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A82823B1B5D138900605698 /* MainStoryboard.storyboard */; };
+		9A82824A1B5D138900605698 /* THClientGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A82823C1B5D138900605698 /* THClientGridItem.xib */; };
 		9A8426A617564A80009495AB /* TFConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265317564A80009495AB /* TFConnectionLine.m */; };
 		9A8426AC17564A80009495AB /* TFMethodSelectionPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265717564A80009495AB /* TFMethodSelectionPopup.m */; };
 		9A8426B217564A80009495AB /* TFAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A84265C17564A80009495AB /* TFAction.m */; };
@@ -582,19 +598,9 @@
 		9AEB2E521A9B39E7009A6FF7 /* sound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AEB2E501A9B39E7009A6FF7 /* sound1.mp3 */; };
 		9AEB2E531A9B39E7009A6FF7 /* sound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AEB2E511A9B39E7009A6FF7 /* sound2.mp3 */; };
 		9AF3E6D016F868930013DE13 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5050E167B8DE20020241C /* AudioToolbox.framework */; };
-		9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */; };
-		9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */; };
 		9AF50029167B83140020241C /* THClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5000E167B83140020241C /* THClientAppDelegate.m */; };
 		9AF5002A167B83140020241C /* THClientAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50010167B83140020241C /* THClientAppViewController.m */; };
 		9AF5002D167B83140020241C /* THClientScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF50016167B83140020241C /* THClientScene.m */; };
-		9AF50032167B83140020241C /* iphoneFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001E167B83140020241C /* iphoneFrame.png */; };
-		9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5001F167B83140020241C /* iphoneFrame@2x.png */; };
-		9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50020167B83140020241C /* MainStoryboard.storyboard */; };
-		9AF50036167B83140020241C /* removeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50022167B83140020241C /* removeButton.png */; };
-		9AF50037167B83140020241C /* removeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50023167B83140020241C /* removeButton@2x.png */; };
-		9AF5003A167B83140020241C /* THClientGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50026167B83140020241C /* THClientGridItem.xib */; };
-		9AF5003B167B83140020241C /* virtualmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50027167B83140020241C /* virtualmode.png */; };
-		9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF50028167B83140020241C /* virtualmode@2x.png */; };
 		9AF5015F167B83A40020241C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF5015E167B83A40020241C /* AVFoundation.framework */; };
 		9AF50161167B83A90020241C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50160167B83A90020241C /* OpenGLES.framework */; };
 		9AF50163167B83AD0020241C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF50162167B83AD0020241C /* libz.dylib */; };
@@ -1024,6 +1030,7 @@
 		9A09777C17268EF30028A6B4 /* THSoundProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THSoundProperties.xib; sourceTree = "<group>"; };
 		9A09777F172693E60028A6B4 /* THSoundPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSoundPaletteItem.h; sourceTree = "<group>"; };
 		9A097780172693E60028A6B4 /* THSoundPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSoundPaletteItem.m; sourceTree = "<group>"; };
+		9A0B54741B4582C000CD9CA4 /* PeakDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakDetection.swift; sourceTree = "<group>"; };
 		9A1384DA16D27EA200F5EEAA /* THClotheProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClotheProperties.xib; sourceTree = "<group>"; };
 		9A1C3ABC1886DDAE007C5E94 /* palette_LSMCompass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_LSMCompass.png; sourceTree = "<group>"; };
 		9A1C3ABD1886DDAE007C5E94 /* palette_LSMCompass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_LSMCompass@2x.png"; sourceTree = "<group>"; };
@@ -1221,8 +1228,6 @@
 		9A4DF91619CAAE8800D75C38 /* THServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController.h; sourceTree = "<group>"; };
 		9A4DF91719CAAE8800D75C38 /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
 		9A5110141837D23A00EB25FA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		9A5110161837DD5800EB25FA /* projectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectIcon.png; sourceTree = "<group>"; };
-		9A5110171837DD5800EB25FA /* projectIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectIcon@2x.png"; sourceTree = "<group>"; };
 		9A56CCFE17D885F9001021B2 /* THBoolValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValue.h; sourceTree = "<group>"; };
 		9A56CCFF17D885F9001021B2 /* THBoolValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBoolValue.m; sourceTree = "<group>"; };
 		9A56CD4517D886A5001021B2 /* THBoolValueEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBoolValueEditable.h; sourceTree = "<group>"; };
@@ -1323,6 +1328,24 @@
 		9A7F66F81756579C00E04BC8 /* TangoHappsClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TangoHappsClient-Prefix.pch"; sourceTree = "<group>"; };
 		9A801B9419D955450001B6F9 /* THClientConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientConnectionController.h; sourceTree = "<group>"; };
 		9A801B9519D955450001B6F9 /* THClientConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientConnectionController.m; sourceTree = "<group>"; };
+		9A82821B1B5CEB4B00605698 /* THDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDeviceCell.h; sourceTree = "<group>"; };
+		9A82821C1B5CEB4B00605698 /* THDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDeviceCell.m; sourceTree = "<group>"; };
+		9A8282291B5CED7C00605698 /* THDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDeviceViewController.h; sourceTree = "<group>"; };
+		9A82822A1B5CED7C00605698 /* THDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDeviceViewController.m; sourceTree = "<group>"; };
+		9A82822D1B5D138900605698 /* fakeSceneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeSceneImage.png; sourceTree = "<group>"; };
+		9A82822E1B5D138900605698 /* fakeSceneImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fakeSceneImage@2x.png"; sourceTree = "<group>"; };
+		9A82822F1B5D138900605698 /* iphoneFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneFrame.png; sourceTree = "<group>"; };
+		9A8282301B5D138900605698 /* iphoneFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneFrame@2x.png"; sourceTree = "<group>"; };
+		9A8282311B5D138900605698 /* projectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectIcon.png; sourceTree = "<group>"; };
+		9A8282321B5D138900605698 /* projectIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectIcon@2x.png"; sourceTree = "<group>"; };
+		9A8282331B5D138900605698 /* removeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeButton.png; sourceTree = "<group>"; };
+		9A8282341B5D138900605698 /* removeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removeButton@2x.png"; sourceTree = "<group>"; };
+		9A8282351B5D138900605698 /* virtualmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = virtualmode.png; sourceTree = "<group>"; };
+		9A8282361B5D138900605698 /* virtualmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "virtualmode@2x.png"; sourceTree = "<group>"; };
+		9A8282381B5D138900605698 /* pullDown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pullDown.wav; sourceTree = "<group>"; };
+		9A8282391B5D138900605698 /* pullUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pullUp.wav; sourceTree = "<group>"; };
+		9A82823B1B5D138900605698 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		9A82823C1B5D138900605698 /* THClientGridItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClientGridItem.xib; sourceTree = "<group>"; };
 		9A84265217564A80009495AB /* TFConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConnectionLine.h; sourceTree = "<group>"; };
 		9A84265317564A80009495AB /* TFConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFConnectionLine.m; sourceTree = "<group>"; };
 		9A84265617564A80009495AB /* TFMethodSelectionPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFMethodSelectionPopup.h; sourceTree = "<group>"; };
@@ -1601,22 +1624,12 @@
 		9AEB2E501A9B39E7009A6FF7 /* sound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound1.mp3; sourceTree = "<group>"; };
 		9AEB2E511A9B39E7009A6FF7 /* sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound2.mp3; sourceTree = "<group>"; };
 		9AF3E6CE16F868790013DE13 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fakeSceneImage.png; sourceTree = "<group>"; };
-		9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fakeSceneImage@2x.png"; sourceTree = "<group>"; };
 		9AF5000D167B83140020241C /* THClientAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientAppDelegate.h; sourceTree = "<group>"; };
 		9AF5000E167B83140020241C /* THClientAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientAppDelegate.m; sourceTree = "<group>"; };
 		9AF5000F167B83140020241C /* THClientAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientAppViewController.h; sourceTree = "<group>"; };
 		9AF50010167B83140020241C /* THClientAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientAppViewController.m; sourceTree = "<group>"; };
 		9AF50015167B83140020241C /* THClientScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THClientScene.h; sourceTree = "<group>"; };
 		9AF50016167B83140020241C /* THClientScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THClientScene.m; sourceTree = "<group>"; };
-		9AF5001E167B83140020241C /* iphoneFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneFrame.png; sourceTree = "<group>"; };
-		9AF5001F167B83140020241C /* iphoneFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneFrame@2x.png"; sourceTree = "<group>"; };
-		9AF50020167B83140020241C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		9AF50022167B83140020241C /* removeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeButton.png; sourceTree = "<group>"; };
-		9AF50023167B83140020241C /* removeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removeButton@2x.png"; sourceTree = "<group>"; };
-		9AF50026167B83140020241C /* THClientGridItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THClientGridItem.xib; sourceTree = "<group>"; };
-		9AF50027167B83140020241C /* virtualmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = virtualmode.png; sourceTree = "<group>"; };
-		9AF50028167B83140020241C /* virtualmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "virtualmode@2x.png"; sourceTree = "<group>"; };
 		9AF5015E167B83A40020241C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9AF50160167B83A90020241C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9AF50162167B83AD0020241C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -2437,6 +2450,41 @@
 			name = communication;
 			sourceTree = "<group>";
 		};
+		9A82822C1B5D138900605698 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9A82822D1B5D138900605698 /* fakeSceneImage.png */,
+				9A82822E1B5D138900605698 /* fakeSceneImage@2x.png */,
+				9A82822F1B5D138900605698 /* iphoneFrame.png */,
+				9A8282301B5D138900605698 /* iphoneFrame@2x.png */,
+				9A8282311B5D138900605698 /* projectIcon.png */,
+				9A8282321B5D138900605698 /* projectIcon@2x.png */,
+				9A8282331B5D138900605698 /* removeButton.png */,
+				9A8282341B5D138900605698 /* removeButton@2x.png */,
+				9A8282351B5D138900605698 /* virtualmode.png */,
+				9A8282361B5D138900605698 /* virtualmode@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		9A8282371B5D138900605698 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9A8282381B5D138900605698 /* pullDown.wav */,
+				9A8282391B5D138900605698 /* pullUp.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		9A82823A1B5D138900605698 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				9A82823B1B5D138900605698 /* MainStoryboard.storyboard */,
+				9A82823C1B5D138900605698 /* THClientGridItem.xib */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		9A84265017564A80009495AB /* Tango */ = {
 			isa = PBXGroup;
 			children = (
@@ -2841,6 +2889,8 @@
 				9AFB7E641833DE6400694CCE /* util */,
 				9AF5000D167B83140020241C /* THClientAppDelegate.h */,
 				9AF5000E167B83140020241C /* THClientAppDelegate.m */,
+				9A82821B1B5CEB4B00605698 /* THDeviceCell.h */,
+				9A82821C1B5CEB4B00605698 /* THDeviceCell.m */,
 				9AFB7DC41832A91500694CCE /* THClientSceneSelectionViewController.h */,
 				9AFB7DC51832A91500694CCE /* THClientSceneSelectionViewController.m */,
 				9A9FEB6F17BE54B3004AB8CF /* THClientDownloadViewController.h */,
@@ -2861,6 +2911,8 @@
 				9AFB7DCB1832AAD100694CCE /* THClientProjectDraggableCell.m */,
 				9AFB7DD01832AE2600694CCE /* THClientTableProjectCell.h */,
 				9AFB7DD11832AE2600694CCE /* THClientTableProjectCell.m */,
+				9A8282291B5CED7C00605698 /* THDeviceViewController.h */,
+				9A82822A1B5CED7C00605698 /* THDeviceViewController.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -2869,18 +2921,9 @@
 			isa = PBXGroup;
 			children = (
 				9AFB7E291833D89800694CCE /* presets */,
-				9AF50020167B83140020241C /* MainStoryboard.storyboard */,
-				9A5110161837DD5800EB25FA /* projectIcon.png */,
-				9A5110171837DD5800EB25FA /* projectIcon@2x.png */,
-				9AF3E6D516FA20090013DE13 /* fakeSceneImage.png */,
-				9AF3E6D616FA20090013DE13 /* fakeSceneImage@2x.png */,
-				9AF5001E167B83140020241C /* iphoneFrame.png */,
-				9AF5001F167B83140020241C /* iphoneFrame@2x.png */,
-				9AF50022167B83140020241C /* removeButton.png */,
-				9AF50023167B83140020241C /* removeButton@2x.png */,
-				9AF50026167B83140020241C /* THClientGridItem.xib */,
-				9AF50027167B83140020241C /* virtualmode.png */,
-				9AF50028167B83140020241C /* virtualmode@2x.png */,
+				9A82822C1B5D138900605698 /* images */,
+				9A8282371B5D138900605698 /* sounds */,
+				9A82823A1B5D138900605698 /* ui */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -3396,6 +3439,7 @@
 				9AFA04B71B42C99800D7C0D5 /* Component.swift */,
 				9AFA04B11B42C89500D7C0D5 /* LowPassFilter.swift */,
 				9AFA04B21B42C89500D7C0D5 /* RCFilter.swift */,
+				9A0B54741B4582C000CD9CA4 /* PeakDetection.swift */,
 				9AFA04B31B42C89500D7C0D5 /* THJavascriptRunner.swift */,
 				9AFA04C01B44257C00D7C0D5 /* THBandageData.swift */,
 			);
@@ -4001,40 +4045,40 @@
 				02D809C71A80CFDB009DDB4C /* graph.png in Resources */,
 				9AFB7E4E1833D89800694CCE /* temperatureSensor.png in Resources */,
 				9A9CF9161A9F6E3500C4FF1F /* musicPlayerThumbImage@2x.png in Resources */,
+				9A8282421B5D138900605698 /* projectIcon@2x.png in Resources */,
 				25D5EE371A4331C300FBCA47 /* Images.xcassets in Resources */,
 				9AFB7E5C1833DBCC00694CCE /* button.png in Resources */,
+				9A8282411B5D138900605698 /* projectIcon.png in Resources */,
 				9ACE30B61A9277570089D669 /* song2.mp3 in Resources */,
+				9A8282441B5D138900605698 /* removeButton@2x.png in Resources */,
+				9A82824A1B5D138900605698 /* THClientGridItem.xib in Resources */,
 				9A2EA8BB19DB2CF200E30E2D /* musicPlay.png in Resources */,
+				9A82823F1B5D138900605698 /* iphoneFrame.png in Resources */,
 				9AFB7E461833D89800694CCE /* lightSensor.png in Resources */,
 				9AB984D61AB59F9200A6AB83 /* MPU-6050@2x.png in Resources */,
 				9AFB7E521833D89800694CCE /* threeColorLed.png in Resources */,
 				9A9CF9171A9F6E5000C4FF1F /* call.png in Resources */,
 				9ACE30C61A92790A0089D669 /* song1.mp3 in Resources */,
-				9A51101A1837DD5800EB25FA /* projectIcon@2x.png in Resources */,
 				9A9CF9141A9F6E3500C4FF1F /* musicPlayerRightVolume@2x.png in Resources */,
-				9AF50032167B83140020241C /* iphoneFrame.png in Resources */,
-				9AF50033167B83140020241C /* iphoneFrame@2x.png in Resources */,
-				9A5110181837DD5800EB25FA /* projectIcon.png in Resources */,
 				9AFB7E481833D89800694CCE /* lightSensor@2x.png in Resources */,
-				9AF50034167B83140020241C /* MainStoryboard.storyboard in Resources */,
 				9A7E4D36183618C200657B72 /* LSMCompass@2x.png in Resources */,
 				9A9CF9131A9F6E3500C4FF1F /* musicPlayerRightVolume.png in Resources */,
+				9A82823D1B5D138900605698 /* fakeSceneImage.png in Resources */,
 				9A9CF9111A9F6E3500C4FF1F /* musicPlayerLeftVolume.png in Resources */,
+				9A82823E1B5D138900605698 /* fakeSceneImage@2x.png in Resources */,
 				9AFB7E421833D89800694CCE /* led.png in Resources */,
 				9AB984D51AB59F9200A6AB83 /* MPU-6050.png in Resources */,
 				9A5D046E18844ADC006E9348 /* peer_disconnected.mp3 in Resources */,
-				9AF50036167B83140020241C /* removeButton.png in Resources */,
 				02D809C91A80CFDB009DDB4C /* graph@2x.png in Resources */,
+				9A8282461B5D138900605698 /* virtualmode@2x.png in Resources */,
 				9A84C1E61837820500848972 /* musicPlayer@2x.png in Resources */,
 				9A9CF9151A9F6E3500C4FF1F /* musicPlayerThumbImage.png in Resources */,
-				9AF50037167B83140020241C /* removeButton@2x.png in Resources */,
 				9A2EA8BD19DB2CF200E30E2D /* pause.png in Resources */,
 				9AFB7E561833D89800694CCE /* vibeBoard.png in Resources */,
-				9AF5003A167B83140020241C /* THClientGridItem.xib in Resources */,
 				9A2EA8B719DB2CF200E30E2D /* backwards.png in Resources */,
+				9A8282451B5D138900605698 /* virtualmode.png in Resources */,
 				9AFB7E541833D89800694CCE /* threeColorLed@2x.png in Resources */,
 				9A5D046D18844ADC006E9348 /* peer_connected.mp3 in Resources */,
-				9AF5003B167B83140020241C /* virtualmode.png in Resources */,
 				9A2EA8B819DB2CF200E30E2D /* backwards@2x.png in Resources */,
 				02D809C31A80CC6C009DDB4C /* threshold.png in Resources */,
 				9A2EA8B919DB2CF200E30E2D /* forward.png in Resources */,
@@ -4047,21 +4091,23 @@
 				9AFB7E5E1833DBCC00694CCE /* button@2x.png in Resources */,
 				9AFB7E4A1833D89800694CCE /* potentiometer.png in Resources */,
 				9A7E4D34183618C200657B72 /* LSMCompass.png in Resources */,
+				9A8282481B5D138900605698 /* pullUp.wav in Resources */,
 				9A84C1E41837820500848972 /* musicPlayer.png in Resources */,
-				9AF5003C167B83140020241C /* virtualmode@2x.png in Resources */,
 				9A2EA8BC19DB2CF200E30E2D /* musicPlay@2x.png in Resources */,
 				9ACE30B71A9277570089D669 /* song3.mp3 in Resources */,
+				9A8282491B5D138900605698 /* MainStoryboard.storyboard in Resources */,
 				9AFB7E4C1833D89800694CCE /* potentiometer@2x.png in Resources */,
 				9AF50475167B86490020241C /* Default-568h@2x.png in Resources */,
 				9AFB7E581833D89800694CCE /* vibeBoard@2x.png in Resources */,
+				9A8282471B5D138900605698 /* pullDown.wav in Resources */,
 				9A93848F16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
 				02D809C21A80CC6A009DDB4C /* threshold@2x.png in Resources */,
 				9A9CF9191A9F6E5600C4FF1F /* contactBook.png in Resources */,
-				9AF3E6D716FA20090013DE13 /* fakeSceneImage.png in Resources */,
 				9AFB7E3C1833D89800694CCE /* accelerometer@2x.png in Resources */,
 				9A2EA8BA19DB2CF200E30E2D /* forward@2x.png in Resources */,
-				9AF3E6D916FA20090013DE13 /* fakeSceneImage@2x.png in Resources */,
+				9A8282431B5D138900605698 /* removeButton.png in Resources */,
 				9AFB7E3E1833D89800694CCE /* buzzer.png in Resources */,
+				9A8282401B5D138900605698 /* iphoneFrame@2x.png in Resources */,
 				9A9CF9181A9F6E5000C4FF1F /* call@2x.png in Resources */,
 				9AFB7E501833D89800694CCE /* temperatureSensor@2x.png in Resources */,
 			);
@@ -4316,6 +4362,7 @@
 				9AA4D74818AE17A400A43433 /* THSimpleLilypadProperties.m in Sources */,
 				9A56D19617DBDAA9001021B2 /* THDirector.m in Sources */,
 				9AB984CE1AB59A8700A6AB83 /* THMPU6050Editable.m in Sources */,
+				9A0B54751B4582C000CD9CA4 /* PeakDetection.swift in Sources */,
 				9A41443317DE63A70061EDF8 /* THClientConstants.m in Sources */,
 				9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */,
 				9AA4D73E18AE174C00A43433 /* THBLELilyPadPaletteItem.m in Sources */,
@@ -4364,6 +4411,7 @@
 				9ABC275E18098F2400B39D72 /* THLilyPad.m in Sources */,
 				9AA4D72F18AE16EE00A43433 /* THBLELilyPad.m in Sources */,
 				9AF50449167B84CE0020241C /* THComparisonCondition.m in Sources */,
+				9A82822B1B5CED7C00605698 /* THDeviceViewController.m in Sources */,
 				9A1FBE09187F208400699B61 /* THI2CMessage.m in Sources */,
 				9AF5044B167B84CE0020241C /* THGrouperCondition.m in Sources */,
 				9AF5044C167B84CE0020241C /* THNumberValue.m in Sources */,
@@ -4394,6 +4442,7 @@
 				9AB80EB71AA5F5B900A76379 /* THPaddingLabel.m in Sources */,
 				9ABC27801809AC7A00B39D72 /* THTemperatureSensor.m in Sources */,
 				9AF5045D167B850D0020241C /* THSimulableWorldController.m in Sources */,
+				9A82821D1B5CEB4B00605698 /* THDeviceCell.m in Sources */,
 				9AF5045E167B852F0020241C /* THiPhone.m in Sources */,
 				9AFA04DC1B44574700D7C0D5 /* THBandageData.swift in Sources */,
 				9AF5045F167B852F0020241C /* THiPhoneButton.m in Sources */,
@@ -4437,6 +4486,7 @@
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
 				9AD704AC18AA9AF70080CD2E /* THGraphViewHelper.m in Sources */,
+				9A0B54761B4582C000CD9CA4 /* PeakDetection.swift in Sources */,
 				9A5D047218844B50006E9348 /* THSoundEffect.m in Sources */,
 				9A8426C217564A80009495AB /* TFProperty.m in Sources */,
 				9A8426C517564A80009495AB /* TFPropertyInvocation.m in Sources */,
@@ -4772,7 +4822,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4795,7 +4844,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4818,7 +4866,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

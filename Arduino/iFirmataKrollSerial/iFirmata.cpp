@@ -351,9 +351,8 @@ void iFirmataClass::sendAnalog(byte pin, int value)
 {
   // pin can only be 0-15, so chop higher bits
  
-    bleSend(ANALOG_MESSAGE | (pin & 0xF));
-    
-  sendValueAsTwo7bitBytes(value);
+    bleSend(ANALOG_MESSAGE | (pin & 0xF));   
+    sendValueAsTwo7bitBytes(value);
 }
 
 // send a single digital pin in a digital message

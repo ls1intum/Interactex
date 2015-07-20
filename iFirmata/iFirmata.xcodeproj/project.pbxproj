@@ -336,7 +336,7 @@
 				ORGANIZATIONNAME = TUM;
 				TargetAttributes = {
 					9AEE592E177CA8AB00C6D5E8 = {
-						DevelopmentTeam = 7PLLZ436SG;
+						DevelopmentTeam = WCM2L8RG39;
 					};
 				};
 			};
@@ -489,11 +489,14 @@
 		9A1736BF17B4F853001DD4A4 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = BLEFirmata;
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "../Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -560,11 +563,14 @@
 		9AEE594D177CA8AC00C6D5E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = BLEFirmata;
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "../Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -573,11 +579,14 @@
 		9AEE594E177CA8AC00C6D5E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iFirmata/iFirmata-Prefix.pch";
 				INFOPLIST_FILE = "iFirmata/iFirmata-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = BLEFirmata;
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "../Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};

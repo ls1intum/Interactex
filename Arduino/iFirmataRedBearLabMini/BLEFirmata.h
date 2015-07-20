@@ -24,6 +24,8 @@
 #define FIRMATA_BUGFIX_VERSION  1 // for bugfix releases
 
 #define MAX_DATA_BYTES 32 // max number of data bytes in non-Sysex messages
+#define SEND_BUFFER_SIZE 512 // max number of data bytes in non-Sysex messages
+#define BLE_BUFFER_SIZE 16
 
 // message command bytes (128-255/0x80-0xFF)
 #define DIGITAL_MESSAGE         0x90 // send data for a digital pin
@@ -115,7 +117,18 @@ public:
     void attach(byte command, sysexCallbackFunction newFunction);
     void detach(byte command);
 
+    
+    void flushData();
+    void writeByte(byte b);
+
 private:
+
+    int sendBufferStart;
+    int sendBufferCount;
+    byte sendBuffer[SEND_BUFFER_SIZE];
+    byte emptySendBuffer[BLE_BUFFER_SIZE];
+    int totalBytesSent;
+        
     Stream &BleFirmataSerial;
 /* firmware name and version */
     byte firmwareVersionCount;

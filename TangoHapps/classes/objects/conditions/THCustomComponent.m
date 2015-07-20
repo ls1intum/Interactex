@@ -69,11 +69,18 @@
         NSString * string = @"var data = [";
         
         NSArray * data = param;
-        for (THAccelerometerData * acceleration in data) {
+        for(int i = 0 ; i < (int) (data.count-1) ; i++){
+            THAccelerometerData * acceleration = [data objectAtIndex:i];
             string = [string stringByAppendingFormat:@"%f,",acceleration.y];
         }
+        if(data.count > 0){
+            THAccelerometerData * acceleration = [data objectAtIndex:data.count-1];
+            string = [string stringByAppendingFormat:@"%f",acceleration.y];
+        }
         
-        return [string stringByAppendingFormat:@"];\n%@",self.code];
+        string = [string stringByAppendingFormat:@"];\n"];
+        
+        return [string stringByAppendingFormat:@"%@",self.code];
     }
     
     return self.code;
@@ -88,6 +95,8 @@
     
     NSString * newCode = [self expandJavascriptWithInputFrom:param];
     //newCode = [self expandJSWithFunctionCall:newCode];
+    
+    NSLog(@"%@",newCode);
     
     THJavascriptRunner * javascriptRunner = [THJavascriptRunner sharedInstance];
 

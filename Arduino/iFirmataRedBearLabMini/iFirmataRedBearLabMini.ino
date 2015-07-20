@@ -66,7 +66,9 @@ int pinState[TOTAL_PINS];           // any value that has been written
 /* timer variables */
 unsigned long currentMillis;        // store the current value from millis()
 unsigned long previousMillis;       // for comparison with currentMillis
-int samplingInterval = 38;          // how often to run the main loop (in ms)
+int samplingInterval = 300;          // how often to run the main loop (in ms)
+unsigned long previousMillisFlush;
+int flushInterval = 80;
 
 /* i2c data */
 struct i2c_device_info {
@@ -464,57 +466,57 @@ void sysexCallback(byte command, byte argc, byte *argv)
     }
     break;
   case CAPABILITY_QUERY:
-    BLEMini_write(START_SYSEX);
-    BLEMini_write(CAPABILITY_RESPONSE);
+    BleFirmata.writeByte(START_SYSEX);
+    BleFirmata.writeByte(CAPABILITY_RESPONSE);
     for (byte pin=0; pin < TOTAL_PINS; pin++) {
       if (IS_PIN_DIGITAL(pin)) {
-        BLEMini_write((byte)INPUT);
-        BLEMini_write(1);
-        BLEMini_write((byte)OUTPUT);
-        BLEMini_write(1);
+        BleFirmata.writeByte((byte)INPUT);
+        BleFirmata.writeByte(1);
+        BleFirmata.writeByte((byte)OUTPUT);
+        BleFirmata.writeByte(1);
       }
       if (IS_PIN_ANALOG(pin)) {
-        BLEMini_write(ANALOG);
-        BLEMini_write(10);
+        BleFirmata.writeByte(ANALOG);
+        BleFirmata.writeByte(10);
       }
       if (IS_PIN_PWM(pin)) {
-        BLEMini_write(PWM);
-        BLEMini_write(8);
+        BleFirmata.writeByte(PWM);
+        BleFirmata.writeByte(8);
       }
       if (IS_PIN_SERVO(pin)) {
-        BLEMini_write(SERVO);
-        BLEMini_write(14);
+        BleFirmata.writeByte(SERVO);
+        BleFirmata.writeByte(14);
       }
       if (IS_PIN_I2C(pin)) {
-        BLEMini_write(I2C);
-        BLEMini_write(1);  // to do: determine appropriate value 
+        BleFirmata.writeByte(I2C);
+        BleFirmata.writeByte(1);  // to do: determine appropriate value 
       }
-      BLEMini_write(127);
+      BleFirmata.writeByte(127);
     }
-    BLEMini_write(END_SYSEX);
+    BleFirmata.writeByte(END_SYSEX);
     break;
   case PIN_STATE_QUERY:
     if (argc > 0) {
       byte pin=argv[0];
-      BLEMini_write(START_SYSEX);
-      BLEMini_write(PIN_STATE_RESPONSE);
-      BLEMini_write(pin);
+      BleFirmata.writeByte(START_SYSEX);
+      BleFirmata.writeByte(PIN_STATE_RESPONSE);
+      BleFirmata.writeByte(pin);
       if (pin < TOTAL_PINS) {
-        BLEMini_write((byte)pinConfig[pin]);
-	BLEMini_write((byte)pinState[pin] & 0x7F);
-	if (pinState[pin] & 0xFF80) BLEMini_write((byte)(pinState[pin] >> 7) & 0x7F);
-	if (pinState[pin] & 0xC000) BLEMini_write((byte)(pinState[pin] >> 14) & 0x7F);
+        BleFirmata.writeByte((byte)pinConfig[pin]);
+	BleFirmata.writeByte((byte)pinState[pin] & 0x7F);
+	if (pinState[pin] & 0xFF80) BleFirmata.writeByte((byte)(pinState[pin] >> 7) & 0x7F);
+	if (pinState[pin] & 0xC000) BleFirmata.writeByte((byte)(pinState[pin] >> 14) & 0x7F);
       }
-      BLEMini_write(END_SYSEX);
+      BleFirmata.writeByte(END_SYSEX);
     }
     break;
   case ANALOG_MAPPING_QUERY:
-    BLEMini_write(START_SYSEX);
-    BLEMini_write(ANALOG_MAPPING_RESPONSE);
+    BleFirmata.writeByte(START_SYSEX);
+    BleFirmata.writeByte(ANALOG_MAPPING_RESPONSE);
     for (byte pin=0; pin < TOTAL_PINS; pin++) {
-      BLEMini_write(IS_PIN_ANALOG(pin) ? PIN_TO_ANALOG(pin) : 127);
+      BleFirmata.writeByte(IS_PIN_ANALOG(pin) ? PIN_TO_ANALOG(pin) : 127);
     }
-    BLEMini_write(END_SYSEX);
+    BleFirmata.writeByte(END_SYSEX);
     break;
   }
 }
@@ -655,6 +657,13 @@ void loop()
         readAndReportData(query[i].addr, query[i].reg, query[i].bytes);
       }
     }
-  } 
+  }
+
+  currentMillis = millis();
+  if (currentMillis - previousMillisFlush > flushInterval) {
+    previousMillisFlush += flushInterval;
+    BleFirmata.flushData();
+  }
+  
 }
 

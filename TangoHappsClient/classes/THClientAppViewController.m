@@ -65,9 +65,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THSwitch.h"
 #import "THMusicPlayer.h"
 #import "THButton.h"
+#import "THDeviceViewController.h"
 
-float const kScanningTimeout = 3.0f;
-float const kConnectingTimeout = 7.0f;
 
 @implementation THClientAppViewController
 
@@ -102,10 +101,10 @@ float const kConnectingTimeout = 7.0f;
         
         CGPoint translatedPos = CGPointMake(relx * screenWidth ,rely * viewHeight);
         
-        if(object.view == nil){
+        //if(object.view == nil){
             [object loadView];
             [object addToView:self.view];
-        }
+        //}
         
         if(!self.showingPreset){
             
@@ -142,9 +141,6 @@ float const kConnectingTimeout = 7.0f;
     
     [super viewDidLoad];
     
-    [BLEDiscovery sharedInstance].discoveryDelegate = self;
-    [BLEDiscovery sharedInstance].peripheralDelegate = self;
-    
     self.firmataController = [[IFFirmata alloc] init];
     self.firmataController.delegate = self;
     
@@ -156,10 +152,11 @@ float const kConnectingTimeout = 7.0f;
     
     if(self.currentProject){
         
-        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0){
-            [self updateStartButtonToScan];
+        
+        if([BLEDiscovery sharedInstance].currentPeripheral.state == CBPeripheralStateConnected){
+            [self updateStartButtonToStop];
         } else {
-            [self updateStartButtonToStart];
+            [self updateStartButtonToScan];
         }
         
         [self setTitle:self.currentProject.name];
@@ -174,13 +171,11 @@ float const kConnectingTimeout = 7.0f;
 -(void) viewWillDisappear:(BOOL)animated{
     
     [self removePinObservers];
-    [self disconnectFromBle];
 }
 
--(void) viewDidDisappear:(BOOL)animated{
-    
-    [THSimulableWorldController sharedInstance].currentProjectProxy = nil;
-    [THSimulableWorldController sharedInstance].currentProject = nil;
+-(void) disconnect{
+
+    [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
 }
 
 - (void)viewDidUnload {
@@ -223,106 +218,13 @@ float const kConnectingTimeout = 7.0f;
     }
 }
 
-#pragma mark Methods
-
--(void) scanningTimedOut{
-    [scanningTimer invalidate];
-    scanningTimer = nil;
-    [self updateStartButtonToScan];
-}
-
--(void) startScanningDevices{
-    
-    [self updateStartButtonToScanning];
-    [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
-    scanningTimer = [NSTimer scheduledTimerWithTimeInterval:kScanningTimeout target:self selector:@selector(scanningTimedOut) userInfo:nil repeats:NO];
-}
-
-#pragma mark Ble Interaction
-
--(void) connectToBle{
-    if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
-        CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:0];
-        [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
-        isConnecting = YES;
-        
-        NSTimeInterval interval = kConnectingTimeout;
-        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(connectingTimedOut) userInfo:nil repeats:NO];
-    }
-}
-
--(void) connectingTimedOut{
-    
-    [connectingTimer invalidate];
-    connectingTimer = nil;
-    
-    isConnecting = NO;
-    
-    if([BLEDiscovery sharedInstance].currentPeripheral){
-        [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
-    }
-    
-    shouldScan = YES;
-    [self updateStartButtonToScan];
-}
-
--(void) disconnectFromBle{
-    
-    if([BLEDiscovery sharedInstance].currentPeripheral){
-        [[BLEDiscovery sharedInstance].connectedService stop];
-        [[BLEDiscovery sharedInstance] disconnectCurrentPeripheral];
-    }
-}
-
-#pragma mark LeDiscoveryDelegate
-
-- (void) discoveryDidRefresh {
-    //[self updateModeButton];
-    
-    if([BLEDiscovery sharedInstance].foundPeripherals == 0){
-        [self updateStartButtonToScan];
-    }
-}
-
-- (void) peripheralDiscovered:(CBPeripheral*) peripheral {
-    NSLog(@"peripheral discovered");
-    
-    [scanningTimer invalidate];
-    scanningTimer = nil;
-    
-    [self updateStartButtonToStart];
-    
-    //[self updateStartButton];
-}
-
-- (void) discoveryStatePoweredOff {
-    //[self updateStartButton];
-    
-    NSLog(@"Powered Off");
-}
-
-
 #pragma mark BleServiceProtocol
 
 -(void) updateStartButtonToScan{
     
     self.startButton.tintColor = nil;
-    self.startButton.title = @"Scan";
+    self.startButton.title = @"Connect";
     self.startButton.enabled = YES;
-}
-
--(void) updateStartButtonToScanning{
-    
-    self.startButton.tintColor = nil;
-    self.startButton.title = @"Scanning";
-    self.startButton.enabled = NO;
-}
-
--(void) updateStartButtonToStarting{
-    
-    self.startButton.tintColor = nil;
-    self.startButton.title = @"Starting";
-    self.startButton.enabled = NO;
 }
 
 -(void) updateStartButtonToStop{
@@ -332,50 +234,13 @@ float const kConnectingTimeout = 7.0f;
     self.startButton.enabled = YES;
 }
 
--(void) updateStartButtonToStart{
-    
-    self.startButton.tintColor = nil;
-    self.startButton.title = @"Start";
-    self.startButton.enabled = YES;
+-(void) bleDeviceDisconnected:(BLEService *)service{
+    [self updateStartButtonToScan];
 }
 
--(void) bleServiceDidConnect:(BLEService*) service{
-    service.delegate = self;
-}
-
--(void) bleServiceDidDisconnect:(BLEService*) service{
-    
-    //[self startScanningDevices];
-    
-    [connectingTimer invalidate];
-    connectingTimer = nil;
-    
-    service.delegate = nil;
-    service.dataDelegate = nil;
-    
-    if(isConnecting){
-        
-        if([BLEDiscovery sharedInstance].foundPeripherals.count > 0){
-            NSLog(@"reconnecting");
-            [self connectToBle];
-        } else {
-            [self updateStartButtonToScan];
-        }
-    } else{
-        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0){
-            [self updateStartButtonToScan];
-        } else {
-            [self updateStartButtonToStart];
-        }
-    }
-}
-
--(void) bleServiceIsReady:(BLEService*) service{
+-(void) bleDeviceConnected:(BLEService *) service{
     
     [self updateStartButtonToStop];
-    
-    [connectingTimer invalidate];
-    connectingTimer = nil;
     
     isConnecting = NO;
     
@@ -607,21 +472,22 @@ float const kConnectingTimeout = 7.0f;
         
         [self.currentProject stopSimulating];
         
-        [self disconnectFromBle];
+        [self.deviceController disconnect];
         
     } else {
         
-        if([BLEDiscovery sharedInstance].foundPeripherals.count == 0 || shouldScan){
-            
-            [self startScanningDevices];
-            shouldScan = NO;
-            
-        } else {
-            
-            [self updateStartButtonToStarting];
-            [self connectToBle];
-        }
+        [self performSegueWithIdentifier:@"segueToDevicesList" sender:self];
+        
+        //[self updateStartButtonToStarting];
+        //[self connectToBle];
     }
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"segueToDevicesList"]){
+        
+        self.deviceController = segue.destinationViewController;
+        self.deviceController.delegate = self;
+    }
+}
 @end

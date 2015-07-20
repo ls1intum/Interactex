@@ -208,6 +208,7 @@ static BLEDiscovery * sharedInstance;
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
 	if (![self.foundPeripherals containsObject:peripheral]) {
 		[self.foundPeripherals addObject:peripheral];
+        
         [self.discoveryDelegate peripheralDiscovered:peripheral];
 	}
 }

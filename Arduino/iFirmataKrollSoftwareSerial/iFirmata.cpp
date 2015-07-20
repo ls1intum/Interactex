@@ -99,29 +99,13 @@ void iFirmataClass::begin(SoftwareSerial &s)
 }
 
 void iFirmataClass::bleSend(byte data){
-
-    int oldSendBufferCount = sendBufferCount;
     
-    if(sendBufferCount >= 0){
     int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
-    
     
     sendBuffer[idx] = data;
     sendBufferCount++;
     if(sendBufferCount > SEND_BUFFER_SIZE){
         sendBufferCount = SEND_BUFFER_SIZE;
-        Serial.println("Warning, bleSendBuffer is full!");
-        //Serial.println(sendBufferCount);
-    }
-    }
-    
-    if(sendBufferCount < 0){
-        
-        Serial.print("Error, sendBufferCount got corrupted! ");
-        Serial.print(sendBufferCount);
-        Serial.print(" old ");
-        Serial.println(oldSendBufferCount);
-        
     }
 }
 
