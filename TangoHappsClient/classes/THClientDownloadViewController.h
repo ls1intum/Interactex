@@ -53,12 +53,14 @@ const float kIconInstallationUpdateFrequency;
 
 @end
 
-@interface THClientDownloadViewController : UIViewController<THClientConnectionControllerDelegate>{
+@interface THClientDownloadViewController : UIViewController<THClientConnectionControllerDelegate, UITableViewDataSource, UITableViewDelegate>{
     
     NSTimer * installationProgressTimer;
     NSTimeInterval timeWhenInstallationStarted;
     CGFloat installationUpdateRate;
 }
+
+@property (strong, nonatomic) NSMutableArray * remoteDevices;
 
 @property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
@@ -70,6 +72,7 @@ const float kIconInstallationUpdateFrequency;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 
 @property (nonatomic, weak) THClientConnectionController * connectionController;
+@property (weak, nonatomic) IBOutlet UITableView *devicesTable;
 
 @property (weak, nonatomic) id<THClientDownloadViewControllerDelegate> delegate;
 @end

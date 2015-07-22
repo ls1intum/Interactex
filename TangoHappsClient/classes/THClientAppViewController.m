@@ -148,10 +148,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) viewWillAppear:(BOOL)animated{
     
-    self.currentProject = [THSimulableWorldController sharedInstance].currentProject;
-    
-    if(self.currentProject){
+    if(!self.currentProject){
         
+        self.currentProject = [THSimulableWorldController sharedInstance].currentProject;
         
         if([BLEDiscovery sharedInstance].currentPeripheral.state == CBPeripheralStateConnected){
             [self updateStartButtonToStop];
@@ -162,10 +161,11 @@ You should have received a copy of the GNU General Public License along with thi
         [self setTitle:self.currentProject.name];
         
         [self loadUIObjects];
-        [self addPinObservers];
         
         //[self updateStartButton];
     }
+    
+    [self addPinObservers];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{

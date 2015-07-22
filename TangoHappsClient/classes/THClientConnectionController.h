@@ -19,6 +19,9 @@ typedef enum{
 
 @protocol THClientConnectionControllerDelegate <NSObject>
 
+-(void) peerDiscovered:(MCPeerID*) peer;
+-(void) peerLost:(MCPeerID*) peer;
+
 -(void) didStartReceivingProjectNamed:(NSString*) name;
 -(void) didMakeProgressForCurrentProject:(float) progress;
 -(void) didFinishReceivingProject:(THClientProject*) project;
@@ -40,5 +43,6 @@ typedef enum{
 
 -(void) startClient;
 -(void) stopClient;
+-(void) invitePeer:(MCPeerID*) peerID;
 
 @end

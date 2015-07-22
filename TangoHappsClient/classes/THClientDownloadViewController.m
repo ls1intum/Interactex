@@ -65,6 +65,10 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
     THClientAppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.connectionController = appDelegate.connectionController;
     self.connectionController.delegate = self;
+    
+    
+    self.remoteDevices = [NSMutableArray array];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -175,6 +179,37 @@ const float kIconInstallationUpdateFrequency = 1.0f/20.0f;
 
     }];
     
+}
+
+-(void) peerDiscovered:(MCPeerID*) peer{
+    [self.remoteDevices addObject:peer];
+    [self.devicesTable reloadData];
+}
+
+-(void) peerLost:(MCPeerID*) peer{
+    [self.remoteDevices removeObject:peer];
+    [self.devicesTable reloadData];
+}
+
+
+#pragma mark - TableView
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.remoteDevices.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MCPeerID * peer = [self.remoteDevices objectAtIndex:indexPath.row];
+    
+    UITableViewCell * cell = [self.devicesTable dequeueReusableCellWithIdentifier:@"iPadDeviceCell"];
+    cell.textLabel.text = peer.displayName;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MCPeerID * peer = [self.remoteDevices objectAtIndex:indexPath.row];
+    [self.connectionController invitePeer:peer];
 }
 
 @end

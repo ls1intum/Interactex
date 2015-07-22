@@ -118,8 +118,8 @@ public:
     void detach(byte command);
 
     
-    void flushData();
-    void writeByte(byte b);
+    void bleFlush();
+    void bleSend(byte b);
 
 private:
 

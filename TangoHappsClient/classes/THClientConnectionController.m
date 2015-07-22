@@ -75,13 +75,18 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
     
     _session = [[MCSession alloc] initWithPeer:_localPeerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
     _session.delegate = self;
-    self.remotePeerID = peerID;
     
-    [self inviteCurrentPeer];
+    [self.delegate peerDiscovered:peerID];
+    
+    //[self inviteCurrentPeer];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID{
-    self.remotePeerID = nil;
+    if(self.remotePeerID == peerID){
+        self.remotePeerID = nil;
+    }
+    
+    [self.delegate peerLost:peerID];
     
     //NSLog(@"lost peer");
 }
@@ -90,8 +95,10 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
     //NSLog(@"failed to browse");
 }
 
--(void) inviteCurrentPeer{
+-(void) invitePeer:(MCPeerID*) peerID{
+    self.remotePeerID = peerID;
     [self.browser invitePeer:self.remotePeerID toSession:self.session withContext:nil timeout:0];
+    
     [self.delegate appendStatusMessage:@"Invited peer..."];
 }
 
@@ -106,7 +113,7 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
     
     if(state == MCSessionStateNotConnected && session.connectedPeers.count == 0 && self.remotePeerID != nil){
         
-        [self inviteCurrentPeer];
+        [self invitePeer:self.remotePeerID];
     }
 }
 

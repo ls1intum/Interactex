@@ -437,13 +437,14 @@ NSString * const kPauseImageName = @"pause.png";
     if(index == NSNotFound){
         index = 0;
     }
-    MPMediaItem * song = [self.songs objectAtIndex:index];
     
-    if(song){
-        return [song valueForProperty: MPMediaItemPropertyTitle];
-    } else {
+    if(index >= self.songs.count){
         return nil;
+    } else {
+        MPMediaItem * song = [self.songs objectAtIndex:index];
+        return [song valueForProperty: MPMediaItemPropertyTitle];
     }
+
 #endif
 }
 

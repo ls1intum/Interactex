@@ -66,9 +66,10 @@ int pinState[TOTAL_PINS];           // any value that has been written
 /* timer variables */
 unsigned long currentMillis;        // store the current value from millis()
 unsigned long previousMillis;       // for comparison with currentMillis
-int samplingInterval = 300;          // how often to run the main loop (in ms)
-unsigned long previousMillisFlush;
-int flushInterval = 80;
+int samplingInterval = 80;          // how often to run the main loop (in ms)
+
+unsigned long previousMillisBle;
+unsigned long int bleInterval = 40;
 
 /* i2c data */
 struct i2c_device_info {
@@ -466,57 +467,60 @@ void sysexCallback(byte command, byte argc, byte *argv)
     }
     break;
   case CAPABILITY_QUERY:
-    BleFirmata.writeByte(START_SYSEX);
-    BleFirmata.writeByte(CAPABILITY_RESPONSE);
+    BleFirmata.bleSend(START_SYSEX);
+    BleFirmata.bleSend(CAPABILITY_RESPONSE);
     for (byte pin=0; pin < TOTAL_PINS; pin++) {
       if (IS_PIN_DIGITAL(pin)) {
-        BleFirmata.writeByte((byte)INPUT);
-        BleFirmata.writeByte(1);
-        BleFirmata.writeByte((byte)OUTPUT);
-        BleFirmata.writeByte(1);
+        BleFirmata.bleSend((byte)INPUT);
+        BleFirmata.bleSend(1);
+        BleFirmata.bleSend((byte)OUTPUT);
+        BleFirmata.bleSend(1);
       }
       if (IS_PIN_ANALOG(pin)) {
-        BleFirmata.writeByte(ANALOG);
-        BleFirmata.writeByte(10);
+        BleFirmata.bleSend(ANALOG);
+        BleFirmata.bleSend(10);
       }
       if (IS_PIN_PWM(pin)) {
-        BleFirmata.writeByte(PWM);
-        BleFirmata.writeByte(8);
+        BleFirmata.bleSend(PWM);
+        BleFirmata.bleSend(8);
       }
       if (IS_PIN_SERVO(pin)) {
-        BleFirmata.writeByte(SERVO);
-        BleFirmata.writeByte(14);
+        BleFirmata.bleSend(SERVO);
+        BleFirmata.bleSend(14);
       }
       if (IS_PIN_I2C(pin)) {
-        BleFirmata.writeByte(I2C);
-        BleFirmata.writeByte(1);  // to do: determine appropriate value 
+        BleFirmata.bleSend(I2C);
+        BleFirmata.bleSend(1);  // to do: determine appropriate value 
       }
-      BleFirmata.writeByte(127);
+      BleFirmata.bleSend(127);
     }
-    BleFirmata.writeByte(END_SYSEX);
+    BleFirmata.bleSend(END_SYSEX);
     break;
   case PIN_STATE_QUERY:
     if (argc > 0) {
       byte pin=argv[0];
-      BleFirmata.writeByte(START_SYSEX);
-      BleFirmata.writeByte(PIN_STATE_RESPONSE);
-      BleFirmata.writeByte(pin);
+      
+      BleFirmata.bleSend(START_SYSEX);
+      BleFirmata.bleSend(PIN_STATE_RESPONSE);
+      BleFirmata.bleSend(pin);
+      
       if (pin < TOTAL_PINS) {
-        BleFirmata.writeByte((byte)pinConfig[pin]);
-	BleFirmata.writeByte((byte)pinState[pin] & 0x7F);
-	if (pinState[pin] & 0xFF80) BleFirmata.writeByte((byte)(pinState[pin] >> 7) & 0x7F);
-	if (pinState[pin] & 0xC000) BleFirmata.writeByte((byte)(pinState[pin] >> 14) & 0x7F);
+        BleFirmata.bleSend((byte)pinConfig[pin]);
+	      BleFirmata.bleSend((byte)pinState[pin] & 0x7F);
+       
+	      if (pinState[pin] & 0xFF80) BleFirmata.bleSend((byte)(pinState[pin] >> 7) & 0x7F);
+	      if (pinState[pin] & 0xC000) BleFirmata.bleSend((byte)(pinState[pin] >> 14) & 0x7F);
       }
-      BleFirmata.writeByte(END_SYSEX);
+      BleFirmata.bleSend(END_SYSEX);
     }
     break;
   case ANALOG_MAPPING_QUERY:
-    BleFirmata.writeByte(START_SYSEX);
-    BleFirmata.writeByte(ANALOG_MAPPING_RESPONSE);
+    BleFirmata.bleSend(START_SYSEX);
+    BleFirmata.bleSend(ANALOG_MAPPING_RESPONSE);
     for (byte pin=0; pin < TOTAL_PINS; pin++) {
-      BleFirmata.writeByte(IS_PIN_ANALOG(pin) ? PIN_TO_ANALOG(pin) : 127);
+      BleFirmata.bleSend(IS_PIN_ANALOG(pin) ? PIN_TO_ANALOG(pin) : 127);
     }
-    BleFirmata.writeByte(END_SYSEX);
+    BleFirmata.bleSend(END_SYSEX);
     break;
   }
 }
@@ -553,50 +557,33 @@ void disableI2CPins() {
  *============================================================================*/
 
 void systemResetCallback()
-{
+{  
   // initialize a defalt state
   // TODO: option to load config from EEPROM instead of default
   if (isI2CEnabled) {
-  	disableI2CPins();
+    disableI2CPins();
   }
+  
   for (byte i=0; i < TOTAL_PORTS; i++) {
     reportPINs[i] = false;      // by default, reporting off
-    portConfigInputs[i] = 0;	// until activated
+    portConfigInputs[i] = 0;  // until activated
     previousPINs[i] = 0;
   }
+  
   // pins with analog capability default to analog input
   // otherwise, pins default to digital output
-  for (byte i=0; i < TOTAL_PINS; i++) {
-
-    // skip pin 8, 9 for BLE Shield
-    if ((i == 8) || (i == 9))
-      continue;
-    
-    // skip SPI pins
-    if ( (i==MOSI) || (i==MISO) || (i==SCK) || (i==SS) )
-      continue;
-     
-     // Default all to digital pins  
-//    if (IS_PIN_ANALOG(i)) {
+  for (byte i=4; i < TOTAL_PINS; i++) {
+    if (IS_PIN_ANALOG(i)) {
       // turns off pullup, configures everything
-//      setPinModeCallback(i, ANALOG);
-//    } else {
+      setPinModeCallback(i, ANALOG);
+    } else {
       // sets the output to 0, configures portConfigInputs
       setPinModeCallback(i, OUTPUT);
-//    }
+    }
   }
+  
   // by default, do not report any analog inputs
   analogInputsToReport = 0;
-
-  /* send digital inputs to set the initial state on the host computer,
-   * since once in the loop(), this firmware will only send on change */
-  /*
-  TODO: this can never execute, since no pins default to digital input
-        but it will be needed when/if we support EEPROM stored config
-  for (byte i=0; i < TOTAL_PORTS; i++) {
-    outputPort(i, readPort(i, portConfigInputs[i]), true);
-  }
-  */
 }
 
 void setup() 
@@ -613,7 +600,7 @@ void setup()
 
   systemResetCallback();  // reset to default config
 
-  BLEMini_begin(57600);
+  BleFirmata.begin(57600);
 }
 
 /*==============================================================================
@@ -629,8 +616,9 @@ void loop()
   
   /* SERIALREAD - processing incoming messagse as soon as possible, while still
    * checking digital inputs.  */
-  while(BleFirmata.available())
+  while(BleFirmata.available()){
     BleFirmata.processInput();
+  }
 
   /* SEND FTDI WRITE BUFFER - make sure that the FTDI buffer doesn't go over
    * 60 bytes. use a timer to sending an event character every 4 ms to
@@ -660,9 +648,9 @@ void loop()
   }
 
   currentMillis = millis();
-  if (currentMillis - previousMillisFlush > flushInterval) {
-    previousMillisFlush += flushInterval;
-    BleFirmata.flushData();
+  if (currentMillis - previousMillisBle > bleInterval) {
+    previousMillisBle = currentMillis;
+    BleFirmata.bleFlush();
   }
   
 }

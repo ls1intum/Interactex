@@ -96,62 +96,6 @@ void iFirmataClass::begin(Stream & s)
   printFirmwareVersion();
 }
 
-void iFirmataClass::bleSend(byte data){
-
-    int oldSendBufferCount = sendBufferCount;
-    
-    if(sendBufferCount >= 0){
-      int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
-      
-      
-      sendBuffer[idx] = data;
-      sendBufferCount++;
-      if(sendBufferCount > SEND_BUFFER_SIZE){
-          sendBufferCount = SEND_BUFFER_SIZE;
-      }
-    }
-}
-
-void iFirmataClass::bleBufferReset(void){
-    sendBufferCount = 0;
-    sendBufferStart = 0;
-}
-
-void iFirmataClass::bleFlush(void)
-{
-    if(sendBufferCount > 0){
-                
-        byte buf[BLE_BUFFER_SIZE];
-        
-        int numBytesSend = MIN(BLE_BUFFER_SIZE,sendBufferCount);
-        
-        totalBytesSent += numBytesSend;
-        
-        if(sendBufferStart + numBytesSend > SEND_BUFFER_SIZE){
-            
-            int firstPartSize = SEND_BUFFER_SIZE - sendBufferStart ;
-            
-            memcpy(buf,&sendBuffer[0] + sendBufferStart,firstPartSize);
-            memcpy(&buf[0] + firstPartSize,&sendBuffer[0],numBytesSend-firstPartSize);
-            
-        } else {
-            memcpy(&buf[0],&sendBuffer[0] + sendBufferStart,numBytesSend);
-            
-        }
-        
-        //fill buffer to BLE_BUFFER_SIZE so it notifies
-        int missing = BLE_BUFFER_SIZE - numBytesSend;
-        if(missing > 0) {
-            memcpy(&buf[0]+numBytesSend,&emptySendBuffer[0],missing);
-        }
-        
-        iFirmataSerial.write(&buf[0],BLE_BUFFER_SIZE);
-        
-        sendBufferCount -= numBytesSend;
-        sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
-   }
-}
-
 // output the protocol version message to the serial port
 void iFirmataClass::printVersion(void) {
     
@@ -516,6 +460,53 @@ void iFirmataClass::pin13strobe(int count, int onInterval, int offInterval)
     delay(onInterval);
     digitalWrite(VERSION_BLINK_PIN, LOW);
   }
+}
+
+void iFirmataClass::bleSend(byte data){
+    
+      int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
+      
+      sendBuffer[idx] = data;
+      sendBufferCount++;
+      
+      if(sendBufferCount > SEND_BUFFER_SIZE){
+          sendBufferCount = SEND_BUFFER_SIZE;
+      }
+}
+
+void iFirmataClass::bleFlush(void)
+{
+    if(sendBufferCount > 0){
+                
+        byte buf[BLE_BUFFER_SIZE];
+        
+        int numBytesSend = MIN(BLE_BUFFER_SIZE,sendBufferCount);
+        
+        totalBytesSent += numBytesSend;
+        
+        if(sendBufferStart + numBytesSend > SEND_BUFFER_SIZE){
+            
+            int firstPartSize = SEND_BUFFER_SIZE - sendBufferStart ;
+            
+            memcpy(buf,&sendBuffer[0] + sendBufferStart,firstPartSize);
+            memcpy(&buf[0] + firstPartSize,&sendBuffer[0],numBytesSend-firstPartSize);
+            
+        } else {
+            memcpy(&buf[0],&sendBuffer[0] + sendBufferStart,numBytesSend);
+            
+        }
+        
+        //fill buffer to BLE_BUFFER_SIZE so it notifies
+        int missing = BLE_BUFFER_SIZE - numBytesSend;
+        if(missing > 0) {
+            memcpy(&buf[0]+numBytesSend,&emptySendBuffer[0],missing);
+        }
+        
+        iFirmataSerial.write(&buf[0],BLE_BUFFER_SIZE);
+        
+        sendBufferCount -= numBytesSend;
+        sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
+   }
 }
 
 iFirmataClass iFirmata(Serial);

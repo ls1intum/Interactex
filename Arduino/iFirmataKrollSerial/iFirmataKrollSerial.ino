@@ -503,10 +503,10 @@ void sysexCallback(byte command, byte argc, byte *argv)
       if (pin < TOTAL_PINS) {
         
         iFirmata.bleSend((byte)pinConfig[pin]);
-	iFirmata.bleSend((byte)pinState[pin] & 0x7F);
+	      iFirmata.bleSend((byte)pinState[pin] & 0x7F);
 
-	if (pinState[pin] & 0xFF80) iFirmata.bleSend((byte)(pinState[pin] >> 7) & 0x7F);
-	if (pinState[pin] & 0xC000) iFirmata.bleSend((byte)(pinState[pin] >> 14) & 0x7F);
+	      if (pinState[pin] & 0xFF80) iFirmata.bleSend((byte)(pinState[pin] >> 7) & 0x7F);
+	      if (pinState[pin] & 0xC000) iFirmata.bleSend((byte)(pinState[pin] >> 14) & 0x7F);
       }
       iFirmata.bleSend(END_SYSEX);
    
@@ -580,8 +580,6 @@ void systemResetCallback()
   
   // by default, do not report any analog inputs
   analogInputsToReport = 0;
-
-  //iFirmata.bleBufferReset();
 }
 
 void setup() {
@@ -648,6 +646,6 @@ void loop()
     previousMillisBle = currentMillis;
 
     iFirmata.bleFlush();
-    
   }
+  
 }

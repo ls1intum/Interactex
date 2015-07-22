@@ -111,7 +111,6 @@ public:
     void bleSend(byte bytes);
     void bleSendBytes(byte* bytes, byte count);
     void bleFlush();
-    void bleBufferReset();
 
 /* firmata methods */        
     void sendAnalog(byte pin, int value);

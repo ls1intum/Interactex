@@ -27,7 +27,7 @@ extern "C" {
 #define MAX(a,b) \
 ({ __typeof__ (a) _a = (a); \
 __typeof__ (b) _b = (b); \
-_a > _b ? _a : _b; })
+_a > _b ? _a : _b; })ƒ
 
 #define MIN(a,b) \
 ({ __typeof__ (a) _a = (a); \
@@ -41,18 +41,18 @@ _a < _b ? _a : _b; })
 
 void BleFirmataClass::sendValueAsTwo7bitBytes(int value)
 {
-  writeByte(value & B01111111); // LSB
-  writeByte(value >> 7 & B01111111); // MSB
+  bleSend(value & B01111111); // LSB
+  bleSend(value >> 7 & B01111111); // MSB
 }
 
 void BleFirmataClass::startSysex(void)
 {
-  writeByte(START_SYSEX);
+  bleSend(START_SYSEX);
 }
 
 void BleFirmataClass::endSysex(void)
 {
-  writeByte(END_SYSEX);
+  bleSend(END_SYSEX);
 }
 
 //******************************************************************************
@@ -68,7 +68,6 @@ BleFirmataClass::BleFirmataClass(Stream &s) : BleFirmataSerial(s)
   
   firmwareVersionCount = 0;
   systemReset();
-  sendBufferCount = 0;
 }
 
 //******************************************************************************
@@ -84,7 +83,7 @@ void BleFirmataClass::begin(void)
 /* begin method for overriding default serial bitrate */
 void BleFirmataClass::begin(long speed)
 {
-//  Serial.begin(speed);
+  Serial.begin(speed);
   BleFirmataSerial = Serial;
   blinkVersion();
   printVersion();
@@ -101,9 +100,9 @@ void BleFirmataClass::begin(Stream &s)
 
 // output the protocol version message to the serial port
 void BleFirmataClass::printVersion(void) {
-  writeByte(REPORT_VERSION);
-  writeByte(FIRMATA_MAJOR_VERSION);
-  writeByte(FIRMATA_MINOR_VERSION);
+  bleSend(REPORT_VERSION);
+  bleSend(FIRMATA_MAJOR_VERSION);
+  bleSend(FIRMATA_MINOR_VERSION);
 }
 
 void BleFirmataClass::blinkVersion(void)
@@ -122,9 +121,9 @@ void BleFirmataClass::printFirmwareVersion(void)
 
   if(firmwareVersionCount) { // make sure that the name has been set before reporting
     startSysex();
-    writeByte(REPORT_FIRMWARE);
-    writeByte(firmwareVersionVector[0]); // major version number
-    writeByte(firmwareVersionVector[1]); // minor version number
+    bleSend(REPORT_FIRMWARE);
+    bleSend(firmwareVersionVector[0]); // major version number
+    bleSend(firmwareVersionVector[1]); // minor version number
     for(i=2; i<firmwareVersionCount; ++i) {
       sendValueAsTwo7bitBytes(firmwareVersionVector[i]);
     }
@@ -288,7 +287,7 @@ void BleFirmataClass::processInput(void)
 void BleFirmataClass::sendAnalog(byte pin, int value) 
 {
   // pin can only be 0-15, so chop higher bits
-  writeByte(ANALOG_MESSAGE | (pin & 0xF));
+  bleSend(ANALOG_MESSAGE | (pin & 0xF));
   sendValueAsTwo7bitBytes(value);
 }
 
@@ -319,9 +318,9 @@ void BleFirmataClass::sendDigital(byte pin, int value)
 // send an 8-bit port in a single digital message (protocol v2)
 void BleFirmataClass::sendDigitalPort(byte portNumber, int portData)
 {
-  writeByte(DIGITAL_MESSAGE | (portNumber & 0xF));
-  writeByte((byte)portData % 128); // Tx bits 0-6
-  writeByte(portData >> 7);  // Tx bits 7-13
+  bleSend(DIGITAL_MESSAGE | (portNumber & 0xF));
+  bleSend((byte)portData % 128); // Tx bits 0-6
+  bleSend(portData >> 7);  // Tx bits 7-13
 }
 
 
@@ -329,7 +328,7 @@ void BleFirmataClass::sendSysex(byte command, byte bytec, byte* bytev)
 {
   byte i;
   startSysex();
-  writeByte(command);
+  bleSend(command);
   for(i=0; i<bytec; i++) {
     sendValueAsTwo7bitBytes(bytev[i]);        
   }
@@ -456,7 +455,7 @@ void BleFirmataClass::pin13strobe(int count, int onInterval, int offInterval)
   }
 }
 
-void BleFirmataClass::writeByte(byte b){
+void BleFirmataClass::bleSend(byte b){
     
       int idx = (sendBufferStart + sendBufferCount) % SEND_BUFFER_SIZE;
       
@@ -468,8 +467,8 @@ void BleFirmataClass::writeByte(byte b){
       }
 }
 
-void BleFirmataClass::flushData(){
-  if(sendBufferCount > 0){
+void BleFirmataClass::bleFlush(){
+     if(sendBufferCount > 0){
                 
         byte buf[BLE_BUFFER_SIZE];
         
@@ -485,10 +484,9 @@ void BleFirmataClass::flushData(){
             memcpy(&buf[0] + firstPartSize,&sendBuffer[0],numBytesSend-firstPartSize);
             
         } else {
-          
-            memcpy(&buf[0],&sendBuffer[0] + sendBufferStart,numBytesSend);            
+            memcpy(&buf[0],&sendBuffer[0] + sendBufferStart,numBytesSend);
+            
         }
-        
         /*
         //fill buffer to BLE_BUFFER_SIZE so it notifies
         int missing = BLE_BUFFER_SIZE - numBytesSend;
@@ -496,7 +494,7 @@ void BleFirmataClass::flushData(){
             memcpy(&buf[0]+numBytesSend,&emptySendBuffer[0],missing);
         }*/
         
-        BleFirmataSerial.write(&buf[0],numBytesSend);
+        BleFirmataSerial.write(&buf[0],BLE_BUFFER_SIZE);
         
         sendBufferCount -= numBytesSend;
         sendBufferStart = (sendBufferStart + numBytesSend) % SEND_BUFFER_SIZE;
