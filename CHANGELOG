@@ -162,8 +162,15 @@ Fixed bug: opengl draw errors after random combinations of actions in the canvas
 
 ———Interactex Client v1.95———
 
+**New Features**
+- functionality to select among multiple BLEs
+- functionality to select among multiple iPads
+
+**Bug Fixing**
+
 - client background view too dark
-- client bug items positioned wrong
+- fixed bug music player crashing when no music in device
+- Bug music player invoking event after loading songs query
 
 
 ———Interactex Client v1.90———
