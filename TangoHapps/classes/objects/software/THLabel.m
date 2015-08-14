@@ -170,14 +170,12 @@ const CGSize kLabelPadding = {15,10};
     THPaddingLabel * label = [[THPaddingLabel alloc] init];
     label.bounds = CGRectMake(0, 0, self.width, self.height);
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:15];
+    label.font = [UIFont fontWithName:kDefaultFontName size:kDefaultFontSize];
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     self.view = label;
     
     self.view.layer.cornerRadius = 5;
-    self.view.layer.borderColor = [UIColor blackColor].CGColor;
-    self.view.layer.borderWidth = 1.0f;
     self.view.layer.masksToBounds = YES;
     
     labelLoaded = YES;

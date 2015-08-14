@@ -62,11 +62,11 @@ You should have received a copy of the GNU General Public License along with thi
     
     THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
     pin1.hardware = self;
-    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
+    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeDigital];
     pin2.hardware = self;
-    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeDigital];
+    pin2.defaultBoardPinMode = kPinModeDigitalInput;
+    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeMinus];
     pin3.hardware = self;
-    pin3.defaultBoardPinMode = kPinModeDigitalInput;
     
     [self.pins addObject:pin1];
     [self.pins addObject:pin2];
@@ -103,11 +103,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(THElementPin*) minusPin{
-    return [self.pins objectAtIndex:1];
+    return [self.pins objectAtIndex:2];
 }
 
 -(THElementPin*) digitalPin{
-    return [self.pins objectAtIndex:2];
+    return [self.pins objectAtIndex:1];
 }
 
 

@@ -130,6 +130,11 @@ You should have received a copy of the GNU General Public License along with thi
     button.layer.cornerRadius = 5;
     self.view = button;
     self.enabled = isSimulating;
+    button.titleLabel.font = [UIFont fontWithName:kDefaultFontName size:kDefaultFontSize];
+    if(!isSimulating){
+        button.layer.borderWidth = 1.0f;
+        button.layer.borderColor = [UIColor grayColor].CGColor;
+    }
     
     [button addTarget:self action:@selector(handleStartedPressing) forControlEvents:UIControlEventTouchDown];
     [button addTarget:self action:@selector(handleStoppedPressing) forControlEvents:UIControlEventTouchUpInside];

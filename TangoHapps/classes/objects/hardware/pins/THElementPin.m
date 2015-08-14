@@ -92,9 +92,6 @@ You should have received a copy of the GNU General Public License along with thi
     THElementPin * copy = [super copyWithZone:zone];
     copy.type = self.type;
     copy.defaultBoardPinMode = self.defaultBoardPinMode;
-    //copy.attachedToPin = self.attachedToPin;
-    
-    //[copy attachToPin:self.attachedToPin];
     
     return copy;
 }

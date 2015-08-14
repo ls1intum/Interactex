@@ -136,6 +136,10 @@ You should have received a copy of the GNU General Public License along with thi
         TFEditableObject * object = [project objectAtLocation:location];
         if(object){
             [object handleTap];
+            
+            CGPoint point = [self.currentObject convertToNodeSpace:location];
+            NSLog(@"local coords: %f %f",point.x,point.y);
+            
         }
     }
 }
@@ -169,8 +173,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) moveLayer:(CGPoint) d{
     self.zoomableLayer.position = ccpAdd(_zoomableLayer.position, d);
-    
-    NSLog(@"zoom layer pos %f",self.zoomableLayer.position.x);
 }
 
 -(void)scale:(UIPinchGestureRecognizer*)sender{
@@ -205,11 +207,24 @@ You should have received a copy of the GNU General Public License along with thi
         CGPoint location = [sender locationInView:sender.view];
         location = [self toLayerCoords:location];
         
-        if(sender.state == UIGestureRecognizerStateChanged){
+        if(sender.state == UIGestureRecognizerStateBegan) {
             
             THProject * project = [THDirector sharedDirector].currentProject;
             TFEditableObject * object = [project objectAtLocation:location];
-            if(!object){
+            if(object){
+                self.currentObject = object;
+                //CGPoint point = [self.currentObject convertToNodeSpace:location];
+                //NSLog(@"local coords: %f %f",point.x,point.y);
+                
+            }
+        } else if(sender.state == UIGestureRecognizerStateEnded){
+            self.currentObject = nil;
+        } else if(sender.state == UIGestureRecognizerStateChanged){
+            
+            if(self.currentObject){
+                [self.currentObject handleTouchMovedTo:location];
+                
+            } else {
                 
                 CGPoint d = [sender translationInView:sender.view];
                 d.y = - d.y;

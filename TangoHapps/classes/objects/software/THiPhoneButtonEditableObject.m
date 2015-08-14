@@ -102,7 +102,6 @@ You should have received a copy of the GNU General Public License along with thi
     [button loadView];
     
     [super addToLayer:layer];
-    
 }
 
 -(void) setText:(NSString *)text{

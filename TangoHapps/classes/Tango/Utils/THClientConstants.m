@@ -194,3 +194,7 @@ CGSize const KDefaultMusicPlayerSize = {260,205};
 CGSize const kDefaultImageViewSize = {200,200};
 CGSize const kDefaultContactBookSize = {260,140};
 CGSize const kDefaultGraphSize = {260,130};
+
+NSString * const kDefaultBoldFontName = @"Helvetica-Bold";
+NSString * const kDefaultFontName = @"Helvetica";
+float const kDefaultFontSize = 16;

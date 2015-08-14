@@ -60,11 +60,11 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 -(THElementPinEditable*) minusPin{
-    return [self.pins objectAtIndex:1];
+    return [self.pins objectAtIndex:2];
 }
 
 -(THElementPinEditable*) digitalPin{
-    return [self.pins objectAtIndex:2];
+    return [self.pins objectAtIndex:1];
 }
 
 @end

@@ -153,7 +153,8 @@ NSString * const kPauseImageName = @"pause.png";
     //_elapsedTimeLabel.layer.borderWidth = 1.0f;
     _elapsedTimeLabel.frame = CGRectMake(kMusicPlayerInnerPadding, kMusicPlayerInnerPadding - kMusicPlayerDurationLabelSize.height/2 + _progressSlider.frame.size.height/2, kMusicPlayerDurationLabelSize.width, kMusicPlayerDurationLabelSize.height);
     _elapsedTimeLabel.textAlignment = NSTextAlignmentCenter;
-    _elapsedTimeLabel.font = [UIFont boldSystemFontOfSize:10];
+//    _elapsedTimeLabel.font = [UIFont boldSystemFontOfSize:10];
+    _elapsedTimeLabel.font = [UIFont fontWithName:kDefaultFontName size:10];
     [containerView addSubview:_elapsedTimeLabel];
     
     //duration label
@@ -161,14 +162,17 @@ NSString * const kPauseImageName = @"pause.png";
     //_totalDurationLabel.layer.borderWidth = 1.0f;
     _totalDurationLabel.frame = CGRectMake(self.width - kMusicPlayerDurationLabelSize.width - kMusicPlayerInnerPadding, _elapsedTimeLabel.frame.origin.y, kMusicPlayerDurationLabelSize.width, kMusicPlayerDurationLabelSize.height);
     _totalDurationLabel.textAlignment = NSTextAlignmentCenter;
-    _totalDurationLabel.font = [UIFont boldSystemFontOfSize:10];
+//    _totalDurationLabel.font = [UIFont boldSystemFontOfSize:10];
+    _totalDurationLabel.font = [UIFont fontWithName:kDefaultFontName size:10];
     [containerView addSubview:_totalDurationLabel];
     
     //title label
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.frame = CGRectMake(kMusicPlayerInnerPadding, _progressSlider.frame.origin.y + _progressSlider.frame.size.height + kMusicPlayerInnerPadding, self.width - 2 * kMusicPlayerInnerPadding, kMusicPlayerLabelHeight);
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    //_titleLabel.font = [UIFont boldSystemFontOfSize:18];
+
+    _titleLabel.font = [UIFont fontWithName:kDefaultBoldFontName size:18];
     _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
     [containerView addSubview:_titleLabel];
     
@@ -176,7 +180,8 @@ NSString * const kPauseImageName = @"pause.png";
     _albumLabel = [[UILabel alloc] init];
     _albumLabel.frame = CGRectMake(kMusicPlayerInnerPadding, _titleLabel.frame.origin.y + _titleLabel.frame.size.height, self.width - 2 * kMusicPlayerInnerPadding, kMusicPlayerLabelHeight);
     _albumLabel.textAlignment = NSTextAlignmentCenter;
-    _albumLabel.font = [UIFont systemFontOfSize:16];
+//    _albumLabel.font = [UIFont systemFontOfSize:16];
+    _albumLabel.font = [UIFont fontWithName:kDefaultFontName size:16];
     _albumLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
     [containerView addSubview:_albumLabel];
     

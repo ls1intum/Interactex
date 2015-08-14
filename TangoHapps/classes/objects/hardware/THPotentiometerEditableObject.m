@@ -52,6 +52,10 @@ You should have received a copy of the GNU General Public License along with thi
 @dynamic notifyBehavior;
 
 const CGSize kValueLabelSize = {75, 20};
+const float kPotentiometerMinArmAngle = -115;
+const float kPotentiometerMaxArmAngle = 115;
+const float kCircleRadius = 88;
+const CGPoint kPotentiometerCircleCenter = {90, 97};
 
 -(id) init{
     self = [super init];
@@ -68,6 +72,7 @@ const CGSize kValueLabelSize = {75, 20};
 -(void) loadPotentiometer{
     
     self.type = kHardwareTypePotentiometer;
+
 }
 
 #pragma mark - Archiving
@@ -102,7 +107,7 @@ const CGSize kValueLabelSize = {75, 20};
 
 #pragma mark - Pins
 
--(THElementPinEditable*) minusPin{
+-(THElementPinEditable*) plusPin{
     return [self.pins objectAtIndex:0];
 }
 
@@ -110,12 +115,34 @@ const CGSize kValueLabelSize = {75, 20};
     return [self.pins objectAtIndex:1];
 }
 
--(THElementPinEditable*) plusPin{
+-(THElementPinEditable*) minusPin{
     return [self.pins objectAtIndex:2];
 }
 
 #pragma mark - Methods
 
+-(void) handleTouchMovedTo:(CGPoint) location{
+    
+    location = [self convertToNodeSpace:location];
+    
+    double vX = location.x - kPotentiometerCircleCenter.x;
+    double vY = location.y - kPotentiometerCircleCenter.y;
+    double magV = sqrt(vX*vX + vY*vY);
+    circleX = kPotentiometerCircleCenter.x + vX / magV * kCircleRadius;
+    circleY = kPotentiometerCircleCenter.y + vY / magV * kCircleRadius;
+    
+    CGPoint vector = ccpSub(ccp(circleX,circleY), kPotentiometerCircleCenter);
+    float angle = ccpAngleSigned(vector, ccp(0,1));
+    
+    angle = CC_RADIANS_TO_DEGREES(angle);
+    
+    self.armAngle = angle;
+    
+    THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
+    potentiometer.value = [THClientHelper LinearMapping:self.armAngle min:kPotentiometerMinArmAngle max:kPotentiometerMaxArmAngle retMin:0 retMax:kMaxAnalogValue];
+}
+
+/*
 -(void) handleTouchBegan{
     self.isDown = YES;
 }
@@ -137,7 +164,23 @@ const CGSize kValueLabelSize = {75, 20};
     potentiometer.value = _touchDownIntensity;
     
     
-    _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)potentiometer.value];
+    [self updateValueLabel];
+}*/
+
+-(void) draw{
+    ccDrawCircle(ccp(circleX,circleY), 10, 0, 10, NO);
+    
+    //ccDrawCircle(ccp(90,97), 10, 0, 10, NO);
+}
+
+-(void) updateValueLabel{
+    _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)self.value];
+}
+
+-(void) setValue:(NSInteger)value{
+    THPotentiometer * potentiometer = (THPotentiometer*) self.simulableObject;
+    potentiometer.value = value;
+    self.armAngle = [THClientHelper LinearMapping:value min:0 max:kMaxAnalogValue retMin:kPotentiometerMinArmAngle retMax:kPotentiometerMaxArmAngle];
 }
 
 -(NSInteger) value{
@@ -201,6 +244,23 @@ const CGSize kValueLabelSize = {75, 20};
     [self addChild:_valueLabel z:1];
 }
 
+-(void) addArm{
+    if(!_potentiometerArm){
+        _potentiometerArm = [CCSprite spriteWithFile:@"potentiometerArm.png"];
+        _potentiometerArm.anchorPoint = ccp(0.5f,0.0f);
+        _potentiometerArm.position = ccp(90,100);
+        [self addChild:_potentiometerArm z:1];
+    }
+}
+
+-(void) setArmAngle:(float)armAngle{
+    if(armAngle >= kPotentiometerMinArmAngle && armAngle <= kPotentiometerMaxArmAngle){
+        
+        _armAngle = armAngle;
+        _potentiometerArm.rotation = armAngle;
+    }
+}
+
 -(void) refreshUI{
     [super refreshUI];
     [self addValueLabel];
@@ -210,6 +270,8 @@ const CGSize kValueLabelSize = {75, 20};
     [super addToLayer:layer];
     
     [self addValueLabel];
+    
+    [self addArm];
 }
 
 -(NSString*) description{

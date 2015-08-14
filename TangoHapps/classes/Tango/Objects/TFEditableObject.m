@@ -403,6 +403,10 @@ static NSInteger objectCount = 1;
 -(void) handleTouchEnded{
 }
 
+-(void) handleTouchMovedTo:(CGPoint) location{
+    
+}
+
 -(void) draw {
     
     if(self.selected || self.highlighted){

@@ -81,9 +81,11 @@ NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-25,0},{25,0}},//led
     {{-24,14},{24,-14}},//buzzer
-    {{-23,-20},{23,-20},{0,18}},//button
-    {{-25,-18},{25,-18},{0,18}},//switch
-    {{-23,-12},{0,26},{25,-12}},//5 - potentiometer
+    {{-43,0},{-7,0},{49,0}},//button
+    {{-50,0},{-3,0},{57,0}},//switch
+    
+    {{-47,-72},{-1,-86},{43,-74}},//5 - potentiometer
+    
     {{-23,-12},{0,26},{25,-12}},//light sensor
     {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
     {{0,25},{-26,-11},{26,-11},{0,-25}},//three color led
@@ -165,7 +167,7 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"comparator.png",
     @"grouper.png",
     @"deviation.png",
-    @"activity.png",
+    @"classifier.png",
     @"customComponent.png",
     @"recorder.png"
 };

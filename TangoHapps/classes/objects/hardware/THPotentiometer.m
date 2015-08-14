@@ -58,12 +58,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadPins{
     
-    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypeMinus];
+    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
     pin1.hardware = self;
     THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeAnalog];
     pin2.hardware = self;
     pin2.defaultBoardPinMode = kPinModeAnalogInput;
-    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypePlus];
+    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeMinus];
     
     [self.pins addObject:pin1];
     [self.pins addObject:pin2];
@@ -114,7 +114,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #pragma mark - Methods
 
--(THElementPin*) minusPin{
+-(THElementPin*) plusPin{
     return [self.pins objectAtIndex:0];
 }
 
@@ -122,9 +122,10 @@ You should have received a copy of the GNU General Public License along with thi
     return [self.pins objectAtIndex:1];
 }
 
--(THElementPin*) plusPin{
+-(THElementPin*) minusPin{
     return [self.pins objectAtIndex:2];
 }
+
 
 -(void) updatePinValue{
     

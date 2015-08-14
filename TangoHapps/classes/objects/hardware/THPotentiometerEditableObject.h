@@ -46,6 +46,10 @@ You should have received a copy of the GNU General Public License along with thi
     float _value;
     float _touchDownIntensity;
     CCLabelTTF * _valueLabel;
+    CCSprite * _potentiometerArm;
+    
+    float circleX;
+    float circleY;
 }
 
 @property (nonatomic) NSInteger isDown;
@@ -54,6 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) NSInteger minValueNotify;
 @property (nonatomic) NSInteger maxValueNotify;
 @property (nonatomic) THSensorNotifyBehavior notifyBehavior;
+@property (nonatomic) float armAngle;
 
 @property (nonatomic, readonly) THElementPinEditable * minusPin;
 @property (nonatomic, readonly) THElementPinEditable * analogPin;

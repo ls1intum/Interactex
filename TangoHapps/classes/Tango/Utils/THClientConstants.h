@@ -313,3 +313,7 @@ extern CGSize const KDefaultMusicPlayerSize;
 extern CGSize const kDefaultImageViewSize;
 extern CGSize const kDefaultContactBookSize;
 extern CGSize const kDefaultGraphSize;
+
+extern NSString * const kDefaultBoldFontName;
+extern NSString * const kDefaultFontName;
+extern float const kDefaultFontSize;

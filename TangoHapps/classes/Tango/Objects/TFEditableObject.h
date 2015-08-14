@@ -112,6 +112,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(BOOL) testPoint:(CGPoint)point;
 -(void) handleTouchBegan;
 -(void) handleTouchEnded;
+-(void) handleTouchMovedTo:(CGPoint) location;
 -(void) handleObjectOverlapping:(TFEditableObject*) object;
 -(void) handleObjectStoppedOverlapping;
 -(void) handleDroppedObject:(TFEditableObject*) object position:(CGPoint) position;

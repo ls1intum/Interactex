@@ -59,6 +59,7 @@ typedef enum{
 @property (nonatomic) float zoomLevel;
 @property (nonatomic) CGPoint displacement;
 @property (nonatomic) CCLayer * zoomableLayer;
+@property (nonatomic) TFEditableObject * currentObject;
 
 @property (nonatomic, readonly) THSimulatorState state;
 
