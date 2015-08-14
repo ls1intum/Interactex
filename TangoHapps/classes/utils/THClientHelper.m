@@ -63,6 +63,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 +(void) MakeCallTo:(NSString*) number{
     if (number) {
+        
+        NSCharacterSet *charactersToRemove = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+        number = [[number componentsSeparatedByCharactersInSet:charactersToRemove] componentsJoinedByString:@""];
+        
         NSString *phoneNumber = [@"tel://" stringByAppendingString:number];
         NSURL * url = [NSURL URLWithString:phoneNumber];
         
@@ -82,17 +86,5 @@ You should have received a copy of the GNU General Public License along with thi
     buf[1] = value >> 7 & 0b01111111;
 }
 
-/*
-+(IFPinType) THPinTypeToIFPinType:(THPinType) type{
-    if(type == kPintypeDigital){
-        return IFPinTypeDigital;
-    } else if(type == kPintypeAnalog){
-        return IFPinTypeAnalog;
-    }
-    
-    NSAssert(FALSE, @"wrong parameter to method THPinTypeToIFPinType");
-    return IFPinTypeDigital;
-}
-*/
 
 @end
