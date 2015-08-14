@@ -63,16 +63,10 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.connectionController = [[THClientConnectionController alloc] init];
 
-    /*
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector:    @selector(handleInterruption:)
-                                                 name:        AVAudioSessionInterruptionNotification
-                                               object:      [AVAudioSession sharedInstance]];*/
     
-    QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
-    touchposeApplication.alwaysShowTouches = YES;
+    //QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
+    //touchposeApplication.alwaysShowTouches = YES;
     
-    // Override point for customization after application launch.
     return YES;
 }
 
