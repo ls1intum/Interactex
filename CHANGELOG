@@ -1,3 +1,17 @@
+———Interactex v2.60———
+
+**Bug Fixing**
+- switch sometimes displayed wrong
+- slider and switch not enabled in simulation mode
+
+**New Features**
+
+- changed images for elements: tshirt, potentiometer, button and switch
+- updated fonts and borders of button label and music player
+- default phone number to 112
+- renamed activity to classifier
+
+
 ———Interactex v2.55———
 
 **Bug Fixing**

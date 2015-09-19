@@ -58,7 +58,7 @@ MainViewController.m
 	// Do any additional setup after loading the view.
     [BLEDiscovery sharedInstance].peripheralDelegate = self;
     [BLEDiscovery sharedInstance].discoveryDelegate = self;
-    [[BLEDiscovery sharedInstance] startScanningForSupportedUUIDs];
+    [[BLEDiscovery sharedInstance] startScanningForAnyUUID];
 }
 
 - (void)didReceiveMemoryWarning
