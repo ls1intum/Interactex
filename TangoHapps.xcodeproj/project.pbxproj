@@ -510,6 +510,8 @@
 		9AB778A717E6C25700F82424 /* triangleFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7789817E6C25700F82424 /* triangleFilled.png */; };
 		9AB7791F17E7055500F82424 /* THSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7791E17E7055500F82424 /* THSimulator.m */; };
 		9AB80EB71AA5F5B900A76379 /* THPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */; };
+		9AB8BFFB1BAD913B0035EAC4 /* TestSwiftClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8BFFA1BAD913B0035EAC4 /* TestSwiftClass.swift */; };
+		9AB8C0051BAD94A70035EAC4 /* PeakDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B54741B4582C000CD9CA4 /* PeakDetection.swift */; };
 		9AB984BC1AB5987B00A6AB83 /* MPU-6050.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984B81AB5987B00A6AB83 /* MPU-6050.png */; };
 		9AB984BD1AB5987B00A6AB83 /* MPU-6050@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984B91AB5987B00A6AB83 /* MPU-6050@2x.png */; };
 		9AB984BE1AB5987B00A6AB83 /* palette_MPU-6050@.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050@.png */; };
@@ -1517,6 +1519,7 @@
 		9AB7789817E6C25700F82424 /* triangleFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangleFilled.png; sourceTree = "<group>"; };
 		9AB7791D17E7055500F82424 /* THSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSimulator.h; sourceTree = "<group>"; };
 		9AB7791E17E7055500F82424 /* THSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSimulator.m; sourceTree = "<group>"; };
+		9AB8BFFA1BAD913B0035EAC4 /* TestSwiftClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSwiftClass.swift; sourceTree = "<group>"; };
 		9AB984B81AB5987B00A6AB83 /* MPU-6050.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPU-6050.png"; sourceTree = "<group>"; };
 		9AB984B91AB5987B00A6AB83 /* MPU-6050@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPU-6050@2x.png"; sourceTree = "<group>"; };
 		9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050@.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_MPU-6050@.png"; sourceTree = "<group>"; };
@@ -2494,6 +2497,7 @@
 				9A84269D17564A80009495AB /* Utils */,
 				9A56D19417DBDAA6001021B2 /* THDirector.h */,
 				9A56D19517DBDAA7001021B2 /* THDirector.m */,
+				9AB8BFFA1BAD913B0035EAC4 /* TestSwiftClass.swift */,
 			);
 			path = Tango;
 			sourceTree = "<group>";
@@ -4122,6 +4126,7 @@
 			files = (
 				9AB49B061A6AA8E5006B22E5 /* THIntegrationTests.m in Sources */,
 				9A6E33DB1B452E56003DBC90 /* LowPassFilter.swift in Sources */,
+				9AB8C0051BAD94A70035EAC4 /* PeakDetection.swift in Sources */,
 				9A6E33DA1B452E56003DBC90 /* Component.swift in Sources */,
 				25B05DB119FA95C10019E431 /* TangoHappsUnitTests.m in Sources */,
 				9A6E33DC1B452E56003DBC90 /* RCFilter.swift in Sources */,
@@ -4152,6 +4157,7 @@
 				9AF5036D167B84B40020241C /* THNumberValueEditable.m in Sources */,
 				9AF5036E167B84B40020241C /* THHardwareProblem.m in Sources */,
 				9AF50370167B84B40020241C /* THBoardPin.m in Sources */,
+				9AB8BFFB1BAD913B0035EAC4 /* TestSwiftClass.swift in Sources */,
 				9AF50371167B84B40020241C /* THBoardPinEditable.m in Sources */,
 				9AF50372167B84B40020241C /* THElementPin.m in Sources */,
 				9AF50373167B84B40020241C /* THElementPinEditable.m in Sources */,

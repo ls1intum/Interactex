@@ -70,7 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, strong) THServerController * serverController;
 @property (nonatomic, strong) THTextITConnectionController * textITClientController;
 @property (nonatomic, strong) NSMutableArray * customComponents;
-@property (nonatomic, strong) THJavascriptRunner * javascriptRunner;
+//@property (nonatomic, strong) THJavascriptRunner * javascriptRunner;
 
 +(THDirector*)sharedDirector;
 

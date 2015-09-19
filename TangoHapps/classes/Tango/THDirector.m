@@ -53,7 +53,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTabbarViewController.h"
 #import "THPaletteViewController.h"
 #import "THCustomComponentEditable.h"
-#import "Interactex_Designer-Swift.h"
 
 @implementation THDirector
 
@@ -102,7 +101,7 @@ static THDirector * _sharedInstance = nil;
         self.textITClientController.delegate = self;
         [self.textITClientController startClient];
         
-        self.javascriptRunner = [[THJavascriptRunner alloc] init];
+        //self.javascriptRunner = [[THJavascriptRunner alloc] init];
         
         [self loadCustomComponents];
         
