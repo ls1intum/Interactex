@@ -7,7 +7,7 @@
 //
 
 #import "THCustomComponent.h"
-#import "Interactex-Swift.h"
+//#import "Interactex-Swift.h"
 #import "THAccelerometerData.h"
 @import JavaScriptCore;
 
@@ -92,7 +92,7 @@
 }
 
 -(void) execute:(id) param{
-    
+    /*
     NSString * newCode = [self expandJavascriptWithInputFrom:param];
     //newCode = [self expandJSWithFunctionCall:newCode];
     
@@ -103,7 +103,7 @@
     JSValue * result = [javascriptRunner execute:newCode];
     _result = result.description;
     
-    [super triggerEventNamed:kEventExecutionFinished];
+    [super triggerEventNamed:kEventExecutionFinished];*/
 }
 
 

@@ -28,7 +28,7 @@ class THJavascriptRunner: NSObject {
     func execute(code: String ) -> JSValue?{
         
         
-        var result = self.context.evaluateScript(code)
+        let result = self.context.evaluateScript(code)
         
         /*
         var codeWithoutWhitespaceAndNewline = code.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -61,7 +61,7 @@ class THJavascriptRunner: NSObject {
     func addFunctionsToJSContext()
     {
         self.context.exceptionHandler = { context, exception in
-            println("JS Error: \(exception)")
+            print("JS Error: \(exception)")
         }
         
         // export JS class

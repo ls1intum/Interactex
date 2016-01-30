@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "84410F66CAD3859283F4388870B4C7B8079BC454",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5" : 0,
+    "84410F66CAD3859283F4388870B4C7B8079BC454" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3161CC96-1778-4AF1-BC7D-F734AA9F7663",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5" : "core-plot",
+    "84410F66CAD3859283F4388870B4C7B8079BC454" : "wearablesm2m"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TangoHapps",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TangoHapps.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/repobruegge.in.tum.de:8443\/scm\/wearm2m\/wearablesm2m.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "84410F66CAD3859283F4388870B4C7B8079BC454"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/core-plot\/core-plot.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8B3D884E5CB77CFCF2CE65E14C999AAC1DC843A5"
+    }
+  ]
+}

@@ -26,7 +26,7 @@ class RCFilter: Component,RCFilterJSExports  {
     
     func test(acc:[CGFloat],_ asd:Int) -> [CGFloat]
     {
-        println("success!")
+        print("success!")
         return acc
     }
     

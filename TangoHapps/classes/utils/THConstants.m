@@ -169,7 +169,11 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"deviation.png",
     @"classifier.png",
     @"customComponent.png",
-    @"recorder.png"
+    @"recorder.png",
+    @"adition.png",
+    @"subtraction.png",
+    @"multiplication.png",
+    @"division.png",
 };
 
 float const kLayerMinScale = 0.5f;

@@ -89,6 +89,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THSignalDeviationPaletteItem.h"
 #import "THActivityRecognitionPaletteItem.h"
 #import "THDataRecordingSessionPaletteItem.h"
+#import "THSubtractionOperatorPaletteItem.h"
 
 #import "THCustomComponentPaletteItem.h"
 #import "THCustomComponent.h"
@@ -437,8 +438,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) useDefaultPaletteSections{
     
-    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, self.customComponentsSectionArray, nil];
-    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, self.customComponentsSectionName, nil];
+    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, self.arithmeticSectionArray, self.customComponentsSectionArray, nil];
+    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, self.arithmeticSectionName, self.customComponentsSectionName, nil];
 }
 
 -(void) loadPaletteData {
@@ -495,6 +496,12 @@ You should have received a copy of the GNU General Public License along with thi
                                      nil];
    
     
+    self.arithmeticSectionArray  = [NSMutableArray arrayWithObjects:
+                                     [[THSubtractionOperatorPaletteItem alloc] initWithName:@"subtraction"],
+                                     nil
+                                     ];
+    
+    
     self.customComponentsSectionArray = [NSMutableArray array];
     [self reloadCustomProgrammingObjects];
     
@@ -503,6 +510,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.boardsSectionName = @"Boards";
     self.hardwareSectionName = @"Hardware Elements";
     self.programmingSectionName = @"Programming Elements";
+    self.arithmeticSectionName = @"Arithmetic Elements";
     self.customComponentsSectionName = @"Custom Elements";
 }
 

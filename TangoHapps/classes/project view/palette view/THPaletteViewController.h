@@ -76,6 +76,8 @@ typedef enum {
 @property (nonatomic, strong) NSArray * boardsSectionArray;
 @property (nonatomic, strong) NSArray * hardwareSectionArray;
 @property (nonatomic, strong) NSArray * programmingSectionArray;
+@property (nonatomic, strong) NSArray * arithmeticSectionArray;
+
 @property (nonatomic, strong) NSMutableArray * customComponentsSectionArray;
 
 @property (nonatomic, copy) NSString * clothesSectionName;
@@ -83,6 +85,7 @@ typedef enum {
 @property (nonatomic, copy) NSString * boardsSectionName;
 @property (nonatomic, copy) NSString * hardwareSectionName;
 @property (nonatomic, copy) NSString * programmingSectionName;
+@property (nonatomic, copy) NSString * arithmeticSectionName;
 @property (nonatomic, copy) NSString * customComponentsSectionName;
 
 @property (nonatomic, strong) NSMutableArray * sections;

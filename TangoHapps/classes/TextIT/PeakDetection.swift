@@ -69,7 +69,7 @@ class PeakDetection: Component, PeakDetectionJSExports{
         
         
         for var index = 0; index < arrayData.count; ++index {
-            var current = arrayData[index]
+            let current = arrayData[index]
             
             if (current > maximum)
             {
@@ -101,6 +101,6 @@ class PeakDetection: Component, PeakDetectionJSExports{
                 }
             }
         }
-        println(maxtab)
+        print(maxtab)
     }
 }
