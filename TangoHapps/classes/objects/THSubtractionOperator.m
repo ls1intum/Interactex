@@ -13,15 +13,15 @@
 -(id) init{
     self = [super init];
     if(self){
-        [self loadMapper];
+        [self loadSubtractionOperator];
         
     }
     return self;
 }
 
--(void) loadMapper{
+-(void) loadSubtractionOperator{
     
-    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
+    TFProperty * property = [TFProperty propertyWithName:@"result" andType:kDataTypeFloat];
     self.properties = [NSMutableArray arrayWithObject:property];
     
     
@@ -50,7 +50,7 @@
         _operand1 = [decoder decodeFloatForKey:@"operand1"];
         _operand2 = [decoder decodeFloatForKey:@"operand2"];
         
-        [self loadMapper];
+        [self loadSubtractionOperator];
     }
     return self;
 }
@@ -73,17 +73,26 @@
 
 #pragma mark - Methods
 
--(void) setOperand1:(float)operand1{
-    self.operand1 = operand1;
+-(void) setOperand1:(float) number{
+    operand1Set = YES;
+    _operand1 = number;
+    if(operand2Set){
+        [self operateAndTrigger];
+    }
 }
 
--(void) setOperand2:(float)operand2{
-    self.operand2 = operand2;
+-(void) setOperand2:(float) number{
+    operand2Set = YES;
+    _operand2 = number;
+    if(operand1Set){
+        [self operateAndTrigger];
+    }
 }
 
 -(float) operate{
     
-   return (self.operand1 - self.operand2);
+   self.result = (self.operand1 - self.operand2);
+    return self.result;
 }
 
 -(void) didStartSimulating{

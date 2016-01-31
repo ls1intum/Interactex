@@ -281,6 +281,9 @@
 		9A41471A17E1D3A10061EDF8 /* THProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41471517E1D3A10061EDF8 /* THProjectViewController.m */; };
 		9A41472217E255700061EDF8 /* THTableProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A41472117E255700061EDF8 /* THTableProjectCell.m */; };
 		9A4BD44B1AA0D577000D38B7 /* musicPlayerTrackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4BD44A1AA0D577000D38B7 /* musicPlayerTrackImage.png */; };
+		9A4D4A471C5E676F000FF395 /* THArithmeticOperatorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D4A461C5E676F000FF395 /* THArithmeticOperatorEditable.m */; };
+		9A4D4A531C5E67A6000FF395 /* THArithmeticOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D4A521C5E67A6000FF395 /* THArithmeticOperator.m */; };
+		9A4D4A541C5E67AB000FF395 /* THArithmeticOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D4A521C5E67A6000FF395 /* THArithmeticOperator.m */; };
 		9A4DF91519C9D27700D75C38 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */; };
 		9A4DF91819CAAE8800D75C38 /* THServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DF91719CAAE8800D75C38 /* THServerController.m */; };
 		9A5110151837D23A00EB25FA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5110141837D23A00EB25FA /* CoreMotion.framework */; };
@@ -1247,6 +1250,10 @@
 		9A41472017E255700061EDF8 /* THTableProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTableProjectCell.h; sourceTree = "<group>"; };
 		9A41472117E255700061EDF8 /* THTableProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTableProjectCell.m; sourceTree = "<group>"; };
 		9A4BD44A1AA0D577000D38B7 /* musicPlayerTrackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicPlayerTrackImage.png; sourceTree = "<group>"; };
+		9A4D4A451C5E676F000FF395 /* THArithmeticOperatorEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THArithmeticOperatorEditable.h; sourceTree = "<group>"; };
+		9A4D4A461C5E676F000FF395 /* THArithmeticOperatorEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THArithmeticOperatorEditable.m; sourceTree = "<group>"; };
+		9A4D4A511C5E67A6000FF395 /* THArithmeticOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THArithmeticOperator.h; sourceTree = "<group>"; };
+		9A4D4A521C5E67A6000FF395 /* THArithmeticOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THArithmeticOperator.m; sourceTree = "<group>"; };
 		9A4DF91419C9D27700D75C38 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		9A4DF91619CAAE8800D75C38 /* THServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THServerController.h; sourceTree = "<group>"; };
 		9A4DF91719CAAE8800D75C38 /* THServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THServerController.m; sourceTree = "<group>"; };
@@ -2030,6 +2037,10 @@
 				9A27E3211C5BD3D5000549E5 /* THSubtractionOperator.m */,
 				9A27E3231C5BD405000549E5 /* THSubtractionOperatorEditable.h */,
 				9A27E3241C5BD405000549E5 /* THSubtractionOperatorEditable.m */,
+				9A4D4A451C5E676F000FF395 /* THArithmeticOperatorEditable.h */,
+				9A4D4A461C5E676F000FF395 /* THArithmeticOperatorEditable.m */,
+				9A4D4A511C5E67A6000FF395 /* THArithmeticOperator.h */,
+				9A4D4A521C5E67A6000FF395 /* THArithmeticOperator.m */,
 			);
 			name = Arithmetic;
 			path = ..;
@@ -3615,7 +3626,7 @@
 				CLASSPREFIX = TH;
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Technische Universität München";
 				TargetAttributes = {
 					25B05DAB19FA95C00019E431 = {
@@ -4331,6 +4342,7 @@
 				9AF503C5167B84B40020241C /* THValueProperties.m in Sources */,
 				9AA4D72D18AE16E600A43433 /* THBLELilyPad.m in Sources */,
 				9AD7046C18AA98F00080CD2E /* THGraphTextView.m in Sources */,
+				9A4D4A471C5E676F000FF395 /* THArithmeticOperatorEditable.m in Sources */,
 				9AF503CA167B84B40020241C /* THColorPicker.m in Sources */,
 				9AF503CC167B84B40020241C /* THClientHelper.m in Sources */,
 				9AF503CD167B84B40020241C /* THConstants.m in Sources */,
@@ -4417,6 +4429,7 @@
 				9A84271217564A80009495AB /* TFHelper.m in Sources */,
 				9A9FEB1D17BC06CD004AB8CF /* THWireProperties.m in Sources */,
 				9A56CD0017D885F9001021B2 /* THBoolValue.m in Sources */,
+				9A4D4A531C5E67A6000FF395 /* THArithmeticOperator.m in Sources */,
 				9A56CD4717D886A6001021B2 /* THBoolValueEditable.m in Sources */,
 				9A56CD4D17D88790001021B2 /* THBoolValueProperties.m in Sources */,
 				9A56CD5617D88A2C001021B2 /* THBoolValuePaletteItem.m in Sources */,
@@ -4548,6 +4561,7 @@
 				9A8426B917564A80009495AB /* TFEventActionPair.m in Sources */,
 				9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */,
 				9A8426BC17564A80009495AB /* TFMethod.m in Sources */,
+				9A4D4A541C5E67AB000FF395 /* THArithmeticOperator.m in Sources */,
 				9A8426BF17564A80009495AB /* TFMethodInvokeAction.m in Sources */,
 				9AD704AC18AA9AF70080CD2E /* THGraphViewHelper.m in Sources */,
 				9A5D047218844B50006E9348 /* THSoundEffect.m in Sources */,
@@ -4642,6 +4656,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tum.in.www1.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
@@ -4677,6 +4692,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tum.in.www1.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
@@ -4712,6 +4728,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tum.in.www1.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interactex Designer.app/Interactex Designer";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/libpd/** Frameworks/cocos2d-iphone-classic-2.2/cocos2d/** Frameworks/cocos2d-iphone-classic-2.2/external/** Frameworks/cocos2d-iphone-classic-2.2/CocosDenshion/** Frameworks/CorePlot/**";
@@ -4732,6 +4749,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4794,6 +4812,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -4817,6 +4836,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -4868,6 +4888,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -4889,6 +4910,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -4910,6 +4932,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -4931,6 +4954,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";

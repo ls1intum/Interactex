@@ -7,13 +7,13 @@
 //
 
 #import "THSubtractionOperatorPaletteItem.h"
-#import "THSubtractionOperator.h"
+#import "THSubtractionOperatorEditable.h"
 
 @implementation THSubtractionOperatorPaletteItem
 
 - (void)dropAt:(CGPoint)location {
     
-    THSubtractionOperator * subtractionOperator = [[THSubtractionOperator alloc] init];
+    THSubtractionOperatorEditable * subtractionOperator = [[THSubtractionOperatorEditable alloc] init];
     [self handleObjectDropped:subtractionOperator atLocation:location];
 }
 

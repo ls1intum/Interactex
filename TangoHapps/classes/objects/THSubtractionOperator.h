@@ -6,11 +6,12 @@
 //  Copyright © 2016 Technische Universität München. All rights reserved.
 //
 
-#import "THProgrammingElement.h"
+#import "THArithmeticOperator.h"
 
-@interface THSubtractionOperator : THProgrammingElement
+@interface THSubtractionOperator : THArithmeticOperator
 {
-    
+    BOOL operand1Set;
+    BOOL operand2Set;
 }
 
 @property (nonatomic) float operand1;

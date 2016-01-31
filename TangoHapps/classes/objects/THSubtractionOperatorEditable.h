@@ -6,9 +6,9 @@
 //  Copyright © 2016 Technische Universität München. All rights reserved.
 //
 
-#import "THProgrammingElementEditable.h"
+#import "THArithmeticOperatorEditable.h"
 
-@interface THSubtractionOperatorEditable : THProgrammingElementEditable
+@interface THSubtractionOperatorEditable : THArithmeticOperatorEditable
 
 @property (nonatomic) float operand1;
 @property (nonatomic) float operand2;
