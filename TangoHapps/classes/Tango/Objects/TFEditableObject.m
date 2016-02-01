@@ -56,6 +56,9 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPaletteItem.h"
 #import "THEditableObjectCommonProperties.h"
 
+#import "THHardwareComponentEditableObject.h"
+#import "THProgrammingElementEditable.h"
+
 @implementation TFEditableObject
 
 @dynamic paletteItem;
@@ -111,6 +114,7 @@ static NSInteger objectCount = 1;
         self.z = [decoder decodeIntForKey:@"z"];
         self.simulableObject = [decoder decodeObjectForKey:@"object"];
         self.acceptsConnections = [decoder decodeBoolForKey:@"acceptsConnections"];
+        self.objectName = [decoder decodeObjectForKey:@"objectName"];
     }
     return self;
 }
@@ -125,6 +129,7 @@ static NSInteger objectCount = 1;
     [coder encodeInteger:self.z forKey:@"z"];
     [coder encodeObject:self.simulableObject forKey:@"object"];
     [coder encodeBool:self.acceptsConnections forKey:@"acceptsConnections"];
+    [coder encodeObject:self.objectName forKey:@"objectName"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -434,6 +439,7 @@ static NSInteger objectCount = 1;
     }
 }
 
+
 -(void) addSelectionLabel{
     
     _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter];
@@ -441,6 +447,42 @@ static NSInteger objectCount = 1;
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];
 }
+
+#pragma mark - Name Label
+
+-(void) updateNameLabel{
+    if([self isKindOfClass:[THHardwareComponentEditableObject class]] || [self isKindOfClass:[THProgrammingElementEditable class]]){
+        CGSize const kEditableObjectNameLabelSize = {100,20};
+        
+        if(self.nameLabel){
+            [self.nameLabel removeFromParentAndCleanup:YES];
+        }
+        
+        self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultBoldFont fontSize:11 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+        
+        self.nameLabel.color = ccBLACK;
+        //self.nameLabel.color = ccWHITE;
+        //self.nameLabel.position = ccp(self.contentSize.width/2,-20);
+        self.nameLabel.position = ccp(25,-20);
+        
+        [self addChild:self.nameLabel];
+    }
+}
+
+-(void) setObjectName:(NSString *)objectName{
+    if(![self.objectName isEqualToString:objectName]){
+        _objectName = objectName;
+        
+        [self updateNameLabel];
+    }
+}
+
+-(void) refreshUI{
+
+    [self updateNameLabel];
+}
+
+#pragma mark - Lifecycle
 
 -(void) willStartSimulation {
     self.selected = NO;

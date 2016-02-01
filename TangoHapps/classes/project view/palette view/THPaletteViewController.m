@@ -89,10 +89,14 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THSignalDeviationPaletteItem.h"
 #import "THActivityRecognitionPaletteItem.h"
 #import "THDataRecordingSessionPaletteItem.h"
+#import "THAdditionOperatorPaletteItem.h"
 #import "THSubtractionOperatorPaletteItem.h"
+#import "THMultiplicationOperatorPaletteItem.h"
+#import "THDivisionOperatorPaletteItem.h"
 
 #import "THCustomComponentPaletteItem.h"
 #import "THCustomComponent.h"
+#import "THPeakDetectorPaletteItem.h"
 
 //#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
@@ -493,11 +497,15 @@ You should have received a copy of the GNU General Public License along with thi
                                      [[THStringValuePaletteItem alloc] initWithName:@"string"],
                                      [[THActivityRecognitionPaletteItem alloc] initWithName:@"classifier"],
                                      [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
+                                     [[THPeakDetectorPaletteItem alloc] initWithName:@"peakDetector"],
                                      nil];
    
     
     self.arithmeticSectionArray  = [NSMutableArray arrayWithObjects:
-                                     [[THSubtractionOperatorPaletteItem alloc] initWithName:@"subtraction"],
+                                    [[THAdditionOperatorPaletteItem alloc] initWithName:@"addition"],
+                                    [[THSubtractionOperatorPaletteItem alloc] initWithName:@"subtraction"],
+                                    [[THMultiplicationOperatorPaletteItem alloc] initWithName:@"multiplication"],
+                                    [[THDivisionOperatorPaletteItem alloc] initWithName:@"division"],
                                      nil
                                      ];
     

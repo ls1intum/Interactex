@@ -108,7 +108,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self){
         _pins = [decoder decodeObjectForKey:@"pins"];
         self.attachedToClothe = [decoder decodeObjectForKey:@"attachedToClothe"];
-        _objectName = [decoder decodeObjectForKey:@"objectName"];
         
         [self loadObject];
         [self addPins];
@@ -121,7 +120,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     [coder encodeObject:_pins forKey:@"pins"];
     [coder encodeObject:self.attachedToClothe forKey:@"attachedToClothe"];
-    [coder encodeObject:_objectName forKey:@"objectName"];
 }
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -143,30 +141,6 @@ You should have received a copy of the GNU General Public License along with thi
 }
 
 #pragma mark - Methods
-
--(void) updateNameLabel{
-    
-    CGSize const kEditableObjectNameLabelSize = {100,20};
-    
-    if(self.nameLabel){
-        [self.nameLabel removeFromParentAndCleanup:YES];
-    }
-    
-    self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultBoldFont fontSize:11 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
-    
-    //self.nameLabel.color = ccBLACK;
-    self.nameLabel.color = ccWHITE;
-    self.nameLabel.position = ccp(self.contentSize.width/2,-20);
-    [self addChild:self.nameLabel];
-}
-
--(void) setObjectName:(NSString *)objectName{
-    if(![self.objectName isEqualToString:objectName]){
-        _objectName = objectName;
-        
-        [self updateNameLabel];
-    }
-}
 
 -(void)handleBoardRemoved:(THBoardEditable *)board{
     for (THElementPinEditable * pin in self.pins) {

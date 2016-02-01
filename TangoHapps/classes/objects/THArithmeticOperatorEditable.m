@@ -16,4 +16,14 @@
     return arithmeticOperator.result;
 }
 
+-(void) setOperand1:(float)operand1{
+    THArithmeticOperator * operator = (THArithmeticOperator*) self.simulableObject;
+    operator.operand1 = operand1;
+}
+
+-(void) setOperand2:(float)operand2{
+    THArithmeticOperator * operator = (THArithmeticOperator*) self.simulableObject;
+    operator.operand2 = operand2;
+}
+
 @end

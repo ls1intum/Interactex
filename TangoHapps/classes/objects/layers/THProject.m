@@ -302,18 +302,18 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - Objects name
 
 -(void) checkAddNameToObject:(TFEditableObject*) object{
-    if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
-        THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
-        if(hardwareComponent.objectName == nil || [hardwareComponent.objectName isEqualToString:@""]){
+    //if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
+        TFEditableObject * editableObject = (TFEditableObject*) object;
+        if(editableObject.objectName == nil || [editableObject.objectName isEqualToString:@""]){
             [self addCountForObject:object];
 
             NSString * className = object.description;
-            NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
+            //NSNumber * classCount = [self.objectCountPerClass valueForKey:className];
             
-            hardwareComponent.objectName = [NSString stringWithFormat:@"%@ %ld",className,(long)classCount.integerValue];
+            //editableObject.objectName = [NSString stringWithFormat:@"%@ %ld",className,(long)classCount.integerValue];
+            editableObject.objectName = [NSString stringWithFormat:@"%@",className];
         }
-    }
-
+    //}
 }
 
 -(void) countObjects{

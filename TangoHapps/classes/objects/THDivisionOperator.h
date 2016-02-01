@@ -1,16 +1,13 @@
 //
-//  THSubtractionOperator.h
+//  THDivisionOperator.h
 //  TangoHapps
 //
-//  Created by Juan Haladjian on 29/01/16.
+//  Created by Juan Haladjian on 31/01/16.
 //  Copyright © 2016 Technische Universität München. All rights reserved.
 //
 
 #import "THArithmeticOperator.h"
 
-@interface THSubtractionOperator : THArithmeticOperator
-{
-}
-
+@interface THDivisionOperator : THArithmeticOperator
 
 @end

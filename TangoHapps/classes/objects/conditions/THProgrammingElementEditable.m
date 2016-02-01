@@ -73,6 +73,9 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma mark - World Interaction
 
 -(void) addToLayer:(TFLayer *)layer{
+    
+    [self refreshUI];
+    
     [layer addEditableObject:self];
     
     self.sprite = [CCSprite spriteWithFile:kProgrammingElementSpriteNames[self.programmingElementType]];

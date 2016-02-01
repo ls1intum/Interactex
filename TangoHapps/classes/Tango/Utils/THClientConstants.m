@@ -90,7 +90,7 @@ NSString * const kEventFrequencyChanged = @"frequencyChanged";
 NSString * const kEventValueChanged = @"valueChanged";
 NSString * const kEventDeviationChanged = @"deviationChanged";
 NSString * const kEventOperationFinished = @"operationFinished";
-
+NSString * const kEventPeakDetected = @"peakDetected";
 
 NSString * const kEventStanding = @"standing";
 NSString * const kEventWalking = @"walking";

@@ -25,17 +25,6 @@
     self.programmingElementType = kProgrammingElementTypeSubtraction;
 }
 
--(void) setOperand1:(float)operand1{
-    THSubtractionOperator * operator = (THSubtractionOperator*) self.simulableObject;
-    operator.operand1 = operand1;
-}
-
--(void) setOperand2:(float)operand2{
-    THSubtractionOperator * operator = (THSubtractionOperator*) self.simulableObject;
-    operator.operand2 = operand2;
-}
-
-
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
@@ -55,8 +44,11 @@
 -(id)copyWithZone:(NSZone *)zone {
     THSubtractionOperatorEditable * copy = [super copyWithZone:zone];
     
-    
     return copy;
+}
+
+-(NSString*) description{
+    return @"Subtraction";
 }
 
 @end

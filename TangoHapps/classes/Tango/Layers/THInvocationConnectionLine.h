@@ -54,6 +54,7 @@ typedef enum  THInvocationConnectionLineState : NSUInteger{
 @interface THInvocationConnectionLine : TFEditableObject
 {
     CCSprite * _invocationStateSprite;
+    CCSprite * _arrowSprite;
 }
 
 

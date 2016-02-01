@@ -52,13 +52,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) updateToPinValue;
 
-@property (nonatomic, copy) NSString * objectName;
 @property (nonatomic) THHardwareType type;
 @property (nonatomic, readonly) NSMutableArray * pins;
 @property (nonatomic) BOOL isI2CComponent;
 @property (nonatomic, weak) THClothe * attachedToClothe;
 @property (nonatomic, readonly) THElementPinEditable * mainPin;
-@property (nonatomic, strong) CCLabelTTF * nameLabel;
 
 -(THElementPinEditable*) pinAtPosition:(CGPoint) position;
 -(void) loadPins;

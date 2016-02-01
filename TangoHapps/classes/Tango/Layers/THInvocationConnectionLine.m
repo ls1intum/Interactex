@@ -138,9 +138,12 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
         spriteName = [spriteName stringByAppendingString:@".png"];
         _invocationStateSprite = [CCSprite spriteWithFile:spriteName];
         _invocationStateSprite.position = self.lineCenter;
-        
         [self addChild:_invocationStateSprite];
     }
+    
+    _arrowSprite = [CCSprite spriteWithFile:@"connectionArrow.png"];
+    _arrowSprite.position = self.obj2.position;
+    [self addChild:_arrowSprite];
 }
 
 -(void) setLineCenter:(CGPoint)lineCenter{
@@ -172,11 +175,22 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     CGPoint p2 = self.obj2.center;
     
     ccDrawLine(p1, self.lineCenter);
-    ccDrawLine(self.lineCenter,p2);
     
     ccDrawCircle(p1, 3, 0, 5, NO);
-    ccDrawCircle(p2, 3, 0, 5, NO);
+    _arrowSprite.position = p2;
+    /*
+    float a = (p1.y - p2.y) / (p1.x-p2.x);
+    float b = (p1.y-a) / p1.x;*/
+    CGPoint arrowPos = ccpSub(p2,p1);
+    arrowPos = ccpMult(arrowPos, 0.90);
+    arrowPos = ccpAdd(arrowPos,p1);
+    ccDrawLine(self.lineCenter,arrowPos);
     
+    float angle = ccpAngle(ccp(0,1), ccpSub(p2,p1));
+    _arrowSprite.rotation = CC_RADIANS_TO_DEGREES(angle);
+    _arrowSprite.position = arrowPos;
+//    ccDrawCircle(p2, 3, 0, 5, NO);
+    //ccDrawArc(p2, 5, 10, 10, 5, 0);
     
     TFEditableObject * invocationParameter = (TFEditableObject*)self.action.firstParam.target;
     if(invocationParameter){
@@ -188,6 +202,7 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
 -(void) draw{
     //_invocationStateSprite.position = [self calculateLineCenter];
     _invocationStateSprite.position = self.lineCenter;
+    
     
     [self drawLines];
     

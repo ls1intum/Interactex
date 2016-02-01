@@ -71,7 +71,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @property (nonatomic) CGFloat myRotation;
 @property (nonatomic) CGFloat myScale;
-//@property (nonatomic) CGPoint position;
 @property (nonatomic, readonly) CGPoint absolutePosition;
 @property (nonatomic, readonly) CGPoint center;
 
@@ -83,22 +82,23 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic) BOOL selected;
 @property (nonatomic) BOOL acceptsConnections;
 @property (nonatomic,retain) CCSprite * sprite;
-//@property (nonatomic, readonly) NSMutableArray * connections;
 
 @property (nonatomic, readonly) NSString * shortDescription;
 @property (nonatomic, strong) TFSimulableObject * simulableObject;
 
 @property (nonatomic) BOOL highlighted;
 @property (nonatomic) ccColor4B highlightColor;
-
 @property (nonatomic) BOOL isAccelerometerEnabled;
-
 
 @property (nonatomic, readonly) THPaletteItem * paletteItem;
 
 @property (nonatomic) THPropertiesPropertyController * propertiesPropertyController;
 @property (nonatomic) THEventPropertyController * eventsPropertyController;
 @property (nonatomic) THMethodsPropertyController * methodsPropertyController;
+
+
+@property (nonatomic, copy) NSString * objectName;
+@property (nonatomic, strong) CCLabelTTF * nameLabel;
 
 //transformation
 -(void) displaceBy: (CGPoint) displacement;
@@ -144,9 +144,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 //boxes
 -(void) update;
+-(void) updateNameLabel;
 
 //moving
 -(BOOL) canBeMovedBy:(CGPoint) d;
+
+-(void) refreshUI;
 
 @property (nonatomic, readonly) NSMutableArray * properties;
 @property (nonatomic, strong) NSMutableArray * events;
