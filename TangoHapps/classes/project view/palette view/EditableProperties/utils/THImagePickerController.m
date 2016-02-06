@@ -162,7 +162,7 @@ CGSize const kImagePickerImageSize = {60,60};
         _currentPos.y += frame.size.height + kImagePickerPadding;
     }
     
-    self.imagesContainer.contentSize = CGSizeMake(self.imagesContainer.contentSize.width, _currentPos.y - 10);
+    self.imagesContainer.contentSize = CGSizeMake(self.imagesContainer.contentSize.width, _currentPos.y - 10 + 100);
 }
 
 

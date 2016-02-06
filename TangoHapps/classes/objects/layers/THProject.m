@@ -848,7 +848,7 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     
-    if([arr count] != 0) return arr.lastObject;
+    if([arr count] != 0) return arr.firstObject;
     
     if(self.iPhone){
         if([self.iPhone.currentView testPoint:location]){
@@ -877,11 +877,11 @@ enum zPositions{
 
 -(NSMutableArray*) allObjects{
     NSMutableArray * allObjects = [NSMutableArray arrayWithArray:self.boards];
-    [allObjects addObjectsFromArray:self.clothes];
     [allObjects addObjectsFromArray:self.visualProgrammingObjects];
     [allObjects addObjectsFromArray:self.iPhoneObjects];
     [allObjects addObjectsFromArray:self.hardwareComponents];
     [allObjects addObjectsFromArray:self.otherHardwareComponents];
+    [allObjects addObjectsFromArray:self.clothes];
 
     return allObjects;
 }

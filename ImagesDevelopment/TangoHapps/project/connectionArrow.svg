@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.5 r10040"
    sodipodi:docname="connectionArrow.svg"
-   inkscape:export-filename="/Users/avenix/Desktop/connectionArrow@2x.png"
-   inkscape:export-xdpi="21.69702"
-   inkscape:export-ydpi="21.69702">
+   inkscape:export-filename="/Users/avenix/Desktop/connectionArrow.png"
+   inkscape:export-xdpi="10.932275"
+   inkscape:export-ydpi="10.932275">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -35,8 +35,8 @@
      showgrid="false"
      inkscape:window-width="850"
      inkscape:window-height="649"
-     inkscape:window-x="235"
-     inkscape:window-y="83"
+     inkscape:window-x="288"
+     inkscape:window-y="113"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -55,7 +55,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:none;stroke:#646464;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#646464;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 325.71429,575.21932 51.42857,-140 45.71428,142.85714"
        id="path2987"
        inkscape:connector-curvature="0"

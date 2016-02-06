@@ -186,8 +186,8 @@ NSString * const invocationConnectionLineSpriteNames[THInvocationConnectionLineN
     arrowPos = ccpAdd(arrowPos,p1);
     ccDrawLine(self.lineCenter,arrowPos);
     
-    float angle = ccpAngle(ccp(0,1), ccpSub(p2,p1));
-    _arrowSprite.rotation = CC_RADIANS_TO_DEGREES(angle);
+    float angle = ccpAngleSigned(ccp(0,1), ccpSub(p2,p1));
+    _arrowSprite.rotation = CC_RADIANS_TO_DEGREES(-angle);
     _arrowSprite.position = arrowPos;
 //    ccDrawCircle(p2, 3, 0, 5, NO);
     //ccDrawArc(p2, 5, 10, 10, 5, 0);
