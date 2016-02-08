@@ -98,14 +98,6 @@ The Interactex Applications are constructed by drag and dropping objects. Here i
 | UI Element | Name | Description | Methods |
 | ———————————|—————-|—————————————|—————-———|
 ![](Documentation/icons/ui/ibutton.png)     | Button          | A button that can be pressed. Generates events when pressed and when released.	| 
-![](Documentation/icons/ui/label.png)       | Label           | Displays text and numbers.	| setText
-![](Documentation/icons/ui/iswitch.png)     | Switch          | Generates events when switched on or off.	| 
-![](Documentation/icons/ui/slider.png)      | Slider          | Delivers a value which can be used as input for other objects (ex. Frequency of a buzzer).	| 
-![](Documentation/icons/ui/touchpad.png)    | Touchpad        | Generates events when user performs following gestures on it: tap, double tap, pinch, pan, long press.	| 
-![](Documentation/icons/ui/musicplayer.png) | Music Player    | Accesses user’s music library and offers methods such as: play, stop, next and previous.	| next, previous, play, pause
-![](Documentation/icons/ui/imageview.png)   | Image View      | Displays an image.	| 
-![](Documentation/icons/ui/contactBook.png) | Contact Book    | Accesses user’s contact book and offers functionality to iterate through contacts and make calls.	| next, previous, call
-![](Documentation/icons/ui/monitor.png)     | Monitor         | Displays sensor readings over time. At the moment it offers two methods: setValue1 and setValue2. Value1 will be displayed as a blue line and Value2 red.	| setX, setY
 
 
 Hardware Elements | Name | Description | Methods |
