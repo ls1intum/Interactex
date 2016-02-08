@@ -95,8 +95,8 @@ An event such as the valueChanged event of the slider delivers the value propert
 The Interactex Applications are constructed by drag and dropping objects. Here is a list of the objects available:
 
 
-UI Element | Name | Description | Methods |
-:---------:| ---- |:----------- | ——————— |
+| UI Element | Name | Description | Methods |
+| ———————————|—————-|—————————————|—————-———|
 ![](Documentation/icons/ui/ibutton.png)     | Button          | A button that can be pressed. Generates events when pressed and when released.	| 
 ![](Documentation/icons/ui/label.png)       | Label           | Displays text and numbers.	| setText
 ![](Documentation/icons/ui/iswitch.png)     | Switch          | Generates events when switched on or off.	| 
