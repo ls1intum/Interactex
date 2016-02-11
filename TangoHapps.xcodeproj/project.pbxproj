@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		026C66C51A77BF2400860E66 /* palette_recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 026C66C31A77BF2400860E66 /* palette_recording.png */; };
-		026C66C61A77BF2400860E66 /* palette_recording@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 026C66C41A77BF2400860E66 /* palette_recording@2x.png */; };
-		026C66C91A77BFAA00860E66 /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 026C66C71A77BFAA00860E66 /* recording.png */; };
-		026C66CA1A77BFAA00860E66 /* recording@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 026C66C81A77BFAA00860E66 /* recording@2x.png */; };
 		02D4E0D91A796E520094F377 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D71A796E520094F377 /* send@2x.png */; };
 		02D4E0DA1A796E520094F377 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D4E0D81A796E520094F377 /* send.png */; };
 		02D809B21A80CC4E009DDB4C /* threshold.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D809B01A80CC4E009DDB4C /* threshold.png */; };
@@ -978,10 +974,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		026C66C31A77BF2400860E66 /* palette_recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_recording.png; sourceTree = "<group>"; };
-		026C66C41A77BF2400860E66 /* palette_recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_recording@2x.png"; sourceTree = "<group>"; };
-		026C66C71A77BFAA00860E66 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
-		026C66C81A77BFAA00860E66 /* recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recording@2x.png"; sourceTree = "<group>"; };
 		02D4E0D71A796E520094F377 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		02D4E0D81A796E520094F377 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
 		02D809B01A80CC4E009DDB4C /* threshold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threshold.png; sourceTree = "<group>"; };
@@ -2406,8 +2398,6 @@
 				9A41451117DE7A060061EDF8 /* palette_number@2x.png */,
 				9A4144FE17DE7A060061EDF8 /* palette_potentiometer.png */,
 				9A4144FF17DE7A060061EDF8 /* palette_potentiometer@2x.png */,
-				026C66C31A77BF2400860E66 /* palette_recording.png */,
-				026C66C41A77BF2400860E66 /* palette_recording@2x.png */,
 				9A41450017DE7A060061EDF8 /* palette_slider.png */,
 				9A41450117DE7A060061EDF8 /* palette_slider@2x.png */,
 				9A41450217DE7A060061EDF8 /* palette_sound.png */,
@@ -2432,8 +2422,6 @@
 				9A41451517DE7A060061EDF8 /* potentiometer@2x.png */,
 				9A82EB741B7DFA4F00567421 /* potentiometerArm.png */,
 				9A82EB751B7DFA4F00567421 /* potentiometerArm@2x.png */,
-				026C66C71A77BFAA00860E66 /* recording.png */,
-				026C66C81A77BFAA00860E66 /* recording@2x.png */,
 				9A41451617DE7A060061EDF8 /* sewed.png */,
 				9A41451717DE7A060061EDF8 /* sewed@2x.png */,
 				9A41451817DE7A060061EDF8 /* sound.png */,
@@ -4007,7 +3995,6 @@
 				251F678519C4A1A300EF9807 /* hideVPmode@2x.png in Resources */,
 				9A41457717DE7A060061EDF8 /* grouper@2x.png in Resources */,
 				25981C8519D6BCC600DE4131 /* zoomPlus@2x.png in Resources */,
-				026C66C91A77BFAA00860E66 /* recording.png in Resources */,
 				9A325C831AB778790018687E /* jacke@2x.png in Resources */,
 				9A41457917DE7A060061EDF8 /* iphone4.png in Resources */,
 				9A41457B17DE7A060061EDF8 /* iphone4@2x.png in Resources */,
@@ -4032,10 +4019,8 @@
 				9A41459917DE7A060061EDF8 /* music@2x.png in Resources */,
 				9A27E3411C5CE888000549E5 /* palette_division@2x.png in Resources */,
 				9A9CF8FF1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png in Resources */,
-				026C66CA1A77BFAA00860E66 /* recording@2x.png in Resources */,
 				257730331A17858800F038D1 /* segDivider.png in Resources */,
 				9A41459B17DE7A060061EDF8 /* palette_boolean.png in Resources */,
-				026C66C51A77BF2400860E66 /* palette_recording.png in Resources */,
 				9A41459D17DE7A060061EDF8 /* palette_boolean@2x.png in Resources */,
 				9AB984E71AB611AC00A6AB83 /* palette_deviation@2x.png in Resources */,
 				9A27E3381C5CE888000549E5 /* addition.png in Resources */,
@@ -4211,7 +4196,6 @@
 				9AB7789917E6C25700F82424 /* circleEmpty.png in Resources */,
 				9AB7789B17E6C25700F82424 /* circleFilled.png in Resources */,
 				9AB7789D17E6C25700F82424 /* squareEmpty.png in Resources */,
-				026C66C61A77BF2400860E66 /* palette_recording@2x.png in Resources */,
 				9AB7789F17E6C25700F82424 /* squareFilled.png in Resources */,
 				9AB778A117E6C25700F82424 /* starEmpty.png in Resources */,
 				9ABC278E1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */,
