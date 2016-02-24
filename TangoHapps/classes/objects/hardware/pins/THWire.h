@@ -70,6 +70,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) addNodeInLongestEdge;
 -(void) removeNode:(THWireNode*) node;
 -(void) removeAllNodes;
+-(NSArray*) wireNodesNextToNode:(THWireNode*) node;
 -(THWireNode*) nodeAtPosition:(CGPoint) position;
 
 @end

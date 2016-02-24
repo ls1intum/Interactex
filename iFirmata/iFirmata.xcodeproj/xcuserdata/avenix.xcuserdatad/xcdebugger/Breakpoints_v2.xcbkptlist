@@ -59,6 +59,38 @@
             endingLineNumber = "282"
             landmarkName = "-firmataController:didReceiveAnalogMessageOnChannel:value:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[IFPinsController firmataController:didReceiveAnalogMessageOnChannel:value:]"
+                  moduleName = "BLEFirmata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avenix/Workspaces/wearablesm2m/iFirmata/iFirmata/code/IFPinsController.m"
+                  timestampString = "477849037.377042"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[IFPinsController firmataController:didReceiveAnalogMessageOnChannel:value:]"
+                  moduleName = "BLEFirmata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avenix/Workspaces/wearablesm2m/iFirmata/iFirmata/code/IFPinsController.m"
+                  timestampString = "477849037.377229"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

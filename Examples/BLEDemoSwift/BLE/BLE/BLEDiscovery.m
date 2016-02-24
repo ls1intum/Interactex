@@ -107,10 +107,7 @@ static BLEDiscovery * sharedInstance;
         if (!uuid)
             continue;
         
-        if(self.connectedService != nil) {
-            [centralManager retrieveConnectedPeripheralsWithServices:@[self.connectedService]];
-        }
-        
+        [centralManager retrievePeripheralsWithIdentifiers:[NSArray arrayWithObject:(__bridge id)uuid]];
         CFRelease(uuid);
     }
 }
@@ -219,7 +216,7 @@ static BLEDiscovery * sharedInstance;
 #pragma mark Connection/Disconnection
 
 -(void) connectPeripheral:(CBPeripheral*)peripheral {
-	if (peripheral.state != CBPeripheralStateConnected){
+	if (!(peripheral.state == CBPeripheralStateConnected)) {
         _currentPeripheral = peripheral;
 		[centralManager connectPeripheral:peripheral options:nil];
 	}
@@ -283,11 +280,7 @@ static BLEDiscovery * sharedInstance;
 		case CBCentralManagerStatePoweredOn: {
 			pendingInit = NO;
 			[self loadSavedDevices];
-            
-            if(self.connectedService != nil) {
-                [centralManager retrieveConnectedPeripheralsWithServices:@[self.connectedService]];
-            }
-            
+			//[centralManager retrieveConnectedPeripheralsWithServices:[NSArray arrayWithObject:self.connectedService]];
 			[self.discoveryDelegate discoveryDidRefresh];
 			break;
 		}

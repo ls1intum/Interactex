@@ -64,7 +64,7 @@ const NSInteger IFDiscoveryTime = 3;
         [self.table deselectRowAtIndexPath:self.table.indexPathForSelectedRow animated:NO];
     }
     
-    if([BLEDiscovery sharedInstance].currentPeripheral.isConnected){
+    if([BLEDiscovery sharedInstance].currentPeripheral.state == CBPeripheralStateConnected){
         [self disconnect];
     }
     
@@ -81,7 +81,7 @@ const NSInteger IFDiscoveryTime = 3;
 
     CBPeripheral * peripheral = [[BLEDiscovery sharedInstance].foundPeripherals objectAtIndex:indexPath.row];
     
-    if(!peripheral.isConnected){
+    if(peripheral.state != CBPeripheralStateConnected){
         [[BLEDiscovery sharedInstance] connectPeripheral:peripheral];
         
         IFDeviceCell * cell = (IFDeviceCell*) [self.table cellForRowAtIndexPath:indexPath];

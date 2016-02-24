@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-               BuildableName = "BLEFirmata.app"
-               BlueprintName = "iFirmata"
-               ReferencedContainer = "container:iFirmata.xcodeproj">
+               BlueprintIdentifier = "9A94F89A1C77289200395311"
+               BuildableName = "BLEDemoDemo.app"
+               BlueprintName = "BLEDemoDemo"
+               ReferencedContainer = "container:BLEDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-            BuildableName = "BLEFirmata.app"
-            BlueprintName = "iFirmata"
-            ReferencedContainer = "container:iFirmata.xcodeproj">
+            BlueprintIdentifier = "9A94F89A1C77289200395311"
+            BuildableName = "BLEDemoDemo.app"
+            BlueprintName = "BLEDemoDemo"
+            ReferencedContainer = "container:BLEDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-            BuildableName = "BLEFirmata.app"
-            BlueprintName = "iFirmata"
-            ReferencedContainer = "container:iFirmata.xcodeproj">
+            BlueprintIdentifier = "9A94F89A1C77289200395311"
+            BuildableName = "BLEDemoDemo.app"
+            BlueprintName = "BLEDemoDemo"
+            ReferencedContainer = "container:BLEDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AEE592E177CA8AB00C6D5E8"
-            BuildableName = "BLEFirmata.app"
-            BlueprintName = "iFirmata"
-            ReferencedContainer = "container:iFirmata.xcodeproj">
+            BlueprintIdentifier = "9A94F89A1C77289200395311"
+            BuildableName = "BLEDemoDemo.app"
+            BlueprintName = "BLEDemoDemo"
+            ReferencedContainer = "container:BLEDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

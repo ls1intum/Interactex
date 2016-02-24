@@ -71,6 +71,10 @@ You should have received a copy of the GNU General Public License along with thi
     return ccpDistance(global, point) < kWireNodeRadius;
 }
 
+-(NSString*) description{
+    return @"Wire Node";
+}
+
 @end
 
 @implementation THWire
@@ -390,6 +394,33 @@ You should have received a copy of the GNU General Public License along with thi
         }
     }
     return nil;
+}
+
+-(NSArray*) wireNodesNextToNode:(THWireNode*) node{
+    
+    
+    NSInteger index = [self.nodes indexOfObject:node];
+    
+    THWireNode * firstNode;
+    THWireNode * secondNode;
+    
+    if(index == 0){
+        firstNode = [THWireNode node];
+        firstNode.position = self.p1;
+    } else {
+        firstNode = [self.nodes objectAtIndex:index-1];
+    }
+    
+    if(index == self.nodes.count -1){
+        
+        secondNode = [THWireNode node];
+        secondNode.position = self.p2;
+    } else {
+        
+        secondNode = [self.nodes objectAtIndex:index+1];
+    }
+    
+    return @[firstNode,secondNode];
 }
 
 #pragma mark - Layer

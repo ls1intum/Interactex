@@ -673,6 +673,63 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+
+-(BOOL) shouldSnapWireToXPosition:(CGPoint) position{
+    
+    const float kSnapDistance = 10;
+    
+    THWireNode * node = (THWireNode*) self.currentObject;
+    
+    NSArray * nodes = [node.wire wireNodesNextToNode:node];
+    THWireNode * firstNode = nodes[0];
+    THWireNode * secondNode = nodes[1];
+    
+    
+    float xDiff1 = firstNode.position.x - position.x + self.zoomableLayer.position.x;
+    float xDiff2 = secondNode.position.x - position.x + self.zoomableLayer.position.x;
+    
+    
+    if(fabs(xDiff1) <= kSnapDistance) {
+        currentSnapPosition.x = firstNode.position.x;
+        return YES;
+    }
+    
+    if(fabs(xDiff2) <= kSnapDistance) {
+        currentSnapPosition.x = secondNode.position.x;
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(BOOL) shouldSnapWireToYPosition:(CGPoint) position {
+    
+    const float kSnapDistance = 10;
+    
+    THWireNode * node = (THWireNode*) self.currentObject;
+    
+    NSArray * nodes = [node.wire wireNodesNextToNode:node];
+    THWireNode * firstNode = nodes[0];
+    THWireNode * secondNode = nodes[1];
+    
+    float yDiff1 = firstNode.position.y - position.y + self.zoomableLayer.position.y;
+    float yDiff2 = secondNode.position.y - position.y + self.zoomableLayer.position.y;
+    
+    //NSLog(@"%f %f",yDiff1,yDiff2);
+    
+    if(fabs(yDiff1) <= kSnapDistance) {
+        currentSnapPosition.y = firstNode.position.y;
+        return YES;
+    }
+    
+    if(fabs(yDiff2) <= kSnapDistance) {
+        currentSnapPosition.y = secondNode.position.y;
+        return YES;
+    }
+    
+    return NO;
+}
+
 -(void) handleSingleTouchMove:(UIPanGestureRecognizer*) sender{
     
     CGPoint location = [sender locationInView:sender.view];
@@ -725,8 +782,25 @@ You should have received a copy of the GNU General Public License along with thi
             
             if(self.currentObject){
                 
-                [self moveCurrentObject:d];
-                [self checkCurrentObjectInsideOutsidePalette:location];
+                BOOL isWireNode = [self.currentObject isKindOfClass:[THWireNode class]];
+
+                if(isWireNode){
+
+                    if([self shouldSnapWireToXPosition:location]){
+                        self.currentObject.position = ccp(currentSnapPosition.x,self.currentObject.position.y);
+                        d.x = 0;
+                    }
+                    
+                    if([self shouldSnapWireToYPosition:location]){
+                        self.currentObject.position = ccp(self.currentObject.position.x, currentSnapPosition.y);
+                        d.y = 0;
+                    }
+                }
+                
+
+                    [self moveCurrentObject:d];
+                    [self checkCurrentObjectInsideOutsidePalette:location];
+
                 
             } else if(_currentPaletteItem){
                 

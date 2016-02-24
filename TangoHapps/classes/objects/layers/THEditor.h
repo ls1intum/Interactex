@@ -87,6 +87,8 @@ typedef enum {
     
     NSMutableArray * attachedGestureObjects;
     NSMutableArray * attachedGestureObjectsPositions;
+    
+    CGPoint currentSnapPosition;
 }
 
 @property (nonatomic, readonly) BOOL isLilypadMode;

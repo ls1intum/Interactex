@@ -72,7 +72,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(self.firmataPinsController.analogPins.count == 0 && self.firmataPinsController.digitalPins.count == 0){
 
-        if([BLEDiscovery sharedInstance].currentPeripheral.isConnected){
+        if([BLEDiscovery sharedInstance].currentPeripheral.state == CBPeripheralStateConnected){
             [self.firmataPinsController.firmataController sendFirmwareRequest];
         }
     }
