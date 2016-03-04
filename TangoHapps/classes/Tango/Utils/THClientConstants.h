@@ -77,7 +77,7 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypeMPU6050
 }THHardwareType;
 
-#define kNumProgrammingElementTypes 17
+#define kNumProgrammingElementTypes 27
 
 typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeMapper,
@@ -96,7 +96,17 @@ typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeAddition,
     kProgrammingElementTypeSubtraction,//15
     kProgrammingElementTypeMultiplication,
-    kProgrammingElementTypeDivision
+    kProgrammingElementTypeDivision,
+    kProgrammingElementTypeModulo,
+    kProgrammingElementTypeWindow,
+    kProgrammingElementTypeBigger,//20
+    kProgrammingElementTypeSmaller,
+    kProgrammingElementTypeBiggerEqual,
+    kProgrammingElementTypeSmallerEqual,
+    kProgrammingElementTypeEqual,
+    kProgrammingElementTypeNotEqual, //25
+        kProgrammingElementTypeAnd,
+        kProgrammingElementTypeOr
 } THProgrammingElementType;
 
 #define kNumPinTypes 4
@@ -194,6 +204,7 @@ extern NSString * const kEventFrequencyChanged;
 extern NSString * const kEventValueChanged;
 extern NSString * const kEventDeviationChanged;
 extern NSString * const kEventOperationFinished;
+extern NSString * const kEventComparisonFinished;
 extern NSString * const kEventPeakDetected;
 
 extern NSString * const kEventStanding;
@@ -235,6 +246,7 @@ extern NSString * const KEventiBeaconRangingStatusChanged;
 extern NSString * const kEventPressureChanged;
 
 extern NSString * const kEventNameStopped;
+extern NSString * const kEventWindowFull;
 
 //methods
 extern NSString * const kMethodSetIntensity;

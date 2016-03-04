@@ -45,11 +45,13 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THPalette.h"
 #import "THDraggedPaletteItem.h"
 #import "THCustomPaletteItem.h"
+#import "THProjectViewController.h"
 
 #import "THBLELilyPadPaletteItem.h"
 #import "THLilypadPaletteItem.h"
 #import "THSimpleLilypadPaletteItem.h"
 
+//hardware
 #import "THLedPaletteItem.h"
 #import "THButtonPaletteItem.h"
 #import "THBuzzerPaletteItem.h"
@@ -63,6 +65,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THAccelerometerPaletteItem.h"
 #import "THMPU6050PaletteItem.h"
 
+//ui widgets
 #import "THiPhonePaletteItem.h"
 #import "THiPhoneButtonPaletteItem.h"
 #import "THLabelPaletteItem.h"
@@ -74,29 +77,48 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THContactBookPaletteItem.h"
 #import "THMonitorPaletteItem.h"
 
+//textiles
 #import "THClothePaletteItem.h"
 
-#import "THComparatorPaletteItem.h"
-#import "THGrouperPaletteItem.h"
+//variables
 #import "THValuePaletteItem.h"
-#import "THMapperPaletteItem.h"
-#import "THProjectViewController.h"
-#import "THTimerPaletteItem.h"
-#import "THSoundPaletteItem.h"
-#import "THTabbarViewController.h"
 #import "THBoolValuePaletteItem.h"
 #import "THStringValuePaletteItem.h"
-#import "THSignalDeviationPaletteItem.h"
-#import "THActivityRecognitionPaletteItem.h"
-#import "THDataRecordingSessionPaletteItem.h"
+
+//comparators
+#import "THBiggerOperatorPaletteItem.h"
+#import "THBiggerEqualOperatorPaletteItem.h"
+#import "THSmallerOperatorPaletteItem.h"
+#import "THSmallerEqualOperatorPaletteItem.h"
+#import "THEqualOperatorPaletteItem.h"
+#import "THNotEqualOperatorPaletteItem.h"
+
+//logical operators
+#import "THAndOperatorPaletteItem.h"
+#import "THOrOperatorPaletteItem.h"
+
+//arithmetic
 #import "THAdditionOperatorPaletteItem.h"
 #import "THSubtractionOperatorPaletteItem.h"
 #import "THMultiplicationOperatorPaletteItem.h"
 #import "THDivisionOperatorPaletteItem.h"
+#import "THModuloOperatorPaletteItem.h"
 
 #import "THCustomComponentPaletteItem.h"
 #import "THCustomComponent.h"
+
+//signal processing
+#import "THSignalDeviationPaletteItem.h"
+#import "THActivityRecognitionPaletteItem.h"
 #import "THPeakDetectorPaletteItem.h"
+#import "THWindowPaletteItem.h"
+
+//utils
+#import "THDataRecordingSessionPaletteItem.h"
+#import "THMapperPaletteItem.h"
+#import "THTimerPaletteItem.h"
+#import "THSoundPaletteItem.h"
+#import "THTabbarViewController.h"
 
 //#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
@@ -442,8 +464,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) useDefaultPaletteSections{
     
-    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.programmingSectionArray, self.arithmeticSectionArray, self.customComponentsSectionArray, nil];
-    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.programmingSectionName, self.arithmeticSectionName, self.customComponentsSectionName, nil];
+    self.sections = [NSMutableArray arrayWithObjects:self.clothesSectionArray, self.uiSectionArray, self.hardwareSectionArray, self.variablesSectionArray, self.comparisonOperatorsArray, self.arithmeticSectionArray, self.signalProcessingArray,self.programmingSectionArray, self.customComponentsSectionArray, nil];
+    self.sectionNames = [NSMutableArray arrayWithObjects: self.clothesSectionName, self.uiSectionArrayName, self.hardwareSectionName, self.variablesSectionName,  self.comparisonOperatorsSectionName, self.arithmeticSectionName, self.signalProcessingName,self.programmingSectionName, self.customComponentsSectionName, nil];
 }
 
 -(void) loadPaletteData {
@@ -485,40 +507,58 @@ You should have received a copy of the GNU General Public License along with thi
                                  [[THMPU6050PaletteItem alloc] initWithName:@"MPU-6050"],
                                  nil];
     
-    self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
-                                     [[THComparatorPaletteItem alloc] initWithName:@"comparator"],
-                                     [[THGrouperPaletteItem alloc] initWithName:@"grouper"],
-                                     [[THMapperPaletteItem alloc] initWithName:@"mapper"],
-                                     [[THTimerPaletteItem alloc] initWithName:@"timer"],
-                                     [[THSoundPaletteItem alloc] initWithName:@"sound"],
-                                     [[THDataRecordingSessionPaletteItem alloc] initWithName:@"recorder"],
-                                     [[THValuePaletteItem alloc] initWithName:@"number"],
-                                     [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
-                                     [[THStringValuePaletteItem alloc] initWithName:@"string"],
-                                     [[THActivityRecognitionPaletteItem alloc] initWithName:@"classifier"],
-                                     [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
-                                     [[THPeakDetectorPaletteItem alloc] initWithName:@"peakDetector"],
-                                     nil];
+    self.variablesSectionArray = [NSMutableArray arrayWithObjects:
+                                  [[THValuePaletteItem alloc] initWithName:@"number"],
+                                  [[THBoolValuePaletteItem alloc] initWithName:@"boolean"],
+                                  [[THStringValuePaletteItem alloc] initWithName:@"string"], nil];
    
+    
+    self.comparisonOperatorsArray = [NSMutableArray arrayWithObjects:
+                                     [[THBiggerOperatorPaletteItem alloc] initWithName:@"bigger"],
+                                     [[THBiggerEqualOperatorPaletteItem alloc] initWithName:@"biggerEqual"],
+                                     [[THSmallerOperatorPaletteItem alloc] initWithName:@"smaller"],
+                                     [[THSmallerEqualOperatorPaletteItem alloc] initWithName:@"smallerEqual"],
+                                     [[THEqualOperatorPaletteItem alloc] initWithName:@"equal"],
+                                     [[THNotEqualOperatorPaletteItem alloc] initWithName:@"notEqual"],
+                                     [[THAndOperatorPaletteItem alloc] initWithName:@"and"],
+                                     [[THOrOperatorPaletteItem alloc] initWithName:@"or"],
+                                     nil];
     
     self.arithmeticSectionArray  = [NSMutableArray arrayWithObjects:
                                     [[THAdditionOperatorPaletteItem alloc] initWithName:@"addition"],
                                     [[THSubtractionOperatorPaletteItem alloc] initWithName:@"subtraction"],
                                     [[THMultiplicationOperatorPaletteItem alloc] initWithName:@"multiplication"],
                                     [[THDivisionOperatorPaletteItem alloc] initWithName:@"division"],
+                                    [[THModuloOperatorPaletteItem alloc] initWithName:@"modulo"],
                                      nil
                                      ];
     
+    self.signalProcessingArray  = [NSMutableArray arrayWithObjects:
+                                   [[THWindowPaletteItem alloc] initWithName:@"window"],
+                                   [[THActivityRecognitionPaletteItem alloc] initWithName:@"classifier"],
+                                   [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
+                                   [[THPeakDetectorPaletteItem alloc] initWithName:@"peakDetector"],
+                                   nil];
+    
+    self.programmingSectionArray  = [NSMutableArray arrayWithObjects:
+                                     [[THMapperPaletteItem alloc] initWithName:@"mapper"],
+                                     [[THTimerPaletteItem alloc] initWithName:@"timer"],
+                                     [[THSoundPaletteItem alloc] initWithName:@"sound"],
+                                     [[THDataRecordingSessionPaletteItem alloc] initWithName:@"recorder"],
+                                     nil];
     
     self.customComponentsSectionArray = [NSMutableArray array];
     [self reloadCustomProgrammingObjects];
     
     self.clothesSectionName = @"Textiles";
-    self.uiSectionArrayName = @"UI Elements";
+    self.uiSectionArrayName = @"UI Widgets";
     self.boardsSectionName = @"Boards";
-    self.hardwareSectionName = @"Hardware Elements";
-    self.programmingSectionName = @"Programming Elements";
-    self.arithmeticSectionName = @"Arithmetic Elements";
+    self.hardwareSectionName = @"Hardware Devices";
+    self.variablesSectionName = @"Variables";
+    self.programmingSectionName = @"Utilities";
+    self.signalProcessingName = @"Signal Processing";
+    self.comparisonOperatorsSectionName = @"Comparison Operators";
+        self.arithmeticSectionName = @"Arithmetic Operators";
     self.customComponentsSectionName = @"Custom Elements";
 }
 

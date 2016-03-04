@@ -74,8 +74,6 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THBoard.h"
 #import "THElementPinEditable.h"
 
-#import "THComparisonConditionEditable.h"
-
 @implementation THProject
 
 #pragma mark - Static Methods

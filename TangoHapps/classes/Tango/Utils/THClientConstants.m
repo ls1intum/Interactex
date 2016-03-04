@@ -90,6 +90,7 @@ NSString * const kEventFrequencyChanged = @"frequencyChanged";
 NSString * const kEventValueChanged = @"valueChanged";
 NSString * const kEventDeviationChanged = @"deviationChanged";
 NSString * const kEventOperationFinished = @"operationFinished";
+NSString * const kEventComparisonFinished = @"comparisonFinished";
 NSString * const kEventPeakDetected = @"peakDetected";
 
 NSString * const kEventStanding = @"standing";
@@ -136,6 +137,7 @@ NSString * const kEventPressureChanged = @"pressureChanged";
 
 NSString * const kEventNameStopped = @"stopped";
 
+NSString * const kEventWindowFull = @"windowFull";
 //methods
 
 
