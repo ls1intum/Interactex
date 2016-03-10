@@ -40,7 +40,6 @@
  
  */
 
-#import "THProgrammingElementEditable.h"
 #import "THLogicalOperator.h"
 
 @interface THAndOperator : THLogicalOperator

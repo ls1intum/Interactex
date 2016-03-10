@@ -14,7 +14,10 @@
    id="svg3843"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="New document 4">
+   sodipodi:docname="mean.svg"
+   inkscape:export-filename="/Users/avenix/Desktop/mean.png"
+   inkscape:export-xdpi="9.0927382"
+   inkscape:export-ydpi="9.0927382">
   <defs
      id="defs3845" />
   <sodipodi:namedview
@@ -30,10 +33,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="861"
-     inkscape:window-height="744"
-     inkscape:window-x="130"
-     inkscape:window-y="82"
+     inkscape:window-width="1151"
+     inkscape:window-height="791"
+     inkscape:window-x="1895"
+     inkscape:window-y="126"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3848">
@@ -53,15 +56,10 @@
      id="layer1"
      transform="translate(0,-52.362183)">
     <path
-       style="fill:none;stroke:#ff8e00;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="M 46.876236,842.6288 C 125.65169,819.24432 247.91188,669.79713 245.0925,534.47011 234.93619,46.976607 758.81426,49.666679 752.74509,540.76524 c -1.79415,145.17628 135.6034,263.38412 194.6644,301.86356"
+       style="fill:none;stroke:#ff8e00;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 24.019093,836.91451 C 116.96035,822.97392 208.08162,711.27065 290.80679,483.04153 438.05196,76.809238 564.29603,69.212633 715.60223,483.62238 789.158,685.08293 886.97268,846.91288 981.6952,848.34309"
        id="path3851"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cssc" />
-    <path
-       style="fill:none;stroke:#ff8e00;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 494.28572,86.647891 0,657.142859"
-       id="path4361"
-       inkscape:connector-curvature="0" />
   </g>
 </svg>

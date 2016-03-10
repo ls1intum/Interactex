@@ -16,8 +16,8 @@
    inkscape:version="0.48.5 r10040"
    sodipodi:docname="peakDetector.svg"
    inkscape:export-filename="/Users/avenix/Desktop/peakDetector.png"
-   inkscape:export-xdpi="21.69702"
-   inkscape:export-ydpi="21.69702">
+   inkscape:export-xdpi="18.247896"
+   inkscape:export-ydpi="18.247896">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -35,8 +35,8 @@
      showgrid="false"
      inkscape:window-width="1253"
      inkscape:window-height="776"
-     inkscape:window-x="171"
-     inkscape:window-y="50"
+     inkscape:window-x="1578"
+     inkscape:window-y="181"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -57,10 +57,10 @@
      transform="translate(0,-52.362183)">
     <path
        style="fill:none;stroke:#ff8e00;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="M 729.33014,803.86465 C 674.32759,-2.0013025 239.1881,424.84628 238.39601,777.60068"
+       d="M 709.12709,755.37733 C 596.10949,-273.89677 545.69446,805.29398 470.88837,742.82813 451.4746,726.61691 409.74003,330.38025 313.1473,733.15397"
        id="path2985"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="csc" />
     <path
        sodipodi:type="arc"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.00021458;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -70,6 +70,6 @@
        sodipodi:rx="14.142136"
        sodipodi:ry="11.111678"
        d="m 486.89354,297.94397 a 14.142136,11.111678 0 1 1 -28.28427,0 14.142136,11.111678 0 1 1 28.28427,0 z"
-       transform="matrix(1.5245353,0,0,1.9403176,-206.79205,-253.83022)" />
+       transform="matrix(1.5245353,0,0,1.9403176,-101.73619,-269.99266)" />
   </g>
 </svg>

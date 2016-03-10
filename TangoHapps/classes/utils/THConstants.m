@@ -166,8 +166,10 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"timer.png",
     @"comparator.png",
     @"grouper.png",
+    @"mean.png",
     @"deviation.png",
-    @"classifier.png",
+    @"activityClassifier.png",
+    @"postureClassifier.png",
     @"peakDetector.png",
     @"customComponent.png",
     @"recorder.png",
@@ -175,15 +177,17 @@ NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
     @"subtraction.png",
     @"multiplication.png",
     @"division.png",
-    @"modulo.png",
+    @"modulo.png",//20
     @"window.png",
-    @"bigger.png",//20
-    @"smaller.png",
+    @"lowPassFilter.png",
+    @"highPassFilter.png",
+    @"bigger.png",
+    @"smaller.png",//25
     @"biggerEqual.png",
     @"smallerEqual.png",
     @"equal.png",
-    @"notEqual.png",//25
-    @"and.png",
+    @"notEqual.png",
+    @"and.png",//30
     @"or.png"
 };
 

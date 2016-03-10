@@ -89,14 +89,19 @@ NSString * const kEventIntensityChanged = @"intensityChanged";
 NSString * const kEventFrequencyChanged = @"frequencyChanged";
 NSString * const kEventValueChanged = @"valueChanged";
 NSString * const kEventDeviationChanged = @"deviationChanged";
+NSString * const kEventMeanChanged = @"meanChanged";
 NSString * const kEventOperationFinished = @"operationFinished";
 NSString * const kEventComparisonFinished = @"comparisonFinished";
 NSString * const kEventPeakDetected = @"peakDetected";
+NSString * const kEventFiltered = @"filtered";
 
 NSString * const kEventStanding = @"standing";
 NSString * const kEventWalking = @"walking";
 NSString * const kEventRunning = @"running";
 NSString * const kEventUnconscious = @"unconscious";
+
+NSString * const kEventLyingDownOnStomach = @"onStomach";
+NSString * const kEventLyingDownOnBack = @"onBack";
 
 NSString * const kEventExecutionFinished = @"executionFinished";
 NSString * const kEventRecordingFinished = @"recordingFinished";

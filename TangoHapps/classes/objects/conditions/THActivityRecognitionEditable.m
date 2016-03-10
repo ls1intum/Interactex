@@ -50,14 +50,14 @@
     if(self){
         self.simulableObject = [[THActivityRecognition alloc] init];
         
-        [self loadActivityRecognition];
+        [self loadActivityClassifier];
     }
     return self;
 }
 
--(void) loadActivityRecognition{
+-(void) loadActivityClassifier{
     
-    self.programmingElementType = kProgrammingElementTypeActivityRecognition;
+    self.programmingElementType = kProgrammingElementTypeActivityClassifier;
     self.acceptsConnections = YES;
 }
 
@@ -67,7 +67,7 @@
     self = [super initWithCoder:decoder];
     
     if(self){
-        [self loadActivityRecognition];
+        [self loadActivityClassifier];
     }
     
     return self;
@@ -106,7 +106,7 @@
 }
 
 -(NSString*) description{
-    return @"Activity";
+    return @"ActivityClassifier";
 }
 
 @end

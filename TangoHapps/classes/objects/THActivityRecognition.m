@@ -205,7 +205,7 @@ HActivityRecognition.m
 }
 
 -(NSString*) description{
-    return @"activity";
+    return @"activityClassifier";
 }
 
 

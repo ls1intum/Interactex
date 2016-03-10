@@ -108,10 +108,14 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THCustomComponent.h"
 
 //signal processing
-#import "THSignalDeviationPaletteItem.h"
-#import "THActivityRecognitionPaletteItem.h"
-#import "THPeakDetectorPaletteItem.h"
 #import "THWindowPaletteItem.h"
+#import "THLowPassFilterPaletteItem.h"
+#import "THHighPassFilterPaletteItem.h"
+#import "THMeanExtractorPaletteItem.h"
+#import "THSignalDeviationPaletteItem.h"
+#import "THPeakDetectorPaletteItem.h"
+#import "THActivityRecognitionPaletteItem.h"
+#import "THPostureClassifierPaletteItem.h"
 
 //utils
 #import "THDataRecordingSessionPaletteItem.h"
@@ -535,9 +539,13 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.signalProcessingArray  = [NSMutableArray arrayWithObjects:
                                    [[THWindowPaletteItem alloc] initWithName:@"window"],
-                                   [[THActivityRecognitionPaletteItem alloc] initWithName:@"classifier"],
+                                   [[THLowPassFilterPaletteItem alloc] initWithName:@"lowPassFilter"],
+                                   [[THHighPassFilterPaletteItem alloc] initWithName:@"highPassFilter"],
+                                   [[THMeanExtractorPaletteItem alloc] initWithName:@"mean"],
                                    [[THSignalDeviationPaletteItem alloc] initWithName:@"deviation"],
                                    [[THPeakDetectorPaletteItem alloc] initWithName:@"peakDetector"],
+                                   [[THActivityRecognitionPaletteItem alloc] initWithName:@"activityClassifier"],
+                                   [[THPostureClassifierPaletteItem alloc] initWithName:@"postureClassifier"],
                                    nil];
     
     self.programmingSectionArray  = [NSMutableArray arrayWithObjects:

@@ -117,3 +117,6 @@ typedef enum {
 
 extern NSString * const kNotificationStartRemovingConnections;
 extern NSString * const kNotificationStopRemovingConnections;
+
+#define kFilterMaxSamples 30
+#define kMeanMaxSamples 30

@@ -25,4 +25,5 @@ typedef enum : NSUInteger {
 }
 
 -(void) addSample:(THAccelerometerData*) sample;
+
 @end

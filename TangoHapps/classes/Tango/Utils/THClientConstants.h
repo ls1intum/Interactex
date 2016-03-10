@@ -77,7 +77,7 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypeMPU6050
 }THHardwareType;
 
-#define kNumProgrammingElementTypes 27
+#define kNumProgrammingElementTypes 31
 
 typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeMapper,
@@ -88,23 +88,27 @@ typedef enum THProgrammingElementType : NSUInteger{
     kProgrammingElementTypeTimer,
     kProgrammingElementTypeComparator,
     kProgrammingElementTypeGrouper,
-    kProgrammingElementTypeSignalDeviation,
-    kProgrammingElementTypeActivityRecognition,//10
+    kProgrammingElementTypeMeanExtractor,
+    kProgrammingElementTypeSignalDeviation,//10
+    kProgrammingElementTypeActivityClassifier,
+    kProgrammingElementTypePostureClassifier,
     kProgrammingElementTypePeakDetector,
     kProgrammingElementTypeCustomComponent,
-    kProgrammingElementTypeDataRecordingSession,
+    kProgrammingElementTypeDataRecordingSession,//15
     kProgrammingElementTypeAddition,
-    kProgrammingElementTypeSubtraction,//15
+    kProgrammingElementTypeSubtraction,
     kProgrammingElementTypeMultiplication,
     kProgrammingElementTypeDivision,
-    kProgrammingElementTypeModulo,
+    kProgrammingElementTypeModulo,//20
     kProgrammingElementTypeWindow,
-    kProgrammingElementTypeBigger,//20
-    kProgrammingElementTypeSmaller,
+    kProgrammingElementTypeLowPassFilter,
+    kProgrammingElementTypeHighPassFilter,
+    kProgrammingElementTypeBigger,
+    kProgrammingElementTypeSmaller,//25
     kProgrammingElementTypeBiggerEqual,
     kProgrammingElementTypeSmallerEqual,
     kProgrammingElementTypeEqual,
-    kProgrammingElementTypeNotEqual, //25
+    kProgrammingElementTypeNotEqual,
         kProgrammingElementTypeAnd,
         kProgrammingElementTypeOr
 } THProgrammingElementType;
@@ -203,14 +207,21 @@ extern NSString * const kEventIntensityChanged;
 extern NSString * const kEventFrequencyChanged;
 extern NSString * const kEventValueChanged;
 extern NSString * const kEventDeviationChanged;
+extern NSString * const kEventMeanChanged;
 extern NSString * const kEventOperationFinished;
 extern NSString * const kEventComparisonFinished;
 extern NSString * const kEventPeakDetected;
+extern NSString * const kEventFiltered;
 
+//activity events
 extern NSString * const kEventStanding;
 extern NSString * const kEventWalking;
 extern NSString * const kEventRunning;
 extern NSString * const kEventUnconscious;
+
+//posture events
+extern NSString * const kEventLyingDownOnStomach;
+extern NSString * const kEventLyingDownOnBack;
 
 extern NSString * const kEventExecutionFinished;
 extern NSString * const kEventRecordingFinished;
