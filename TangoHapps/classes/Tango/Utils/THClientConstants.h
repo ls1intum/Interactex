@@ -346,3 +346,7 @@ extern CGSize const kDefaultGraphSize;
 extern NSString * const kDefaultBoldFontName;
 extern NSString * const kDefaultFontName;
 extern float const kDefaultFontSize;
+
+
+#define kFilterMaxSamples 30
+#define kMeanMaxSamples 30
