@@ -111,9 +111,11 @@ CGSize const kImagePickerImageSize = {60,60};
 -(void) addPhotForAsset:(ALAsset *)asset {
     
     UIImage * image = [UIImage imageWithCGImage:[asset thumbnail]];
+    if(image){
     [self.thumbnails addObject:image];
     [self.imageAssets addObject:asset];
     [self layoutImage:image];
+    }
 }
 
 -(void) loadImages {
