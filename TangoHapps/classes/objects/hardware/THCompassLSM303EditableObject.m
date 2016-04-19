@@ -175,9 +175,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) autoroute{
     [super autoroute];
+    if(!self.sclPin.connected){
+        [self autoroutePin:self.sclPin];
+    }
     
-    [self autoroutePin:self.sclPin];
-    [self autoroutePin:self.sdaPin];
+    if(!self.sdaPin.connected){
+        [self autoroutePin:self.sdaPin];
+    }
 }
 
 -(void) willStartSimulation{

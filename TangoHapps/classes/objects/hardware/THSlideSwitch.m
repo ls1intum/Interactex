@@ -46,11 +46,17 @@ You should have received a copy of the GNU General Public License along with thi
 @implementation THSlideSwitch
 
 -(void) loadSlideSwitch{
+    TFProperty * property = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
+    self.properties = [NSMutableArray arrayWithObject:property];
+    
+
     
     TFEvent * event1 = [TFEvent eventNamed:kNotificationSwitchOn];
     TFEvent * event2 = [TFEvent eventNamed:kNotificationSwitchOff];
+    TFEvent * event3 = [TFEvent eventNamed:kNotificationSwitchChanged];
+    event3.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     
-    self.events = [NSMutableArray arrayWithObjects:event1, event2,nil];
+    self.events = [NSMutableArray arrayWithObjects:event1, event2, event3, nil];
 }
 
 -(id) init{

@@ -71,6 +71,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadMethods{
     
+    TFMethod * method = [TFMethod methodWithName:@"setOn"];
+    method.numParams = 1;
+    method.firstParamType = kDataTypeBoolean;
+    self.methods = [NSMutableArray arrayWithObject:method];
+    
     TFProperty * property = [TFProperty propertyWithName:@"on" andType:kDataTypeBoolean];
     self.properties = [NSMutableArray arrayWithObject:property];
     

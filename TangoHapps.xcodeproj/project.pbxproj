@@ -537,6 +537,26 @@
 		9AA4D75818AE1C8500A43433 /* THLilypadProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4D75718AE1C8500A43433 /* THLilypadProperties.xib */; };
 		9AA4D75D18AE1DA100A43433 /* THBLELilyPadProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4D75B18AE1DA100A43433 /* THBLELilyPadProperties.m */; };
 		9AA4D76218AE1DDA00A43433 /* THBLELilyPadProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA4D76118AE1DDA00A43433 /* THBLELilyPadProperties.xib */; };
+		9AA8061E1CC10CC700420533 /* THTextileSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8061D1CC10CC700420533 /* THTextileSensor.m */; };
+		9AA8061F1CC10CC700420533 /* THTextileSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8061D1CC10CC700420533 /* THTextileSensor.m */; };
+		9AA8062B1CC10D6400420533 /* THTextileSensorEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8062A1CC10D6400420533 /* THTextileSensorEditable.m */; };
+		9AA8062E1CC125F000420533 /* THTextileSensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8062D1CC125F000420533 /* THTextileSensorPaletteItem.m */; };
+		9AA806331CC1286C00420533 /* palette_textileSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8062F1CC1286C00420533 /* palette_textileSensor.png */; };
+		9AA806341CC1286C00420533 /* palette_textileSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806301CC1286C00420533 /* palette_textileSensor@2x.png */; };
+		9AA806351CC1286C00420533 /* textileSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806311CC1286C00420533 /* textileSensor.png */; };
+		9AA806361CC1286C00420533 /* textileSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806321CC1286C00420533 /* textileSensor@2x.png */; };
+		9AA8063B1CC2A1F600420533 /* palette_textileSpeaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806371CC2A1F600420533 /* palette_textileSpeaker.png */; };
+		9AA8063C1CC2A1F600420533 /* palette_textileSpeaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806381CC2A1F600420533 /* palette_textileSpeaker@2x.png */; };
+		9AA8063D1CC2A1F600420533 /* textileSpeaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806391CC2A1F600420533 /* textileSpeaker.png */; };
+		9AA8063E1CC2A1F600420533 /* textileSpeaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8063A1CC2A1F600420533 /* textileSpeaker@2x.png */; };
+		9AA806411CC2A21E00420533 /* THTextileSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA806401CC2A21E00420533 /* THTextileSpeaker.m */; };
+		9AA806441CC2A22E00420533 /* THTextileSpeakerEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA806431CC2A22E00420533 /* THTextileSpeakerEditable.m */; };
+		9AA806451CC2A23600420533 /* THTextileSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA806401CC2A21E00420533 /* THTextileSpeaker.m */; };
+		9AA806481CC2A7B000420533 /* THSpeakerPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA806471CC2A7B000420533 /* THSpeakerPaletteItem.m */; };
+		9AA8064D1CC2CB4100420533 /* palette_radio.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA806491CC2CB4100420533 /* palette_radio.png */; };
+		9AA8064E1CC2CB4100420533 /* palette_radio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8064A1CC2CB4100420533 /* palette_radio@2x.png */; };
+		9AA8064F1CC2CB4100420533 /* radio.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8064B1CC2CB4100420533 /* radio.png */; };
+		9AA806501CC2CB4100420533 /* radio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8064C1CC2CB4100420533 /* radio@2x.png */; };
 		9AAEC66A1A40A5A300D11BFD /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAEC6571A40A44700D11BFD /* libcocos2d.a */; };
 		9AAEC66B1A40A5A300D11BFD /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAEC65F1A40A44700D11BFD /* libCocosDenshion.a */; };
 		9AAF2845182B8B0600531E3A /* libBLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAF283F182B88F000531E3A /* libBLE.a */; };
@@ -1680,6 +1700,30 @@
 		9AA4D75A18AE1DA100A43433 /* THBLELilyPadProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBLELilyPadProperties.h; sourceTree = "<group>"; };
 		9AA4D75B18AE1DA100A43433 /* THBLELilyPadProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBLELilyPadProperties.m; sourceTree = "<group>"; };
 		9AA4D76118AE1DDA00A43433 /* THBLELilyPadProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THBLELilyPadProperties.xib; sourceTree = "<group>"; };
+		9AA8061C1CC10CC700420533 /* THTextileSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTextileSensor.h; sourceTree = "<group>"; };
+		9AA8061D1CC10CC700420533 /* THTextileSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTextileSensor.m; sourceTree = "<group>"; };
+		9AA806291CC10D6400420533 /* THTextileSensorEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THTextileSensorEditable.h; path = ../THTextileSensorEditable.h; sourceTree = "<group>"; };
+		9AA8062A1CC10D6400420533 /* THTextileSensorEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THTextileSensorEditable.m; path = ../THTextileSensorEditable.m; sourceTree = "<group>"; };
+		9AA8062C1CC125F000420533 /* THTextileSensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTextileSensorPaletteItem.h; sourceTree = "<group>"; };
+		9AA8062D1CC125F000420533 /* THTextileSensorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTextileSensorPaletteItem.m; sourceTree = "<group>"; };
+		9AA8062F1CC1286C00420533 /* palette_textileSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_textileSensor.png; sourceTree = "<group>"; };
+		9AA806301CC1286C00420533 /* palette_textileSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_textileSensor@2x.png"; sourceTree = "<group>"; };
+		9AA806311CC1286C00420533 /* textileSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textileSensor.png; sourceTree = "<group>"; };
+		9AA806321CC1286C00420533 /* textileSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textileSensor@2x.png"; sourceTree = "<group>"; };
+		9AA806371CC2A1F600420533 /* palette_textileSpeaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_textileSpeaker.png; sourceTree = "<group>"; };
+		9AA806381CC2A1F600420533 /* palette_textileSpeaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_textileSpeaker@2x.png"; sourceTree = "<group>"; };
+		9AA806391CC2A1F600420533 /* textileSpeaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textileSpeaker.png; sourceTree = "<group>"; };
+		9AA8063A1CC2A1F600420533 /* textileSpeaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textileSpeaker@2x.png"; sourceTree = "<group>"; };
+		9AA8063F1CC2A21E00420533 /* THTextileSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTextileSpeaker.h; sourceTree = "<group>"; };
+		9AA806401CC2A21E00420533 /* THTextileSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTextileSpeaker.m; sourceTree = "<group>"; };
+		9AA806421CC2A22E00420533 /* THTextileSpeakerEditable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THTextileSpeakerEditable.h; path = ../THTextileSpeakerEditable.h; sourceTree = "<group>"; };
+		9AA806431CC2A22E00420533 /* THTextileSpeakerEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THTextileSpeakerEditable.m; path = ../THTextileSpeakerEditable.m; sourceTree = "<group>"; };
+		9AA806461CC2A7B000420533 /* THSpeakerPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSpeakerPaletteItem.h; sourceTree = "<group>"; };
+		9AA806471CC2A7B000420533 /* THSpeakerPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSpeakerPaletteItem.m; sourceTree = "<group>"; };
+		9AA806491CC2CB4100420533 /* palette_radio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_radio.png; sourceTree = "<group>"; };
+		9AA8064A1CC2CB4100420533 /* palette_radio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_radio@2x.png"; sourceTree = "<group>"; };
+		9AA8064B1CC2CB4100420533 /* radio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio.png; sourceTree = "<group>"; };
+		9AA8064C1CC2CB4100420533 /* radio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio@2x.png"; sourceTree = "<group>"; };
 		9AAEC6421A40A44700D11BFD /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "Frameworks/cocos2d-iphone-classic-2.2/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
 		9AAF283A182B88EF00531E3A /* BLE.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BLE.xcodeproj; path = Frameworks/BLE/BLE.xcodeproj; sourceTree = "<group>"; };
 		9AB29B3E167F4B5D00F5AF62 /* THImageViewPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THImageViewPaletteItem.h; sourceTree = "<group>"; };
@@ -2481,6 +2525,18 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9AA806491CC2CB4100420533 /* palette_radio.png */,
+				9AA8064A1CC2CB4100420533 /* palette_radio@2x.png */,
+				9AA8064B1CC2CB4100420533 /* radio.png */,
+				9AA8064C1CC2CB4100420533 /* radio@2x.png */,
+				9AA806371CC2A1F600420533 /* palette_textileSpeaker.png */,
+				9AA806381CC2A1F600420533 /* palette_textileSpeaker@2x.png */,
+				9AA806391CC2A1F600420533 /* textileSpeaker.png */,
+				9AA8063A1CC2A1F600420533 /* textileSpeaker@2x.png */,
+				9AA8062F1CC1286C00420533 /* palette_textileSensor.png */,
+				9AA806301CC1286C00420533 /* palette_textileSensor@2x.png */,
+				9AA806311CC1286C00420533 /* textileSensor.png */,
+				9AA806321CC1286C00420533 /* textileSensor@2x.png */,
 				9A56C4D41C908C1A00D0A7A3 /* palette_postureClassifier.png */,
 				9A56C4D51C908C1A00D0A7A3 /* palette_postureClassifier@2x.png */,
 				9A56C4D61C908C1A00D0A7A3 /* postureClassifier.png */,
@@ -3212,6 +3268,10 @@
 				9A06EE85169AD1D900B88519 /* THThreeColorLedPaletteItem.m */,
 				9AB984CF1AB59BE700A6AB83 /* THMPU6050PaletteItem.h */,
 				9AB984D01AB59BE700A6AB83 /* THMPU6050PaletteItem.m */,
+				9AA8062C1CC125F000420533 /* THTextileSensorPaletteItem.h */,
+				9AA8062D1CC125F000420533 /* THTextileSensorPaletteItem.m */,
+				9AA806461CC2A7B000420533 /* THSpeakerPaletteItem.h */,
+				9AA806471CC2A7B000420533 /* THSpeakerPaletteItem.m */,
 			);
 			name = hardware;
 			sourceTree = "<group>";
@@ -3629,6 +3689,14 @@
 				9AB984C91AB598C700A6AB83 /* THMPU6050.m */,
 				9AB984CC1AB59A8700A6AB83 /* THMPU6050Editable.h */,
 				9AB984CD1AB59A8700A6AB83 /* THMPU6050Editable.m */,
+				9AA8061C1CC10CC700420533 /* THTextileSensor.h */,
+				9AA8061D1CC10CC700420533 /* THTextileSensor.m */,
+				9AA806291CC10D6400420533 /* THTextileSensorEditable.h */,
+				9AA8062A1CC10D6400420533 /* THTextileSensorEditable.m */,
+				9AA8063F1CC2A21E00420533 /* THTextileSpeaker.h */,
+				9AA806401CC2A21E00420533 /* THTextileSpeaker.m */,
+				9AA806421CC2A22E00420533 /* THTextileSpeakerEditable.h */,
+				9AA806431CC2A22E00420533 /* THTextileSpeakerEditable.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -4320,6 +4388,7 @@
 				9AEB06A31C883C8D000D399E /* palette_modulo@2x.png in Resources */,
 				9A94F42216A0192700AF52AB /* THiPhoneButtonProperties.xib in Resources */,
 				9A94F42416A0192700AF52AB /* THiPhoneProperties.xib in Resources */,
+				9AA8064E1CC2CB4100420533 /* palette_radio@2x.png in Resources */,
 				9ADCE1BD1AB7481F007895AA /* palette_activityClassifier.png in Resources */,
 				9A94F42616A0192700AF52AB /* THiPhoneViewProperties.xib in Resources */,
 				9AEB06CD1C8848A0000D399E /* palette_biggerEqual@2x.png in Resources */,
@@ -4355,6 +4424,7 @@
 				9A1384DB16D27EA300F5EEAA /* THClotheProperties.xib in Resources */,
 				9A93848E16D6900E00A41BD2 /* THTimerProperties.xib in Resources */,
 				9A325C821AB778790018687E /* jacke.png in Resources */,
+				9AA806341CC1286C00420533 /* palette_textileSensor@2x.png in Resources */,
 				9A56C4A61C907F0F00D0A7A3 /* highPassFilter@2x.png in Resources */,
 				9A72C7951C882D9E0019B2E4 /* palette_window@2x.png in Resources */,
 				9A9384F616D6BE8D00A41BD2 /* sewed.mp3 in Resources */,
@@ -4425,6 +4495,7 @@
 				9A41457D17DE7A060061EDF8 /* iphone5.png in Resources */,
 				9A41457F17DE7A060061EDF8 /* iphone5@2x.png in Resources */,
 				9A41458117DE7A060061EDF8 /* iphoneFrameSimulator.xcf in Resources */,
+				9AA806361CC1286C00420533 /* textileSensor@2x.png in Resources */,
 				9A41458317DE7A060061EDF8 /* led.png in Resources */,
 				9A27E33C1C5CE888000549E5 /* multiplication.png in Resources */,
 				9A41458517DE7A060061EDF8 /* led@2x.png in Resources */,
@@ -4458,6 +4529,7 @@
 				9AEB06CC1C8848A0000D399E /* palette_biggerEqual.png in Resources */,
 				9A27E33A1C5CE888000549E5 /* division.png in Resources */,
 				9A56C4C91C9086D000D0A7A3 /* palette_mean@2x.png in Resources */,
+				9AA8063C1CC2A1F600420533 /* palette_textileSpeaker@2x.png in Resources */,
 				251F674519C48F5300EF9807 /* iphoneBg@2x.png in Resources */,
 				9A4145A117DE7A060061EDF8 /* palette_button@2x.png in Resources */,
 				9A4145A317DE7A060061EDF8 /* palette_buzzer.png in Resources */,
@@ -4548,6 +4620,7 @@
 				9A56C4A71C907F0F00D0A7A3 /* palette_highPassFilter.png in Resources */,
 				9A41460917DE7A060061EDF8 /* palette_vibeBoard@2x.png in Resources */,
 				9A41460B17DE7A060061EDF8 /* potentiometer.png in Resources */,
+				9AA8063E1CC2A1F600420533 /* textileSpeaker@2x.png in Resources */,
 				9A41460D17DE7A060061EDF8 /* potentiometer@2x.png in Resources */,
 				9A41460F17DE7A060061EDF8 /* sewed.png in Resources */,
 				9ABC27751809985900B39D72 /* palette_lilypadBig.png in Resources */,
@@ -4580,6 +4653,7 @@
 				9A41462917DE7A060061EDF8 /* tshirt@2x.png in Resources */,
 				9A41462B17DE7A060061EDF8 /* value.png in Resources */,
 				9A41462D17DE7A060061EDF8 /* value@2x.png in Resources */,
+				9AA8063D1CC2A1F600420533 /* textileSpeaker.png in Resources */,
 				9AEB06E41C884AD4000D399E /* smaller.png in Resources */,
 				9A41462F17DE7A060061EDF8 /* vibeBoard.png in Resources */,
 				9AFA04A01B42A19400D7C0D5 /* THCustomComponentProperties.xib in Resources */,
@@ -4592,6 +4666,7 @@
 				9A41463917DE7A060061EDF8 /* connect@2x.png in Resources */,
 				9A41463B17DE7A060061EDF8 /* delete.png in Resources */,
 				9A41463D17DE7A060061EDF8 /* delete@2x.png in Resources */,
+				9AA806351CC1286C00420533 /* textileSensor.png in Resources */,
 				9A41463F17DE7A060061EDF8 /* duplicate.png in Resources */,
 				9A1D0B111B39A72B005012F2 /* customComponent@2x.png in Resources */,
 				9A41464117DE7A060061EDF8 /* duplicate@2x.png in Resources */,
@@ -4605,12 +4680,14 @@
 				9A41464D17DE7A060061EDF8 /* lilypadmode@2x.png in Resources */,
 				9AB984BD1AB5987B00A6AB83 /* MPU-6050@2x.png in Resources */,
 				9A56C4C61C9086D000D0A7A3 /* mean.png in Resources */,
+				9AA806331CC1286C00420533 /* palette_textileSensor.png in Resources */,
 				9A41464F17DE7A060061EDF8 /* pinsmode.png in Resources */,
 				6778EA0718F6AC980080B1C9 /* palette_gesture.png in Resources */,
 				9A1C3AC21886DDAE007C5E94 /* palette_LSMCompass.png in Resources */,
 				9A41465117DE7A060061EDF8 /* pinsmode@2x.png in Resources */,
 				9A41465317DE7A060061EDF8 /* push.png in Resources */,
 				2577302F1A17858800F038D1 /* segBg.png in Resources */,
+				9AA8064F1CC2CB4100420533 /* radio.png in Resources */,
 				9A41465517DE7A060061EDF8 /* push@2x.png in Resources */,
 				9A41465A17DE86E60061EDF8 /* palettePull.png in Resources */,
 				9A9CF90D1A9F6E2F00C4FF1F /* musicPlayerLeftVolume.png in Resources */,
@@ -4623,6 +4700,7 @@
 				9A5931CC17E5CD4500B20D99 /* paletteIcon@2x.png in Resources */,
 				9ACE30C51A92790A0089D669 /* song1.mp3 in Resources */,
 				251F678419C4A1A300EF9807 /* hideVPmode.png in Resources */,
+				9AA8063B1CC2A1F600420533 /* palette_textileSpeaker.png in Resources */,
 				9AEB06E31C884AD4000D399E /* palette_smaller@2x.png in Resources */,
 				9A5931CE17E5CD4500B20D99 /* paletteIconSelected.png in Resources */,
 				9A5931D017E5CD4500B20D99 /* paletteIconSelected@2x.png in Resources */,
@@ -4643,6 +4721,8 @@
 				9AEB06BD1C884630000D399E /* palette_equal@2x.png in Resources */,
 				9AB7789B17E6C25700F82424 /* circleFilled.png in Resources */,
 				9AB7789D17E6C25700F82424 /* squareEmpty.png in Resources */,
+				9AA8064D1CC2CB4100420533 /* palette_radio.png in Resources */,
+				9AA806501CC2CB4100420533 /* radio@2x.png in Resources */,
 				9AB7789F17E6C25700F82424 /* squareFilled.png in Resources */,
 				9AB778A117E6C25700F82424 /* starEmpty.png in Resources */,
 				9ABC278E1809B2A500B39D72 /* palette_temperatureSensor.png in Resources */,
@@ -4753,6 +4833,7 @@
 				9AF50369167B84B40020241C /* THConditionObject.m in Sources */,
 				9AF5036A167B84B40020241C /* THGrouperCondition.m in Sources */,
 				9AB984D11AB59BE700A6AB83 /* THMPU6050PaletteItem.m in Sources */,
+				9AA806411CC2A21E00420533 /* THTextileSpeaker.m in Sources */,
 				9AF5036B167B84B40020241C /* THGrouperConditionEditable.m in Sources */,
 				9A1D0B161B39A7B6005012F2 /* THCustomComponentPaletteItem.m in Sources */,
 				9AF5036C167B84B40020241C /* THNumberValue.m in Sources */,
@@ -4787,6 +4868,7 @@
 				9ABC27AF1809B48500B39D72 /* THAccelerometer.m in Sources */,
 				9AF50389167B84B40020241C /* THPotentiometerEditableObject.m in Sources */,
 				9A56C4CC1C90871C00D0A7A3 /* THMeanExtractor.m in Sources */,
+				9AA8062E1CC125F000420533 /* THTextileSensorPaletteItem.m in Sources */,
 				9A4D4A7C1C5E76F2000FF395 /* THMultiplicationOperatorEditable.m in Sources */,
 				9AA4D72E18AE16E600A43433 /* THBLELilyPadEditable.m in Sources */,
 				9AEB06E81C884B28000D399E /* THBiggerOperatorPaletteItem.m in Sources */,
@@ -4802,6 +4884,7 @@
 				9A27E3221C5BD3D5000549E5 /* THSubtractionOperator.m in Sources */,
 				9AF50391167B84B40020241C /* THSimulableWorldController.m in Sources */,
 				9ABC276F180996C200B39D72 /* THLilypadPaletteItem.m in Sources */,
+				9AA8062B1CC10D6400420533 /* THTextileSensorEditable.m in Sources */,
 				9AF50392167B84B40020241C /* THiPhone.m in Sources */,
 				9AF50393167B84B40020241C /* THiPhoneButton.m in Sources */,
 				9A3165A5182796A200CB3E59 /* THMonitorPaletteItem.m in Sources */,
@@ -4835,6 +4918,7 @@
 				9AEB06AF1C883CD5000D399E /* THModuloOperator.m in Sources */,
 				9A56C4B71C90826200D0A7A3 /* THHighPassFilter.m in Sources */,
 				9A56C4BB1C9082EF00D0A7A3 /* THHighPassFilterEditable.m in Sources */,
+				9AA806441CC2A22E00420533 /* THTextileSpeakerEditable.m in Sources */,
 				9A4D4A781C5E76E0000FF395 /* THDivisionOperator.m in Sources */,
 				9AF503A7167B84B40020241C /* THLSMCompassPaletteItem.m in Sources */,
 				9A4D4A5A1C5E6F32000FF395 /* THAdditionOperator.m in Sources */,
@@ -4885,6 +4969,7 @@
 				9AB984DE1AB60A8A00A6AB83 /* THSignalDeviationEditable.m in Sources */,
 				9AEB072A1C885312000D399E /* THNotEqualOperatorPaletteItem.m in Sources */,
 				9AF503C2167B84B40020241C /* THMusicPlayerProperties.m in Sources */,
+				9AA806481CC2A7B000420533 /* THSpeakerPaletteItem.m in Sources */,
 				9AF503C3167B84B40020241C /* THSwitchProperties.m in Sources */,
 				9AF503C4167B84B40020241C /* THTouchpadProperties.m in Sources */,
 				9AF503C5167B84B40020241C /* THValueProperties.m in Sources */,
@@ -4946,6 +5031,7 @@
 				9A4D4A7F1C5E7703000FF395 /* THDivisionOperatorEditable.m in Sources */,
 				9A93846116D652EC00A41BD2 /* THTimerEditable.m in Sources */,
 				9ADCE1AF1AB7379D007895AA /* THActivityRecognitionPaletteItem.m in Sources */,
+				9AA8061E1CC10CC700420533 /* THTextileSensor.m in Sources */,
 				9A93846716D6534500A41BD2 /* THTimerProperties.m in Sources */,
 				9A93846F16D6723600A41BD2 /* THTimerPaletteItem.m in Sources */,
 				9A09767C171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
@@ -5116,6 +5202,7 @@
 				9AF50462167B852F0020241C /* THLabel.m in Sources */,
 				9AF50463167B852F0020241C /* THMusicPlayer.m in Sources */,
 				9AFB7DC61832A91500694CCE /* THClientSceneSelectionViewController.m in Sources */,
+				9AA8061F1CC10CC700420533 /* THTextileSensor.m in Sources */,
 				9AEB07081C884D7C000D399E /* THNotEqualOperator.m in Sources */,
 				9AF50464167B852F0020241C /* THTouchpad.m in Sources */,
 				9AEB06FC1C884D33000D399E /* THSmallerEqualOperator.m in Sources */,
@@ -5139,6 +5226,7 @@
 				9A94F1E8169ED5E600AF52AB /* THImageView.m in Sources */,
 				9A5F8D8716A2C473000DF472 /* THContactBook.m in Sources */,
 				9AFB7E271833D60300694CCE /* THI2CRegister.m in Sources */,
+				9AA806451CC2A23600420533 /* THTextileSpeaker.m in Sources */,
 				9ABC275818098F2400B39D72 /* THBoard.m in Sources */,
 				9A93841B16D651D700A41BD2 /* THTimer.m in Sources */,
 				9A09767D171864BB0028A6B4 /* THVibrationBoard.m in Sources */,
@@ -5226,7 +5314,6 @@
 		25B05DB519FA95C10019E431 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -5265,7 +5352,6 @@
 		25B05DB619FA95C10019E431 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -5301,7 +5387,6 @@
 		25B05DB719FA95C10019E431 /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -5337,7 +5422,7 @@
 		9A3511A5167B7A6800C7484B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -5372,7 +5457,7 @@
 		9A3511A6167B7A6800C7484B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -5447,7 +5532,7 @@
 		9A94F278169EEEE100AF52AB /* AddHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

@@ -59,7 +59,7 @@ typedef enum THDigitalPinValue : NSUInteger{
     kDigitalPinValueHigh = 1
 } THDigitalPinValue ;
 
-#define kNumHardwareTypes 12
+#define kNumHardwareTypes 14
 #define kMaxNumPinsPerElement 5
 
 typedef enum THHardwareType : NSUInteger{
@@ -74,7 +74,9 @@ typedef enum THHardwareType : NSUInteger{
     kHardwareTypeVibeBoard,
     kHardwareTypeTemperatureSensor,//10
     kHardwareTypeAccelerometer,
-    kHardwareTypeMPU6050
+    kHardwareTypeMPU6050,
+    kHardwareTypeTextileSensor,//13
+    kHardwareTypeTextileSpeaker
 }THHardwareType;
 
 #define kNumProgrammingElementTypes 31
@@ -198,11 +200,13 @@ extern NSString * const kNotificationPinAttached;
 extern NSString * const kNotificationPinDeattached;
 
 //events
+extern NSString * const kEventCalling;
 extern NSString * const kEventTurnedOn;
 extern NSString * const kEventTurnedOff;
 extern NSString * const kEventOnChanged;
 extern NSString * const kEventSwitchedOn;
 extern NSString * const kEventSwitchedOff;
+extern NSString * const kNotificationSwitchChanged;
 extern NSString * const kEventIntensityChanged;
 extern NSString * const kEventFrequencyChanged;
 extern NSString * const kEventValueChanged;

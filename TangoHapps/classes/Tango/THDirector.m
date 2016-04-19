@@ -118,12 +118,20 @@ static THDirector * _sharedInstance = nil;
     if([TFFileUtils dataFile:kProjectProxiesFileName existsInDirectory:@""]){
         NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
         self.projectProxies = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        //NSLog(@"%@",filePath);
+        //[self printProjects];
     } else {
         self.projectProxies = [NSMutableArray array];
     }
     
     return self.projectProxies;
 }
+/*
+-(void) printProjects{
+    for (THProjectProxy * proxy in self.projectProxies) {
+        NSLog(@"%@",proxy.name);
+    }
+}*/
 
 -(NSMutableArray*) loadCustomComponents {
     
@@ -138,6 +146,7 @@ static THDirector * _sharedInstance = nil;
 }
 
 -(void) saveProjectProxies{
+    //[self printProjects];
     
     NSString *filePath = [TFFileUtils dataFile:kProjectProxiesFileName inDirectory:@""];
     [NSKeyedArchiver archiveRootObject:self.projectProxies toFile:filePath];

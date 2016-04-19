@@ -1,8 +1,8 @@
 /*
- THWindowEditable.m
+ THTextileSensorEditable.m
  Interactex Designer
  
- Created by Juan Haladjian on 03/03/16.
+ Created by Juan Haladjian on 15/04/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,31 +40,29 @@
  
  */
 
+#import "THTextileSensorEditable.h"
+#import "THTextileSensor.h"
 
-#import "THWindowEditable.h"
-#import "THWindow.h"
+@implementation THTextileSensorEditable
 
-@implementation THWindowEditable
+@dynamic value;
 
-@dynamic windowSize;
-@dynamic overlap;
-@dynamic started;
-@dynamic data;
+const CGSize kTextileLabelSize = {75, 20};
 
 -(id) init{
     self = [super init];
     if(self){
-        self.simulableObject = [[THWindow alloc] init];
+        self.simulableObject = [[THTextileSensor alloc] init];
         
-        [self loadWindow];
+        [self loadTextileSensor];
+        [super loadPins];
     }
     return self;
 }
 
--(void) loadWindow{
+-(void) loadTextileSensor{
     
-    self.programmingElementType = kProgrammingElementTypeWindow;
-    self.acceptsConnections = YES;
+    self.type = kHardwareTypeTextileSensor;
 }
 
 #pragma mark - Archiving
@@ -73,7 +71,8 @@
     self = [super initWithCoder:decoder];
     
     if(self){
-        [self loadWindow];
+        [self loadTextileSensor];
+        
     }
     
     return self;
@@ -81,75 +80,103 @@
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    THWindow * copy = [super copyWithZone:zone];
-    if(copy){
-    }
+    THTextileSensor * copy = [super copyWithZone:zone];
+    
+    
     return copy;
 }
 
-
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers {
+-(NSArray*)propertyControllers
+{
     NSMutableArray *controllers = [NSMutableArray array];
+    //[controllers addObject:[THPotentiometerProperties properties]];
     [controllers addObjectsFromArray:[super propertyControllers]];
-    //[controllers addObject:[THCustomComponentProperties properties]];
     return controllers;
+}
+
+#pragma mark - Pins
+
+-(THElementPinEditable*) minusPin{
+    return [self.pins objectAtIndex:1];
+}
+
+-(THElementPinEditable*) analogPin{
+    return [self.pins objectAtIndex:2];
+}
+
+-(THElementPinEditable*) plusPin{
+    return [self.pins objectAtIndex:0];
 }
 
 #pragma mark - Methods
 
--(void) start{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window start];
+-(void) handleTouchBegan{
+    self.isDown = YES;
 }
 
--(void) stop{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window stop];
+-(void) handleTouchEnded{
+    self.isDown = NO;
 }
 
--(void) addSample:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSample:sample];
+-(void) update{
+    
+    if(self.isDown){
+        _touchDownIntensity += kDefaultAnalogSimulationIncrease;
+    } else {
+        _touchDownIntensity -= kDefaultAnalogSimulationIncrease;
+    }
+    _touchDownIntensity = [THClientHelper Constrain:_touchDownIntensity min:0 max:kMaxAnalogValue];
+    
+    THTextileSensor * textileSensor = (THTextileSensor*) self.simulableObject;
+    textileSensor.value = _touchDownIntensity;
+    _valueLabel.string = [NSString stringWithFormat:@"%ld",(long)textileSensor.value];
 }
 
--(BOOL) started{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.started;
+-(NSInteger) value{
+    
+    THTextileSensor * textileSensor = (THTextileSensor*) self.simulableObject;
+    return textileSensor.value;
 }
 
--(NSMutableArray*) data{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.data;
+-(void) willStartEdition{
+    _valueLabel.visible = NO;
 }
 
--(void) setWindowSize:(NSInteger)windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    window.windowSize = windowSize;
+-(void) willStartSimulation{
+    THTextileSensor * textileSensor = (THTextileSensor*) self.simulableObject;
+    _value = textileSensor.value;
+    _valueLabel.visible = YES;
+    
+    [super willStartSimulation];
 }
 
-
--(NSInteger) windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.windowSize;
+-(void) addValueLabel{
+    
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kTextileLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2 - 75);
+    _valueLabel.color = kDefaultSimulationLabelColor;
+    [self addChild:_valueLabel z:1];
 }
 
--(void) setOverlap:(NSInteger)overlap{
-   THWindow * window = (THWindow*) self.simulableObject;
-    window.overlap = overlap;
+-(void) refreshUI{
+    [super refreshUI];
+    [self addValueLabel];
 }
 
--(NSInteger) overlap{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.overlap;
+-(void) addToLayer:(TFLayer *)layer{
+    [super addToLayer:layer];
+    
+    [self addValueLabel];
 }
 
 -(NSString*) description{
-    return @"Window";
+    return @"Textile Sensor";
 }
 
 @end

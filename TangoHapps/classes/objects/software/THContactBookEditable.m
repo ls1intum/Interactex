@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     self.canChangeBackgroundColor = NO;
     self.canBeRootView = NO;
+    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving

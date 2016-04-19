@@ -82,6 +82,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadMethods{
     
+    TFMethod * method = [TFMethod methodWithName:@"setValue"];
+    method.numParams = 1;
+    method.firstParamType = kDataTypeFloat;
+    self.methods = [NSMutableArray arrayWithObjects:method,nil];
+    
     TFProperty * valueProperty = [TFProperty propertyWithName:@"value" andType:kDataTypeFloat];
     self.properties = [NSMutableArray arrayWithObjects:valueProperty,nil];
     

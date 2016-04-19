@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000"
+   height="1000"
+   id="svg3826"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="textileSpeaker.svg"
+   inkscape:export-filename="/Users/avenix/Desktop/textileSpeaker@2x.png"
+   inkscape:export-xdpi="47.442455"
+   inkscape:export-ydpi="47.442455">
+  <defs
+     id="defs3828" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="797"
+     inkscape:window-height="825"
+     inkscape:window-x="248"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3831">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-52.362183)">
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;stroke:#000000;stroke-width:9.77197988;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3834"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="322.85715"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="126.00616"
+       sodipodi:argument="-20.352276"
+       sodipodi:t0="0"
+       d="m 334.28571,322.85715 c 0.42975,-6.30312 8.7085,-2.53043 10.47619,0.71428 4.79033,8.79298 -3.6119,18.20788 -11.90476,20.2381 -14.83399,3.63158 -28.00608,-9.05057 -30.00001,-23.09524 -2.92617,-20.61111 14.52279,-37.98331 34.28572,-39.76191 26.34086,-2.37058 48.03015,20.00164 49.52381,45.47619 1.87961,32.05712 -25.48236,58.11166 -56.66667,59.28572 -37.76837,1.42195 -68.21296,-30.96388 -69.04762,-67.85714 -0.98362,-43.47743 36.44586,-78.32667 79.04762,-78.80953 49.18542,-0.55748 88.44865,41.92814 88.57143,90.23809 0.13951,54.89285 -47.41064,98.57644 -101.42857,98.33334 -60.59994,-0.27271 -108.70843,-52.89332 -108.09524,-112.61904 0.68075,-66.30687 58.37615,-118.8436 123.80952,-117.85715"
+       transform="matrix(0.66602426,0,0,1.0062938,103.85789,156.11045)" />
+  </g>
+</svg>

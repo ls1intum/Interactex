@@ -233,6 +233,11 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
+-(void) setVisible:(BOOL)visible{
+    [super setVisible:visible];
+    [self updateNodesVisibility];
+}
+
 -(void) setSelected:(BOOL)selected{
     if(_selected != selected){
         _selected = selected;

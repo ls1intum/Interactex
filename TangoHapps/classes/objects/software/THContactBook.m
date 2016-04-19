@@ -109,11 +109,15 @@ NSString * const kCallImageName = @"call.png";
         [_nextButton removeFromSuperview];
     }
 }
+
 -(void) loadMethods{
     TFMethod * method1 = [TFMethod methodWithName:@"call"];
     TFMethod * method2 = [TFMethod methodWithName:@"previous"];
     TFMethod * method3 = [TFMethod methodWithName:@"next"];
     self.methods = [NSMutableArray arrayWithObjects:method1, method2, method3, nil];
+    
+    TFEvent * event = [TFEvent eventNamed:kEventCalling];
+    self.events = [NSMutableArray arrayWithObjects:event,nil];
 }
 
 -(void) loadContactBook{
@@ -188,6 +192,7 @@ NSString * const kCallImageName = @"call.png";
     if(contact){
 
         [THClientHelper MakeCallTo:contact.number];
+        [self triggerEventNamed:kEventCalling];
     }
 }
 

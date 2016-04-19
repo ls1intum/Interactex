@@ -64,6 +64,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTemperatureSensorPaletteItem.h"
 #import "THAccelerometerPaletteItem.h"
 #import "THMPU6050PaletteItem.h"
+#import "THTextileSensorPaletteItem.h"
+#import "THSpeakerPaletteItem.h"
 
 //ui widgets
 #import "THiPhonePaletteItem.h"
@@ -509,6 +511,8 @@ You should have received a copy of the GNU General Public License along with thi
                                  [THVibrationBoardPaletteItem paletteItemWithName:@"vibeBoard" imageName:@"palette_vibeBoard" displayName:@"vibration board"],[THTemperatureSensorPaletteItem paletteItemWithName:@"temperatureSensor" imageName:@"palette_temperatureSensor" displayName:@"temperature sensor"],
                                  [[THAccelerometerPaletteItem alloc] initWithName:@"accelerometer"],
                                  [[THMPU6050PaletteItem alloc] initWithName:@"MPU-6050"],
+                                 [[THTextileSensorPaletteItem alloc] initWithName:@"textileSensor"],
+                                 [[THSpeakerPaletteItem alloc] initWithName:@"textileSpeaker"],
                                  nil];
     
     self.variablesSectionArray = [NSMutableArray arrayWithObjects:

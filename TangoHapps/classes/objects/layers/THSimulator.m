@@ -248,7 +248,7 @@ You should have received a copy of the GNU General Public License along with thi
     }
     
     for (TFEditableObject * object in project.allObjects) {
-        if(![object isKindOfClass:[THBoardEditable class]]){
+        //if(![object isKindOfClass:[THBoardEditable class]]){
             if([object isKindOfClass:[THHardwareComponentEditableObject class]]){
                 THHardwareComponentEditableObject * hardwareComponent = (THHardwareComponentEditableObject*) object;
                 if(!hardwareComponent.attachedToClothe){//if it is attached to aclothe, it will be added by the clothe itself
@@ -257,7 +257,7 @@ You should have received a copy of the GNU General Public License along with thi
             } else {
                 [object addToLayer:self];
             }
-        }
+       // }
     }
 }
 

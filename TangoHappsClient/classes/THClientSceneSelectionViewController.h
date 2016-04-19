@@ -43,7 +43,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import <UIKit/UIKit.h>
 #import "THClientCollectionProjectCell.h"
 #import "THClientTableProjectCell.h"
-#import <THClientDownloadViewController.h>
+#import "THClientDownloadViewController.h"
 
 @class THClientProjectProxy;
 @class THClientProjectDraggableCell;

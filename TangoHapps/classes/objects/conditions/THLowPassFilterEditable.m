@@ -110,4 +110,8 @@
     return lowPassFilter.data;
 }
 
+-(NSString*) description{
+    return @"Low-Pass Filter";
+}
+
 @end

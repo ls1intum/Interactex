@@ -56,16 +56,15 @@ You should have received a copy of the GNU General Public License along with thi
         self.projectProxies = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
         
     } else {
-        
         self.projectProxies = [NSMutableArray array];
-        
     }
     
     self.connectionController = [[THClientConnectionController alloc] init];
-
     
-    //QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
-    //touchposeApplication.alwaysShowTouches = YES;
+    QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
+    touchposeApplication.alwaysShowTouches = YES;
+    
+    [self generateRandomScenes];
     
     return YES;
 }
@@ -78,8 +77,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) generateRandomScenes{
     
-    for (int i = 0; i < 7; i ++) {
-        NSString * name = [NSString stringWithFormat:@"halloProject %d",i];
+    [self.projectProxies removeAllObjects];
+    
+    NSArray * names = @[@"M2M Navigation Hat",@"WM2M Pullover",@"WaveCap",@"Knit Alarm",@"CTS-Gauntlet",@"Shuffle Sleeve",@"Textile Objec1",@"Sound Hoodie",@"Custodian Jacket",@"KneeHapp1",@"KneeHapp2",@"Textile Demo",@"Jogging Jacket",@"MP3 T-Shirt"];
+    for (int i = 0; i < names.count; i ++) {
+        //NSString * name = [NSString stringWithFormat:@"halloProject %d",i];
+        NSString * name = names[i];
         THClientProject * project = [[THClientProject alloc] initWithName:name];
         [project save];
         

@@ -55,7 +55,7 @@ CGSize const kMusicPlayerDurationLabelSize = {50, 20};
 float const kMusicPlayerLabelHeight = 30;
 float const kMusicPlayerInnerPadding = 10;
 float const kMusicPlayerButtonsMargin = 30;
-float const kVolumeViewDefaultAlpha = 0.5;
+float const kVolumeViewDefaultAlpha = 1.0;
 
 NSString * const kPlayImageName = @"musicPlay.png";
 NSString * const kPauseImageName = @"pause.png";
@@ -206,12 +206,24 @@ NSString * const kPauseImageName = @"pause.png";
     _leftVolumeView.image = leftVolumeImage;
     [containerView addSubview:_leftVolumeView];
     
+#if (TARGET_IPHONE_SIMULATOR)
+    CGRect volumeViewFrame = CGRectMake(leftVolumeImageFrame.origin.x + leftVolumeImageFrame.size.width + kMusicPlayerInnerPadding, _playButton.frame.origin.y + _playButton.frame.size.height + 2 * kMusicPlayerInnerPadding, kMusicPlayerVolumeViewSize.width, kMusicPlayerVolumeViewSize.height);
+    _simulatorVolumeSlider = [[UISlider alloc] initWithFrame:volumeViewFrame];
+    
+    NSLog(@"%f %f %f %f",volumeViewFrame.origin.x,volumeViewFrame.origin.y, volumeViewFrame.size.width,volumeViewFrame.size.height);
+    _simulatorVolumeSlider.bounds = CGRectMake(0, 0, 180, 30);
+    _simulatorVolumeSlider.hidden = NO;
+    _simulatorVolumeSlider.alpha = 1.0;
+    _simulatorVolumeSlider.userInteractionEnabled = YES;
+#else
+    
     //volume
     CGRect volumeViewFrame = CGRectMake(leftVolumeImageFrame.origin.x + leftVolumeImageFrame.size.width + kMusicPlayerInnerPadding, _playButton.frame.origin.y + _playButton.frame.size.height + 2 * kMusicPlayerInnerPadding, kMusicPlayerVolumeViewSize.width, kMusicPlayerVolumeViewSize.height);
     _volumeView = [[MPVolumeView alloc] initWithFrame:volumeViewFrame];
     _volumeView.showsRouteButton = NO;
     _volumeView.alpha = kVolumeViewDefaultAlpha;
     _volumeView.userInteractionEnabled = NO;
+#endif
     
     //right volume image
     UIImage * rightVolumeImage = [UIImage imageNamed:@"musicPlayerRightVolume.png"];
@@ -254,7 +266,7 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) loadSongs{
 #if (TARGET_IPHONE_SIMULATOR)
-    self.songs = [NSMutableArray arrayWithObjects:@"song1",@"song2",@"song3", nil];
+    self.songs = [NSMutableArray arrayWithObjects:@"Ain't Nobody Loves Me Better Than You",@"song2",@"song3", nil];
 #else
     
     self.musicPlayer = [MPMusicPlayerController applicationMusicPlayer];
@@ -478,6 +490,19 @@ NSString * const kPauseImageName = @"pause.png";
 
 #pragma mark Methods
 
+#if (TARGET_IPHONE_SIMULATOR)
+
+-(void) setVolume:(float)volume{
+    
+    _simulatorVolumeSlider.value = volume;
+}
+
+-(float) volume{
+    return _simulatorVolumeSlider.value;
+}
+
+#else
+
 -(void) setVolume:(float)volume{
     
     for (UIView *view in [_volumeView subviews]){
@@ -487,7 +512,6 @@ NSString * const kPauseImageName = @"pause.png";
         }
     }
 }
-
 -(float) volume{
     
     for (UIView *view in [_volumeView subviews]){
@@ -499,6 +523,8 @@ NSString * const kPauseImageName = @"pause.png";
     }
     return self.volume;
 }
+#endif
+
 
 -(void) togglePlay{
     
@@ -639,8 +665,12 @@ NSString * const kPauseImageName = @"pause.png";
 
 -(void) updateAlbumLabel{
     
-    NSString * artist = self.currentSongArtist;
-    NSString * album = self.currentSongAlbum;
+    NSString * artist = @"Felix Jaehn";
+    NSString * album = @"This Is Dance 2000";
+    //NSString * artist = self.currentSongArtist;
+   // NSString * album = self.currentSongAlbum;
+    
+    
     NSString * albumLabelText = @"";
     
     if(artist && ![artist isEqualToString:@""]){

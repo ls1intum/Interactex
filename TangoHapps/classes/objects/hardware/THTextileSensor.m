@@ -1,8 +1,8 @@
 /*
- THWindowEditable.m
+ THTextileSensor.m
  Interactex Designer
  
- Created by Juan Haladjian on 03/03/16.
+ Created by Juan Haladjian on 15/04/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,116 +40,116 @@
  
  */
 
+#import "THTextileSensor.h"
+#import "THElementPin.h"
 
-#import "THWindowEditable.h"
-#import "THWindow.h"
+@implementation THTextileSensor
 
-@implementation THWindowEditable
+@dynamic plusPin;
 
-@dynamic windowSize;
-@dynamic overlap;
-@dynamic started;
-@dynamic data;
+-(void) load{
+    
+    TFProperty * property = [TFProperty propertyWithName:@"value" andType:kDataTypeInteger];
+    self.properties = [NSMutableArray arrayWithObject:property];
+    
+    TFEvent * event = [TFEvent eventNamed:kEventValueChanged];
+    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
+    self.events = [NSMutableArray arrayWithObject:event];
+}
+
+-(void) loadPins{
+    
+    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypePlus];
+    pin1.hardware = self;
+    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeMinus];
+    pin2.hardware = self;
+    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeAnalog];
+    pin3.hardware = self;
+    pin3.defaultBoardPinMode = kPinModeAnalogInput;
+    
+    [self.pins addObject:pin1];
+    [self.pins addObject:pin2];
+    [self.pins addObject:pin3];
+}
 
 -(id) init{
     self = [super init];
     if(self){
-        self.simulableObject = [[THWindow alloc] init];
+        [self load];
+        [self loadPins];
         
-        [self loadWindow];
     }
     return self;
-}
-
--(void) loadWindow{
-    
-    self.programmingElementType = kProgrammingElementTypeWindow;
-    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder {
+-(id)initWithCoder:(NSCoder *)decoder{
     self = [super initWithCoder:decoder];
     
-    if(self){
-        [self loadWindow];
-    }
+    
+    [self load];
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder {
+-(void)encodeWithCoder:(NSCoder *)coder{
     [super encodeWithCoder:coder];
+    
 }
 
--(id)copyWithZone:(NSZone *)zone {
-    THWindow * copy = [super copyWithZone:zone];
-    if(copy){
-    }
+-(id)copyWithZone:(NSZone *)zone{
+    THTextileSensor * copy = [super copyWithZone:zone];
+
+    
     return copy;
-}
-
-
-#pragma mark - Property Controller
-
--(NSArray*)propertyControllers {
-    NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObjectsFromArray:[super propertyControllers]];
-    //[controllers addObject:[THCustomComponentProperties properties]];
-    return controllers;
 }
 
 #pragma mark - Methods
 
--(void) start{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window start];
+-(THElementPin*) minusPin{
+    return [self.pins objectAtIndex:1];
 }
 
--(void) stop{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window stop];
+-(THElementPin*) analogPin{
+    return [self.pins objectAtIndex:2];
 }
 
--(void) addSample:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSample:sample];
+-(THElementPin*) plusPin{
+    return [self.pins objectAtIndex:0];
 }
 
--(BOOL) started{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.started;
+-(void) updatePinValue{
+    
+    THElementPin * pin = self.analogPin;
+    THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
+    lilypadPin.value = self.value;
 }
 
--(NSMutableArray*) data{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.data;
+-(void) handlePin:(THPin*) pin changedValueTo:(NSInteger) newValue{
+    _value = newValue;
+    [self triggerEventNamed:kEventValueChanged];
 }
 
--(void) setWindowSize:(NSInteger)windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    window.windowSize = windowSize;
+-(void) setValue:(NSInteger)value{
+    value = [THClientHelper Constrain:value min:0 max:kMaxAnalogValue];
+    if(value != _value){
+        
+        _value = value;
+        
+        [self triggerEventNamed:kEventValueChanged];
+        
+        [self updatePinValue];
+    }
 }
 
-
--(NSInteger) windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.windowSize;
-}
-
--(void) setOverlap:(NSInteger)overlap{
-   THWindow * window = (THWindow*) self.simulableObject;
-    window.overlap = overlap;
-}
-
--(NSInteger) overlap{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.overlap;
+-(void) didStartSimulating{
+    [self triggerEventNamed:kEventValueChanged];
+    [super didStartSimulating];
 }
 
 -(NSString*) description{
-    return @"Window";
+    return @"textile sensor";
 }
 
 @end

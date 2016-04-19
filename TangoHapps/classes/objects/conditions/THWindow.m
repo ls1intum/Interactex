@@ -119,4 +119,8 @@
     }
 }
 
+-(NSString*) description{
+    return @"window";
+}
+
 @end

@@ -59,6 +59,7 @@ You should have received a copy of the GNU General Public License along with thi
     UIButton * _nextButton;
     UIButton * _previousButton;
     MPVolumeView * _volumeView;
+    UISlider * _simulatorVolumeSlider;
     NSTimer * _musicProgressTimer;
     
     BOOL isSimulating;

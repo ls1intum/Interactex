@@ -67,6 +67,7 @@ NSString * const kNotificationLedIntensityChanged = @"notificationLedIntensityCh
 
 NSString * const kNotificationSwitchOn = @"switchedOn";
 NSString * const kNotificationSwitchOff = @"switchedOff";
+NSString * const kNotificationSwitchChanged = @"switchChanged";
 
 NSString * const kNotificationLilypadObjectAdded = @"notificationLilypadObjectAdded";
 NSString * const kNotificationLilypadObjectRemoved = @"notificationLilypadObjectRemoved";
@@ -123,6 +124,8 @@ NSString * const kEventYChanged = @"yChanged";
 NSString * const kEventZChanged = @"zChanged";
 //NSString * const kEventAccelerometerChanged = @"accelerometerChanged";
 NSString * const kEventNewValue = @"newValue";
+
+NSString * const kEventCalling = @"calling";
 
 NSString * const kEventTapped = @"tapped";
 NSString * const kEventDoubleTapped = @"doubleTapped";

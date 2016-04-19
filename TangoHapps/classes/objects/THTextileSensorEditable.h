@@ -1,8 +1,8 @@
 /*
- THWindowEditable.m
+ THTextileSensorEditable.h
  Interactex Designer
  
- Created by Juan Haladjian on 03/03/16.
+ Created by Juan Haladjian on 15/04/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,116 +40,20 @@
  
  */
 
+#import "THHardwareComponentEditableObject.h"
 
-#import "THWindowEditable.h"
-#import "THWindow.h"
-
-@implementation THWindowEditable
-
-@dynamic windowSize;
-@dynamic overlap;
-@dynamic started;
-@dynamic data;
-
--(id) init{
-    self = [super init];
-    if(self){
-        self.simulableObject = [[THWindow alloc] init];
-        
-        [self loadWindow];
-    }
-    return self;
+@interface THTextileSensorEditable :
+THHardwareComponentEditableObject {
+    float _value;
+    float _touchDownIntensity;
+    CCLabelTTF * _valueLabel;
 }
 
--(void) loadWindow{
-    
-    self.programmingElementType = kProgrammingElementTypeWindow;
-    self.acceptsConnections = YES;
-}
+@property (nonatomic) NSInteger isDown;
 
-#pragma mark - Archiving
+@property (nonatomic, readonly) NSInteger value;
 
--(id)initWithCoder:(NSCoder *)decoder {
-    self = [super initWithCoder:decoder];
-    
-    if(self){
-        [self loadWindow];
-    }
-    
-    return self;
-}
-
--(void)encodeWithCoder:(NSCoder *)coder {
-    [super encodeWithCoder:coder];
-}
-
--(id)copyWithZone:(NSZone *)zone {
-    THWindow * copy = [super copyWithZone:zone];
-    if(copy){
-    }
-    return copy;
-}
-
-
-#pragma mark - Property Controller
-
--(NSArray*)propertyControllers {
-    NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObjectsFromArray:[super propertyControllers]];
-    //[controllers addObject:[THCustomComponentProperties properties]];
-    return controllers;
-}
-
-#pragma mark - Methods
-
--(void) start{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window start];
-}
-
--(void) stop{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window stop];
-}
-
--(void) addSample:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSample:sample];
-}
-
--(BOOL) started{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.started;
-}
-
--(NSMutableArray*) data{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.data;
-}
-
--(void) setWindowSize:(NSInteger)windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    window.windowSize = windowSize;
-}
-
-
--(NSInteger) windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.windowSize;
-}
-
--(void) setOverlap:(NSInteger)overlap{
-   THWindow * window = (THWindow*) self.simulableObject;
-    window.overlap = overlap;
-}
-
--(NSInteger) overlap{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.overlap;
-}
-
--(NSString*) description{
-    return @"Window";
-}
-
+@property (nonatomic, readonly) THElementPinEditable * minusPin;
+@property (nonatomic, readonly) THElementPinEditable * analogPin;
+@property (nonatomic, readonly) THElementPinEditable * plusPin;
 @end

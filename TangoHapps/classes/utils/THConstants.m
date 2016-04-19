@@ -93,6 +93,8 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     {{-23,-12},{0,26},{25,-12}},//10 - temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
     {{-26,24},{-26,32},{-26,15},{-26,6}},//mpu compass
+    {{-1,-29},{0,28},{0,0}},//textile sensor
+    {{-26,24},{-26,32},{0,0}},//textile speaker
 };
 
 float const kUiViewOpacityEditor = 0.5f;
@@ -154,7 +156,9 @@ NSString * const kHardwareSpriteNames[kNumHardwareTypes] = {
     @"vibeBoard.png",
     @"temperatureSensor.png",
     @"accelerometer.png",
-    @"MPU-6050.png"
+    @"MPU-6050.png",
+    @"textileSensor.png",
+    @"textileSpeaker.png"
 };
 
 NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {

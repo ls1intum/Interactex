@@ -640,6 +640,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) addWire:(THWire*) wire{
     [self.wires addObject:wire];
+
     [self notifyObjectAdded:wire];
 }
 

@@ -1347,16 +1347,19 @@ You should have received a copy of the GNU General Public License along with thi
         THProject * project = [THDirector sharedDirector].currentProject;
         for (THBoardEditable * board in project.boards) {
             
-            
             for (THWire * wire in project.wires) {
                 THBoardPinEditable * boardPin = wire.obj2;
                 if([board.pins containsObject:boardPin]){
-                    if(board.showsWires){
+                    THElementPinEditable * elementPin = wire.obj1;
+                    if(elementPin.selected){
+                        
                         wire.visible = YES;
+                    } else if(board.showsWires){
+                        wire.visible = YES;
+                        wire.showsNodes = NO;
                     } else {
                         
-                        THElementPinEditable * elementPin = wire.obj1;
-                        wire.visible = elementPin.selected;
+                        wire.visible = NO;
                     }
                 }
             }
@@ -1470,7 +1473,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) stopLilypadMode{
     
     _isLilypadMode = NO;
-    [self hideBoards];
+    //[self hideBoards];
     [self hideOtherHardware];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];
@@ -1546,7 +1549,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     [super willAppear];
     
-    [self hideBoards];
+    //[self hideBoards];
     
     [self prepareObjectsForEdition];
     [self addObservers];

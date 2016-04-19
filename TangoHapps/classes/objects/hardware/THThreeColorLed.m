@@ -121,6 +121,7 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super initWithCoder:decoder];
     if(self){
         self.onAtStart = [decoder decodeBoolForKey:@"onAtStart"];
+        self.onAtStart = YES;//REMOVE
         _red = [decoder decodeIntegerForKey:@"red"];
         _green = [decoder decodeIntegerForKey:@"green"];
         _blue = [decoder decodeIntegerForKey:@"blue"];
@@ -200,9 +201,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(!self.on){
 
         self.on = YES;
-        _red = 255;
-        _green = 255;
-        _blue = 255;
         
         [self triggerEventNamed:kEventTurnedOn];
         [self updatePinValue];

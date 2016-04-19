@@ -108,4 +108,8 @@
     return highPassFilter.data;
 }
 
+-(NSString*) description{
+    return @"High-Pass Filter";
+}
+
 @end

@@ -1015,6 +1015,9 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
             
             cell.nameTextField.text = name;
             proxy.name = name;
+            
+            [[THDirector sharedDirector] saveProjectProxies];//innefficient but done to avoid problems when abruptly stopped for debugging
+            
         } else {
             cell.nameTextField.text = oldName;
         }
