@@ -9,27 +9,27 @@ Interactex is an environment to create smart textile applications that interact 
 
 ![alt tag](Documentation/images/Interactex/overview.png)
 
-Interactex Designer is used to create the application and circuit design visually. 
+Interactex Designer is used to create the application and circuit design visually. Interactex Client executes applications and communicates with the smart textile. Interactex Client runs on a smartphone. Interactex Firmware runs on a microcontroller attached to the smart textile and executes commands received from Interactex Client. TextIT is used to create and export functionality components that can be imported into Interactex Designer.
+
+## Interactex Designer
+
+Interactex Designer runs on an iPad device and is available in the AppStore: 
+
+https://itunes.apple.com/us/app/interactex-designer/id973912620?mt=8
+
+The image below describes the main components of the user interface.
 
 ![alt tag](Documentation/images/Interactex/InteractexDesignerOverview.png)
 
-Applications created in Interactex Designer are transferred wirelessly to Interactex Client. Interactex Client executes applications and communicates with the smart textile. Interactex Client runs on a smartphone.
+Applications created in Interactex Designer are transferred wirelessly to Interactex Client. Interactex has three main modes: Circuit Layout, Visual Programming and Simulation Modes.
 
-![alt tag](Documentation/images/Interactex/InteractexClient.png)
-
-Interactex Firmware executes on a microcontroller attached to the smart textile and executes commands received from Interactex Client.
-
-# Interactex Designer
-
-Interactex has three main modes: Circuit Layout, Visual Programming and Simulation Modes.
-
-## Circuit Layout Mode
+### Circuit Layout Mode
 
 In Circuit Layout Mode, users lay out the hardware devices on the smart textile and draw their circuits.
 
 ![alt tag](Documentation/images/Interactex/circuitLayoutMode.png "circuit layout")
 
-## Visual Programming Mode
+### Visual Programming Mode
 
 In Visual Programming Mode, a palette with reusable objects is made available.
 
@@ -41,7 +41,7 @@ A new visual programming interface that will display object's events, methods an
 
 ![alt tag](Documentation/images/Interactex/newVisualProgramming.png)
 
-## Simulation Mode
+### Simulation Mode
 
 In Simulation Mode, applications are simulated and display runtime information for debugging purposes. Sensor data is simulated by users by performing multitouch gestures on sensors' visual representations. The states of output devices is represented visually with animations, sounds and images. 
 
@@ -50,6 +50,20 @@ In Simulation Mode, applications are simulated and display runtime information f
 The screenshot below shows how different objects are represented in Simulation Mode.
 
 ![alt tag](Documentation/images/Interactex/simulationMode2.png)
+
+## Interactex Client
+
+Interactex Client is an iPhone and iPod App. Interactex Client is available in the AppStore: 
+https://itunes.apple.com/nz/app/interactex-client/id1031238223?mt=8
+
+![alt tag](Documentation/images/Interactex/InteractexClient.png)
+
+
+## TextIT
+
+TexIT is a hybrid visual and textual programming environment, currently under development. 
+
+![alt tag](Documentation/images/Interactex/TextIT.png)
 
 # Interactex Objects Overview
 
