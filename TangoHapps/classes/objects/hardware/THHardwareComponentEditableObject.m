@@ -239,7 +239,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) autoroutePin:(THElementPinEditable*) pin{
     THProject * project = (THProject*) [THDirector sharedDirector].currentProject;
-    if(project.boards.count == 1){
+    if(!pin.connected && project.boards.count == 1){
         
         THBoardEditable * board = [project.boards objectAtIndex:0];
         

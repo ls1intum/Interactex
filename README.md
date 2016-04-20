@@ -1,136 +1,257 @@
 Interactex
 ==========
 
-Interactex is a toolset to create iPhone and iPod applications that interact with hardware components such as sensors and actuators. Figure below shoes the Architecture of the toolset. 
+Interactex is an environment to create smart textile applications that interact with a smartphone.
 
+# Overview
 
-![alt tag](Documentation/images/Interactex/1 - interactex.png)
+ Figure below shows Interactex's high-level design and workflow. 
 
-The Interactex Designer is initially used in order to visually create a Program. 
+![alt tag](Documentation/images/Interactex/overview.png)
 
-![alt tag](Documentation/images/Interactex/2 - editionMode.png)
+Interactex Designer is used to create the application and circuit design visually. 
 
-The Program is then transferred to the Interactex Client over Bluetooth or WiFi, which runs the program.
+![alt tag](Documentation/images/Interactex/InteractexDesignerOverview.png)
 
-![alt tag](Documentation/images/Interactex/3 - presets.png)
+Applications created in Interactex Designer are transferred wirelessly to Interactex Client. Interactex Client executes applications and communicates with the smart textile. Interactex Client runs on a smartphone.
 
-The Interactex Client then communicates with the microcontroller integrated into an eTextile using Bluetooth Low Energy.
+![alt tag](Documentation/images/Interactex/InteractexClient.png)
 
-
-![alt tag](Documentation/images/Interactex/4 - tshirt.png)
+Interactex Firmware executes on a microcontroller attached to the smart textile and executes commands received from Interactex Client.
 
 # Interactex Designer
 
- Programs in the Interactex Designer are created by Drag and Dropping elements and by drawing connections between them. A Rule Based System built into the Interactex Designer enables users to define behavior: Events of an object are linked to methods of another object. The “Pressed” event of a button can be connected to the “TurnOn” event of an LED. Programs can be simulated on the Designer before uploading them to the Client. More complex programming elements such as conditions and operators make it possible to define more complex behaviors. A Comparator Object can be used together with a Number Value and a Temperature Sensor in order to take an action whenever the temperature reaches a certain value. Such an action can be starting a phone call, playing or stopping music, etc.  The Interactex Designer offers two modes, the Edition mode and the Simulation mode. During the Edition mode, users create an application by drag and dropping elements from a Palette into the Project View. During the simulation mode, users can test and debug the created applications. Both modes are described next with an example. 
+Interactex has three main modes: Circuit Layout, Visual Programming and Simulation Modes.
+
+## Circuit Layout Mode
+
+In Circuit Layout Mode, users lay out the hardware devices on the smart textile and draw their circuits.
+
+![alt tag](Documentation/images/Interactex/circuitLayoutMode.png "circuit layout")
+
+## Visual Programming Mode
+
+In Visual Programming Mode, a palette with reusable objects is made available.
+
+Interactex follows a flow-based programming paradigm. Events of an object are coupled to functions of another object.
  
+![alt tag](Documentation/images/Interactex/visualProgrammingMode.png)
 
-# Tutorial
+A new visual programming interface that will display object's events, methods and properties and their couplings is under development. A screenshot of the new visual programming interface is shown below:
 
-This example application will turn on a LED using buttons on the iPhone. In the image below, a button has been added to the iPhone object, a T-Shirt and a LED have been added to the project.
+![alt tag](Documentation/images/Interactex/newVisualProgramming.png)
 
-![alt tag](Documentation/images/Interactex/5 - Demo1.png)
+## Simulation Mode
 
-In order to make a program that turns on the LED when the button is pressed, both objects need to be connected. In order to connect objects, the connection switch should be activated. The connection switch is found on the bottom-right side of the screen and looks like this: 
+In Simulation Mode, applications are simulated and display runtime information for debugging purposes. Sensor data is simulated by users by performing multitouch gestures on sensors' visual representations. The states of output devices is represented visually with animations, sounds and images. 
 
-![alt tag](Documentation/images/Interactex/6 - Demo2.png)
+![alt tag](Documentation/images/Interactex/simulationMode.png)
 
-Drawing a line from one object to the other creates a connection between them. When drawing a connection between the button and the LED, a popup will appear. This popup displays events from the source object (the Button) on the left side and matching methods or actions from the target object (the LED) on the right side. 
+The screenshot below shows how different objects are represented in Simulation Mode.
 
-![alt tag](Documentation/images/Interactex/7 - Demo3.png)
+![alt tag](Documentation/images/Interactex/simulationMode2.png)
 
-Selecting the touchDown event to the turnOn method will cause the LED to turn on when the button is pressed.
+# Interactex Objects Overview
 
-In order to test this simple application, the Simulation mode can be started by pressing the Play button on the top right side of the screen. While simulating, pressing the button on the iPhone should turn on the LED’s light, as depicted below.
+Interactex offers different types of reusable objects. 
 
-![alt tag](Documentation/images/Interactex/8 - Demo4.png)
+## UI Widgets
 
-In order to switch back to Edition mode, the cross on the top-right side of the screen has to be pressed.
+UI Widgets conform the user interface on the smartphone. 
 
-Before this can work on the hardware side, the application has to know what board’s pins the LED will be connected to. This can be done on the Hardware View. To enter the hardware view, the button that looks like a Lilypad on the top-right side of the screen has to be pressed.
-
-![alt tag](Documentation/images/Interactex/9 - Demo5.png)
-
-The – pin of the LED is automatically wired. The + pin can be connected to any valid board’s pin by drawing a line with the finger while the connection switch is activated (in the same way as connections between objects are created).
-
-![alt tag](Documentation/images/Interactex/10 - Demo6.png)
-
-After hardware components are wired, if the application still needs to be debugged, the Pins Controller feature can be used. This feature is available during Simulation Mode and can be opened using the button next to the stop button that looks like this:
-
-![alt tag](Documentation/images/Interactex/11 - Demo7.png)
-
-The Pins Controller displays pin values and allows users to change them in order to observe hardware’s behavior.
- 
-![alt tag](Documentation/images/Interactex/12 - Demo8.png)
-
-In order to transfer the application to the iPhone (or iPod):
-
-1.  Both devices (iPad and iPhone) need to either be connected to the same network, or have Bluetooth activated. 
- 
-2.  In the Interactex Client, tap the + button to proceed to the Download mode: 
+| Image                                               | Name         | Description                                                                                                                                |
+|:---------------------------------------------------:|--------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+|   ![](Documentation/icons/ui/palette_ibutton.png)   |    Button    | Triggers events when pressed and when released.                                                                                            |
+|    ![](Documentation/icons/ui/palette_label.png)    |     Label    | Displays text and numbers.                                                                                                                 |
+|   ![](Documentation/icons/ui/palette_iswitch.png)   |    Switch    | Triggers events when switched on or off.                                                                                                   |
+|    ![](Documentation/icons/ui/palette_slider.png)   |    Slider    | Used to select a value from a range of values. Triggers events when its handle is moved by the user.                                       |
+|   ![](Documentation/icons/ui/palette_touchpad.png)  |   Touchpad   | Triggers events when the user performs the following multitouch gestures on it: tap, double tap, long tap, pinch and pan.                  |
+| ![](Documentation/icons/ui/palette_musicplayer.png) | Music Player | Accesses mobile device's music library, offers functionality to iterate through the music list, play songs and displays music information. |
+|  ![](Documentation/icons/ui/palette_imageview.png)  |  Image View  | Displays an image.                                                                                                                         |
+| ![](Documentation/icons/ui/palette_contactBook.png) | Contact Book | Accesses user’s contact book and offers functionality to iterate through contacts and make calls.                                          |
+|   ![](Documentation/icons/ui/palette_monitor.png)   |    Monitor   | Displays values over time (e.g. sensor readings).                                                                                          |
 
 
-![alt tag](Documentation/images/Interactex/13 - Client.png)
+## Hardware Devices
 
-3.  The push button (the last icon in the Designer’s toolbar – an arrow pointing up) becomes enabled in the Designer. After pressing it, the application is transferred to the Client Application.
+Hardware devices are sensors and output devices. Interactex supports every hardware device in the Arduino Lilypad kit and custom-made textile sensors and output devices (e.g. Textile Sensor and Textile Speaker) 
 
-![alt tag](Documentation/images/Interactex/14 - editorTools.png)
+|                              Image                              |        Name        |                                                                                                                                                                                                Description                                                                                                                                                                                               |
+|:---------------------------------------------------------------:|:------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        ![](Documentation/icons/hardware/palette_led.png)        |         LED        | A Light Emitting Diode (LED). Can be turned on or off and its intensity can be set (set the corresponding pin to PWM mode in the Lilypad info panel if you intend to change its intensity)                                                                                                                                                                                                               |
+|       ![](Documentation/icons/hardware/palette_button.png)      |       Button       | A Lilypad button that can be pressed. Triggers events when pressed and when released.                                                                                                                                                                                                                                                                                                                    |
+|       ![](Documentation/icons/hardware/palette_switch.png)      |       Switch       | A Lilypad switch. Generates events when switched on or off.                                                                                                                                                                                                                                                                                                                                              |
+|       ![](Documentation/icons/hardware/palette_buzzer.png)      |       Buzzer       | Represents a Lilypad Buzzer, an element that produces a sound frequency. It can be turned on, turned off and its sound frequency can be set.                                                                                                                                                                                                                                                             |
+|     ![](Documentation/icons/hardware/palette_LSMCompass.png)     |     LSMCompass     | Represents the LSM303 Accelerometer and Magnetometer. Should be connected to the SCL and SDA pins for I2C communication. Measures acceleration forces in a 3D space.                                                                                                                                                                                                                                     |
+|       ![](Documentation/icons/hardware/palette_MPU6050.png)      |      MPU-6050      | Measures acceleration acceleration forces and orientation (gravity) in a 3D space.                                                                                                                                                                                                                                                                                                                       |
+|     ![](Documentation/icons/hardware/palette_lightSensor.png)    |    Light Sensor    | Represents a Lilypad Light Sensor. Measures light intensity.                                                                                                                                                                                                                                                                                                                                             |
+| ![](Documentation/icons/hardware/palette_temperatureSensor.png) | Temperature Sensor | Represents a Lilypad Temperature Sensor. It works similar to the Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.                                                                                                                                                                                                                                   |
+|   ![](Documentation/icons/hardware/palette_potentiometer.png)   |    Potentiometer   | Generates events according to three modes: always, InRange and Once. The Always mode will trigger an event whenever the hardware value changed. The InRange mode generates an event when the hardware value changed and this value lies within a certain range, which can be configured in the object’s properties. The Once mode will trigger an event once when the value lies within a certain range. |
+|   ![](Documentation/icons/hardware/palette_threeColorLed.png)   |   Three-Color LED  | An LED that emits light in multiple colors.                                                                                                                                                                                                                                                                                                                                                              |
+|     ![](Documentation/icons/hardware/palette_vibeBoard.png)     |     Vibe Board     | Represents a Lilypad vibration board (produces vibrations). It can be turned on, off and its vibration frequency can be set.                                                                                                                                                                                                                                                                             |
+|   ![](Documentation/icons/hardware/palette_accelerometer.png)   |    Accelerometer   | It offers methods for reading x, y and z. Should be connected to three analog input pins.                                                                                                                                                                                                                                                                                                                |
+|   ![](Documentation/icons/hardware/palette_textileSensor.png)   |   Textile Sensor   | Represents an analog textile sensor.                                                                                                                                                                                                                                                                                                                                                                     |
+|   ![](Documentation/icons/hardware/palette_textileSpeaker.png)  |   Textile Speaker  | Represents a radio module. Its frequency, volume, sender can be configured.                                                                                                                                                                                                                                                                                                                              |
 
-4. By tapping the Scan button at the top-right side of the screen, the Client Application will scan for nearby Bluetooth 4.0 devices. Once a device is found which implements one of the supported Services (see section Supported Devices), the text “Start” will replace the previous “Scan” text. By pressing the “Start” Button on the top-right side of the screen a connection with the hardware is established and the application starts running. After that, the “Stop” text will replace the “Start” text. When the “Stop” button is pressed, the device disconnects from the hardware. By going back to the projects screen at any time, the device disconnects from the hardware.
- 
+## Variables
 
-![alt tag](Documentation/images/Interactex/15 - Client.png)
+Variables store data.
 
-# Event – Method Mechanism
+|                          Image                         |      Name     |                                                                                                                                                                            Description                                                                                                                                                                           |
+|:-------------------------------------------------------:|:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ![](Documentation/icons/variables/palette_number.png) |  Number Value | Represents a number (equivalent to a variable in programming). Can be used for example together with the comparator in order to detect when a specific object’s property (such as the buzzer’s frequency or the LED’s intensity) reaches a specific value. Generates an event when its value changes. This is the event that can be connected to the comparator. |
+| ![](Documentation/icons/variables/palette_boolean.png) | Boolean Value | Represents a Boolean value (equivalent to a variable in programming).  It can be used for example together with a grouper condition.                                                                                                                                                                                                                             |
+|  ![](Documentation/icons/variables/palette_string.png) |  String Value | Represents a constant String (equivalent to a constant variable in programming). It can be used to set the text of a label. In the future, it will be formateable such that users can mix text and numbers, while these numbers could be sensor values.                                                                                                          |
 
-Events are the cause (or triggers) of the methods. Not every event can be connected to every method. The parameters a method expects need to match the values an event delivers. For example, a method such as setIntensity of the LED expects an integer number (as can be seen below - parameters appear between brackets).
+## Comparison Operators
 
-![alt tag](Documentation/images/Interactex/16 - Methods.png)
+Comparison operators compare two values and return the result of the comparison as a Boolean.
 
-An event such as the valueChanged event of the slider delivers the value property, which is another number (float in this case). Because both parameters are compatible, it is possible to connect valueChanged to setIntensity. This will cause the intensity of the LED to be modified with a slider.
+|                             Image                             | Name         | Description                                                             |
+|:-------------------------------------------------------------:|:-------------|:------------------------------------------------------------------------|
+|    ![](Documentation/icons/programming/palette_bigger.png)    |    Bigger    | Compares whether the first operand is bigger than the second.           |
+|    ![](Documentation/icons/programming/palette_bigger.png)    |  BiggerEqual | Compares whether the first operand is bigger or equal than the second.  |
+|    ![](Documentation/icons/programming/palette_smaller.png)   |    Smaller   | Compares whether the first operand is smaller than the second.          |
+| ![](Documentation/icons/programming/palette_smallerEqual.png) | SmallerEqual | Compares whether the first operand is smaller or equal than the second. |
+|    ![](Documentation/icons/programming/palette_bigger.png)    |     Equal    | Compares whether the first operand is equal than the second.            |
+|    ![](Documentation/icons/programming/palette_bigger.png)    |   NotEqual   | Compares whether the first operand is not equal to the second.          |
+|      ![](Documentation/icons/programming/palette_and.png)     |      And     | Checks whether both operands are true.                                  |
+|      ![](Documentation/icons/programming/palette_or.png)      |      Or      | Checks whether either operand is true.                                  |
 
-![alt tag](Documentation/images/Interactex/17 - Events.png)
+## Arithmetic Operators
 
-# Interactex Objects
+Arithmetic operators operate two numbers and return the result of the operation.
 
-The Interactex Applications are constructed by drag and dropping objects. Here is a list of the objects available:
-
-
-| UI Element | Name | Description | Methods |
-:---:| ---- |:---| ---|
-![](Documentation/icons/ui/ibutton.png)     | Button          | A button that can be pressed. Generates events when pressed and when released.	| 
-![](Documentation/icons/ui/label.png)       | Label           | Displays text and numbers.	| setText
-![](Documentation/icons/ui/iswitch.png)     | Switch          | Generates events when switched on or off.	| 
-![](Documentation/icons/ui/slider.png)      | Slider          | Delivers a value which can be used as input for other objects (ex. Frequency of a buzzer).	| 
-![](Documentation/icons/ui/touchpad.png)    | Touchpad        | Generates events when user performs following gestures on it: tap, double tap, pinch, pan, long press.	| 
-![](Documentation/icons/ui/musicplayer.png) | Music Player    | Accesses user’s music library and offers methods such as: play, stop, next and previous.	| next, previous, play, pause
-![](Documentation/icons/ui/imageview.png)   | Image View      | Displays an image.	| 
-![](Documentation/icons/ui/contactBook.png) | Contact Book    | Accesses user’s contact book and offers functionality to iterate through contacts and make calls.	| next, previous, call
-![](Documentation/icons/ui/monitor.png)     | Monitor         | Displays sensor readings over time. At the moment it offers two methods: setValue1 and setValue2. Value1 will be displayed as a blue line and Value2 red.	| setX, setY
-
-
-Hardware Elements | Name | Description | Methods |
-:---:| ---- |:---| ---|
-![](Documentation/icons/hardware/led.png) | LED | Can be turned on or off and its intensity can be set (be sure to set the corresponding pin to PWM mode)	| turnOn, turnOff, setItensity
-![](Documentation/icons/hardware/button.png)            | Button              | A Lilypad button that can be pressed. Generates events when pressed and when released.	| 
-![](Documentation/icons/hardware/switch.png)            | Switch              | A Lilypad switch. Generates events when switched on or off.	| 
-![](Documentation/icons/hardware/buzzer.png)            | Buzzer              | Represents a Lilypad Buzzer. It can be turned on, turned off , and its frequency can be set.	| turnOn, turnOff, setFrequency
-![](Documentation/icons/hardware/LSMCompass.png)        | LSMCompass          | Represents the LSM303 Accelerometer and Magnetometer. Should be connected to the SCL and SDA pins for I2C communication.	| 
-![](Documentation/icons/hardware/lightSensor.png)       | Light Sensor        | Represents a Lilypad Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.	| 
-![](Documentation/icons/hardware/temperatureSensor.png) | Temperature Sensor  | Represents a Lilypad Temperature Sensor. It works similar to the Light Sensor. It offers an event: valueChanged which notifies when the reading of the sensor changed.	| 
-![](Documentation/icons/hardware/potentiometer.png)     | Potentiometer       | Generates events according to three modes: always, InRange and Once. The Always mode will trigger an event whenever the hardware value changed. The InRange mode generates an event when the hardware value changed and this value lies within a certain range, which can be configured in the object’s properties. The Once mode will trigger an event once when the value lies within a certain range.	| 
-![](Documentation/icons/hardware/threeColorLed.png)     | Three-Color LED     | A lilypad three-color-led	| turnOn, turnOff, setRed, setGreen, setBlue
-![](Documentation/icons/hardware/vibeBoard.png)         | Vibe Board          | Represents a vibration board. It works similar  to the Buzzer, It can be turned on, turned off , and its frequency can be set.	| turnOn, turnOff, setFrequency
-![](Documentation/icons/hardware/accelerometer.png)     | Accelerometer       | It offers methods for reading x, y and z. Should be connected to three analog input pins.	| 
+|                              Image                             |      Name      |                               Description                              |
+|:--------------------------------------------------------------:|:---------------|:----------------------------------------------------------------------|
+|    ![](Documentation/icons/arithmetic/palette_addition.png)    |    Addition    | Adds two numbers.                                                      |
+|   ![](Documentation/icons/arithmetic/palette_subtraction.png)  |   Subtraction  | Subtracts operand2 from operand1.                                      |
+| ![](Documentation/icons/arithmetic/palette_multiplication.png) | Multiplication | Multiplies two numbers.                                                |
+|    ![](Documentation/icons/arithmetic/palette_division.png)    |    Division    | Divides operand1 by operand2.                                          |
+|     ![](Documentation/icons/arithmetic/palette_modulo.png)     |     Modulo     | Calculates the residual of the division between operand1 and operand2. |
 
 
-Programming Elements  | Name   | Description | Methods |
-:---:| ---- |:---| ---|
-![](Documentation/icons/programming/comparator.png)     | Comparator          | Compares two numbers A and B and generates an event depending on its configuration. If A is bigger than B and the Comparator is in ‘bigger’ mode, then the ‘conditionIsTrue’ even gets triggered. This event can, like any other event, be connected to other object’s methods. In order to set the values A and B that should be compared, connect an event that delivers a number value (such as the intensityChanged event of the Light Sensor) to the setValue1 method of the Comparator. To do this, a line should be drawn starting at the Light Sensor and ending on the Comparator.	| setValue1, setValue2
-![](Documentation/icons/programming/grouper.png) | Grouper               | Compares two Boolean values (values that can be either true or false) and generates an event depending on whether both of them are true or only one of them is true. It is connected in a similar way to the Comparator.	| setValue1, setValue2
-![](Documentation/icons/programming/number.png) | Number Value          | Represents a number (equivalent to a variable in programming). Can be used for example together with the comparator in order to detect when a specific object’s property (such as the buzzer’s frequency or the LED’s intensity) reaches a specific value. Generates an event when its value changes. This is the event that can be connected to the comparator.	| setValue
-![](Documentation/icons/programming/boolean.png) | Boolean Value         | Represents a Boolean value (equivalent to a variable in programming).  It can be used for example together with a grouper condition.	| setValue
-![](Documentation/icons/programming/string.png) | String Value          | Represents a constant String (equivalent to a constant variable in programming). It can be used to set the text of a label. In the future, it will be formateable such that users can mix text and numbers, while these numbers could be sensor values.	| setValue
-![](Documentation/icons/programming/mapper.png) | Mapper                | Scales and constrains a value. Can be used to make numbers fit within a certain range. For example, the slider produces by default values between 0 and 255 and the buzzer produces frequencies between 0 and 20000. The mapper can be used to make such range conversions. Its current implementation offers a linear function y = ax + b which means that incoming values x get multiplied by a and added b. Values are clamped to the range [min max]. Generates an event whenever the value changes.	| setMin1, setMax1, setMin2, setMax2, setValue
-![](Documentation/icons/programming/timer.png) |  Timer                | Generates an event after x time.	| start, stop
-![](Documentation/icons/programming/sound.png) |  Sound                | Represents a sound. It offers a single method to play it.	| play
+
+## Signal Processing
+
+Signal processing elements are filters, feature extractors and classification algorithms.
+
+|                                  Image                                  |         Name        |                                                                                      Description                                                                                      |
+|:-----------------------------------------------------------------------:|:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       ![](Documentation/icons/signalProcessing/palette_window.png)      |        Window       | Takes signal values as input, and returns chunks of the same signals, which might overlap.                                                                                            |
+|   ![](Documentation/icons/signalProcessing/palette_lowPassFilter.png)   |   Low-Pass Filter   | Low-passes a signal.                                                                                                                                                                  |
+|   ![](Documentation/icons/signalProcessing/palette_highPassFilter.png)  |   High-Pass Filter  | High-passes a signal.                                                                                                                                                                 |
+|        ![](Documentation/icons/signalProcessing/palette_mean.png)       |    Mean Extractor   | Calculates the mean of a set of values.                                                                                                                                               |
+|     ![](Documentation/icons/signalProcessing/palette_deviation.png)     | Deviation Extractor | Calculates the deviation of a set of values.                                                                                                                                          |
+|    ![](Documentation/icons/signalProcessing/palette_peakDetector.png)   |    Peak Detector    | Calculates the peak in a set of values and provides the peak's value and index in an event. It offers methods to set the range in a set of samples where the peak should be searched. |
+|     ![](Documentation/icons/signalProcessing/palette_classifier.png)    |  Motion Classifier  | Classifies user motion based on accelerometer input. Supported motions are: 'walking', 'running', 'climbing' and 'not moving'.                                                        |
+| ![](Documentation/icons/signalProcessing/palette_postureClassifier.png) |  Posture Classifier | Clasifies user postures based on IMU input. Supported postures are: 'standing', 'lying down on stomach' and 'lying down on back'.                                                     |
+
+## Utility Objects
+
+Utility Objects represent software functionality commonly useful when developing software for smart textiles.
+
+|                          Image                          |   Name   |                                                                                                                                                                                                            Description                                                                                                                                                                                                            |
+|:-------------------------------------------------------:|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ![](Documentation/icons/utilities/palette_mapper.png)  |  Mapper  | Scales values. This is useful to make values fit to the range required by other objects. For example, the Slider UI widget produces by default values in the range [0 255] and the Buzzer hardware element requires a frequency in the range [0 20000]. The Mapper would take the Slider's input range [Min1 Max1] and scale it linearly to the Buzzer's output range [Min2 Max2]. Generates an event whenever the value changes. |
+| ![](Documentation/icons/utilities/palette_recorder.png) | Recorder | Provides a way to store a set of values (e.g. from a sensor) and to feed a set of values into other objects.                                                                                                                                                                                                                                                                                                                      |
+|   ![](Documentation/icons/utilities/palette_timer.png)  |   Timer  | Generates an event after x time. It's trigger time and whether it should trigger once or many times can be configured over the properties panel.                                                                                                                                                                                                                                                                                  |
+|   ![](Documentation/icons/utilities/palette_sound.png)  |   Sound  | Represents a sound. It offers a single method to play it.                                                                                                                                                                                                                                                                                                                                                                         |
+
+# Object's Events, Methods and Properties
+
+Objects in Interactex emit events and contain methods with executable functionality and properties (equivalent to instance variables in object-oriented programming). 
+
+## UI Widgets
+|                        Image                        |     Name     |                                    Events                                   |                         Methods                        |     Properties    |
+|:---------------------------------------------------:|:------------:|:---------------------------------------------------------------------------:|:------------------------------------------------------:|:-----------------:|
+|   ![](Documentation/icons/ui/palette_ibutton.png)   |    Button    |                      buttonPressed(), buttonReleased()                      |                            -                           | pressed : Boolean |
+|    ![](Documentation/icons/ui/palette_label.png)    |     Label    |                                      -                                      |           setText(String), appendText(String)          |   text : String   |
+|   ![](Documentation/icons/ui/palette_iswitch.png)   |    Switch    |               switchedOn(), switchedOff(), onChanged(Boolean)               |                            -                           |    on : Boolean   |
+|    ![](Documentation/icons/ui/palette_slider.png)   |    Slider    |                             valueChanged(Number)                            |                            -                           |   value : Number  |
+|   ![](Documentation/icons/ui/palette_touchpad.png)  |   Touchpad   | pannedX(Number), pannedY(Number), tapped(), doubleTapped(), pinched(Number) |                            -                           |         -         |
+| ![](Documentation/icons/ui/palette_musicplayer.png) | Music Player |                             started(), stopped()                            | play(), pause(), next(), previous(), setVolume(Number) |  volume : Number  |
+|  ![](Documentation/icons/ui/palette_imageview.png)  |  Image View  |                                      -                                      |                            -                           |         -         |
+| ![](Documentation/icons/ui/palette_contactBook.png) | Contact Book |                                      -                                      |               call(), previous(), next()               |                   |
+|   ![](Documentation/icons/ui/palette_monitor.png)   |    Monitor   |                                      -                                      |          addValue1(Number), addValue2(Number)          |         -         |
+
+
+## Hardware Devices
+|                              Image                              |        Name        |                          Events                         |                                      Methods                                     |                 Properties                |
+|:---------------------------------------------------------------:|:------------------:|:-------------------------------------------------------:|:--------------------------------------------------------------------------------:|:-----------------------------------------:|
+|        ![](Documentation/icons/hardware/palette_led.png)        |         LED        |                 turnedOn(), turnedOff()                 |                     turnOn(), turnOff(), setIntensity(Number)                    |      on : Boolean, intensity : Number     |
+|       ![](Documentation/icons/hardware/palette_button.png)      |       Button       |            buttonPressed(), buttonReleased()            |                                         -                                        |             pressed : Boolean             |
+|       ![](Documentation/icons/hardware/palette_switch.png)      |       Switch       |   switchedOn(), switchedOff(), switchChanged(Boolean)   |                                         -                                        |                     -                     |
+|       ![](Documentation/icons/hardware/palette_buzzer.png)      |       Buzzer       |                            -                            |                     turnOn(), turnOff(), setFrequency(Number)                    |             frequency : Number            |
+|     ![](Documentation/icons/hardware/palette_LSMCompass.png)     |     LSMCompass     |   headingChanged(Number), accelerationChanged(Object)   |                                         -                                        |  acceleration : Object, heading : Number  |
+|       ![](Documentation/icons/hardware/palette_MPU6050.png)      |      MPU-6050      | accelerationChanged(Object), orientationChanged(Object) |                                  start(), stop()                                 | acceleration: Object, orientation: Object |
+|     ![](Documentation/icons/hardware/palette_lightSensor.png)    |    Light Sensor    |                   valueChanged(Number)                  |                                  start(), stop()                                 |          lightIntensity : Number          |
+| ![](Documentation/icons/hardware/palette_temperatureSensor.png) | Temperature Sensor |                   valueChanged(Number)                  |                                  start(), stop()                                 |            temperature : Number           |
+|   ![](Documentation/icons/hardware/palette_potentiometer.png)   |    Potentiometer   |                   valueChanged(Number)                  |                                         -                                        |               value : Number              |
+|   ![](Documentation/icons/hardware/palette_threeColorLed.png)   |   Three-Color LED  |                            -                            |      turnOn(), turnOff(), setRed(Number), setGreen(Number), setBlue(Number)      |                     -                     |
+|     ![](Documentation/icons/hardware/palette_vibeBoard.png)     |     Vibe Board     |                            -                            |                     turnOn(), turnOff(), setFrequency(Number)                    |             frequency : Number            |
+|   ![](Documentation/icons/hardware/palette_accelerometer.png)   |    Accelerometer   |  xChanged(Number), yChanged(Number), zChanged(Number),  |               xChanged(Number), yChanged(Number), zChanged(Number)               |     x : Number, y : Number, z : Number    |
+|   ![](Documentation/icons/hardware/palette_textileSensor.png)   |   Textile Sensor   |                            -                            |                                                                                  |               value : Number              |
+|   ![](Documentation/icons/hardware/palette_textileSpeaker.png)  |   Textile Speaker  |                    onChanged(Boolean)                   | turnOn(), turnOff(), setFrequency(Number), setVolume(Number), setSender(Boolean) |                     -                     |
+
+
+## Comparison Operators
+
+Comparison Operators emit the conditionIsTrue() event if the fist input variable is bigger (or smaller, equal, etc.) than the second input variable and otherwise emit the conditionIsFalse() event. Comparison Operators emit the alternative conditionChanged() event.
+
+|                             Image                             |     Name     |                              Events                              |                Methods               |    Properties    |
+|:-------------------------------------------------------------:|:------------:|:----------------------------------------------------------------:|:------------------------------------:|:----------------:|
+|    ![](Documentation/icons/programming/palette_bigger.png)    |    Bigger    | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+|    ![](Documentation/icons/programming/palette_bigger.png)    |  BiggerEqual | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+|    ![](Documentation/icons/programming/palette_smaller.png)   |    Smaller   | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+| ![](Documentation/icons/programming/palette_smallerEqual.png) | SmallerEqual | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+|    ![](Documentation/icons/programming/palette_bigger.png)    |     Equal    | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+|    ![](Documentation/icons/programming/palette_bigger.png)    |   NotEqual   | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+|      ![](Documentation/icons/programming/palette_and.png)     |      And     | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+|      ![](Documentation/icons/programming/palette_or.png)      |      Or      | conditionIsTrue(), conditionIsFalse(), conditionChanged(Boolean) | setValue1(Number), setValue2(Number) | isTrue : Boolean |
+
+
+## Arithmetic Operators
+
+Arithmetic Operators emit the computed(Number) event with the result of the operation.
+
+|                              Image                              |      Name      |      Events      |                       Methods                       | Properties |
+|:---------------------------------------------------------------:|:--------------:|:----------------:|:---------------------------------------------------:|:----------:|
+|    ![](Documentation/icons/arithmetic/palette_addition.png)    |    Addition    | computed(Number) | setOperand1(Number), setOperand2(Number), compute() |      -     |
+|    ![](Documentation/icons/arithmetic/palette_subtraction.png) |   Subtraction  | computed(Number) | setOperand1(Number), setOperand2(Number), compute() |      -     |
+| ![](Documentation/icons/arithmetic/palette_multiplication.png) | Multiplication | computed(Number) | setOperand1(Number), setOperand2(Number), compute() |      -     |
+|    ![](Documentation/icons/arithmetic/palette_division.png)    |    Division    | computed(Number) | setOperand1(Number), setOperand2(Number), compute() |      -     |
+|     ![](Documentation/icons/arithmetic/palette_modulo.png)     |     Modulo     | computed(Number) | setOperand1(Number), setOperand2(Number), compute() |      -     |
+
+## Variables
+
+Variables have an event to set the value to be stored in the Variable and emit the valueChanged() event when the value changes its value. The value stored in a Variables can also be accessed through the 'value' property. 
+
+|                           Image                          |      Name     |         Events        |      Methods      |    Properties   |
+|:--------------------------------------------------------:|:-------------:|:---------------------:|:-----------------:|:---------------:|
+|  ![](Documentation/icons/variables/palette_number.png) |  Number Value | valueChanged(Number) |  setValue(Number) |  value : Number |
+| ![](Documentation/icons/variables/palette_boolean.png) | Boolean Value | valueChanged(Boolean) | setValue(Boolean) | value : Boolean |
+|  ![](Documentation/icons/variables/palette_string.png) |  String Value | valueChanged(String) |  setValue(String) |  value : String |
+
+
+## Signal Processing
+|                                  Image                                  |         Name        |                     Events                    | Methods                                                                        | Properties |
+|:-----------------------------------------------------------------------:|:-------------------:|:---------------------------------------------:|:------------------------------------------------------------------------------:|:----------:|
+|       ![](Documentation/icons/signalProcessing/palette_window.png)      |        Window       |                 filled(Object)                |                                addValue(Number)                                |      -     |
+|   ![](Documentation/icons/signalProcessing/palette_lowPassFilter.png)   |   Low-Pass Filter   |                filteredValues()               |                       addValue(Number), removeAllValues()                      |      -     |
+|   ![](Documentation/icons/signalProcessing/palette_highPassFilter.png)  |   High-Pass Filter  |                filteredValues()               |                       addValue(Number), removeAllValues()                      |      -     |
+|        ![](Documentation/icons/signalProcessing/palette_mean.png)       |    Mean Extractor   |               featureExtracted()              |                 addValue(Number), removeAllValues(), compute()                 |      -     |
+|     ![](Documentation/icons/signalProcessing/palette_deviation.png)     | Deviation Extractor |               featureExtracted()              |                 addValue(Number), removeAllValues(), compute()                 |      -     |
+|    ![](Documentation/icons/signalProcessing/palette_peakDetector.png)   |    Peak Detector    |               featureExtracted()              | addValue(Number), removeAllValues(), compute(), setRangeStart(), setRangeEnd() |      -     |
+|     ![](Documentation/icons/signalProcessing/palette_classifier.png)    |  Motion Classifier  | walking(), running(), climbing(), notMoving() |                                addSample(Object)                               |      -     |
+| ![](Documentation/icons/signalProcessing/palette_postureClassifier.png) |  Posture Classifier |       standing(), lyingDown(), lyingUp()      |                                addSample(Object)                               |      -     |
+
+
+## Utilities
+|                          Image                          |   Name   |               Events              |                                        Methods                                       |   Properties   |
+|:-------------------------------------------------------:|:--------:|:---------------------------------:|:------------------------------------------------------------------------------------:|:--------------:|
+|  ![](Documentation/icons/utilities/palette_mapper.png)  |  Mapper  |                 -                 | setMin1(Number), setMax1(Number), setMin2(Number), setMax2(Number), setValue(Number) | value : Number |
+| ![](Documentation/icons/utilities/palette_recorder.png) | Recorder | startRecording(), stopRecording() |                  startRecording(), stopRecording(), addValue(Number)                 |        -       |
+|   ![](Documentation/icons/utilities/palette_timer.png)  |   Timer  |            triggered()            |                                    start(), stop()                                   |        -       |
+|   ![](Documentation/icons/utilities/palette_sound.png)  |   Sound  |        valueChanged(Number)       |                                        play()                                        |        -       |
 

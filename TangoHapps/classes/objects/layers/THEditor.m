@@ -340,7 +340,7 @@ You should have received a copy of the GNU General Public License along with thi
     if([editableObject isKindOfClass:[THWireNode class]]){
         
         THWireNode * node = (THWireNode*) editableObject;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:node.wire];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationObjectSelected object:node];
         
     } else {
         
@@ -529,7 +529,6 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-
 #pragma mark - Connecting
 
 -(void) handleConnectionEndedAt:(CGPoint) location{
@@ -673,9 +672,8 @@ You should have received a copy of the GNU General Public License along with thi
     }
 }
 
-
 -(BOOL) shouldSnapWireToXPosition:(CGPoint) position{
-    
+
     const float kSnapDistance = 10;
     
     THWireNode * node = (THWireNode*) self.currentObject;
@@ -684,18 +682,24 @@ You should have received a copy of the GNU General Public License along with thi
     THWireNode * firstNode = nodes[0];
     THWireNode * secondNode = nodes[1];
     
+    CGPoint firstNodeGlobalPos = [firstNode convertToWorldSpace:ccp(0,0)];
+    CGPoint firstNodeZoomLayerPos = [self.zoomableLayer convertToNodeSpace:firstNodeGlobalPos];
     
-    float xDiff1 = firstNode.position.x - position.x + self.zoomableLayer.position.x;
-    float xDiff2 = secondNode.position.x - position.x + self.zoomableLayer.position.x;
+    CGPoint secondNodeGlobalPos = [secondNode convertToWorldSpace:ccp(0,0)];
+    CGPoint secondNodeZoomLayerPos = [self.zoomableLayer convertToNodeSpace:secondNodeGlobalPos];
     
+    CGPoint touchZoomLayerPos = [self.zoomableLayer convertToNodeSpace:position];
+    
+    float xDiff1 = firstNodeZoomLayerPos.x - touchZoomLayerPos.x;
+    float xDiff2 = secondNodeZoomLayerPos.x - touchZoomLayerPos.x;
     
     if(fabs(xDiff1) <= kSnapDistance) {
-        currentSnapPosition.x = firstNode.position.x;
+        currentSnapPosition.x = firstNodeZoomLayerPos.x;
         return YES;
     }
     
     if(fabs(xDiff2) <= kSnapDistance) {
-        currentSnapPosition.x = secondNode.position.x;
+        currentSnapPosition.x = secondNodeZoomLayerPos.x;
         return YES;
     }
     
@@ -712,18 +716,24 @@ You should have received a copy of the GNU General Public License along with thi
     THWireNode * firstNode = nodes[0];
     THWireNode * secondNode = nodes[1];
     
-    float yDiff1 = firstNode.position.y - position.y + self.zoomableLayer.position.y;
-    float yDiff2 = secondNode.position.y - position.y + self.zoomableLayer.position.y;
+    CGPoint firstNodeGlobalPos = [firstNode convertToWorldSpace:ccp(0,0)];
+    CGPoint firstNodeZoomLayerPos = [self.zoomableLayer convertToNodeSpace:firstNodeGlobalPos];
     
-    //NSLog(@"%f %f",yDiff1,yDiff2);
+    CGPoint secondNodeGlobalPos = [secondNode convertToWorldSpace:ccp(0,0)];
+    CGPoint secondNodeZoomLayerPos = [self.zoomableLayer convertToNodeSpace:secondNodeGlobalPos];
+    
+    CGPoint touchGlobalPos = [self.zoomableLayer convertToNodeSpace:position];
+    
+    float yDiff1 = firstNodeZoomLayerPos.y - touchGlobalPos.y;
+    float yDiff2 = secondNodeZoomLayerPos.y - touchGlobalPos.y;
     
     if(fabs(yDiff1) <= kSnapDistance) {
-        currentSnapPosition.y = firstNode.position.y;
+        currentSnapPosition.y = firstNodeZoomLayerPos.y;
         return YES;
     }
     
     if(fabs(yDiff2) <= kSnapDistance) {
-        currentSnapPosition.y = secondNode.position.y;
+        currentSnapPosition.y = secondNodeZoomLayerPos.y;
         return YES;
     }
     
@@ -900,15 +910,13 @@ You should have received a copy of the GNU General Public License along with thi
         
     } else if(_state == kEditorStateDelete){
         
-        THProject * project = [THDirector sharedDirector].currentProject;
-        TFEditableObject * object = [project objectAtLocation:location];
         THProjectViewController *projectController = [THDirector sharedDirector].projectController;
+        THProject * project = [THDirector sharedDirector].currentProject;
         
-        if(object){
-            [self unselectAndDeleteEditableObject:object];
-        } else {
+        THWire * wire = (THWire*) [project wireAtLocation:location];
+        
+        if(wire){
             
-            THWire * wire = (THWire*) [project wireAtLocation:location];
             if(wire.nodes.count == 1){
                 if (wire.selected) {
                     [self unselectCurrentObject];
@@ -925,8 +933,12 @@ You should have received a copy of the GNU General Public License along with thi
                 THWireNode * node = [self wireNodeAtLocation:location wire:wire];
                 [wire removeNode:node];
             }
+        } else{
             
-            
+            TFEditableObject * object = [project objectAtLocation:location];
+            if(object){
+                [self unselectAndDeleteEditableObject:object];
+            }
         }
         
     } else {

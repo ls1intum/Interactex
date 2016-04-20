@@ -123,6 +123,7 @@ ccColor3B const kWireDefaultHighlightColor = {150,150,200};
 float const kWireNodeRadius = 30.0f;
 
 ccColor3B const kWireNodeColor = {30,30,150};
+ccColor3B const kWireNodeSelectedColor = {150,30,30};
 
 CGSize const kDefaultPinSize = {30,30};
 
@@ -206,5 +207,5 @@ NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";
 
 NSString * const kCustomComponentPaletteName = @"palette_customComponent.png";
 
-CGSize const kDefaultCanvasSize = {1536, 1152};
+CGSize const kDefaultCanvasSize = {2048, 1536};
 

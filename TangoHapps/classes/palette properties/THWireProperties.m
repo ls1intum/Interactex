@@ -123,7 +123,11 @@ You should have received a copy of the GNU General Public License along with thi
 - (IBAction)addNodeTapped:(id)sender {
     
     THWire * wire = [self getWire];
-    [wire addNodeInLongestEdge];
+    
+    THWireNode * wireNode = (THWireNode*) self.editableObject;
+    NSInteger nodeIndex = [wire.nodes indexOfObject:wireNode];
+    
+    [wire addNodeInLongerEdgeNextToNode:nodeIndex];
 }
 
 @end

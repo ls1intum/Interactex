@@ -55,6 +55,9 @@ HActivityRecognition.m
 
 -(void) loadActivityRecognition{
     
+    TFProperty * property = [TFProperty propertyWithName:@"activity" andType:kDataTypeString];
+    self.properties = [NSMutableArray arrayWithObject:property];
+    
     TFMethod * method = [TFMethod methodWithName:@"addSample"];
     method.numParams = 1;
     method.firstParamType = kDataTypeAny;
@@ -65,8 +68,11 @@ HActivityRecognition.m
     TFEvent * event2 = [TFEvent eventNamed:kEventWalking];
     TFEvent * event3 = [TFEvent eventNamed:kEventRunning];
     TFEvent * event4 = [TFEvent eventNamed:kEventUnconscious];
+    TFEvent * event5 = [TFEvent eventNamed:kEventActivityChanged];
+
+    event5.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     
-    self.events = [NSMutableArray arrayWithObjects:event1,event2,event3,event4,nil];
+    self.events = [NSMutableArray arrayWithObjects:event1,event2,event3,event4,event5, nil];
 }
 
 #pragma mark - Archiving

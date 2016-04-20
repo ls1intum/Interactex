@@ -222,6 +222,7 @@ extern NSString * const kEventStanding;
 extern NSString * const kEventWalking;
 extern NSString * const kEventRunning;
 extern NSString * const kEventUnconscious;
+extern NSString * const kEventActivityChanged;
 
 //posture events
 extern NSString * const kEventLyingDownOnStomach;

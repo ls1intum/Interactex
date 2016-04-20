@@ -100,6 +100,7 @@ NSString * const kEventStanding = @"standing";
 NSString * const kEventWalking = @"walking";
 NSString * const kEventRunning = @"running";
 NSString * const kEventUnconscious = @"unconscious";
+NSString * const kEventActivityChanged = @"activityChanged";
 
 NSString * const kEventLyingDownOnStomach = @"onStomach";
 NSString * const kEventLyingDownOnBack = @"onBack";

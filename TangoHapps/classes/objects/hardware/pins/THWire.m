@@ -53,15 +53,29 @@ You should have received a copy of the GNU General Public License along with thi
     self = [super init];
     if(self){
         self.visible = YES;
+        self.canBeScaled = YES;
     }
     return self;
 }
 
 -(void) draw{
     if(self.visible){
-        ccDrawColor4B(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
-        ccDrawCircle(ccp(0,0), kWireNodeRadius, 0, 30, NO);
+        if(self.selected){
+            ccDrawColor4B(kWireNodeSelectedColor.r, kWireNodeSelectedColor.g, kWireNodeSelectedColor.b, 255);
+        } else {
+            ccDrawColor4B(kWireNodeColor.r, kWireNodeColor.g, kWireNodeColor.b, 255);
+        }
+        
+        THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
+        
+        ccDrawCircle(ccp(0,0), kWireNodeRadius / editor.zoomLevel, 0, 30, NO);
     }
+}
+
+#pragma mark - Property Controller
+
+-(NSArray*)propertyControllers {
+    return self.wire.propertyControllers;
 }
 
 -(BOOL) testPoint:(CGPoint)point{
@@ -249,7 +263,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.obj1 == nil)
         return _p1;
     
-    //THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
     CGPoint pos = [self.obj1 convertToWorldSpace:ccp(0,0)];
     return [self convertToNodeSpace:pos];
 }
@@ -258,9 +271,6 @@ You should have received a copy of the GNU General Public License along with thi
     if(self.obj2 == nil)
         return _p2;
     
-    //return self.obj2.position;
-    
-    //THCustomEditor * editor = (THCustomEditor*) [THDirector sharedDirector].currentLayer;
     CGPoint pos = [self.obj2 convertToWorldSpace:ccp(0,0)];
     return [self convertToNodeSpace:pos];
 }
@@ -330,6 +340,31 @@ You should have received a copy of the GNU General Public License along with thi
     return maxDistIdx;
 }
 
+-(NSInteger) findLongerSegmentNextToNodeAtIndex:(NSInteger) nodeIndex{
+
+    CGPoint p1,p2;
+    
+    if(nodeIndex == 0){
+        p1 = self.p1;
+    } else {
+        THWireNode * node = [self.nodes objectAtIndex:nodeIndex-1];
+        p1 = node.position;
+    }
+    
+    if(nodeIndex == self.nodes.count-1){
+        p2 = self.p2;
+    } else {
+        THWireNode * node = [self.nodes objectAtIndex:nodeIndex+1];
+        p2 = node.position;
+    }
+    
+    THWireNode * node = [self.nodes objectAtIndex:nodeIndex];
+    float distance1 = ccpDistance(node.position, p1);
+    float distance2 = ccpDistance(node.position, p2);
+    
+    return (distance1 > distance2) ? nodeIndex-1 : nodeIndex;
+}
+
 -(CGPoint) positionForNodeOrObjectAtIndex:(NSInteger) index{
     CGPoint p1;
     
@@ -348,22 +383,30 @@ You should have received a copy of the GNU General Public License along with thi
     
     NSInteger index = [self findLongestSegment];
     
-    CGPoint p1 = [self positionForNodeOrObjectAtIndex:index];
-    CGPoint p2 = [self positionForNodeOrObjectAtIndex:index+1];
-        
+    [self addNodeAfterNode:index];
+}
+
+-(void) addNodeInLongerEdgeNextToNode:(NSInteger) nodeIndex{
+    
+    NSInteger index = [self findLongerSegmentNextToNodeAtIndex:nodeIndex];
+    
+    [self addNodeAfterNode:index];
+}
+
+-(void) addNodeAfterNode:(NSInteger) nodeIndex{
+    
+    CGPoint p1 = [self positionForNodeOrObjectAtIndex:nodeIndex];
+    CGPoint p2 = [self positionForNodeOrObjectAtIndex:nodeIndex+1];
+    
     THWireNode * node = [[THWireNode alloc] init];
     
     CGPoint position = ccp((p1.x + p2.x) / 2.0f, (p1.y + p2.y) / 2.0f);
     
     THEditor * editor = (THEditor*) [THDirector sharedDirector].currentLayer;
     
-    //nazmus 30 Oct 2014 commented - to fix the positioning bug of node in Wire
-    //node.position = [editor convertToNodeSpace:position];
-    //nazmus 30 Oct 2014 added - to fix the positioning bug of node in Wire
     node.position = [editor.zoomableLayer convertToNodeSpace:position];
     
-    [self insertNode:node atIndex:index+1];
-    
+    [self insertNode:node atIndex:nodeIndex+1];
 }
 
 -(void) insertNode:(THWireNode*) node atIndex:(NSUInteger) index{
@@ -403,7 +446,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(NSArray*) wireNodesNextToNode:(THWireNode*) node{
     
-    
     NSInteger index = [self.nodes indexOfObject:node];
     
     THWireNode * firstNode;
@@ -411,7 +453,7 @@ You should have received a copy of the GNU General Public License along with thi
     
     if(index == 0){
         firstNode = [THWireNode node];
-        firstNode.position = self.p1;
+        firstNode.position = [self.obj1 convertToWorldSpace:ccp(0,0)];
     } else {
         firstNode = [self.nodes objectAtIndex:index-1];
     }
@@ -419,7 +461,7 @@ You should have received a copy of the GNU General Public License along with thi
     if(index == self.nodes.count -1){
         
         secondNode = [THWireNode node];
-        secondNode.position = self.p2;
+        secondNode.position = [self.obj2 convertToWorldSpace:ccp(0,0)];
     } else {
         
         secondNode = [self.nodes objectAtIndex:index+1];

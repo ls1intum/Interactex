@@ -591,7 +591,7 @@
 		9AB80EB71AA5F5B900A76379 /* THPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACD2F791A9CEAB4000AD0FE /* THPaddingLabel.m */; };
 		9AB984BC1AB5987B00A6AB83 /* MPU-6050.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984B81AB5987B00A6AB83 /* MPU-6050.png */; };
 		9AB984BD1AB5987B00A6AB83 /* MPU-6050@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984B91AB5987B00A6AB83 /* MPU-6050@2x.png */; };
-		9AB984BE1AB5987B00A6AB83 /* palette_MPU-6050@.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050@.png */; };
+		9AB984BE1AB5987B00A6AB83 /* palette_MPU-6050.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050.png */; };
 		9AB984BF1AB5987B00A6AB83 /* palette_MPU-6050@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB984BB1AB5987B00A6AB83 /* palette_MPU-6050@2x.png */; };
 		9AB984CA1AB598C700A6AB83 /* THMPU6050.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB984C91AB598C700A6AB83 /* THMPU6050.m */; };
 		9AB984CE1AB59A8700A6AB83 /* THMPU6050Editable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB984CD1AB59A8700A6AB83 /* THMPU6050Editable.m */; };
@@ -1771,7 +1771,7 @@
 		9AB8BFFA1BAD913B0035EAC4 /* TestSwiftClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSwiftClass.swift; sourceTree = "<group>"; };
 		9AB984B81AB5987B00A6AB83 /* MPU-6050.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPU-6050.png"; sourceTree = "<group>"; };
 		9AB984B91AB5987B00A6AB83 /* MPU-6050@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPU-6050@2x.png"; sourceTree = "<group>"; };
-		9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050@.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_MPU-6050@.png"; sourceTree = "<group>"; };
+		9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_MPU-6050.png"; sourceTree = "<group>"; };
 		9AB984BB1AB5987B00A6AB83 /* palette_MPU-6050@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_MPU-6050@2x.png"; sourceTree = "<group>"; };
 		9AB984C91AB598C700A6AB83 /* THMPU6050.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMPU6050.m; sourceTree = "<group>"; };
 		9AB984CB1AB5991D00A6AB83 /* THMPU6050.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THMPU6050.h; sourceTree = "<group>"; };
@@ -2633,7 +2633,7 @@
 				9AB984E51AB611AC00A6AB83 /* deviation@2x.png */,
 				9AB984B81AB5987B00A6AB83 /* MPU-6050.png */,
 				9AB984B91AB5987B00A6AB83 /* MPU-6050@2x.png */,
-				9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050@.png */,
+				9AB984BA1AB5987B00A6AB83 /* palette_MPU-6050.png */,
 				9AB984BB1AB5987B00A6AB83 /* palette_MPU-6050@2x.png */,
 				9ABC27981809B46C00B39D72 /* accelerometer.png */,
 				9ABC27991809B46C00B39D72 /* accelerometer@2x.png */,
@@ -4374,7 +4374,7 @@
 				9AB984E81AB611AC00A6AB83 /* deviation.png in Resources */,
 				9A94F41616A0192700AF52AB /* THButtonProperties.xib in Resources */,
 				9A82EB761B7DFA4F00567421 /* potentiometerArm.png in Resources */,
-				9AB984BE1AB5987B00A6AB83 /* palette_MPU-6050@.png in Resources */,
+				9AB984BE1AB5987B00A6AB83 /* palette_MPU-6050.png in Resources */,
 				9A94F41816A0192700AF52AB /* THBuzzerProperties.xib in Resources */,
 				9AA4D6ED18AE169100A43433 /* palette_BLE-LilyPad.png in Resources */,
 				9ADCE1BB1AB7481F007895AA /* activityClassifier.png in Resources */,

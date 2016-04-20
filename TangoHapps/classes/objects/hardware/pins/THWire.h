@@ -49,6 +49,7 @@ You should have received a copy of the GNU General Public License along with thi
 @interface THWireNode : TFEditableObject
 
 @property (nonatomic, weak) THWire * wire;
+//@property (nonatomic) BOOL selected;
 
 @end
 
@@ -68,6 +69,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(id)initWithObj1:(THElementPinEditable*) obj1 obj2:(THBoardPinEditable*) obj2;
 -(void) insertNode:(THWireNode*) node atIndex:(NSUInteger) index;
 -(void) addNodeInLongestEdge;
+-(void) addNodeInLongerEdgeNextToNode:(NSInteger) nodeIndex;
 -(void) removeNode:(THWireNode*) node;
 -(void) removeAllNodes;
 -(NSArray*) wireNodesNextToNode:(THWireNode*) node;

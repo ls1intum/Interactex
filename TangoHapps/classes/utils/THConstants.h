@@ -183,6 +183,7 @@ extern ccColor3B const kWireDefaultHighlightColor;
 
 extern float const kWireNodeRadius;
 extern ccColor3B const kWireNodeColor;
+extern ccColor3B const kWireNodeSelectedColor;
 
 extern CGSize const kDefaultPinSize;
 extern CGSize const kiPhoneButtonDefaultSize;
