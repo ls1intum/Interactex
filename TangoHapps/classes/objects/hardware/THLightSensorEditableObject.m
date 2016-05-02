@@ -155,7 +155,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadLightSprite{
     
-    _lightSprite = [CCSprite spriteWithFile: @"light.png"];
+    _lightSprite = [CCSprite spriteWithFile: @"light2.png"];
     _lightSprite.opacity = 0;
     _lightSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
     [self addChild:_lightSprite];
