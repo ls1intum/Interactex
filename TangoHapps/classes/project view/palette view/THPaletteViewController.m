@@ -126,6 +126,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THSoundPaletteItem.h"
 #import "THTabbarViewController.h"
 
+#import "THCustomComponentEditable.h"
+
 //#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
 //#import "THPressureSensorPaletteItem.h"
@@ -430,6 +432,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadCustomPaletteItems{
     _customPaletteItems = [NSMutableArray array];
+    
     NSArray * files = [TFFileUtils filesInDirectory:kPaletteItemsDirectory];
     for (NSString * file in files) {
         NSString * filePath = [TFFileUtils dataFile:file
@@ -437,6 +440,13 @@ You should have received a copy of the GNU General Public License along with thi
         THCustomPaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithArchiveName:filePath];
         [_customPaletteItems addObject:paletteItem];
     }
+    
+    /*
+    THCustomComponentEditable * customObject = [[THCustomComponentEditable alloc] init];
+    customObject.name = @"runningSpeed";
+    
+    THCustomPaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithName:@"runningSpeed" object:customObject];
+    [_customPaletteItems addObject:paletteItem];*/
 }
 
 -(void) save{
@@ -570,7 +580,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.programmingSectionName = @"Utilities";
     self.signalProcessingName = @"Signal Processing";
     self.comparisonOperatorsSectionName = @"Comparison Operators";
-        self.arithmeticSectionName = @"Arithmetic Operators";
+    self.arithmeticSectionName = @"Arithmetic Operators";
     self.customComponentsSectionName = @"Custom Elements";
 }
 

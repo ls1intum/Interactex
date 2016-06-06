@@ -80,11 +80,20 @@
     
     THElementPin * pin1 = [THElementPin pinWithType:kElementPintypeMinus];
     pin1.hardware = self;
-    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypeDigital];
+    
+    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypePlus];
     pin2.hardware = self;
-    pin2.defaultBoardPinMode = kPinModeDigitalOutput;
+    
+    THElementPin * pin3 = [THElementPin pinWithType:kElementPintypeScl];
+    pin3.hardware = self;
+    
+    THElementPin * pin4 = [THElementPin pinWithType:kElementPintypeSda];
+    pin4.hardware = self;
+    
     [self.pins addObject:pin1];
     [self.pins addObject:pin2];
+    [self.pins addObject:pin3];
+    [self.pins addObject:pin4];
 }
 
 -(id) init{

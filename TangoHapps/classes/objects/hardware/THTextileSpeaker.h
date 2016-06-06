@@ -52,7 +52,9 @@
 @property (nonatomic) float frequency;
 
 @property (nonatomic) THElementPin * minusPin;
-@property (nonatomic) THElementPin * digitalPin;
+@property (nonatomic) THElementPin * plusPin;
+@property (nonatomic) THElementPin * sdaPin;
+@property (nonatomic) THElementPin * sclPin;
 
 -(void) turnOn;
 -(void) turnOff;
