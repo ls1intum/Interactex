@@ -23,7 +23,7 @@
 
 -(void) loadOperator{
     
-    TFProperty * property = [TFProperty propertyWithName:@"result" andType:kDataTypeFloat];
+    TFProperty * property = [TFProperty propertyWithName:@"result" andType:kDataTypeBoolean];
     self.properties = [NSMutableArray arrayWithObject:property];
     
     TFMethod * method1 = [TFMethod methodWithName:@"setOperand1"];

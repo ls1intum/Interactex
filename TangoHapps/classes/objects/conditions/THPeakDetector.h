@@ -56,5 +56,6 @@
 @property (nonatomic, readonly) float peak;
 
 -(void) addSample:(float)value;
+-(void) addSamples:(id)samples;
 
 @end

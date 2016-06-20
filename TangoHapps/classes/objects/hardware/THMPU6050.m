@@ -125,6 +125,10 @@ NSInteger const kMPU6050Register = 0x3B;
     TFEvent * event = [TFEvent eventNamed:kEventNewValue];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     self.events = [NSMutableArray arrayWithObjects:event,nil];
+    
+    TFMethod * method1 = [TFMethod methodWithName:@"start"];
+    TFMethod * method2 = [TFMethod methodWithName:@"stop"];
+    self.methods = [NSMutableArray arrayWithObjects:method1, method2, nil];
 }
 
 -(void) loadPins{
@@ -248,6 +252,13 @@ NSInteger const kMPU6050Register = 0x3B;
   self.accelerometer.z = accelerometerZ;
  }
 
+-(void) start{
+    
+}
+
+-(void) stop{
+    
+}
 
 -(NSString*) description{
     return @"mpu6050";

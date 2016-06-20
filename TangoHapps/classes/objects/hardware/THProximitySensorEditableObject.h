@@ -1,8 +1,8 @@
 /*
- THPeakDetectorEditable.h
+ THProximitySensorEditableObject.h
  Interactex Designer
  
- Created by Juan Haladjian on 01/02/16.
+ Created by Juan Haladjian on 06/20/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,16 +40,17 @@
  
  */
 
+#import "THHardwareComponentEditableObject.h"
 
-#import <UIKit/UIKit.h>
-#import "THProgrammingElementEditable.h"
+@interface THProximitySensorEditableObject : THHardwareComponentEditableObject {
+    
+    CCSprite * _proximitySprite;
+    float _proximityTouchDownIntensity;
+}
 
-@interface THPeakDetectorEditable : THProgrammingElementEditable
-
-@property (nonatomic, readonly) NSInteger peakIdx;
-@property (nonatomic, readonly) float peak;
-
--(void) addSample:(float)value;
--(void) addSamples:(id)samples;
+@property (nonatomic, readonly) NSInteger proximity;
+@property (nonatomic) NSInteger isDown;
+@property (nonatomic, readonly) THElementPinEditable * analogPin;
+@property (nonatomic, readonly) THElementPinEditable * plusPin;
 
 @end

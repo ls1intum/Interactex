@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMPU6050PaletteItem.h"
 #import "THTextileSensorPaletteItem.h"
 #import "THSpeakerPaletteItem.h"
+#import "THProximitySensorPaletteItem.h"
 
 //ui widgets
 #import "THiPhonePaletteItem.h"
@@ -523,6 +524,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  [[THMPU6050PaletteItem alloc] initWithName:@"MPU-6050"],
                                  [[THTextileSensorPaletteItem alloc] initWithName:@"textileSensor"],
                                  [[THSpeakerPaletteItem alloc] initWithName:@"textileSpeaker"],
+                                 [[THProximitySensorPaletteItem alloc] initWithName:@"proximitySensor"],
                                  nil];
     
     self.variablesSectionArray = [NSMutableArray arrayWithObjects:

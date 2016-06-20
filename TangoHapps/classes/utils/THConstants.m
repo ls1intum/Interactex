@@ -145,6 +145,7 @@ CGPoint const kSewedPositions[kNumHardwareTypes] = {{65,30},//led
     {70,65},//vibeBoard
     {70,65},//temperature sensor
     {70,65},//accelerometer
+    {70,65},//proximity sensor
 };
 
 NSString * const kHardwareSpriteNames[kNumHardwareTypes] = {
@@ -161,7 +162,8 @@ NSString * const kHardwareSpriteNames[kNumHardwareTypes] = {
     @"accelerometer.png",
     @"MPU-6050.png",
     @"textileSensor.png",
-    @"textileSpeaker.png"
+    @"textileSpeaker.png",
+    @"proximitySensor.png"
 };
 
 NSString * const kProgrammingElementSpriteNames[kNumProgrammingElementTypes] = {
@@ -209,5 +211,5 @@ NSString * const kNotificationEditorZoomReset = @"notificationEditorZoomReset";
 
 NSString * const kCustomComponentPaletteName = @"palette_customComponent.png";
 
-CGSize const kDefaultCanvasSize = {2048, 1536};
+CGSize const kDefaultCanvasSize = {3072, 2304};
 

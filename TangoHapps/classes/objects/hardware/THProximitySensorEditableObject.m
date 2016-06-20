@@ -1,8 +1,8 @@
 /*
- THPeakDetector.m
+ THProximitySensorEditableObject.m
  Interactex Designer
  
- Created by Juan Haladjian on 01/02/16.
+ Created by Juan Haladjian on 06/20/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,88 +40,136 @@
  
  */
 
-#import "THPeakDetector.h"
+#import "THProximitySensorEditableObject.h"
+#import "THProximitySensor.h"
+#import "THElementPinEditable.h"
+#import "THElementPin.h"
+#import "THBoardPinEditable.h"
 
-@implementation THPeakDetector
-
+@implementation THProximitySensorEditableObject
 
 -(id) init{
     self = [super init];
     if(self){
-        [self loadPeakDetector];
+        self.simulableObject = [[THProximitySensor alloc] init];
         
+        [self loadProximitySensor];
+        [super loadPins];
     }
     return self;
 }
 
--(void) loadPeakDetector{
+-(void) loadProximitySensor{
     
-    TFProperty * property = [TFProperty propertyWithName:@"peak" andType:kDataTypeFloat];
-    self.properties = [NSMutableArray arrayWithObject:property];
-    
-    TFMethod * method = [TFMethod methodWithName:@"addSample"];
-    method.numParams = 1;
-    method.firstParamType = kDataTypeFloat;
-    
-    
-    TFMethod * method2 = [TFMethod methodWithName:@"addSamples"];
-    method2.numParams = 1;
-    method2.firstParamType = kDataTypeAny;
-    
-    self.methods = [NSMutableArray arrayWithObjects:method,method2,nil];
-    
-    TFEvent * event = [TFEvent eventNamed:kEventDeviationChanged];
-    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
-    self.events = [NSMutableArray arrayWithObject:event];
+    self.type = kHardwareTypeProximitySensor;
 }
+
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self){
-        
-        [self loadPeakDetector];
+        [self loadProximitySensor];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-    
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    THPeakDetector * copy = [super copyWithZone:zone];
+    THProximitySensorEditableObject * copy = [super copyWithZone:zone];
     
     return copy;
 }
 
+#pragma mark - Property Controller
+
+-(NSArray*)propertyControllers
+{
+    NSMutableArray *controllers = [NSMutableArray array];
+    [controllers addObjectsFromArray:[super propertyControllers]];
+    return controllers;
+}
+
 #pragma mark - Methods
 
--(void) computePeak{
-    _peak = 1;
-    _peakIdx = 1;
+-(void) handleTouchBegan{
+    self.isDown = YES;
+}
+
+-(void) handleTouchEnded{
+    self.isDown = NO;
+}
+
+-(THElementPinEditable*) analogPin{
+    return [self.pins objectAtIndex:0];
+}
+
+-(THElementPinEditable*) plusPin{
+    return [self.pins objectAtIndex:1];
+}
+
+-(void) updatePinValue{
+    THElementPinEditable * analogPin = self.analogPin;
+    THBoardPinEditable * boardPin = analogPin.attachedToPin;
+    THProximitySensor * sensor = (THProximitySensor*) self.simulableObject;
+    boardPin.value = sensor.proximity;
+}
+
+-(void) update{
     
-}
-
--(void) addSample:(float)value{
-    buffer[count] = value;
-    count++;
-    if(count >= kPeakDetectorMaxSamples){
-        [self computePeak];
-        count = 0;
-        [self triggerEventNamed:kEventPeakDetected];
+    if(self.isDown){
+        _proximityTouchDownIntensity += kDefaultAnalogSimulationIncrease;
+    } else {
+        _proximityTouchDownIntensity -= kDefaultAnalogSimulationIncrease;
     }
+    
+    THProximitySensor * proximitySensor = (THProximitySensor*) self.simulableObject;
+    _proximityTouchDownIntensity = [THClientHelper Constrain:_proximityTouchDownIntensity min:0 max:kMaxAnalogValue];
+    
+    proximitySensor.proximity =_proximityTouchDownIntensity;
+    _proximitySprite.opacity = _proximityTouchDownIntensity * (255.0f / kMaxAnalogValue);
 }
 
+-(void) willStartSimulation{
+    _proximitySprite.visible = YES;
+    [super willStartSimulation];
+}
 
--(void) addSamples:(id)samples{
-    //TODO implement
+-(void) willStartEdition{
+    _proximitySprite.visible = NO;
+    [super willStartEdition];
+}
+
+-(NSInteger) proximity{
+    THProximitySensor * proximitySensor = (THProximitySensor*) self.simulableObject;
+    return proximitySensor.proximity;
+}
+
+-(void) loadProximitySprite{
+    
+    _proximitySprite = [CCSprite spriteWithFile: @"light2.png"];
+    _proximitySprite.opacity = 0;
+    _proximitySprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+    [self addChild:_proximitySprite];
+}
+
+-(void) refreshUI{
+    [super refreshUI];
+    [self loadProximitySprite];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    [self loadProximitySprite];
 }
 
 -(NSString*) description{
-    return @"peakDetector";
+    return @"Proximity Sensor";
 }
 
 @end

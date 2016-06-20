@@ -57,4 +57,7 @@
 @property (nonatomic) THElementPin * sclPin;
 @property (nonatomic) THElementPin * sdaPin;
 
+-(void) start;
+-(void) stop;
+
 @end

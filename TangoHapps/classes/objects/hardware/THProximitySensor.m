@@ -1,8 +1,8 @@
 /*
- THPeakDetectorEditable.h
+ THProximitySensor.m
  Interactex Designer
  
- Created by Juan Haladjian on 01/02/16.
+ Created by Juan Haladjian on 06/20/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,16 +40,94 @@
  
  */
 
+#import "THProximitySensor.h"
+#import "THElementPin.h"
 
-#import <UIKit/UIKit.h>
-#import "THProgrammingElementEditable.h"
+@implementation THProximitySensor
 
-@interface THPeakDetectorEditable : THProgrammingElementEditable
+-(void) load{
+    
+    TFProperty * property = [TFProperty propertyWithName:@"proximity" andType:kDataTypeInteger];
+    self.properties = [NSMutableArray arrayWithObject:property];
+    
+    TFEvent * event = [TFEvent eventNamed:kEventProximityChanged];
+    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
+    self.events = [NSMutableArray arrayWithObject:event];
+}
 
-@property (nonatomic, readonly) NSInteger peakIdx;
-@property (nonatomic, readonly) float peak;
+-(void) loadPins{
+    
+    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypeAnalog];
+    pin1.hardware = self;
+    pin1.defaultBoardPinMode = kPinModeAnalogInput;
+    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypePlus];
+    pin2.hardware = self;
+    
+    [self.pins addObject:pin1];
+    [self.pins addObject:pin2];
+}
 
--(void) addSample:(float)value;
--(void) addSamples:(id)samples;
+-(id) init{
+    self = [super init];
+    if(self){
+        [self load];
+        [self loadPins];
+    }
+    return self;
+}
 
+#pragma mark - Archiving
+
+-(id)initWithCoder:(NSCoder *)decoder{
+    self = [super initWithCoder:decoder];
+    
+    [self load];
+    
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder{
+    [super encodeWithCoder:coder];
+}
+
+-(id)copyWithZone:(NSZone *)zone{
+    THProximitySensor * copy = [super copyWithZone:zone];
+    
+    return copy;
+}
+
+#pragma mark - Protocols
+
+-(NSString*) description{
+    return @"proximity sensor";
+}
+
+#pragma mark - Methods
+
+-(THElementPin*) analogPin{
+    return [self.pins objectAtIndex:0];
+}
+
+-(THElementPin*) plusPin{
+    return [self.pins objectAtIndex:1];
+}
+
+-(void) updatePinValue{
+    
+    THElementPin * pin = self.analogPin;
+    THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
+    lilypadPin.value = self.proximity;
+}
+
+-(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{
+    self.proximity = newValue;
+}
+
+-(void) setProximity:(NSInteger)proximity{
+    if(_proximity != proximity){
+        _proximity = proximity;
+        [self triggerEventNamed:kEventProximityChanged];
+        [self updatePinValue];
+    }
+}
 @end

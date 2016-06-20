@@ -84,10 +84,18 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.shouldRecognizePanGestures = YES;
         
+        /*
+        _zoomableLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 0)];
+        _zoomableLayer.contentSize = kDefaultCanvasSize;
+        [self resetZoomableLayerPosition];
+        [self addChild:_zoomableLayer z:-30];*/
+        
+        
         _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 0)];
         _zoomableLayer.contentSize = kDefaultCanvasSize;
         [self resetZoomableLayerPosition];
         [self addChild:_zoomableLayer z:-30];
+        
         
         CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
         [bg setPosition:ccp(_zoomableLayer.contentSize.width / 2.0f, _zoomableLayer.contentSize.height / 2.0f)];
