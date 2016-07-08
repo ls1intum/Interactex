@@ -117,6 +117,11 @@
     [window addSample:sample];
 }
 
+-(void) addSamples:(id) sample{
+    THWindow * window = (THWindow*) self.simulableObject;
+    [window addSamples:sample];
+}
+
 -(BOOL) started{
     THWindow * window = (THWindow*) self.simulableObject;
     return window.started;

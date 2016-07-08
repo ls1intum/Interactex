@@ -434,12 +434,15 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) loadCustomPaletteItems{
     _customPaletteItems = [NSMutableArray array];
     
+    
     NSArray * files = [TFFileUtils filesInDirectory:kPaletteItemsDirectory];
     for (NSString * file in files) {
         NSString * filePath = [TFFileUtils dataFile:file
                                         inDirectory:kPaletteItemsDirectory];
         THCustomPaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithArchiveName:filePath];
-        [_customPaletteItems addObject:paletteItem];
+        if(paletteItem){
+                [_customPaletteItems addObject:paletteItem];
+        }
     }
     
     /*

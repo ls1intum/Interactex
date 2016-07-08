@@ -76,8 +76,9 @@ NSInteger const kNumPinsPerElement[kNumHardwareTypes] = {
     3,//10 - temperature sensor
     5,//accelerometer
     4,//mpu compass
-    3,
-    3
+    3,//textile sensor
+    4,//textile speaker
+    2//proximity sensor
 };
 
 CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
@@ -90,13 +91,14 @@ CGPoint const kPinPositions[kNumHardwareTypes][kMaxNumPinsPerElement] = {
     
     {{-23,-12},{0,26},{25,-12}},//light sensor
     {{32,-4},{32,-13},{-32,13},{-32,4}},//lsm compass
-    {{0,25},{-26,-11},{26,-11},{0,-25}},//three color led
+    {{0,26},{-26,-12},{26,-12},{0,-26}},//three color led
     {{-24,15},{24,15}},//vibeBoard
     {{-23,-12},{0,26},{25,-12}},//10 - temperature sensor
     {{1,-29},{-24,10},{1,25},{25,11},{25,-15}},//accelerometer
-    {{-26,24},{-26,32},{-26,15},{-26,6}},//mpu compass
+    {{-24,24},{-24,32},{-24,15},{-24,6}},//mpu compass
     {{-1,-29},{0,28},{0,0}},//textile sensor
     {{0,30},{0,0},{-15,-30},{15,-30}},//textile speaker
+    {{-37,7},{37,7}},//proximity sensor
 };
 
 float const kUiViewOpacityEditor = 0.5f;

@@ -49,6 +49,7 @@
 -(void) start;
 -(void) stop;
 -(void) addSample:(id) sample;
+-(void) addSamples:(id) sample;
 
 @property(nonatomic, readonly) BOOL started;
 @property(nonatomic, strong) NSMutableArray * data;
