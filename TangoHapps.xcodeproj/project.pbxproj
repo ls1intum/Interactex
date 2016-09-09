@@ -29,7 +29,6 @@
 		254EFDAE1A17B82800289A18 /* newProject.png in Resources */ = {isa = PBXBuildFile; fileRef = 254EFDAC1A17B82800289A18 /* newProject.png */; };
 		254EFDAF1A17B82800289A18 /* newProject@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 254EFDAD1A17B82800289A18 /* newProject@2x.png */; };
 		25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
-		25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25643B8D19B0E51F00F8E9CB /* THMenubar.xib */; };
 		2577302F1A17858800F038D1 /* segBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 257730291A17858800F038D1 /* segBg.png */; };
 		257730301A17858800F038D1 /* segBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302A1A17858800F038D1 /* segBg@2x.png */; };
 		257730311A17858800F038D1 /* segBgSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302B1A17858800F038D1 /* segBgSelected.png */; };
@@ -1123,7 +1122,6 @@
 		254EFDAD1A17B82800289A18 /* newProject@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newProject@2x.png"; sourceTree = "<group>"; };
 		25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMenubarViewController.h; sourceTree = "<group>"; };
 		25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMenubarViewController.m; sourceTree = "<group>"; };
-		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THMenubar.xib; sourceTree = "<group>"; };
 		257730291A17858800F038D1 /* segBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segBg.png; sourceTree = "<group>"; };
 		2577302A1A17858800F038D1 /* segBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segBg@2x.png"; sourceTree = "<group>"; };
 		2577302B1A17858800F038D1 /* segBgSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segBgSelected.png; sourceTree = "<group>"; };
@@ -3592,8 +3590,8 @@
 		9AF501F4167B84B40020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				9AFA04B01B42C89500D7C0D5 /* TextIT */,
 				9A84265017564A80009495AB /* Tango */,
+				9AFA04B01B42C89500D7C0D5 /* TextIT */,
 				9AF502D6167B84B40020241C /* utils */,
 				9AF501F5167B84B40020241C /* communication */,
 				9A8572B4172AD64C00510D23 /* assets */,
@@ -4028,7 +4026,6 @@
 				9AF60BC416A04D9F00178439 /* THTabbar.xib */,
 				9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */,
 				9A87C06016A4140C0059CC2E /* THGridItem.xib */,
-				25643B8D19B0E51F00F8E9CB /* THMenubar.xib */,
 				9AF502E5167B84B40020241C /* communication */,
 				9AF502F5167B84B40020241C /* utils */,
 			);
@@ -4763,7 +4760,6 @@
 				9AEB07581C899888000D399E /* or.png in Resources */,
 				251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */,
 				9AFA04D41B443CFA00D7C0D5 /* recorder@2x.png in Resources */,
-				25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */,
 				9A82EB771B7DFA4F00567421 /* potentiometerArm@2x.png in Resources */,
 				9A5931D217E5CD4500B20D99 /* propertiesIcon.png in Resources */,
 				9A5BD74F1860C52E00842833 /* triangleFilled@2x.png in Resources */,
@@ -5555,7 +5551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesignerApp;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5579,7 +5575,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesignerApp;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5631,7 +5627,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesignerApp;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5646,6 +5642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -5653,7 +5650,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClientApp;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5668,6 +5665,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -5675,7 +5673,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClientApp;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5690,6 +5688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -5697,7 +5696,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClientApp;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";

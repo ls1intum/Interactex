@@ -8,10 +8,6 @@
 
 #import "THMenubarViewController.h"
 
-@interface THMenubarViewController ()
-
-@end
-
 @implementation THMenubarViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

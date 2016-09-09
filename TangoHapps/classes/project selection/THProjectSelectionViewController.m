@@ -124,15 +124,17 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 - (CCGLView *)createDirectorGLView {
 
     float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    //float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     
-    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight)
+    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 1024, 768 - navBarHeight - statusBarHeight)
                                    pixelFormat:kEAGLColorFormatRGB565
                                    depthFormat:0
                             preserveBackbuffer:NO
                                     sharegroup:nil
                                  multiSampling:NO
                                numberOfSamples:0];
+    
+    
     return glView;
 }
 

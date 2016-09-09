@@ -24,10 +24,10 @@
 {
 }
 
-@property (readonly, nonatomic) MCPeerID * localPeerId;
-@property (readonly, nonatomic) MCSession * session;
 @property (weak, nonatomic) id<THServerControllerDelegate> delegate;
-@property (strong, nonatomic) NSMutableArray * invitationHandlers;
+@property (nonatomic) BOOL isConnected;
+
+//@property (strong, nonatomic) NSMutableArray * invitationHandlers;
 
 -(void) pushProjectToAllClients:(THProject*)project;
 -(void) startServer;
