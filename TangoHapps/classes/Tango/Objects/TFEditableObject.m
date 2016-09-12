@@ -442,7 +442,7 @@ static NSInteger objectCount = 1;
 
 -(void) addSelectionLabel{
     
-    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:kCCVerticalTextAlignmentCenter];
+    _selectionLabel = [CCLabelTTF labelWithString:self.shortDescription fontName:kSimulatorDefaultFont fontSize:9 dimensions:CGSizeMake(70, 20) hAlignment:kCCTextAlignmentCenter];
     
     _selectionLabel.position = ccp(0,_sprite.contentSize.height/2 + 15);
     [self addChild:_selectionLabel z: 1];
@@ -458,7 +458,7 @@ static NSInteger objectCount = 1;
             [self.nameLabel removeFromParentAndCleanup:YES];
         }
         
-        self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultBoldFont fontSize:11 dimensions:kEditableObjectNameLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+        self.nameLabel = [CCLabelTTF labelWithString:self.objectName fontName:kSimulatorDefaultBoldFont fontSize:11 dimensions:kEditableObjectNameLabelSize hAlignment:kCCTextAlignmentCenter];
         
         self.nameLabel.color = ccBLACK;
         //self.nameLabel.color = ccWHITE;

@@ -238,7 +238,7 @@ const CGPoint kPotentiometerCircleCenter = {90, 97};
 
 -(void) addValueLabel{
     
-    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kValueLabelSize hAlignment:kCCTextAlignmentCenter];
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2-75);
     _valueLabel.color = kDefaultSimulationLabelColor;
     [self addChild:_valueLabel z:1];

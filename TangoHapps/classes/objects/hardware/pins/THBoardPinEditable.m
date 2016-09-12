@@ -102,7 +102,7 @@ You should have received a copy of the GNU General Public License along with thi
             text = [text stringByAppendingFormat:@" %ld",(long)self.number];
         }
         
-        _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:24 dimensions:CGSizeMake(60, 30) hAlignment:kCCVerticalTextAlignmentCenter];
+        _label = [CCLabelTTF labelWithString:text fontName:kSimulatorDefaultBoldFont fontSize:24 dimensions:CGSizeMake(60, 30) hAlignment:kCCTextAlignmentCenter];
         
                                                                                                                    
         _label.color = ccc3(0, 0, 0);

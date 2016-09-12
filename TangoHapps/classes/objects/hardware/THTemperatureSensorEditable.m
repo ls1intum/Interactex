@@ -200,7 +200,7 @@ const CGSize kTemperatureValueLabelSize = {75, 20};
 
 -(void) addValueLabel{
     
-    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kTemperatureValueLabelSize hAlignment:kCCVerticalTextAlignmentCenter];
+    _valueLabel = [CCLabelTTF labelWithString:@"" fontName:kSimulatorDefaultFont fontSize:15 dimensions:kTemperatureValueLabelSize hAlignment:kCCTextAlignmentCenter];
     _valueLabel.position = ccp(self.contentSize.width/2,self.contentSize.height/2 - 75);
     _valueLabel.color = kDefaultSimulationLabelColor;
     [self addChild:_valueLabel z:1];

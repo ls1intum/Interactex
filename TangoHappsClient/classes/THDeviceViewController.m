@@ -160,9 +160,9 @@ const NSInteger IFDiscoveryTime = 3;
         [cell.activityIndicator startAnimating];
         connectingRow = indexPath;
         isConnecting = YES;
-        
+        /*
         NSTimeInterval interval = 7.0f;
-        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(stopConnecting) userInfo:nil repeats:NO];
+        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(stopConnecting) userInfo:nil repeats:NO];*/
     }
 }
 

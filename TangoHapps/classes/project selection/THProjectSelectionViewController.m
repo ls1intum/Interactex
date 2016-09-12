@@ -554,13 +554,13 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    NSUInteger actualSourceIndexPathRow = nil;
-    NSUInteger actualDestinationIndexPathRow = nil;
+    NSUInteger actualSourceIndexPathRow;
+    NSUInteger actualDestinationIndexPathRow;
     
     if (tableView == self.tableView) {
         actualSourceIndexPathRow = [self.evenProjectProxyIndices[sourceIndexPath.row] integerValue];
         actualDestinationIndexPathRow = [self.evenProjectProxyIndices[destinationIndexPath.row] integerValue];
-    } else if (tableView == self.tableViewSecond) {
+    } else {
         actualSourceIndexPathRow = [self.evenProjectProxyIndices[sourceIndexPath.row] integerValue];
         actualDestinationIndexPathRow = [self.evenProjectProxyIndices[destinationIndexPath.row] integerValue];
     }
@@ -570,10 +570,8 @@ CGSize const kProjectSelectionActivityIndicatorLabelSize = {180,80};
     [self.projectProxies insertObject:object atIndex:actualDestinationIndexPathRow];
 }
 
+//Juan check this method
 -(BOOL) tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIMenuItem * menuItem = [[UIMenuItem alloc] initWithTitle:@"Duplicate" action:@selector(duplicate:)];
-    [[UIMenuController sharedMenuController] setMenuItems: @[menuItem]];
-    [[UIMenuController sharedMenuController] update];
     
     return YES;
 }

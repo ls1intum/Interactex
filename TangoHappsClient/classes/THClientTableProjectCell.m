@@ -55,8 +55,6 @@ You should have received a copy of the GNU General Public License along with thi
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 -(void) didTransitionToState:(UITableViewCellStateMask)state{

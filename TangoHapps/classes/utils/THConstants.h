@@ -160,7 +160,7 @@ typedef enum {
 } THImageViewScaleMode;
 
 
-NSString * kNotifyBehaviorsText[kMaxNumNotifyBehaviors];
+extern NSString * kNotifyBehaviorsText[kMaxNumNotifyBehaviors];
 
 extern NSInteger const kCompassMin;
 extern NSInteger const kAnalogInMin;

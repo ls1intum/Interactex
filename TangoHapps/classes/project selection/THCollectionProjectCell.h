@@ -68,5 +68,6 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) startShaking;
 -(void) stopShaking;
 -(void) scaleEffect;
+-(void) duplicate: (id) sender;
 
 @end

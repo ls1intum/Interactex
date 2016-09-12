@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6</string>
+	<string>2.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -32,6 +32,10 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Interactex enables the creation of a smart textile that controls music on the user's smartphone</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Interactex uses Bluetooth to connect and exchange data with the smart textile</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Would you like to let the app use location?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

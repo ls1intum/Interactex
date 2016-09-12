@@ -315,7 +315,7 @@ You should have received a copy of the GNU General Public License along with thi
         
         if(pin.type == kPintypeDigital && pin.mode != kPinModeUndefined && pin.attachedElementPins.count > 0){
             
-            [self.firmataController sendPinModeForPin:pin.number mode:pin.mode];
+            [self.firmataController sendPinModeForPin:pin.number mode:(IFPinMode)pin.mode];
         }
     }
 }

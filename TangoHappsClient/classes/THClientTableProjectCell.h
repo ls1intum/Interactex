@@ -57,6 +57,7 @@ You should have received a copy of the GNU General Public License along with thi
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) id<THClientTableProjectCellDelegate> delegate;
 
-- (IBAction)textChanged:(id)sender;
+-(IBAction) textChanged:(id)sender;
+-(void) duplicate:(id)sender;
 
 @end

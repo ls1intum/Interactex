@@ -110,8 +110,8 @@ You should have received a copy of the GNU General Public License along with thi
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
     [c addObserver:self selector:@selector(handleEditableObjectRemoved:) name:kNotificationObjectRemoved object:nil];
-    [c addObserver:self selector:@selector(startRemovingConnections) name:kNotificationStartRemovingConnections object:nil];
-    [c addObserver:self selector:@selector(stopRemovingConnections) name:kNotificationStopRemovingConnections object:nil];
+    //[c addObserver:self selector:@selector(startRemovingConnections) name:kNotificationStartRemovingConnections object:nil];
+    //[c addObserver:self selector:@selector(stopRemovingConnections) name:kNotificationStopRemovingConnections object:nil];
     
     [c addObserver:self selector:@selector(handlePinDeattached:) name:kNotificationPinDeattached object:nil];
     
