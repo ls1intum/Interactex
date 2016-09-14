@@ -66,6 +66,7 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THMPU6050PaletteItem.h"
 #import "THTextileSensorPaletteItem.h"
 #import "THSpeakerPaletteItem.h"
+#import "THProximitySensorPaletteItem.h"
 
 //ui widgets
 #import "THiPhonePaletteItem.h"
@@ -125,6 +126,8 @@ You should have received a copy of the GNU General Public License along with thi
 #import "THTimerPaletteItem.h"
 #import "THSoundPaletteItem.h"
 #import "THTabbarViewController.h"
+
+#import "THCustomComponentEditable.h"
 
 //#import "THPureDataPaletteItem.h"
 //#import "THiBeaconPaletteItem.h"
@@ -430,13 +433,24 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) loadCustomPaletteItems{
     _customPaletteItems = [NSMutableArray array];
+    
+    
     NSArray * files = [TFFileUtils filesInDirectory:kPaletteItemsDirectory];
     for (NSString * file in files) {
         NSString * filePath = [TFFileUtils dataFile:file
                                         inDirectory:kPaletteItemsDirectory];
         THCustomPaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithArchiveName:filePath];
-        [_customPaletteItems addObject:paletteItem];
+        if(paletteItem){
+                [_customPaletteItems addObject:paletteItem];
+        }
     }
+    
+    /*
+    THCustomComponentEditable * customObject = [[THCustomComponentEditable alloc] init];
+    customObject.name = @"runningSpeed";
+    
+    THCustomPaletteItem * paletteItem = [THCustomPaletteItem customPaletteItemWithName:@"runningSpeed" object:customObject];
+    [_customPaletteItems addObject:paletteItem];*/
 }
 
 -(void) save{
@@ -513,6 +527,7 @@ You should have received a copy of the GNU General Public License along with thi
                                  [[THMPU6050PaletteItem alloc] initWithName:@"MPU-6050"],
                                  [[THTextileSensorPaletteItem alloc] initWithName:@"textileSensor"],
                                  [[THSpeakerPaletteItem alloc] initWithName:@"textileSpeaker"],
+                                 [[THProximitySensorPaletteItem alloc] initWithName:@"proximitySensor"],
                                  nil];
     
     self.variablesSectionArray = [NSMutableArray arrayWithObjects:
@@ -570,7 +585,7 @@ You should have received a copy of the GNU General Public License along with thi
     self.programmingSectionName = @"Utilities";
     self.signalProcessingName = @"Signal Processing";
     self.comparisonOperatorsSectionName = @"Comparison Operators";
-        self.arithmeticSectionName = @"Arithmetic Operators";
+    self.arithmeticSectionName = @"Arithmetic Operators";
     self.customComponentsSectionName = @"Custom Elements";
 }
 

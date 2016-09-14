@@ -51,5 +51,6 @@
 @property(nonatomic, strong) NSMutableArray * data;
 
 -(void) addSample:(id) sample;
+-(void) addSamples:(id) sample;
 
 @end

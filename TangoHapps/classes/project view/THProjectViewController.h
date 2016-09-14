@@ -51,6 +51,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 @interface THProjectViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate, CCDirectorDelegate> {
     
+    UIView * _menuView;
+    UIView * _menuButtonsView;
+    
     UIBarButtonItem * _playButton;
     UIBarButtonItem * _stopButton;
     
@@ -65,8 +68,8 @@ You should have received a copy of the GNU General Public License along with thi
 @property (nonatomic, readonly) CCGLView * glview;
 @property (nonatomic, readonly) TFAppState state;
 @property (nonatomic, readonly) THTabbarViewController * tabController;
-@property (nonatomic, readonly) THMenubarViewController * menuController;
-//@property (nonatomic, readonly) THEditorToolsViewController * toolsController;
+//@property (nonatomic, readonly) THMenubarViewController * menuController;
+
 @property (nonatomic, strong) UIPanGestureRecognizer * panRecognizer;
 
 @property (nonatomic, readonly) BOOL editingSceneName;

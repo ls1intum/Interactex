@@ -116,6 +116,7 @@ NSString * const kEventStartedPressing = @"startedPressing";//this is for the ha
 NSString * const kEventStoppedPressing = @"stoppedPressing";
 NSString * const kEventButtonDown = @"buttonDown";//this is for the iOS button
 NSString * const kEventButtonUp = @"buttonUp";
+NSString * const kEventProximityChanged = @"proximityChanged";
 
 NSString * const kEventConditionIsTrue = @"conditionTrue";
 NSString * const kEventConditionIsFalse = @"conditionFalse";

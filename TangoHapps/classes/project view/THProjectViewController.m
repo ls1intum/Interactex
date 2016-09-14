@@ -83,20 +83,24 @@ float const kToolsTabMargin = 5;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    //tbaControler
     _tabController = [[THTabbarViewController alloc] initWithNibName:@"THTabbar" bundle:nil];
-    
-    [_tabController.view setFrame:CGRectMake(0, 0, kPaletteSectionWidth, 722.0f)];  //Nazmus added
-    
+    [_tabController.view setFrame:CGRectMake(0, 0, kPaletteSectionWidth, 722.0f)];
     [self.view addSubview:_tabController.view];
     
-    _menuController = [[THMenubarViewController alloc] initWithNibName:@"THMenubar" bundle:nil];
-    [_menuController.view setFrame:CGRectMake(0, 0, 1024.0f, 64.0f)];
-    [_menuController.view viewWithTag:1].layer.masksToBounds = NO;
-    [_menuController.view viewWithTag:1].layer.shadowOffset = CGSizeMake(0, -5);
-    [_menuController.view viewWithTag:1].layer.shadowRadius = 4;
-    [_menuController.view viewWithTag:1].layer.shadowOpacity = 0.5;
-    [self.view insertSubview:_menuController.view belowSubview:_tabController.view];
     
+    //menu bar
+    CGRect menuMainViewFrame = CGRectMake(0, 0, 1024.0f, kMenuBarHeight);
+    _menuView = [[UIView alloc] initWithFrame:menuMainViewFrame];
+    _menuButtonsView = [[UIView alloc] initWithFrame:menuMainViewFrame];
+    _menuButtonsView.layer.masksToBounds = NO;
+    _menuButtonsView.layer.shadowOffset = CGSizeMake(0, -5);
+    _menuButtonsView.layer.shadowRadius = 4;
+    _menuButtonsView.layer.shadowOpacity = 0.5;
+    [_menuView addSubview:_menuButtonsView];
+    [self.view insertSubview:_menuView belowSubview:_tabController.view];
+
+    //zoom slider
     _zoomSlider = [[UISlider alloc] initWithFrame:CGRectMake(412.0, 688.0, 200.0, 32.0)];
     [_zoomSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     [_zoomSlider setBackgroundColor:[UIColor clearColor]];
@@ -110,53 +114,17 @@ float const kToolsTabMargin = 5;
     [self.view addSubview:_zoomSlider];
     
     
-    // Observe some notifications so we can properly instruct the director.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillResignActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationDidBecomeActive:)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationDidEnterBackground:)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillEnterForeground:)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillTerminate:)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationSignificantTimeChange:)
-                                                 name:UIApplicationSignificantTimeChangeNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateEditorZoomSlider:)
-                                                 name:kNotificationEditorZoomReset
-                                               object:nil];
+    [self registerAppNotifications];
     
     _state = kAppStateEditor;
     
+    [self addEditionButtons];
+    
     [self showTabBar];
     
-    [self addEditionButtons];
     [self updateEditingButtonsTint];
     
     [self reloadContent];
-    
-    //[self addPalettePull]; //Nazmus 12 Feb commented
-    //[self updatePalettePullVisibility];
     
     THProject * project = [THDirector sharedDirector].currentProject;
     self.navigationItem.title = project.name;
@@ -215,6 +183,44 @@ float const kToolsTabMargin = 5;
 }
 
 #pragma mark - Saving and restoring projects
+
+-(void) registerAppNotifications{
+    // Observe some notifications so we can properly instruct the director.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillTerminate:)
+                                                 name:UIApplicationWillTerminateNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationSignificantTimeChange:)
+                                                 name:UIApplicationSignificantTimeChangeNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateEditorZoomSlider:)
+                                                 name:kNotificationEditorZoomReset
+                                               object:nil];
+}
 
 -(void) saveCurrentProjectAndPalette{
     
@@ -416,13 +422,14 @@ float const kToolsTabMargin = 5;
 
 -(void)hideMenuBar
 {
-    _menuController.view.hidden = YES;
+    _menuView.hidden = YES;
 }
 
 -(void)showMenuBar
 {
-    _menuController.view.hidden = NO;
+    _menuView.hidden = NO;
 }
+
 -(void)hideZoomBar
 {
     _zoomSlider.hidden = YES;
@@ -572,14 +579,14 @@ float const kToolsTabMargin = 5;
 //Nazmus added
 -(UILabel*) createDivider{
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 64)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, kMenuBarButtonHeight)];
     label.backgroundColor = [UIColor colorWithRed:200/255.0f green:198/255.0f blue:195/255.0f alpha:1.0f];
     return label;
 }
 
 -(UILabel*) createEmptyItem{
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 65, 64)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 65, kMenuBarButtonHeight)];
     label.backgroundColor = [UIColor clearColor];
     return label;
 }
@@ -587,28 +594,35 @@ float const kToolsTabMargin = 5;
 -(UIButton*) createItemWithImageName:(NSString*) imageName action:(SEL) selector{
     
     UIImage * connectButtonImage = [UIImage imageNamed:imageName];
-    UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
+    UIButton *retButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, kMenuBarButtonHeight)];
     if ([imageName isEqualToString:@"vpmode.png"]) {
-        [retButton setFrame:CGRectMake(0, 0, 330, 73)];
+        [retButton setFrame:CGRectMake(0, 0, 330, kMenuBarVPLabelHeight)];
     }
     [retButton setImage:connectButtonImage forState:UIControlStateNormal];
     [retButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     
     return retButton;
 }
-////
 
 -(void) loadTools{
     
+    //load colors
+    self.highlightedItemTintColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
+    self.hideiPhoneButton.backgroundColor = self.highlightedItemTintColor;
+    self.unselectedTintColor = [UIColor whiteColor];
+    
+    //load dividers and empty items
     self.divider = [self createDivider];
     self.divider2 = [self createDivider];
     self.emptyItem1 = [self createEmptyItem];
     self.emptyItem2 = [self createEmptyItem];
     
+    //buttons
     self.connectButton = [self createItemWithImageName:@"connect.png" action:@selector(connectPressed:)];
     self.duplicateButton = [self createItemWithImageName:@"duplicate.png" action:@selector(duplicatePressed:)];
     self.removeButton = [self createItemWithImageName:@"delete.png" action:@selector(removePressed:)];
     self.pushButton = [self createItemWithImageName:@"push.png" action:@selector(pushPressed:)];
+    self.pushButton.backgroundColor = self.unselectedTintColor;
     self.lilypadButton = [self createItemWithImageName:@"lilypadmode.png" action:@selector(lilypadPressed:)];
     self.pinsModeButton = [self createItemWithImageName:@"pinsmode.png" action:@selector(pinsModePressed:)];
     self.hideiPhoneButton = [self createItemWithImageName:@"hideVPmode.png" action:@selector(hideiPhonePressed:)];
@@ -628,22 +642,17 @@ float const kToolsTabMargin = 5;
                        target:self
                        action:@selector(endSimulation)];
     
-    // nazmus added
+    //item arrays
     self.editingToolsWithVPmode = [NSArray arrayWithObjects: self.vpmodeButton, self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
     self.editingToolsWithoutVPmode = [NSArray arrayWithObjects: self.hideiPhoneButton, self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
     self.editingTools = self.editingToolsWithVPmode;
     
-    //self.simulatingTools = [NSArray arrayWithObjects: self.pinsModeButton, nil];
     self.simulatingTools = [[NSArray alloc ] init];
     
     self.lilypadTools = [NSArray arrayWithObjects: self.lilypadButton, self.divider, self.pushButton, self.removeButton, self.duplicateButton, self.connectButton, self.hidePaletteButton, nil];
     
-    self.highlightedItemTintColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
-    self.hideiPhoneButton.backgroundColor = self.highlightedItemTintColor;
-    self.unselectedTintColor = [UIColor whiteColor];
-    ////
     
     id c = [NSNotificationCenter defaultCenter];
     [c addObserver:self selector:@selector(handleEditableObjectAdded:) name:kNotificationObjectAdded object:nil];
@@ -686,9 +695,9 @@ float const kToolsTabMargin = 5;
 }
 
 -(void) addButtonsToMenubar:(NSArray *) tools {
-    [[[self.menuController.view viewWithTag:1] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [[_menuButtonsView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    float totalWidth = [[self.menuController.view viewWithTag:1] frame].size.width;
+    float totalWidth = [_menuButtonsView frame].size.width;
     float offset = 0;
     float xPos = 0;
     
@@ -703,7 +712,10 @@ float const kToolsTabMargin = 5;
                                                                  itemFrame.origin.y,
                                                                  itemFrame.size.width,
                                                                  itemFrame.size.height)];
-        [[self.menuController.view viewWithTag:1] addSubview:[tools objectAtIndex:i]];
+        
+
+        UIView * toolView = [tools objectAtIndex:i];
+        [_menuButtonsView addSubview:toolView];
     }
 }
 
@@ -749,7 +761,7 @@ float const kToolsTabMargin = 5;
     //self.pushButton.enabled = YES;
     
     THDirector * director = [THDirector sharedDirector];
-    self.pushButton.enabled = (director.serverController.session.connectedPeers.count > 0);
+    self.pushButton.enabled = director.serverController.isConnected;
     [self.pushButton setNeedsDisplay];
 }
 

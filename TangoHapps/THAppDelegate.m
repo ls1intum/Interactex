@@ -76,7 +76,6 @@ You should have received a copy of the GNU General Public License along with thi
     
     THDirector * director = [THDirector sharedDirector];
     [director.serverController stopServer];
-    //[THDirector sharedDirector] upda
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

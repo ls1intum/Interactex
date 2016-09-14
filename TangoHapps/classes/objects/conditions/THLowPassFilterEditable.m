@@ -104,6 +104,10 @@
     [lowPassFilter addSample:sample];
 }
 
+-(void) addSamples:(id) samples{
+    THLowPassFilter * lowPassFilter = (THLowPassFilter*) self.simulableObject;
+    [lowPassFilter addSamples:samples];
+}
 
 -(NSMutableArray*) data{
     THLowPassFilter * lowPassFilter = (THLowPassFilter*) self.simulableObject;

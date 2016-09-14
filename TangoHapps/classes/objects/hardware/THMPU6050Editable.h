@@ -26,4 +26,7 @@
 
 @property (nonatomic) THI2CComponentType componentType;
 
+-(void) start;
+-(void) stop;
+
 @end

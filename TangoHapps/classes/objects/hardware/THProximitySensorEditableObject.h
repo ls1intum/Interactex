@@ -1,8 +1,8 @@
 /*
- THWindow.h
+ THProximitySensorEditableObject.h
  Interactex Designer
  
- Created by Juan Haladjian on 03/03/16.
+ Created by Juan Haladjian on 06/20/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,20 +40,17 @@
  
  */
 
+#import "THHardwareComponentEditableObject.h"
 
-#import "THProgrammingElement.h"
+@interface THProximitySensorEditableObject : THHardwareComponentEditableObject {
+    
+    CCSprite * _proximitySprite;
+    float _proximityTouchDownIntensity;
+}
 
-@interface THWindow : THProgrammingElement
-
-
--(void) start;
--(void) stop;
--(void) addSample:(id) sample;
--(void) addSamples:(id) sample;
-
-@property(nonatomic,readonly) BOOL started;
-@property(nonatomic) NSInteger windowSize;
-@property(nonatomic) NSInteger overlap;
-@property(nonatomic, strong) NSMutableArray * data;
+@property (nonatomic, readonly) NSInteger proximity;
+@property (nonatomic) NSInteger isDown;
+@property (nonatomic, readonly) THElementPinEditable * analogPin;
+@property (nonatomic, readonly) THElementPinEditable * plusPin;
 
 @end

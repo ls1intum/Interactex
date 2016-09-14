@@ -63,7 +63,12 @@
     method.numParams = 1;
     method.firstParamType = kDataTypeFloat;
     
-    self.methods = [NSMutableArray arrayWithObjects:method,nil];
+    
+    TFMethod * method2 = [TFMethod methodWithName:@"addSamples"];
+    method2.numParams = 1;
+    method2.firstParamType = kDataTypeAny;
+    
+    self.methods = [NSMutableArray arrayWithObjects:method,method2,nil];
     
     TFEvent * event = [TFEvent eventNamed:kEventDeviationChanged];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
@@ -94,7 +99,6 @@
 
 #pragma mark - Methods
 
-
 -(void) computePeak{
     _peak = 1;
     _peakIdx = 1;
@@ -109,6 +113,11 @@
         count = 0;
         [self triggerEventNamed:kEventPeakDetected];
     }
+}
+
+
+-(void) addSamples:(id)samples{
+    //TODO implement
 }
 
 -(NSString*) description{

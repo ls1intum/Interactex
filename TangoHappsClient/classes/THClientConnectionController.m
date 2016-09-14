@@ -55,7 +55,6 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
     self.remotePeerID = nil;
 }
 
-//delete this method
 - (NSString *)stringForPeerConnectionState:(MCSessionState)state {
     switch (state) {
         case MCSessionStateConnected:
@@ -69,16 +68,24 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
     }
 }
 
+- (MCSession*) createOrGetSession {
+    if(self.session == nil) {
+        
+        self.session = [[MCSession alloc] initWithPeer:self.localPeerID
+                                      securityIdentity:nil
+                                  encryptionPreference:MCEncryptionNone];
+        self.session.delegate = self;
+    }
+    
+    return self.session;
+}
+
 #pragma mark - Browser delegate
 
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info{
-    
-    _session = [[MCSession alloc] initWithPeer:_localPeerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
-    _session.delegate = self;
+    self.session = [self createOrGetSession];
     
     [self.delegate peerDiscovered:peerID];
-    
-    //[self inviteCurrentPeer];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID{
@@ -87,8 +94,6 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
     }
     
     [self.delegate peerLost:peerID];
-    
-    //NSLog(@"lost peer");
 }
 
 -(void) browser:(MCNearbyServiceBrowser *)browser didNotStartBrowsingForPeers:(NSError *)error{
@@ -97,7 +102,7 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
 
 -(void) invitePeer:(MCPeerID*) peerID{
     self.remotePeerID = peerID;
-    [self.browser invitePeer:self.remotePeerID toSession:self.session withContext:nil timeout:0];
+    [self.browser invitePeer:self.remotePeerID toSession:self.session withContext:nil timeout:60];
     
     [self.delegate appendStatusMessage:@"Invited peer..."];
 }
@@ -106,8 +111,6 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
 
 // Override this method to handle changes to peer session state
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    
-    //NSLog(@"%@",[self stringForPeerConnectionState:state]);
     
     [self.delegate appendStatusMessage:[self stringForPeerConnectionState:state]];
     
@@ -185,6 +188,9 @@ NSString * const kNotConnectedText = @"Browsing for peers...";
 
 - (void) session:(MCSession *)session didReceiveCertificate:(NSArray *)certificate fromPeer:(MCPeerID *)peerID certificateHandler:(void (^)(BOOL accept))certificateHandler
 {
+    if(certificateHandler != nil){
     certificateHandler(YES);
+    }
 }
+
 @end

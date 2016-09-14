@@ -64,7 +64,7 @@ You should have received a copy of the GNU General Public License along with thi
     QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
     touchposeApplication.alwaysShowTouches = YES;
     
-    [self generateRandomScenes];
+    //[self generateRandomScenes];
     
     return YES;
 }

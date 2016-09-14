@@ -51,6 +51,9 @@ float const kGridItemWidth = 200;
 float const kGridItemHeight = 230;
 
 float const kLineAcceptedTiltingTime = 0.35f;
+float const kMenuBarHeight = 64;
+float const kMenuBarButtonHeight = 64;
+float const kMenuBarVPLabelHeight = 73;
 
 NSString * const kNotificationActionAdded = @"notificationActionAdded";
 NSString * const kNotificationActionRemoved = @"notificationActionRemoved";

@@ -109,6 +109,12 @@
     [peakDetector addSample:value];
 }
 
+-(void) addSamples:(id)values{
+    
+    THPeakDetector * peakDetector = (THPeakDetector*) self.simulableObject;
+    [peakDetector addSamples:values];
+}
+
 -(float) peak{
     THPeakDetector * peakDetector = (THPeakDetector*) self.simulableObject;
     return peakDetector.peak;

@@ -57,10 +57,13 @@
 
 -(void) loadWindow{
     TFMethod * startMethod = [TFMethod methodWithName:@"start"];
+    TFMethod * stopMethod = [TFMethod methodWithName:@"stop"];
     TFMethod * addSampleMethod = [TFMethod methodWithName:@"addSample"];
     addSampleMethod.numParams = 1;
-    addSampleMethod.firstParamType = kDataTypeAny;
-    TFMethod * stopMethod = [TFMethod methodWithName:@"stop"];
+    addSampleMethod.firstParamType = kDataTypeInteger;
+    TFMethod * addSamplesMethod = [TFMethod methodWithName:@"addSamples"];
+    addSamplesMethod.numParams = 1;
+    addSamplesMethod.firstParamType = kDataTypeAny;
     
     self.methods = [NSMutableArray arrayWithObjects:startMethod,stopMethod,addSampleMethod, nil];
     
@@ -69,6 +72,8 @@
     
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
     self.events = [NSMutableArray arrayWithObjects:event,nil];
+    
+    self.properties = [NSMutableArray arrayWithObjects:property,nil];
 }
 
 #pragma mark - Archiving
@@ -116,6 +121,14 @@
             [self triggerEventNamed:kEventWindowFull];
             [self emptyWindow];
         }
+    }
+}
+
+-(void) addSamples:(id) sample{
+    if(self.started){
+        self.data = sample;
+        [self triggerEventNamed:kEventWindowFull];
+        [self emptyWindow];
     }
 }
 

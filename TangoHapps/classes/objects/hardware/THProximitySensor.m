@@ -1,8 +1,8 @@
 /*
- THWindowEditable.m
+ THProximitySensor.m
  Interactex Designer
  
- Created by Juan Haladjian on 03/03/16.
+ Created by Juan Haladjian on 06/20/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,121 +40,94 @@
  
  */
 
+#import "THProximitySensor.h"
+#import "THElementPin.h"
 
-#import "THWindowEditable.h"
-#import "THWindow.h"
+@implementation THProximitySensor
 
-@implementation THWindowEditable
+-(void) load{
+    
+    TFProperty * property = [TFProperty propertyWithName:@"proximity" andType:kDataTypeInteger];
+    self.properties = [NSMutableArray arrayWithObject:property];
+    
+    TFEvent * event = [TFEvent eventNamed:kEventProximityChanged];
+    event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
+    self.events = [NSMutableArray arrayWithObject:event];
+}
 
-@dynamic windowSize;
-@dynamic overlap;
-@dynamic started;
-@dynamic data;
+-(void) loadPins{
+    
+    THElementPin * pin1 = [THElementPin pinWithType:kElementPintypeAnalog];
+    pin1.hardware = self;
+    pin1.defaultBoardPinMode = kPinModeAnalogInput;
+    THElementPin * pin2 = [THElementPin pinWithType:kElementPintypePlus];
+    pin2.hardware = self;
+    
+    [self.pins addObject:pin1];
+    [self.pins addObject:pin2];
+}
 
 -(id) init{
     self = [super init];
     if(self){
-        self.simulableObject = [[THWindow alloc] init];
-        
-        [self loadWindow];
+        [self load];
+        [self loadPins];
     }
     return self;
-}
-
--(void) loadWindow{
-    
-    self.programmingElementType = kProgrammingElementTypeWindow;
-    self.acceptsConnections = YES;
 }
 
 #pragma mark - Archiving
 
--(id)initWithCoder:(NSCoder *)decoder {
+-(id)initWithCoder:(NSCoder *)decoder{
     self = [super initWithCoder:decoder];
     
-    if(self){
-        [self loadWindow];
-    }
+    [self load];
     
     return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)coder {
+-(void)encodeWithCoder:(NSCoder *)coder{
     [super encodeWithCoder:coder];
 }
 
--(id)copyWithZone:(NSZone *)zone {
-    THWindow * copy = [super copyWithZone:zone];
-    if(copy){
-    }
+-(id)copyWithZone:(NSZone *)zone{
+    THProximitySensor * copy = [super copyWithZone:zone];
+    
     return copy;
 }
 
+#pragma mark - Protocols
 
-#pragma mark - Property Controller
-
--(NSArray*)propertyControllers {
-    NSMutableArray *controllers = [NSMutableArray array];
-    [controllers addObjectsFromArray:[super propertyControllers]];
-    //[controllers addObject:[THCustomComponentProperties properties]];
-    return controllers;
+-(NSString*) description{
+    return @"proximity sensor";
 }
 
 #pragma mark - Methods
 
--(void) start{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window start];
+-(THElementPin*) analogPin{
+    return [self.pins objectAtIndex:0];
 }
 
--(void) stop{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window stop];
+-(THElementPin*) plusPin{
+    return [self.pins objectAtIndex:1];
 }
 
--(void) addSample:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSample:sample];
+-(void) updatePinValue{
+    
+    THElementPin * pin = self.analogPin;
+    THBoardPin * lilypadPin = (THBoardPin*) pin.attachedToPin;
+    lilypadPin.value = self.proximity;
 }
 
--(void) addSamples:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSamples:sample];
+-(void) handlePin:(THBoardPin*) pin changedValueTo:(NSInteger) newValue{
+    self.proximity = newValue;
 }
 
--(BOOL) started{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.started;
+-(void) setProximity:(NSInteger)proximity{
+    if(_proximity != proximity){
+        _proximity = proximity;
+        [self triggerEventNamed:kEventProximityChanged];
+        [self updatePinValue];
+    }
 }
-
--(NSMutableArray*) data{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.data;
-}
-
--(void) setWindowSize:(NSInteger)windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    window.windowSize = windowSize;
-}
-
-
--(NSInteger) windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.windowSize;
-}
-
--(void) setOverlap:(NSInteger)overlap{
-   THWindow * window = (THWindow*) self.simulableObject;
-    window.overlap = overlap;
-}
-
--(NSInteger) overlap{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.overlap;
-}
-
--(NSString*) description{
-    return @"Window";
-}
-
 @end

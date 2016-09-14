@@ -130,7 +130,7 @@
 }
 
 -(NSString*) description{
-    return @"CustomComponent";
+    return self.name;
 }
 
 @end

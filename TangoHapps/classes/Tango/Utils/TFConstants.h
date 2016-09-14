@@ -55,6 +55,10 @@ extern float const kGridItemWidth;
 extern float const kGridItemHeight;
 extern float const kLineAcceptedTiltingTime;
 
+extern float const kMenuBarHeight;
+extern float const kMenuBarButtonHeight;
+extern float const kMenuBarVPLabelHeight;//this label is bigger because of the little arrow (triangle pointing down) 
+
 extern NSString * const kNotificationObjectAdded;
 extern NSString * const kNotificationObjectRemoved;
 extern NSString * const kNotificationObjectSelected;

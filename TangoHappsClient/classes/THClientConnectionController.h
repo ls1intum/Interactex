@@ -34,9 +34,9 @@ typedef enum{
     THClientReceivingState receivingState;
 }
 
-@property (readonly, nonatomic) MCPeerID * localPeerID;
+@property (strong, nonatomic) MCPeerID * localPeerID;
 @property (strong, nonatomic) MCPeerID * remotePeerID;
-@property (readonly, nonatomic) MCSession * session;
+@property (nonatomic) MCSession * session;
 @property (readonly) BOOL isConnectedToServer;
 @property (copy, nonatomic) NSString * connectedPeerID;
 @property (weak, nonatomic) id<THClientConnectionControllerDelegate> delegate;

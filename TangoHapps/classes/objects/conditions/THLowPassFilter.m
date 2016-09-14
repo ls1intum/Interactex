@@ -64,7 +64,11 @@
     method.numParams = 1;
     method.firstParamType = kDataTypeFloat;
     
-    self.methods = [NSMutableArray arrayWithObjects:method,nil];
+    TFMethod * method2 = [TFMethod methodWithName:@"addSamples"];
+    method2.numParams = 1;
+    method2.firstParamType = kDataTypeAny;
+    
+    self.methods = [NSMutableArray arrayWithObjects:method, method2, nil];
     
     TFEvent * event = [TFEvent eventNamed:kEventFiltered];
     event.param1 = [TFPropertyInvocation invocationWithProperty:property target:self];
@@ -114,6 +118,12 @@
         [self filter];
         [self emptyWindow];
     }
+}
+
+-(void) addSamples:(id) samples{
+    self.data = samples;
+    [self filter];
+    [self emptyWindow];
 }
 
 -(void) didStartSimulating{

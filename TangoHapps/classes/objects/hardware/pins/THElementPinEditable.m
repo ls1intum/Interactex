@@ -155,6 +155,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 -(void) draw{
     
+    //debug: draw pins
     //ccDrawColor4B(255, 0, 0, 255);
     //ccDrawCircle(ccp(0,0), 3, 0, 15, 0);
     

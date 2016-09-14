@@ -84,10 +84,18 @@ You should have received a copy of the GNU General Public License along with thi
         
         self.shouldRecognizePanGestures = YES;
         
+        /*
+        _zoomableLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 0)];
+        _zoomableLayer.contentSize = kDefaultCanvasSize;
+        [self resetZoomableLayerPosition];
+        [self addChild:_zoomableLayer z:-30];*/
+        
+        
         _zoomableLayer = [CCLayerColor layerWithColor:ccc4(248, 248, 248, 0)];
         _zoomableLayer.contentSize = kDefaultCanvasSize;
         [self resetZoomableLayerPosition];
         [self addChild:_zoomableLayer z:-30];
+        
         
         CCSprite * bg = [CCSprite spriteWithFile:@"editorLayerBg.png"];
         [bg setPosition:ccp(_zoomableLayer.contentSize.width / 2.0f, _zoomableLayer.contentSize.height / 2.0f)];
@@ -861,26 +869,8 @@ You should have received a copy of the GNU General Public License along with thi
     return nil;
 }
 
--(void) handleExtra{//Juan remove!!
-    
-    THProject * project = [THDirector sharedDirector].currentProject;
-    THLabelEditableObject * label1 = [project.iPhoneObjects objectAtIndex:0];
-    
-    NSLog(@"copyng label... %@",label1);
-    
-    
-    THLabelEditableObject * label2 =  [label1 copy];
-    [label2 addToWorld];
-    /*
-    [self addEditableObject:label2];
-    
-    THView * view = (THView*) label2.simulableObject;
-    [view addToView:[CCDirector sharedDirector].view];*/
-}
 
 -(void)tapped:(UITapGestureRecognizer*)sender {
-    //[self handleExtra];
-    //return;
     
     CGPoint location = [sender locationInView:sender.view];
     location = [self toLayerCoords:location];
@@ -1472,7 +1462,7 @@ You should have received a copy of the GNU General Public License along with thi
     _isLilypadMode = YES;
     
     [self unselectCurrentObject];
-    [self deAttachClotheItems];
+    //[self deAttachClotheItems];
     
     [self hideConnectionsForAllObjects];
     [self hideNonLilypadObjects];
@@ -1485,7 +1475,7 @@ You should have received a copy of the GNU General Public License along with thi
 -(void) stopLilypadMode{
     
     _isLilypadMode = NO;
-    //[self hideBoards];
+    [self hideBoards];
     [self hideOtherHardware];
     [self showNonLilypadObjects];
     [self unselectCurrentObject];

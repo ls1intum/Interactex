@@ -64,8 +64,7 @@ float const kTabbarToolbarHeight = 50;
 
 -(THTabbarView*) tabbarViewForController:(UIViewController*) controller title:(NSString*) title {
     
-    //THTabbarView * view = [[THTabbarView alloc] initWithFrame:CGRectMake(0, 0, kTabWidth, self.view.frame.size.height - self.toolBar.frame.size.height)]; // Nazmus commented
-    THTabbarView * view = [[THTabbarView alloc] initWithFrame:CGRectMake(0, self.toolBarView.frame.size.height-10, kTabWidth, self.view.frame.size.height - self.toolBarView.frame.size.height+10)]; // Nazmus added
+    THTabbarView * view = [[THTabbarView alloc] initWithFrame:CGRectMake(0, self.toolBarView.frame.size.height-10, kTabWidth, self.view.frame.size.height - self.toolBarView.frame.size.height+10)];
     
     controller.view = view;
     controller.title = title;
@@ -86,7 +85,6 @@ float const kTabbarToolbarHeight = 50;
     //self.view.backgroundColor = [UIColor grayColor]; // NS commented 24 Aug 14
     self.view.backgroundColor = [UIColor whiteColor]; // NS added 24 Aug 14
     [self.view bringSubviewToFront:self.toolBarView];
-    //self.view.frame = CGRectMake(0, 100, kTabWidth, 500);
 }
 
 - (void)viewDidUnload {

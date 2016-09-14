@@ -12,6 +12,8 @@
 
 @interface THServerController()
 
+@property (strong, nonatomic) MCPeerID * localPeerId;
+@property (nonatomic) MCSession * session;
 @property (retain, nonatomic) MCNearbyServiceAdvertiser * advertiser;
 
 @end
@@ -27,7 +29,7 @@
         _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.localPeerId discoveryInfo:nil serviceType:kConnectionServiceType];
         _advertiser.delegate = self;
         
-        _invitationHandlers = [NSMutableArray array];
+        self.isConnected = NO;
     }
     return self;
 }
@@ -36,6 +38,7 @@
     [_session disconnect];
 }
 
+/*
 //delete this
 - (NSString *)stringForPeerConnectionState:(MCSessionState)state
 {
@@ -49,16 +52,26 @@
         case MCSessionStateNotConnected:
             return @"Not Connected";
     }
-}
+}*/
 
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler{
     
-    NSLog(@"received invitation");
-    
-    _session = [[MCSession alloc] initWithPeer:self.localPeerId];
-    _session.delegate = self;
+    [self createOrGetSession];
     
     invitationHandler(YES,_session);
+    
+}
+
+- (MCSession*) createOrGetSession {
+    if(self.session == nil) {
+        
+        self.session = [[MCSession alloc] initWithPeer:self.localPeerId
+                                      securityIdentity:nil
+                                  encryptionPreference:MCEncryptionNone];
+        self.session.delegate = self;
+    }
+    
+    return self.session;
 }
 
 #pragma mark - Public methods
@@ -122,12 +135,14 @@
 
 // Override this method to handle changes to peer session state
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
+    //NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if(state == MCSessionStateConnected){
+            self.isConnected = YES;
             [self.delegate server:self peerConnected:peerID.displayName];
         } else if(state == MCSessionStateNotConnected){
+            self.isConnected = NO;
             [self.delegate server:self peerDisconnected:peerID.displayName];
         }
     });
@@ -159,9 +174,12 @@
     //NSLog(@"Received data over stream with name %@ from peer %@", streamName, peerID.displayName);
 }
 
+
 - (void) session:(MCSession *)session didReceiveCertificate:(NSArray *)certificate fromPeer:(MCPeerID *)peerID certificateHandler:(void (^)(BOOL accept))certificateHandler
 {
-    certificateHandler(YES);
+    if(certificateHandler != nil){
+        certificateHandler(YES);
+    }
 }
 
 @end

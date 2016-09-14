@@ -29,7 +29,6 @@
 		254EFDAE1A17B82800289A18 /* newProject.png in Resources */ = {isa = PBXBuildFile; fileRef = 254EFDAC1A17B82800289A18 /* newProject.png */; };
 		254EFDAF1A17B82800289A18 /* newProject@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 254EFDAD1A17B82800289A18 /* newProject@2x.png */; };
 		25643B8E19B0E52000F8E9CB /* THMenubarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */; };
-		25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25643B8D19B0E51F00F8E9CB /* THMenubar.xib */; };
 		2577302F1A17858800F038D1 /* segBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 257730291A17858800F038D1 /* segBg.png */; };
 		257730301A17858800F038D1 /* segBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302A1A17858800F038D1 /* segBg@2x.png */; };
 		257730311A17858800F038D1 /* segBgSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2577302B1A17858800F038D1 /* segBgSelected.png */; };
@@ -381,6 +380,14 @@
 		9A5F8D8A16A2C4E4000DF472 /* THContactBookProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8916A2C4E4000DF472 /* THContactBookProperties.m */; };
 		9A5F8D8D16A2C524000DF472 /* THContactBookProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */; };
 		9A5F8E2A16A2C6EE000DF472 /* THContactBookPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */; };
+		9A6A77C11D17CD5200A84027 /* THProximitySensorEditableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A77C01D17CD5200A84027 /* THProximitySensorEditableObject.m */; };
+		9A6A77CD1D17CDAE00A84027 /* THProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A77CC1D17CDAE00A84027 /* THProximitySensor.m */; };
+		9A6A77CE1D17CDAE00A84027 /* THProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A77CC1D17CDAE00A84027 /* THProximitySensor.m */; };
+		9A6A77D11D17D10400A84027 /* THProximitySensorPaletteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A77D01D17D10400A84027 /* THProximitySensorPaletteItem.m */; };
+		9A6A77D61D17D30000A84027 /* palette_proximitySensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A77D21D17D30000A84027 /* palette_proximitySensor.png */; };
+		9A6A77D71D17D30000A84027 /* palette_proximitySensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A77D31D17D30000A84027 /* palette_proximitySensor@2x.png */; };
+		9A6A77D81D17D30000A84027 /* proximitySensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A77D41D17D30000A84027 /* proximitySensor.png */; };
+		9A6A77D91D17D30000A84027 /* proximitySensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A6A77D51D17D30000A84027 /* proximitySensor@2x.png */; };
 		9A6B28AD18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A6B28AE18AA701A009AAE31 /* THGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B28AC18AA701A009AAE31 /* THGraphView.m */; };
 		9A72C7941C882D9E0019B2E4 /* palette_window.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A72C7901C882D9E0019B2E4 /* palette_window.png */; };
@@ -573,6 +580,10 @@
 		9AB29C00167F898B00F5AF62 /* THProgrammingElementEditable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */; };
 		9AB29C03167F89B900F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
 		9AB29C04167F89C100F5AF62 /* THProgrammingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */; };
+		9AB4255C1CFC7AEA00B52062 /* palette_runningSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB425581CFC7AEA00B52062 /* palette_runningSpeed.png */; };
+		9AB4255D1CFC7AEA00B52062 /* palette_runningSpeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB425591CFC7AEA00B52062 /* palette_runningSpeed@2x.png */; };
+		9AB4255E1CFC7AEA00B52062 /* runningSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB4255A1CFC7AEA00B52062 /* runningSpeed.png */; };
+		9AB4255F1CFC7AEA00B52062 /* runningSpeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AB4255B1CFC7AEA00B52062 /* runningSpeed@2x.png */; };
 		9AB490391886E54500BCB1C6 /* THAutorouteProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */; };
 		9AB49B061A6AA8E5006B22E5 /* THIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB49B051A6AA8E5006B22E5 /* THIntegrationTests.m */; };
 		9AB777F417E5FF4100F82424 /* THInvocationConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB777F317E5FF4100F82424 /* THInvocationConnectionLine.m */; };
@@ -674,6 +685,8 @@
 		9ADCE1BE1AB7481F007895AA /* palette_activityClassifier@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCE1BA1AB7481F007895AA /* palette_activityClassifier@2x.png */; };
 		9ADCE1BF1AB75BA6007895AA /* THActivityRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCE1A21AB7357F007895AA /* THActivityRecognition.m */; };
 		9ADCE1C01AB75D39007895AA /* THAccelerometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCE1B51AB73FB1007895AA /* THAccelerometerData.m */; };
+		9AE4266E1CCA1C54009E36D1 /* light2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AE4266C1CCA1C54009E36D1 /* light2.png */; };
+		9AE4266F1CCA1C54009E36D1 /* light2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AE4266D1CCA1C54009E36D1 /* light2@2x.png */; };
 		9AEB06A01C883C8D000D399E /* modulo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AEB069C1C883C8D000D399E /* modulo.png */; };
 		9AEB06A11C883C8D000D399E /* modulo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AEB069D1C883C8D000D399E /* modulo@2x.png */; };
 		9AEB06A21C883C8D000D399E /* palette_modulo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AEB069E1C883C8D000D399E /* palette_modulo.png */; };
@@ -1109,7 +1122,6 @@
 		254EFDAD1A17B82800289A18 /* newProject@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newProject@2x.png"; sourceTree = "<group>"; };
 		25643B8B19B0E51F00F8E9CB /* THMenubarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMenubarViewController.h; sourceTree = "<group>"; };
 		25643B8C19B0E51F00F8E9CB /* THMenubarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMenubarViewController.m; sourceTree = "<group>"; };
-		25643B8D19B0E51F00F8E9CB /* THMenubar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THMenubar.xib; sourceTree = "<group>"; };
 		257730291A17858800F038D1 /* segBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segBg.png; sourceTree = "<group>"; };
 		2577302A1A17858800F038D1 /* segBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segBg@2x.png"; sourceTree = "<group>"; };
 		2577302B1A17858800F038D1 /* segBgSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segBgSelected.png; sourceTree = "<group>"; };
@@ -1529,6 +1541,16 @@
 		9A5F8D8C16A2C524000DF472 /* THContactBookProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THContactBookProperties.xib; sourceTree = "<group>"; };
 		9A5F8E2816A2C6EE000DF472 /* THContactBookPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBookPaletteItem.h; sourceTree = "<group>"; };
 		9A5F8E2916A2C6EE000DF472 /* THContactBookPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBookPaletteItem.m; sourceTree = "<group>"; };
+		9A6A77BF1D17CD5200A84027 /* THProximitySensorEditableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProximitySensorEditableObject.h; sourceTree = "<group>"; };
+		9A6A77C01D17CD5200A84027 /* THProximitySensorEditableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProximitySensorEditableObject.m; sourceTree = "<group>"; };
+		9A6A77CB1D17CDAE00A84027 /* THProximitySensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProximitySensor.h; sourceTree = "<group>"; };
+		9A6A77CC1D17CDAE00A84027 /* THProximitySensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProximitySensor.m; sourceTree = "<group>"; };
+		9A6A77CF1D17D10400A84027 /* THProximitySensorPaletteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProximitySensorPaletteItem.h; sourceTree = "<group>"; };
+		9A6A77D01D17D10400A84027 /* THProximitySensorPaletteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProximitySensorPaletteItem.m; sourceTree = "<group>"; };
+		9A6A77D21D17D30000A84027 /* palette_proximitySensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_proximitySensor.png; sourceTree = "<group>"; };
+		9A6A77D31D17D30000A84027 /* palette_proximitySensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_proximitySensor@2x.png"; sourceTree = "<group>"; };
+		9A6A77D41D17D30000A84027 /* proximitySensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proximitySensor.png; sourceTree = "<group>"; };
+		9A6A77D51D17D30000A84027 /* proximitySensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "proximitySensor@2x.png"; sourceTree = "<group>"; };
 		9A6B28AB18AA701A009AAE31 /* THGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGraphView.h; sourceTree = "<group>"; };
 		9A6B28AC18AA701A009AAE31 /* THGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGraphView.m; sourceTree = "<group>"; };
 		9A72C7901C882D9E0019B2E4 /* palette_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_window.png; sourceTree = "<group>"; };
@@ -1749,6 +1771,10 @@
 		9AB29BFF167F898B00F5AF62 /* THProgrammingElementEditable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgrammingElementEditable.m; sourceTree = "<group>"; };
 		9AB29C01167F89B900F5AF62 /* THProgrammingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgrammingElement.h; sourceTree = "<group>"; };
 		9AB29C02167F89B900F5AF62 /* THProgrammingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgrammingElement.m; sourceTree = "<group>"; };
+		9AB425581CFC7AEA00B52062 /* palette_runningSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_runningSpeed.png; sourceTree = "<group>"; };
+		9AB425591CFC7AEA00B52062 /* palette_runningSpeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_runningSpeed@2x.png"; sourceTree = "<group>"; };
+		9AB4255A1CFC7AEA00B52062 /* runningSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runningSpeed.png; sourceTree = "<group>"; };
+		9AB4255B1CFC7AEA00B52062 /* runningSpeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "runningSpeed@2x.png"; sourceTree = "<group>"; };
 		9AB490381886E54500BCB1C6 /* THAutorouteProperties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THAutorouteProperties.xib; sourceTree = "<group>"; };
 		9AB49B051A6AA8E5006B22E5 /* THIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THIntegrationTests.m; sourceTree = "<group>"; };
 		9AB777F217E5FF4100F82424 /* THInvocationConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THInvocationConnectionLine.h; sourceTree = "<group>"; };
@@ -1873,6 +1899,8 @@
 		9ADCE1B81AB7481F007895AA /* activityClassifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activityClassifier@2x.png"; sourceTree = "<group>"; };
 		9ADCE1B91AB7481F007895AA /* palette_activityClassifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_activityClassifier.png; sourceTree = "<group>"; };
 		9ADCE1BA1AB7481F007895AA /* palette_activityClassifier@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette_activityClassifier@2x.png"; sourceTree = "<group>"; };
+		9AE4266C1CCA1C54009E36D1 /* light2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light2.png; sourceTree = "<group>"; };
+		9AE4266D1CCA1C54009E36D1 /* light2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light2@2x.png"; sourceTree = "<group>"; };
 		9AEB069C1C883C8D000D399E /* modulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modulo.png; sourceTree = "<group>"; };
 		9AEB069D1C883C8D000D399E /* modulo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modulo@2x.png"; sourceTree = "<group>"; };
 		9AEB069E1C883C8D000D399E /* palette_modulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette_modulo.png; sourceTree = "<group>"; };
@@ -2525,6 +2553,16 @@
 		9A4144B517DE7A060061EDF8 /* palette */ = {
 			isa = PBXGroup;
 			children = (
+				9A6A77D21D17D30000A84027 /* palette_proximitySensor.png */,
+				9A6A77D31D17D30000A84027 /* palette_proximitySensor@2x.png */,
+				9A6A77D41D17D30000A84027 /* proximitySensor.png */,
+				9A6A77D51D17D30000A84027 /* proximitySensor@2x.png */,
+				9AB425581CFC7AEA00B52062 /* palette_runningSpeed.png */,
+				9AB425591CFC7AEA00B52062 /* palette_runningSpeed@2x.png */,
+				9AB4255A1CFC7AEA00B52062 /* runningSpeed.png */,
+				9AB4255B1CFC7AEA00B52062 /* runningSpeed@2x.png */,
+				9AE4266C1CCA1C54009E36D1 /* light2.png */,
+				9AE4266D1CCA1C54009E36D1 /* light2@2x.png */,
 				9AA806491CC2CB4100420533 /* palette_radio.png */,
 				9AA8064A1CC2CB4100420533 /* palette_radio@2x.png */,
 				9AA8064B1CC2CB4100420533 /* radio.png */,
@@ -3272,6 +3310,8 @@
 				9AA8062D1CC125F000420533 /* THTextileSensorPaletteItem.m */,
 				9AA806461CC2A7B000420533 /* THSpeakerPaletteItem.h */,
 				9AA806471CC2A7B000420533 /* THSpeakerPaletteItem.m */,
+				9A6A77CF1D17D10400A84027 /* THProximitySensorPaletteItem.h */,
+				9A6A77D01D17D10400A84027 /* THProximitySensorPaletteItem.m */,
 			);
 			name = hardware;
 			sourceTree = "<group>";
@@ -3550,8 +3590,8 @@
 		9AF501F4167B84B40020241C /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				9AFA04B01B42C89500D7C0D5 /* TextIT */,
 				9A84265017564A80009495AB /* Tango */,
+				9AFA04B01B42C89500D7C0D5 /* TextIT */,
 				9AF502D6167B84B40020241C /* utils */,
 				9AF501F5167B84B40020241C /* communication */,
 				9A8572B4172AD64C00510D23 /* assets */,
@@ -3697,6 +3737,10 @@
 				9AA806401CC2A21E00420533 /* THTextileSpeaker.m */,
 				9AA806421CC2A22E00420533 /* THTextileSpeakerEditable.h */,
 				9AA806431CC2A22E00420533 /* THTextileSpeakerEditable.m */,
+				9A6A77CB1D17CDAE00A84027 /* THProximitySensor.h */,
+				9A6A77CC1D17CDAE00A84027 /* THProximitySensor.m */,
+				9A6A77BF1D17CD5200A84027 /* THProximitySensorEditableObject.h */,
+				9A6A77C01D17CD5200A84027 /* THProximitySensorEditableObject.m */,
 			);
 			path = hardware;
 			sourceTree = "<group>";
@@ -3982,7 +4026,6 @@
 				9AF60BC416A04D9F00178439 /* THTabbar.xib */,
 				9AF60BC516A04D9F00178439 /* THTabbarViewSection.xib */,
 				9A87C06016A4140C0059CC2E /* THGridItem.xib */,
-				25643B8D19B0E51F00F8E9CB /* THMenubar.xib */,
 				9AF502E5167B84B40020241C /* communication */,
 				9AF502F5167B84B40020241C /* utils */,
 			);
@@ -4391,8 +4434,10 @@
 				9AA8064E1CC2CB4100420533 /* palette_radio@2x.png in Resources */,
 				9ADCE1BD1AB7481F007895AA /* palette_activityClassifier.png in Resources */,
 				9A94F42616A0192700AF52AB /* THiPhoneViewProperties.xib in Resources */,
+				9AB4255F1CFC7AEA00B52062 /* runningSpeed@2x.png in Resources */,
 				9AEB06CD1C8848A0000D399E /* palette_biggerEqual@2x.png in Resources */,
 				9A94F42816A0192700AF52AB /* THiSwitchEditableProperties.xib in Resources */,
+				9AB4255D1CFC7AEA00B52062 /* palette_runningSpeed@2x.png in Resources */,
 				9A7B65181834D830009D0103 /* THCompassProperties.xib in Resources */,
 				9A94F42A16A0192700AF52AB /* THLabelProperties.xib in Resources */,
 				9AA4D6E918AE169100A43433 /* BLE-LilyPad.png in Resources */,
@@ -4401,6 +4446,7 @@
 				9A56C4A01C907D8100D0A7A3 /* palette_lowPassFilter@2x.png in Resources */,
 				257730341A17858800F038D1 /* segDivider@2x.png in Resources */,
 				9A3165A91827989D00CB3E59 /* palette_monitor@2x.png in Resources */,
+				9AE4266E1CCA1C54009E36D1 /* light2.png in Resources */,
 				9AEB06D31C8848DF000D399E /* palette_smallerEqual@2x.png in Resources */,
 				9AEB06D21C8848DF000D399E /* palette_smallerEqual.png in Resources */,
 				9A94F43016A0192700AF52AB /* THMapperProperties.xib in Resources */,
@@ -4417,6 +4463,7 @@
 				9AF60BC816A04D9F00178439 /* THTabbarViewSection.xib in Resources */,
 				9A72C7961C882D9E0019B2E4 /* window.png in Resources */,
 				9AB984E91AB611AC00A6AB83 /* deviation@2x.png in Resources */,
+				9AB4255E1CFC7AEA00B52062 /* runningSpeed.png in Resources */,
 				9ABC279E1809B46C00B39D72 /* accelerometer@2x.png in Resources */,
 				9A5BD7411860C52E00842833 /* circleEmpty@2x.png in Resources */,
 				9A5F8D8D16A2C524000DF472 /* THContactBookProperties.xib in Resources */,
@@ -4516,12 +4563,14 @@
 				9A41459917DE7A060061EDF8 /* music@2x.png in Resources */,
 				9A27E3411C5CE888000549E5 /* palette_division@2x.png in Resources */,
 				9AEB07531C899869000D399E /* palette_and@2x.png in Resources */,
+				9AB4255C1CFC7AEA00B52062 /* palette_runningSpeed.png in Resources */,
 				9A9CF8FF1A9F60A200C4FF1F /* musicPlayerThumbImage@2x.png in Resources */,
 				9AEB07591C899888000D399E /* or@2x.png in Resources */,
 				257730331A17858800F038D1 /* segDivider.png in Resources */,
 				9A41459B17DE7A060061EDF8 /* palette_boolean.png in Resources */,
 				9A41459D17DE7A060061EDF8 /* palette_boolean@2x.png in Resources */,
 				9AB984E71AB611AC00A6AB83 /* palette_deviation@2x.png in Resources */,
+				9A6A77D81D17D30000A84027 /* proximitySensor.png in Resources */,
 				9A27E3381C5CE888000549E5 /* addition.png in Resources */,
 				9A41459F17DE7A060061EDF8 /* palette_button.png in Resources */,
 				9A5BD7431860C52E00842833 /* circleFilled@2x.png in Resources */,
@@ -4579,6 +4628,7 @@
 				9AB490391886E54500BCB1C6 /* THAutorouteProperties.xib in Resources */,
 				9ADCE1BC1AB7481F007895AA /* activityClassifier@2x.png in Resources */,
 				9A4145E117DE7A060061EDF8 /* palette_potentiometer@2x.png in Resources */,
+				9A6A77D71D17D30000A84027 /* palette_proximitySensor@2x.png in Resources */,
 				9AEB06C41C884688000D399E /* palette_bigger.png in Resources */,
 				9A4145E317DE7A060061EDF8 /* palette_slider.png in Resources */,
 				257730301A17858800F038D1 /* segBg@2x.png in Resources */,
@@ -4598,6 +4648,7 @@
 				9A9CF9101A9F6E2F00C4FF1F /* musicPlayerRightVolume@2x.png in Resources */,
 				9A4D4A841C5F6F1C000FF395 /* palette_peakDetector.png in Resources */,
 				9A4D4A961C5F9D34000FF395 /* connectionArrow@2x.png in Resources */,
+				9A6A77D61D17D30000A84027 /* palette_proximitySensor.png in Resources */,
 				9AEB06DB1C884A87000D399E /* notEqual@2x.png in Resources */,
 				9A9CF90F1A9F6E2F00C4FF1F /* musicPlayerRightVolume.png in Resources */,
 				9A4145F717DE7A060061EDF8 /* palette_timer.png in Resources */,
@@ -4605,6 +4656,7 @@
 				9A4145F917DE7A060061EDF8 /* palette_timer@2x.png in Resources */,
 				9A4145FB17DE7A060061EDF8 /* palette_touchpad.png in Resources */,
 				9AFA04D11B443CFA00D7C0D5 /* palette_recorder.png in Resources */,
+				9A6A77D91D17D30000A84027 /* proximitySensor@2x.png in Resources */,
 				9A4145FD17DE7A060061EDF8 /* palette_touchpad@2x.png in Resources */,
 				9A4145FF17DE7A060061EDF8 /* palette_tshirt.png in Resources */,
 				9AEB06CA1C8848A0000D399E /* biggerEqual.png in Resources */,
@@ -4645,6 +4697,7 @@
 				9AEB06BB1C884630000D399E /* equal@2x.png in Resources */,
 				9A41462317DE7A060061EDF8 /* timer.png in Resources */,
 				25E57B5319C0824A006B61A8 /* stopicon.png in Resources */,
+				9AE4266F1CCA1C54009E36D1 /* light2@2x.png in Resources */,
 				9A41462517DE7A060061EDF8 /* timer@2x.png in Resources */,
 				9ABC272B1809526C00B39D72 /* lilypadComplex@2x.png in Resources */,
 				9AEB06A21C883C8D000D399E /* palette_modulo.png in Resources */,
@@ -4707,7 +4760,6 @@
 				9AEB07581C899888000D399E /* or.png in Resources */,
 				251F678719C4A1A300EF9807 /* vpmode@2x.png in Resources */,
 				9AFA04D41B443CFA00D7C0D5 /* recorder@2x.png in Resources */,
-				25643B8F19B0E52000F8E9CB /* THMenubar.xib in Resources */,
 				9A82EB771B7DFA4F00567421 /* potentiometerArm@2x.png in Resources */,
 				9A5931D217E5CD4500B20D99 /* propertiesIcon.png in Resources */,
 				9A5BD74F1860C52E00842833 /* triangleFilled@2x.png in Resources */,
@@ -5021,6 +5073,7 @@
 				9AEB06EC1C884B8B000D399E /* THComparisonOperator.m in Sources */,
 				9AFB7DDE1833BB5300694CCE /* THMonitorProperties.m in Sources */,
 				9A95FB9718D0FDEF009A724F /* THHardwareComponentProperties.m in Sources */,
+				9A6A77D11D17D10400A84027 /* THProximitySensorPaletteItem.m in Sources */,
 				9AEB072E1C89931C000D399E /* THLogicalOperator.m in Sources */,
 				9ABC276018098F2400B39D72 /* THLilypadEditable.m in Sources */,
 				9A5F8D8316A2C46E000DF472 /* THContactBook.m in Sources */,
@@ -5089,6 +5142,7 @@
 				9AEB06FB1C884D33000D399E /* THSmallerEqualOperator.m in Sources */,
 				9A56CDAC17D8EDA2001021B2 /* THStringValue.m in Sources */,
 				9A27E31E1C5BD2E3000549E5 /* THSubtractionOperatorPaletteItem.m in Sources */,
+				9A6A77C11D17CD5200A84027 /* THProximitySensorEditableObject.m in Sources */,
 				9A56C4B31C90817F00D0A7A3 /* THLowPassFilterEditable.m in Sources */,
 				9A1D0B191B39AD41005012F2 /* THTextITConnectionController.m in Sources */,
 				9A56CDB117D8EE11001021B2 /* THStringValueEditable.m in Sources */,
@@ -5140,6 +5194,7 @@
 				9A59325417E5D58300B20D99 /* THTabbarViewController.m in Sources */,
 				9AB777F417E5FF4100F82424 /* THInvocationConnectionLine.m in Sources */,
 				9AEB071E1C8851F1000D399E /* THBiggerEqualOperatorPaletteItem.m in Sources */,
+				9A6A77CD1D17CDAE00A84027 /* THProximitySensor.m in Sources */,
 				9A27E3251C5BD405000549E5 /* THSubtractionOperatorEditable.m in Sources */,
 				9AB7783E17E6643000F82424 /* THPropertySelectionPopup.m in Sources */,
 				9AB7784317E66A2300F82424 /* THInvocationConnectionProperties.m in Sources */,
@@ -5200,6 +5255,7 @@
 				9AFB7E6B1833DE6400694CCE /* THClientPresetsGenerator.m in Sources */,
 				9AF50461167B852F0020241C /* THiSwitch.m in Sources */,
 				9AF50462167B852F0020241C /* THLabel.m in Sources */,
+				9A6A77CE1D17CDAE00A84027 /* THProximitySensor.m in Sources */,
 				9AF50463167B852F0020241C /* THMusicPlayer.m in Sources */,
 				9AFB7DC61832A91500694CCE /* THClientSceneSelectionViewController.m in Sources */,
 				9AA8061F1CC10CC700420533 /* THTextileSensor.m in Sources */,
@@ -5495,7 +5551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesignerApp;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5519,7 +5575,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesignerApp;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5571,7 +5627,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesigner;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexDesignerApp;
 				PRODUCT_NAME = "Interactex Designer";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5586,6 +5642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -5593,7 +5650,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClientApp;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5608,6 +5665,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -5615,7 +5673,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClientApp;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";
@@ -5630,6 +5688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ClientIcons;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = ClientLaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = ./Frameworks;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TangoHappsClient/TangoHappsClient-Prefix.pch";
@@ -5637,7 +5696,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClient;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.InteractexClientApp;
 				PRODUCT_NAME = "Interactex Client";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "TangoHapps/classes/utils/TangoHapps-Bridging-Header.h";

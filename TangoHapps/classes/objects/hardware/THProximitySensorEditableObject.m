@@ -1,8 +1,8 @@
 /*
- THWindowEditable.m
+ THProximitySensorEditableObject.m
  Interactex Designer
  
- Created by Juan Haladjian on 03/03/16.
+ Created by Juan Haladjian on 06/20/2016.
  
  Interactex Designer is a configuration tool to easily setup, simulate and connect e-Textile hardware with smartphone functionality. Interactex Client is an app to store and replay projects made with Interactex Designer.
  
@@ -40,42 +40,38 @@
  
  */
 
+#import "THProximitySensorEditableObject.h"
+#import "THProximitySensor.h"
+#import "THElementPinEditable.h"
+#import "THElementPin.h"
+#import "THBoardPinEditable.h"
 
-#import "THWindowEditable.h"
-#import "THWindow.h"
-
-@implementation THWindowEditable
-
-@dynamic windowSize;
-@dynamic overlap;
-@dynamic started;
-@dynamic data;
+@implementation THProximitySensorEditableObject
 
 -(id) init{
     self = [super init];
     if(self){
-        self.simulableObject = [[THWindow alloc] init];
+        self.simulableObject = [[THProximitySensor alloc] init];
         
-        [self loadWindow];
+        [self loadProximitySensor];
+        [super loadPins];
     }
     return self;
 }
 
--(void) loadWindow{
+-(void) loadProximitySensor{
     
-    self.programmingElementType = kProgrammingElementTypeWindow;
-    self.acceptsConnections = YES;
+    self.type = kHardwareTypeProximitySensor;
 }
+
 
 #pragma mark - Archiving
 
 -(id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
-    
     if(self){
-        [self loadWindow];
+        [self loadProximitySensor];
     }
-    
     return self;
 }
 
@@ -84,77 +80,96 @@
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    THWindow * copy = [super copyWithZone:zone];
-    if(copy){
-    }
+    THProximitySensorEditableObject * copy = [super copyWithZone:zone];
+    
     return copy;
 }
 
-
 #pragma mark - Property Controller
 
--(NSArray*)propertyControllers {
+-(NSArray*)propertyControllers
+{
     NSMutableArray *controllers = [NSMutableArray array];
     [controllers addObjectsFromArray:[super propertyControllers]];
-    //[controllers addObject:[THCustomComponentProperties properties]];
     return controllers;
 }
 
 #pragma mark - Methods
 
--(void) start{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window start];
+-(void) handleTouchBegan{
+    self.isDown = YES;
 }
 
--(void) stop{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window stop];
+-(void) handleTouchEnded{
+    self.isDown = NO;
 }
 
--(void) addSample:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSample:sample];
+-(THElementPinEditable*) analogPin{
+    return [self.pins objectAtIndex:0];
 }
 
--(void) addSamples:(id) sample{
-    THWindow * window = (THWindow*) self.simulableObject;
-    [window addSamples:sample];
+-(THElementPinEditable*) plusPin{
+    return [self.pins objectAtIndex:1];
 }
 
--(BOOL) started{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.started;
+-(void) updatePinValue{
+    THElementPinEditable * analogPin = self.analogPin;
+    THBoardPinEditable * boardPin = analogPin.attachedToPin;
+    THProximitySensor * sensor = (THProximitySensor*) self.simulableObject;
+    boardPin.value = sensor.proximity;
 }
 
--(NSMutableArray*) data{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.data;
+-(void) update{
+    
+    if(self.isDown){
+        _proximityTouchDownIntensity += kDefaultAnalogSimulationIncrease;
+    } else {
+        _proximityTouchDownIntensity -= kDefaultAnalogSimulationIncrease;
+    }
+    
+    THProximitySensor * proximitySensor = (THProximitySensor*) self.simulableObject;
+    _proximityTouchDownIntensity = [THClientHelper Constrain:_proximityTouchDownIntensity min:0 max:kMaxAnalogValue];
+    
+    proximitySensor.proximity =_proximityTouchDownIntensity;
+    _proximitySprite.opacity = _proximityTouchDownIntensity * (255.0f / kMaxAnalogValue);
 }
 
--(void) setWindowSize:(NSInteger)windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    window.windowSize = windowSize;
+-(void) willStartSimulation{
+    _proximitySprite.visible = YES;
+    [super willStartSimulation];
 }
 
-
--(NSInteger) windowSize{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.windowSize;
+-(void) willStartEdition{
+    _proximitySprite.visible = NO;
+    [super willStartEdition];
 }
 
--(void) setOverlap:(NSInteger)overlap{
-   THWindow * window = (THWindow*) self.simulableObject;
-    window.overlap = overlap;
+-(NSInteger) proximity{
+    THProximitySensor * proximitySensor = (THProximitySensor*) self.simulableObject;
+    return proximitySensor.proximity;
 }
 
--(NSInteger) overlap{
-    THWindow * window = (THWindow*) self.simulableObject;
-    return window.overlap;
+-(void) loadProximitySprite{
+    
+    _proximitySprite = [CCSprite spriteWithFile: @"light2.png"];
+    _proximitySprite.opacity = 0;
+    _proximitySprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+    [self addChild:_proximitySprite];
+}
+
+-(void) refreshUI{
+    [super refreshUI];
+    [self loadProximitySprite];
+}
+
+-(void) addToLayer:(TFLayer *)layer{
+    
+    [super addToLayer:layer];
+    [self loadProximitySprite];
 }
 
 -(NSString*) description{
-    return @"Window";
+    return @"Proximity Sensor";
 }
 
 @end

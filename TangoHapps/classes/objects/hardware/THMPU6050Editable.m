@@ -173,6 +173,14 @@
     mpu6050.accelerometerZ = accelerometerZ;
 }*/
 
+-(void) start{
+    
+}
+
+-(void) stop{
+    
+}
+
 #pragma mark - Lifecycle
 
 -(void) autoroute{

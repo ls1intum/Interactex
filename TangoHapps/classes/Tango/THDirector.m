@@ -142,6 +142,12 @@ static THDirector * _sharedInstance = nil;
         self.customComponents = [NSMutableArray array];
     }
     
+    /*
+    THCustomComponent * customComponent = [[THCustomComponent alloc] init];
+    customComponent.name = @"sideHops";
+    [self.customComponents addObject:customComponent];
+    [self saveCustomComponents];*/
+    
     return self.customComponents;
 }
 

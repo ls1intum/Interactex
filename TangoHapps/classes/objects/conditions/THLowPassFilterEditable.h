@@ -45,6 +45,7 @@
 @interface THLowPassFilterEditable : THProgrammingElementEditable
 
 -(void) addSample:(id) sample;
+-(void) addSamples:(id) sample;
 
 @property(nonatomic, strong) NSMutableArray * data;
 
