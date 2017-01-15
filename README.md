@@ -19,7 +19,7 @@ https://itunes.apple.com/us/app/interactex-designer/id973912620?mt=8
 
 The image below describes the main components of the user interface.
 
-![alt tag](Documentation/images/Interactex/InteractexDesignerOverview.png)
+![alt tag](https://github.com/avenix/Interactex/blob/master/Documentation/images/Interactex/InteractexDesignerOverview.png)
 
 Applications created in Interactex Designer are transferred wirelessly to Interactex Client. Interactex has three main modes: Circuit Layout, Visual Programming and Simulation Modes.
 
